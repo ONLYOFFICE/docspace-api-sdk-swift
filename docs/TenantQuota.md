@@ -1,0 +1,46 @@
+# TenantQuota
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**tenantId** | **Int** | The tenant ID. | [optional] 
+**name** | **String** | The tenant name. | [optional] 
+**price** | **Double** | The tenant price. | [optional] 
+**priceCurrencySymbol** | **String** | The tenant price currency symbol. | [optional] 
+**priceISOCurrencySymbol** | **String** | The tenant price three-character ISO 4217 currency symbol. | [optional] 
+**productId** | **String** | The tenant product ID. | [optional] 
+**serviceName** | **String** | The service name. | [optional] 
+**visible** | **Bool** | Specifies if the tenant quota is visible or not. | [optional] 
+**wallet** | **Bool** | Specifies if the tenant quota applies to the wallet or not | [optional] 
+**dueDate** | **Date** | The quota due date. | [optional] 
+**features** | **String** | The tenant quota features. | [optional] 
+**maxFileSize** | **Int64** | The tenant maximum file size. | [optional] 
+**maxTotalSize** | **Int64** | The tenant maximum total size. | [optional] 
+**countUser** | **Int** | The number of portal users. | [optional] 
+**countRoomAdmin** | **Int** | The number of portal room administrators. | [optional] 
+**usersInRoom** | **Int** | The number of room users. | [optional] 
+**countRoom** | **Int** | The number of rooms. | [optional] 
+**nonProfit** | **Bool** | Specifies if the tenant quota is nonprofit or not. | [optional] 
+**trial** | **Bool** | Specifies if the tenant quota is trial or not. | [optional] 
+**free** | **Bool** | Specifies if the tenant quota is free or not. | [optional] 
+**update** | **Bool** | Specifies if the tenant quota is updated or not. | [optional] 
+**audit** | **Bool** | Specifies if the audit trail is available or not. | [optional] 
+**docsEdition** | **Bool** | Specifies if ONLYOFFICE Docs is included in the tenant quota or not. | [optional] 
+**ldap** | **Bool** | Specifies if the LDAP settings are available or not. | [optional] 
+**sso** | **Bool** | Specifies if the SSO settings are available or not. | [optional] 
+**statistic** | **Bool** | Specifies if the statistics settings are available or not. | [optional] 
+**branding** | **Bool** | Specifies if the branding settings are available or not. | [optional] 
+**customization** | **Bool** | Specifies if the customization settings are available or not. | [optional] 
+**lifetime** | **Bool** | Specifies if the license has the lifetime settings or not. | [optional] 
+**custom** | **Bool** | Specifies if the custom domain URL is available or not. | [optional] 
+**restore** | **Bool** | Specifies if the restore is enabled or not. | [optional] 
+**oauth** | **Bool** | Specifies if Oauth is available or not. | [optional] 
+**contentSearch** | **Bool** | Specifies if the content search is available or not. | [optional] 
+**thirdParty** | **Bool** | Specifies if the third-party accounts linking is available or not. | [optional] 
+**year** | **Bool** | Specifies if the tenant quota is yearly subscription or not. | [optional] 
+**countFreeBackup** | **Int** | The number of free backups within a month. | [optional] 
+**backup** | **Bool** | Specifies if the backup anabled as a wallet service or not. | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
