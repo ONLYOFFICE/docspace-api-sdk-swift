@@ -27,15 +27,18 @@ public struct AuthServiceRequestsDto: Sendable, Codable, ParameterConvertible, H
     public var instruction: String?
     /** Specifies whether the authorization service can be configured by the user. */
     public var canSet: Bool?
+    /** Specifies whether the authorization service is paid or not. */
+    public var paid: Bool?
     /** The collection of authorization keys associated with the authorization service. */
     public var props: [AuthKey]?
 
-    public init(name: String? = nil, title: String? = nil, description: String? = nil, instruction: String? = nil, canSet: Bool? = nil, props: [AuthKey]? = nil) {
+    public init(name: String? = nil, title: String? = nil, description: String? = nil, instruction: String? = nil, canSet: Bool? = nil, paid: Bool? = nil, props: [AuthKey]? = nil) {
         self.name = name
         self.title = title
         self.description = description
         self.instruction = instruction
         self.canSet = canSet
+        self.paid = paid
         self.props = props
     }
 
@@ -45,6 +48,7 @@ public struct AuthServiceRequestsDto: Sendable, Codable, ParameterConvertible, H
         case description
         case instruction
         case canSet
+        case paid
         case props
     }
 
@@ -57,6 +61,7 @@ public struct AuthServiceRequestsDto: Sendable, Codable, ParameterConvertible, H
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(instruction, forKey: .instruction)
         try container.encodeIfPresent(canSet, forKey: .canSet)
+        try container.encodeIfPresent(paid, forKey: .paid)
         try container.encodeIfPresent(props, forKey: .props)
     }
 }

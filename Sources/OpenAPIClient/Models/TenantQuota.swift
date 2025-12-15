@@ -91,8 +91,10 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
     public var countFreeBackup: Int?
     /** Specifies if the backup anabled as a wallet service or not. */
     public var backup: Bool?
+    /** The number of AI agents. */
+    public var countAIAgent: Int?
 
-    public init(tenantId: Int? = nil, name: String? = nil, price: Double? = nil, priceCurrencySymbol: String? = nil, priceISOCurrencySymbol: String? = nil, productId: String? = nil, serviceName: String? = nil, visible: Bool? = nil, wallet: Bool? = nil, dueDate: Date? = nil, features: String? = nil, maxFileSize: Int64? = nil, maxTotalSize: Int64? = nil, countUser: Int? = nil, countRoomAdmin: Int? = nil, usersInRoom: Int? = nil, countRoom: Int? = nil, nonProfit: Bool? = nil, trial: Bool? = nil, free: Bool? = nil, update: Bool? = nil, audit: Bool? = nil, docsEdition: Bool? = nil, ldap: Bool? = nil, sso: Bool? = nil, statistic: Bool? = nil, branding: Bool? = nil, customization: Bool? = nil, lifetime: Bool? = nil, custom: Bool? = nil, restore: Bool? = nil, oauth: Bool? = nil, contentSearch: Bool? = nil, thirdParty: Bool? = nil, year: Bool? = nil, countFreeBackup: Int? = nil, backup: Bool? = nil) {
+    public init(tenantId: Int? = nil, name: String? = nil, price: Double? = nil, priceCurrencySymbol: String? = nil, priceISOCurrencySymbol: String? = nil, productId: String? = nil, serviceName: String? = nil, visible: Bool? = nil, wallet: Bool? = nil, dueDate: Date? = nil, features: String? = nil, maxFileSize: Int64? = nil, maxTotalSize: Int64? = nil, countUser: Int? = nil, countRoomAdmin: Int? = nil, usersInRoom: Int? = nil, countRoom: Int? = nil, nonProfit: Bool? = nil, trial: Bool? = nil, free: Bool? = nil, update: Bool? = nil, audit: Bool? = nil, docsEdition: Bool? = nil, ldap: Bool? = nil, sso: Bool? = nil, statistic: Bool? = nil, branding: Bool? = nil, customization: Bool? = nil, lifetime: Bool? = nil, custom: Bool? = nil, restore: Bool? = nil, oauth: Bool? = nil, contentSearch: Bool? = nil, thirdParty: Bool? = nil, year: Bool? = nil, countFreeBackup: Int? = nil, backup: Bool? = nil, countAIAgent: Int? = nil) {
         self.tenantId = tenantId
         self.name = name
         self.price = price
@@ -130,6 +132,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         self.year = year
         self.countFreeBackup = countFreeBackup
         self.backup = backup
+        self.countAIAgent = countAIAgent
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -170,6 +173,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         case year
         case countFreeBackup
         case backup
+        case countAIAgent
     }
 
     // Encodable protocol methods
@@ -213,6 +217,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(year, forKey: .year)
         try container.encodeIfPresent(countFreeBackup, forKey: .countFreeBackup)
         try container.encodeIfPresent(backup, forKey: .backup)
+        try container.encodeIfPresent(countAIAgent, forKey: .countAIAgent)
     }
 }
 

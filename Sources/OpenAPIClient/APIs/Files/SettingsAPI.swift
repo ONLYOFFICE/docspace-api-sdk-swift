@@ -18,6 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
+     Change the third-party settings access
      
      See also:
      REST API Reference for changeAccessToThirdparty Operation
@@ -32,12 +33,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the third-party settings access
      
      See also:
      REST API Reference for changeAccessToThirdparty Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-access-to-thirdparty/
      
      - PUT /api/2.0/files/thirdparty
+     - Changes the access to the third-party settings.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -58,10 +79,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Update the trash bin auto-clearing setting
      
      See also:
      REST API Reference for changeAutomaticallyCleanUp Operation
@@ -76,12 +98,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Update the trash bin auto-clearing setting
      
      See also:
      REST API Reference for changeAutomaticallyCleanUp Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-automatically-clean-up/
      
      - PUT /api/2.0/files/settings/autocleanup
+     - Updates the trash bin auto-clearing setting.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter autoCleanupRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AutoCleanUpDataWrapper> 
@@ -102,10 +144,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AutoCleanUpDataWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the default access rights
      
      See also:
      REST API Reference for changeDefaultAccessRights Operation
@@ -120,12 +163,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the default access rights
      
      See also:
      REST API Reference for changeDefaultAccessRights Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-default-access-rights/
      
      - PUT /api/2.0/files/settings/dafaultaccessrights
+     - Changes the default access rights in the sharing settings.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter requestBody: (body) Sharing rights (None, ReadWrite, Read, Restrict, Varies, Review, Comment, FillForms, CustomFilter, RoomAdmin, Editing, Collaborator). (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareArrayWrapper> 
@@ -146,10 +209,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Confirm the file deletion
      
      See also:
      REST API Reference for changeDeleteConfirm Operation
@@ -164,12 +228,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Confirm the file deletion
      
      See also:
      REST API Reference for changeDeleteConfirm Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-delete-confirm/
      
      - PUT /api/2.0/files/changedeleteconfrim
+     - Specifies whether to confirm the file deletion or not.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -190,10 +274,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the archive format (using body parameters)
      
      See also:
      REST API Reference for changeDownloadZipFromBody Operation
@@ -208,12 +293,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the archive format (using body parameters)
      
      See also:
      REST API Reference for changeDownloadZipFromBody Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-download-zip-from-body/
      
      - PUT /api/2.0/files/settings/downloadtargz
+     - Changes the format of the downloaded archive from .zip to .tar.gz. This method uses the body parameters.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter displayRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ICompressWrapper> 
@@ -234,10 +339,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<ICompressWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Check the document service URL
      
      See also:
      REST API Reference for checkDocServiceUrl Operation
@@ -252,12 +358,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Check the document service URL
      
      See also:
      REST API Reference for checkDocServiceUrl Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-doc-service-url/
      
      - PUT /api/2.0/files/docservice
+     - Checks the document service location URL.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter checkDocServiceUrlRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DocServiceUrlWrapper> 
@@ -278,10 +404,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<DocServiceUrlWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Display a file extension
      
      See also:
      REST API Reference for displayFileExtension Operation
@@ -296,12 +423,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Display a file extension
      
      See also:
      REST API Reference for displayFileExtension Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/display-file-extension/
      
      - PUT /api/2.0/files/displayfileextension
+     - Specifies whether to display a file extension or not.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -322,10 +469,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Display the Recent folder
      
      See also:
      REST API Reference for displayRecent Operation
@@ -340,12 +488,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Display the Recent folder
      
      See also:
      REST API Reference for displayRecent Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/display-recent/
      
      - PUT /api/2.0/files/displayrecent
+     - Displays the Recent folder.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter displayRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -366,10 +534,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the external sharing ability
      
      See also:
      REST API Reference for externalShare Operation
@@ -384,12 +553,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the external sharing ability
      
      See also:
      REST API Reference for externalShare Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/external-share/
      
      - PUT /api/2.0/files/settings/external
+     - Changes the ability to share a file externally.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter displayRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -410,10 +599,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the external sharing ability on social networks
      
      See also:
      REST API Reference for externalShareSocialMedia Operation
@@ -428,12 +618,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the external sharing ability on social networks
      
      See also:
      REST API Reference for externalShareSocialMedia Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/external-share-social-media/
      
      - PUT /api/2.0/files/settings/externalsocialmedia
+     - Changes the ability to share a file externally on social networks.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter displayRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -454,10 +664,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the forcesaving ability
      
      See also:
      REST API Reference for forcesave Operation
@@ -472,12 +683,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the forcesaving ability
      
      See also:
      REST API Reference for forcesave Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/forcesave/
      
      - PUT /api/2.0/files/forcesave
+     - Specifies if the file forcesaving is enabled or not.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
      */
@@ -497,10 +728,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the trash bin auto-clearing setting
      
      See also:
      REST API Reference for getAutomaticallyCleanUp Operation
@@ -515,12 +747,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the trash bin auto-clearing setting
      
      See also:
      REST API Reference for getAutomaticallyCleanUp Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-automatically-clean-up/
      
      - GET /api/2.0/files/settings/autocleanup
+     - Returns the trash bin auto-clearing setting.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AutoCleanUpDataWrapper> 
      */
@@ -540,10 +792,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AutoCleanUpDataWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the document service URL
      
      See also:
      REST API Reference for getDocServiceUrl Operation
@@ -558,12 +811,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the document service URL
      
      See also:
      REST API Reference for getDocServiceUrl Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-doc-service-url/
      
      - GET /api/2.0/files/docservice
+     - Returns the URL address of the connected editors.
      - parameter version: (query) Specifies whether to return the editor version or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DocServiceUrlWrapper> 
@@ -591,6 +846,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the Documents information
      
      See also:
      REST API Reference for getFilesModule Operation
@@ -605,12 +861,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the Documents information
      
      See also:
      REST API Reference for getFilesModule Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-module/
      
      - GET /api/2.0/files/info
+     - Returns the information about the Documents module.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ModuleWrapper> 
      */
@@ -630,10 +906,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<ModuleWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get file settings
      
      See also:
      REST API Reference for getFilesSettings Operation
@@ -648,12 +925,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file settings
      
      See also:
      REST API Reference for getFilesSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-settings/
      
      - GET /api/2.0/files/settings
+     - Returns all the file settings.
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FilesSettingsWrapper> 
      */
@@ -677,6 +956,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Hide confirmation dialog when canceling operations
      
      See also:
      REST API Reference for hideConfirmCancelOperation Operation
@@ -691,12 +971,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Hide confirmation dialog when canceling operations
      
      See also:
      REST API Reference for hideConfirmCancelOperation Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/hide-confirm-cancel-operation/
      
      - PUT /api/2.0/files/hideconfirmcanceloperation
+     - Hides the confirmation dialog when canceling operations.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -717,10 +1017,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Hide the confirmation dialog when converting
      
      See also:
      REST API Reference for hideConfirmConvert Operation
@@ -735,12 +1036,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Hide the confirmation dialog when converting
      
      See also:
      REST API Reference for hideConfirmConvert Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/hide-confirm-convert/
      
      - PUT /api/2.0/files/hideconfirmconvert
+     - Hides the confirmation dialog for saving the file copy in the original format when converting a file.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter hideConfirmConvertRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ModuleWrapper> 
@@ -761,10 +1082,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<ModuleWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Hide confirmation dialog when changing room lifetime settings
      
      See also:
      REST API Reference for hideConfirmRoomLifetime Operation
@@ -779,12 +1101,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Hide confirmation dialog when changing room lifetime settings
      
      See also:
      REST API Reference for hideConfirmRoomLifetime Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/hide-confirm-room-lifetime/
      
      - PUT /api/2.0/files/hideconfirmroomlifetime
+     - Hides the confirmation dialog when changing the room lifetime settings.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -805,10 +1147,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Check the Private Room availability
      
      See also:
      REST API Reference for isAvailablePrivacyRoomSettings Operation
@@ -823,12 +1166,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Check the Private Room availability
      
      See also:
      REST API Reference for isAvailablePrivacyRoomSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/is-available-privacy-room-settings/
      
      - GET /api/2.0/files/@privacy/available
+     - Checks if the Private Room settings are available or not.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
      */
@@ -848,10 +1211,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Ask a new file name
      
      See also:
      REST API Reference for keepNewFileName Operation
@@ -866,12 +1230,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Ask a new file name
      
      See also:
      REST API Reference for keepNewFileName Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/keep-new-file-name/
      
      - PUT /api/2.0/files/keepnewfilename
+     - Specifies whether to ask a user for a file name on creation or not.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -892,10 +1276,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Open document in the same browser tab
      
      See also:
      REST API Reference for setOpenEditorInSameTab Operation
@@ -910,12 +1295,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Open document in the same browser tab
      
      See also:
      REST API Reference for setOpenEditorInSameTab Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-open-editor-in-same-tab/
      
      - PUT /api/2.0/files/settings/openeditorinsametab
+     - Changes the ability to open the document in the same browser tab.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -936,10 +1341,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the ability to store the forcesaved files
      
      See also:
      REST API Reference for storeForcesave Operation
@@ -954,12 +1360,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the ability to store the forcesaved files
      
      See also:
      REST API Reference for storeForcesave Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/store-forcesave/
      
      - PUT /api/2.0/files/storeforcesave
+     - Changes the ability to store the forcesaved file versions.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
      */
@@ -979,10 +1405,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the ability to upload original formats
      
      See also:
      REST API Reference for storeOriginal Operation
@@ -997,12 +1424,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the ability to upload original formats
      
      See also:
      REST API Reference for storeOriginal Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/store-original/
      
      - PUT /api/2.0/files/storeoriginal
+     - Changes the ability to upload documents in the original formats as well.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -1023,10 +1470,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Update a file version if it exists
      
      See also:
      REST API Reference for updateFileIfExist Operation
@@ -1041,12 +1489,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Update a file version if it exists
      
      See also:
      REST API Reference for updateFileIfExist Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file-if-exist/
      
      - PUT /api/2.0/files/updateifexist
+     - Updates a file version if a file with such a name already exists.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter settingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -1067,6 +1535,6 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

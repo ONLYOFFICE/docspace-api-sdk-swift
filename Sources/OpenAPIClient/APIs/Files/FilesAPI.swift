@@ -18,6 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
+     Add a file to the Recent section
      
      See also:
      REST API Reference for addFileToRecent Operation
@@ -32,12 +33,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Add a file to the Recent section
      
      See also:
      REST API Reference for addFileToRecent Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/add-file-to-recent/
      
      - POST /api/2.0/files/file/{fileId}/recent
+     - Adds a file with the ID specified in the request to the Recent section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -61,10 +82,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Add template files
      
      See also:
      REST API Reference for addTemplates Operation
@@ -79,12 +101,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Add template files
      
      See also:
      REST API Reference for addTemplates Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/add-templates/
      
      - POST /api/2.0/files/templates
+     - Adds files with the IDs specified in the request to the template list.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter templatesRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -105,10 +147,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change version history
      
      See also:
      REST API Reference for changeVersionHistory Operation
@@ -123,12 +166,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change version history
      
      See also:
      REST API Reference for changeVersionHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-version-history/
      
      - PUT /api/2.0/files/file/{fileId}/history
+     - Changes the version history of a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file Id to change its version history. 
      - parameter changeHistory: (body) The parameters for changing version history. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -153,10 +216,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Check the form draft filling
      
      See also:
      REST API Reference for checkFillFormDraft Operation
@@ -171,12 +235,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Check the form draft filling
      
      See also:
      REST API Reference for checkFillFormDraft Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-fill-form-draft/
      
      - POST /api/2.0/files/masterform/{fileId}/checkfillformdraft
+     - Checks if the current file is a form draft which can be filled out.
      - parameter fileId: (path) The file ID of the form draft. 
      - parameter checkFillFormDraft: (body) The parameters for checking the form draft filling. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -205,6 +271,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Copy a file
      
      See also:
      REST API Reference for copyFileAs Operation
@@ -219,12 +286,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Copy a file
      
      See also:
      REST API Reference for copyFileAs Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-file-as/
      
      - POST /api/2.0/files/file/{fileId}/copyas
+     - Copies (and converts if possible) an existing file to the specified folder.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID to copy. 
      - parameter copyAsJsonElement: (body) The parameters for copying a file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -249,10 +336,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create the editing session
      
      See also:
      REST API Reference for createEditSession Operation
@@ -267,12 +355,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create the editing session
      
      See also:
      REST API Reference for createEditSession Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/
      
      - POST /api/2.0/files/file/{fileId}/edit_session
+     - Creates a session to edit the existing file with multiple chunks (needed for WebDAV).   **Note**: Information about created session which includes:  <ul>  <li><b>id:</b> unique ID of this upload session,</li>  <li><b>created:</b> UTC time when the session was created,</li>  <li><b>expired:</b> UTC time when the session will expire if no chunks are sent before that time,</li>  <li><b>location:</b> URL where you should send your next chunk,</li>  <li><b>bytes_uploaded:</b> number of bytes uploaded for the specific upload ID,</li>  <li><b>bytes_total:</b> total number of bytes which will be uploaded.</li>  </ul>
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID. 
      - parameter fileSize: (query) The file size in bytes. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -300,10 +408,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<ObjectWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a file
      
      See also:
      REST API Reference for createFile Operation
@@ -318,12 +427,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create a file
      
      See also:
      REST API Reference for createFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/
      
      - POST /api/2.0/files/{folderId}/file
+     - Creates a new file in the specified folder with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID for the file creation. 
      - parameter createFileJsonElement: (body) The parameters for creating a file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -348,10 +477,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a file in the My documents section
      
      See also:
      REST API Reference for createFileInMyDocuments Operation
@@ -366,12 +496,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create a file in the My documents section
      
      See also:
      REST API Reference for createFileInMyDocuments Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-in-my-documents/
      
      - POST /api/2.0/files/@my/file
+     - Creates a new file in the My documents section with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter createFileJsonElement: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -392,10 +542,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create primary external link
      
      See also:
      REST API Reference for createFilePrimaryExternalLink Operation
@@ -410,12 +561,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create primary external link
      
      See also:
      REST API Reference for createFilePrimaryExternalLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-primary-external-link/
      
      - POST /api/2.0/files/file/{id}/link
+     - Creates a primary external link by the identifier specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The file ID. 
      - parameter fileLinkRequest: (body) The file external link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -440,10 +611,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create an HTML file
      
      See also:
      REST API Reference for createHtmlFile Operation
@@ -458,12 +630,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create an HTML file
      
      See also:
      REST API Reference for createHtmlFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file/
      
      - POST /api/2.0/files/{folderId}/html
+     - Creates an HTML (.html) file in the selected folder with the title and contents specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID to create the text or HTML file. 
      - parameter createTextOrHtmlFile: (body) The parameters for creating an HTML or text file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -488,10 +680,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create an HTML file in the My documents section
      
      See also:
      REST API Reference for createHtmlFileInMyDocuments Operation
@@ -506,12 +699,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create an HTML file in the My documents section
      
      See also:
      REST API Reference for createHtmlFileInMyDocuments Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file-in-my-documents/
      
      - POST /api/2.0/files/@my/html
+     - Creates an HTML (.html) file in the My documents section with the title and contents specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter createTextOrHtmlFile: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -532,10 +745,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a text file
      
      See also:
      REST API Reference for createTextFile Operation
@@ -550,12 +764,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create a text file
      
      See also:
      REST API Reference for createTextFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file/
      
      - POST /api/2.0/files/{folderId}/text
+     - Creates a text (.txt) file in the selected folder with the title and contents specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID to create the text or HTML file. 
      - parameter createTextOrHtmlFile: (body) The parameters for creating an HTML or text file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -580,10 +814,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a text file in the My documents section
      
      See also:
      REST API Reference for createTextFileInMyDocuments Operation
@@ -598,12 +833,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create a text file in the My documents section
      
      See also:
      REST API Reference for createTextFileInMyDocuments Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file-in-my-documents/
      
      - POST /api/2.0/files/@my/text
+     - Creates a text (.txt) file in the My documents section with the title and contents specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter createTextOrHtmlFile: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -624,10 +879,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create file thumbnails
      
      See also:
      REST API Reference for createThumbnails Operation
@@ -642,12 +898,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Create file thumbnails
      
      See also:
      REST API Reference for createThumbnails Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-thumbnails/
      
      - POST /api/2.0/files/thumbnails
+     - Creates thumbnails for the files with the IDs specified in the request.
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectArrayWrapper> 
@@ -672,6 +930,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Delete a file
      
      See also:
      REST API Reference for deleteFile Operation
@@ -686,12 +945,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Delete a file
      
      See also:
      REST API Reference for deleteFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file/
      
      - DELETE /api/2.0/files/file/{fileId}
+     - Deletes a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID to delete. 
      - parameter delete: (body) The parameters for deleting a file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -716,10 +995,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Delete recent files
      
      See also:
      REST API Reference for deleteRecent Operation
@@ -734,12 +1014,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Delete recent files
      
      See also:
      REST API Reference for deleteRecent Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-recent/
      
      - DELETE /api/2.0/files/recent
+     - Removes files with the IDs specified in the request from the Recent section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<NoContentResultWrapper> 
@@ -760,10 +1060,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<NoContentResultWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Delete template files
      
      See also:
      REST API Reference for deleteTemplates Operation
@@ -778,12 +1079,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Delete template files
      
      See also:
      REST API Reference for deleteTemplates Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-templates/
      
      - DELETE /api/2.0/files/templates
+     - Removes files with the IDs specified in the request from the template list.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter requestBody: (body) The file IDs. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -804,10 +1125,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get form roles
      
      See also:
      REST API Reference for getAllFormRoles Operation
@@ -822,12 +1144,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get form roles
      
      See also:
      REST API Reference for getAllFormRoles Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-form-roles/
      
      - GET /api/2.0/files/file/{fileId}/formroles
+     - Returns all roles for the specified form.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FormRoleArrayWrapper> 
@@ -851,10 +1193,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FormRoleArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get changes URL
      
      See also:
      REST API Reference for getEditDiffUrl Operation
@@ -869,12 +1212,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get changes URL
      
      See also:
      REST API Reference for getEditDiffUrl Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-edit-diff-url/
      
      - GET /api/2.0/files/file/{fileId}/edit/diff
+     - Returns a URL to the changes of a file version specified in the request.
      - parameter fileId: (path) The file ID. 
      - parameter version: (query) The file version. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -906,6 +1251,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get version history
      
      See also:
      REST API Reference for getEditHistory Operation
@@ -920,12 +1266,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get version history
      
      See also:
      REST API Reference for getEditHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-edit-history/
      
      - GET /api/2.0/files/file/{fileId}/edit/history
+     - Returns the version history of a file with the ID specified in the request.
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EditHistoryArrayWrapper> 
@@ -953,6 +1301,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file history
      
      See also:
      REST API Reference for getFileHistory Operation
@@ -967,12 +1316,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file history
      
      See also:
      REST API Reference for getFileHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-history/
      
      - GET /api/2.0/files/file/{fileId}/log
+     - Returns the list of actions performed on the file with the specified identifier.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID of the history request. 
      - parameter fromDate: (query) The start date of the history. (optional)
      - parameter toDate: (query) The end date of the history. (optional)
@@ -1006,10 +1375,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<HistoryArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get file information
      
      See also:
      REST API Reference for getFileInfo Operation
@@ -1024,12 +1394,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file information
      
      See also:
      REST API Reference for getFileInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-info/
      
      - GET /api/2.0/files/file/{fileId}
+     - Returns the detailed information about a file with the ID specified in the request.
      - parameter fileId: (path) The file ID. 
      - parameter version: (query) The file version. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1061,6 +1433,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file external links
      
      See also:
      REST API Reference for getFileLinks Operation
@@ -1075,12 +1448,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file external links
      
      See also:
      REST API Reference for getFileLinks Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-links/
      
      - GET /api/2.0/files/file/{id}/links
+     - Returns the external links of a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The file unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -1110,10 +1503,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get primary external link
      
      See also:
      REST API Reference for getFilePrimaryExternalLink Operation
@@ -1128,12 +1522,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get primary external link
      
      See also:
      REST API Reference for getFilePrimaryExternalLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-primary-external-link/
      
      - GET /api/2.0/files/file/{id}/link
+     - Returns the primary external link by the identifier specified in the request.
      - parameter id: (path) The file unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -1167,6 +1563,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file versions
      
      See also:
      REST API Reference for getFileVersionInfo Operation
@@ -1181,12 +1578,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file versions
      
      See also:
      REST API Reference for getFileVersionInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-version-info/
      
      - GET /api/2.0/files/file/{fileId}/history
+     - Returns the detailed information about all the available file versions with the ID specified in the request.
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerArrayWrapper> 
@@ -1214,6 +1613,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get form-filling result
      
      See also:
      REST API Reference for getFillResult Operation
@@ -1228,12 +1628,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get form-filling result
      
      See also:
      REST API Reference for getFillResult Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-fill-result/
      
      - GET /api/2.0/files/file/fillresult
+     - Retrieves the result of a form-filling session.
      - parameter fillingSessionId: (query) The form-filling session ID. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FillingFormResultIntegerWrapper> 
@@ -1261,6 +1663,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file download link asynchronously
      
      See also:
      REST API Reference for getPresignedFileUri Operation
@@ -1275,12 +1678,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file download link asynchronously
      
      See also:
      REST API Reference for getPresignedFileUri Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-file-uri/
      
      - GET /api/2.0/files/file/{fileId}/presigned
+     - Returns a link to download a file with the ID specified in the request asynchronously.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileLinkWrapper> 
@@ -1304,10 +1727,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileLinkWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get file download link
      
      See also:
      REST API Reference for getPresignedUri Operation
@@ -1322,12 +1746,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get file download link
      
      See also:
      REST API Reference for getPresignedUri Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-uri/
      
      - GET /api/2.0/files/file/{fileId}/presigneduri
+     - Returns a pre-signed URL to download a file with the specified ID.  This temporary link provides secure access to the file.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -1351,10 +1795,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get users access rights to the protected file
      
      See also:
      REST API Reference for getProtectedFileUsers Operation
@@ -1369,12 +1814,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get users access rights to the protected file
      
      See also:
      REST API Reference for getProtectedFileUsers Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-protected-file-users/
      
      - GET /api/2.0/files/file/{fileId}/protectusers
+     - Returns a list of users with their access rights to the protected file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<MentionWrapperArrayWrapper> 
@@ -1398,10 +1863,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<MentionWrapperArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get reference data
      
      See also:
      REST API Reference for getReferenceData Operation
@@ -1416,12 +1882,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get reference data
      
      See also:
      REST API Reference for getReferenceData Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-reference-data/
      
      - POST /api/2.0/files/file/referencedata
+     - Returns the reference data to uniquely identify a file in its system and check the availability of insering data into the destination spreadsheet by the external link.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter getReferenceDataDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileReferenceWrapper> 
@@ -1442,10 +1928,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileReferenceWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Check the PDF file
      
      See also:
      REST API Reference for isFormPDF Operation
@@ -1460,12 +1947,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Check the PDF file
      
      See also:
      REST API Reference for isFormPDF Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/is-form-pdf/
      
      - GET /api/2.0/files/file/{fileId}/isformpdf
+     - Checks if the PDF file is a form or not.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -1489,10 +1996,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Lock a file
      
      See also:
      REST API Reference for lockFile Operation
@@ -1507,12 +2015,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Lock a file
      
      See also:
      REST API Reference for lockFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/lock-file/
      
      - PUT /api/2.0/files/file/{fileId}/lock
+     - Locks a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID for locking. 
      - parameter lockFileParameters: (body) The parameters for locking a file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1537,10 +2065,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Perform form filling action
      
      See also:
      REST API Reference for manageFormFilling Operation
@@ -1555,12 +2084,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Perform form filling action
      
      See also:
      REST API Reference for manageFormFilling Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/manage-form-filling/
      
      - PUT /api/2.0/files/file/{fileId}/manageformfilling
+     - Performs the specified form filling action.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path)  
      - parameter manageFormFillingDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1585,10 +2134,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Open a file configuration
      
      See also:
      REST API Reference for openEditFile Operation
@@ -1603,12 +2153,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Open a file configuration
      
      See also:
      REST API Reference for openEditFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/open-edit-file/
      
      - GET /api/2.0/files/file/{fileId}/openedit
+     - Returns the initialization configuration of a file to open it in the editor.
      - parameter fileId: (path) The file ID to open. 
      - parameter version: (query) The file version to open. (optional)
      - parameter view: (query) Specifies if the document will be opened for viewing only or not. (optional)
@@ -1648,6 +2200,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Restore a file version
      
      See also:
      REST API Reference for restoreFileVersion Operation
@@ -1662,12 +2215,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Restore a file version
      
      See also:
      REST API Reference for restoreFileVersion Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-file-version/
      
-     - GET /api/2.0/files/file/{fileId}/restoreversion
+     - POST /api/2.0/files/file/{fileId}/restoreversion
+     - Restores a file version specified in the request.
      - parameter fileId: (path) The file ID of the restore version. 
      - parameter version: (query) The file version of the restore. (optional)
      - parameter url: (query) The file version URL of the restore. (optional)
@@ -1697,10 +2252,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<EditHistoryArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Save file edits
      
      See also:
      REST API Reference for saveEditingFileFromForm Operation
@@ -1715,12 +2271,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Save file edits
      
      See also:
      REST API Reference for saveEditingFileFromForm Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-editing-file-from-form/
      
      - PUT /api/2.0/files/file/{fileId}/saveediting
+     - Saves edits to a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The editing file ID from the request. 
      - parameter fileExtension: (form) The editing file extension from the request. (optional)
      - parameter downloadUri: (form) The URI to download the editing file. (optional)
@@ -1756,10 +2332,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Save a file as PDF
      
      See also:
      REST API Reference for saveFileAsPdf Operation
@@ -1774,12 +2351,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Save a file as PDF
      
      See also:
      REST API Reference for saveFileAsPdf Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-file-as-pdf/
      
      - POST /api/2.0/files/file/{id}/saveaspdf
+     - Saves a file with the identifier specified in the request as a PDF document.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The file ID to save as PDF. 
      - parameter saveAsPdfInteger: (body) The parameters for saving the file as PDF. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1804,10 +2401,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Save form role mapping
      
      See also:
      REST API Reference for saveFormRoleMapping Operation
@@ -1822,12 +2420,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Save form role mapping
      
      See also:
      REST API Reference for saveFormRoleMapping Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-form-role-mapping/
      
      - POST /api/2.0/files/file/{fileId}/formrolemapping
+     - Saves the form role mapping.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path)  
      - parameter saveFormRoleMappingDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1852,10 +2470,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set the Custom Filter editing mode
      
      See also:
      REST API Reference for setCustomFilterTag Operation
@@ -1870,12 +2489,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Set the Custom Filter editing mode
      
      See also:
      REST API Reference for setCustomFilterTag Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-custom-filter-tag/
      
      - PUT /api/2.0/files/file/{fileId}/customfilter
+     - Sets the Custom Filter editing mode to a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID. 
      - parameter customFilterParameters: (body) The parameters for setting the Custom Filter editing mode. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1900,10 +2539,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set an external link
      
      See also:
      REST API Reference for setFileExternalLink Operation
@@ -1918,12 +2558,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Set an external link
      
      See also:
      REST API Reference for setFileExternalLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-external-link/
      
      - PUT /api/2.0/files/file/{id}/links
+     - Sets an external link to a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The file ID. 
      - parameter fileLinkRequest: (body) The file external link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1948,10 +2608,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set file order
      
      See also:
      REST API Reference for setFileOrder Operation
@@ -1966,12 +2627,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Set file order
      
      See also:
      REST API Reference for setFileOrder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-order/
      
      - PUT /api/2.0/files/{fileId}/order
+     - Sets the order of the file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter orderRequestDto: (body) The file order information. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1996,10 +2677,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set order of files
      
      See also:
      REST API Reference for setFilesOrder Operation
@@ -2014,12 +2696,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Set order of files
      
      See also:
      REST API Reference for setFilesOrder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-files-order/
      
      - PUT /api/2.0/files/order
+     - Sets the order of the files specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter ordersRequestDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryIntegerArrayWrapper> 
@@ -2040,10 +2742,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryIntegerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Start file editing
      
      See also:
      REST API Reference for startEditFile Operation
@@ -2058,12 +2761,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Start file editing
      
      See also:
      REST API Reference for startEditFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/start-edit-file/
      
      - POST /api/2.0/files/file/{fileId}/startedit
+     - Informs about opening a file with the ID specified in the request for editing, locking it from being deleted or moved (this method is called by the mobile editors).
      - parameter fileId: (path) The file ID to start editing. 
      - parameter startEdit: (body) The file parameters to start editing. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -2092,6 +2797,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Start file filling
      
      See also:
      REST API Reference for startFillingFile Operation
@@ -2106,12 +2812,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Start file filling
      
      See also:
      REST API Reference for startFillingFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/start-filling-file/
      
      - PUT /api/2.0/files/file/{fileId}/startfilling
+     - Starts filling a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID to start filling. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -2135,10 +2861,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the file favorite status
      
      See also:
      REST API Reference for toggleFileFavorite Operation
@@ -2153,12 +2880,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the file favorite status
      
      See also:
      REST API Reference for toggleFileFavorite Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/toggle-file-favorite/
      
      - GET /api/2.0/files/favorites/{fileId}
+     - Changes the favorite status of the file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID. 
      - parameter favorite: (query) Specifies if the file is marked as favorite or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -2186,10 +2933,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Track file editing
      
      See also:
      REST API Reference for trackEditFile Operation
@@ -2204,12 +2952,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Track file editing
      
      See also:
      REST API Reference for trackEditFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/track-edit-file/
      
      - GET /api/2.0/files/file/{fileId}/trackeditfile
+     - Tracks file changes when editing.
      - parameter fileId: (path) The file ID to track editing changes. 
      - parameter tabId: (query) The tab ID to track editing changes. (optional)
      - parameter docKeyForTrack: (query) The document key for tracking changes. (optional)
@@ -2245,6 +2995,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Update a file
      
      See also:
      REST API Reference for updateFile Operation
@@ -2259,12 +3010,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Update a file
      
      See also:
      REST API Reference for updateFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file/
      
      - PUT /api/2.0/files/file/{fileId}
+     - Updates the information of the selected file with the parameters specified in the request.
      - parameter fileId: (path) The file ID to update. 
      - parameter updateFile: (body) The parameters for updating a file. 
      - parameter apiConfiguration: The configuration for the http request.

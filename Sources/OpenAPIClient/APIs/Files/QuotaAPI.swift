@@ -18,6 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
+     Reset the room quota limit
      
      See also:
      REST API Reference for resetRoomQuota Operation
@@ -32,12 +33,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Reset the room quota limit
      
      See also:
      REST API Reference for resetRoomQuota Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-room-quota/
      
      - PUT /api/2.0/files/rooms/resetquota
+     - Resets the quota limit for the rooms with the IDs specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter updateRoomsRoomIdsRequestDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerArrayWrapper> 
@@ -58,10 +79,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the room quota limit
      
      See also:
      REST API Reference for updateRoomsQuota Operation
@@ -76,12 +98,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the room quota limit
      
      See also:
      REST API Reference for updateRoomsQuota Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-rooms-quota/
      
      - PUT /api/2.0/files/rooms/roomquota
+     - Changes the quota limit for the rooms with the IDs specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter updateRoomsQuotaRequestDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerArrayWrapper> 
@@ -102,6 +144,6 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authServiceRequestsDto = AuthServiceRequestsDto(name: "name_example", title: "title_example", description: "description_example", instruction: "instruction_example", canSet: true, props: [AuthKey(name: "name_example", value: "value_example", title: "title_example")]) // AuthServiceRequestsDto |  (optional)
+let authServiceRequestsDto = AuthServiceRequestsDto(name: "name_example", title: "title_example", description: "description_example", instruction: "instruction_example", canSet: true, paid: true, props: [AuthKey(name: "name_example", value: "value_example", title: "title_example")]) // AuthServiceRequestsDto |  (optional)
 
 // Save the authorization keys
 SettingsAuthorizationAPIApi.saveAuthKeys(authServiceRequestsDto: authServiceRequestsDto) { (response, error) in

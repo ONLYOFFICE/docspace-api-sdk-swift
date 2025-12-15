@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 **editInternal** | **Bool** |  | [optional] 
 **editExpiration** | **Bool** |  | [optional] 
 **vectorization** | **Bool** |  | [optional] 
-**ascAi** | **Bool** |  | [optional] 
+**askAi** | **Bool** |  | [optional] 
 **useChat** | **Bool** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -17,6 +17,7 @@ import Foundation
 /** The mention message parameters. */
 public struct MentionMessageWrapper: Sendable, Codable, ParameterConvertible, Hashable {
 
+    public static let messageRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public var actionLink: ActionLinkConfig?
     /** A list of emails that will receive the mention message. */
     public var emails: [String]?

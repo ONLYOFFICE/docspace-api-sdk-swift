@@ -19,14 +19,14 @@ public struct RoomDataLifetimeDto: Sendable, Codable, ParameterConvertible, Hash
 
     public static let valueRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 999, exclusiveMaximum: false, multipleOf: nil)
     /** Specifies whether to permanently delete the room data or not. */
-    public var deletePermanently: Bool
-    public var period: RoomDataLifetimePeriod
+    public var deletePermanently: Bool?
+    public var period: RoomDataLifetimePeriod?
     /** Specifies the time period value of the room data lifetime. */
     public var value: Int?
     /** Specifies whether the room data lifetime setting is enabled or not. */
     public var enabled: Bool?
 
-    public init(deletePermanently: Bool, period: RoomDataLifetimePeriod, value: Int? = nil, enabled: Bool? = nil) {
+    public init(deletePermanently: Bool? = nil, period: RoomDataLifetimePeriod? = nil, value: Int? = nil, enabled: Bool? = nil) {
         self.deletePermanently = deletePermanently
         self.period = period
         self.value = value
@@ -44,8 +44,8 @@ public struct RoomDataLifetimeDto: Sendable, Codable, ParameterConvertible, Hash
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(deletePermanently, forKey: .deletePermanently)
-        try container.encode(period, forKey: .period)
+        try container.encodeIfPresent(deletePermanently, forKey: .deletePermanently)
+        try container.encodeIfPresent(period, forKey: .period)
         try container.encodeIfPresent(value, forKey: .value)
         try container.encodeIfPresent(enabled, forKey: .enabled)
     }

@@ -276,7 +276,7 @@ PeopleProfilesAPIApi.getClaims() { (response, error) in
 
 # **getProfileByEmail**
 ```swift
-    open class func getProfileByEmail(email: String? = nil, culture: String? = nil, completion: @escaping (_ data: EmployeeFullWrapper?, _ error: Error?) -> Void)
+    open class func getProfileByEmail(email: String? = nil, encemail: String? = nil, culture: String? = nil, completion: @escaping (_ data: EmployeeFullWrapper?, _ error: Error?) -> Void)
 ```
 
 Returns the detailed information about a profile of the user with the email specified in the request.
@@ -288,6 +288,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **String** | The user email address. | [optional] 
+ **encemail** | **String** | The user encrypted email address. | [optional] 
  **culture** | **String** | Culture | [optional] 
 
 ### Return type
@@ -304,10 +305,11 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let email = "email_example" // String | The user email address. (optional)
+let encemail = "encemail_example" // String | The user encrypted email address. (optional)
 let culture = "culture_example" // String | Culture (optional)
 
 // Get a profile by user email
-PeopleProfilesAPIApi.getProfileByEmail(email: email, culture: culture) { (response, error) in
+PeopleProfilesAPIApi.getProfileByEmail(email: email, encemail: encemail, culture: culture) { (response, error) in
     guard error == nil else {
         print(error)
         return

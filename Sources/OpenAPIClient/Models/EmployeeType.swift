@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - All, 1 - Room admin, 2 - Guest, 3 - DocSpace admin, 4 - User] */
-public enum EmployeeType: Int, Sendable, Codable, CaseIterable {
-    case All = 0
-    case RoomAdmin = 1
-    case Guest = 2
-    case DocSpaceAdmin = 3
-    case User = 4
+/** [All - All, RoomAdmin - Room admin, Guest - Guest, DocSpaceAdmin - DocSpace admin, User - User] */
+public enum EmployeeType: String, Sendable, Codable, CaseIterable {
+    case all = "All"
+    case roomAdmin = "RoomAdmin"
+    case guest = "Guest"
+    case docSpaceAdmin = "DocSpaceAdmin"
+    case user = "User"
 }

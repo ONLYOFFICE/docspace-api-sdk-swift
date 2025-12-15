@@ -18,6 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
+     Apply external data password
      
      See also:
      REST API Reference for applyExternalSharePassword Operation
@@ -32,12 +33,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Apply external data password
      
      See also:
      REST API Reference for applyExternalSharePassword Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/apply-external-share-password/
      
      - POST /api/2.0/files/share/{key}/password
+     - Applies a password specified in the request to get the external data.
      - parameter key: (path) The unique document identifier. 
      - parameter externalShareRequestParam: (body) The external data share request parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -66,6 +69,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the file owner
      
      See also:
      REST API Reference for changeFileOwner Operation
@@ -80,12 +84,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Change the file owner
      
      See also:
      REST API Reference for changeFileOwner Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-file-owner/
      
      - POST /api/2.0/files/owner
+     - Changes the owner of the file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter changeOwnerRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -106,10 +130,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the external data
      
      See also:
      REST API Reference for getExternalShareData Operation
@@ -124,12 +149,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the external data
      
      See also:
      REST API Reference for getExternalShareData Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-external-share-data/
      
      - GET /api/2.0/files/share/{key}
+     - Returns the external data by the key specified in the request.
      - parameter key: (path) The unique key of the external shared data. 
      - parameter fileId: (query) The unique document identifier. (optional)
      - parameter folderId: (query) The unique folder identifier. (optional)
@@ -163,6 +190,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the shared file information
      
      See also:
      REST API Reference for getFileSecurityInfo Operation
@@ -177,12 +205,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the shared file information
      
      See also:
      REST API Reference for getFileSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-security-info/
      
      - GET /api/2.0/files/file/{id}/share
+     - Returns the detailed information about the shared file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The file unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -212,10 +260,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the shared folder information
      
      See also:
      REST API Reference for getFolderSecurityInfo Operation
@@ -230,12 +279,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the shared folder information
      
      See also:
      REST API Reference for getFolderSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-security-info/
      
      - GET /api/2.0/files/folder/{id}/share
+     - Returns the detailed information about the shared folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The folder unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -265,10 +334,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFileSecurity Operation
@@ -283,12 +353,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFileSecurity Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-file-security/
      
      - GET /api/2.0/files/file/{fileId}/group/{groupId}/share
+     - Returns the group members with their file security information.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID. 
      - parameter groupId: (path) The group ID. 
      - parameter count: (query) The number of items to be retrieved in the current query. (optional)
@@ -324,10 +414,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<GroupMemberSecurityRequestArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFolderSecurity Operation
@@ -342,12 +433,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFolderSecurity Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-members-with-folder-security/
      
      - GET /api/2.0/files/folder/{folderId}/group/{groupId}/share
+     - Returns the group members with their folder security information.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID. 
      - parameter groupId: (path) The group ID. 
      - parameter count: (query) The number of items to be retrieved in the current query. (optional)
@@ -383,10 +494,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<GroupMemberSecurityRequestArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the sharing rights
      
      See also:
      REST API Reference for getSecurityInfo Operation
@@ -401,12 +513,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the sharing rights
      
      See also:
      REST API Reference for getSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-security-info/
      
      - POST /api/2.0/files/share
+     - Returns the sharing rights for all the files and folders specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareArrayWrapper> 
@@ -427,10 +559,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get user access rights by file ID
      
      See also:
      REST API Reference for getSharedUsers Operation
@@ -445,12 +578,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get user access rights by file ID
      
      See also:
      REST API Reference for getSharedUsers Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-shared-users/
      
      - GET /api/2.0/files/file/{fileId}/sharedusers
+     - Returns a list of users with their access rights to the file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<MentionWrapperArrayWrapper> 
@@ -474,10 +627,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<MentionWrapperArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Remove the sharing rights
      
      See also:
      REST API Reference for removeSecurityInfo Operation
@@ -492,12 +646,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Remove the sharing rights
      
      See also:
      REST API Reference for removeSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/remove-security-info/
      
      - DELETE /api/2.0/files/share
+     - Removes the sharing rights from all the files and folders specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -518,10 +692,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Send the mention message
      
      See also:
      REST API Reference for sendEditorNotify Operation
@@ -536,12 +711,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Send the mention message
      
      See also:
      REST API Reference for sendEditorNotify Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/send-editor-notify/
      
      - POST /api/2.0/files/file/{fileId}/sendeditornotify
+     - Sends a message to the users who are mentioned in the file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID with the mention message. 
      - parameter mentionMessageWrapper: (body) The mention message. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -566,10 +761,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AceShortWrapperArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Share a file
      
      See also:
      REST API Reference for setFileSecurityInfo Operation
@@ -584,12 +780,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Share a file
      
      See also:
      REST API Reference for setFileSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-security-info/
      
      - PUT /api/2.0/files/file/{fileId}/share
+     - Sets the sharing settings to a file with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter fileId: (path) The file ID. 
      - parameter securityInfoSimpleRequestDto: (body) The parameters of the security information simple request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -614,10 +830,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Share a folder
      
      See also:
      REST API Reference for setFolderSecurityInfo Operation
@@ -632,12 +849,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Share a folder
      
      See also:
      REST API Reference for setFolderSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-security-info/
      
      - PUT /api/2.0/files/folder/{folderId}/share
+     - Sets the sharing settings to a folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID. 
      - parameter securityInfoSimpleRequestDto: (body) The parameters of the security information simple request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -662,10 +899,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set the sharing rights
      
      See also:
      REST API Reference for setSecurityInfo Operation
@@ -680,12 +918,32 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Set the sharing rights
      
      See also:
      REST API Reference for setSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-security-info/
      
      - PUT /api/2.0/files/share
+     - Sets the sharing rights to all the files and folders specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter securityInfoRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareArrayWrapper> 
@@ -706,6 +964,6 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

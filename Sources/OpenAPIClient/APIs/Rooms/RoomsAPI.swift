@@ -19,6 +19,7 @@ open class {{{{x-classname}}}} {
 var fields: String?
 
     /**
+     Add the room tags
      
      See also:
      REST API Reference for addRoomTags Operation
@@ -33,12 +34,32 @@ var fields: String?
     }
 
     /**
+     Add the room tags
      
      See also:
      REST API Reference for addRoomTags Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-tags/
      
      - PUT /api/2.0/files/rooms/{id}/tags
+     - Adds the tags to a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room Id. 
      - parameter batchTagsRequestDto: (body) The parameters for managing tags. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -63,10 +84,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Archive a room
      
      See also:
      REST API Reference for archiveRoom Operation
@@ -81,12 +103,32 @@ var fields: String?
     }
 
     /**
+     Archive a room
      
      See also:
      REST API Reference for archiveRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/archive-room/
      
      - PUT /api/2.0/files/rooms/{id}/archive
+     - Moves a room with the ID specified in the request to the Archive section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter archiveRoomRequest: (body) The parameters for archiving a room. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -111,10 +153,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Change the room cover
      
      See also:
      REST API Reference for changeRoomCover Operation
@@ -129,12 +172,32 @@ var fields: String?
     }
 
     /**
+     Change the room cover
      
      See also:
      REST API Reference for changeRoomCover Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-room-cover/
      
      - POST /api/2.0/files/rooms/{id}/cover
+     - Changes a cover of a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter coverRequestDto: (body) The request parameters to change the room cover. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -159,10 +222,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a room
      
      See also:
      REST API Reference for createRoom Operation
@@ -177,12 +241,32 @@ var fields: String?
     }
 
     /**
+     Create a room
      
      See also:
      REST API Reference for createRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room/
      
      - POST /api/2.0/files/rooms
+     - Creates a room in the Rooms section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter createRoomRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -203,10 +287,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a room from the template
      
      See also:
      REST API Reference for createRoomFromTemplate Operation
@@ -221,12 +306,32 @@ var fields: String?
     }
 
     /**
+     Create a room from the template
      
      See also:
      REST API Reference for createRoomFromTemplate Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-from-template/
      
      - POST /api/2.0/files/rooms/fromtemplate
+     - Creates a room in the Rooms section based on the template.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter createRoomFromTemplateDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoomFromTemplateStatusWrapper> 
@@ -247,10 +352,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<RoomFromTemplateStatusWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a room logo
      
      See also:
      REST API Reference for createRoomLogo Operation
@@ -265,12 +371,32 @@ var fields: String?
     }
 
     /**
+     Create a room logo
      
      See also:
      REST API Reference for createRoomLogo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-logo/
      
      - POST /api/2.0/files/rooms/{id}/logo
+     - Creates a logo for a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter logoRequest: (body) The logo request parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -295,10 +421,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a room tag
      
      See also:
      REST API Reference for createRoomTag Operation
@@ -313,12 +440,32 @@ var fields: String?
     }
 
     /**
+     Create a room tag
      
      See also:
      REST API Reference for createRoomTag Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-tag/
      
      - POST /api/2.0/files/tags
+     - Creates a custom room tag with the parameters specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter createTagRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectWrapper> 
@@ -339,10 +486,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<ObjectWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Start creating room template
      
      See also:
      REST API Reference for createRoomTemplate Operation
@@ -357,12 +505,32 @@ var fields: String?
     }
 
     /**
+     Start creating room template
      
      See also:
      REST API Reference for createRoomTemplate Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-template/
      
      - POST /api/2.0/files/roomtemplate
+     - Starts creating the room template.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter roomTemplateDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoomTemplateStatusWrapper> 
@@ -383,10 +551,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<RoomTemplateStatusWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a third-party room
      
      See also:
      REST API Reference for createRoomThirdParty Operation
@@ -401,12 +570,32 @@ var fields: String?
     }
 
     /**
+     Create a third-party room
      
      See also:
      REST API Reference for createRoomThirdParty Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-third-party/
      
      - POST /api/2.0/files/rooms/thirdparty/{id}
+     - Creates a room in the Rooms section stored in a third-party storage.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The ID of the folder in the third-party storage in which the contents of the room will be stored. 
      - parameter createThirdPartyRoom: (body) The third-party room information. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -431,10 +620,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderStringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Delete the custom room tags
      
      See also:
      REST API Reference for deleteCustomTags Operation
@@ -449,12 +639,32 @@ var fields: String?
     }
 
     /**
+     Delete the custom room tags
      
      See also:
      REST API Reference for deleteCustomTags Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-custom-tags/
      
      - DELETE /api/2.0/files/tags
+     - Deletes a bunch of custom room tags specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter batchTagsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
@@ -475,10 +685,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Remove a room
      
      See also:
      REST API Reference for deleteRoom Operation
@@ -493,12 +704,32 @@ var fields: String?
     }
 
     /**
+     Remove a room
      
      See also:
      REST API Reference for deleteRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room/
      
      - DELETE /api/2.0/files/rooms/{id}
+     - Removes a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter deleteRoomRequest: (body) The parameters for deleting a room. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -523,10 +754,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Remove a room logo
      
      See also:
      REST API Reference for deleteRoomLogo Operation
@@ -541,12 +773,32 @@ var fields: String?
     }
 
     /**
+     Remove a room logo
      
      See also:
      REST API Reference for deleteRoomLogo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-logo/
      
      - DELETE /api/2.0/files/rooms/{id}/logo
+     - Removes a logo from a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -570,10 +822,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Remove the room tags
      
      See also:
      REST API Reference for deleteRoomTags Operation
@@ -588,12 +841,32 @@ var fields: String?
     }
 
     /**
+     Remove the room tags
      
      See also:
      REST API Reference for deleteRoomTags Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-tags/
      
      - DELETE /api/2.0/files/rooms/{id}/tags
+     - Removes the tags from a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room Id. 
      - parameter batchTagsRequestDto: (body) The parameters for managing tags. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -618,10 +891,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the new room items
      
      See also:
      REST API Reference for getNewRoomItems Operation
@@ -636,12 +910,32 @@ var fields: String?
     }
 
     /**
+     Get the new room items
      
      See also:
      REST API Reference for getNewRoomItems Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-room-items/
      
      - GET /api/2.0/files/rooms/{id}/news
+     - Returns a list of all the new items from a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<NewItemsFileEntryBaseArrayWrapper> 
@@ -665,10 +959,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<NewItemsFileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get public settings
      
      See also:
      REST API Reference for getPublicSettings Operation
@@ -683,12 +978,32 @@ var fields: String?
     }
 
     /**
+     Get public settings
      
      See also:
      REST API Reference for getPublicSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-settings/
      
      - GET /api/2.0/files/roomtemplate/{id}/public
+     - Returns the public settings of the room template with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room template ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -712,10 +1027,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get covers
      
      See also:
      REST API Reference for getRoomCovers Operation
@@ -730,12 +1046,32 @@ var fields: String?
     }
 
     /**
+     Get covers
      
      See also:
      REST API Reference for getRoomCovers Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-covers/
      
      - GET /api/2.0/files/rooms/covers
+     - Returns a list of all covers.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CoversResultArrayWrapper> 
      */
@@ -755,10 +1091,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<CoversResultArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the room creation progress
      
      See also:
      REST API Reference for getRoomCreatingStatus Operation
@@ -773,12 +1110,32 @@ var fields: String?
     }
 
     /**
+     Get the room creation progress
      
      See also:
      REST API Reference for getRoomCreatingStatus Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-creating-status/
      
      - GET /api/2.0/files/rooms/fromtemplate/status
+     - Returns the progress of creating a room from the template.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoomFromTemplateStatusWrapper> 
      */
@@ -798,10 +1155,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<RoomFromTemplateStatusWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the room index export
      
      See also:
      REST API Reference for getRoomIndexExport Operation
@@ -816,12 +1174,32 @@ var fields: String?
     }
 
     /**
+     Get the room index export
      
      See also:
      REST API Reference for getRoomIndexExport Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-index-export/
      
      - GET /api/2.0/files/rooms/indexexport
+     - Returns the room index export.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DocumentBuilderTaskWrapper> 
      */
@@ -841,10 +1219,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<DocumentBuilderTaskWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get room information
      
      See also:
      REST API Reference for getRoomInfo Operation
@@ -859,12 +1238,14 @@ var fields: String?
     }
 
     /**
+     Get room information
      
      See also:
      REST API Reference for getRoomInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-info/
      
      - GET /api/2.0/files/rooms/{id}
+     - Returns the room information.
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -892,6 +1273,7 @@ var fields: String?
     }
 
     /**
+     Get the room links
      
      See also:
      REST API Reference for getRoomLinks Operation
@@ -906,12 +1288,32 @@ var fields: String?
     }
 
     /**
+     Get the room links
      
      See also:
      REST API Reference for getRoomLinks Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-links/
      
      - GET /api/2.0/files/rooms/{id}/links
+     - Returns the links of the room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter type: (query) The link type. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -939,10 +1341,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the room access rights
      
      See also:
      REST API Reference for getRoomSecurityInfo Operation
@@ -957,12 +1360,32 @@ var fields: String?
     }
 
     /**
+     Get the room access rights
      
      See also:
      REST API Reference for getRoomSecurityInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-security-info/
      
      - GET /api/2.0/files/rooms/{id}/share
+     - Returns the access rights of a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter filterType: (query) The filter type of the access rights. (optional)
      - parameter count: (query) The number of items to be retrieved or processed. (optional)
@@ -996,10 +1419,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the room tags
      
      See also:
      REST API Reference for getRoomTagsInfo Operation
@@ -1014,12 +1438,32 @@ var fields: String?
     }
 
     /**
+     Get the room tags
      
      See also:
      REST API Reference for getRoomTagsInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/
      
      - GET /api/2.0/files/tags
+     - Returns a list of custom room tags.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter count: (query) Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set. (optional)
      - parameter startIndex: (query) Represents the starting index from which the tags&#39; information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. (optional)
      - parameter filterValue: (query) Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information. (optional)
@@ -1051,10 +1495,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<ObjectArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get status of room template creation
      
      See also:
      REST API Reference for getRoomTemplateCreatingStatus Operation
@@ -1069,12 +1514,32 @@ var fields: String?
     }
 
     /**
+     Get status of room template creation
      
      See also:
      REST API Reference for getRoomTemplateCreatingStatus Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-template-creating-status/
      
      - GET /api/2.0/files/roomtemplate/status
+     - Returns the progress status of the room template creation process.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoomTemplateStatusWrapper> 
      */
@@ -1094,10 +1559,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<RoomTemplateStatusWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get rooms
      
      See also:
      REST API Reference for getRoomsFolder Operation
@@ -1112,12 +1578,32 @@ var fields: String?
     }
 
     /**
+     Get rooms
      
      See also:
      REST API Reference for getRoomsFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-folder/
      
      - GET /api/2.0/files/rooms
+     - Returns the contents of the Rooms section by the parameters specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter type: (query) The filter by room type. (optional)
      - parameter subjectId: (query) The filter by user ID. (optional)
      - parameter searchArea: (query) The room search area (Active, Archive, Any, Recent by links). (optional)
@@ -1173,10 +1659,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the room new items
      
      See also:
      REST API Reference for getRoomsNewItems Operation
@@ -1191,12 +1678,32 @@ var fields: String?
     }
 
     /**
+     Get the room new items
      
      See also:
      REST API Reference for getRoomsNewItems Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-new-items/
      
      - GET /api/2.0/files/rooms/news
+     - Returns the room new items.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<NewItemsRoomNewItemsArrayWrapper> 
      */
@@ -1216,10 +1723,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<NewItemsRoomNewItemsArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the room primary external link
      
      See also:
      REST API Reference for getRoomsPrimaryExternalLink Operation
@@ -1234,12 +1742,32 @@ var fields: String?
     }
 
     /**
+     Get the room primary external link
      
      See also:
      REST API Reference for getRoomsPrimaryExternalLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-primary-external-link/
      
      - GET /api/2.0/files/rooms/{id}/link
+     - Returns the primary external link of the room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareWrapper> 
@@ -1263,10 +1791,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Pin a room
      
      See also:
      REST API Reference for pinRoom Operation
@@ -1281,12 +1810,32 @@ var fields: String?
     }
 
     /**
+     Pin a room
      
      See also:
      REST API Reference for pinRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/pin-room/
      
      - PUT /api/2.0/files/rooms/{id}/pin
+     - Pins a room with the ID specified in the request to the top of the list.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -1310,10 +1859,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Reorder the room
      
      See also:
      REST API Reference for reorderRoom Operation
@@ -1328,12 +1878,32 @@ var fields: String?
     }
 
     /**
+     Reorder the room
      
      See also:
      REST API Reference for reorderRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/reorder-room/
      
      - PUT /api/2.0/files/rooms/{id}/reorder
+     - Reorders the room with ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -1357,10 +1927,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Resend the room invitations
      
      See also:
      REST API Reference for resendEmailInvitations Operation
@@ -1375,12 +1946,32 @@ var fields: String?
     }
 
     /**
+     Resend the room invitations
      
      See also:
      REST API Reference for resendEmailInvitations Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/resend-email-invitations/
      
      - POST /api/2.0/files/rooms/{id}/resend
+     - Resends the email invitations to a room with the ID specified in the request to the selected users.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter userInvitation: (body) The user invitation parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1405,10 +1996,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set public settings
      
      See also:
      REST API Reference for setPublicSettings Operation
@@ -1423,12 +2015,32 @@ var fields: String?
     }
 
     /**
+     Set public settings
      
      See also:
      REST API Reference for setPublicSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-public-settings/
      
      - PUT /api/2.0/files/roomtemplate/public
+     - Sets the public settings for the room template with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter setPublicDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
@@ -1449,10 +2061,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set the room external or invitation link
      
      See also:
      REST API Reference for setRoomLink Operation
@@ -1467,12 +2080,32 @@ var fields: String?
     }
 
     /**
+     Set the room external or invitation link
      
      See also:
      REST API Reference for setRoomLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-link/
      
      - PUT /api/2.0/files/rooms/{id}/links
+     - Sets the room external or invitation link with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter roomLinkRequest: (body) The room link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1497,10 +2130,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set the room access rights
      
      See also:
      REST API Reference for setRoomSecurity Operation
@@ -1515,12 +2149,32 @@ var fields: String?
     }
 
     /**
+     Set the room access rights
      
      See also:
      REST API Reference for setRoomSecurity Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-security/
      
      - PUT /api/2.0/files/rooms/{id}/share
+     - Sets the access rights to the room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter roomInvitationRequest: (body) The room invitation request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1545,10 +2199,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<RoomSecurityWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Start the room index export
      
      See also:
      REST API Reference for startRoomIndexExport Operation
@@ -1563,12 +2218,32 @@ var fields: String?
     }
 
     /**
+     Start the room index export
      
      See also:
      REST API Reference for startRoomIndexExport Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/start-room-index-export/
      
      - POST /api/2.0/files/rooms/{id}/indexexport
+     - Starts the index export of a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DocumentBuilderTaskWrapper> 
@@ -1592,10 +2267,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<DocumentBuilderTaskWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Terminate the room index export
      
      See also:
      REST API Reference for terminateRoomIndexExport Operation
@@ -1610,12 +2286,32 @@ var fields: String?
     }
 
     /**
+     Terminate the room index export
      
      See also:
      REST API Reference for terminateRoomIndexExport Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-room-index-export/
      
      - DELETE /api/2.0/files/rooms/indexexport
+     - Terminates the room index export.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
@@ -1635,10 +2331,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Unarchive a room
      
      See also:
      REST API Reference for unarchiveRoom Operation
@@ -1653,12 +2350,32 @@ var fields: String?
     }
 
     /**
+     Unarchive a room
      
      See also:
      REST API Reference for unarchiveRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/unarchive-room/
      
      - PUT /api/2.0/files/rooms/{id}/unarchive
+     - Moves a room with the ID specified in the request from the Archive section to the Rooms section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter archiveRoomRequest: (body) The parameters for archiving a room. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1683,10 +2400,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Unpin a room
      
      See also:
      REST API Reference for unpinRoom Operation
@@ -1701,12 +2419,32 @@ var fields: String?
     }
 
     /**
+     Unpin a room
      
      See also:
      REST API Reference for unpinRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/unpin-room/
      
      - PUT /api/2.0/files/rooms/{id}/unpin
+     - Unpins a room with the ID specified in the request from the top of the list.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -1730,10 +2468,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Update a room
      
      See also:
      REST API Reference for updateRoom Operation
@@ -1748,12 +2487,32 @@ var fields: String?
     }
 
     /**
+     Update a room
      
      See also:
      REST API Reference for updateRoom Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room/
      
      - PUT /api/2.0/files/rooms/{id}
+     - Updates a room with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The room ID. 
      - parameter updateRoomRequest: (body) The request parameters for updating a room. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1778,10 +2537,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Upload a room logo image
      
      See also:
      REST API Reference for uploadRoomLogo Operation
@@ -1796,12 +2556,32 @@ var fields: String?
     }
 
     /**
+     Upload a room logo image
      
      See also:
      REST API Reference for uploadRoomLogo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-room-logo/
      
      - POST /api/2.0/files/logos
+     - Uploads a temporary image to create a room logo.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter formCollection: (form) The image data. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UploadResultWrapper> 
@@ -1827,7 +2607,7 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<UploadResultWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }
 extension RoomsAPIApi {

@@ -14,9 +14,9 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Base, 1 - Dark, 2 - System] */
-public enum DarkThemeSettingsType: Int, Sendable, Codable, CaseIterable {
-    case Base = 0
-    case Dark = 1
-    case System = 2
+/** [Base - Base, Dark - Dark, System - System] */
+public enum DarkThemeSettingsType: String, Sendable, Codable, CaseIterable {
+    case base = "Base"
+    case dark = "Dark"
+    case system = "System"
 }

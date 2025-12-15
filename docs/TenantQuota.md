@@ -40,6 +40,7 @@ Name | Type | Description | Notes
 **year** | **Bool** | Specifies if the tenant quota is yearly subscription or not. | [optional] 
 **countFreeBackup** | **Int** | The number of free backups within a month. | [optional] 
 **backup** | **Bool** | Specifies if the backup anabled as a wallet service or not. | [optional] 
+**countAIAgent** | **Int** | The number of AI agents. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

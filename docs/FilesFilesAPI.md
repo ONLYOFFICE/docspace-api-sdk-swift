@@ -4,53 +4,53 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addFileToRecent**](FilesFilesAPI.md#addfiletorecent) | **POST** /api/2.0/files/file/{fileId}/recent | 
-[**addTemplates**](FilesFilesAPI.md#addtemplates) | **POST** /api/2.0/files/templates | 
-[**changeVersionHistory**](FilesFilesAPI.md#changeversionhistory) | **PUT** /api/2.0/files/file/{fileId}/history | 
-[**checkFillFormDraft**](FilesFilesAPI.md#checkfillformdraft) | **POST** /api/2.0/files/masterform/{fileId}/checkfillformdraft | 
-[**copyFileAs**](FilesFilesAPI.md#copyfileas) | **POST** /api/2.0/files/file/{fileId}/copyas | 
-[**createEditSession**](FilesFilesAPI.md#createeditsession) | **POST** /api/2.0/files/file/{fileId}/edit_session | 
-[**createFile**](FilesFilesAPI.md#createfile) | **POST** /api/2.0/files/{folderId}/file | 
-[**createFileInMyDocuments**](FilesFilesAPI.md#createfileinmydocuments) | **POST** /api/2.0/files/@my/file | 
-[**createFilePrimaryExternalLink**](FilesFilesAPI.md#createfileprimaryexternallink) | **POST** /api/2.0/files/file/{id}/link | 
-[**createHtmlFile**](FilesFilesAPI.md#createhtmlfile) | **POST** /api/2.0/files/{folderId}/html | 
-[**createHtmlFileInMyDocuments**](FilesFilesAPI.md#createhtmlfileinmydocuments) | **POST** /api/2.0/files/@my/html | 
-[**createTextFile**](FilesFilesAPI.md#createtextfile) | **POST** /api/2.0/files/{folderId}/text | 
-[**createTextFileInMyDocuments**](FilesFilesAPI.md#createtextfileinmydocuments) | **POST** /api/2.0/files/@my/text | 
-[**createThumbnails**](FilesFilesAPI.md#createthumbnails) | **POST** /api/2.0/files/thumbnails | 
-[**deleteFile**](FilesFilesAPI.md#deletefile) | **DELETE** /api/2.0/files/file/{fileId} | 
-[**deleteRecent**](FilesFilesAPI.md#deleterecent) | **DELETE** /api/2.0/files/recent | 
-[**deleteTemplates**](FilesFilesAPI.md#deletetemplates) | **DELETE** /api/2.0/files/templates | 
-[**getAllFormRoles**](FilesFilesAPI.md#getallformroles) | **GET** /api/2.0/files/file/{fileId}/formroles | 
-[**getEditDiffUrl**](FilesFilesAPI.md#geteditdiffurl) | **GET** /api/2.0/files/file/{fileId}/edit/diff | 
-[**getEditHistory**](FilesFilesAPI.md#getedithistory) | **GET** /api/2.0/files/file/{fileId}/edit/history | 
-[**getFileHistory**](FilesFilesAPI.md#getfilehistory) | **GET** /api/2.0/files/file/{fileId}/log | 
-[**getFileInfo**](FilesFilesAPI.md#getfileinfo) | **GET** /api/2.0/files/file/{fileId} | 
-[**getFileLinks**](FilesFilesAPI.md#getfilelinks) | **GET** /api/2.0/files/file/{id}/links | 
-[**getFilePrimaryExternalLink**](FilesFilesAPI.md#getfileprimaryexternallink) | **GET** /api/2.0/files/file/{id}/link | 
-[**getFileVersionInfo**](FilesFilesAPI.md#getfileversioninfo) | **GET** /api/2.0/files/file/{fileId}/history | 
-[**getFillResult**](FilesFilesAPI.md#getfillresult) | **GET** /api/2.0/files/file/fillresult | 
-[**getPresignedFileUri**](FilesFilesAPI.md#getpresignedfileuri) | **GET** /api/2.0/files/file/{fileId}/presigned | 
-[**getPresignedUri**](FilesFilesAPI.md#getpresigneduri) | **GET** /api/2.0/files/file/{fileId}/presigneduri | 
-[**getProtectedFileUsers**](FilesFilesAPI.md#getprotectedfileusers) | **GET** /api/2.0/files/file/{fileId}/protectusers | 
-[**getReferenceData**](FilesFilesAPI.md#getreferencedata) | **POST** /api/2.0/files/file/referencedata | 
-[**isFormPDF**](FilesFilesAPI.md#isformpdf) | **GET** /api/2.0/files/file/{fileId}/isformpdf | 
-[**lockFile**](FilesFilesAPI.md#lockfile) | **PUT** /api/2.0/files/file/{fileId}/lock | 
-[**manageFormFilling**](FilesFilesAPI.md#manageformfilling) | **PUT** /api/2.0/files/file/{fileId}/manageformfilling | 
-[**openEditFile**](FilesFilesAPI.md#openeditfile) | **GET** /api/2.0/files/file/{fileId}/openedit | 
-[**restoreFileVersion**](FilesFilesAPI.md#restorefileversion) | **GET** /api/2.0/files/file/{fileId}/restoreversion | 
-[**saveEditingFileFromForm**](FilesFilesAPI.md#saveeditingfilefromform) | **PUT** /api/2.0/files/file/{fileId}/saveediting | 
-[**saveFileAsPdf**](FilesFilesAPI.md#savefileaspdf) | **POST** /api/2.0/files/file/{id}/saveaspdf | 
-[**saveFormRoleMapping**](FilesFilesAPI.md#saveformrolemapping) | **POST** /api/2.0/files/file/{fileId}/formrolemapping | 
-[**setCustomFilterTag**](FilesFilesAPI.md#setcustomfiltertag) | **PUT** /api/2.0/files/file/{fileId}/customfilter | 
-[**setFileExternalLink**](FilesFilesAPI.md#setfileexternallink) | **PUT** /api/2.0/files/file/{id}/links | 
-[**setFileOrder**](FilesFilesAPI.md#setfileorder) | **PUT** /api/2.0/files/{fileId}/order | 
-[**setFilesOrder**](FilesFilesAPI.md#setfilesorder) | **PUT** /api/2.0/files/order | 
-[**startEditFile**](FilesFilesAPI.md#starteditfile) | **POST** /api/2.0/files/file/{fileId}/startedit | 
-[**startFillingFile**](FilesFilesAPI.md#startfillingfile) | **PUT** /api/2.0/files/file/{fileId}/startfilling | 
-[**toggleFileFavorite**](FilesFilesAPI.md#togglefilefavorite) | **GET** /api/2.0/files/favorites/{fileId} | 
-[**trackEditFile**](FilesFilesAPI.md#trackeditfile) | **GET** /api/2.0/files/file/{fileId}/trackeditfile | 
-[**updateFile**](FilesFilesAPI.md#updatefile) | **PUT** /api/2.0/files/file/{fileId} | 
+[**addFileToRecent**](FilesFilesAPI.md#addfiletorecent) | **POST** /api/2.0/files/file/{fileId}/recent | Add a file to the Recent section
+[**addTemplates**](FilesFilesAPI.md#addtemplates) | **POST** /api/2.0/files/templates | Add template files
+[**changeVersionHistory**](FilesFilesAPI.md#changeversionhistory) | **PUT** /api/2.0/files/file/{fileId}/history | Change version history
+[**checkFillFormDraft**](FilesFilesAPI.md#checkfillformdraft) | **POST** /api/2.0/files/masterform/{fileId}/checkfillformdraft | Check the form draft filling
+[**copyFileAs**](FilesFilesAPI.md#copyfileas) | **POST** /api/2.0/files/file/{fileId}/copyas | Copy a file
+[**createEditSession**](FilesFilesAPI.md#createeditsession) | **POST** /api/2.0/files/file/{fileId}/edit_session | Create the editing session
+[**createFile**](FilesFilesAPI.md#createfile) | **POST** /api/2.0/files/{folderId}/file | Create a file
+[**createFileInMyDocuments**](FilesFilesAPI.md#createfileinmydocuments) | **POST** /api/2.0/files/@my/file | Create a file in the My documents section
+[**createFilePrimaryExternalLink**](FilesFilesAPI.md#createfileprimaryexternallink) | **POST** /api/2.0/files/file/{id}/link | Create primary external link
+[**createHtmlFile**](FilesFilesAPI.md#createhtmlfile) | **POST** /api/2.0/files/{folderId}/html | Create an HTML file
+[**createHtmlFileInMyDocuments**](FilesFilesAPI.md#createhtmlfileinmydocuments) | **POST** /api/2.0/files/@my/html | Create an HTML file in the My documents section
+[**createTextFile**](FilesFilesAPI.md#createtextfile) | **POST** /api/2.0/files/{folderId}/text | Create a text file
+[**createTextFileInMyDocuments**](FilesFilesAPI.md#createtextfileinmydocuments) | **POST** /api/2.0/files/@my/text | Create a text file in the My documents section
+[**createThumbnails**](FilesFilesAPI.md#createthumbnails) | **POST** /api/2.0/files/thumbnails | Create file thumbnails
+[**deleteFile**](FilesFilesAPI.md#deletefile) | **DELETE** /api/2.0/files/file/{fileId} | Delete a file
+[**deleteRecent**](FilesFilesAPI.md#deleterecent) | **DELETE** /api/2.0/files/recent | Delete recent files
+[**deleteTemplates**](FilesFilesAPI.md#deletetemplates) | **DELETE** /api/2.0/files/templates | Delete template files
+[**getAllFormRoles**](FilesFilesAPI.md#getallformroles) | **GET** /api/2.0/files/file/{fileId}/formroles | Get form roles
+[**getEditDiffUrl**](FilesFilesAPI.md#geteditdiffurl) | **GET** /api/2.0/files/file/{fileId}/edit/diff | Get changes URL
+[**getEditHistory**](FilesFilesAPI.md#getedithistory) | **GET** /api/2.0/files/file/{fileId}/edit/history | Get version history
+[**getFileHistory**](FilesFilesAPI.md#getfilehistory) | **GET** /api/2.0/files/file/{fileId}/log | Get file history
+[**getFileInfo**](FilesFilesAPI.md#getfileinfo) | **GET** /api/2.0/files/file/{fileId} | Get file information
+[**getFileLinks**](FilesFilesAPI.md#getfilelinks) | **GET** /api/2.0/files/file/{id}/links | Get file external links
+[**getFilePrimaryExternalLink**](FilesFilesAPI.md#getfileprimaryexternallink) | **GET** /api/2.0/files/file/{id}/link | Get primary external link
+[**getFileVersionInfo**](FilesFilesAPI.md#getfileversioninfo) | **GET** /api/2.0/files/file/{fileId}/history | Get file versions
+[**getFillResult**](FilesFilesAPI.md#getfillresult) | **GET** /api/2.0/files/file/fillresult | Get form-filling result
+[**getPresignedFileUri**](FilesFilesAPI.md#getpresignedfileuri) | **GET** /api/2.0/files/file/{fileId}/presigned | Get file download link asynchronously
+[**getPresignedUri**](FilesFilesAPI.md#getpresigneduri) | **GET** /api/2.0/files/file/{fileId}/presigneduri | Get file download link
+[**getProtectedFileUsers**](FilesFilesAPI.md#getprotectedfileusers) | **GET** /api/2.0/files/file/{fileId}/protectusers | Get users access rights to the protected file
+[**getReferenceData**](FilesFilesAPI.md#getreferencedata) | **POST** /api/2.0/files/file/referencedata | Get reference data
+[**isFormPDF**](FilesFilesAPI.md#isformpdf) | **GET** /api/2.0/files/file/{fileId}/isformpdf | Check the PDF file
+[**lockFile**](FilesFilesAPI.md#lockfile) | **PUT** /api/2.0/files/file/{fileId}/lock | Lock a file
+[**manageFormFilling**](FilesFilesAPI.md#manageformfilling) | **PUT** /api/2.0/files/file/{fileId}/manageformfilling | Perform form filling action
+[**openEditFile**](FilesFilesAPI.md#openeditfile) | **GET** /api/2.0/files/file/{fileId}/openedit | Open a file configuration
+[**restoreFileVersion**](FilesFilesAPI.md#restorefileversion) | **POST** /api/2.0/files/file/{fileId}/restoreversion | Restore a file version
+[**saveEditingFileFromForm**](FilesFilesAPI.md#saveeditingfilefromform) | **PUT** /api/2.0/files/file/{fileId}/saveediting | Save file edits
+[**saveFileAsPdf**](FilesFilesAPI.md#savefileaspdf) | **POST** /api/2.0/files/file/{id}/saveaspdf | Save a file as PDF
+[**saveFormRoleMapping**](FilesFilesAPI.md#saveformrolemapping) | **POST** /api/2.0/files/file/{fileId}/formrolemapping | Save form role mapping
+[**setCustomFilterTag**](FilesFilesAPI.md#setcustomfiltertag) | **PUT** /api/2.0/files/file/{fileId}/customfilter | Set the Custom Filter editing mode
+[**setFileExternalLink**](FilesFilesAPI.md#setfileexternallink) | **PUT** /api/2.0/files/file/{id}/links | Set an external link
+[**setFileOrder**](FilesFilesAPI.md#setfileorder) | **PUT** /api/2.0/files/{fileId}/order | Set file order
+[**setFilesOrder**](FilesFilesAPI.md#setfilesorder) | **PUT** /api/2.0/files/order | Set order of files
+[**startEditFile**](FilesFilesAPI.md#starteditfile) | **POST** /api/2.0/files/file/{fileId}/startedit | Start file editing
+[**startFillingFile**](FilesFilesAPI.md#startfillingfile) | **PUT** /api/2.0/files/file/{fileId}/startfilling | Start file filling
+[**toggleFileFavorite**](FilesFilesAPI.md#togglefilefavorite) | **GET** /api/2.0/files/favorites/{fileId} | Change the file favorite status
+[**trackEditFile**](FilesFilesAPI.md#trackeditfile) | **GET** /api/2.0/files/file/{fileId}/trackeditfile | Track file editing
+[**updateFile**](FilesFilesAPI.md#updatefile) | **PUT** /api/2.0/files/file/{fileId} | Update a file
 
 
 # **addFileToRecent**
@@ -58,7 +58,7 @@ Method | HTTP request | Description
     open class func addFileToRecent(fileId: Int, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Adds a file with the ID specified in the request to the Recent section.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/add-file-to-recent/).
 
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -83,6 +83,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Add a file to the Recent section
 FilesFilesAPIApi.addFileToRecent(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -107,7 +108,7 @@ FilesFilesAPIApi.addFileToRecent(fileId: fileId) { (response, error) in
     open class func addTemplates(templatesRequestDto: TemplatesRequestDto? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Adds files with the IDs specified in the request to the template list.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/add-templates/).
 
@@ -123,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -132,6 +133,7 @@ import OpenAPIClient
 
 let templatesRequestDto = TemplatesRequestDto(fileIds: [123]) // TemplatesRequestDto |  (optional)
 
+// Add template files
 FilesFilesAPIApi.addTemplates(templatesRequestDto: templatesRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -156,7 +158,7 @@ FilesFilesAPIApi.addTemplates(templatesRequestDto: templatesRequestDto) { (respo
     open class func changeVersionHistory(fileId: Int, changeHistory: ChangeHistory, completion: @escaping (_ data: FileIntegerArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Changes the version history of a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-version-history/).
 
@@ -173,7 +175,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -183,6 +185,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file Id to change its version history.
 let changeHistory = ChangeHistory(version: 123, continueVersion: true) // ChangeHistory | The parameters for changing version history.
 
+// Change version history
 FilesFilesAPIApi.changeVersionHistory(fileId: fileId, changeHistory: changeHistory) { (response, error) in
     guard error == nil else {
         print(error)
@@ -207,7 +210,7 @@ FilesFilesAPIApi.changeVersionHistory(fileId: fileId, changeHistory: changeHisto
     open class func checkFillFormDraft(fileId: Int, checkFillFormDraft: CheckFillFormDraft, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Checks if the current file is a form draft which can be filled out.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-fill-form-draft/).
 
@@ -234,6 +237,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID of the form draft.
 let checkFillFormDraft = CheckFillFormDraft(version: 123, action: "action_example", requestView: true, requestEmbedded: true) // CheckFillFormDraft | The parameters for checking the form draft filling.
 
+// Check the form draft filling
 FilesFilesAPIApi.checkFillFormDraft(fileId: fileId, checkFillFormDraft: checkFillFormDraft) { (response, error) in
     guard error == nil else {
         print(error)
@@ -258,7 +262,7 @@ FilesFilesAPIApi.checkFillFormDraft(fileId: fileId, checkFillFormDraft: checkFil
     open class func copyFileAs(fileId: Int, copyAsJsonElement: CopyAsJsonElement, completion: @escaping (_ data: FileEntryBaseWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Copies (and converts if possible) an existing file to the specified folder.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-file-as/).
 
@@ -275,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -285,6 +289,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID to copy.
 let copyAsJsonElement = CopyAsJsonElement(destTitle: "destTitle_example", destFolderId: CopyAsJsonElement_destFolderId(), enableExternalExt: true, password: "password_example", toForm: true) // CopyAsJsonElement | The parameters for copying a file.
 
+// Copy a file
 FilesFilesAPIApi.copyFileAs(fileId: fileId, copyAsJsonElement: copyAsJsonElement) { (response, error) in
     guard error == nil else {
         print(error)
@@ -309,7 +314,7 @@ FilesFilesAPIApi.copyFileAs(fileId: fileId, copyAsJsonElement: copyAsJsonElement
     open class func createEditSession(fileId: Int, fileSize: Int64? = nil, completion: @escaping (_ data: ObjectWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a session to edit the existing file with multiple chunks (needed for WebDAV).   **Note**: Information about created session which includes:  <ul>  <li><b>id:</b> unique ID of this upload session,</li>  <li><b>created:</b> UTC time when the session was created,</li>  <li><b>expired:</b> UTC time when the session will expire if no chunks are sent before that time,</li>  <li><b>location:</b> URL where you should send your next chunk,</li>  <li><b>bytes_uploaded:</b> number of bytes uploaded for the specific upload ID,</li>  <li><b>bytes_total:</b> total number of bytes which will be uploaded.</li>  </ul>
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/).
 
@@ -326,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -336,6 +341,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID.
 let fileSize = 987 // Int64 | The file size in bytes. (optional)
 
+// Create the editing session
 FilesFilesAPIApi.createEditSession(fileId: fileId, fileSize: fileSize) { (response, error) in
     guard error == nil else {
         print(error)
@@ -360,7 +366,7 @@ FilesFilesAPIApi.createEditSession(fileId: fileId, fileSize: fileSize) { (respon
     open class func createFile(folderId: Int, createFileJsonElement: CreateFileJsonElement, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a new file in the specified folder with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/).
 
@@ -377,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -387,6 +393,7 @@ import OpenAPIClient
 let folderId = 987 // Int | The folder ID for the file creation.
 let createFileJsonElement = CreateFileJsonElement(title: "title_example", templateId: CreateFileJsonElement_templateId(), enableExternalExt: true, formId: 123) // CreateFileJsonElement | The parameters for creating a file.
 
+// Create a file
 FilesFilesAPIApi.createFile(folderId: folderId, createFileJsonElement: createFileJsonElement) { (response, error) in
     guard error == nil else {
         print(error)
@@ -411,7 +418,7 @@ FilesFilesAPIApi.createFile(folderId: folderId, createFileJsonElement: createFil
     open class func createFileInMyDocuments(createFileJsonElement: CreateFileJsonElement? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a new file in the My documents section with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-in-my-documents/).
 
@@ -427,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -436,6 +443,7 @@ import OpenAPIClient
 
 let createFileJsonElement = CreateFileJsonElement(title: "title_example", templateId: CreateFileJsonElement_templateId(), enableExternalExt: true, formId: 123) // CreateFileJsonElement |  (optional)
 
+// Create a file in the My documents section
 FilesFilesAPIApi.createFileInMyDocuments(createFileJsonElement: createFileJsonElement) { (response, error) in
     guard error == nil else {
         print(error)
@@ -460,7 +468,7 @@ FilesFilesAPIApi.createFileInMyDocuments(createFileJsonElement: createFileJsonEl
     open class func createFilePrimaryExternalLink(id: Int, fileLinkRequest: FileLinkRequest, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a primary external link by the identifier specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-primary-external-link/).
 
@@ -477,7 +485,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -487,6 +495,7 @@ import OpenAPIClient
 let id = 987 // Int | The file ID.
 let fileLinkRequest = FileLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", _internal: true, primary: true, denyDownload: true, password: "password_example") // FileLinkRequest | The file external link parameters.
 
+// Create primary external link
 FilesFilesAPIApi.createFilePrimaryExternalLink(id: id, fileLinkRequest: fileLinkRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -511,7 +520,7 @@ FilesFilesAPIApi.createFilePrimaryExternalLink(id: id, fileLinkRequest: fileLink
     open class func createHtmlFile(folderId: Int, createTextOrHtmlFile: CreateTextOrHtmlFile, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates an HTML (.html) file in the selected folder with the title and contents specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file/).
 
@@ -528,7 +537,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -538,6 +547,7 @@ import OpenAPIClient
 let folderId = 987 // Int | The folder ID to create the text or HTML file.
 let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
+// Create an HTML file
 FilesFilesAPIApi.createHtmlFile(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
     guard error == nil else {
         print(error)
@@ -562,7 +572,7 @@ FilesFilesAPIApi.createHtmlFile(folderId: folderId, createTextOrHtmlFile: create
     open class func createHtmlFileInMyDocuments(createTextOrHtmlFile: CreateTextOrHtmlFile? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates an HTML (.html) file in the My documents section with the title and contents specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file-in-my-documents/).
 
@@ -578,7 +588,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -587,6 +597,7 @@ import OpenAPIClient
 
 let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile |  (optional)
 
+// Create an HTML file in the My documents section
 FilesFilesAPIApi.createHtmlFileInMyDocuments(createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
     guard error == nil else {
         print(error)
@@ -611,7 +622,7 @@ FilesFilesAPIApi.createHtmlFileInMyDocuments(createTextOrHtmlFile: createTextOrH
     open class func createTextFile(folderId: Int, createTextOrHtmlFile: CreateTextOrHtmlFile, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a text (.txt) file in the selected folder with the title and contents specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file/).
 
@@ -628,7 +639,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -638,6 +649,7 @@ import OpenAPIClient
 let folderId = 987 // Int | The folder ID to create the text or HTML file.
 let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
+// Create a text file
 FilesFilesAPIApi.createTextFile(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
     guard error == nil else {
         print(error)
@@ -662,7 +674,7 @@ FilesFilesAPIApi.createTextFile(folderId: folderId, createTextOrHtmlFile: create
     open class func createTextFileInMyDocuments(createTextOrHtmlFile: CreateTextOrHtmlFile? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a text (.txt) file in the My documents section with the title and contents specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file-in-my-documents/).
 
@@ -678,7 +690,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -687,6 +699,7 @@ import OpenAPIClient
 
 let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile |  (optional)
 
+// Create a text file in the My documents section
 FilesFilesAPIApi.createTextFileInMyDocuments(createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
     guard error == nil else {
         print(error)
@@ -711,7 +724,7 @@ FilesFilesAPIApi.createTextFileInMyDocuments(createTextOrHtmlFile: createTextOrH
     open class func createThumbnails(baseBatchRequestDto: BaseBatchRequestDto? = nil, completion: @escaping (_ data: ObjectArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates thumbnails for the files with the IDs specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-thumbnails/).
 
@@ -736,6 +749,7 @@ import OpenAPIClient
 
 let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
+// Create file thumbnails
 FilesFilesAPIApi.createThumbnails(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -760,7 +774,7 @@ FilesFilesAPIApi.createThumbnails(baseBatchRequestDto: baseBatchRequestDto) { (r
     open class func deleteFile(fileId: Int, delete: Delete, completion: @escaping (_ data: FileOperationArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Deletes a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file/).
 
@@ -777,7 +791,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -787,6 +801,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID to delete.
 let delete = Delete(deleteAfter: true, immediately: true) // Delete | The parameters for deleting a file.
 
+// Delete a file
 FilesFilesAPIApi.deleteFile(fileId: fileId, delete: delete) { (response, error) in
     guard error == nil else {
         print(error)
@@ -811,7 +826,7 @@ FilesFilesAPIApi.deleteFile(fileId: fileId, delete: delete) { (response, error) 
     open class func deleteRecent(baseBatchRequestDto: BaseBatchRequestDto? = nil, completion: @escaping (_ data: NoContentResultWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Removes files with the IDs specified in the request from the Recent section.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-recent/).
 
@@ -827,7 +842,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -836,6 +851,7 @@ import OpenAPIClient
 
 let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
+// Delete recent files
 FilesFilesAPIApi.deleteRecent(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -860,7 +876,7 @@ FilesFilesAPIApi.deleteRecent(baseBatchRequestDto: baseBatchRequestDto) { (respo
     open class func deleteTemplates(requestBody: [Int]? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Removes files with the IDs specified in the request from the template list.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-templates/).
 
@@ -876,7 +892,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -885,6 +901,7 @@ import OpenAPIClient
 
 let requestBody = [123] // [Int] | The file IDs. (optional)
 
+// Delete template files
 FilesFilesAPIApi.deleteTemplates(requestBody: requestBody) { (response, error) in
     guard error == nil else {
         print(error)
@@ -909,7 +926,7 @@ FilesFilesAPIApi.deleteTemplates(requestBody: requestBody) { (response, error) i
     open class func getAllFormRoles(fileId: Int, completion: @escaping (_ data: FormRoleArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns all roles for the specified form.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-form-roles/).
 
@@ -925,7 +942,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -934,6 +951,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Get form roles
 FilesFilesAPIApi.getAllFormRoles(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -958,7 +976,7 @@ FilesFilesAPIApi.getAllFormRoles(fileId: fileId) { (response, error) in
     open class func getEditDiffUrl(fileId: Int, version: Int? = nil, completion: @escaping (_ data: EditHistoryDataWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns a URL to the changes of a file version specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-edit-diff-url/).
 
@@ -985,6 +1003,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID.
 let version = 987 // Int | The file version. (optional)
 
+// Get changes URL
 FilesFilesAPIApi.getEditDiffUrl(fileId: fileId, version: version) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1009,7 +1028,7 @@ FilesFilesAPIApi.getEditDiffUrl(fileId: fileId, version: version) { (response, e
     open class func getEditHistory(fileId: Int, completion: @escaping (_ data: EditHistoryArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the version history of a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-edit-history/).
 
@@ -1034,6 +1053,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Get version history
 FilesFilesAPIApi.getEditHistory(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1058,7 +1078,7 @@ FilesFilesAPIApi.getEditHistory(fileId: fileId) { (response, error) in
     open class func getFileHistory(fileId: Int, fromDate: ApiDateTime? = nil, toDate: ApiDateTime? = nil, count: Int? = nil, startIndex: Int? = nil, completion: @escaping (_ data: HistoryArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the list of actions performed on the file with the specified identifier.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-history/).
 
@@ -1078,7 +1098,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1091,6 +1111,7 @@ let toDate = ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_exampl
 let count = 987 // Int | The number of history entries to retrieve for the file log. (optional)
 let startIndex = 987 // Int | The starting index for retrieving a subset of file history entries. (optional)
 
+// Get file history
 FilesFilesAPIApi.getFileHistory(fileId: fileId, fromDate: fromDate, toDate: toDate, count: count, startIndex: startIndex) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1115,7 +1136,7 @@ FilesFilesAPIApi.getFileHistory(fileId: fileId, fromDate: fromDate, toDate: toDa
     open class func getFileInfo(fileId: Int, version: Int? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the detailed information about a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-info/).
 
@@ -1142,6 +1163,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID.
 let version = 987 // Int | The file version. (optional)
 
+// Get file information
 FilesFilesAPIApi.getFileInfo(fileId: fileId, version: version) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1166,7 +1188,7 @@ FilesFilesAPIApi.getFileInfo(fileId: fileId, version: version) { (response, erro
     open class func getFileLinks(id: Int, count: Int? = nil, startIndex: Int? = nil, completion: @escaping (_ data: FileShareArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the external links of a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-links/).
 
@@ -1184,7 +1206,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1195,6 +1217,7 @@ let id = 987 // Int | The file unique identifier.
 let count = 987 // Int | The number of items to retrieve in the request. (optional)
 let startIndex = 987 // Int | The starting index for the query results. (optional)
 
+// Get file external links
 FilesFilesAPIApi.getFileLinks(id: id, count: count, startIndex: startIndex) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1219,7 +1242,7 @@ FilesFilesAPIApi.getFileLinks(id: id, count: count, startIndex: startIndex) { (r
     open class func getFilePrimaryExternalLink(id: Int, count: Int? = nil, startIndex: Int? = nil, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the primary external link by the identifier specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-primary-external-link/).
 
@@ -1248,6 +1271,7 @@ let id = 987 // Int | The file unique identifier.
 let count = 987 // Int | The number of items to retrieve in the request. (optional)
 let startIndex = 987 // Int | The starting index for the query results. (optional)
 
+// Get primary external link
 FilesFilesAPIApi.getFilePrimaryExternalLink(id: id, count: count, startIndex: startIndex) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1272,7 +1296,7 @@ FilesFilesAPIApi.getFilePrimaryExternalLink(id: id, count: count, startIndex: st
     open class func getFileVersionInfo(fileId: Int, completion: @escaping (_ data: FileIntegerArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the detailed information about all the available file versions with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-file-version-info/).
 
@@ -1297,6 +1321,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Get file versions
 FilesFilesAPIApi.getFileVersionInfo(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1321,7 +1346,7 @@ FilesFilesAPIApi.getFileVersionInfo(fileId: fileId) { (response, error) in
     open class func getFillResult(fillingSessionId: String? = nil, completion: @escaping (_ data: FillingFormResultIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Retrieves the result of a form-filling session.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-fill-result/).
 
@@ -1346,6 +1371,7 @@ import OpenAPIClient
 
 let fillingSessionId = "fillingSessionId_example" // String | The form-filling session ID. (optional)
 
+// Get form-filling result
 FilesFilesAPIApi.getFillResult(fillingSessionId: fillingSessionId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1370,7 +1396,7 @@ FilesFilesAPIApi.getFillResult(fillingSessionId: fillingSessionId) { (response, 
     open class func getPresignedFileUri(fileId: Int, completion: @escaping (_ data: FileLinkWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns a link to download a file with the ID specified in the request asynchronously.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-file-uri/).
 
@@ -1386,7 +1412,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1395,6 +1421,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Get file download link asynchronously
 FilesFilesAPIApi.getPresignedFileUri(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1419,7 +1446,7 @@ FilesFilesAPIApi.getPresignedFileUri(fileId: fileId) { (response, error) in
     open class func getPresignedUri(fileId: Int, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns a pre-signed URL to download a file with the specified ID.  This temporary link provides secure access to the file.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-presigned-uri/).
 
@@ -1435,7 +1462,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1444,6 +1471,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Get file download link
 FilesFilesAPIApi.getPresignedUri(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1468,7 +1496,7 @@ FilesFilesAPIApi.getPresignedUri(fileId: fileId) { (response, error) in
     open class func getProtectedFileUsers(fileId: Int, completion: @escaping (_ data: MentionWrapperArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns a list of users with their access rights to the protected file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-protected-file-users/).
 
@@ -1484,7 +1512,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1493,6 +1521,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Get users access rights to the protected file
 FilesFilesAPIApi.getProtectedFileUsers(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1517,7 +1546,7 @@ FilesFilesAPIApi.getProtectedFileUsers(fileId: fileId) { (response, error) in
     open class func getReferenceData(getReferenceDataDtoInteger: GetReferenceDataDtoInteger? = nil, completion: @escaping (_ data: FileReferenceWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the reference data to uniquely identify a file in its system and check the availability of insering data into the destination spreadsheet by the external link.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-reference-data/).
 
@@ -1533,7 +1562,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1542,6 +1571,7 @@ import OpenAPIClient
 
 let getReferenceDataDtoInteger = GetReferenceDataDtoInteger(fileKey: "fileKey_example", instanceId: "instanceId_example", sourceFileId: 123, path: "path_example", link: "link_example") // GetReferenceDataDtoInteger |  (optional)
 
+// Get reference data
 FilesFilesAPIApi.getReferenceData(getReferenceDataDtoInteger: getReferenceDataDtoInteger) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1566,7 +1596,7 @@ FilesFilesAPIApi.getReferenceData(getReferenceDataDtoInteger: getReferenceDataDt
     open class func isFormPDF(fileId: Int, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Checks if the PDF file is a form or not.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/is-form-pdf/).
 
@@ -1582,7 +1612,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1591,6 +1621,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file unique identifier.
 
+// Check the PDF file
 FilesFilesAPIApi.isFormPDF(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1615,7 +1646,7 @@ FilesFilesAPIApi.isFormPDF(fileId: fileId) { (response, error) in
     open class func lockFile(fileId: Int, lockFileParameters: LockFileParameters, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Locks a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/lock-file/).
 
@@ -1632,7 +1663,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1642,6 +1673,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID for locking.
 let lockFileParameters = LockFileParameters(lockFile: true) // LockFileParameters | The parameters for locking a file.
 
+// Lock a file
 FilesFilesAPIApi.lockFile(fileId: fileId, lockFileParameters: lockFileParameters) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1666,7 +1698,7 @@ FilesFilesAPIApi.lockFile(fileId: fileId, lockFileParameters: lockFileParameters
     open class func manageFormFilling(fileId: String, manageFormFillingDtoInteger: ManageFormFillingDtoInteger? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-
+Performs the specified form filling action.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/manage-form-filling/).
 
@@ -1683,7 +1715,7 @@ Void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1693,6 +1725,7 @@ import OpenAPIClient
 let fileId = "fileId_example" // String | 
 let manageFormFillingDtoInteger = ManageFormFillingDtoInteger(formId: 123, action: FormFillingManageAction()) // ManageFormFillingDtoInteger |  (optional)
 
+// Perform form filling action
 FilesFilesAPIApi.manageFormFilling(fileId: fileId, manageFormFillingDtoInteger: manageFormFillingDtoInteger) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1717,7 +1750,7 @@ FilesFilesAPIApi.manageFormFilling(fileId: fileId, manageFormFillingDtoInteger: 
     open class func openEditFile(fileId: Int, version: Int? = nil, view: Bool? = nil, editorType: EditorType? = nil, edit: Bool? = nil, fill: Bool? = nil, completion: @escaping (_ data: ConfigurationIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the initialization configuration of a file to open it in the editor.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/open-edit-file/).
 
@@ -1752,6 +1785,7 @@ let editorType = EditorType() // EditorType | The editor type to open the file. 
 let edit = true // Bool | Specifies if the document is opened in the editing mode or not. (optional)
 let fill = true // Bool | Specifies if the document is opened in the form-filling mode or not. (optional)
 
+// Open a file configuration
 FilesFilesAPIApi.openEditFile(fileId: fileId, version: version, view: view, editorType: editorType, edit: edit, fill: fill) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1776,7 +1810,7 @@ FilesFilesAPIApi.openEditFile(fileId: fileId, version: version, view: view, edit
     open class func restoreFileVersion(fileId: Int, version: Int? = nil, url: String? = nil, completion: @escaping (_ data: EditHistoryArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Restores a file version specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/restore-file-version/).
 
@@ -1805,6 +1839,7 @@ let fileId = 987 // Int | The file ID of the restore version.
 let version = 987 // Int | The file version of the restore. (optional)
 let url = "url_example" // String | The file version URL of the restore. (optional)
 
+// Restore a file version
 FilesFilesAPIApi.restoreFileVersion(fileId: fileId, version: version, url: url) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1829,7 +1864,7 @@ FilesFilesAPIApi.restoreFileVersion(fileId: fileId, version: version, url: url) 
     open class func saveEditingFileFromForm(fileId: Int, fileExtension: String? = nil, downloadUri: String? = nil, file: URL? = nil, forcesave: Bool? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Saves edits to a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-editing-file-from-form/).
 
@@ -1849,7 +1884,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1862,6 +1897,7 @@ let downloadUri = "downloadUri_example" // String | The URI to download the edit
 let file = URL(string: "https://example.com")! // URL | The request file stream. (optional)
 let forcesave = true // Bool | Specifies whether to force save the file or not. (optional)
 
+// Save file edits
 FilesFilesAPIApi.saveEditingFileFromForm(fileId: fileId, fileExtension: fileExtension, downloadUri: downloadUri, file: file, forcesave: forcesave) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1886,7 +1922,7 @@ FilesFilesAPIApi.saveEditingFileFromForm(fileId: fileId, fileExtension: fileExte
     open class func saveFileAsPdf(id: Int, saveAsPdfInteger: SaveAsPdfInteger, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Saves a file with the identifier specified in the request as a PDF document.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-file-as-pdf/).
 
@@ -1903,7 +1939,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1913,6 +1949,7 @@ import OpenAPIClient
 let id = 987 // Int | The file ID to save as PDF.
 let saveAsPdfInteger = SaveAsPdfInteger(folderId: 123, title: "title_example") // SaveAsPdfInteger | The parameters for saving the file as PDF.
 
+// Save a file as PDF
 FilesFilesAPIApi.saveFileAsPdf(id: id, saveAsPdfInteger: saveAsPdfInteger) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1937,7 +1974,7 @@ FilesFilesAPIApi.saveFileAsPdf(id: id, saveAsPdfInteger: saveAsPdfInteger) { (re
     open class func saveFormRoleMapping(fileId: String, saveFormRoleMappingDtoInteger: SaveFormRoleMappingDtoInteger? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-
+Saves the form role mapping.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-form-role-mapping/).
 
@@ -1954,7 +1991,7 @@ Void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1964,6 +2001,7 @@ import OpenAPIClient
 let fileId = "fileId_example" // String | 
 let saveFormRoleMappingDtoInteger = SaveFormRoleMappingDtoInteger(formId: 123, roles: [FormRole(roomId: 123, roleName: "roleName_example", roleColor: "roleColor_example", userId: 123, sequence: 123, submitted: true, openedAt: Date(), submissionDate: Date())]) // SaveFormRoleMappingDtoInteger |  (optional)
 
+// Save form role mapping
 FilesFilesAPIApi.saveFormRoleMapping(fileId: fileId, saveFormRoleMappingDtoInteger: saveFormRoleMappingDtoInteger) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1988,7 +2026,7 @@ FilesFilesAPIApi.saveFormRoleMapping(fileId: fileId, saveFormRoleMappingDtoInteg
     open class func setCustomFilterTag(fileId: Int, customFilterParameters: CustomFilterParameters, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Sets the Custom Filter editing mode to a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-custom-filter-tag/).
 
@@ -2005,7 +2043,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -2015,6 +2053,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID.
 let customFilterParameters = CustomFilterParameters(enabled: true) // CustomFilterParameters | The parameters for setting the Custom Filter editing mode.
 
+// Set the Custom Filter editing mode
 FilesFilesAPIApi.setCustomFilterTag(fileId: fileId, customFilterParameters: customFilterParameters) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2039,7 +2078,7 @@ FilesFilesAPIApi.setCustomFilterTag(fileId: fileId, customFilterParameters: cust
     open class func setFileExternalLink(id: Int, fileLinkRequest: FileLinkRequest, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Sets an external link to a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-external-link/).
 
@@ -2056,7 +2095,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -2066,6 +2105,7 @@ import OpenAPIClient
 let id = 987 // Int | The file ID.
 let fileLinkRequest = FileLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", _internal: true, primary: true, denyDownload: true, password: "password_example") // FileLinkRequest | The file external link parameters.
 
+// Set an external link
 FilesFilesAPIApi.setFileExternalLink(id: id, fileLinkRequest: fileLinkRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2090,7 +2130,7 @@ FilesFilesAPIApi.setFileExternalLink(id: id, fileLinkRequest: fileLinkRequest) {
     open class func setFileOrder(fileId: Int, orderRequestDto: OrderRequestDto? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Sets the order of the file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-file-order/).
 
@@ -2107,7 +2147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -2117,6 +2157,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file unique identifier.
 let orderRequestDto = OrderRequestDto(order: 123) // OrderRequestDto | The file order information. (optional)
 
+// Set file order
 FilesFilesAPIApi.setFileOrder(fileId: fileId, orderRequestDto: orderRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2141,7 +2182,7 @@ FilesFilesAPIApi.setFileOrder(fileId: fileId, orderRequestDto: orderRequestDto) 
     open class func setFilesOrder(ordersRequestDtoInteger: OrdersRequestDtoInteger? = nil, completion: @escaping (_ data: FileEntryIntegerArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Sets the order of the files specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-files-order/).
 
@@ -2157,7 +2198,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -2166,6 +2207,7 @@ import OpenAPIClient
 
 let ordersRequestDtoInteger = OrdersRequestDtoInteger(items: [OrdersItemRequestDtoInteger(entryId: 123, entryType: FileEntryType(), order: 123)]) // OrdersRequestDtoInteger |  (optional)
 
+// Set order of files
 FilesFilesAPIApi.setFilesOrder(ordersRequestDtoInteger: ordersRequestDtoInteger) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2190,7 +2232,7 @@ FilesFilesAPIApi.setFilesOrder(ordersRequestDtoInteger: ordersRequestDtoInteger)
     open class func startEditFile(fileId: Int, startEdit: StartEdit, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Informs about opening a file with the ID specified in the request for editing, locking it from being deleted or moved (this method is called by the mobile editors).
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-edit-file/).
 
@@ -2217,6 +2259,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID to start editing.
 let startEdit = StartEdit(editingAlone: true) // StartEdit | The file parameters to start editing.
 
+// Start file editing
 FilesFilesAPIApi.startEditFile(fileId: fileId, startEdit: startEdit) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2241,7 +2284,7 @@ FilesFilesAPIApi.startEditFile(fileId: fileId, startEdit: startEdit) { (response
     open class func startFillingFile(fileId: Int, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Starts filling a file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-filling-file/).
 
@@ -2257,7 +2300,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -2266,6 +2309,7 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file ID to start filling.
 
+// Start file filling
 FilesFilesAPIApi.startFillingFile(fileId: fileId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2290,7 +2334,7 @@ FilesFilesAPIApi.startFillingFile(fileId: fileId) { (response, error) in
     open class func toggleFileFavorite(fileId: Int, favorite: Bool? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Changes the favorite status of the file with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/toggle-file-favorite/).
 
@@ -2307,7 +2351,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -2317,6 +2361,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID.
 let favorite = true // Bool | Specifies if the file is marked as favorite or not. (optional)
 
+// Change the file favorite status
 FilesFilesAPIApi.toggleFileFavorite(fileId: fileId, favorite: favorite) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2341,7 +2386,7 @@ FilesFilesAPIApi.toggleFileFavorite(fileId: fileId, favorite: favorite) { (respo
     open class func trackEditFile(fileId: Int, tabId: UUID? = nil, docKeyForTrack: String? = nil, isFinish: Bool? = nil, completion: @escaping (_ data: KeyValuePairBooleanStringWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Tracks file changes when editing.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/track-edit-file/).
 
@@ -2372,6 +2417,7 @@ let tabId = 987 // UUID | The tab ID to track editing changes. (optional)
 let docKeyForTrack = "docKeyForTrack_example" // String | The document key for tracking changes. (optional)
 let isFinish = true // Bool | Specifies whether to finish file tracking or not. (optional)
 
+// Track file editing
 FilesFilesAPIApi.trackEditFile(fileId: fileId, tabId: tabId, docKeyForTrack: docKeyForTrack, isFinish: isFinish) { (response, error) in
     guard error == nil else {
         print(error)
@@ -2396,7 +2442,7 @@ FilesFilesAPIApi.trackEditFile(fileId: fileId, tabId: tabId, docKeyForTrack: doc
     open class func updateFile(fileId: Int, updateFile: UpdateFile, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Updates the information of the selected file with the parameters specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file/).
 
@@ -2423,6 +2469,7 @@ import OpenAPIClient
 let fileId = 987 // Int | The file ID to update.
 let updateFile = UpdateFile(title: "title_example", lastVersion: 123) // UpdateFile | The parameters for updating a file.
 
+// Update a file
 FilesFilesAPIApi.updateFile(fileId: fileId, updateFile: updateFile) { (response, error) in
     guard error == nil else {
         print(error)

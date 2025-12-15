@@ -4,44 +4,44 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addRoomTags**](RoomsAPI.md#addroomtags) | **PUT** /api/2.0/files/rooms/{id}/tags | 
-[**archiveRoom**](RoomsAPI.md#archiveroom) | **PUT** /api/2.0/files/rooms/{id}/archive | 
-[**changeRoomCover**](RoomsAPI.md#changeroomcover) | **POST** /api/2.0/files/rooms/{id}/cover | 
-[**createRoom**](RoomsAPI.md#createroom) | **POST** /api/2.0/files/rooms | 
-[**createRoomFromTemplate**](RoomsAPI.md#createroomfromtemplate) | **POST** /api/2.0/files/rooms/fromtemplate | 
-[**createRoomLogo**](RoomsAPI.md#createroomlogo) | **POST** /api/2.0/files/rooms/{id}/logo | 
-[**createRoomTag**](RoomsAPI.md#createroomtag) | **POST** /api/2.0/files/tags | 
-[**createRoomTemplate**](RoomsAPI.md#createroomtemplate) | **POST** /api/2.0/files/roomtemplate | 
-[**createRoomThirdParty**](RoomsAPI.md#createroomthirdparty) | **POST** /api/2.0/files/rooms/thirdparty/{id} | 
-[**deleteCustomTags**](RoomsAPI.md#deletecustomtags) | **DELETE** /api/2.0/files/tags | 
-[**deleteRoom**](RoomsAPI.md#deleteroom) | **DELETE** /api/2.0/files/rooms/{id} | 
-[**deleteRoomLogo**](RoomsAPI.md#deleteroomlogo) | **DELETE** /api/2.0/files/rooms/{id}/logo | 
-[**deleteRoomTags**](RoomsAPI.md#deleteroomtags) | **DELETE** /api/2.0/files/rooms/{id}/tags | 
-[**getNewRoomItems**](RoomsAPI.md#getnewroomitems) | **GET** /api/2.0/files/rooms/{id}/news | 
-[**getPublicSettings**](RoomsAPI.md#getpublicsettings) | **GET** /api/2.0/files/roomtemplate/{id}/public | 
-[**getRoomCovers**](RoomsAPI.md#getroomcovers) | **GET** /api/2.0/files/rooms/covers | 
-[**getRoomCreatingStatus**](RoomsAPI.md#getroomcreatingstatus) | **GET** /api/2.0/files/rooms/fromtemplate/status | 
-[**getRoomIndexExport**](RoomsAPI.md#getroomindexexport) | **GET** /api/2.0/files/rooms/indexexport | 
-[**getRoomInfo**](RoomsAPI.md#getroominfo) | **GET** /api/2.0/files/rooms/{id} | 
-[**getRoomLinks**](RoomsAPI.md#getroomlinks) | **GET** /api/2.0/files/rooms/{id}/links | 
-[**getRoomSecurityInfo**](RoomsAPI.md#getroomsecurityinfo) | **GET** /api/2.0/files/rooms/{id}/share | 
-[**getRoomTagsInfo**](RoomsAPI.md#getroomtagsinfo) | **GET** /api/2.0/files/tags | 
-[**getRoomTemplateCreatingStatus**](RoomsAPI.md#getroomtemplatecreatingstatus) | **GET** /api/2.0/files/roomtemplate/status | 
-[**getRoomsFolder**](RoomsAPI.md#getroomsfolder) | **GET** /api/2.0/files/rooms | 
-[**getRoomsNewItems**](RoomsAPI.md#getroomsnewitems) | **GET** /api/2.0/files/rooms/news | 
-[**getRoomsPrimaryExternalLink**](RoomsAPI.md#getroomsprimaryexternallink) | **GET** /api/2.0/files/rooms/{id}/link | 
-[**pinRoom**](RoomsAPI.md#pinroom) | **PUT** /api/2.0/files/rooms/{id}/pin | 
-[**reorderRoom**](RoomsAPI.md#reorderroom) | **PUT** /api/2.0/files/rooms/{id}/reorder | 
-[**resendEmailInvitations**](RoomsAPI.md#resendemailinvitations) | **POST** /api/2.0/files/rooms/{id}/resend | 
-[**setPublicSettings**](RoomsAPI.md#setpublicsettings) | **PUT** /api/2.0/files/roomtemplate/public | 
-[**setRoomLink**](RoomsAPI.md#setroomlink) | **PUT** /api/2.0/files/rooms/{id}/links | 
-[**setRoomSecurity**](RoomsAPI.md#setroomsecurity) | **PUT** /api/2.0/files/rooms/{id}/share | 
-[**startRoomIndexExport**](RoomsAPI.md#startroomindexexport) | **POST** /api/2.0/files/rooms/{id}/indexexport | 
-[**terminateRoomIndexExport**](RoomsAPI.md#terminateroomindexexport) | **DELETE** /api/2.0/files/rooms/indexexport | 
-[**unarchiveRoom**](RoomsAPI.md#unarchiveroom) | **PUT** /api/2.0/files/rooms/{id}/unarchive | 
-[**unpinRoom**](RoomsAPI.md#unpinroom) | **PUT** /api/2.0/files/rooms/{id}/unpin | 
-[**updateRoom**](RoomsAPI.md#updateroom) | **PUT** /api/2.0/files/rooms/{id} | 
-[**uploadRoomLogo**](RoomsAPI.md#uploadroomlogo) | **POST** /api/2.0/files/logos | 
+[**addRoomTags**](RoomsAPI.md#addroomtags) | **PUT** /api/2.0/files/rooms/{id}/tags | Add the room tags
+[**archiveRoom**](RoomsAPI.md#archiveroom) | **PUT** /api/2.0/files/rooms/{id}/archive | Archive a room
+[**changeRoomCover**](RoomsAPI.md#changeroomcover) | **POST** /api/2.0/files/rooms/{id}/cover | Change the room cover
+[**createRoom**](RoomsAPI.md#createroom) | **POST** /api/2.0/files/rooms | Create a room
+[**createRoomFromTemplate**](RoomsAPI.md#createroomfromtemplate) | **POST** /api/2.0/files/rooms/fromtemplate | Create a room from the template
+[**createRoomLogo**](RoomsAPI.md#createroomlogo) | **POST** /api/2.0/files/rooms/{id}/logo | Create a room logo
+[**createRoomTag**](RoomsAPI.md#createroomtag) | **POST** /api/2.0/files/tags | Create a room tag
+[**createRoomTemplate**](RoomsAPI.md#createroomtemplate) | **POST** /api/2.0/files/roomtemplate | Start creating room template
+[**createRoomThirdParty**](RoomsAPI.md#createroomthirdparty) | **POST** /api/2.0/files/rooms/thirdparty/{id} | Create a third-party room
+[**deleteCustomTags**](RoomsAPI.md#deletecustomtags) | **DELETE** /api/2.0/files/tags | Delete the custom room tags
+[**deleteRoom**](RoomsAPI.md#deleteroom) | **DELETE** /api/2.0/files/rooms/{id} | Remove a room
+[**deleteRoomLogo**](RoomsAPI.md#deleteroomlogo) | **DELETE** /api/2.0/files/rooms/{id}/logo | Remove a room logo
+[**deleteRoomTags**](RoomsAPI.md#deleteroomtags) | **DELETE** /api/2.0/files/rooms/{id}/tags | Remove the room tags
+[**getNewRoomItems**](RoomsAPI.md#getnewroomitems) | **GET** /api/2.0/files/rooms/{id}/news | Get the new room items
+[**getPublicSettings**](RoomsAPI.md#getpublicsettings) | **GET** /api/2.0/files/roomtemplate/{id}/public | Get public settings
+[**getRoomCovers**](RoomsAPI.md#getroomcovers) | **GET** /api/2.0/files/rooms/covers | Get covers
+[**getRoomCreatingStatus**](RoomsAPI.md#getroomcreatingstatus) | **GET** /api/2.0/files/rooms/fromtemplate/status | Get the room creation progress
+[**getRoomIndexExport**](RoomsAPI.md#getroomindexexport) | **GET** /api/2.0/files/rooms/indexexport | Get the room index export
+[**getRoomInfo**](RoomsAPI.md#getroominfo) | **GET** /api/2.0/files/rooms/{id} | Get room information
+[**getRoomLinks**](RoomsAPI.md#getroomlinks) | **GET** /api/2.0/files/rooms/{id}/links | Get the room links
+[**getRoomSecurityInfo**](RoomsAPI.md#getroomsecurityinfo) | **GET** /api/2.0/files/rooms/{id}/share | Get the room access rights
+[**getRoomTagsInfo**](RoomsAPI.md#getroomtagsinfo) | **GET** /api/2.0/files/tags | Get the room tags
+[**getRoomTemplateCreatingStatus**](RoomsAPI.md#getroomtemplatecreatingstatus) | **GET** /api/2.0/files/roomtemplate/status | Get status of room template creation
+[**getRoomsFolder**](RoomsAPI.md#getroomsfolder) | **GET** /api/2.0/files/rooms | Get rooms
+[**getRoomsNewItems**](RoomsAPI.md#getroomsnewitems) | **GET** /api/2.0/files/rooms/news | Get the room new items
+[**getRoomsPrimaryExternalLink**](RoomsAPI.md#getroomsprimaryexternallink) | **GET** /api/2.0/files/rooms/{id}/link | Get the room primary external link
+[**pinRoom**](RoomsAPI.md#pinroom) | **PUT** /api/2.0/files/rooms/{id}/pin | Pin a room
+[**reorderRoom**](RoomsAPI.md#reorderroom) | **PUT** /api/2.0/files/rooms/{id}/reorder | Reorder the room
+[**resendEmailInvitations**](RoomsAPI.md#resendemailinvitations) | **POST** /api/2.0/files/rooms/{id}/resend | Resend the room invitations
+[**setPublicSettings**](RoomsAPI.md#setpublicsettings) | **PUT** /api/2.0/files/roomtemplate/public | Set public settings
+[**setRoomLink**](RoomsAPI.md#setroomlink) | **PUT** /api/2.0/files/rooms/{id}/links | Set the room external or invitation link
+[**setRoomSecurity**](RoomsAPI.md#setroomsecurity) | **PUT** /api/2.0/files/rooms/{id}/share | Set the room access rights
+[**startRoomIndexExport**](RoomsAPI.md#startroomindexexport) | **POST** /api/2.0/files/rooms/{id}/indexexport | Start the room index export
+[**terminateRoomIndexExport**](RoomsAPI.md#terminateroomindexexport) | **DELETE** /api/2.0/files/rooms/indexexport | Terminate the room index export
+[**unarchiveRoom**](RoomsAPI.md#unarchiveroom) | **PUT** /api/2.0/files/rooms/{id}/unarchive | Unarchive a room
+[**unpinRoom**](RoomsAPI.md#unpinroom) | **PUT** /api/2.0/files/rooms/{id}/unpin | Unpin a room
+[**updateRoom**](RoomsAPI.md#updateroom) | **PUT** /api/2.0/files/rooms/{id} | Update a room
+[**uploadRoomLogo**](RoomsAPI.md#uploadroomlogo) | **POST** /api/2.0/files/logos | Upload a room logo image
 
 
 # **addRoomTags**
@@ -49,7 +49,7 @@ Method | HTTP request | Description
     open class func addRoomTags(id: Int, batchTagsRequestDto: BatchTagsRequestDto? = nil, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Adds the tags to a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/add-room-tags/).
 
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -76,6 +76,7 @@ import OpenAPIClient
 let id = 987 // Int | The room Id.
 let batchTagsRequestDto = BatchTagsRequestDto(names: ["names_example"]) // BatchTagsRequestDto | The parameters for managing tags. (optional)
 
+// Add the room tags
 RoomsAPIApi.addRoomTags(id: id, batchTagsRequestDto: batchTagsRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -100,7 +101,7 @@ RoomsAPIApi.addRoomTags(id: id, batchTagsRequestDto: batchTagsRequestDto) { (res
     open class func archiveRoom(id: Int, archiveRoomRequest: ArchiveRoomRequest? = nil, completion: @escaping (_ data: FileOperationWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Moves a room with the ID specified in the request to the Archive section.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/archive-room/).
 
@@ -117,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -127,6 +128,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let archiveRoomRequest = ArchiveRoomRequest(deleteAfter: true) // ArchiveRoomRequest | The parameters for archiving a room. (optional)
 
+// Archive a room
 RoomsAPIApi.archiveRoom(id: id, archiveRoomRequest: archiveRoomRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -151,7 +153,7 @@ RoomsAPIApi.archiveRoom(id: id, archiveRoomRequest: archiveRoomRequest) { (respo
     open class func changeRoomCover(id: Int, coverRequestDto: CoverRequestDto, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Changes a cover of a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/change-room-cover/).
 
@@ -168,7 +170,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -178,6 +180,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let coverRequestDto = CoverRequestDto(color: "color_example", cover: "cover_example") // CoverRequestDto | The request parameters to change the room cover.
 
+// Change the room cover
 RoomsAPIApi.changeRoomCover(id: id, coverRequestDto: coverRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -202,7 +205,7 @@ RoomsAPIApi.changeRoomCover(id: id, coverRequestDto: coverRequestDto) { (respons
     open class func createRoom(createRoomRequestDto: CreateRoomRequestDto? = nil, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a room in the Rooms section.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room/).
 
@@ -218,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -227,6 +230,7 @@ import OpenAPIClient
 
 let createRoomRequestDto = CreateRoomRequestDto(title: "title_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", roomType: RoomType(), _private: true, share: [FileShareParams(shareTo: 123, email: "email_example", access: FileShare())], chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example")) // CreateRoomRequestDto |  (optional)
 
+// Create a room
 RoomsAPIApi.createRoom(createRoomRequestDto: createRoomRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -251,7 +255,7 @@ RoomsAPIApi.createRoom(createRoomRequestDto: createRoomRequestDto) { (response, 
     open class func createRoomFromTemplate(createRoomFromTemplateDto: CreateRoomFromTemplateDto? = nil, completion: @escaping (_ data: RoomFromTemplateStatusWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a room in the Rooms section based on the template.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-from-template/).
 
@@ -267,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -276,6 +280,7 @@ import OpenAPIClient
 
 let createRoomFromTemplateDto = CreateRoomFromTemplateDto(templateId: 123, title: "title_example", logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), copyLogo: true, tags: ["tags_example"], color: "color_example", cover: "cover_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), _private: true) // CreateRoomFromTemplateDto |  (optional)
 
+// Create a room from the template
 RoomsAPIApi.createRoomFromTemplate(createRoomFromTemplateDto: createRoomFromTemplateDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -300,7 +305,7 @@ RoomsAPIApi.createRoomFromTemplate(createRoomFromTemplateDto: createRoomFromTemp
     open class func createRoomLogo(id: Int, logoRequest: LogoRequest, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a logo for a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-logo/).
 
@@ -317,7 +322,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -327,6 +332,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let logoRequest = LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123) // LogoRequest | The logo request parameters.
 
+// Create a room logo
 RoomsAPIApi.createRoomLogo(id: id, logoRequest: logoRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -351,7 +357,7 @@ RoomsAPIApi.createRoomLogo(id: id, logoRequest: logoRequest) { (response, error)
     open class func createRoomTag(createTagRequestDto: CreateTagRequestDto? = nil, completion: @escaping (_ data: ObjectWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a custom room tag with the parameters specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-tag/).
 
@@ -367,7 +373,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -376,6 +382,7 @@ import OpenAPIClient
 
 let createTagRequestDto = CreateTagRequestDto(name: "name_example") // CreateTagRequestDto |  (optional)
 
+// Create a room tag
 RoomsAPIApi.createRoomTag(createTagRequestDto: createTagRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -400,7 +407,7 @@ RoomsAPIApi.createRoomTag(createTagRequestDto: createTagRequestDto) { (response,
     open class func createRoomTemplate(roomTemplateDto: RoomTemplateDto? = nil, completion: @escaping (_ data: RoomTemplateStatusWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Starts creating the room template.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-template/).
 
@@ -416,7 +423,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -425,6 +432,7 @@ import OpenAPIClient
 
 let roomTemplateDto = RoomTemplateDto(roomId: 123, title: "title_example", logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), copyLogo: true, share: ["share_example"], groups: [123], _public: true, tags: ["tags_example"], color: "color_example", cover: "cover_example", quota: 123) // RoomTemplateDto |  (optional)
 
+// Start creating room template
 RoomsAPIApi.createRoomTemplate(roomTemplateDto: roomTemplateDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -449,7 +457,7 @@ RoomsAPIApi.createRoomTemplate(roomTemplateDto: roomTemplateDto) { (response, er
     open class func createRoomThirdParty(id: String, createThirdPartyRoom: CreateThirdPartyRoom, completion: @escaping (_ data: FolderStringWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Creates a room in the Rooms section stored in a third-party storage.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-third-party/).
 
@@ -466,7 +474,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -476,6 +484,7 @@ import OpenAPIClient
 let id = "id_example" // String | The ID of the folder in the third-party storage in which the contents of the room will be stored.
 let createThirdPartyRoom = CreateThirdPartyRoom(createAsNewFolder: true, title: "title_example", roomType: RoomType(), _private: true, indexing: true, denyDownload: true, color: "color_example", cover: "cover_example", tags: ["tags_example"], logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123)) // CreateThirdPartyRoom | The third-party room information.
 
+// Create a third-party room
 RoomsAPIApi.createRoomThirdParty(id: id, createThirdPartyRoom: createThirdPartyRoom) { (response, error) in
     guard error == nil else {
         print(error)
@@ -500,7 +509,7 @@ RoomsAPIApi.createRoomThirdParty(id: id, createThirdPartyRoom: createThirdPartyR
     open class func deleteCustomTags(batchTagsRequestDto: BatchTagsRequestDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-
+Deletes a bunch of custom room tags specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-custom-tags/).
 
@@ -516,7 +525,7 @@ Void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -525,6 +534,7 @@ import OpenAPIClient
 
 let batchTagsRequestDto = BatchTagsRequestDto(names: ["names_example"]) // BatchTagsRequestDto |  (optional)
 
+// Delete the custom room tags
 RoomsAPIApi.deleteCustomTags(batchTagsRequestDto: batchTagsRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -549,7 +559,7 @@ RoomsAPIApi.deleteCustomTags(batchTagsRequestDto: batchTagsRequestDto) { (respon
     open class func deleteRoom(id: Int, deleteRoomRequest: DeleteRoomRequest, completion: @escaping (_ data: FileOperationWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Removes a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room/).
 
@@ -566,7 +576,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -576,6 +586,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let deleteRoomRequest = DeleteRoomRequest(deleteAfter: true) // DeleteRoomRequest | The parameters for deleting a room.
 
+// Remove a room
 RoomsAPIApi.deleteRoom(id: id, deleteRoomRequest: deleteRoomRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -600,7 +611,7 @@ RoomsAPIApi.deleteRoom(id: id, deleteRoomRequest: deleteRoomRequest) { (response
     open class func deleteRoomLogo(id: Int, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Removes a logo from a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-logo/).
 
@@ -616,7 +627,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -625,6 +636,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Remove a room logo
 RoomsAPIApi.deleteRoomLogo(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -649,7 +661,7 @@ RoomsAPIApi.deleteRoomLogo(id: id) { (response, error) in
     open class func deleteRoomTags(id: Int, batchTagsRequestDto: BatchTagsRequestDto? = nil, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Removes the tags from a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-room-tags/).
 
@@ -666,7 +678,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -676,6 +688,7 @@ import OpenAPIClient
 let id = 987 // Int | The room Id.
 let batchTagsRequestDto = BatchTagsRequestDto(names: ["names_example"]) // BatchTagsRequestDto | The parameters for managing tags. (optional)
 
+// Remove the room tags
 RoomsAPIApi.deleteRoomTags(id: id, batchTagsRequestDto: batchTagsRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -700,7 +713,7 @@ RoomsAPIApi.deleteRoomTags(id: id, batchTagsRequestDto: batchTagsRequestDto) { (
     open class func getNewRoomItems(id: Int, completion: @escaping (_ data: NewItemsFileEntryBaseArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns a list of all the new items from a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-room-items/).
 
@@ -716,7 +729,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -725,6 +738,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Get the new room items
 RoomsAPIApi.getNewRoomItems(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -749,7 +763,7 @@ RoomsAPIApi.getNewRoomItems(id: id) { (response, error) in
     open class func getPublicSettings(id: Int, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the public settings of the room template with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-settings/).
 
@@ -765,7 +779,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -774,6 +788,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room template ID.
 
+// Get public settings
 RoomsAPIApi.getPublicSettings(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -798,7 +813,7 @@ RoomsAPIApi.getPublicSettings(id: id) { (response, error) in
     open class func getRoomCovers(completion: @escaping (_ data: CoversResultArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns a list of all covers.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-covers/).
 
@@ -811,7 +826,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -819,6 +834,7 @@ No authorization required
 import OpenAPIClient
 
 
+// Get covers
 RoomsAPIApi.getRoomCovers() { (response, error) in
     guard error == nil else {
         print(error)
@@ -843,7 +859,7 @@ RoomsAPIApi.getRoomCovers() { (response, error) in
     open class func getRoomCreatingStatus(completion: @escaping (_ data: RoomFromTemplateStatusWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the progress of creating a room from the template.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-creating-status/).
 
@@ -856,7 +872,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -864,6 +880,7 @@ No authorization required
 import OpenAPIClient
 
 
+// Get the room creation progress
 RoomsAPIApi.getRoomCreatingStatus() { (response, error) in
     guard error == nil else {
         print(error)
@@ -888,7 +905,7 @@ RoomsAPIApi.getRoomCreatingStatus() { (response, error) in
     open class func getRoomIndexExport(completion: @escaping (_ data: DocumentBuilderTaskWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the room index export.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-index-export/).
 
@@ -901,7 +918,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -909,6 +926,7 @@ No authorization required
 import OpenAPIClient
 
 
+// Get the room index export
 RoomsAPIApi.getRoomIndexExport() { (response, error) in
     guard error == nil else {
         print(error)
@@ -933,7 +951,7 @@ RoomsAPIApi.getRoomIndexExport() { (response, error) in
     open class func getRoomInfo(id: Int, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the room information.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-info/).
 
@@ -958,6 +976,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Get room information
 RoomsAPIApi.getRoomInfo(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -982,7 +1001,7 @@ RoomsAPIApi.getRoomInfo(id: id) { (response, error) in
     open class func getRoomLinks(id: Int, type: LinkType? = nil, completion: @escaping (_ data: FileShareArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the links of the room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-links/).
 
@@ -999,7 +1018,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1009,6 +1028,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let type = LinkType() // LinkType | The link type. (optional)
 
+// Get the room links
 RoomsAPIApi.getRoomLinks(id: id, type: type) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1033,7 +1053,7 @@ RoomsAPIApi.getRoomLinks(id: id, type: type) { (response, error) in
     open class func getRoomSecurityInfo(id: Int, filterType: ShareFilterType? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: FileShareArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the access rights of a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-security-info/).
 
@@ -1053,7 +1073,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1066,6 +1086,7 @@ let count = 987 // Int | The number of items to be retrieved or processed. (opti
 let startIndex = 987 // Int | The starting index of the items to retrieve in a paginated request. (optional)
 let filterValue = "filterValue_example" // String | The text filter value used for filtering room security information. (optional)
 
+// Get the room access rights
 RoomsAPIApi.getRoomSecurityInfo(id: id, filterType: filterType, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1090,7 +1111,7 @@ RoomsAPIApi.getRoomSecurityInfo(id: id, filterType: filterType, count: count, st
     open class func getRoomTagsInfo(count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: ObjectArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns a list of custom room tags.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/).
 
@@ -1108,7 +1129,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1119,6 +1140,7 @@ let count = 987 // Int | Gets or sets the number of tag results to retrieve.  Th
 let startIndex = 987 // Int | Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. (optional)
 let filterValue = "filterValue_example" // String | Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information. (optional)
 
+// Get the room tags
 RoomsAPIApi.getRoomTagsInfo(count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1143,7 +1165,7 @@ RoomsAPIApi.getRoomTagsInfo(count: count, startIndex: startIndex, filterValue: f
     open class func getRoomTemplateCreatingStatus(completion: @escaping (_ data: RoomTemplateStatusWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the progress status of the room template creation process.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-template-creating-status/).
 
@@ -1156,7 +1178,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1164,6 +1186,7 @@ No authorization required
 import OpenAPIClient
 
 
+// Get status of room template creation
 RoomsAPIApi.getRoomTemplateCreatingStatus() { (response, error) in
     guard error == nil else {
         print(error)
@@ -1188,7 +1211,7 @@ RoomsAPIApi.getRoomTemplateCreatingStatus() { (response, error) in
     open class func getRoomsFolder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the contents of the Rooms section by the parameters specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-folder/).
 
@@ -1218,7 +1241,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1241,6 +1264,7 @@ let sortBy = "sortBy_example" // String | Specifies the field by which the room 
 let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
 let filterValue = "filterValue_example" // String | The text filter value used to refine search or query operations. (optional)
 
+// Get rooms
 RoomsAPIApi.getRoomsFolder(type: type, subjectId: subjectId, searchArea: searchArea, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, provider: provider, subjectFilter: subjectFilter, quotaFilter: quotaFilter, storageFilter: storageFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1265,7 +1289,7 @@ RoomsAPIApi.getRoomsFolder(type: type, subjectId: subjectId, searchArea: searchA
     open class func getRoomsNewItems(completion: @escaping (_ data: NewItemsRoomNewItemsArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the room new items.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-new-items/).
 
@@ -1278,7 +1302,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1286,6 +1310,7 @@ No authorization required
 import OpenAPIClient
 
 
+// Get the room new items
 RoomsAPIApi.getRoomsNewItems() { (response, error) in
     guard error == nil else {
         print(error)
@@ -1310,7 +1335,7 @@ RoomsAPIApi.getRoomsNewItems() { (response, error) in
     open class func getRoomsPrimaryExternalLink(id: Int, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Returns the primary external link of the room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-primary-external-link/).
 
@@ -1326,7 +1351,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1335,6 +1360,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Get the room primary external link
 RoomsAPIApi.getRoomsPrimaryExternalLink(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1359,7 +1385,7 @@ RoomsAPIApi.getRoomsPrimaryExternalLink(id: id) { (response, error) in
     open class func pinRoom(id: Int, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Pins a room with the ID specified in the request to the top of the list.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/pin-room/).
 
@@ -1375,7 +1401,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1384,6 +1410,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Pin a room
 RoomsAPIApi.pinRoom(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1408,7 +1435,7 @@ RoomsAPIApi.pinRoom(id: id) { (response, error) in
     open class func reorderRoom(id: Int, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Reorders the room with ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/reorder-room/).
 
@@ -1424,7 +1451,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1433,6 +1460,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Reorder the room
 RoomsAPIApi.reorderRoom(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1457,7 +1485,7 @@ RoomsAPIApi.reorderRoom(id: id) { (response, error) in
     open class func resendEmailInvitations(id: Int, userInvitation: UserInvitation, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-
+Resends the email invitations to a room with the ID specified in the request to the selected users.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/resend-email-invitations/).
 
@@ -1474,7 +1502,7 @@ Void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1484,6 +1512,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let userInvitation = UserInvitation(usersIds: [123], resendAll: true) // UserInvitation | The user invitation parameters.
 
+// Resend the room invitations
 RoomsAPIApi.resendEmailInvitations(id: id, userInvitation: userInvitation) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1508,7 +1537,7 @@ RoomsAPIApi.resendEmailInvitations(id: id, userInvitation: userInvitation) { (re
     open class func setPublicSettings(setPublicDto: SetPublicDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-
+Sets the public settings for the room template with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-public-settings/).
 
@@ -1524,7 +1553,7 @@ Void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1533,6 +1562,7 @@ import OpenAPIClient
 
 let setPublicDto = SetPublicDto(id: 123, _public: true) // SetPublicDto |  (optional)
 
+// Set public settings
 RoomsAPIApi.setPublicSettings(setPublicDto: setPublicDto) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1557,7 +1587,7 @@ RoomsAPIApi.setPublicSettings(setPublicDto: setPublicDto) { (response, error) in
     open class func setRoomLink(id: Int, roomLinkRequest: RoomLinkRequest, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Sets the room external or invitation link with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-link/).
 
@@ -1574,7 +1604,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1584,6 +1614,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let roomLinkRequest = RoomLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), _internal: true, title: "title_example", linkType: LinkType(), password: "password_example", denyDownload: true) // RoomLinkRequest | The room link parameters.
 
+// Set the room external or invitation link
 RoomsAPIApi.setRoomLink(id: id, roomLinkRequest: roomLinkRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1608,7 +1639,7 @@ RoomsAPIApi.setRoomLink(id: id, roomLinkRequest: roomLinkRequest) { (response, e
     open class func setRoomSecurity(id: Int, roomInvitationRequest: RoomInvitationRequest, completion: @escaping (_ data: RoomSecurityWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Sets the access rights to the room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-room-security/).
 
@@ -1625,7 +1656,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1635,6 +1666,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let roomInvitationRequest = RoomInvitationRequest(invitations: [RoomInvitation(email: "email_example", id: 123, access: FileShare())], notify: true, message: "message_example", culture: "culture_example", force: true) // RoomInvitationRequest | The room invitation request.
 
+// Set the room access rights
 RoomsAPIApi.setRoomSecurity(id: id, roomInvitationRequest: roomInvitationRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1659,7 +1691,7 @@ RoomsAPIApi.setRoomSecurity(id: id, roomInvitationRequest: roomInvitationRequest
     open class func startRoomIndexExport(id: Int, completion: @escaping (_ data: DocumentBuilderTaskWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Starts the index export of a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-room-index-export/).
 
@@ -1675,7 +1707,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1684,6 +1716,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Start the room index export
 RoomsAPIApi.startRoomIndexExport(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1708,7 +1741,7 @@ RoomsAPIApi.startRoomIndexExport(id: id) { (response, error) in
     open class func terminateRoomIndexExport(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-
+Terminates the room index export.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-room-index-export/).
 
@@ -1721,7 +1754,7 @@ Void (empty response body)
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1729,6 +1762,7 @@ No authorization required
 import OpenAPIClient
 
 
+// Terminate the room index export
 RoomsAPIApi.terminateRoomIndexExport() { (response, error) in
     guard error == nil else {
         print(error)
@@ -1753,7 +1787,7 @@ RoomsAPIApi.terminateRoomIndexExport() { (response, error) in
     open class func unarchiveRoom(id: Int, archiveRoomRequest: ArchiveRoomRequest? = nil, completion: @escaping (_ data: FileOperationWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Moves a room with the ID specified in the request from the Archive section to the Rooms section.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/unarchive-room/).
 
@@ -1770,7 +1804,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1780,6 +1814,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let archiveRoomRequest = ArchiveRoomRequest(deleteAfter: true) // ArchiveRoomRequest | The parameters for archiving a room. (optional)
 
+// Unarchive a room
 RoomsAPIApi.unarchiveRoom(id: id, archiveRoomRequest: archiveRoomRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1804,7 +1839,7 @@ RoomsAPIApi.unarchiveRoom(id: id, archiveRoomRequest: archiveRoomRequest) { (res
     open class func unpinRoom(id: Int, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Unpins a room with the ID specified in the request from the top of the list.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/unpin-room/).
 
@@ -1820,7 +1855,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1829,6 +1864,7 @@ import OpenAPIClient
 
 let id = 987 // Int | The room ID.
 
+// Unpin a room
 RoomsAPIApi.unpinRoom(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1853,7 +1889,7 @@ RoomsAPIApi.unpinRoom(id: id) { (response, error) in
     open class func updateRoom(id: Int, updateRoomRequest: UpdateRoomRequest, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Updates a room with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room/).
 
@@ -1870,7 +1906,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1880,6 +1916,7 @@ import OpenAPIClient
 let id = 987 // Int | The room ID.
 let updateRoomRequest = UpdateRoomRequest(title: "title_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example")) // UpdateRoomRequest | The request parameters for updating a room.
 
+// Update a room
 RoomsAPIApi.updateRoom(id: id, updateRoomRequest: updateRoomRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -1904,7 +1941,7 @@ RoomsAPIApi.updateRoom(id: id, updateRoomRequest: updateRoomRequest) { (response
     open class func uploadRoomLogo(formCollection: [KeyValuePairStringStringValues]? = nil, completion: @escaping (_ data: UploadResultWrapper?, _ error: Error?) -> Void)
 ```
 
-
+Uploads a temporary image to create a room logo.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-room-logo/).
 
@@ -1920,7 +1957,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
 
 ### Example
 ```swift
@@ -1929,6 +1966,7 @@ import OpenAPIClient
 
 let formCollection = [KeyValuePairStringStringValues(key: "key_example", value: ["value_example"])] // [KeyValuePairStringStringValues] | The image data. (optional)
 
+// Upload a room logo image
 RoomsAPIApi.uploadRoomLogo(formCollection: formCollection) { (response, error) in
     guard error == nil else {
         print(error)

@@ -14,9 +14,9 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Skip, 1 - Overwrite, 2 - Duplicate] */
-public enum FileConflictResolveType: Int, Sendable, Codable, CaseIterable {
-    case Skip = 0
-    case Overwrite = 1
-    case Duplicate = 2
+/** [Skip - Skip, Overwrite - Overwrite, Duplicate - Duplicate] */
+public enum FileConflictResolveType: String, Sendable, Codable, CaseIterable {
+    case skip = "Skip"
+    case overwrite = "Overwrite"
+    case duplicate = "Duplicate"
 }

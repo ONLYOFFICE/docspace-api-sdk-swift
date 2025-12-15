@@ -18,20 +18,17 @@ public struct BaseStorageSettingsStorageSettings: Sendable, Codable, ParameterCo
 
     public var module: String?
     public var props: [String: String]?
-    public var id: UUID?
     public var lastModified: Date?
 
-    public init(module: String? = nil, props: [String: String]? = nil, id: UUID? = nil, lastModified: Date? = nil) {
+    public init(module: String? = nil, props: [String: String]? = nil, lastModified: Date? = nil) {
         self.module = module
         self.props = props
-        self.id = id
         self.lastModified = lastModified
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case module
         case props
-        case id
         case lastModified
     }
 
@@ -41,11 +38,7 @@ public struct BaseStorageSettingsStorageSettings: Sendable, Codable, ParameterCo
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(module, forKey: .module)
         try container.encodeIfPresent(props, forKey: .props)
-        try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(lastModified, forKey: .lastModified)
     }
 }
 
-
-@available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
-extension BaseStorageSettingsStorageSettings: Identifiable {}

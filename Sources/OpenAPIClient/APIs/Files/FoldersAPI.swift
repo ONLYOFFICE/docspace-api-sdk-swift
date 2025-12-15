@@ -19,6 +19,7 @@ open class {{{{x-classname}}}} {
 var fields: String?
 
     /**
+     Check file uploads
      
      See also:
      REST API Reference for checkUpload Operation
@@ -33,12 +34,32 @@ var fields: String?
     }
 
     /**
+     Check file uploads
      
      See also:
      REST API Reference for checkUpload Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/
      
      - POST /api/2.0/files/{folderId}/upload/check
+     - Checks the file uploads to the folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID. 
      - parameter checkUploadRequest: (body) The request parameters for checking file uploads. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -63,10 +84,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<STRINGArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create a folder
      
      See also:
      REST API Reference for createFolder Operation
@@ -81,12 +103,32 @@ var fields: String?
     }
 
     /**
+     Create a folder
      
      See also:
      REST API Reference for createFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/
      
      - POST /api/2.0/files/folder/{folderId}
+     - Creates a new folder with the title specified in the request. The parent folder ID can be also specified.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID for the folder creation. 
      - parameter createFolder: (body) The parameters for creating a folder. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -111,10 +153,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Create primary external link
      
      See also:
      REST API Reference for createFolderPrimaryExternalLink Operation
@@ -129,12 +172,32 @@ var fields: String?
     }
 
     /**
+     Create primary external link
      
      See also:
      REST API Reference for createFolderPrimaryExternalLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder-primary-external-link/
      
      - POST /api/2.0/files/folder/{id}/link
+     - Creates a primary external link by the identifier specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The folder ID. 
      - parameter folderLinkRequest: (body) The folder link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -159,10 +222,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Generates folder history
      
      See also:
      REST API Reference for createReportFolderHistory Operation
@@ -177,12 +241,32 @@ var fields: String?
     }
 
     /**
+     Generates folder history
      
      See also:
      REST API Reference for createReportFolderHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/
      
      - POST /api/2.0/files/folder/{folderId}/log/report
+     - Generates the activity history of a folder.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -206,10 +290,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Delete a folder
      
      See also:
      REST API Reference for deleteFolder Operation
@@ -224,12 +309,32 @@ var fields: String?
     }
 
     /**
+     Delete a folder
      
      See also:
      REST API Reference for deleteFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/
      
      - DELETE /api/2.0/files/folder/{folderId}
+     - Deletes a folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID to delete. 
      - parameter deleteFolder: (body) The parameters for deleting a folder. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -254,10 +359,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the Favorites section
      
      See also:
      REST API Reference for getFavoritesFolder Operation
@@ -272,12 +378,32 @@ var fields: String?
     }
 
     /**
+     Get the Favorites section
      
      See also:
      REST API Reference for getFavoritesFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-favorites-folder/
      
      - GET /api/2.0/files/@favorites
+     - Returns the detailed list of files and folders located in the Favorites section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter count: (query) The maximum number of items to retrieve in the request. (optional)
@@ -317,10 +443,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get used space of files
      
      See also:
      REST API Reference for getFilesUsedSpace Operation
@@ -335,12 +462,32 @@ var fields: String?
     }
 
     /**
+     Get used space of files
      
      See also:
      REST API Reference for getFilesUsedSpace Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-used-space/
      
      - GET /api/2.0/files/filesusedspace
+     - Returns the used space of files in the root folders.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FilesStatisticsResultWrapper> 
      */
@@ -360,10 +507,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FilesStatisticsResultWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get folder form filter
      
      See also:
      REST API Reference for getFolder Operation
@@ -378,12 +526,14 @@ var fields: String?
     }
 
     /**
+     Get folder form filter
      
      See also:
      REST API Reference for getFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder/
      
      - GET /api/2.0/files/{folderId}/formfilter
+     - Returns the form filter of a folder with the ID specified in the request.
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FormsItemArrayWrapper> 
@@ -411,28 +561,32 @@ var fields: String?
     }
 
     /**
+     Get a folder by ID
      
      See also:
      REST API Reference for getFolderByFolderId Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/
-     - parameter folderId: (path) The folder ID.      - parameter userIdOrGroupId: (query) The user or group ID. (optional)     - parameter filterType: (query) The filter type. (optional)     - parameter roomId: (query) The room ID. (optional)     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)     - parameter applyFilterOption: (query) Specifies whether to return only files, only folders, or all elements from the specified folder. (optional)     - parameter _extension: (query) Specifies whether to search for the specific file extension. (optional)     - parameter searchArea: (query) The search area. (optional)     - parameter formsItemKey: (query) The forms item key. (optional)     - parameter formsItemType: (query) The forms item type. (optional)     - parameter count: (query) The maximum number of items to retrieve in the request. (optional)     - parameter startIndex: (query) The zero-based index of the first item to retrieve in a paginated request. (optional)     - parameter sortBy: (query) The property used for sorting the folder request results. (optional)     - parameter sortOrder: (query) The order in which the results are sorted. (optional)     - parameter filterValue: (query) The text value used as a filter parameter for folder content queries. (optional)     - parameter location: (query) The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link. (optional)
+     - parameter folderId: (path) The folder ID.      - parameter userIdOrGroupId: (query) The user or group ID. (optional)     - parameter sharedBy: (query) The identifier of the user who shared the folder or file. (optional)     - parameter filterType: (query) The filter type. (optional)     - parameter roomId: (query) The room ID. (optional)     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)     - parameter applyFilterOption: (query) Specifies whether to return only files, only folders, or all elements from the specified folder. (optional)     - parameter _extension: (query) Specifies whether to search for the specific file extension. (optional)     - parameter searchArea: (query) The search area. (optional)     - parameter formsItemKey: (query) The forms item key. (optional)     - parameter formsItemType: (query) The forms item type. (optional)     - parameter count: (query) The maximum number of items to retrieve in the request. (optional)     - parameter startIndex: (query) The zero-based index of the first item to retrieve in a paginated request. (optional)     - parameter sortBy: (query) The property used for sorting the folder request results. (optional)     - parameter sortOrder: (query) The order in which the results are sorted. (optional)     - parameter filterValue: (query) The text value used as a filter parameter for folder content queries. (optional)     - parameter location: (query) The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentIntegerWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getFolderByFolderId(folderId: Int, userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentIntegerWrapper {
-        return try await getFolderByFolderIdWithRequestBuilder(folderId: folderId, userIdOrGroupId: userIdOrGroupId, filterType: filterType, roomId: roomId, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, _extension: _extension, searchArea: searchArea, formsItemKey: formsItemKey, formsItemType: formsItemType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, location: location, apiConfiguration: apiConfiguration).execute().body
+    open class func getFolderByFolderId(folderId: Int, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentIntegerWrapper {
+        return try await getFolderByFolderIdWithRequestBuilder(folderId: folderId, userIdOrGroupId: userIdOrGroupId, sharedBy: sharedBy, filterType: filterType, roomId: roomId, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, _extension: _extension, searchArea: searchArea, formsItemKey: formsItemKey, formsItemType: formsItemType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, location: location, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
+     Get a folder by ID
      
      See also:
      REST API Reference for getFolderByFolderId Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/
      
      - GET /api/2.0/files/{folderId}
+     - Returns the detailed list of files and folders located in the folder with the ID specified in the request.
      - parameter folderId: (path) The folder ID. 
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
+     - parameter sharedBy: (query) The identifier of the user who shared the folder or file. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter roomId: (query) The room ID. (optional)
      - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)
@@ -450,7 +604,7 @@ var fields: String?
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentIntegerWrapper> 
      */
-    open class func getFolderByFolderIdWithRequestBuilder(folderId: Int, userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
+    open class func getFolderByFolderIdWithRequestBuilder(folderId: Int, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -461,6 +615,7 @@ var fields: String?
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "sharedBy": (wrappedValue: sharedBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "roomId": (wrappedValue: roomId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "excludeSubject": (wrappedValue: excludeSubject?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -490,6 +645,7 @@ var fields: String?
     }
 
     /**
+     Get folder history
      
      See also:
      REST API Reference for getFolderHistory Operation
@@ -504,12 +660,32 @@ var fields: String?
     }
 
     /**
+     Get folder history
      
      See also:
      REST API Reference for getFolderHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-history/
      
      - GET /api/2.0/files/folder/{folderId}/log
+     - Returns the activity history of a folder with a specified identifier.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID of the history request. 
      - parameter fromDate: (query) The start date of the history request. (optional)
      - parameter toDate: (query) The end date of the history request. (optional)
@@ -543,10 +719,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<HistoryArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get folder information
      
      See also:
      REST API Reference for getFolderInfo Operation
@@ -561,12 +738,14 @@ var fields: String?
     }
 
     /**
+     Get folder information
      
      See also:
      REST API Reference for getFolderInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-info/
      
      - GET /api/2.0/files/folder/{folderId}
+     - Returns the detailed information about a folder with the ID specified in the request.
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -594,6 +773,7 @@ var fields: String?
     }
 
     /**
+     Get the folder links
      
      See also:
      REST API Reference for getFolderLinks Operation
@@ -608,12 +788,32 @@ var fields: String?
     }
 
     /**
+     Get the folder links
      
      See also:
      REST API Reference for getFolderLinks Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-links/
      
      - GET /api/2.0/files/folder/{id}/links
+     - Returns the links of the folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The folder ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareArrayWrapper> 
@@ -637,10 +837,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the folder path
      
      See also:
      REST API Reference for getFolderPath Operation
@@ -655,12 +856,32 @@ var fields: String?
     }
 
     /**
+     Get the folder path
      
      See also:
      REST API Reference for getFolderPath Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-path/
      
      - GET /api/2.0/files/folder/{folderId}/path
+     - Returns a path to the folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -684,10 +905,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get primary external link
      
      See also:
      REST API Reference for getFolderPrimaryExternalLink Operation
@@ -702,12 +924,14 @@ var fields: String?
     }
 
     /**
+     Get primary external link
      
      See also:
      REST API Reference for getFolderPrimaryExternalLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-primary-external-link/
      
      - GET /api/2.0/files/folder/{id}/link
+     - Returns the primary external link by the identifier specified in the request.
      - parameter id: (path) The folder unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -741,6 +965,7 @@ var fields: String?
     }
 
     /**
+     Get the Recent section
      
      See also:
      REST API Reference for getFolderRecent Operation
@@ -755,12 +980,32 @@ var fields: String?
     }
 
     /**
+     Get the Recent section
      
      See also:
      REST API Reference for getFolderRecent Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-recent/
      
      - GET /api/2.0/files/recent
+     - Returns the detailed list of files located in the Recent section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)
@@ -808,10 +1053,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get subfolders
      
      See also:
      REST API Reference for getFolders Operation
@@ -826,12 +1072,32 @@ var fields: String?
     }
 
     /**
+     Get subfolders
      
      See also:
      REST API Reference for getFolders Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folders/
      
      - GET /api/2.0/files/{folderId}/subfolders
+     - Returns a list of all the subfolders from a folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -855,10 +1121,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the My documents section
      
      See also:
      REST API Reference for getMyFolder Operation
@@ -873,12 +1140,32 @@ var fields: String?
     }
 
     /**
+     Get the My documents section
      
      See also:
      REST API Reference for getMyFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/
      
      - GET /api/2.0/files/@my
+     - Returns the detailed list of files and folders located in the My documents section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter applyFilterOption: (query) Specifies whether to return only files, only folders or all elements. (optional)
@@ -920,10 +1207,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get new folder items
      
      See also:
      REST API Reference for getNewFolderItems Operation
@@ -938,12 +1226,32 @@ var fields: String?
     }
 
     /**
+     Get new folder items
      
      See also:
      REST API Reference for getNewFolderItems Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-folder-items/
      
      - GET /api/2.0/files/{folderId}/news
+     - Returns a list of all the new items from a folder with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -967,10 +1275,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the Private Room section
      
      See also:
      REST API Reference for getPrivacyFolder Operation
@@ -985,12 +1294,32 @@ var fields: String?
     }
 
     /**
+     Get the Private Room section
      
      See also:
      REST API Reference for getPrivacyFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-privacy-folder/
      
      - GET /api/2.0/files/@privacy
+     - Returns the detailed list of files and folders located in the Private Room section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter count: (query) The maximum number of items to retrieve in the request. (optional)
@@ -1030,10 +1359,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the Recent section
      
      See also:
      REST API Reference for getRecentFolder Operation
@@ -1048,12 +1378,32 @@ var fields: String?
     }
 
     /**
+     Get the Recent section
      
      See also:
      REST API Reference for getRecentFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/
      
      - GET /api/2.0/files/@recent
+     - Returns the detailed list of files located in the Recent section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)
@@ -1101,10 +1451,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get filtered sections
      
      See also:
      REST API Reference for getRootFolders Operation
@@ -1119,12 +1470,32 @@ var fields: String?
     }
 
     /**
+     Get filtered sections
      
      See also:
      REST API Reference for getRootFolders Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-root-folders/
      
      - GET /api/2.0/files/@root
+     - Returns all the sections matching the parameters specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter withoutTrash: (query) Specifies whether to return the Trash section or not. (optional)
@@ -1166,10 +1537,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Get the Trash section
      
      See also:
      REST API Reference for getTrashFolder Operation
@@ -1184,12 +1556,32 @@ var fields: String?
     }
 
     /**
+     Get the Trash section
      
      See also:
      REST API Reference for getTrashFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/
      
      - GET /api/2.0/files/@trash
+     - Returns the detailed list of files and folders located in the Trash section.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter applyFilterOption: (query) Specifies whether to return only files, only folders or all elements. (optional)
@@ -1231,10 +1623,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Insert a file
      
      See also:
      REST API Reference for insertFile Operation
@@ -1249,12 +1642,32 @@ var fields: String?
     }
 
     /**
+     Insert a file
      
      See also:
      REST API Reference for insertFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file/
      
      - POST /api/2.0/files/{folderId}/insert
+     - Inserts a file specified in the request to the selected folder by single file uploading.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID for inserting a file. 
      - parameter insertFileFile: (form) The file to be inserted. (optional)
      - parameter insertFileTitle: (form) The file title to be inserted. (optional)
@@ -1306,10 +1719,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Insert a file to the My documents section
      
      See also:
      REST API Reference for insertFileToMyFromBody Operation
@@ -1324,12 +1738,32 @@ var fields: String?
     }
 
     /**
+     Insert a file to the My documents section
      
      See also:
      REST API Reference for insertFileToMyFromBody Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file-to-my-from-body/
      
      - POST /api/2.0/files/@my/insert
+     - Inserts a file specified in the request to the My documents section by single file uploading.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter file: (form) The file to be inserted. (optional)
      - parameter title: (form) The file title to be inserted. (optional)
      - parameter createNewIfExist: (form) Specifies whether to create a new file if it already exists or not. (optional)
@@ -1377,10 +1811,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Rename a folder
      
      See also:
      REST API Reference for renameFolder Operation
@@ -1395,12 +1830,32 @@ var fields: String?
     }
 
     /**
+     Rename a folder
      
      See also:
      REST API Reference for renameFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/
      
      - PUT /api/2.0/files/folder/{folderId}
+     - Renames the selected folder with a new title specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID for the folder creation. 
      - parameter createFolder: (body) The parameters for creating a folder. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1425,10 +1880,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set folder order
      
      See also:
      REST API Reference for setFolderOrder Operation
@@ -1443,12 +1899,32 @@ var fields: String?
     }
 
     /**
+     Set folder order
      
      See also:
      REST API Reference for setFolderOrder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-order/
      
      - PUT /api/2.0/files/folder/{folderId}/order
+     - Sets the order of a folder with ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder unique identifier. 
      - parameter orderRequestDto: (body) The folder order information. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1473,10 +1949,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FolderIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Set the folder external link
      
      See also:
      REST API Reference for setFolderPrimaryExternalLink Operation
@@ -1491,12 +1968,32 @@ var fields: String?
     }
 
     /**
+     Set the folder external link
      
      See also:
      REST API Reference for setFolderPrimaryExternalLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-primary-external-link/
      
      - PUT /api/2.0/files/folder/{id}/links
+     - Sets the folder external link with the ID specified in the request.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter id: (path) The folder ID. 
      - parameter folderLinkRequest: (body) The folder link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1521,10 +2018,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Upload a file
      
      See also:
      REST API Reference for uploadFile Operation
@@ -1539,12 +2037,32 @@ var fields: String?
     }
 
     /**
+     Upload a file
      
      See also:
      REST API Reference for uploadFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/
      
      - POST /api/2.0/files/{folderId}/upload
+     - Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter folderId: (path) The folder ID to upload a file. 
      - parameter uploadRequestDto: (body) The request parameters for uploading a file. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1569,10 +2087,11 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<ObjectWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
+     Upload a file to the My documents section
      
      See also:
      REST API Reference for uploadFileToMy Operation
@@ -1587,12 +2106,32 @@ var fields: String?
     }
 
     /**
+     Upload a file to the My documents section
      
      See also:
      REST API Reference for uploadFileToMy Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/
      
      - POST /api/2.0/files/@my/upload
+     - Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
      - parameter inDto: (query) The request parameters for uploading a file. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectWrapper> 
@@ -1616,7 +2155,7 @@ var fields: String?
 
         let localVariableRequestBuilder: RequestBuilder<ObjectWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }
 extension FilesFoldersAPIApi {

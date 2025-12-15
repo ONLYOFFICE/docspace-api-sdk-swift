@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** [1 - Form filling room, 2 - Collaboration room, 5 - Custom room, 6 - Public room, 8 - Virtual data room, 9 - Virtual data room] */
+/** [1 - Form filling room, 2 - Collaboration room, 5 - Custom room, 6 - Public room, 8 - Virtual data room, 9 - AI Room] */
 public enum RoomType: Int, Sendable, Codable, CaseIterable {
     case FillingFormsRoom = 1
     case EditingRoom = 2

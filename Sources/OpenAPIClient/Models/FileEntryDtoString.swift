@@ -20,6 +20,8 @@ public struct FileEntryDtoString: Sendable, Codable, ParameterConvertible, Hasha
     /** The file entry title. */
     public var title: String?
     public var access: FileShare?
+    public var sharedBy: EmployeeDto?
+    public var ownedBy: EmployeeDto?
     /** Specifies if the file entry is shared via link or not. */
     public var shared: Bool?
     /** Specifies if the file entry is shared for user or not. */
@@ -71,9 +73,11 @@ public struct FileEntryDtoString: Sendable, Codable, ParameterConvertible, Hasha
     /** Indicates whether the shareable link associated with the file or folder has expired. */
     public var isLinkExpired: Bool?
 
-    public init(title: String? = nil, access: FileShare? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil) {
         self.title = title
         self.access = access
+        self.sharedBy = sharedBy
+        self.ownedBy = ownedBy
         self.shared = shared
         self.sharedForUser = sharedForUser
         self.parentShared = parentShared
@@ -110,6 +114,8 @@ public struct FileEntryDtoString: Sendable, Codable, ParameterConvertible, Hasha
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case title
         case access
+        case sharedBy
+        case ownedBy
         case shared
         case sharedForUser
         case parentShared
@@ -149,6 +155,8 @@ public struct FileEntryDtoString: Sendable, Codable, ParameterConvertible, Hasha
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(access, forKey: .access)
+        try container.encodeIfPresent(sharedBy, forKey: .sharedBy)
+        try container.encodeIfPresent(ownedBy, forKey: .ownedBy)
         try container.encodeIfPresent(shared, forKey: .shared)
         try container.encodeIfPresent(sharedForUser, forKey: .sharedForUser)
         try container.encodeIfPresent(parentShared, forKey: .parentShared)

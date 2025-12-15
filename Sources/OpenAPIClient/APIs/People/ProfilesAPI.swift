@@ -369,13 +369,13 @@ var fields: String?
      See also:
      REST API Reference for getProfileByEmail Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-profile-by-email/
-     - parameter email: (query) The user email address. (optional)     - parameter culture: (query) Culture (optional)
+     - parameter email: (query) The user email address. (optional)     - parameter encemail: (query) The user encrypted email address. (optional)     - parameter culture: (query) Culture (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: EmployeeFullWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getProfileByEmail(email: String? = nil, culture: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
-        return try await getProfileByEmailWithRequestBuilder(email: email, culture: culture, apiConfiguration: apiConfiguration).execute().body
+    open class func getProfileByEmail(email: String? = nil, encemail: String? = nil, culture: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
+        return try await getProfileByEmailWithRequestBuilder(email: email, encemail: encemail, culture: culture, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -406,11 +406,12 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - parameter email: (query) The user email address. (optional)
+     - parameter encemail: (query) The user encrypted email address. (optional)
      - parameter culture: (query) Culture (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
      */
-    open class func getProfileByEmailWithRequestBuilder(email: String? = nil, culture: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
+    open class func getProfileByEmailWithRequestBuilder(email: String? = nil, encemail: String? = nil, culture: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
         let localVariablePath = "/api/2.0/people/email"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -418,6 +419,7 @@ var fields: String?
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "email": (wrappedValue: email?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "encemail": (wrappedValue: encemail?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "culture": (wrappedValue: culture?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 

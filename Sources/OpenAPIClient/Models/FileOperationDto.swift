@@ -34,8 +34,9 @@ public struct FileOperationDto: Sendable, Codable, ParameterConvertible, Hashabl
     public var files: [FileEntryBaseDto]?
     /** The list of folders of the file operation. */
     public var folders: [FileEntryBaseDto]?
+    public var status: DistributedTaskStatus?
 
-    public init(id: String?, operation: FileOperationType, progress: Int, error: String?, processed: String?, finished: Bool, url: String? = nil, files: [FileEntryBaseDto]? = nil, folders: [FileEntryBaseDto]? = nil) {
+    public init(id: String?, operation: FileOperationType, progress: Int, error: String?, processed: String?, finished: Bool, url: String? = nil, files: [FileEntryBaseDto]? = nil, folders: [FileEntryBaseDto]? = nil, status: DistributedTaskStatus? = nil) {
         self.id = id
         self.operation = operation
         self.progress = progress
@@ -45,6 +46,7 @@ public struct FileOperationDto: Sendable, Codable, ParameterConvertible, Hashabl
         self.url = url
         self.files = files
         self.folders = folders
+        self.status = status
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -57,6 +59,7 @@ public struct FileOperationDto: Sendable, Codable, ParameterConvertible, Hashabl
         case url
         case files
         case folders
+        case status
     }
 
     // Encodable protocol methods
@@ -72,6 +75,7 @@ public struct FileOperationDto: Sendable, Codable, ParameterConvertible, Hashabl
         try container.encodeIfPresent(url, forKey: .url)
         try container.encodeIfPresent(files, forKey: .files)
         try container.encodeIfPresent(folders, forKey: .folders)
+        try container.encodeIfPresent(status, forKey: .status)
     }
 }
 

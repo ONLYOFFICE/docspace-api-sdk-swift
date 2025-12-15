@@ -14,25 +14,25 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Emp invite, 1 - Link invite, 2 - Portal suspend, 3 - Portal continue, 4 - Portal remove, 5 - Dns change, 6 - Portal owner change, 7 - Activation, 8 - Email change, 9 - Email activation, 10 - Password change, 11 - Profile remove, 12 - Phone activation, 13 - Phone auth, 14 - Auth, 15 - Tfa activation, 16 - Tfa auth, 17 - Wizard, 18 - Guest share link] */
-public enum ConfirmType: Int, Sendable, Codable, CaseIterable {
-    case EmpInvite = 0
-    case LinkInvite = 1
-    case PortalSuspend = 2
-    case PortalContinue = 3
-    case PortalRemove = 4
-    case DnsChange = 5
-    case PortalOwnerChange = 6
-    case Activation = 7
-    case EmailChange = 8
-    case EmailActivation = 9
-    case PasswordChange = 10
-    case ProfileRemove = 11
-    case PhoneActivation = 12
-    case PhoneAuth = 13
-    case Auth = 14
-    case TfaActivation = 15
-    case TfaAuth = 16
-    case Wizard = 17
-    case GuestShareLink = 18
+/** [EmpInvite - Emp invite, LinkInvite - Link invite, PortalSuspend - Portal suspend, PortalContinue - Portal continue, PortalRemove - Portal remove, DnsChange - Dns change, PortalOwnerChange - Portal owner change, Activation - Activation, EmailChange - Email change, EmailActivation - Email activation, PasswordChange - Password change, ProfileRemove - Profile remove, PhoneActivation - Phone activation, PhoneAuth - Phone auth, Auth - Auth, TfaActivation - Tfa activation, TfaAuth - Tfa auth, Wizard - Wizard, GuestShareLink - Guest share link] */
+public enum ConfirmType: String, Sendable, Codable, CaseIterable {
+    case empInvite = "EmpInvite"
+    case linkInvite = "LinkInvite"
+    case portalSuspend = "PortalSuspend"
+    case portalContinue = "PortalContinue"
+    case portalRemove = "PortalRemove"
+    case dnsChange = "DnsChange"
+    case portalOwnerChange = "PortalOwnerChange"
+    case activation = "Activation"
+    case emailChange = "EmailChange"
+    case emailActivation = "EmailActivation"
+    case passwordChange = "PasswordChange"
+    case profileRemove = "ProfileRemove"
+    case phoneActivation = "PhoneActivation"
+    case phoneAuth = "PhoneAuth"
+    case auth = "Auth"
+    case tfaActivation = "TfaActivation"
+    case tfaAuth = "TfaAuth"
+    case wizard = "Wizard"
+    case guestShareLink = "GuestShareLink"
 }

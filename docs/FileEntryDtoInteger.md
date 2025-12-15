@@ -5,6 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **title** | **String** | The file entry title. | [optional] 
 **access** | [**FileShare**](FileShare.md) |  | [optional] 
+**sharedBy** | [**EmployeeDto**](EmployeeDto.md) |  | [optional] 
+**ownedBy** | [**EmployeeDto**](EmployeeDto.md) |  | [optional] 
 **shared** | **Bool** | Specifies if the file entry is shared via link or not. | [optional] 
 **sharedForUser** | **Bool** | Specifies if the file entry is shared for user or not. | [optional] 
 **parentShared** | **Bool** | Indicates whether the parent entity is shared. | [optional] 
