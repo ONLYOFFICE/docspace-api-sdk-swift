@@ -1,0 +1,51 @@
+//
+//  Copyright (c) Ascensio System SIA 2025
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+import Foundation
+
+public struct IPRestriction: Sendable, Codable, ParameterConvertible, Hashable {
+
+    public var ip: String?
+    public var forAdmin: Bool?
+    public var id: Int?
+    public var tenantId: Int?
+
+    public init(ip: String?, forAdmin: Bool? = nil, id: Int? = nil, tenantId: Int? = nil) {
+        self.ip = ip
+        self.forAdmin = forAdmin
+        self.id = id
+        self.tenantId = tenantId
+    }
+
+    public enum CodingKeys: String, CodingKey, CaseIterable {
+        case ip
+        case forAdmin
+        case id
+        case tenantId
+    }
+
+    // Encodable protocol methods
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(ip, forKey: .ip)
+        try container.encodeIfPresent(forAdmin, forKey: .forAdmin)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(tenantId, forKey: .tenantId)
+    }
+}
+
+
+@available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
+extension IPRestriction: Identifiable {}
