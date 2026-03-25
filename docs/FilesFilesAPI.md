@@ -21,6 +21,7 @@ Method | HTTP request | Description
 [**deleteFile**](FilesFilesAPI.md#deletefile) | **DELETE** /api/2.0/files/file/{fileId} | Delete a file
 [**deleteRecent**](FilesFilesAPI.md#deleterecent) | **DELETE** /api/2.0/files/recent | Delete recent files
 [**deleteTemplates**](FilesFilesAPI.md#deletetemplates) | **DELETE** /api/2.0/files/templates | Delete template files
+[**generateXlsx**](FilesFilesAPI.md#generatexlsx) | **POST** /api/2.0/files/file/{fileId}/xlsx | Generate XLSX report
 [**getAllFormRoles**](FilesFilesAPI.md#getallformroles) | **GET** /api/2.0/files/file/{fileId}/formroles | Get form roles
 [**getEditDiffUrl**](FilesFilesAPI.md#geteditdiffurl) | **GET** /api/2.0/files/file/{fileId}/edit/diff | Get changes URL
 [**getEditHistory**](FilesFilesAPI.md#getedithistory) | **GET** /api/2.0/files/file/{fileId}/edit/history | Get version history
@@ -30,6 +31,7 @@ Method | HTTP request | Description
 [**getFilePrimaryExternalLink**](FilesFilesAPI.md#getfileprimaryexternallink) | **GET** /api/2.0/files/file/{id}/link | Get primary external link
 [**getFileVersionInfo**](FilesFilesAPI.md#getfileversioninfo) | **GET** /api/2.0/files/file/{fileId}/history | Get file versions
 [**getFillResult**](FilesFilesAPI.md#getfillresult) | **GET** /api/2.0/files/file/fillresult | Get form-filling result
+[**getFormSubmissions**](FilesFilesAPI.md#getformsubmissions) | **GET** /api/2.0/files/file/{fileId}/submissions | Get form submission results
 [**getPresignedFileUri**](FilesFilesAPI.md#getpresignedfileuri) | **GET** /api/2.0/files/file/{fileId}/presigned | Get file download link asynchronously
 [**getPresignedUri**](FilesFilesAPI.md#getpresigneduri) | **GET** /api/2.0/files/file/{fileId}/presigneduri | Get file download link
 [**getProtectedFileUsers**](FilesFilesAPI.md#getprotectedfileusers) | **GET** /api/2.0/files/file/{fileId}/protectusers | Get users access rights to the protected file
@@ -183,7 +185,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let fileId = 987 // Int | The file Id to change its version history.
-let changeHistory = ChangeHistory(version: 123, continueVersion: true) // ChangeHistory | The parameters for changing version history.
+let changeHistory = ChangeHistory(version: 123, continueVersion: false) // ChangeHistory | The parameters for changing version history.
 
 // Change version history
 FilesFilesAPIApi.changeVersionHistory(fileId: fileId, changeHistory: changeHistory) { (response, error) in
@@ -235,7 +237,7 @@ No authorization required
 import OpenAPIClient
 
 let fileId = 987 // Int | The file ID of the form draft.
-let checkFillFormDraft = CheckFillFormDraft(version: 123, action: "action_example", requestView: true, requestEmbedded: true) // CheckFillFormDraft | The parameters for checking the form draft filling.
+let checkFillFormDraft = CheckFillFormDraft(version: 123, action: "action_example", requestView: false, requestEmbedded: false) // CheckFillFormDraft | The parameters for checking the form draft filling.
 
 // Check the form draft filling
 FilesFilesAPIApi.checkFillFormDraft(fileId: fileId, checkFillFormDraft: checkFillFormDraft) { (response, error) in
@@ -287,7 +289,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let fileId = 987 // Int | The file ID to copy.
-let copyAsJsonElement = CopyAsJsonElement(destTitle: "destTitle_example", destFolderId: CopyAsJsonElement_destFolderId(), enableExternalExt: true, password: "password_example", toForm: true) // CopyAsJsonElement | The parameters for copying a file.
+let copyAsJsonElement = CopyAsJsonElement(destTitle: "destTitle_example", destFolderId: CopyAsJsonElement_destFolderId(), enableExternalExt: false, password: "password_example", toForm: false) // CopyAsJsonElement | The parameters for copying a file.
 
 // Copy a file
 FilesFilesAPIApi.copyFileAs(fileId: fileId, copyAsJsonElement: copyAsJsonElement) { (response, error) in
@@ -311,10 +313,10 @@ FilesFilesAPIApi.copyFileAs(fileId: fileId, copyAsJsonElement: copyAsJsonElement
 
 # **createEditSession**
 ```swift
-    open class func createEditSession(fileId: Int, fileSize: Int64? = nil, completion: @escaping (_ data: ObjectWrapper?, _ error: Error?) -> Void)
+    open class func createEditSession(fileId: Int, fileSize: Int64? = nil, completion: @escaping (_ data: ChunkedUploadSessionResponseWrapperIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-Creates a session to edit the existing file with multiple chunks (needed for WebDAV).   **Note**: Information about created session which includes:  <ul>  <li><b>id:</b> unique ID of this upload session,</li>  <li><b>created:</b> UTC time when the session was created,</li>  <li><b>expired:</b> UTC time when the session will expire if no chunks are sent before that time,</li>  <li><b>location:</b> URL where you should send your next chunk,</li>  <li><b>bytes_uploaded:</b> number of bytes uploaded for the specific upload ID,</li>  <li><b>bytes_total:</b> total number of bytes which will be uploaded.</li>  </ul>
+Creates a session to edit the existing file with multiple chunks (needed for WebDAV).
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/).
 
@@ -327,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**ChunkedUploadSessionResponseWrapperIntegerWrapper**](ChunkedUploadSessionResponseWrapperIntegerWrapper.md)
 
 ### Authorization
 
@@ -366,7 +368,7 @@ FilesFilesAPIApi.createEditSession(fileId: fileId, fileSize: fileSize) { (respon
     open class func createFile(folderId: Int, createFileJsonElement: CreateFileJsonElement, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-Creates a new file in the specified folder with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+Creates a new file in the specified folder with the title specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/).
 
@@ -391,7 +393,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let folderId = 987 // Int | The folder ID for the file creation.
-let createFileJsonElement = CreateFileJsonElement(title: "title_example", templateId: CreateFileJsonElement_templateId(), enableExternalExt: true, formId: 123) // CreateFileJsonElement | The parameters for creating a file.
+let createFileJsonElement = CreateFileJsonElement(title: "title_example", templateId: CreateFileJsonElement_templateId(), enableExternalExt: false, formId: 123) // CreateFileJsonElement | The parameters for creating a file.
 
 // Create a file
 FilesFilesAPIApi.createFile(folderId: folderId, createFileJsonElement: createFileJsonElement) { (response, error) in
@@ -418,7 +420,7 @@ FilesFilesAPIApi.createFile(folderId: folderId, createFileJsonElement: createFil
     open class func createFileInMyDocuments(createFileJsonElement: CreateFileJsonElement? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-Creates a new file in the My documents section with the title specified in the request.   **Note**: If a file extension is different from DOCX/XLSX/PPTX and refers to one of the known text, spreadsheet, or presentation formats, it will be changed to DOCX/XLSX/PPTX accordingly. If the file extension is not specified or is unknown, the DOCX extension will be added to the file title.
+Creates a new file in the My documents section with the title specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-in-my-documents/).
 
@@ -441,7 +443,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createFileJsonElement = CreateFileJsonElement(title: "title_example", templateId: CreateFileJsonElement_templateId(), enableExternalExt: true, formId: 123) // CreateFileJsonElement |  (optional)
+let createFileJsonElement = CreateFileJsonElement(title: "title_example", templateId: CreateFileJsonElement_templateId(), enableExternalExt: false, formId: 123) // CreateFileJsonElement |  (optional)
 
 // Create a file in the My documents section
 FilesFilesAPIApi.createFileInMyDocuments(createFileJsonElement: createFileJsonElement) { (response, error) in
@@ -493,7 +495,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The file ID.
-let fileLinkRequest = FileLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", _internal: true, primary: true, denyDownload: true, password: "password_example") // FileLinkRequest | The file external link parameters.
+let fileLinkRequest = FileLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", _internal: false, primary: true, denyDownload: false, password: "password_example") // FileLinkRequest | The file external link parameters.
 
 // Create primary external link
 FilesFilesAPIApi.createFilePrimaryExternalLink(id: id, fileLinkRequest: fileLinkRequest) { (response, error) in
@@ -545,7 +547,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let folderId = 987 // Int | The folder ID to create the text or HTML file.
-let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
+let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: false) // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
 // Create an HTML file
 FilesFilesAPIApi.createHtmlFile(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
@@ -595,7 +597,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile |  (optional)
+let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: false) // CreateTextOrHtmlFile |  (optional)
 
 // Create an HTML file in the My documents section
 FilesFilesAPIApi.createHtmlFileInMyDocuments(createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
@@ -647,7 +649,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let folderId = 987 // Int | The folder ID to create the text or HTML file.
-let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
+let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: false) // CreateTextOrHtmlFile | The parameters for creating an HTML or text file.
 
 // Create a text file
 FilesFilesAPIApi.createTextFile(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
@@ -697,7 +699,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: true) // CreateTextOrHtmlFile |  (optional)
+let createTextOrHtmlFile = CreateTextOrHtmlFile(title: "title_example", content: "content_example", createNewIfExist: false) // CreateTextOrHtmlFile |  (optional)
 
 // Create a text file in the My documents section
 FilesFilesAPIApi.createTextFileInMyDocuments(createTextOrHtmlFile: createTextOrHtmlFile) { (response, error) in
@@ -747,7 +749,7 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
+let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: false, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
 // Create file thumbnails
 FilesFilesAPIApi.createThumbnails(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
@@ -771,7 +773,7 @@ FilesFilesAPIApi.createThumbnails(baseBatchRequestDto: baseBatchRequestDto) { (r
 
 # **deleteFile**
 ```swift
-    open class func deleteFile(fileId: Int, delete: Delete, completion: @escaping (_ data: FileOperationArrayWrapper?, _ error: Error?) -> Void)
+    open class func deleteFile(fileId: Int, delete: Delete, returnSingleOperation: Bool? = nil, completion: @escaping (_ data: FileOperationArrayWrapper?, _ error: Error?) -> Void)
 ```
 
 Deletes a file with the ID specified in the request.
@@ -784,6 +786,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fileId** | **Int** | The file ID to delete. | 
  **delete** | [**Delete**](Delete.md) | The parameters for deleting a file. | 
+ **returnSingleOperation** | **Bool** | Specifies whether to return only the current operation | [optional] 
 
 ### Return type
 
@@ -799,10 +802,11 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let fileId = 987 // Int | The file ID to delete.
-let delete = Delete(deleteAfter: true, immediately: true) // Delete | The parameters for deleting a file.
+let delete = Delete(deleteAfter: false, immediately: false) // Delete | The parameters for deleting a file.
+let returnSingleOperation = false // Bool | Specifies whether to return only the current operation (optional)
 
 // Delete a file
-FilesFilesAPIApi.deleteFile(fileId: fileId, delete: delete) { (response, error) in
+FilesFilesAPIApi.deleteFile(fileId: fileId, delete: delete, returnSingleOperation: returnSingleOperation) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -849,7 +853,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
+let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: false, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
 // Delete recent files
 FilesFilesAPIApi.deleteRecent(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
@@ -918,6 +922,56 @@ FilesFilesAPIApi.deleteTemplates(requestBody: requestBody) { (response, error) i
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **generateXlsx**
+```swift
+    open class func generateXlsx(fileId: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+```
+
+Triggers asynchronous XLSX report generation for the specified form file.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileId** | **Int** | The file unique identifier. | 
+
+### Return type
+
+Void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let fileId = 987 // Int | The file unique identifier.
+
+// Generate XLSX report
+FilesFilesAPIApi.generateXlsx(fileId: fileId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1391,6 +1445,56 @@ FilesFilesAPIApi.getFillResult(fillingSessionId: fillingSessionId) { (response, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getFormSubmissions**
+```swift
+    open class func getFormSubmissions(fileId: Int, completion: @escaping (_ data: FormSubmissionsWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the results of form submissions.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-form-submissions/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileId** | **Int** | The file unique identifier. | 
+
+### Return type
+
+[**FormSubmissionsWrapper**](FormSubmissionsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let fileId = 987 // Int | The file unique identifier.
+
+// Get form submission results
+FilesFilesAPIApi.getFormSubmissions(fileId: fileId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getPresignedFileUri**
 ```swift
     open class func getPresignedFileUri(fileId: Int, completion: @escaping (_ data: FileLinkWrapper?, _ error: Error?) -> Void)
@@ -1780,10 +1884,10 @@ import OpenAPIClient
 
 let fileId = 987 // Int | The file ID to open.
 let version = 987 // Int | The file version to open. (optional)
-let view = true // Bool | Specifies if the document will be opened for viewing only or not. (optional)
+let view = false // Bool | Specifies if the document will be opened for viewing only or not. (optional)
 let editorType = EditorType() // EditorType | The editor type to open the file. (optional)
-let edit = true // Bool | Specifies if the document is opened in the editing mode or not. (optional)
-let fill = true // Bool | Specifies if the document is opened in the form-filling mode or not. (optional)
+let edit = false // Bool | Specifies if the document is opened in the editing mode or not. (optional)
+let fill = false // Bool | Specifies if the document is opened in the form-filling mode or not. (optional)
 
 // Open a file configuration
 FilesFilesAPIApi.openEditFile(fileId: fileId, version: version, view: view, editorType: editorType, edit: edit, fill: fill) { (response, error) in
@@ -1861,7 +1965,7 @@ FilesFilesAPIApi.restoreFileVersion(fileId: fileId, version: version, url: url) 
 
 # **saveEditingFileFromForm**
 ```swift
-    open class func saveEditingFileFromForm(fileId: Int, fileExtension: String? = nil, downloadUri: String? = nil, file: URL? = nil, forcesave: Bool? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
+    open class func saveEditingFileFromForm(fileId: Int, downloadUri: String? = nil, fileExtension: String? = nil, file: URL? = nil, forcesave: Bool? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
 Saves edits to a file with the ID specified in the request.
@@ -1873,9 +1977,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fileId** | **Int** | The editing file ID from the request. | 
- **fileExtension** | **String** | The editing file extension from the request. | [optional] 
  **downloadUri** | **String** | The URI to download the editing file. | [optional] 
- **file** | **URL** | The request file stream. | [optional] 
+ **fileExtension** | **String** | The editing file extension from the request. | [optional] 
+ **file** | **URL** | The edited file to be saved, uploaded as part of the multipart/form-data request.  This property represents the modified file content from the HTTP request form after editing operations.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. | [optional] 
  **forcesave** | **Bool** | Specifies whether to force save the file or not. | [optional] 
 
 ### Return type
@@ -1892,13 +1996,13 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let fileId = 987 // Int | The editing file ID from the request.
-let fileExtension = "fileExtension_example" // String | The editing file extension from the request. (optional)
 let downloadUri = "downloadUri_example" // String | The URI to download the editing file. (optional)
-let file = URL(string: "https://example.com")! // URL | The request file stream. (optional)
+let fileExtension = "fileExtension_example" // String | The editing file extension from the request. (optional)
+let file = URL(string: "https://example.com")! // URL | The edited file to be saved, uploaded as part of the multipart/form-data request.  This property represents the modified file content from the HTTP request form after editing operations.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
 let forcesave = true // Bool | Specifies whether to force save the file or not. (optional)
 
 // Save file edits
-FilesFilesAPIApi.saveEditingFileFromForm(fileId: fileId, fileExtension: fileExtension, downloadUri: downloadUri, file: file, forcesave: forcesave) { (response, error) in
+FilesFilesAPIApi.saveEditingFileFromForm(fileId: fileId, downloadUri: downloadUri, fileExtension: fileExtension, file: file, forcesave: forcesave) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1999,7 +2103,7 @@ Void (empty response body)
 import OpenAPIClient
 
 let fileId = "fileId_example" // String | 
-let saveFormRoleMappingDtoInteger = SaveFormRoleMappingDtoInteger(formId: 123, roles: [FormRole(roomId: 123, roleName: "roleName_example", roleColor: "roleColor_example", userId: 123, sequence: 123, submitted: true, openedAt: Date(), submissionDate: Date())]) // SaveFormRoleMappingDtoInteger |  (optional)
+let saveFormRoleMappingDtoInteger = SaveFormRoleMappingDtoInteger(formId: 123, roles: [FormRole(roomId: 123, roleName: "roleName_example", roleColor: "roleColor_example", userId: 123, sequence: 123, submitted: false, openedAt: Date(), submissionDate: Date())]) // SaveFormRoleMappingDtoInteger |  (optional)
 
 // Save form role mapping
 FilesFilesAPIApi.saveFormRoleMapping(fileId: fileId, saveFormRoleMappingDtoInteger: saveFormRoleMappingDtoInteger) { (response, error) in
@@ -2103,7 +2207,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The file ID.
-let fileLinkRequest = FileLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", _internal: true, primary: true, denyDownload: true, password: "password_example") // FileLinkRequest | The file external link parameters.
+let fileLinkRequest = FileLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", _internal: false, primary: true, denyDownload: false, password: "password_example") // FileLinkRequest | The file external link parameters.
 
 // Set an external link
 FilesFilesAPIApi.setFileExternalLink(id: id, fileLinkRequest: fileLinkRequest) { (response, error) in
@@ -2257,7 +2361,7 @@ No authorization required
 import OpenAPIClient
 
 let fileId = 987 // Int | The file ID to start editing.
-let startEdit = StartEdit(editingAlone: true) // StartEdit | The file parameters to start editing.
+let startEdit = StartEdit(editingAlone: false) // StartEdit | The file parameters to start editing.
 
 // Start file editing
 FilesFilesAPIApi.startEditFile(fileId: fileId, startEdit: startEdit) { (response, error) in

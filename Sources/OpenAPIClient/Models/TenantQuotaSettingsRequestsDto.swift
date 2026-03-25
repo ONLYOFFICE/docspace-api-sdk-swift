@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for managing the tenant storage quota settings in a multi-tenant system. */
-public struct TenantQuotaSettingsRequestsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantQuotaSettingsRequestsDto: Sendable, Codable, Hashable {
 
     /** The ID of the tenant whose quota is being configured. */
     public var tenantId: Int

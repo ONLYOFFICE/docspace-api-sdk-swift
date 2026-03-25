@@ -36,7 +36,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateRoomsRoomIdsRequestDtoInteger = UpdateRoomsRoomIdsRequestDtoInteger(roomIds: [DuplicateRequestDto_allOf_fileIds()]) // UpdateRoomsRoomIdsRequestDtoInteger |  (optional)
+let updateRoomsRoomIdsRequestDtoInteger = UpdateRoomsRoomIdsRequestDtoInteger(roomIds: [ContinueChatBody_files_inner()]) // UpdateRoomsRoomIdsRequestDtoInteger |  (optional)
 
 // Reset the room quota limit
 FilesQuotaAPIApi.resetRoomQuota(updateRoomsRoomIdsRequestDtoInteger: updateRoomsRoomIdsRequestDtoInteger) { (response, error) in
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateRoomsQuotaRequestDtoInteger = UpdateRoomsQuotaRequestDtoInteger(roomIds: [DuplicateRequestDto_allOf_fileIds()], quota: 123) // UpdateRoomsQuotaRequestDtoInteger |  (optional)
+let updateRoomsQuotaRequestDtoInteger = UpdateRoomsQuotaRequestDtoInteger(roomIds: [ContinueChatBody_files_inner()], quota: 123) // UpdateRoomsQuotaRequestDtoInteger |  (optional)
 
 // Change the room quota limit
 FilesQuotaAPIApi.updateRoomsQuota(updateRoomsQuotaRequestDtoInteger: updateRoomsQuotaRequestDtoInteger) { (response, error) in

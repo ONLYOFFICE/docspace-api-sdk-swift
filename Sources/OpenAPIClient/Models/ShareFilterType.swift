@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ public enum ShareFilterType: Int, Sendable, Codable, CaseIterable {
     case ExternalLink = 2
     case AdditionalExternalLink = 4
     case PrimaryExternalLink = 8
+    case Link = 15
     case User = 16
     case Group = 32
 }

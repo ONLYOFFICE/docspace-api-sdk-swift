@@ -35,7 +35,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let tenantDevToolsAccessSettingsDto = TenantDevToolsAccessSettingsDto(limitedAccessForUsers: true) // TenantDevToolsAccessSettingsDto |  (optional)
+let tenantDevToolsAccessSettingsDto = TenantDevToolsAccessSettingsDto(limitedAccessForUsers: false) // TenantDevToolsAccessSettingsDto |  (optional)
 
 // Set the Developer Tools access settings
 SecurityAccessToDevToolsAPIApi.setTenantDevToolsAccessSettings(tenantDevToolsAccessSettingsDto: tenantDevToolsAccessSettingsDto) { (response, error) in

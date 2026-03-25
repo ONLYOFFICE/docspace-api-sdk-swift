@@ -69,7 +69,7 @@ FilesThirdPartyIntegrationAPIApi.deleteThirdParty(providerId: providerId) { (res
     open class func getAllProviders(excludewebdav: Bool? = nil, completion: @escaping (_ data: ProviderArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-Returns a list of all providers.   **Note**: Available provider keys: Dropbox, Box, WebDav, OneDrive, GoogleDrive, kDrive, ownCloud, Nextcloud.
+Returns a list of all providers.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-providers/).
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let excludewebdav = true // Bool | Specifies whether WebDAV resources should be excluded from the result.. (optional)
+let excludewebdav = false // Bool | Specifies whether WebDAV resources should be excluded from the result.. (optional)
 
 // Get all providers
 FilesThirdPartyIntegrationAPIApi.getAllProviders(excludewebdav: excludewebdav) { (response, error) in
@@ -165,7 +165,7 @@ FilesThirdPartyIntegrationAPIApi.getBackupThirdPartyAccount() { (response, error
     open class func getCapabilities(completion: @escaping (_ data: ArrayArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-Returns the list of the available providers.   **Note**: Available provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+Returns the list of the available providers.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-capabilities/).
 
@@ -303,7 +303,7 @@ FilesThirdPartyIntegrationAPIApi.getThirdPartyAccounts() { (response, error) in
     open class func saveThirdParty(thirdPartyRequestDto: ThirdPartyRequestDto? = nil, completion: @escaping (_ data: FolderStringWrapper?, _ error: Error?) -> Void)
 ```
 
-Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party/).
 
@@ -353,7 +353,7 @@ FilesThirdPartyIntegrationAPIApi.saveThirdParty(thirdPartyRequestDto: thirdParty
     open class func saveThirdPartyBackup(thirdPartyBackupRequestDto: ThirdPartyBackupRequestDto? = nil, completion: @escaping (_ data: FolderStringWrapper?, _ error: Error?) -> Void)
 ```
 
-Saves a backup of the connected third-party account.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+Saves a backup of the connected third-party account.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party-backup/).
 

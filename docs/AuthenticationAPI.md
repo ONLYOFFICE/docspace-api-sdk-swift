@@ -41,7 +41,7 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authRequestsDto = AuthRequestsDto(userName: "userName_example", password: "password_example", passwordHash: "passwordHash_example", provider: "provider_example", accessToken: "accessToken_example", serializedProfile: "serializedProfile_example", code: "code_example", codeOAuth: "codeOAuth_example", session: true, confirmData: ConfirmData(email: "email_example", first: true, key: "key_example"), recaptchaType: RecaptchaType(), recaptchaResponse: "recaptchaResponse_example", culture: "culture_example") // AuthRequestsDto |  (optional)
+let authRequestsDto = AuthRequestsDto(userName: "userName_example", password: "password_example", passwordHash: "passwordHash_example", provider: "provider_example", accessToken: "accessToken_example", serializedProfile: "serializedProfile_example", codeOAuth: "codeOAuth_example", session: true, confirmData: ConfirmData(email: "email_example", first: true, key: "key_example"), recaptchaType: RecaptchaType(), recaptchaResponse: "recaptchaResponse_example", culture: "culture_example") // AuthRequestsDto |  (optional)
 
 // Authenticate a user
 AuthenticationAPIApi.authenticateMe(authRequestsDto: authRequestsDto) { (response, error) in
@@ -65,7 +65,7 @@ AuthenticationAPIApi.authenticateMe(authRequestsDto: authRequestsDto) { (respons
 
 # **authenticateMeFromBodyWithCode**
 ```swift
-    open class func authenticateMeFromBodyWithCode(code: String, authRequestsDto: AuthRequestsDto? = nil, completion: @escaping (_ data: AuthenticationTokenWrapper?, _ error: Error?) -> Void)
+    open class func authenticateMeFromBodyWithCode(code: String, authWithCodeRequestsDto: AuthWithCodeRequestsDto? = nil, completion: @escaping (_ data: AuthenticationTokenWrapper?, _ error: Error?) -> Void)
 ```
 
 Authenticates the current user by SMS or two-factor authentication code.
@@ -77,7 +77,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **code** | **String** |  | 
- **authRequestsDto** | [**AuthRequestsDto**](AuthRequestsDto.md) |  | [optional] 
+ **authWithCodeRequestsDto** | [**AuthWithCodeRequestsDto**](AuthWithCodeRequestsDto.md) |  | [optional] 
 
 ### Return type
 
@@ -93,10 +93,10 @@ No authorization required
 import OpenAPIClient
 
 let code = "code_example" // String | 
-let authRequestsDto = AuthRequestsDto(userName: "userName_example", password: "password_example", passwordHash: "passwordHash_example", provider: "provider_example", accessToken: "accessToken_example", serializedProfile: "serializedProfile_example", code: "code_example", codeOAuth: "codeOAuth_example", session: true, confirmData: ConfirmData(email: "email_example", first: true, key: "key_example"), recaptchaType: RecaptchaType(), recaptchaResponse: "recaptchaResponse_example", culture: "culture_example") // AuthRequestsDto |  (optional)
+let authWithCodeRequestsDto = AuthWithCodeRequestsDto(userName: "userName_example", password: "password_example", passwordHash: "passwordHash_example", provider: "provider_example", accessToken: "accessToken_example", serializedProfile: "serializedProfile_example", codeOAuth: "codeOAuth_example", session: true, confirmData: ConfirmData(email: "email_example", first: true, key: "key_example"), recaptchaType: RecaptchaType(), recaptchaResponse: "recaptchaResponse_example", culture: "culture_example", code: "code_example") // AuthWithCodeRequestsDto |  (optional)
 
 // Authenticate a user by code
-AuthenticationAPIApi.authenticateMeFromBodyWithCode(code: code, authRequestsDto: authRequestsDto) { (response, error) in
+AuthenticationAPIApi.authenticateMeFromBodyWithCode(code: code, authWithCodeRequestsDto: authWithCodeRequestsDto) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -335,7 +335,7 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authRequestsDto = AuthRequestsDto(userName: "userName_example", password: "password_example", passwordHash: "passwordHash_example", provider: "provider_example", accessToken: "accessToken_example", serializedProfile: "serializedProfile_example", code: "code_example", codeOAuth: "codeOAuth_example", session: true, confirmData: ConfirmData(email: "email_example", first: true, key: "key_example"), recaptchaType: RecaptchaType(), recaptchaResponse: "recaptchaResponse_example", culture: "culture_example") // AuthRequestsDto |  (optional)
+let authRequestsDto = AuthRequestsDto(userName: "userName_example", password: "password_example", passwordHash: "passwordHash_example", provider: "provider_example", accessToken: "accessToken_example", serializedProfile: "serializedProfile_example", codeOAuth: "codeOAuth_example", session: true, confirmData: ConfirmData(email: "email_example", first: true, key: "key_example"), recaptchaType: RecaptchaType(), recaptchaResponse: "recaptchaResponse_example", culture: "culture_example") // AuthRequestsDto |  (optional)
 
 // Send SMS code
 AuthenticationAPIApi.sendSmsCode(authRequestsDto: authRequestsDto) { (response, error) in

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for updating a room. */
-public struct UpdateRoomRequest: Sendable, Codable, ParameterConvertible, Hashable {
+public struct UpdateRoomRequest: Sendable, Codable, Hashable {
 
     public static let titleRule = StringRule(minLength: 0, maxLength: 170, pattern: nil)
     public static let colorRule = StringRule(minLength: 0, maxLength: 6, pattern: nil)
@@ -38,8 +38,12 @@ public struct UpdateRoomRequest: Sendable, Codable, ParameterConvertible, Hashab
     /** The room cover. */
     public var cover: String?
     public var chatSettings: ChatSettings?
+    /** Specifies whether to send form data to external database. */
+    public var sendFormToExternalDB: Bool?
+    /** Specifies whether to save form data as XLSX file. */
+    public var saveFormAsXLSX: Bool?
 
-    public init(title: String? = nil, quota: Int64? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkRequestDto? = nil, logo: LogoRequest? = nil, tags: [String]? = nil, color: String? = nil, cover: String? = nil, chatSettings: ChatSettings? = nil) {
+    public init(title: String? = nil, quota: Int64? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkRequestDto? = nil, logo: LogoRequest? = nil, tags: [String]? = nil, color: String? = nil, cover: String? = nil, chatSettings: ChatSettings? = nil, sendFormToExternalDB: Bool? = nil, saveFormAsXLSX: Bool? = nil) {
         self.title = title
         self.quota = quota
         self.indexing = indexing
@@ -51,6 +55,8 @@ public struct UpdateRoomRequest: Sendable, Codable, ParameterConvertible, Hashab
         self.color = color
         self.cover = cover
         self.chatSettings = chatSettings
+        self.sendFormToExternalDB = sendFormToExternalDB
+        self.saveFormAsXLSX = saveFormAsXLSX
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -65,6 +71,8 @@ public struct UpdateRoomRequest: Sendable, Codable, ParameterConvertible, Hashab
         case color
         case cover
         case chatSettings
+        case sendFormToExternalDB
+        case saveFormAsXLSX
     }
 
     // Encodable protocol methods
@@ -82,6 +90,8 @@ public struct UpdateRoomRequest: Sendable, Codable, ParameterConvertible, Hashab
         try container.encodeIfPresent(color, forKey: .color)
         try container.encodeIfPresent(cover, forKey: .cover)
         try container.encodeIfPresent(chatSettings, forKey: .chatSettings)
+        try container.encodeIfPresent(sendFormToExternalDB, forKey: .sendFormToExternalDB)
+        try container.encodeIfPresent(saveFormAsXLSX, forKey: .saveFormAsXLSX)
     }
 }
 

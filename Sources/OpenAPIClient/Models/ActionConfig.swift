@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,8 +15,10 @@
 import Foundation
 
 /** The information about the action in the document that will be scrolled to. */
-public struct ActionConfig: Sendable, Codable, ParameterConvertible, Hashable {
+public struct ActionConfig: Sendable, Codable, Hashable {
 
+    public static let dataRule = StringRule(minLength: 0, maxLength: 256, pattern: nil)
+    public static let typeRule = StringRule(minLength: 0, maxLength: 128, pattern: nil)
     /** The action data that will be scrolled to. */
     public var data: String?
     /** The action type. */

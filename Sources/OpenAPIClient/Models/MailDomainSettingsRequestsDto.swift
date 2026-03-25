@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for configuring trusted mail domains and visitor invitation settings. */
-public struct MailDomainSettingsRequestsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MailDomainSettingsRequestsDto: Sendable, Codable, Hashable {
 
     public var type: TenantTrustedDomainsType
     /** The list of authorized email domains that are considered trusted. */

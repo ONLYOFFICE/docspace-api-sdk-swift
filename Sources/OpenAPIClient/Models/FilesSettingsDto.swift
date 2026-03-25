@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The file settings parameters. */
-public struct FilesSettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FilesSettingsDto: Sendable, Codable, Hashable {
 
     public enum DefaultSharingAccessRights: String, Sendable, Codable, CaseIterable {
         case None = 0
@@ -142,12 +142,14 @@ public struct FilesSettingsDto: Sendable, Codable, ParameterConvertible, Hashabl
     public var chunkUploadSize: Int64?
     /** Specifies whether to open the editor in the same tab or not. */
     public var openEditorInSameTab: Bool?
+    /** Specifies whether the grouping of rooms is enabled or not. */
+    public var organizeRoomsGrouping: Bool?
     /** List of extensions available for vectorization */
     public var extsFilesVectorized: [String]?
     /** The maximum file size for vectorization */
     public var maxVectorizationFileSize: Int64?
 
-    public init(extsImagePreviewed: [String]? = nil, extsMediaPreviewed: [String]? = nil, extsWebPreviewed: [String]? = nil, extsWebEdited: [String]? = nil, extsWebEncrypt: [String]? = nil, extsWebReviewed: [String]? = nil, extsWebCustomFilterEditing: [String]? = nil, extsWebRestrictedEditing: [String]? = nil, extsWebCommented: [String]? = nil, extsWebTemplate: [String]? = nil, extsMustConvert: [String]? = nil, extsConvertible: [String: [String]]? = nil, extsUploadable: [String]? = nil, extsArchive: [String]? = nil, extsVideo: [String]? = nil, extsAudio: [String]? = nil, extsImage: [String]? = nil, extsSpreadsheet: [String]? = nil, extsPresentation: [String]? = nil, extsDocument: [String]? = nil, extsDiagram: [String]? = nil, internalFormats: FilesSettingsDtoInternalFormats? = nil, masterFormExtension: String? = nil, paramVersion: String? = nil, paramOutType: String? = nil, fileDownloadUrlString: String? = nil, fileWebViewerUrlString: String? = nil, fileWebViewerExternalUrlString: String? = nil, fileWebEditorUrlString: String? = nil, fileWebEditorExternalUrlString: String? = nil, fileRedirectPreviewUrlString: String? = nil, fileThumbnailUrlString: String? = nil, confirmDelete: Bool? = nil, enableThirdParty: Bool? = nil, externalShare: Bool? = nil, externalShareSocialMedia: Bool? = nil, storeOriginalFiles: Bool? = nil, keepNewFileName: Bool? = nil, displayFileExtension: Bool? = nil, convertNotify: Bool? = nil, hideConfirmCancelOperation: Bool? = nil, hideConfirmConvertSave: Bool? = nil, hideConfirmConvertOpen: Bool? = nil, hideConfirmRoomLifetime: Bool? = nil, defaultOrder: OrderBy? = nil, forcesave: Bool? = nil, storeForcesave: Bool? = nil, recentSection: Bool? = nil, favoritesSection: Bool? = nil, templatesSection: Bool? = nil, downloadTarGz: Bool? = nil, automaticallyCleanUp: AutoCleanUpData? = nil, canSearchByContent: Bool? = nil, defaultSharingAccessRights: [DefaultSharingAccessRights]? = nil, maxUploadThreadCount: Int? = nil, chunkUploadSize: Int64? = nil, openEditorInSameTab: Bool? = nil, extsFilesVectorized: [String]? = nil, maxVectorizationFileSize: Int64? = nil) {
+    public init(extsImagePreviewed: [String]? = nil, extsMediaPreviewed: [String]? = nil, extsWebPreviewed: [String]? = nil, extsWebEdited: [String]? = nil, extsWebEncrypt: [String]? = nil, extsWebReviewed: [String]? = nil, extsWebCustomFilterEditing: [String]? = nil, extsWebRestrictedEditing: [String]? = nil, extsWebCommented: [String]? = nil, extsWebTemplate: [String]? = nil, extsMustConvert: [String]? = nil, extsConvertible: [String: [String]]? = nil, extsUploadable: [String]? = nil, extsArchive: [String]? = nil, extsVideo: [String]? = nil, extsAudio: [String]? = nil, extsImage: [String]? = nil, extsSpreadsheet: [String]? = nil, extsPresentation: [String]? = nil, extsDocument: [String]? = nil, extsDiagram: [String]? = nil, internalFormats: FilesSettingsDtoInternalFormats? = nil, masterFormExtension: String? = nil, paramVersion: String? = nil, paramOutType: String? = nil, fileDownloadUrlString: String? = nil, fileWebViewerUrlString: String? = nil, fileWebViewerExternalUrlString: String? = nil, fileWebEditorUrlString: String? = nil, fileWebEditorExternalUrlString: String? = nil, fileRedirectPreviewUrlString: String? = nil, fileThumbnailUrlString: String? = nil, confirmDelete: Bool? = nil, enableThirdParty: Bool? = nil, externalShare: Bool? = nil, externalShareSocialMedia: Bool? = nil, storeOriginalFiles: Bool? = nil, keepNewFileName: Bool? = nil, displayFileExtension: Bool? = nil, convertNotify: Bool? = nil, hideConfirmCancelOperation: Bool? = nil, hideConfirmConvertSave: Bool? = nil, hideConfirmConvertOpen: Bool? = nil, hideConfirmRoomLifetime: Bool? = nil, defaultOrder: OrderBy? = nil, forcesave: Bool? = nil, storeForcesave: Bool? = nil, recentSection: Bool? = nil, favoritesSection: Bool? = nil, templatesSection: Bool? = nil, downloadTarGz: Bool? = nil, automaticallyCleanUp: AutoCleanUpData? = nil, canSearchByContent: Bool? = nil, defaultSharingAccessRights: [DefaultSharingAccessRights]? = nil, maxUploadThreadCount: Int? = nil, chunkUploadSize: Int64? = nil, openEditorInSameTab: Bool? = nil, organizeRoomsGrouping: Bool? = nil, extsFilesVectorized: [String]? = nil, maxVectorizationFileSize: Int64? = nil) {
         self.extsImagePreviewed = extsImagePreviewed
         self.extsMediaPreviewed = extsMediaPreviewed
         self.extsWebPreviewed = extsWebPreviewed
@@ -205,6 +207,7 @@ public struct FilesSettingsDto: Sendable, Codable, ParameterConvertible, Hashabl
         self.maxUploadThreadCount = maxUploadThreadCount
         self.chunkUploadSize = chunkUploadSize
         self.openEditorInSameTab = openEditorInSameTab
+        self.organizeRoomsGrouping = organizeRoomsGrouping
         self.extsFilesVectorized = extsFilesVectorized
         self.maxVectorizationFileSize = maxVectorizationFileSize
     }
@@ -267,6 +270,7 @@ public struct FilesSettingsDto: Sendable, Codable, ParameterConvertible, Hashabl
         case maxUploadThreadCount
         case chunkUploadSize
         case openEditorInSameTab
+        case organizeRoomsGrouping
         case extsFilesVectorized
         case maxVectorizationFileSize
     }
@@ -332,6 +336,7 @@ public struct FilesSettingsDto: Sendable, Codable, ParameterConvertible, Hashabl
         try container.encodeIfPresent(maxUploadThreadCount, forKey: .maxUploadThreadCount)
         try container.encodeIfPresent(chunkUploadSize, forKey: .chunkUploadSize)
         try container.encodeIfPresent(openEditorInSameTab, forKey: .openEditorInSameTab)
+        try container.encodeIfPresent(organizeRoomsGrouping, forKey: .organizeRoomsGrouping)
         try container.encodeIfPresent(extsFilesVectorized, forKey: .extsFilesVectorized)
         try container.encodeIfPresent(maxVectorizationFileSize, forKey: .maxVectorizationFileSize)
     }

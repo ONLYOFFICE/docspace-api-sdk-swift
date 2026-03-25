@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **userForumEnabled** | **Bool** | Specifies if the user forum is available or not. | [optional] 
 **videoGuidesEnabled** | **Bool** | Specifies if the Video Guides link is available or not. | [optional] 
 **licenseAgreementsEnabled** | **Bool** | Specifies if the License Agreements link is available or not. | [optional] 
-**lastModified** | **Date** |  | [optional] 
+**lastModified** | **Date** | The timestamp indicating when the settings were last modified. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

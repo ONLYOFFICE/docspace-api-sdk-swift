@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **plugins** | [**PluginsConfig**](PluginsConfig.md) |  | [optional] 
 **recent** | [RecentConfig] | The recent configuration of the editor. | [optional] 
 **templates** | [TemplatesConfig] | The templates of the editor configuration. | [optional] 
-**user** | [**UserConfig**](UserConfig.md) |  | 
+**user** | [**UserConfig**](UserConfig.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

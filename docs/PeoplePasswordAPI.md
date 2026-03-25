@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **changeUserPassword**
 ```swift
-    open class func changeUserPassword(userid: UUID, memberBaseRequestDto: MemberBaseRequestDto, completion: @escaping (_ data: EmployeeFullWrapper?, _ error: Error?) -> Void)
+    open class func changeUserPassword(userid: UUID, changePasswordRequest: ChangePasswordRequest, completion: @escaping (_ data: EmployeeFullWrapper?, _ error: Error?) -> Void)
 ```
 
 Sets a new password to the user with the ID specified in the request.
@@ -22,7 +22,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userid** | **UUID** | The user ID. | 
- **memberBaseRequestDto** | [**MemberBaseRequestDto**](MemberBaseRequestDto.md) | The request parameters for the user generic information. | 
+ **changePasswordRequest** | [**ChangePasswordRequest**](ChangePasswordRequest.md) | The request parameters for updating a user password. | 
 
 ### Return type
 
@@ -38,10 +38,10 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let userid = 987 // UUID | The user ID.
-let memberBaseRequestDto = MemberBaseRequestDto(password: "password_example", passwordHash: "passwordHash_example", email: "email_example", encEmail: "encEmail_example") // MemberBaseRequestDto | The request parameters for the user generic information.
+let changePasswordRequest = ChangePasswordRequest(password: "password_example", passwordHash: "passwordHash_example") // ChangePasswordRequest | The request parameters for updating a user password.
 
 // Change a user password
-PeoplePasswordAPIApi.changeUserPassword(userid: userid, memberBaseRequestDto: memberBaseRequestDto) { (response, error) in
+PeoplePasswordAPIApi.changeUserPassword(userid: userid, changePasswordRequest: changePasswordRequest) { (response, error) in
     guard error == nil else {
         print(error)
         return

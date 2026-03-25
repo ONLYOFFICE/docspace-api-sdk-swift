@@ -18,12 +18,11 @@ Method | HTTP request | Description
 [**getFolderLinks**](FilesFoldersAPI.md#getfolderlinks) | **GET** /api/2.0/files/folder/{id}/links | Get the folder links
 [**getFolderPath**](FilesFoldersAPI.md#getfolderpath) | **GET** /api/2.0/files/folder/{folderId}/path | Get the folder path
 [**getFolderPrimaryExternalLink**](FilesFoldersAPI.md#getfolderprimaryexternallink) | **GET** /api/2.0/files/folder/{id}/link | Get primary external link
-[**getFolderRecent**](FilesFoldersAPI.md#getfolderrecent) | **GET** /api/2.0/files/recent | Get the Recent section
 [**getFolders**](FilesFoldersAPI.md#getfolders) | **GET** /api/2.0/files/{folderId}/subfolders | Get subfolders
 [**getMyFolder**](FilesFoldersAPI.md#getmyfolder) | **GET** /api/2.0/files/@my | Get the My documents section
 [**getNewFolderItems**](FilesFoldersAPI.md#getnewfolderitems) | **GET** /api/2.0/files/{folderId}/news | Get new folder items
 [**getPrivacyFolder**](FilesFoldersAPI.md#getprivacyfolder) | **GET** /api/2.0/files/@privacy | Get the Private Room section
-[**getRecentFolder**](FilesFoldersAPI.md#getrecentfolder) | **GET** /api/2.0/files/@recent | Get the Recent section
+[**getRecentFolder**](FilesFoldersAPI.md#getrecentfolder) | **GET** /api/2.0/files/recent | Get the Recent section
 [**getRootFolders**](FilesFoldersAPI.md#getrootfolders) | **GET** /api/2.0/files/@root | Get filtered sections
 [**getTrashFolder**](FilesFoldersAPI.md#gettrashfolder) | **GET** /api/2.0/files/@trash | Get the Trash section
 [**insertFile**](FilesFoldersAPI.md#insertfile) | **POST** /api/2.0/files/{folderId}/insert | Insert a file
@@ -169,7 +168,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The folder ID.
-let folderLinkRequest = FolderLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", password: "password_example", denyDownload: true, _internal: true, primary: true) // FolderLinkRequest | The folder link parameters.
+let folderLinkRequest = FolderLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", password: "password_example", denyDownload: false, _internal: false, primary: true) // FolderLinkRequest | The folder link parameters.
 
 // Create primary external link
 FilesFoldersAPIApi.createFolderPrimaryExternalLink(id: id, folderLinkRequest: folderLinkRequest) { (response, error) in
@@ -271,7 +270,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let folderId = 987 // Int | The folder ID to delete.
-let deleteFolder = DeleteFolder(deleteAfter: true, immediately: true) // DeleteFolder | The parameters for deleting a folder.
+let deleteFolder = DeleteFolder(deleteAfter: false, immediately: false) // DeleteFolder | The parameters for deleting a folder.
 
 // Delete a folder
 FilesFoldersAPIApi.deleteFolder(folderId: folderId, deleteFolder: deleteFolder) { (response, error) in
@@ -500,7 +499,7 @@ let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
 let sharedBy = 987 // UUID | The identifier of the user who shared the folder or file. (optional)
 let filterType = FilterType() // FilterType | The filter type. (optional)
 let roomId = 987 // Int | The room ID. (optional)
-let excludeSubject = true // Bool | Specifies whether to exclude search by user or group ID. (optional)
+let excludeSubject = false // Bool | Specifies whether to exclude search by user or group ID. (optional)
 let applyFilterOption = ApplyFilterOption() // ApplyFilterOption | Specifies whether to return only files, only folders, or all elements from the specified folder. (optional)
 let _extension = "_extension_example" // String | Specifies whether to search for the specific file extension. (optional)
 let searchArea = SearchArea() // SearchArea | The search area. (optional)
@@ -795,76 +794,6 @@ FilesFoldersAPIApi.getFolderPrimaryExternalLink(id: id, count: count, startIndex
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getFolderRecent**
-```swift
-    open class func getFolderRecent(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
-```
-
-Returns the detailed list of files located in the Recent section.
-
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-recent/).
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
- **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
- **excludeSubject** | **Bool** | Specifies whether to exclude search by user or group ID. | [optional] 
- **applyFilterOption** | [**ApplyFilterOption**](.md) | Specifies whether to return only files, only folders or all elements. | [optional] 
- **searchArea** | [**SearchArea**](.md) | The search area. | [optional] 
- **_extension** | [**[String]**](String.md) | Specifies whether to search for a specific file extension in the Recent folder. | [optional] 
- **count** | **Int** | The maximum number of items to return. | [optional] 
- **startIndex** | **Int** | The starting position of the results to be returned in the query response. | [optional] 
- **sortBy** | **String** | Specifies the sorting criteria for the folder request. | [optional] 
- **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
- **filterValue** | **String** | The text used for filtering or searching folder contents. | [optional] 
-
-### Return type
-
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
-
-### Authorization
-
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
-
-let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
-let filterType = FilterType() // FilterType | The filter type. (optional)
-let excludeSubject = true // Bool | Specifies whether to exclude search by user or group ID. (optional)
-let applyFilterOption = ApplyFilterOption() // ApplyFilterOption | Specifies whether to return only files, only folders or all elements. (optional)
-let searchArea = SearchArea() // SearchArea | The search area. (optional)
-let _extension = [["_extension_example"]] // [String] | Specifies whether to search for a specific file extension in the Recent folder. (optional)
-let count = 987 // Int | The maximum number of items to return. (optional)
-let startIndex = 987 // Int | The starting position of the results to be returned in the query response. (optional)
-let sortBy = "sortBy_example" // String | Specifies the sorting criteria for the folder request. (optional)
-let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
-let filterValue = "filterValue_example" // String | The text used for filtering or searching folder contents. (optional)
-
-// Get the Recent section
-FilesFoldersAPIApi.getFolderRecent(userIdOrGroupId: userIdOrGroupId, filterType: filterType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, searchArea: searchArea, _extension: _extension, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **getFolders**
 ```swift
     open class func getFolders(folderId: Int, completion: @escaping (_ data: FileEntryBaseArrayWrapper?, _ error: Error?) -> Void)
@@ -1131,7 +1060,7 @@ import OpenAPIClient
 
 let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
 let filterType = FilterType() // FilterType | The filter type. (optional)
-let excludeSubject = true // Bool | Specifies whether to exclude search by user or group ID. (optional)
+let excludeSubject = false // Bool | Specifies whether to exclude search by user or group ID. (optional)
 let applyFilterOption = ApplyFilterOption() // ApplyFilterOption | Specifies whether to return only files, only folders or all elements. (optional)
 let searchArea = SearchArea() // SearchArea | The search area. (optional)
 let _extension = [["_extension_example"]] // [String] | Specifies whether to search for a specific file extension in the Recent folder. (optional)
@@ -1198,7 +1127,7 @@ import OpenAPIClient
 
 let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
 let filterType = FilterType() // FilterType | The filter type. (optional)
-let withoutTrash = true // Bool | Specifies whether to return the Trash section or not. (optional)
+let withoutTrash = false // Bool | Specifies whether to return the Trash section or not. (optional)
 let count = 987 // Int | The maximum number of items to retrieve in the response. (optional)
 let startIndex = 987 // Int | The starting position of the items to be retrieved. (optional)
 let sortBy = "sortBy_example" // String | Specifies the field by which the folder content should be sorted. (optional)
@@ -1569,7 +1498,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The folder ID.
-let folderLinkRequest = FolderLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", password: "password_example", denyDownload: true, _internal: true, primary: true) // FolderLinkRequest | The folder link parameters.
+let folderLinkRequest = FolderLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), title: "title_example", password: "password_example", denyDownload: false, _internal: false, primary: true) // FolderLinkRequest | The folder link parameters.
 
 // Set the folder external link
 FilesFoldersAPIApi.setFolderPrimaryExternalLink(id: id, folderLinkRequest: folderLinkRequest) { (response, error) in
@@ -1596,7 +1525,7 @@ FilesFoldersAPIApi.setFolderPrimaryExternalLink(id: id, folderLinkRequest: folde
     open class func uploadFile(folderId: Int, uploadRequestDto: UploadRequestDto? = nil, completion: @escaping (_ data: ObjectWrapper?, _ error: Error?) -> Void)
 ```
 
-Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/).
 
@@ -1621,7 +1550,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let folderId = 987 // Int | The folder ID to upload a file.
-let uploadRequestDto = UploadRequestDto(file: URL(string: "https://example.com")!, contentType: ContentType(boundary: "boundary_example", charSet: "charSet_example", mediaType: "mediaType_example", name: "name_example", parameters: [123]), contentDisposition: ContentDisposition(dispositionType: "dispositionType_example", parameters: [123], fileName: "fileName_example", creationDate: Date(), modificationDate: Date(), inline: true, readDate: Date(), size: 123), files: [URL(string: "https://example.com")!], createNewIfExist: true, storeOriginalFileFlag: true, keepConvertStatus: true, stream: URL(string: "https://example.com")!) // UploadRequestDto | The request parameters for uploading a file. (optional)
+let uploadRequestDto = UploadRequestDto(file: URL(string: "https://example.com")!, contentType: ContentType(boundary: "boundary_example", charSet: "charSet_example", mediaType: "mediaType_example", name: "name_example", parameters: [123]), contentDisposition: ContentDisposition(dispositionType: "dispositionType_example", parameters: [123], fileName: "fileName_example", creationDate: Date(), modificationDate: Date(), inline: false, readDate: Date(), size: 123), files: [URL(string: "https://example.com")!], createNewIfExist: true, storeOriginalFileFlag: true, keepConvertStatus: false, stream: URL(string: "https://example.com")!) // UploadRequestDto | The request parameters for uploading a file. (optional)
 
 // Upload a file
 FilesFoldersAPIApi.uploadFile(folderId: folderId, uploadRequestDto: uploadRequestDto) { (response, error) in
@@ -1648,7 +1577,7 @@ FilesFoldersAPIApi.uploadFile(folderId: folderId, uploadRequestDto: uploadReques
     open class func uploadFileToMy(inDto: UploadRequestDto? = nil, completion: @escaping (_ data: ObjectWrapper?, _ error: Error?) -> Void)
 ```
 
-Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/).
 
@@ -1671,7 +1600,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let inDto = UploadRequestDto(file: URL(string: "https://example.com")!, contentType: ContentType(boundary: "boundary_example", charSet: "charSet_example", mediaType: "mediaType_example", name: "name_example", parameters: [123]), contentDisposition: ContentDisposition(dispositionType: "dispositionType_example", parameters: [123], fileName: "fileName_example", creationDate: Date(), modificationDate: Date(), inline: true, readDate: Date(), size: 123), files: [URL(string: "https://example.com")!], createNewIfExist: true, storeOriginalFileFlag: true, keepConvertStatus: true, stream: URL(string: "https://example.com")!) // UploadRequestDto | The request parameters for uploading a file. (optional)
+let inDto = UploadRequestDto(file: URL(string: "https://example.com")!, contentType: ContentType(boundary: "boundary_example", charSet: "charSet_example", mediaType: "mediaType_example", name: "name_example", parameters: [123]), contentDisposition: ContentDisposition(dispositionType: "dispositionType_example", parameters: [123], fileName: "fileName_example", creationDate: Date(), modificationDate: Date(), inline: false, readDate: Date(), size: 123), files: [URL(string: "https://example.com")!], createNewIfExist: true, storeOriginalFileFlag: true, keepConvertStatus: false, stream: URL(string: "https://example.com")!) // UploadRequestDto | The request parameters for uploading a file. (optional)
 
 // Upload a file to the My documents section
 FilesFoldersAPIApi.uploadFileToMy(inDto: inDto) { (response, error) in

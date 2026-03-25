@@ -4,6 +4,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**cancelBackup**](BackupAPI.md#cancelbackup) | **POST** /api/2.0/backup/cancelbackup | Cancel current backup
 [**createBackupSchedule**](BackupAPI.md#createbackupschedule) | **POST** /api/2.0/backup/createbackupschedule | Create the backup schedule
 [**deleteBackup**](BackupAPI.md#deletebackup) | **DELETE** /api/2.0/backup/deletebackup/{id} | Delete the backup
 [**deleteBackupHistory**](BackupAPI.md#deletebackuphistory) | **DELETE** /api/2.0/backup/deletebackuphistory | Delete the backup history
@@ -17,6 +18,52 @@ Method | HTTP request | Description
 [**startBackup**](BackupAPI.md#startbackup) | **POST** /api/2.0/backup/startbackup | Start the backup
 [**startBackupRestore**](BackupAPI.md#startbackuprestore) | **POST** /api/2.0/backup/startrestore | Start the restoring process
 
+
+# **cancelBackup**
+```swift
+    open class func cancelBackup(completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
+```
+
+Cancel current backup.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-backup/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Cancel current backup
+BackupAPIApi.cancelBackup() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createBackupSchedule**
 ```swift
@@ -46,7 +93,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let backupScheduleDto = BackupScheduleDto(storageType: BackupStorageType(), storageParams: [ItemKeyValuePairObjectObject(key: 123, value: 123)], backupsStored: 123, cronParams: Cron(period: BackupPeriod(), hour: 123, day: 123), dump: true) // BackupScheduleDto |  (optional)
+let backupScheduleDto = BackupScheduleDto(storageType: BackupStorageType(), storageParams: [ItemKeyValuePairObjectObject(key: 123, value: 123)], backupsStored: 123, cronParams: Cron(period: BackupPeriod(), hour: 123, day: 123), dump: false) // BackupScheduleDto |  (optional)
 
 // Create the backup schedule
 BackupAPIApi.createBackupSchedule(backupScheduleDto: backupScheduleDto) { (response, error) in
@@ -373,7 +420,7 @@ BackupAPIApi.getBackupSchedule(dump: dump) { (response, error) in
     open class func getBackupsCount(from: Date? = nil, to: Date? = nil, paid: Bool? = nil, completion: @escaping (_ data: Int32Wrapper?, _ error: Error?) -> Void)
 ```
 
-Returns the number of backups for a period of time. The default is one month.
+Returns the number of backups for a period of time. The default is the current calendar month.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backups-count/).
 
@@ -400,7 +447,7 @@ import OpenAPIClient
 
 let from = Date() // Date | The from date. (optional)
 let to = Date() // Date | The to date. (optional)
-let paid = true // Bool | Specifies if the backups are paid or not. (optional)
+let paid = false // Bool | Specifies if the backups are paid or not. (optional)
 
 // Get the number of backups
 BackupAPIApi.getBackupsCount(from: from, to: to, paid: paid) { (response, error) in
@@ -496,7 +543,7 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let dump = true // Bool | Specifies if a dump will be created or not. (optional)
+let dump = false // Bool | Specifies if a dump will be created or not. (optional)
 
 // Get the restoring progress
 BackupAPIApi.getRestoreProgress(dump: dump) { (response, error) in
@@ -546,7 +593,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let backupDto = BackupDto(storageType: BackupStorageType(), storageParams: [ItemKeyValuePairObjectObject(key: 123, value: 123)], dump: true) // BackupDto |  (optional)
+let backupDto = BackupDto(storageType: BackupStorageType(), storageParams: [ItemKeyValuePairObjectObject(key: 123, value: 123)], dump: false) // BackupDto |  (optional)
 
 // Start the backup
 BackupAPIApi.startBackup(backupDto: backupDto) { (response, error) in
@@ -596,7 +643,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let backupRestoreDto = BackupRestoreDto(backupId: "backupId_example", storageType: BackupStorageType(), storageParams: [ItemKeyValuePairObjectObject(key: 123, value: 123)], notify: true, dump: true) // BackupRestoreDto |  (optional)
+let backupRestoreDto = BackupRestoreDto(backupId: "backupId_example", storageType: BackupStorageType(), storageParams: [ItemKeyValuePairObjectObject(key: 123, value: 123)], notify: true, dump: false) // BackupRestoreDto |  (optional)
 
 // Start the restoring process
 BackupAPIApi.startBackupRestore(backupRestoreDto: backupRestoreDto) { (response, error) in

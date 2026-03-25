@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let activationstatus = EmployeeActivationStatus() // EmployeeActivationStatus | The new user activation status.
-let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: true) // UpdateMembersRequestDto | The request parameters for updating the user information.
+let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: false) // UpdateMembersRequestDto | The request parameters for updating the user information.
 
 // Set an activation status to the users
 PeopleUserStatusAPIApi.updateUserActivationStatus(activationstatus: activationstatus, updateMembersRequestDto: updateMembersRequestDto) { (response, error) in
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let status = EmployeeStatus() // EmployeeStatus | The new user status.
-let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: true) // UpdateMembersRequestDto | The request parameters for updating the user information.
+let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: false) // UpdateMembersRequestDto | The request parameters for updating the user information.
 
 // Change a user status
 PeopleUserStatusAPIApi.updateUserStatus(status: status, updateMembersRequestDto: updateMembersRequestDto) { (response, error) in

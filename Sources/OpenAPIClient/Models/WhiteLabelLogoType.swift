@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,21 +14,22 @@
 //  limitations under the License.
 import Foundation
 
+/** [1 - Light small, 2 - Login page, 3 - Favicon, 4 - Docs editor, 5 - Docs editor embed, 6 - Left menu, 7 - About page, 8 - Notification, 9 - Spreadsheet editor, 10 - Spreadsheet editor embed, 11 - Presentation editor, 12 - Presentation editor embed, 13 - Pdf editor, 14 - Pdf editor embed, 15 - Diagram editor, 16 - Diagram editor embed] */
 public enum WhiteLabelLogoType: Int, Sendable, Codable, CaseIterable {
-    case _1 = 1
-    case _2 = 2
-    case _3 = 3
-    case _4 = 4
-    case _5 = 5
-    case _6 = 6
-    case _7 = 7
-    case _8 = 8
-    case _9 = 9
-    case _10 = 10
-    case _11 = 11
-    case _12 = 12
-    case _13 = 13
-    case _14 = 14
-    case _15 = 15
-    case _16 = 16
+    case LightSmall = 1
+    case LoginPage = 2
+    case Favicon = 3
+    case DocsEditor = 4
+    case DocsEditorEmbed = 5
+    case LeftMenu = 6
+    case AboutPage = 7
+    case Notification = 8
+    case SpreadsheetEditor = 9
+    case SpreadsheetEditorEmbed = 10
+    case PresentationEditor = 11
+    case PresentationEditorEmbed = 12
+    case PdfEditor = 13
+    case PdfEditorEmbed = 14
+    case DiagramEditor = 15
+    case DiagramEditorEmbed = 16
 }

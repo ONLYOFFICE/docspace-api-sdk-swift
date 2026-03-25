@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The room data lifetime information. */
-public struct RoomDataLifetimeDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct RoomDataLifetimeDto: Sendable, Codable, Hashable {
 
     public static let valueRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 999, exclusiveMaximum: false, multipleOf: nil)
     /** Specifies whether to permanently delete the room data or not. */

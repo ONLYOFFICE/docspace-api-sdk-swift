@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The editor configuration parameters. */
-public struct EditorConfigurationDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct EditorConfigurationDto: Sendable, Codable, Hashable {
 
     /** The callback URL of the editor. */
     public var callbackUrl: String?
@@ -36,9 +36,9 @@ public struct EditorConfigurationDto: Sendable, Codable, ParameterConvertible, H
     public var recent: [RecentConfig]?
     /** The templates of the editor configuration. */
     public var templates: [TemplatesConfig]?
-    public var user: UserConfig
+    public var user: UserConfig?
 
-    public init(callbackUrl: String? = nil, coEditing: CoEditingConfig? = nil, createUrl: String? = nil, customization: CustomizationConfigDto? = nil, embedded: EmbeddedConfig? = nil, encryptionKeys: EncryptionKeysConfig? = nil, lang: String?, mode: String?, modeWrite: Bool? = nil, plugins: PluginsConfig? = nil, recent: [RecentConfig]? = nil, templates: [TemplatesConfig]? = nil, user: UserConfig) {
+    public init(callbackUrl: String? = nil, coEditing: CoEditingConfig? = nil, createUrl: String? = nil, customization: CustomizationConfigDto? = nil, embedded: EmbeddedConfig? = nil, encryptionKeys: EncryptionKeysConfig? = nil, lang: String?, mode: String?, modeWrite: Bool? = nil, plugins: PluginsConfig? = nil, recent: [RecentConfig]? = nil, templates: [TemplatesConfig]? = nil, user: UserConfig? = nil) {
         self.callbackUrl = callbackUrl
         self.coEditing = coEditing
         self.createUrl = createUrl
@@ -86,7 +86,7 @@ public struct EditorConfigurationDto: Sendable, Codable, ParameterConvertible, H
         try container.encodeIfPresent(plugins, forKey: .plugins)
         try container.encodeIfPresent(recent, forKey: .recent)
         try container.encodeIfPresent(templates, forKey: .templates)
-        try container.encode(user, forKey: .user)
+        try container.encodeIfPresent(user, forKey: .user)
     }
 }
 

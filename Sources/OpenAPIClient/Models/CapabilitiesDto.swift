@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The capabilities parameters. */
-public struct CapabilitiesDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CapabilitiesDto: Sendable, Codable, Hashable {
 
     /** Specifies if the LDAP settings are enabled or not. */
     public var ldapEnabled: Bool
@@ -29,7 +29,7 @@ public struct CapabilitiesDto: Sendable, Codable, ParameterConvertible, Hashable
     public var oauthEnabled: Bool
     /** The SSO URL. If this parameter is empty, then the SSO settings are disabled. */
     public var ssoUrl: String?
-    /** Specifies if identity server is enabled or not */
+    /** Specifies if an identity server is enabled or not. */
     public var identityServerEnabled: Bool
 
     public init(ldapEnabled: Bool, ldapDomain: String? = nil, providers: [String]?, ssoLabel: String?, oauthEnabled: Bool, ssoUrl: String?, identityServerEnabled: Bool) {

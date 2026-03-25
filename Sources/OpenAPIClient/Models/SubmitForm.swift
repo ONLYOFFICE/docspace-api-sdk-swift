@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The Complete &amp; Submit button settings. */
-public struct SubmitForm: Sendable, Codable, ParameterConvertible, Hashable {
+public struct SubmitForm: Sendable, Codable, Hashable {
 
     /** Specifies whether the Complete  & Submit button will be displayed or hidden on the top toolbar. */
     public var visible: Bool?

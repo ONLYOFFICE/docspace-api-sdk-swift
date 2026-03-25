@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The additional white label settings. */
-public struct AdditionalWhiteLabelSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct AdditionalWhiteLabelSettings: Sendable, Codable, Hashable {
 
     /** Specifies if the sample documents are displayed or hidden. */
     public var startDocsEnabled: Bool?
@@ -29,6 +29,7 @@ public struct AdditionalWhiteLabelSettings: Sendable, Codable, ParameterConverti
     public var videoGuidesEnabled: Bool?
     /** Specifies if the License Agreements link is available or not. */
     public var licenseAgreementsEnabled: Bool?
+    /** The timestamp indicating when the settings were last modified. */
     public var lastModified: Date?
 
     public init(startDocsEnabled: Bool? = nil, helpCenterEnabled: Bool? = nil, feedbackAndSupportEnabled: Bool? = nil, userForumEnabled: Bool? = nil, videoGuidesEnabled: Bool? = nil, licenseAgreementsEnabled: Bool? = nil, lastModified: Date? = nil) {

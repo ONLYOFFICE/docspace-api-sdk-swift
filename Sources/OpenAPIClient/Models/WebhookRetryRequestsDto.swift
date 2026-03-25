@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The parameters for requesting the webhook delivery retries. */
-public struct WebhookRetryRequestsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct WebhookRetryRequestsDto: Sendable, Codable, Hashable {
 
     /** The list of webhook delivery IDs to retry. */
     public var ids: [Int]?

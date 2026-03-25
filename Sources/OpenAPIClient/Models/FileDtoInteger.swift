@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The file parameters. */
-public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FileDtoInteger: Sendable, Codable, Hashable {
 
     /** The file entry title. */
     public var title: String?
@@ -83,6 +83,8 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
     /** The pure content length of the file. */
     public var pureContentLength: Int64?
     public var fileStatus: FileStatus?
+    /** The list of users editing the file. */
+    public var editingBy: [String: String]?
     /** Specifies if the file is muted or not. */
     public var mute: Bool?
     /** The URL link to view the file. */
@@ -114,6 +116,8 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
     public var customFilterEnabledBy: String?
     /** Specifies if the filling has started or not. */
     public var startFilling: Bool?
+    /** Specifies if the form filling has started but the file is still being saved by the document editor. Filling and editing are not allowed. */
+    public var isFillingPreparing: Bool?
     /** The InProcess folder ID of the file. */
     public var inProcessFolderId: Int?
     /** The InProcess folder title of the file. */
@@ -125,7 +129,7 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
     public var vectorizationStatus: VectorizationStatus?
     public var dimensions: Size?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, draftLocation: DraftLocationInteger? = nil, viewAccessibility: FileDtoIntegerAllOfViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, vectorizationStatus: VectorizationStatus? = nil, dimensions: Size? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, editingBy: [String: String]? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, isFillingPreparing: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, draftLocation: DraftLocationInteger? = nil, viewAccessibility: FileDtoIntegerAllOfViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, vectorizationStatus: VectorizationStatus? = nil, dimensions: Size? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -167,6 +171,7 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
         self.contentLength = contentLength
         self.pureContentLength = pureContentLength
         self.fileStatus = fileStatus
+        self.editingBy = editingBy
         self.mute = mute
         self.viewUrl = viewUrl
         self.webUrl = webUrl
@@ -184,6 +189,7 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
         self.customFilterEnabled = customFilterEnabled
         self.customFilterEnabledBy = customFilterEnabledBy
         self.startFilling = startFilling
+        self.isFillingPreparing = isFillingPreparing
         self.inProcessFolderId = inProcessFolderId
         self.inProcessFolderTitle = inProcessFolderTitle
         self.draftLocation = draftLocation
@@ -236,6 +242,7 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
         case contentLength
         case pureContentLength
         case fileStatus
+        case editingBy
         case mute
         case viewUrl
         case webUrl
@@ -253,6 +260,7 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
         case customFilterEnabled
         case customFilterEnabledBy
         case startFilling
+        case isFillingPreparing
         case inProcessFolderId
         case inProcessFolderTitle
         case draftLocation
@@ -308,6 +316,7 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
         try container.encodeIfPresent(contentLength, forKey: .contentLength)
         try container.encodeIfPresent(pureContentLength, forKey: .pureContentLength)
         try container.encodeIfPresent(fileStatus, forKey: .fileStatus)
+        try container.encodeIfPresent(editingBy, forKey: .editingBy)
         try container.encodeIfPresent(mute, forKey: .mute)
         try container.encodeIfPresent(viewUrl, forKey: .viewUrl)
         try container.encodeIfPresent(webUrl, forKey: .webUrl)
@@ -325,6 +334,7 @@ public struct FileDtoInteger: Sendable, Codable, ParameterConvertible, Hashable 
         try container.encodeIfPresent(customFilterEnabled, forKey: .customFilterEnabled)
         try container.encodeIfPresent(customFilterEnabledBy, forKey: .customFilterEnabledBy)
         try container.encodeIfPresent(startFilling, forKey: .startFilling)
+        try container.encodeIfPresent(isFillingPreparing, forKey: .isFillingPreparing)
         try container.encodeIfPresent(inProcessFolderId, forKey: .inProcessFolderId)
         try container.encodeIfPresent(inProcessFolderTitle, forKey: .inProcessFolderTitle)
         try container.encodeIfPresent(draftLocation, forKey: .draftLocation)

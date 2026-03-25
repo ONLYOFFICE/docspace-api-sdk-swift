@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The login settings parameters. */
-public struct LoginSettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct LoginSettingsDto: Sendable, Codable, Hashable {
 
     /** The maximum number of consecutive failed login attempts allowed before triggering account suspension. */
     public var attemptCount: Int
@@ -23,7 +23,7 @@ public struct LoginSettingsDto: Sendable, Codable, ParameterConvertible, Hashabl
     public var blockTime: Int
     /** The maximum time (in seconds) allowed for server to process and respond to login requests. */
     public var checkPeriod: Int
-    /** Specifies if these settings are default or not */
+    /** Specifies whether the login settings are default or not. */
     public var isDefault: Bool
 
     public init(attemptCount: Int, blockTime: Int, checkPeriod: Int, isDefault: Bool) {

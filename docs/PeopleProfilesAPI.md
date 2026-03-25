@@ -5,6 +5,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addMember**](PeopleProfilesAPI.md#addmember) | **POST** /api/2.0/people | Add a user
+[**checkUserExistsByEmail**](PeopleProfilesAPI.md#checkuserexistsbyemail) | **GET** /api/2.0/people/exists | Check if a user exists by email
 [**deleteMember**](PeopleProfilesAPI.md#deletemember) | **DELETE** /api/2.0/people/{userid} | Delete a user
 [**deleteProfile**](PeopleProfilesAPI.md#deleteprofile) | **DELETE** /api/2.0/people/@self | Delete my profile
 [**getAllProfiles**](PeopleProfilesAPI.md#getallprofiles) | **GET** /api/2.0/people | Get profiles
@@ -15,9 +16,8 @@ Method | HTTP request | Description
 [**inviteUsers**](PeopleProfilesAPI.md#inviteusers) | **POST** /api/2.0/people/invite | Invite users
 [**removeUsers**](PeopleProfilesAPI.md#removeusers) | **PUT** /api/2.0/people/delete | Delete users
 [**resendUserInvites**](PeopleProfilesAPI.md#resenduserinvites) | **PUT** /api/2.0/people/invite | Resend activation emails
-[**sendEmailChangeInstructions**](PeopleProfilesAPI.md#sendemailchangeinstructions) | **POST** /api/2.0/people/email | Send instructions to change email
 [**updateMember**](PeopleProfilesAPI.md#updatemember) | **PUT** /api/2.0/people/{userid} | Update a user
-[**updateMemberCulture**](PeopleProfilesAPI.md#updatememberculture) | **PUT** /api/2.0/people/{userid}/culture | Update a user culture code
+[**updateMemberCulture**](PeopleProfilesAPI.md#updatememberculture) | **PUT** /api/2.0/people/{userid}/culture | Update a user culture
 
 
 # **addMember**
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let memberRequestDto = MemberRequestDto(password: "password_example", passwordHash: "passwordHash_example", email: "email_example", type: EmployeeType(), isUser: true, firstName: "firstName_example", lastName: "lastName_example", department: [123], title: "title_example", location: "location_example", sex: SexEnum(), birthday: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), worksfrom: nil, comment: "comment_example", contacts: [Contact(type: "type_example", value: "value_example")], files: "files_example", fromInviteLink: true, key: "key_example", cultureName: "cultureName_example", target: 123, spam: true) // MemberRequestDto |  (optional)
+let memberRequestDto = MemberRequestDto(password: "password_example", passwordHash: "passwordHash_example", email: "email_example", type: EmployeeType(), isUser: true, firstName: "firstName_example", lastName: "lastName_example", department: [123], title: "title_example", location: "location_example", sex: SexEnum(), birthday: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), worksfrom: nil, comment: "comment_example", contacts: [Contact(type: "type_example", value: "value_example")], files: "files_example", fromInviteLink: false, key: "key_example", cultureName: "cultureName_example", target: 123, spam: false) // MemberRequestDto |  (optional)
 
 // Add a user
 PeopleProfilesAPIApi.addMember(memberRequestDto: memberRequestDto) { (response, error) in
@@ -66,6 +66,60 @@ PeopleProfilesAPIApi.addMember(memberRequestDto: memberRequestDto) { (response, 
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **checkUserExistsByEmail**
+```swift
+    open class func checkUserExistsByEmail(email: String? = nil, encemail: String? = nil, culture: String? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
+```
+
+Returns a boolean indicating whether a user with the specified email exists on the portal.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **String** | The user email address. | [optional] 
+ **encemail** | **String** | The user encrypted email address. | [optional] 
+ **culture** | **String** | Culture | [optional] 
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let email = "email_example" // String | The user email address. (optional)
+let encemail = "encemail_example" // String | The user encrypted email address. (optional)
+let culture = "culture_example" // String | Culture (optional)
+
+// Check if a user exists by email
+PeopleProfilesAPIApi.checkUserExistsByEmail(email: email, encemail: encemail, culture: culture) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -452,7 +506,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let inviteUsersRequestDto = InviteUsersRequestDto(invitations: [UserInvitationRequestDto(type: EmployeeType(), email: "email_example")], culture: "culture_example") // InviteUsersRequestDto |  (optional)
+let inviteUsersRequestDto = InviteUsersRequestDto(invitations: [UserInvitationRequestDto(email: "email_example", type: EmployeeType())], culture: "culture_example") // InviteUsersRequestDto |  (optional)
 
 // Invite users
 PeopleProfilesAPIApi.inviteUsers(inviteUsersRequestDto: inviteUsersRequestDto) { (response, error) in
@@ -502,7 +556,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: true) // UpdateMembersRequestDto |  (optional)
+let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: false) // UpdateMembersRequestDto |  (optional)
 
 // Delete users
 PeopleProfilesAPIApi.removeUsers(updateMembersRequestDto: updateMembersRequestDto) { (response, error) in
@@ -552,60 +606,10 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: true) // UpdateMembersRequestDto |  (optional)
+let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: false) // UpdateMembersRequestDto |  (optional)
 
 // Resend activation emails
 PeopleProfilesAPIApi.resendUserInvites(updateMembersRequestDto: updateMembersRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **sendEmailChangeInstructions**
-```swift
-    open class func sendEmailChangeInstructions(updateMemberRequestDto: UpdateMemberRequestDto? = nil, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
-```
-
-Sends a message to the user email with the instructions to change the email address connected to the portal.
-
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/send-email-change-instructions/).
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **updateMemberRequestDto** | [**UpdateMemberRequestDto**](UpdateMemberRequestDto.md) |  | [optional] 
-
-### Return type
-
-[**StringWrapper**](StringWrapper.md)
-
-### Authorization
-
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
-
-let updateMemberRequestDto = UpdateMemberRequestDto(userId: "userId_example", disable: true, email: "email_example", isUser: true, firstName: "firstName_example", lastName: "lastName_example", department: [123], title: "title_example", location: "location_example", sex: SexEnum(), birthday: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), worksfrom: nil, comment: "comment_example", contacts: [Contact(type: "type_example", value: "value_example")], files: "files_example", spam: true) // UpdateMemberRequestDto |  (optional)
-
-// Send instructions to change email
-PeopleProfilesAPIApi.sendEmailChangeInstructions(updateMemberRequestDto: updateMemberRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -654,7 +658,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let userid = "userid_example" // String | The user ID.
-let updateMemberRequestDto = UpdateMemberRequestDto(userId: "userId_example", disable: true, email: "email_example", isUser: true, firstName: "firstName_example", lastName: "lastName_example", department: [123], title: "title_example", location: "location_example", sex: SexEnum(), birthday: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), worksfrom: nil, comment: "comment_example", contacts: [Contact(type: "type_example", value: "value_example")], files: "files_example", spam: true) // UpdateMemberRequestDto | The request parameters for updating the user information.
+let updateMemberRequestDto = UpdateMemberRequestDto(userId: "userId_example", disable: false, email: "email_example", isUser: true, firstName: "firstName_example", lastName: "lastName_example", department: [123], title: "title_example", location: "location_example", sex: SexEnum(), birthday: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), worksfrom: nil, comment: "comment_example", contacts: [Contact(type: "type_example", value: "value_example")], files: "files_example", spam: false) // UpdateMemberRequestDto | The request parameters for updating the user information.
 
 // Update a user
 PeopleProfilesAPIApi.updateMember(userid: userid, updateMemberRequestDto: updateMemberRequestDto) { (response, error) in
@@ -681,7 +685,7 @@ PeopleProfilesAPIApi.updateMember(userid: userid, updateMemberRequestDto: update
     open class func updateMemberCulture(userid: String, culture: Culture? = nil, completion: @escaping (_ data: EmployeeFullWrapper?, _ error: Error?) -> Void)
 ```
 
-Updates the user culture code with the parameters specified in the request.
+Updates the user culture with the parameters specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/).
 
@@ -690,7 +694,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userid** | **String** | The user ID. | 
- **culture** | [**Culture**](Culture.md) | The culture code parameters. | [optional] 
+ **culture** | [**Culture**](Culture.md) | The culture name parameters. | [optional] 
 
 ### Return type
 
@@ -706,9 +710,9 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let userid = "userid_example" // String | The user ID.
-let culture = Culture(cultureName: "cultureName_example") // Culture | The culture code parameters. (optional)
+let culture = Culture(cultureName: "cultureName_example") // Culture | The culture name parameters. (optional)
 
-// Update a user culture code
+// Update a user culture
 PeopleProfilesAPIApi.updateMemberCulture(userid: userid, culture: culture) { (response, error) in
     guard error == nil else {
         print(error)

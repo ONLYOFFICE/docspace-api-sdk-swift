@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The settings for the Feedback &amp; Support menu button. */
-public struct FeedbackConfig: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FeedbackConfig: Sendable, Codable, Hashable {
 
     /** The absolute URL to the website address which will be opened when clicking the Feedback & Support menu button. */
     public var url: String?

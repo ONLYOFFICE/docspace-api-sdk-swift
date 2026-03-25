@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The progress parameters of creating a room from the template. */
-public struct RoomFromTemplateStatusDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct RoomFromTemplateStatusDto: Sendable, Codable, Hashable {
 
     /** The room ID. */
     public var roomId: Int

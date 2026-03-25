@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The parameters for creating a folder. */
-public struct CreateFolder: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CreateFolder: Sendable, Codable, Hashable {
 
     public static let titleRule = StringRule(minLength: 0, maxLength: 165, pattern: nil)
     /** The folder title to create. */

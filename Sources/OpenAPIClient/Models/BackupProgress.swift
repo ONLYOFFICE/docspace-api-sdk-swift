@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,18 +14,27 @@
 //  limitations under the License.
 import Foundation
 
-public struct BackupProgress: Sendable, Codable, ParameterConvertible, Hashable {
+/** The backup progress parameters. */
+public struct BackupProgress: Sendable, Codable, Hashable {
 
+    /** Specifies if the backup is completed or not. */
     public var isCompleted: Bool?
+    /** The backup progress in percentage. */
     public var progress: Int?
+    /** The backup error message. */
     public var error: String?
+    /** The backup warning message. */
     public var warning: String?
+    /** The backup link. */
     public var link: String?
+    /** The tenant ID. */
     public var tenantId: Int?
     public var backupProgressEnum: BackupProgressEnum?
+    public var status: DistributedTaskStatus?
+    /** The task ID. */
     public var taskId: String?
 
-    public init(isCompleted: Bool? = nil, progress: Int? = nil, error: String? = nil, warning: String? = nil, link: String? = nil, tenantId: Int? = nil, backupProgressEnum: BackupProgressEnum? = nil, taskId: String? = nil) {
+    public init(isCompleted: Bool? = nil, progress: Int? = nil, error: String? = nil, warning: String? = nil, link: String? = nil, tenantId: Int? = nil, backupProgressEnum: BackupProgressEnum? = nil, status: DistributedTaskStatus? = nil, taskId: String? = nil) {
         self.isCompleted = isCompleted
         self.progress = progress
         self.error = error
@@ -33,6 +42,7 @@ public struct BackupProgress: Sendable, Codable, ParameterConvertible, Hashable 
         self.link = link
         self.tenantId = tenantId
         self.backupProgressEnum = backupProgressEnum
+        self.status = status
         self.taskId = taskId
     }
 
@@ -44,6 +54,7 @@ public struct BackupProgress: Sendable, Codable, ParameterConvertible, Hashable 
         case link
         case tenantId
         case backupProgressEnum
+        case status
         case taskId
     }
 
@@ -58,6 +69,7 @@ public struct BackupProgress: Sendable, Codable, ParameterConvertible, Hashable 
         try container.encodeIfPresent(link, forKey: .link)
         try container.encodeIfPresent(tenantId, forKey: .tenantId)
         try container.encodeIfPresent(backupProgressEnum, forKey: .backupProgressEnum)
+        try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(taskId, forKey: .taskId)
     }
 }

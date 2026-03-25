@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,22 +14,30 @@
 //  limitations under the License.
 import Foundation
 
-public struct ChatSettings: Sendable, Codable, ParameterConvertible, Hashable {
+/** The chat settings. */
+public struct ChatSettings: Sendable, Codable, Hashable {
 
+    /** The provider ID. */
     public var providerId: Int?
+    /** The model ID. */
     public var modelId: String?
+    /** The prompt. */
     public var prompt: String?
+    /** Specifies whether the provider is internal or not. */
+    public var _internal: Bool?
 
-    public init(providerId: Int? = nil, modelId: String? = nil, prompt: String? = nil) {
+    public init(providerId: Int? = nil, modelId: String? = nil, prompt: String? = nil, _internal: Bool? = nil) {
         self.providerId = providerId
         self.modelId = modelId
         self.prompt = prompt
+        self._internal = _internal
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case providerId
         case modelId
         case prompt
+        case _internal = "internal"
     }
 
     // Encodable protocol methods
@@ -39,6 +47,7 @@ public struct ChatSettings: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(providerId, forKey: .providerId)
         try container.encodeIfPresent(modelId, forKey: .modelId)
         try container.encodeIfPresent(prompt, forKey: .prompt)
+        try container.encodeIfPresent(_internal, forKey: ._internal)
     }
 }
 

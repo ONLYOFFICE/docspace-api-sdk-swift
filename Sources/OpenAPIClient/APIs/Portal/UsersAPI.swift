@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -18,15 +18,146 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
+     Create an invitation link
+     
+     See also:
+     REST API Reference for createInvitationLink Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/create-invitation-link/
+     - parameter invitationLinkCreateRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: InvitationLinkWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func createInvitationLink(invitationLinkCreateRequestDto: InvitationLinkCreateRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> InvitationLinkWrapper {
+        return try await createInvitationLinkWithRequestBuilder(invitationLinkCreateRequestDto: invitationLinkCreateRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Create an invitation link
+     
+     See also:
+     REST API Reference for createInvitationLink Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/create-invitation-link/
+     
+     - POST /api/2.0/portal/users/invitationlink
+     - Returns an invitation link for joining the portal.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter invitationLinkCreateRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<InvitationLinkWrapper> 
+     */
+    open class func createInvitationLinkWithRequestBuilder(invitationLinkCreateRequestDto: InvitationLinkCreateRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<InvitationLinkWrapper> {
+        let localVariablePath = "/api/2.0/portal/users/invitationlink"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: invitationLinkCreateRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InvitationLinkWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Deletes an invitation link.
+     
+     See also:
+     REST API Reference for deleteInvitationLink Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-invitation-link/
+     - parameter invitationLinkDeleteRequestDto: (body) The data transfer object containing the details of the invitation link to be deleted. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: StringWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func deleteInvitationLink(invitationLinkDeleteRequestDto: InvitationLinkDeleteRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await deleteInvitationLinkWithRequestBuilder(invitationLinkDeleteRequestDto: invitationLinkDeleteRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Deletes an invitation link.
+     
+     See also:
+     REST API Reference for deleteInvitationLink Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-invitation-link/
+     
+     - DELETE /api/2.0/portal/users/invitationlink
+     - Ensures that the current user has permission to delete the specified invitation link.  Throws security or not-found exceptions if required conditions are not met.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter invitationLinkDeleteRequestDto: (body) The data transfer object containing the details of the invitation link to be deleted. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<StringWrapper> 
+     */
+    open class func deleteInvitationLinkWithRequestBuilder(invitationLinkDeleteRequestDto: InvitationLinkDeleteRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+        let localVariablePath = "/api/2.0/portal/users/invitationlink"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: invitationLinkDeleteRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
      Get an invitation link
      
      See also:
      REST API Reference for getInvitationLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link/
-     - parameter employeeType: (path) The type of employee role for the invitation link (All, RoomAdmin, Guest, DocSpaceAdmin, User). 
+     - parameter employeeType: (path) The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User). 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
     open class func getInvitationLink(employeeType: EmployeeType, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
         return try await getInvitationLinkWithRequestBuilder(employeeType: employeeType, apiConfiguration: apiConfiguration).execute().body
@@ -59,10 +190,11 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
-     - parameter employeeType: (path) The type of employee role for the invitation link (All, RoomAdmin, Guest, DocSpaceAdmin, User). 
+     - parameter employeeType: (path) The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User). 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func getInvitationLinkWithRequestBuilder(employeeType: EmployeeType, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         var localVariablePath = "/api/2.0/portal/users/invite/{employeeType}"
         let employeeTypePreEscape = "\(APIHelper.mapValueToPathItem(employeeType))"
@@ -81,6 +213,74 @@ open class {{{{x-classname}}}} {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Get an invitation link
+     
+     See also:
+     REST API Reference for getInvitationLinkByEmployeeType Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link-by-employee-type/
+     - parameter employeeType: (path) The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User). 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: InvitationLinkWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func getInvitationLinkByEmployeeType(employeeType: EmployeeType, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> InvitationLinkWrapper {
+        return try await getInvitationLinkByEmployeeTypeWithRequestBuilder(employeeType: employeeType, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get an invitation link
+     
+     See also:
+     REST API Reference for getInvitationLinkByEmployeeType Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-invitation-link-by-employee-type/
+     
+     - GET /api/2.0/portal/users/invitationlink/{employeeType}
+     - Returns an invitation link for joining the portal.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter employeeType: (path) The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User). 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<InvitationLinkWrapper> 
+     */
+    open class func getInvitationLinkByEmployeeTypeWithRequestBuilder(employeeType: EmployeeType, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<InvitationLinkWrapper> {
+        var localVariablePath = "/api/2.0/portal/users/invitationlink/{employeeType}"
+        let employeeTypePreEscape = "\(APIHelper.mapValueToPathItem(employeeType))"
+        let employeeTypePostEscape = employeeTypePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{employeeType}", with: employeeTypePostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InvitationLinkWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -331,5 +531,70 @@ open class {{{{x-classname}}}} {
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Update an invitation link
+     
+     See also:
+     REST API Reference for updateInvitationLink Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/update-invitation-link/
+     - parameter invitationLinkUpdateRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: InvitationLinkWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func updateInvitationLink(invitationLinkUpdateRequestDto: InvitationLinkUpdateRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> InvitationLinkWrapper {
+        return try await updateInvitationLinkWithRequestBuilder(invitationLinkUpdateRequestDto: invitationLinkUpdateRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Update an invitation link
+     
+     See also:
+     REST API Reference for updateInvitationLink Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/update-invitation-link/
+     
+     - PUT /api/2.0/portal/users/invitationlink
+     - Returns an invitation link for joining the portal.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter invitationLinkUpdateRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<InvitationLinkWrapper> 
+     */
+    open class func updateInvitationLinkWithRequestBuilder(invitationLinkUpdateRequestDto: InvitationLinkUpdateRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<InvitationLinkWrapper> {
+        let localVariablePath = "/api/2.0/portal/users/invitationlink"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: invitationLinkUpdateRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<InvitationLinkWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

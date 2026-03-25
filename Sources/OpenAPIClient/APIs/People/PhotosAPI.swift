@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -297,13 +297,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for uploadMemberPhoto Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-member-photo/
-     - parameter userid: (path) The user ID.      - parameter formCollection: (form) The image data. 
+     - parameter userid: (path) The user ID.      - parameter file: (form) The image data.      - parameter autosave: (form)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileUploadResultWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func uploadMemberPhoto(userid: String, formCollection: [KeyValuePairStringStringValues], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileUploadResultWrapper {
-        return try await uploadMemberPhotoWithRequestBuilder(userid: userid, formCollection: formCollection, apiConfiguration: apiConfiguration).execute().body
+    open class func uploadMemberPhoto(userid: String, file: URL, autosave: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileUploadResultWrapper {
+        return try await uploadMemberPhotoWithRequestBuilder(userid: userid, file: file, autosave: autosave, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -334,18 +334,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - parameter userid: (path) The user ID. 
-     - parameter formCollection: (form) The image data. 
+     - parameter file: (form) The image data. 
+     - parameter autosave: (form)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileUploadResultWrapper> 
      */
-    open class func uploadMemberPhotoWithRequestBuilder(userid: String, formCollection: [KeyValuePairStringStringValues], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileUploadResultWrapper> {
+    open class func uploadMemberPhotoWithRequestBuilder(userid: String, file: URL, autosave: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileUploadResultWrapper> {
         var localVariablePath = "/api/2.0/people/{userid}/photo"
         let useridPreEscape = "\(APIHelper.mapValueToPathItem(userid))"
         let useridPostEscape = useridPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{userid}", with: useridPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "formCollection": formCollection.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "File": file.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "Autosave": autosave?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)

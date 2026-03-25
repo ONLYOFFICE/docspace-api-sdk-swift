@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
 import Foundation
 
 /** The request parameters to change the room cover. */
-public struct CoverRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CoverRequestDto: Sendable, Codable, Hashable {
 
+    public static let colorRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/")
     /** The cover color. */
     public var color: String?
     /** The cover name. */

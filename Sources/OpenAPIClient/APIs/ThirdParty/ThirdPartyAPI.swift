@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-third-party-code/
      
      - GET /api/2.0/thirdparty/{provider}
-     - Returns a request to get the confirmation code from URL.   **Note**: List of providers: Google, Dropbox, Docusign, Box, OneDrive, Wordpress.
+     - Returns a request to get the confirmation code from URL.
      - BASIC:
        - type: http
        - name: Basic

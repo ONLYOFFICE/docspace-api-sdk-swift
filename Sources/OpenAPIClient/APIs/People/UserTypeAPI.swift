@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -89,23 +89,23 @@ open class {{{{x-classname}}}} {
      Start updating user type
      
      See also:
-     REST API Reference for starUserTypetUpdate Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/star-user-typet-update/
+     REST API Reference for startUserTypeUpdate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/start-user-type-update/
      - parameter startUpdateUserTypeDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: TaskProgressResponseWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func starUserTypetUpdate(startUpdateUserTypeDto: StartUpdateUserTypeDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TaskProgressResponseWrapper {
-        return try await starUserTypetUpdateWithRequestBuilder(startUpdateUserTypeDto: startUpdateUserTypeDto, apiConfiguration: apiConfiguration).execute().body
+    open class func startUserTypeUpdate(startUpdateUserTypeDto: StartUpdateUserTypeDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TaskProgressResponseWrapper {
+        return try await startUserTypeUpdateWithRequestBuilder(startUpdateUserTypeDto: startUpdateUserTypeDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      Start updating user type
      
      See also:
-     REST API Reference for starUserTypetUpdate Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/star-user-typet-update/
+     REST API Reference for startUserTypeUpdate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/start-user-type-update/
      
      - POST /api/2.0/people/type
      - Starts updating the type of the user or guest when reassigning rooms and shared files.
@@ -131,7 +131,7 @@ open class {{{{x-classname}}}} {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TaskProgressResponseWrapper> 
      */
-    open class func starUserTypetUpdateWithRequestBuilder(startUpdateUserTypeDto: StartUpdateUserTypeDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TaskProgressResponseWrapper> {
+    open class func startUserTypeUpdateWithRequestBuilder(startUpdateUserTypeDto: StartUpdateUserTypeDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TaskProgressResponseWrapper> {
         let localVariablePath = "/api/2.0/people/type"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: startUpdateUserTypeDto, codableHelper: apiConfiguration.codableHelper)

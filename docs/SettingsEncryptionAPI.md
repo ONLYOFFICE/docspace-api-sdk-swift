@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **getStorageEncryptionProgress**
 ```swift
-    open class func getStorageEncryptionProgress(completion: @escaping (_ data: DoubleWrapper?, _ error: Error?) -> Void)
+    open class func getStorageEncryptionProgress(completion: @escaping (_ data: DoubleNullableWrapper?, _ error: Error?) -> Void)
 ```
 
 Returns the storage encryption progress.
@@ -23,7 +23,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**DoubleWrapper**](DoubleWrapper.md)
+[**DoubleNullableWrapper**](DoubleNullableWrapper.md)
 
 ### Authorization
 

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,11 +15,12 @@
 import Foundation
 
 /** The request parameters for updating the webhook configuration. */
-public struct UpdateWebhooksConfigRequestsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct UpdateWebhooksConfigRequestsDto: Sendable, Codable, Hashable {
 
     public static let nameRule = StringRule(minLength: 0, maxLength: 50, pattern: nil)
     public static let uriRule = StringRule(minLength: 1, maxLength: nil, pattern: nil)
     public static let secretKeyRule = StringRule(minLength: 0, maxLength: 50, pattern: nil)
+    public static let targetIdRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** The human-readable name of the webhook configuration. */
     public var name: String
     /** The destination URL where the webhook events will be sent. */

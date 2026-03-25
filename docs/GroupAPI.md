@@ -174,7 +174,7 @@ GroupAPIApi.deleteGroup(id: id) { (response, error) in
     open class func getGroup(id: UUID, includeMembers: Bool? = nil, completion: @escaping (_ data: GroupWrapper?, _ error: Error?) -> Void)
 ```
 
-Returns the detailed information about the selected group.   **Note**: This method returns full group information.
+Returns the detailed information about the selected group.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group/).
 
@@ -276,7 +276,7 @@ GroupAPIApi.getGroupByUserId(userid: userid) { (response, error) in
     open class func getGroups(userId: UUID? = nil, manager: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-Returns the general information about all the groups, such as group ID and group manager.   **Note**: This method returns partial group information.
+Returns the general information about all the groups, such as group ID and group manager.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/).
 
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let userId = 987 // UUID | The user ID. (optional)
-let manager = true // Bool | Specifies if the user is a manager or not. (optional)
+let manager = false // Bool | Specifies if the user is a manager or not. (optional)
 let count = 987 // Int | The number of records to retrieve. (optional)
 let startIndex = 987 // Int | The starting index for paginated results. (optional)
 let sortBy = "sortBy_example" // String | Specifies the property used to sort the query results. (optional)

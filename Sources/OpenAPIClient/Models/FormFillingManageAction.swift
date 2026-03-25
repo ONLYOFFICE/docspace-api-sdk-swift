@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Stop, 1 - Resume] */
+/** [0 - Stop, 1 - Resume, 2 - Start, 3 - Edit] */
 public enum FormFillingManageAction: Int, Sendable, Codable, CaseIterable {
     case Stop = 0
     case Resume = 1
+    case Start = 2
+    case Edit = 3
 }

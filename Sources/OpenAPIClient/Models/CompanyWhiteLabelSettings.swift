@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The company white label settings. */
-public struct CompanyWhiteLabelSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CompanyWhiteLabelSettings: Sendable, Codable, Hashable {
 
     public static let companyNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let siteRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
@@ -36,6 +36,7 @@ public struct CompanyWhiteLabelSettings: Sendable, Codable, ParameterConvertible
     public var isLicensor: Bool?
     /** Specifies if the About page is visible or not */
     public var hideAbout: Bool?
+    /** The timestamp indicating when the settings were last modified. */
     public var lastModified: Date?
 
     public init(companyName: String? = nil, site: String? = nil, email: String? = nil, address: String? = nil, phone: String? = nil, isLicensor: Bool? = nil, hideAbout: Bool? = nil, lastModified: Date? = nil) {

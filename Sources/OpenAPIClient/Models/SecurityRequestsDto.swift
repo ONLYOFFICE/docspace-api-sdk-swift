@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for managing user security and access permissions. */
-public struct SecurityRequestsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct SecurityRequestsDto: Sendable, Codable, Hashable {
 
     /** The product ID for which permissions are being set. */
     public var productId: UUID

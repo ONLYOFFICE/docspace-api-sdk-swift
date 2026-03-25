@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The external sharing information and validation data. */
-public struct ExternalShareDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct ExternalShareDto: Sendable, Codable, Hashable {
 
     public var status: Status
     /** The external data ID. */
@@ -41,7 +41,7 @@ public struct ExternalShareDto: Sendable, Codable, ParameterConvertible, Hashabl
     /** The room ID of the external data. */
     public var isRoomMember: Bool?
 
-    public init(status: Status, id: String?, title: String?, type: FileEntryType? = nil, tenantId: Int, entityId: String? = nil, entityTitle: String? = nil, entityType: FileEntryType? = nil, isRoom: Bool? = nil, shared: Bool, linkId: UUID, isAuthenticated: Bool, isRoomMember: Bool? = nil) {
+    public init(status: Status, id: String? = nil, title: String? = nil, type: FileEntryType? = nil, tenantId: Int, entityId: String? = nil, entityTitle: String? = nil, entityType: FileEntryType? = nil, isRoom: Bool? = nil, shared: Bool, linkId: UUID, isAuthenticated: Bool, isRoomMember: Bool? = nil) {
         self.status = status
         self.id = id
         self.title = title
@@ -78,8 +78,8 @@ public struct ExternalShareDto: Sendable, Codable, ParameterConvertible, Hashabl
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(status, forKey: .status)
-        try container.encode(id, forKey: .id)
-        try container.encode(title, forKey: .title)
+        try container.encodeIfPresent(id, forKey: .id)
+        try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(type, forKey: .type)
         try container.encode(tenantId, forKey: .tenantId)
         try container.encodeIfPresent(entityId, forKey: .entityId)

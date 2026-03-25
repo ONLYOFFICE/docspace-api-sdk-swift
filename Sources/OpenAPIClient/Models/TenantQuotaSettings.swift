@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The tenant quota settings. */
-public struct TenantQuotaSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantQuotaSettings: Sendable, Codable, Hashable {
 
     /** Specifies if the tenant quota is enabled or not. */
     public var enableQuota: Bool?
@@ -23,6 +23,7 @@ public struct TenantQuotaSettings: Sendable, Codable, ParameterConvertible, Hash
     public var quota: Int64?
     /** The date of the last tenant quota recalculation. */
     public var lastRecalculateDate: Date?
+    /** The timestamp indicating when the settings were last modified. */
     public var lastModified: Date?
 
     public init(enableQuota: Bool? = nil, quota: Int64? = nil, lastRecalculateDate: Date? = nil, lastModified: Date? = nil) {

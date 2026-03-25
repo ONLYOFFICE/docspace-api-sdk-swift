@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**lastModified** | **Date** |  | [optional] 
+**lastModified** | **Date** | The timestamp indicating when the settings were last modified. | [optional] 
 **enableSso** | **Bool** | Specifies if the SSO settings are enabled or not. | [optional] 
 **idpSettings** | [**SsoIdpSettings**](SsoIdpSettings.md) |  | [optional] 
 **idpCertificates** | [SsoCertificate] | The list of the IdP certificates. | [optional] 

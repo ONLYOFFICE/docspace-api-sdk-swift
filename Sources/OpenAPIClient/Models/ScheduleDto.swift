@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,13 +14,18 @@
 //  limitations under the License.
 import Foundation
 
-public struct ScheduleDto: Sendable, Codable, ParameterConvertible, Hashable {
+/** The backup schedule parameters. */
+public struct ScheduleDto: Sendable, Codable, Hashable {
 
     public var storageType: BackupStorageType
+    /** The backup storage parameters. */
     public var storageParams: [String: String]?
     public var cronParams: CronParams
+    /** The maximum number of the stored backup copies. */
     public var backupsStored: Int?
+    /** The date and time when the last backup was reated. */
     public var lastBackupTime: Date
+    /** Specifies if a dump will be created or not. */
     public var dump: Bool
 
     public init(storageType: BackupStorageType, storageParams: [String: String]?, cronParams: CronParams, backupsStored: Int? = nil, lastBackupTime: Date, dump: Bool) {

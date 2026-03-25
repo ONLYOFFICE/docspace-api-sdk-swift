@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for creating a room. */
-public struct CreateRoomRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CreateRoomRequestDto: Sendable, Codable, Hashable {
 
     public static let titleRule = StringRule(minLength: 0, maxLength: 170, pattern: nil)
     public static let colorRule = StringRule(minLength: 0, maxLength: 6, pattern: nil)

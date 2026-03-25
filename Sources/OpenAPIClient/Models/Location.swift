@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 //  limitations under the License.
 import Foundation
 
-/** The location context of the request. */
+/** [1 - Room, 2 - Documents, 3 - Link] */
 public enum Location: Int, Sendable, Codable, CaseIterable {
-    case _1 = 1
-    case _2 = 2
-    case _3 = 3
+    case Room = 1
+    case Documents = 2
+    case Link = 3
 }

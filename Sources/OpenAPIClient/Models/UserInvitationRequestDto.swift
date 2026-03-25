@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,28 +15,29 @@
 import Foundation
 
 /** The user invitation parameters. */
-public struct UserInvitationRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct UserInvitationRequestDto: Sendable, Codable, Hashable {
 
-    public var type: EmployeeType?
-    /** The user email address. */
+    public static let emailRule = StringRule(minLength: nil, maxLength: 255, pattern: nil)
+    /** The email address. */
     public var email: String?
+    public var type: EmployeeType?
 
-    public init(type: EmployeeType? = nil, email: String? = nil) {
-        self.type = type
+    public init(email: String? = nil, type: EmployeeType? = nil) {
         self.email = email
+        self.type = type
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case type
         case email
+        case type
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(type, forKey: .type)
         try container.encodeIfPresent(email, forKey: .email)
+        try container.encodeIfPresent(type, forKey: .type)
     }
 }
 

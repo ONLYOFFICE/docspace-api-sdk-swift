@@ -177,7 +177,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let smtpSettingsDto = SmtpSettingsDto(host: "host_example", port: 123, senderAddress: "senderAddress_example", senderDisplayName: "senderDisplayName_example", credentialsUserName: "credentialsUserName_example", credentialsUserPassword: "credentialsUserPassword_example", enableSSL: false, enableAuth: true, useNtlm: false, isDefaultSettings: false) // SmtpSettingsDto |  (optional)
+let smtpSettingsDto = SmtpSettingsDto(host: "host_example", port: 123, senderAddress: "senderAddress_example", senderDisplayName: "senderDisplayName_example", credentialsUserName: "credentialsUserName_example", credentialsUserPassword: "credentialsUserPassword_example", enableSSL: true, enableAuth: true, useNtlm: true, isDefaultSettings: true) // SmtpSettingsDto |  (optional)
 
 // Save the SMTP settings
 SecuritySMTPSettingsAPIApi.saveSmtpSettings(smtpSettingsDto: smtpSettingsDto) { (response, error) in

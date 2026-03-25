@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,9 +15,11 @@
 import Foundation
 
 /** The forms item information. */
-public struct FormsItemDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FormsItemDto: Sendable, Codable, Hashable {
 
+    /** The form item key.              <example>field_name</example> */
     public var key: String?
+    /** The form item type.              <example>text</example> */
     public var type: String?
 
     public init(key: String? = nil, type: String? = nil) {

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -704,8 +704,8 @@ var fields: String?
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "fromDate": (wrappedValue: fromDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "toDate": (wrappedValue: toDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "fromDate": (wrappedValue: fromDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "toDate": (wrappedValue: toDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
@@ -962,98 +962,6 @@ var fields: String?
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
-    }
-
-    /**
-     Get the Recent section
-     
-     See also:
-     REST API Reference for getFolderRecent Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-recent/
-     - parameter userIdOrGroupId: (query) The user or group ID. (optional)     - parameter filterType: (query) The filter type. (optional)     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)     - parameter applyFilterOption: (query) Specifies whether to return only files, only folders or all elements. (optional)     - parameter searchArea: (query) The search area. (optional)     - parameter _extension: (query) Specifies whether to search for a specific file extension in the Recent folder. (optional)     - parameter count: (query) The maximum number of items to return. (optional)     - parameter startIndex: (query) The starting position of the results to be returned in the query response. (optional)     - parameter sortBy: (query) Specifies the sorting criteria for the folder request. (optional)     - parameter sortOrder: (query) The order in which the results are sorted. (optional)     - parameter filterValue: (query) The text used for filtering or searching folder contents. (optional)
-     - parameter apiConfiguration: The configuration for the http request.
-     - returns: FolderContentIntegerWrapper
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getFolderRecent(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentIntegerWrapper {
-        return try await getFolderRecentWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, searchArea: searchArea, _extension: _extension, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
-    }
-
-    /**
-     Get the Recent section
-     
-     See also:
-     REST API Reference for getFolderRecent Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-recent/
-     
-     - GET /api/2.0/files/recent
-     - Returns the detailed list of files located in the Recent section.
-     - BASIC:
-       - type: http
-       - name: Basic
-     - OAuth:
-       - type: oauth2
-       - name: OAuth2
-     - API Key:
-       - type: apiKey ApiKeyBearer (HEADER)
-       - name: ApiKeyBearer
-     - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - Bearer Token:
-       - type: http
-       - name: Bearer
-     - :
-       - type: openIdConnect
-       - name: OpenId
-     - parameter userIdOrGroupId: (query) The user or group ID. (optional)
-     - parameter filterType: (query) The filter type. (optional)
-     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)
-     - parameter applyFilterOption: (query) Specifies whether to return only files, only folders or all elements. (optional)
-     - parameter searchArea: (query) The search area. (optional)
-     - parameter _extension: (query) Specifies whether to search for a specific file extension in the Recent folder. (optional)
-     - parameter count: (query) The maximum number of items to return. (optional)
-     - parameter startIndex: (query) The starting position of the results to be returned in the query response. (optional)
-     - parameter sortBy: (query) Specifies the sorting criteria for the folder request. (optional)
-     - parameter sortOrder: (query) The order in which the results are sorted. (optional)
-     - parameter filterValue: (query) The text used for filtering or searching folder contents. (optional)
-     - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<FolderContentIntegerWrapper> 
-     */
-    open class func getFolderRecentWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
-        let localVariablePath = "/api/2.0/files/recent"
-        let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters: [String: any Sendable]? = nil
-
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "excludeSubject": (wrappedValue: excludeSubject?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "applyFilterOption": (wrappedValue: applyFilterOption?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "searchArea": (wrappedValue: searchArea?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "extension": (wrappedValue: _extension?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
-            "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
-
-        let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
-        ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<FolderContentIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1384,7 +1292,7 @@ var fields: String?
      REST API Reference for getRecentFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/
      
-     - GET /api/2.0/files/@recent
+     - GET /api/2.0/files/recent
      - Returns the detailed list of files located in the Recent section.
      - BASIC:
        - type: http
@@ -1419,7 +1327,7 @@ var fields: String?
      - returns: RequestBuilder<FolderContentIntegerWrapper> 
      */
     open class func getRecentFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
-        let localVariablePath = "/api/2.0/files/@recent"
+        let localVariablePath = "/api/2.0/files/recent"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
@@ -1430,7 +1338,7 @@ var fields: String?
             "excludeSubject": (wrappedValue: excludeSubject?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "applyFilterOption": (wrappedValue: applyFilterOption?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "searchArea": (wrappedValue: searchArea?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "extension": (wrappedValue: _extension?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "extension": (wrappedValue: _extension?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -2044,7 +1952,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/
      
      - POST /api/2.0/files/{folderId}/upload
-     - Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+     - Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.
      - BASIC:
        - type: http
        - name: Basic
@@ -2113,7 +2021,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/
      
      - POST /api/2.0/files/@my/upload
-     - Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.   **Note**:  You can upload files in two different ways:   <ol>  <li>Using single file upload. You should set the Content-Type and Content-Disposition headers to specify a file name and content type, and send the file to the request body.</li>  <li>Using standart multipart/form-data method.</li>  </ol>
+     - Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.
      - BASIC:
        - type: http
        - name: Basic
@@ -2143,7 +2051,7 @@ var fields: String?
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "inDto": (wrappedValue: inDto?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "inDto": (wrappedValue: inDto?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
         ])
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [

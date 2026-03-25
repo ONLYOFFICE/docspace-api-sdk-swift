@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The result of checking whether files can be moved or copied to the specified folder. */
-public struct CheckDestFolderDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CheckDestFolderDto: Sendable, Codable, Hashable {
 
     public var result: CheckDestFolderResult?
     /** The list of files in the destination folder. */

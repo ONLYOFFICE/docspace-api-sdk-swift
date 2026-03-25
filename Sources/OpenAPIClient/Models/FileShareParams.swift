@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,23 +15,24 @@
 import Foundation
 
 /** The collection of file sharing parameters. */
-public struct FileShareParams: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FileShareParams: Sendable, Codable, Hashable {
 
+    public static let emailRule = StringRule(minLength: nil, maxLength: 255, pattern: nil)
+    /** The email address. */
+    public var email: String?
     /** The ID of the user to whom the file will be shared. */
     public var shareTo: UUID?
-    /** The user email address. */
-    public var email: String?
     public var access: FileShare?
 
-    public init(shareTo: UUID? = nil, email: String? = nil, access: FileShare? = nil) {
-        self.shareTo = shareTo
+    public init(email: String? = nil, shareTo: UUID? = nil, access: FileShare? = nil) {
         self.email = email
+        self.shareTo = shareTo
         self.access = access
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case shareTo
         case email
+        case shareTo
         case access
     }
 
@@ -39,8 +40,8 @@ public struct FileShareParams: Sendable, Codable, ParameterConvertible, Hashable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(shareTo, forKey: .shareTo)
         try container.encodeIfPresent(email, forKey: .email)
+        try container.encodeIfPresent(shareTo, forKey: .shareTo)
         try container.encodeIfPresent(access, forKey: .access)
     }
 }

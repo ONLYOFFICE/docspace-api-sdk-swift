@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,12 +15,13 @@
 import Foundation
 
 /** The tenant audit settings parameters. */
-public struct TenantAuditSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantAuditSettings: Sendable, Codable, Hashable {
 
     /** The login history lifetime. */
     public var loginHistoryLifeTime: Int?
     /** The audit trail lifetime. */
     public var auditTrailLifeTime: Int?
+    /** The timestamp indicating when the settings were last modified. */
     public var lastModified: Date?
 
     public init(loginHistoryLifeTime: Int? = nil, auditTrailLifeTime: Int? = nil, lastModified: Date? = nil) {

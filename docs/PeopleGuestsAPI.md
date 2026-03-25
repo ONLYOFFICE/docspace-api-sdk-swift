@@ -86,7 +86,7 @@ Void (empty response body)
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: true) // UpdateMembersRequestDto |  (optional)
+let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: false) // UpdateMembersRequestDto |  (optional)
 
 // Delete guests
 PeopleGuestsAPIApi.deleteGuests(updateMembersRequestDto: updateMembersRequestDto) { (response, error) in

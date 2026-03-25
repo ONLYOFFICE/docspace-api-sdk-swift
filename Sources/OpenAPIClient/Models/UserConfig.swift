@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The configuration parameters of the user currently viewing or editing the document. */
-public struct UserConfig: Sendable, Codable, ParameterConvertible, Hashable {
+public struct UserConfig: Sendable, Codable, Hashable {
 
     /** The user ID. */
     public var id: String?
@@ -25,6 +25,7 @@ public struct UserConfig: Sendable, Codable, ParameterConvertible, Hashable {
     public var image: String?
     /** Roles */
     public var roles: [String]?
+    /** Customer identifier associated with the user. */
     public var customerId: String?
 
     public init(id: String? = nil, name: String? = nil, image: String? = nil, roles: [String]? = nil, customerId: String? = nil) {

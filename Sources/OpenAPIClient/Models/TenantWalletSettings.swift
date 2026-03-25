@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The tenant wallet settings. */
-public struct TenantWalletSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantWalletSettings: Sendable, Codable, Hashable {
 
     public static let minBalanceRule = NumericRule<Int>(minimum: 5, exclusiveMinimum: false, maximum: 1000, exclusiveMaximum: false, multipleOf: nil)
     public static let upToBalanceRule = NumericRule<Int>(minimum: 6, exclusiveMinimum: false, maximum: 5000, exclusiveMaximum: false, multipleOf: nil)

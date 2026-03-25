@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The room template parameters. */
-public struct RoomTemplateDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct RoomTemplateDto: Sendable, Codable, Hashable {
 
     public static let colorRule = StringRule(minLength: 0, maxLength: 6, pattern: nil)
     public static let coverRule = StringRule(minLength: 0, maxLength: 50, pattern: nil)

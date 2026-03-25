@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -220,10 +220,10 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhook-triggers/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: UnknownWrapper
+     - returns: GetWebhookTriggers200Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getWebhookTriggers(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UnknownWrapper {
+    open class func getWebhookTriggers(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GetWebhookTriggers200Response {
         return try await getWebhookTriggersWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -255,9 +255,9 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<UnknownWrapper> 
+     - returns: RequestBuilder<GetWebhookTriggers200Response> 
      */
-    open class func getWebhookTriggersWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<UnknownWrapper> {
+    open class func getWebhookTriggersWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<GetWebhookTriggers200Response> {
         let localVariablePath = "/api/2.0/settings/webhook/triggers"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -271,7 +271,7 @@ var fields: String?
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UnknownWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GetWebhookTriggers200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

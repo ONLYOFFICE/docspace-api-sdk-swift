@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The parameters for checking file conversion. */
-public struct CheckConversionRequestDtoInteger: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CheckConversionRequestDtoInteger: Sendable, Codable, Hashable {
 
     /** The file ID to check conversion proccess. */
     public var fileId: Int?

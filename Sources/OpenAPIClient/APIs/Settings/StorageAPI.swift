@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getAllBackupStorages Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-backup-storages/
-     - parameter dump: (query)  (optional)
+     - parameter dump: (query) Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StorageArrayWrapper
      */
@@ -59,7 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
-     - parameter dump: (query)  (optional)
+     - parameter dump: (query) Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StorageArrayWrapper> 
      */

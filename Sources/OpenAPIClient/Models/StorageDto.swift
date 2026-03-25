@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The storage information. */
-public struct StorageDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct StorageDto: Sendable, Codable, Hashable {
 
     /** The storage ID. */
     public var id: String?

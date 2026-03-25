@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The web plugin information. */
-public struct WebPluginDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct WebPluginDto: Sendable, Codable, Hashable {
 
     /** The web plugin name. */
     public var name: String?
@@ -46,10 +46,16 @@ public struct WebPluginDto: Sendable, Codable, ParameterConvertible, Hashable {
     public var system: Bool
     /** The web plugin URL. */
     public var url: String?
+    /** The web plugin css URL. */
+    public var cssUrl: String?
     /** The web plugin settings. */
     public var settings: String?
+    /** The web plugin localized name. */
+    public var nameLocale: [String: String]?
+    /** The web plugin localized description. */
+    public var descriptionLocale: [String: String]?
 
-    public init(name: String?, version: String?, minDocSpaceVersion: String? = nil, description: String?, license: String?, author: String?, homePage: String?, pluginName: String?, scopes: String?, image: String?, createBy: EmployeeDto, createOn: Date, enabled: Bool, system: Bool, url: String?, settings: String?) {
+    public init(name: String?, version: String?, minDocSpaceVersion: String? = nil, description: String?, license: String?, author: String?, homePage: String?, pluginName: String?, scopes: String?, image: String?, createBy: EmployeeDto, createOn: Date, enabled: Bool, system: Bool, url: String?, cssUrl: String?, settings: String?, nameLocale: [String: String]? = nil, descriptionLocale: [String: String]? = nil) {
         self.name = name
         self.version = version
         self.minDocSpaceVersion = minDocSpaceVersion
@@ -65,7 +71,10 @@ public struct WebPluginDto: Sendable, Codable, ParameterConvertible, Hashable {
         self.enabled = enabled
         self.system = system
         self.url = url
+        self.cssUrl = cssUrl
         self.settings = settings
+        self.nameLocale = nameLocale
+        self.descriptionLocale = descriptionLocale
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -84,7 +93,10 @@ public struct WebPluginDto: Sendable, Codable, ParameterConvertible, Hashable {
         case enabled
         case system
         case url
+        case cssUrl
         case settings
+        case nameLocale
+        case descriptionLocale
     }
 
     // Encodable protocol methods
@@ -106,7 +118,10 @@ public struct WebPluginDto: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encode(enabled, forKey: .enabled)
         try container.encode(system, forKey: .system)
         try container.encode(url, forKey: .url)
+        try container.encode(cssUrl, forKey: .cssUrl)
         try container.encode(settings, forKey: .settings)
+        try container.encodeIfPresent(nameLocale, forKey: .nameLocale)
+        try container.encodeIfPresent(descriptionLocale, forKey: .descriptionLocale)
     }
 }
 

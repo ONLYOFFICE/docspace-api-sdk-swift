@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | [**Status**](Status.md) |  | 
-**id** | **String** | The external data ID. | 
-**title** | **String** | The external data title. | 
+**id** | **String** | The external data ID. | [optional] 
+**title** | **String** | The external data title. | [optional] 
 **type** | [**FileEntryType**](FileEntryType.md) |  | [optional] 
 **tenantId** | **Int** | The tenant ID. | 
 **entityId** | **String** | The unique identifier of the shared entity. | [optional] 

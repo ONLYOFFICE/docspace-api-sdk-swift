@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **priceISOCurrencySymbol** | **String** | The tenant price three-character ISO 4217 currency symbol. | [optional] 
 **productId** | **String** | The tenant product ID. | [optional] 
 **serviceName** | **String** | The service name. | [optional] 
+**serviceGroup** | **String** | The service group. | [optional] 
 **visible** | **Bool** | Specifies if the tenant quota is visible or not. | [optional] 
 **wallet** | **Bool** | Specifies if the tenant quota applies to the wallet or not | [optional] 
 **dueDate** | **Date** | The quota due date. | [optional] 
@@ -32,6 +33,7 @@ Name | Type | Description | Notes
 **branding** | **Bool** | Specifies if the branding settings are available or not. | [optional] 
 **customization** | **Bool** | Specifies if the customization settings are available or not. | [optional] 
 **lifetime** | **Bool** | Specifies if the license has the lifetime settings or not. | [optional] 
+**automationApi** | **Bool** | Specifies if the Automation API is available or not. | [optional] 
 **custom** | **Bool** | Specifies if the custom domain URL is available or not. | [optional] 
 **restore** | **Bool** | Specifies if the restore is enabled or not. | [optional] 
 **oauth** | **Bool** | Specifies if Oauth is available or not. | [optional] 
@@ -39,8 +41,9 @@ Name | Type | Description | Notes
 **thirdParty** | **Bool** | Specifies if the third-party accounts linking is available or not. | [optional] 
 **year** | **Bool** | Specifies if the tenant quota is yearly subscription or not. | [optional] 
 **countFreeBackup** | **Int** | The number of free backups within a month. | [optional] 
-**backup** | **Bool** | Specifies if the backup anabled as a wallet service or not. | [optional] 
+**backup** | **Bool** | Specifies if the backup enabled as a wallet service or not. | [optional] 
 **countAIAgent** | **Int** | The number of AI agents. | [optional] 
+**aiTools** | **Bool** | Specifies if the AI tools enabled as a wallet service or not. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

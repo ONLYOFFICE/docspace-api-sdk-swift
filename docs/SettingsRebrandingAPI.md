@@ -689,7 +689,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let companyWhiteLabelSettingsWrapper = CompanyWhiteLabelSettingsWrapper(settings: CompanyWhiteLabelSettings(companyName: "companyName_example", site: "site_example", email: "email_example", address: "address_example", phone: "phone_example", isLicensor: true, hideAbout: true, lastModified: Date())) // CompanyWhiteLabelSettingsWrapper |  (optional)
+let companyWhiteLabelSettingsWrapper = CompanyWhiteLabelSettingsWrapper(settings: CompanyWhiteLabelSettings(companyName: "companyName_example", site: "site_example", email: "email_example", address: "address_example", phone: "phone_example", isLicensor: true, hideAbout: false, lastModified: Date())) // CompanyWhiteLabelSettingsWrapper |  (optional)
 
 // Save the company white label settings
 SettingsRebrandingAPIApi.saveCompanyWhiteLabelSettings(companyWhiteLabelSettingsWrapper: companyWhiteLabelSettingsWrapper) { (response, error) in

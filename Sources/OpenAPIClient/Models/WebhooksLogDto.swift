@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The webhook log parameters. */
-public struct WebhooksLogDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct WebhooksLogDto: Sendable, Codable, Hashable {
 
     /** The webhook log ID. */
     public var id: Int

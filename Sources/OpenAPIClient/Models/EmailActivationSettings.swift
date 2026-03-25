@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,10 +15,11 @@
 import Foundation
 
 /** The email activation settings. */
-public struct EmailActivationSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct EmailActivationSettings: Sendable, Codable, Hashable {
 
     /** Specifies whether the email activation settings are shown or hidden. */
     public var show: Bool?
+    /** The timestamp indicating when the settings were last modified. */
     public var lastModified: Date?
 
     public init(show: Bool? = nil, lastModified: Date? = nil) {

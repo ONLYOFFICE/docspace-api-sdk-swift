@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The parameters for ordering requests. */
-public struct OrderRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct OrderRequestDto: Sendable, Codable, Hashable {
 
     public static let orderRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 2147483647, exclusiveMaximum: false, multipleOf: nil)
     /** The order value. */

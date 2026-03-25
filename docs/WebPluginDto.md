@@ -18,7 +18,10 @@ Name | Type | Description | Notes
 **enabled** | **Bool** | Specifies if the web plugin is enabled or not. | 
 **system** | **Bool** | Specifies if the web plugin is system or not. | 
 **url** | **String** | The web plugin URL. | 
+**cssUrl** | **String** | The web plugin css URL. | 
 **settings** | **String** | The web plugin settings. | 
+**nameLocale** | **[String: String]** | The web plugin localized name. | [optional] 
+**descriptionLocale** | **[String: String]** | The web plugin localized description. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

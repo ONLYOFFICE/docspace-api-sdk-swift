@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**externalShareSocialMedia**](FilesSettingsAPI.md#externalsharesocialmedia) | **PUT** /api/2.0/files/settings/externalsocialmedia | Change the external sharing ability on social networks
 [**forcesave**](FilesSettingsAPI.md#forcesave) | **PUT** /api/2.0/files/forcesave | Change the forcesaving ability
 [**getAutomaticallyCleanUp**](FilesSettingsAPI.md#getautomaticallycleanup) | **GET** /api/2.0/files/settings/autocleanup | Get the trash bin auto-clearing setting
+[**getDefaultTemplates**](FilesSettingsAPI.md#getdefaulttemplates) | **GET** /api/2.0/files/settings/defaulttemplate | Get the default template setting
 [**getDocServiceUrl**](FilesSettingsAPI.md#getdocserviceurl) | **GET** /api/2.0/files/docservice | Get the document service URL
 [**getFilesModule**](FilesSettingsAPI.md#getfilesmodule) | **GET** /api/2.0/files/info | Get the Documents information
 [**getFilesSettings**](FilesSettingsAPI.md#getfilessettings) | **GET** /api/2.0/files/settings | Get file settings
@@ -24,10 +25,14 @@ Method | HTTP request | Description
 [**hideConfirmRoomLifetime**](FilesSettingsAPI.md#hideconfirmroomlifetime) | **PUT** /api/2.0/files/hideconfirmroomlifetime | Hide confirmation dialog when changing room lifetime settings
 [**isAvailablePrivacyRoomSettings**](FilesSettingsAPI.md#isavailableprivacyroomsettings) | **GET** /api/2.0/files/@privacy/available | Check the Private Room availability
 [**keepNewFileName**](FilesSettingsAPI.md#keepnewfilename) | **PUT** /api/2.0/files/keepnewfilename | Ask a new file name
+[**resetDefaultTemplate**](FilesSettingsAPI.md#resetdefaulttemplate) | **DELETE** /api/2.0/files/settings/defaulttemplate | Reset the default template setting
+[**setDefaultTemplate**](FilesSettingsAPI.md#setdefaulttemplate) | **PUT** /api/2.0/files/settings/defaulttemplate | Change the default template setting
 [**setOpenEditorInSameTab**](FilesSettingsAPI.md#setopeneditorinsametab) | **PUT** /api/2.0/files/settings/openeditorinsametab | Open document in the same browser tab
+[**setOrganizeRoomsGrouping**](FilesSettingsAPI.md#setorganizeroomsgrouping) | **PUT** /api/2.0/files/settings/organizegrouping | Organize rooms grouping
 [**storeForcesave**](FilesSettingsAPI.md#storeforcesave) | **PUT** /api/2.0/files/storeforcesave | Change the ability to store the forcesaved files
 [**storeOriginal**](FilesSettingsAPI.md#storeoriginal) | **PUT** /api/2.0/files/storeoriginal | Change the ability to upload original formats
 [**updateFileIfExist**](FilesSettingsAPI.md#updatefileifexist) | **PUT** /api/2.0/files/updateifexist | Update a file version if it exists
+[**uploadDefaultTemplate**](FilesSettingsAPI.md#uploaddefaulttemplate) | **POST** /api/2.0/files/settings/defaulttemplate | Upload a file as the default template setting
 
 
 # **changeAccessToThirdparty**
@@ -622,6 +627,52 @@ FilesSettingsAPIApi.getAutomaticallyCleanUp() { (response, error) in
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getDefaultTemplates**
+```swift
+    open class func getDefaultTemplates(completion: @escaping (_ data: DefaultTemplateSettingsWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-templates/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Get the default template setting
+FilesSettingsAPIApi.getDefaultTemplates() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getDocServiceUrl**
 ```swift
     open class func getDocServiceUrl(version: Bool? = nil, completion: @escaping (_ data: DocServiceUrlWrapper?, _ error: Error?) -> Void)
@@ -816,7 +867,7 @@ FilesSettingsAPIApi.hideConfirmCancelOperation(settingsRequestDto: settingsReque
 
 # **hideConfirmConvert**
 ```swift
-    open class func hideConfirmConvert(hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = nil, completion: @escaping (_ data: ModuleWrapper?, _ error: Error?) -> Void)
+    open class func hideConfirmConvert(hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
 ```
 
 Hides the confirmation dialog for saving the file copy in the original format when converting a file.
@@ -831,7 +882,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ModuleWrapper**](ModuleWrapper.md)
+[**BooleanWrapper**](BooleanWrapper.md)
 
 ### Authorization
 
@@ -1010,6 +1061,106 @@ FilesSettingsAPIApi.keepNewFileName(settingsRequestDto: settingsRequestDto) { (r
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **resetDefaultTemplate**
+```swift
+    open class func resetDefaultTemplate(defaultTemplateSettingsResetRequestDto: DefaultTemplateSettingsResetRequestDto? = nil, completion: @escaping (_ data: DefaultTemplateSettingsWrapper?, _ error: Error?) -> Void)
+```
+
+Resets the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-default-template/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **defaultTemplateSettingsResetRequestDto** | [**DefaultTemplateSettingsResetRequestDto**](DefaultTemplateSettingsResetRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let defaultTemplateSettingsResetRequestDto = DefaultTemplateSettingsResetRequestDto(fileExtension: "fileExtension_example") // DefaultTemplateSettingsResetRequestDto |  (optional)
+
+// Reset the default template setting
+FilesSettingsAPIApi.resetDefaultTemplate(defaultTemplateSettingsResetRequestDto: defaultTemplateSettingsResetRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **setDefaultTemplate**
+```swift
+    open class func setDefaultTemplate(defaultTemplateSettingsRequestDto: DefaultTemplateSettingsRequestDto? = nil, completion: @escaping (_ data: DefaultTemplateSettingsWrapper?, _ error: Error?) -> Void)
+```
+
+Changes the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-template/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **defaultTemplateSettingsRequestDto** | [**DefaultTemplateSettingsRequestDto**](DefaultTemplateSettingsRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let defaultTemplateSettingsRequestDto = DefaultTemplateSettingsRequestDto(selectedFile: DefaultTemplateSettingsRequestDto_selectedFile(), fileExtension: "fileExtension_example") // DefaultTemplateSettingsRequestDto |  (optional)
+
+// Change the default template setting
+FilesSettingsAPIApi.setDefaultTemplate(defaultTemplateSettingsRequestDto: defaultTemplateSettingsRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **setOpenEditorInSameTab**
 ```swift
     open class func setOpenEditorInSameTab(settingsRequestDto: SettingsRequestDto? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
@@ -1042,6 +1193,56 @@ let settingsRequestDto = SettingsRequestDto(_set: true) // SettingsRequestDto | 
 
 // Open document in the same browser tab
 FilesSettingsAPIApi.setOpenEditorInSameTab(settingsRequestDto: settingsRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **setOrganizeRoomsGrouping**
+```swift
+    open class func setOrganizeRoomsGrouping(settingsRequestDto: SettingsRequestDto? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
+```
+
+Changes the setting that allows the user to organize the grouping of rooms.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-organize-rooms-grouping/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settingsRequestDto** | [**SettingsRequestDto**](SettingsRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let settingsRequestDto = SettingsRequestDto(_set: true) // SettingsRequestDto |  (optional)
+
+// Organize rooms grouping
+FilesSettingsAPIApi.setOrganizeRoomsGrouping(settingsRequestDto: settingsRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1202,6 +1403,58 @@ FilesSettingsAPIApi.updateFileIfExist(settingsRequestDto: settingsRequestDto) { 
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **uploadDefaultTemplate**
+```swift
+    open class func uploadDefaultTemplate(fileExtension: String, file: URL, completion: @escaping (_ data: DefaultTemplateSettingsWrapper?, _ error: Error?) -> Void)
+```
+
+Uploads a file to use as the default template setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-default-template/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileExtension** | **String** | File extension of a template to replace | 
+ **file** | **URL** | File to replace template with | 
+
+### Return type
+
+[**DefaultTemplateSettingsWrapper**](DefaultTemplateSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let fileExtension = "fileExtension_example" // String | File extension of a template to replace
+let file = URL(string: "https://example.com")! // URL | File to replace template with
+
+// Upload a file as the default template setting
+FilesSettingsAPIApi.uploadDefaultTemplate(fileExtension: fileExtension, file: file) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,15 +14,19 @@
 //  limitations under the License.
 import Foundation
 
-public struct FileOperationWrapper: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FileOperationWrapper: Sendable, Codable, Hashable {
 
     public var response: FileOperationDto?
+    /** The total number of items in the response */
     public var count: Int?
-    public var links: [ActiveConnectionsWrapperLinksInner]?
+    /** List of links related to the response */
+    public var links: [GetPortalPrices200ResponseLinksInner]?
+    /** HTTP status code of the response */
     public var status: Int?
+    /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: FileOperationDto? = nil, count: Int? = nil, links: [ActiveConnectionsWrapperLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: FileOperationDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

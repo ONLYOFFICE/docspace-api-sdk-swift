@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -338,7 +338,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get group members with security information
+     Get file group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFileSecurity Operation
@@ -353,7 +353,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get group members with security information
+     Get file group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFileSecurity Operation
@@ -418,7 +418,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get group members with security information
+     Get folder group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFolderSecurity Operation
@@ -433,7 +433,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get group members with security information
+     Get folder group members with security information
      
      See also:
      REST API Reference for getGroupsMembersWithFolderSecurity Operation

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -432,10 +432,10 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-room-tag/
      - parameter createTagRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ObjectWrapper
+     - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createRoomTag(createTagRequestDto: CreateTagRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ObjectWrapper {
+    open class func createRoomTag(createTagRequestDto: CreateTagRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
         return try await createRoomTagWithRequestBuilder(createTagRequestDto: createTagRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -468,9 +468,9 @@ var fields: String?
        - name: OpenId
      - parameter createTagRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ObjectWrapper> 
+     - returns: RequestBuilder<StringWrapper> 
      */
-    open class func createRoomTagWithRequestBuilder(createTagRequestDto: CreateTagRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ObjectWrapper> {
+    open class func createRoomTagWithRequestBuilder(createTagRequestDto: CreateTagRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         let localVariablePath = "/api/2.0/files/tags"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTagRequestDto, codableHelper: apiConfiguration.codableHelper)
@@ -484,7 +484,7 @@ var fields: String?
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ObjectWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -646,7 +646,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-custom-tags/
      
      - DELETE /api/2.0/files/tags
-     - Deletes a bunch of custom room tags specified in the request.
+     - Deletes a bunch of custom tags specified in the request.
      - BASIC:
        - type: http
        - name: Basic
@@ -1445,7 +1445,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/
      
      - GET /api/2.0/files/tags
-     - Returns a list of custom room tags.
+     - Returns a list of custom tags.
      - BASIC:
        - type: http
        - name: Basic
@@ -1568,13 +1568,13 @@ var fields: String?
      See also:
      REST API Reference for getRoomsFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-rooms-folder/
-     - parameter type: (query) The filter by room type. (optional)     - parameter subjectId: (query) The filter by user ID. (optional)     - parameter searchArea: (query) The room search area (Active, Archive, Any, Recent by links). (optional)     - parameter withoutTags: (query) Specifies whether to search by tags or not. (optional)     - parameter tags: (query) The tags in the serialized format. (optional)     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)     - parameter provider: (query) The filter by provider name (None, Box, DropBox, GoogleDrive, kDrive, OneDrive, SharePoint, WebDav, Yandex, Storage). (optional)     - parameter subjectFilter: (query) The filter by user (Owner - 0, Member - 1). (optional)     - parameter quotaFilter: (query) The filter by quota (All - 0, Default - 1, Custom - 2). (optional)     - parameter storageFilter: (query) The filter by storage (None - 0, Internal - 1, ThirdParty - 2). (optional)     - parameter count: (query) Specifies the maximum number of items to retrieve. (optional)     - parameter startIndex: (query) The index from which to start retrieving the room content. (optional)     - parameter sortBy: (query) Specifies the field by which the room content should be sorted. (optional)     - parameter sortOrder: (query) The order in which the results are sorted. (optional)     - parameter filterValue: (query) The text filter value used to refine search or query operations. (optional)
+     - parameter type: (query) The filter by room type. (optional)     - parameter subjectId: (query) The filter by user ID. (optional)     - parameter searchArea: (query) The room search area (Active, Archive, Any, Recent by links). (optional)     - parameter withoutTags: (query) Specifies whether to search by tags or not. (optional)     - parameter tags: (query) The tags in the serialized format. (optional)     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)     - parameter provider: (query) The filter by provider name (None, Box, DropBox, GoogleDrive, kDrive, OneDrive, SharePoint, WebDav, Yandex, Storage). (optional)     - parameter subjectFilter: (query) The filter by user (Owner - 0, Member - 1). (optional)     - parameter quotaFilter: (query) The filter by quota (All - 0, Default - 1, Custom - 2). (optional)     - parameter storageFilter: (query) The filter by storage (None - 0, Internal - 1, ThirdParty - 2). (optional)     - parameter count: (query) Specifies the maximum number of items to retrieve. (optional)     - parameter startIndex: (query) The index from which to start retrieving the room content. (optional)     - parameter sortBy: (query) Specifies the field by which the room content should be sorted. (optional)     - parameter sortOrder: (query) The order in which the results are sorted. (optional)     - parameter filterValue: (query) The text filter value used to refine search or query operations. (optional)     - parameter groupId: (query) The group ID (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentIntegerWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getRoomsFolder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentIntegerWrapper {
-        return try await getRoomsFolderWithRequestBuilder(type: type, subjectId: subjectId, searchArea: searchArea, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, provider: provider, subjectFilter: subjectFilter, quotaFilter: quotaFilter, storageFilter: storageFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getRoomsFolder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, groupId: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentIntegerWrapper {
+        return try await getRoomsFolderWithRequestBuilder(type: type, subjectId: subjectId, searchArea: searchArea, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, provider: provider, subjectFilter: subjectFilter, quotaFilter: quotaFilter, storageFilter: storageFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, groupId: groupId, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1619,17 +1619,18 @@ var fields: String?
      - parameter sortBy: (query) Specifies the field by which the room content should be sorted. (optional)
      - parameter sortOrder: (query) The order in which the results are sorted. (optional)
      - parameter filterValue: (query) The text filter value used to refine search or query operations. (optional)
+     - parameter groupId: (query) The group ID (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentIntegerWrapper> 
      */
-    open class func getRoomsFolderWithRequestBuilder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
+    open class func getRoomsFolderWithRequestBuilder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, groupId: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
         let localVariablePath = "/api/2.0/files/rooms"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "type": (wrappedValue: type?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "type": (wrappedValue: type?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "subjectId": (wrappedValue: subjectId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "searchArea": (wrappedValue: searchArea?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "withoutTags": (wrappedValue: withoutTags?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -1644,6 +1645,7 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "groupId": (wrappedValue: groupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
@@ -1790,6 +1792,78 @@ var fields: String?
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Has tag links
+     
+     See also:
+     REST API Reference for hasTagLinks Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/
+     - parameter tagName2: (path)       - parameter tagName: (query) Represents the name of a tag (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: BooleanWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func hasTagLinks(tagName2: String, tagName: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
+        return try await hasTagLinksWithRequestBuilder(tagName2: tagName2, tagName: tagName, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Has tag links
+     
+     See also:
+     REST API Reference for hasTagLinks Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/
+     
+     - GET /api/2.0/files/tags/{tagName}/haslinks
+     - Checks if a specific custom tag has linked items.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter tagName2: (path)  
+     - parameter tagName: (query) Represents the name of a tag (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<BooleanWrapper> 
+     */
+    open class func hasTagLinksWithRequestBuilder(tagName2: String, tagName: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
+        var localVariablePath = "/api/2.0/files/tags/{tagName}/haslinks"
+        let tagName2PreEscape = "\(APIHelper.mapValueToPathItem(tagName2))"
+        let tagName2PostEscape = tagName2PreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{tagName}", with: tagName2PostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "tagName": (wrappedValue: tagName?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -2541,18 +2615,83 @@ var fields: String?
     }
 
     /**
+     Update tag
+     
+     See also:
+     REST API Reference for updateRoomTag Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-tag/
+     - parameter updateTagRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: StringWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func updateRoomTag(updateTagRequestDto: UpdateTagRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await updateRoomTagWithRequestBuilder(updateTagRequestDto: updateTagRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Update tag
+     
+     See also:
+     REST API Reference for updateRoomTag Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-tag/
+     
+     - PUT /api/2.0/files/tags
+     - Updates the name of a custom tag.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter updateTagRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<StringWrapper> 
+     */
+    open class func updateRoomTagWithRequestBuilder(updateTagRequestDto: UpdateTagRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+        let localVariablePath = "/api/2.0/files/tags"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateTagRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
      Upload a room logo image
      
      See also:
      REST API Reference for uploadRoomLogo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-room-logo/
-     - parameter formCollection: (form) The image data. (optional)
+     - parameter file: (form) The image data. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: UploadResultWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func uploadRoomLogo(formCollection: [KeyValuePairStringStringValues]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UploadResultWrapper {
-        return try await uploadRoomLogoWithRequestBuilder(formCollection: formCollection, apiConfiguration: apiConfiguration).execute().body
+    open class func uploadRoomLogo(file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UploadResultWrapper {
+        return try await uploadRoomLogoWithRequestBuilder(file: file, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2582,15 +2721,15 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
-     - parameter formCollection: (form) The image data. (optional)
+     - parameter file: (form) The image data. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UploadResultWrapper> 
      */
-    open class func uploadRoomLogoWithRequestBuilder(formCollection: [KeyValuePairStringStringValues]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<UploadResultWrapper> {
+    open class func uploadRoomLogoWithRequestBuilder(file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<UploadResultWrapper> {
         let localVariablePath = "/api/2.0/files/logos"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "FormCollection": formCollection?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)

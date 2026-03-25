@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The parameters for deleting a folder. */
-public struct DeleteFolder: Sendable, Codable, ParameterConvertible, Hashable {
+public struct DeleteFolder: Sendable, Codable, Hashable {
 
     /** Specifies whether to delete a folder after the editing session is finished or not. */
     public var deleteAfter: Bool?

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
 import Foundation
 
 /** The room invitation parameters. */
-public struct RoomInvitation: Sendable, Codable, ParameterConvertible, Hashable {
+public struct RoomInvitation: Sendable, Codable, Hashable {
 
+    public static let emailRule = StringRule(minLength: nil, maxLength: 255, pattern: nil)
     /** The email address. */
     public var email: String?
     /** The ID of the user to share a room with. */

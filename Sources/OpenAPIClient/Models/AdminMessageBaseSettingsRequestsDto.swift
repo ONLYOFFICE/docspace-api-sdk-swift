@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for the administrator message configuration. */
-public struct AdminMessageBaseSettingsRequestsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct AdminMessageBaseSettingsRequestsDto: Sendable, Codable, Hashable {
 
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** The email address used for sending administrator messages. */

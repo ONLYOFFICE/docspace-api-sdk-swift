@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - None, 1 - Share to fill out, 2 - Start filling] */
+/** [0 - None, 1 - Share to fill out, 2 - Start filling, 3 - Start filling form room] */
 public enum StartFillingMode: Int, Sendable, Codable, CaseIterable {
     case None = 0
     case ShareToFillOut = 1
     case StartFilling = 2
+    case StartFillingFormRoom = 3
 }

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The presence or absence of the templates in the Create New... menu option. */
-public struct TemplatesConfig: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TemplatesConfig: Sendable, Codable, Hashable {
 
     /** The absolute URL to the image for template. */
     public var image: String?

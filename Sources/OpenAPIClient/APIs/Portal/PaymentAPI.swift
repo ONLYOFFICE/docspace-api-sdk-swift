@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,6 +16,71 @@
 import Foundation
 
 open class {{{{x-classname}}}} {
+
+    /**
+     Purchases a wallet service with the specified quantity.
+     
+     See also:
+     REST API Reference for buyWalletService Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/buy-wallet-service/
+     - parameter buyWalletServiceRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: ServicePaymentWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func buyWalletService(buyWalletServiceRequestDto: BuyWalletServiceRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServicePaymentWrapper {
+        return try await buyWalletServiceWithRequestBuilder(buyWalletServiceRequestDto: buyWalletServiceRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Purchases a wallet service with the specified quantity.
+     
+     See also:
+     REST API Reference for buyWalletService Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/buy-wallet-service/
+     
+     - POST /api/2.0/portal/payment/buywalletservice
+     - This method processes a payment for a wallet service using the configured payment method.  Requires the tariff service to be configured and a valid payment method to be set for the customer.  Rate limiting is applied according to the payments API policy.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter buyWalletServiceRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<ServicePaymentWrapper> 
+     */
+    open class func buyWalletServiceWithRequestBuilder(buyWalletServiceRequestDto: BuyWalletServiceRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ServicePaymentWrapper> {
+        let localVariablePath = "/api/2.0/portal/payment/buywalletservice"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: buyWalletServiceRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ServicePaymentWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
 
     /**
      Calculate the wallet payment amount
@@ -83,7 +148,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Change wallet service state
+     Change tenant wallet service state
      
      See also:
      REST API Reference for changeTenantWalletServiceState Operation
@@ -98,14 +163,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Change wallet service state
+     Change tenant wallet service state
      
      See also:
      REST API Reference for changeTenantWalletServiceState Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-tenant-wallet-service-state/
      
      - POST /api/2.0/portal/payment/servicestate
-     - Changes the wallet service state.
+     - Changes the state of a wallet service for the current tenant.  Requires permission to edit portal settings and a configured tariff service.  Adds or removes the specified service from the enabled services list based on the enabled flag.
      - BASIC:
        - type: http
        - name: Basic
@@ -213,6 +278,70 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get AI model prices
+     
+     See also:
+     REST API Reference for getAiPrices Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-prices/
+
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: AiPricesResponseWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func getAiPrices(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiPricesResponseWrapper {
+        return try await getAiPricesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get AI model prices
+     
+     See also:
+     REST API Reference for getAiPrices Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ai-prices/
+     
+     - GET /api/2.0/portal/payment/ai-prices
+     - Retrieves the pricing information for AI models including chat, embedding, and web search services.  The prices are returned in the configured currency and normalized per million tokens.  Requires administrator permissions to access.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<AiPricesResponseWrapper> 
+     */
+    open class func getAiPricesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiPricesResponseWrapper> {
+        let localVariablePath = "/api/2.0/portal/payment/ai-prices"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AiPricesResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
      Get the checkout setup page URL
      
      See also:
@@ -234,7 +363,7 @@ open class {{{{x-classname}}}} {
      REST API Reference for getCheckoutSetupUrl Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-checkout-setup-url/
      
-     - GET /api/2.0/portal/payment/chechoutsetupurl
+     - GET /api/2.0/portal/payment/checkoutsetupurl
      - Returns the URL to the checkout setup page.
      - BASIC:
        - type: http
@@ -259,7 +388,7 @@ open class {{{{x-classname}}}} {
      - returns: RequestBuilder<StringWrapper> 
      */
     open class func getCheckoutSetupUrlWithRequestBuilder(backUrl: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
-        let localVariablePath = "/api/2.0/portal/payment/chechoutsetupurl"
+        let localVariablePath = "/api/2.0/portal/payment/checkoutsetupurl"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
@@ -422,13 +551,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getCustomerOperations Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-operations/
-     - parameter startDate: (query) The report start date. (optional)     - parameter endDate: (query) The report end date. (optional)     - parameter participantName: (query) The participant name. (optional)     - parameter credit: (query) Specifies whether to include credit operations in the report. The default value is true. (optional)     - parameter debit: (query) Specifies whether to include debit operations in the report. The default value is true. (optional)     - parameter offset: (query) The number of items to skip for pagination. The default value is 0. (optional)     - parameter limit: (query) The maximum number of items to return for pagination. The default value is 25. (optional)
+     - parameter offset: (query) The number of items to skip for pagination. The default value is 0. (optional)     - parameter limit: (query) The maximum number of items to return for pagination. The default value is 25. (optional)     - parameter serviceName: (query) The service name. (optional)     - parameter writeOffServiceQuota: (query) Write-off of the quota for the service (optional)     - parameter startDate: (query) The report start date. (optional)     - parameter endDate: (query) The report end date. (optional)     - parameter participantName: (query) The participant name. (optional)     - parameter credit: (query) Specifies whether to include credit operations in the report. (optional)     - parameter debit: (query) Specifies whether to include debit operations in the report. (optional)     - parameter types: (query) List of operation types to filter by. (optional)     - parameter status: (query) List of operation status to filter by. (optional)     - parameter orderBy: (query) The field to order by. (optional)     - parameter orderType: (query) Order direction: Ascending or Descending. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ReportWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getCustomerOperations(startDate: Date? = nil, endDate: Date? = nil, participantName: String? = nil, credit: Bool? = nil, debit: Bool? = nil, offset: Int? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ReportWrapper {
-        return try await getCustomerOperationsWithRequestBuilder(startDate: startDate, endDate: endDate, participantName: participantName, credit: credit, debit: debit, offset: offset, limit: limit, apiConfiguration: apiConfiguration).execute().body
+    open class func getCustomerOperations(offset: Int? = nil, limit: Int? = nil, serviceName: String? = nil, writeOffServiceQuota: Bool? = nil, startDate: Date? = nil, endDate: Date? = nil, participantName: String? = nil, credit: Bool? = nil, debit: Bool? = nil, types: OperationType? = nil, status: OperationStatus? = nil, orderBy: String? = nil, orderType: OperationOrderType? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ReportWrapper {
+        return try await getCustomerOperationsWithRequestBuilder(offset: offset, limit: limit, serviceName: serviceName, writeOffServiceQuota: writeOffServiceQuota, startDate: startDate, endDate: endDate, participantName: participantName, credit: credit, debit: debit, types: types, status: status, orderBy: orderBy, orderType: orderType, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -458,30 +587,42 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - parameter offset: (query) The number of items to skip for pagination. The default value is 0. (optional)
+     - parameter limit: (query) The maximum number of items to return for pagination. The default value is 25. (optional)
+     - parameter serviceName: (query) The service name. (optional)
+     - parameter writeOffServiceQuota: (query) Write-off of the quota for the service (optional)
      - parameter startDate: (query) The report start date. (optional)
      - parameter endDate: (query) The report end date. (optional)
      - parameter participantName: (query) The participant name. (optional)
-     - parameter credit: (query) Specifies whether to include credit operations in the report. The default value is true. (optional)
-     - parameter debit: (query) Specifies whether to include debit operations in the report. The default value is true. (optional)
-     - parameter offset: (query) The number of items to skip for pagination. The default value is 0. (optional)
-     - parameter limit: (query) The maximum number of items to return for pagination. The default value is 25. (optional)
+     - parameter credit: (query) Specifies whether to include credit operations in the report. (optional)
+     - parameter debit: (query) Specifies whether to include debit operations in the report. (optional)
+     - parameter types: (query) List of operation types to filter by. (optional)
+     - parameter status: (query) List of operation status to filter by. (optional)
+     - parameter orderBy: (query) The field to order by. (optional)
+     - parameter orderType: (query) Order direction: Ascending or Descending. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ReportWrapper> 
      */
-    open class func getCustomerOperationsWithRequestBuilder(startDate: Date? = nil, endDate: Date? = nil, participantName: String? = nil, credit: Bool? = nil, debit: Bool? = nil, offset: Int? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ReportWrapper> {
+    open class func getCustomerOperationsWithRequestBuilder(offset: Int? = nil, limit: Int? = nil, serviceName: String? = nil, writeOffServiceQuota: Bool? = nil, startDate: Date? = nil, endDate: Date? = nil, participantName: String? = nil, credit: Bool? = nil, debit: Bool? = nil, types: OperationType? = nil, status: OperationStatus? = nil, orderBy: String? = nil, orderType: OperationOrderType? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ReportWrapper> {
         let localVariablePath = "/api/2.0/portal/payment/customer/operations"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "startDate": (wrappedValue: startDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "endDate": (wrappedValue: endDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "participantName": (wrappedValue: participantName?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "credit": (wrappedValue: credit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "debit": (wrappedValue: debit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "offset": (wrappedValue: offset?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "ServiceName": (wrappedValue: serviceName?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "WriteOffServiceQuota": (wrappedValue: writeOffServiceQuota?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "StartDate": (wrappedValue: startDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "EndDate": (wrappedValue: endDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "ParticipantName": (wrappedValue: participantName?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "Credit": (wrappedValue: credit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "Debit": (wrappedValue: debit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "Types": (wrappedValue: types?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "Status": (wrappedValue: status?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "OrderBy": (wrappedValue: orderBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "OrderType": (wrappedValue: orderType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
@@ -556,6 +697,76 @@ open class {{{{x-classname}}}} {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<DocumentBuilderTaskWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Get the service quota
+     
+     See also:
+     REST API Reference for getCustomerServiceQuota Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-service-quota/
+     - parameter serviceName: (query) The service name. (optional)     - parameter refresh: (query) Specifies whether to refresh the payment information cache or not. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: BalanceWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func getCustomerServiceQuota(serviceName: String? = nil, refresh: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BalanceWrapper {
+        return try await getCustomerServiceQuotaWithRequestBuilder(serviceName: serviceName, refresh: refresh, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get the service quota
+     
+     See also:
+     REST API Reference for getCustomerServiceQuota Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-service-quota/
+     
+     - GET /api/2.0/portal/payment/customer/servicequota
+     - Returns the service quota from the accounting service.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter serviceName: (query) The service name. (optional)
+     - parameter refresh: (query) Specifies whether to refresh the payment information cache or not. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<BalanceWrapper> 
+     */
+    open class func getCustomerServiceQuotaWithRequestBuilder(serviceName: String? = nil, refresh: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BalanceWrapper> {
+        let localVariablePath = "/api/2.0/portal/payment/customer/servicequota"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "serviceName": (wrappedValue: serviceName?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "refresh": (wrappedValue: refresh?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BalanceWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -766,13 +977,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getPaymentUrl Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-payment-url/
-     - parameter paymentUrlRequestsDto: (body)  (optional)
+     - parameter paymentUrlRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPaymentUrl(paymentUrlRequestsDto: PaymentUrlRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await getPaymentUrlWithRequestBuilder(paymentUrlRequestsDto: paymentUrlRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func getPaymentUrl(paymentUrlRequestDto: PaymentUrlRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await getPaymentUrlWithRequestBuilder(paymentUrlRequestDto: paymentUrlRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -802,14 +1013,14 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
-     - parameter paymentUrlRequestsDto: (body)  (optional)
+     - parameter paymentUrlRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func getPaymentUrlWithRequestBuilder(paymentUrlRequestsDto: PaymentUrlRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func getPaymentUrlWithRequestBuilder(paymentUrlRequestDto: PaymentUrlRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         let localVariablePath = "/api/2.0/portal/payment/url"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: paymentUrlRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: paymentUrlRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -833,10 +1044,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-portal-prices/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: UnknownWrapper
+     - returns: GetPortalPrices200Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getPortalPrices(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UnknownWrapper {
+    open class func getPortalPrices(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GetPortalPrices200Response {
         return try await getPortalPricesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -868,9 +1079,9 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<UnknownWrapper> 
+     - returns: RequestBuilder<GetPortalPrices200Response> 
      */
-    open class func getPortalPricesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<UnknownWrapper> {
+    open class func getPortalPricesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<GetPortalPrices200Response> {
         let localVariablePath = "/api/2.0/portal/payment/prices"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -884,7 +1095,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<UnknownWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GetPortalPrices200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -958,7 +1169,71 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get wallet services settings
+     Get restricted AI models
+     
+     See also:
+     REST API Reference for getRestrictedAiModels Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-restricted-ai-models/
+
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RestrictedModelsResponseWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func getRestrictedAiModels(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RestrictedModelsResponseWrapper {
+        return try await getRestrictedAiModelsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get restricted AI models
+     
+     See also:
+     REST API Reference for getRestrictedAiModels Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-restricted-ai-models/
+     
+     - GET /api/2.0/portal/payment/ai-model/restrictions
+     - Returns the list of AI chat model IDs that are restricted (disabled) for the current tenant.  Restricted models cannot be used for AI chat conversations by any user within the portal.  Only DocSpace administrators can access this endpoint.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<RestrictedModelsResponseWrapper> 
+     */
+    open class func getRestrictedAiModelsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<RestrictedModelsResponseWrapper> {
+        let localVariablePath = "/api/2.0/portal/payment/ai-model/restrictions"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<RestrictedModelsResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Gets the wallet service settings for the tenant.
      
      See also:
      REST API Reference for getTenantWalletServiceSettings Operation
@@ -973,14 +1248,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get wallet services settings
+     Gets the wallet service settings for the tenant.
      
      See also:
      REST API Reference for getTenantWalletServiceSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-service-settings/
      
      - GET /api/2.0/portal/payment/servicessettings
-     - Returns the wallet services settings.
+     - Retrieves configuration settings related to the wallet service associated with the current tenant.
      - BASIC:
        - type: http
        - name: Basic
@@ -1022,7 +1297,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get wallet auto top-up settings
+     Gets the tenant wallet auto top up settings
      
      See also:
      REST API Reference for getTenantWalletSettings Operation
@@ -1037,14 +1312,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get wallet auto top-up settings
+     Gets the tenant wallet auto top up settings
      
      See also:
      REST API Reference for getTenantWalletSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-wallet-settings/
      
      - GET /api/2.0/portal/payment/topupsettings
-     - Returns the wallet auto top-up settings.
+     - Returns the wallet auto top up settings for the current tenant.
      - BASIC:
        - type: http
        - name: Basic
@@ -1093,10 +1368,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-wallet-service/
      - parameter service: (query) The wallet service type. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: QuotaWrapper
+     - returns: WalletServiceWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getWalletService(service: TenantWalletService, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> QuotaWrapper {
+    open class func getWalletService(service: TenantWalletService, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WalletServiceWrapper {
         return try await getWalletServiceWithRequestBuilder(service: service, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -1129,9 +1404,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - parameter service: (query) The wallet service type. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<QuotaWrapper> 
+     - returns: RequestBuilder<WalletServiceWrapper> 
      */
-    open class func getWalletServiceWithRequestBuilder(service: TenantWalletService, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<QuotaWrapper> {
+    open class func getWalletServiceWithRequestBuilder(service: TenantWalletService, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WalletServiceWrapper> {
         let localVariablePath = "/api/2.0/portal/payment/walletservice"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -1148,7 +1423,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<QuotaWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WalletServiceWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -1161,10 +1436,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-wallet-services/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: QuotaArrayWrapper
+     - returns: WalletServiceArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getWalletServices(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> QuotaArrayWrapper {
+    open class func getWalletServices(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WalletServiceArrayWrapper {
         return try await getWalletServicesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -1196,9 +1471,9 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<QuotaArrayWrapper> 
+     - returns: RequestBuilder<WalletServiceArrayWrapper> 
      */
-    open class func getWalletServicesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<QuotaArrayWrapper> {
+    open class func getWalletServicesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WalletServiceArrayWrapper> {
         let localVariablePath = "/api/2.0/portal/payment/walletservices"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -1212,7 +1487,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<QuotaArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<WalletServiceArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -1283,7 +1558,72 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Set wallet auto top-up settings
+     Set restricted AI models
+     
+     See also:
+     REST API Reference for setRestrictedAiModels Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-restricted-ai-models/
+     - parameter setRestrictedAiModelsRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RestrictedModelsResponseWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func setRestrictedAiModels(setRestrictedAiModelsRequestDto: SetRestrictedAiModelsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> RestrictedModelsResponseWrapper {
+        return try await setRestrictedAiModelsWithRequestBuilder(setRestrictedAiModelsRequestDto: setRestrictedAiModelsRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Set restricted AI models
+     
+     See also:
+     REST API Reference for setRestrictedAiModels Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-restricted-ai-models/
+     
+     - PUT /api/2.0/portal/payment/ai-model/restrictions
+     - Overwrites the entire set of restricted AI model IDs for the current tenant.  The request body must contain the complete desired set — to add a restriction, include the new model alongside existing ones;  to remove one, omit it. An empty set lifts all restrictions. Only the portal payer can perform this action.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter setRestrictedAiModelsRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<RestrictedModelsResponseWrapper> 
+     */
+    open class func setRestrictedAiModelsWithRequestBuilder(setRestrictedAiModelsRequestDto: SetRestrictedAiModelsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<RestrictedModelsResponseWrapper> {
+        let localVariablePath = "/api/2.0/portal/payment/ai-model/restrictions"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setRestrictedAiModelsRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<RestrictedModelsResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Set the wallet auto top up settings
      
      See also:
      REST API Reference for setTenantWalletSettings Operation
@@ -1298,14 +1638,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Set wallet auto top-up settings
+     Set the wallet auto top up settings
      
      See also:
      REST API Reference for setTenantWalletSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-wallet-settings/
      
      - POST /api/2.0/portal/payment/topupsettings
-     - Sets the wallet auto top-up settings.
+     - Updates the wallet auto top up settings for the current tenant.  Requires the tariff service to be configured and the user to be authorized as a payer.  Returns null if the tariff service is not configured or customer information/balance cannot be retrieved.
      - BASIC:
        - type: http
        - name: Basic

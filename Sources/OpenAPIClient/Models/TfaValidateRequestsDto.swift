@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,17 +15,21 @@
 import Foundation
 
 /** The request parameters for validating the two-factor authentication codes. */
-public struct TfaValidateRequestsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TfaValidateRequestsDto: Sendable, Codable, Hashable {
 
     /** The verification code provided by the user. */
     public var code: String?
+    /** Specifies whether the authentication is session-based. */
+    public var session: Bool?
 
-    public init(code: String?) {
+    public init(code: String?, session: Bool? = nil) {
         self.code = code
+        self.session = session
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case code
+        case session
     }
 
     // Encodable protocol methods
@@ -33,6 +37,7 @@ public struct TfaValidateRequestsDto: Sendable, Codable, ParameterConvertible, H
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(code, forKey: .code)
+        try container.encodeIfPresent(session, forKey: .session)
     }
 }
 

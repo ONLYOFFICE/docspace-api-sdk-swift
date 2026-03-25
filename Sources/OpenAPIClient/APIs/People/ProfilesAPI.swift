@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,6 +81,78 @@ var fields: String?
         let localVariableRequestBuilder: RequestBuilder<EmployeeFullWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Check if a user exists by email
+     
+     See also:
+     REST API Reference for checkUserExistsByEmail Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/
+     - parameter email: (query) The user email address. (optional)     - parameter encemail: (query) The user encrypted email address. (optional)     - parameter culture: (query) Culture (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: BooleanWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func checkUserExistsByEmail(email: String? = nil, encemail: String? = nil, culture: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
+        return try await checkUserExistsByEmailWithRequestBuilder(email: email, encemail: encemail, culture: culture, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Check if a user exists by email
+     
+     See also:
+     REST API Reference for checkUserExistsByEmail Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/check-user-exists-by-email/
+     
+     - GET /api/2.0/people/exists
+     - Returns a boolean indicating whether a user with the specified email exists on the portal.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter email: (query) The user email address. (optional)
+     - parameter encemail: (query) The user encrypted email address. (optional)
+     - parameter culture: (query) Culture (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<BooleanWrapper> 
+     */
+    open class func checkUserExistsByEmailWithRequestBuilder(email: String? = nil, encemail: String? = nil, culture: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
+        let localVariablePath = "/api/2.0/people/exists"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "email": (wrappedValue: email?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "encemail": (wrappedValue: encemail?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "culture": (wrappedValue: culture?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -763,71 +835,6 @@ var fields: String?
     }
 
     /**
-     Send instructions to change email
-     
-     See also:
-     REST API Reference for sendEmailChangeInstructions Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/send-email-change-instructions/
-     - parameter updateMemberRequestDto: (body)  (optional)
-     - parameter apiConfiguration: The configuration for the http request.
-     - returns: StringWrapper
-     */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sendEmailChangeInstructions(updateMemberRequestDto: UpdateMemberRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await sendEmailChangeInstructionsWithRequestBuilder(updateMemberRequestDto: updateMemberRequestDto, apiConfiguration: apiConfiguration).execute().body
-    }
-
-    /**
-     Send instructions to change email
-     
-     See also:
-     REST API Reference for sendEmailChangeInstructions Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/send-email-change-instructions/
-     
-     - POST /api/2.0/people/email
-     - Sends a message to the user email with the instructions to change the email address connected to the portal.
-     - BASIC:
-       - type: http
-       - name: Basic
-     - OAuth:
-       - type: oauth2
-       - name: OAuth2
-     - API Key:
-       - type: apiKey ApiKeyBearer (HEADER)
-       - name: ApiKeyBearer
-     - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - Bearer Token:
-       - type: http
-       - name: Bearer
-     - :
-       - type: openIdConnect
-       - name: OpenId
-     - parameter updateMemberRequestDto: (body)  (optional)
-     - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<StringWrapper> 
-     */
-    open class func sendEmailChangeInstructionsWithRequestBuilder(updateMemberRequestDto: UpdateMemberRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
-        let localVariablePath = "/api/2.0/people/email"
-        let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateMemberRequestDto, codableHelper: apiConfiguration.codableHelper)
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            "Content-Type": "application/json",
-        ]
-
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
-    }
-
-    /**
      Update a user
      
      See also:
@@ -897,12 +904,12 @@ var fields: String?
     }
 
     /**
-     Update a user culture code
+     Update a user culture
      
      See also:
      REST API Reference for updateMemberCulture Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/
-     - parameter userid: (path) The user ID.      - parameter culture: (body) The culture code parameters. (optional)
+     - parameter userid: (path) The user ID.      - parameter culture: (body) The culture name parameters. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: EmployeeFullWrapper
      */
@@ -912,14 +919,14 @@ var fields: String?
     }
 
     /**
-     Update a user culture code
+     Update a user culture
      
      See also:
      REST API Reference for updateMemberCulture Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-member-culture/
      
      - PUT /api/2.0/people/{userid}/culture
-     - Updates the user culture code with the parameters specified in the request.
+     - Updates the user culture with the parameters specified in the request.
      - BASIC:
        - type: http
        - name: Basic
@@ -939,7 +946,7 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - parameter userid: (path) The user ID. 
-     - parameter culture: (body) The culture code parameters. (optional)
+     - parameter culture: (body) The culture name parameters. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
      */

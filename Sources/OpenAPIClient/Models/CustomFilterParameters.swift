@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The parameters for setting the Custom Filter editing mode. */
-public struct CustomFilterParameters: Sendable, Codable, ParameterConvertible, Hashable {
+public struct CustomFilterParameters: Sendable, Codable, Hashable {
 
     /** Specifies whether the Custom Filter editing mode is enabled or not. */
     public var enabled: Bool?

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
 import Foundation
 
 /** The full list of user parameters. */
-public struct EmployeeFullDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct EmployeeFullDto: Sendable, Codable, Hashable {
 
     /** The user ID. */
     public var id: UUID?
-    /** The user display name. */
+    /** The HTML-encoded user's display name formatted according to the default format for the current culture. */
     public var displayName: String?
     /** The user title. */
     public var title: String?

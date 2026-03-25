@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -796,6 +796,70 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the default template setting
+     
+     See also:
+     REST API Reference for getDefaultTemplates Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-templates/
+
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: DefaultTemplateSettingsWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func getDefaultTemplates(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DefaultTemplateSettingsWrapper {
+        return try await getDefaultTemplatesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get the default template setting
+     
+     See also:
+     REST API Reference for getDefaultTemplates Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-templates/
+     
+     - GET /api/2.0/files/settings/defaulttemplate
+     - Returns the default template setting.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<DefaultTemplateSettingsWrapper> 
+     */
+    open class func getDefaultTemplatesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DefaultTemplateSettingsWrapper> {
+        let localVariablePath = "/api/2.0/files/settings/defaulttemplate"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DefaultTemplateSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
      Get the document service URL
      
      See also:
@@ -1028,10 +1092,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/hide-confirm-convert/
      - parameter hideConfirmConvertRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ModuleWrapper
+     - returns: BooleanWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func hideConfirmConvert(hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ModuleWrapper {
+    open class func hideConfirmConvert(hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
         return try await hideConfirmConvertWithRequestBuilder(hideConfirmConvertRequestDto: hideConfirmConvertRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -1064,9 +1128,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - parameter hideConfirmConvertRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ModuleWrapper> 
+     - returns: RequestBuilder<BooleanWrapper> 
      */
-    open class func hideConfirmConvertWithRequestBuilder(hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ModuleWrapper> {
+    open class func hideConfirmConvertWithRequestBuilder(hideConfirmConvertRequestDto: HideConfirmConvertRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
         let localVariablePath = "/api/2.0/files/hideconfirmconvert"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: hideConfirmConvertRequestDto, codableHelper: apiConfiguration.codableHelper)
@@ -1080,7 +1144,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ModuleWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -1280,6 +1344,136 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Reset the default template setting
+     
+     See also:
+     REST API Reference for resetDefaultTemplate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-default-template/
+     - parameter defaultTemplateSettingsResetRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: DefaultTemplateSettingsWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func resetDefaultTemplate(defaultTemplateSettingsResetRequestDto: DefaultTemplateSettingsResetRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DefaultTemplateSettingsWrapper {
+        return try await resetDefaultTemplateWithRequestBuilder(defaultTemplateSettingsResetRequestDto: defaultTemplateSettingsResetRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Reset the default template setting
+     
+     See also:
+     REST API Reference for resetDefaultTemplate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-default-template/
+     
+     - DELETE /api/2.0/files/settings/defaulttemplate
+     - Resets the default template setting.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter defaultTemplateSettingsResetRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<DefaultTemplateSettingsWrapper> 
+     */
+    open class func resetDefaultTemplateWithRequestBuilder(defaultTemplateSettingsResetRequestDto: DefaultTemplateSettingsResetRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DefaultTemplateSettingsWrapper> {
+        let localVariablePath = "/api/2.0/files/settings/defaulttemplate"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: defaultTemplateSettingsResetRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DefaultTemplateSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Change the default template setting
+     
+     See also:
+     REST API Reference for setDefaultTemplate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-template/
+     - parameter defaultTemplateSettingsRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: DefaultTemplateSettingsWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func setDefaultTemplate(defaultTemplateSettingsRequestDto: DefaultTemplateSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DefaultTemplateSettingsWrapper {
+        return try await setDefaultTemplateWithRequestBuilder(defaultTemplateSettingsRequestDto: defaultTemplateSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Change the default template setting
+     
+     See also:
+     REST API Reference for setDefaultTemplate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-default-template/
+     
+     - PUT /api/2.0/files/settings/defaulttemplate
+     - Changes the default template setting.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter defaultTemplateSettingsRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<DefaultTemplateSettingsWrapper> 
+     */
+    open class func setDefaultTemplateWithRequestBuilder(defaultTemplateSettingsRequestDto: DefaultTemplateSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DefaultTemplateSettingsWrapper> {
+        let localVariablePath = "/api/2.0/files/settings/defaulttemplate"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: defaultTemplateSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DefaultTemplateSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
      Open document in the same browser tab
      
      See also:
@@ -1327,6 +1521,71 @@ open class {{{{x-classname}}}} {
      */
     open class func setOpenEditorInSameTabWithRequestBuilder(settingsRequestDto: SettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
         let localVariablePath = "/api/2.0/files/settings/openeditorinsametab"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: settingsRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Organize rooms grouping
+     
+     See also:
+     REST API Reference for setOrganizeRoomsGrouping Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-organize-rooms-grouping/
+     - parameter settingsRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: BooleanWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func setOrganizeRoomsGrouping(settingsRequestDto: SettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
+        return try await setOrganizeRoomsGroupingWithRequestBuilder(settingsRequestDto: settingsRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Organize rooms grouping
+     
+     See also:
+     REST API Reference for setOrganizeRoomsGrouping Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-organize-rooms-grouping/
+     
+     - PUT /api/2.0/files/settings/organizegrouping
+     - Changes the setting that allows the user to organize the grouping of rooms.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter settingsRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<BooleanWrapper> 
+     */
+    open class func setOrganizeRoomsGroupingWithRequestBuilder(settingsRequestDto: SettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
+        let localVariablePath = "/api/2.0/files/settings/organizegrouping"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: settingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
@@ -1536,5 +1795,79 @@ open class {{{{x-classname}}}} {
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Upload a file as the default template setting
+     
+     See also:
+     REST API Reference for uploadDefaultTemplate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-default-template/
+     - parameter fileExtension: (query) File extension of a template to replace      - parameter file: (form) File to replace template with 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: DefaultTemplateSettingsWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func uploadDefaultTemplate(fileExtension: String, file: URL, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DefaultTemplateSettingsWrapper {
+        return try await uploadDefaultTemplateWithRequestBuilder(fileExtension: fileExtension, file: file, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Upload a file as the default template setting
+     
+     See also:
+     REST API Reference for uploadDefaultTemplate Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-default-template/
+     
+     - POST /api/2.0/files/settings/defaulttemplate
+     - Uploads a file to use as the default template setting.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter fileExtension: (query) File extension of a template to replace 
+     - parameter file: (form) File to replace template with 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<DefaultTemplateSettingsWrapper> 
+     */
+    open class func uploadDefaultTemplateWithRequestBuilder(fileExtension: String, file: URL, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DefaultTemplateSettingsWrapper> {
+        let localVariablePath = "/api/2.0/files/settings/defaulttemplate"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableFormParams: [String: (any Sendable)?] = [
+            "File": file.asParameter(codableHelper: apiConfiguration.codableHelper),
+        ]
+
+        let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
+        let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "FileExtension": (wrappedValue: fileExtension.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "multipart/form-data",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DefaultTemplateSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

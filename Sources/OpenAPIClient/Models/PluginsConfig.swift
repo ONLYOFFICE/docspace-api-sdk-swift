@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The configuration settings to connect the special add-ons. */
-public struct PluginsConfig: Sendable, Codable, ParameterConvertible, Hashable {
+public struct PluginsConfig: Sendable, Codable, Hashable {
 
     /** The array of absolute URLs to the plugin configuration files. */
     public var pluginsData: [String]?

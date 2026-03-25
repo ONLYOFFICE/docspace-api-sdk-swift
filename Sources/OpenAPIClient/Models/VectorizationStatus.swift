@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,8 +14,9 @@
 //  limitations under the License.
 import Foundation
 
+/** [0 - In Progress, 1 - Completed, 2 - Failed] */
 public enum VectorizationStatus: Int, Sendable, Codable, CaseIterable {
-    case _0 = 0
-    case _1 = 1
-    case _2 = 2
+    case InProgress = 0
+    case Completed = 1
+    case Failed = 2
 }

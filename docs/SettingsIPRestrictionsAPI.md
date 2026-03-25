@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let ipRestrictionsDto = IpRestrictionsDto(ipRestrictions: [IpRestrictionBase(ip: "ip_example", forAdmin: true)], enable: true) // IpRestrictionsDto |  (optional)
+let ipRestrictionsDto = IpRestrictionsDto(ipRestrictions: [IpRestrictionBase(ip: "ip_example", forAdmin: false)], enable: true) // IpRestrictionsDto |  (optional)
 
 // Update the IP restrictions
 SettingsIPRestrictionsAPIApi.saveIpRestrictions(ipRestrictionsDto: ipRestrictionsDto) { (response, error) in
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let ipRestrictionsDto = IpRestrictionsDto(ipRestrictions: [IpRestrictionBase(ip: "ip_example", forAdmin: true)], enable: true) // IpRestrictionsDto |  (optional)
+let ipRestrictionsDto = IpRestrictionsDto(ipRestrictions: [IpRestrictionBase(ip: "ip_example", forAdmin: false)], enable: true) // IpRestrictionsDto |  (optional)
 
 // Update the IP restriction settings
 SettingsIPRestrictionsAPIApi.updateIpRestrictionsSettings(ipRestrictionsDto: ipRestrictionsDto) { (response, error) in

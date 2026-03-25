@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The additional confirmation data required for authentication. */
-public struct ConfirmData: Sendable, Codable, ParameterConvertible, Hashable {
+public struct ConfirmData: Sendable, Codable, Hashable {
 
     /** The email address to confirm the user's identity. */
     public var email: String?

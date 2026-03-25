@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
 import Foundation
 
 /** The parameters of the security information request. */
-public struct SecurityInfoSimpleRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct SecurityInfoSimpleRequestDto: Sendable, Codable, Hashable {
 
+    public static let sharingMessageRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** The collection of sharing parameters. */
     public var share: [FileShareParams]?
     /** Specifies whether to notify users about the shared file or not. */

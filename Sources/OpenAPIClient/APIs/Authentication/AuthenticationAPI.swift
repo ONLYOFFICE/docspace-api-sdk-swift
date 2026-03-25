@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,13 +70,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for authenticateMeFromBodyWithCode Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me-from-body-with-code/
-     - parameter code: (path)       - parameter authRequestsDto: (body)  (optional)
+     - parameter code: (path)       - parameter authWithCodeRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AuthenticationTokenWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func authenticateMeFromBodyWithCode(code: String, authRequestsDto: AuthRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
-        return try await authenticateMeFromBodyWithCodeWithRequestBuilder(code: code, authRequestsDto: authRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func authenticateMeFromBodyWithCode(code: String, authWithCodeRequestsDto: AuthWithCodeRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
+        return try await authenticateMeFromBodyWithCodeWithRequestBuilder(code: code, authWithCodeRequestsDto: authWithCodeRequestsDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -89,17 +89,17 @@ open class {{{{x-classname}}}} {
      - POST /api/2.0/authentication/{code}
      - Authenticates the current user by SMS or two-factor authentication code.
      - parameter code: (path)  
-     - parameter authRequestsDto: (body)  (optional)
+     - parameter authWithCodeRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 
      */
-    open class func authenticateMeFromBodyWithCodeWithRequestBuilder(code: String, authRequestsDto: AuthRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
+    open class func authenticateMeFromBodyWithCodeWithRequestBuilder(code: String, authWithCodeRequestsDto: AuthWithCodeRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
         var localVariablePath = "/api/2.0/authentication/{code}"
         let codePreEscape = "\(APIHelper.mapValueToPathItem(code))"
         let codePostEscape = codePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{code}", with: codePostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authWithCodeRequestsDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

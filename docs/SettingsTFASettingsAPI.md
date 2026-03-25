@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let tfaValidateRequestsDto = TfaValidateRequestsDto(code: "code_example") // TfaValidateRequestsDto |  (optional)
+let tfaValidateRequestsDto = TfaValidateRequestsDto(code: "code_example", session: true) // TfaValidateRequestsDto |  (optional)
 
 // Validate the TFA code
 SettingsTFASettingsAPIApi.tfaValidateAuthCode(tfaValidateRequestsDto: tfaValidateRequestsDto) { (response, error) in

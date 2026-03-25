@@ -217,7 +217,7 @@ PeoplePhotosAPIApi.updateMemberPhoto(userid: userid, updatePhotoMemberRequest: u
 
 # **uploadMemberPhoto**
 ```swift
-    open class func uploadMemberPhoto(userid: String, formCollection: [KeyValuePairStringStringValues], completion: @escaping (_ data: FileUploadResultWrapper?, _ error: Error?) -> Void)
+    open class func uploadMemberPhoto(userid: String, file: URL, autosave: Bool? = nil, completion: @escaping (_ data: FileUploadResultWrapper?, _ error: Error?) -> Void)
 ```
 
 Uploads a photo of the user with the ID specified in the request.
@@ -229,7 +229,8 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userid** | **String** | The user ID. | 
- **formCollection** | [**[KeyValuePairStringStringValues]**](KeyValuePairStringStringValues.md) | The image data. | 
+ **file** | **URL** | The image data. | 
+ **autosave** | **Bool** |  | [optional] 
 
 ### Return type
 
@@ -245,10 +246,11 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let userid = "userid_example" // String | The user ID.
-let formCollection = [KeyValuePairStringStringValues(key: "key_example", value: ["value_example"])] // [KeyValuePairStringStringValues] | The image data.
+let file = URL(string: "https://example.com")! // URL | The image data.
+let autosave = true // Bool |  (optional)
 
 // Upload a user photo
-PeoplePhotosAPIApi.uploadMemberPhoto(userid: userid, formCollection: formCollection) { (response, error) in
+PeoplePhotosAPIApi.uploadMemberPhoto(userid: userid, file: file, autosave: autosave) { (response, error) in
     guard error == nil else {
         print(error)
         return

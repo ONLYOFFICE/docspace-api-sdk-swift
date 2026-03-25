@@ -39,7 +39,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let system = true // Bool | Specifies whether to load the system plugins or not. (optional)
+let system = false // Bool | Specifies whether to load the system plugins or not. (optional)
 
 // Add a web plugin
 SettingsWebpluginsAPIApi.addWebPluginFromFile(system: system) { (response, error) in

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** A shareable link for a file with its configuration and status. */
-public struct FileShareLink: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FileShareLink: Sendable, Codable, Hashable {
 
     /** The unique identifier of the shared link. */
     public var id: UUID?
@@ -37,8 +37,12 @@ public struct FileShareLink: Sendable, Codable, ParameterConvertible, Hashable {
     public var _internal: Bool?
     /** The token for validating access requests. */
     public var requestToken: String?
+    /** The maximum number of times the invitation link can be used. */
+    public var maxUseCount: Int?
+    /** The current number of times the invitation link has been used. */
+    public var currentUseCount: Int?
 
-    public init(id: UUID? = nil, title: String? = nil, shareLink: String? = nil, expirationDate: ApiDateTime? = nil, linkType: LinkType? = nil, password: String? = nil, denyDownload: Bool? = nil, isExpired: Bool? = nil, primary: Bool? = nil, _internal: Bool? = nil, requestToken: String? = nil) {
+    public init(id: UUID? = nil, title: String? = nil, shareLink: String? = nil, expirationDate: ApiDateTime? = nil, linkType: LinkType? = nil, password: String? = nil, denyDownload: Bool? = nil, isExpired: Bool? = nil, primary: Bool? = nil, _internal: Bool? = nil, requestToken: String? = nil, maxUseCount: Int? = nil, currentUseCount: Int? = nil) {
         self.id = id
         self.title = title
         self.shareLink = shareLink
@@ -50,6 +54,8 @@ public struct FileShareLink: Sendable, Codable, ParameterConvertible, Hashable {
         self.primary = primary
         self._internal = _internal
         self.requestToken = requestToken
+        self.maxUseCount = maxUseCount
+        self.currentUseCount = currentUseCount
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -64,6 +70,8 @@ public struct FileShareLink: Sendable, Codable, ParameterConvertible, Hashable {
         case primary
         case _internal = "internal"
         case requestToken
+        case maxUseCount
+        case currentUseCount
     }
 
     // Encodable protocol methods
@@ -81,6 +89,8 @@ public struct FileShareLink: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(primary, forKey: .primary)
         try container.encodeIfPresent(_internal, forKey: ._internal)
         try container.encodeIfPresent(requestToken, forKey: .requestToken)
+        try container.encodeIfPresent(maxUseCount, forKey: .maxUseCount)
+        try container.encodeIfPresent(currentUseCount, forKey: .currentUseCount)
     }
 }
 

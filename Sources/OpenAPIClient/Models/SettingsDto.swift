@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The settings information. */
-public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct SettingsDto: Sendable, Codable, Hashable {
 
     /** The time zone. */
     public var timezone: String?
@@ -79,6 +79,8 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
     public var limitedAccessDevToolsForUsers: Bool?
     /** Specifies whether to display the promotional banners. */
     public var displayBanners: Bool?
+    /** Specifies whether AI functionality (chat, agents, vectorization) is enabled for the current tenant.  When `false`, all AI features are disabled and the AI Agents folder is hidden. */
+    public var aiEnabled: Bool?
     /** The user name validation regex. */
     public var userNameRegex: String?
     /** The maximum number of invitations to the portal. */
@@ -91,8 +93,11 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
     /** The white label logo text. */
     public var logoText: String?
     public var externalResources: CultureSpecificExternalResources?
+    public var defaultFolderType: FolderType?
+    /** Specifies if an external database is connected for storing form results. */
+    public var externalDbEnabled: Bool?
 
-    public init(timezone: String? = nil, trustedDomains: [String]? = nil, trustedDomainsType: TenantTrustedDomainsType? = nil, culture: String?, utcOffset: String? = nil, utcHoursOffset: Double? = nil, greetingSettings: String? = nil, ownerId: UUID? = nil, nameSchemaId: String? = nil, enabledJoin: Bool? = nil, enableAdmMess: Bool? = nil, thirdpartyEnable: Bool? = nil, docSpace: Bool? = nil, standalone: Bool? = nil, isAmi: Bool? = nil, baseDomain: String?, wizardToken: String? = nil, passwordHash: PasswordHasher? = nil, firebase: FirebaseDto? = nil, version: String? = nil, recaptchaType: RecaptchaType? = nil, recaptchaPublicKey: String? = nil, debugInfo: Bool? = nil, socketUrl: String? = nil, tenantStatus: TenantStatus? = nil, tenantAlias: String? = nil, displayAbout: Bool? = nil, domainValidator: TenantDomainValidator? = nil, zendeskKey: String? = nil, tagManagerId: String? = nil, cookieSettingsEnabled: Bool, limitedAccessSpace: Bool? = nil, limitedAccessDevToolsForUsers: Bool? = nil, displayBanners: Bool? = nil, userNameRegex: String? = nil, invitationLimit: Int? = nil, plugins: PluginsDto? = nil, deepLink: DeepLinkDto, formGallery: FormGalleryDto? = nil, maxImageUploadSize: Int64? = nil, logoText: String? = nil, externalResources: CultureSpecificExternalResources? = nil) {
+    public init(timezone: String? = nil, trustedDomains: [String]? = nil, trustedDomainsType: TenantTrustedDomainsType? = nil, culture: String?, utcOffset: String? = nil, utcHoursOffset: Double? = nil, greetingSettings: String? = nil, ownerId: UUID? = nil, nameSchemaId: String? = nil, enabledJoin: Bool? = nil, enableAdmMess: Bool? = nil, thirdpartyEnable: Bool? = nil, docSpace: Bool? = nil, standalone: Bool? = nil, isAmi: Bool? = nil, baseDomain: String?, wizardToken: String? = nil, passwordHash: PasswordHasher? = nil, firebase: FirebaseDto? = nil, version: String? = nil, recaptchaType: RecaptchaType? = nil, recaptchaPublicKey: String? = nil, debugInfo: Bool? = nil, socketUrl: String? = nil, tenantStatus: TenantStatus? = nil, tenantAlias: String? = nil, displayAbout: Bool? = nil, domainValidator: TenantDomainValidator? = nil, zendeskKey: String? = nil, tagManagerId: String? = nil, cookieSettingsEnabled: Bool, limitedAccessSpace: Bool? = nil, limitedAccessDevToolsForUsers: Bool? = nil, displayBanners: Bool? = nil, aiEnabled: Bool? = nil, userNameRegex: String? = nil, invitationLimit: Int? = nil, plugins: PluginsDto? = nil, deepLink: DeepLinkDto, formGallery: FormGalleryDto? = nil, maxImageUploadSize: Int64? = nil, logoText: String? = nil, externalResources: CultureSpecificExternalResources? = nil, defaultFolderType: FolderType? = nil, externalDbEnabled: Bool? = nil) {
         self.timezone = timezone
         self.trustedDomains = trustedDomains
         self.trustedDomainsType = trustedDomainsType
@@ -127,6 +132,7 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
         self.limitedAccessSpace = limitedAccessSpace
         self.limitedAccessDevToolsForUsers = limitedAccessDevToolsForUsers
         self.displayBanners = displayBanners
+        self.aiEnabled = aiEnabled
         self.userNameRegex = userNameRegex
         self.invitationLimit = invitationLimit
         self.plugins = plugins
@@ -135,6 +141,8 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
         self.maxImageUploadSize = maxImageUploadSize
         self.logoText = logoText
         self.externalResources = externalResources
+        self.defaultFolderType = defaultFolderType
+        self.externalDbEnabled = externalDbEnabled
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -172,6 +180,7 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
         case limitedAccessSpace
         case limitedAccessDevToolsForUsers
         case displayBanners
+        case aiEnabled
         case userNameRegex
         case invitationLimit
         case plugins
@@ -180,6 +189,8 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
         case maxImageUploadSize
         case logoText
         case externalResources
+        case defaultFolderType
+        case externalDbEnabled
     }
 
     // Encodable protocol methods
@@ -220,6 +231,7 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(limitedAccessSpace, forKey: .limitedAccessSpace)
         try container.encodeIfPresent(limitedAccessDevToolsForUsers, forKey: .limitedAccessDevToolsForUsers)
         try container.encodeIfPresent(displayBanners, forKey: .displayBanners)
+        try container.encodeIfPresent(aiEnabled, forKey: .aiEnabled)
         try container.encodeIfPresent(userNameRegex, forKey: .userNameRegex)
         try container.encodeIfPresent(invitationLimit, forKey: .invitationLimit)
         try container.encodeIfPresent(plugins, forKey: .plugins)
@@ -228,6 +240,8 @@ public struct SettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(maxImageUploadSize, forKey: .maxImageUploadSize)
         try container.encodeIfPresent(logoText, forKey: .logoText)
         try container.encodeIfPresent(externalResources, forKey: .externalResources)
+        try container.encodeIfPresent(defaultFolderType, forKey: .defaultFolderType)
+        try container.encodeIfPresent(externalDbEnabled, forKey: .externalDbEnabled)
     }
 }
 

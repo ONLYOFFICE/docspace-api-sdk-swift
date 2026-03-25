@@ -41,8 +41,8 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let inviteView = true // Bool | Specifies whether to return providers that are available for invitation links, i.e. the user can login or register through these providers. (optional)
-let settingsView = true // Bool | Specifies whether to display the provider settings in a pop-up window (true) or redirect them to the desktop application (false). (optional)
+let inviteView = false // Bool | Specifies whether to return providers that are available for invitation links, i.e. the user can login or register through these providers. (optional)
+let settingsView = false // Bool | Specifies whether to display the provider settings in a pop-up window (true) or redirect them to the desktop application (false). (optional)
 let clientCallback = "clientCallback_example" // String | The method that is called after authentication. (optional)
 let fromOnly = "fromOnly_example" // String | The provider name if a response is required only from this provider. (optional)
 
@@ -144,7 +144,7 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let signupAccountRequestDto = SignupAccountRequestDto(employeeType: EmployeeType(), firstName: "firstName_example", lastName: "lastName_example", email: "email_example", passwordHash: "passwordHash_example", key: "key_example", culture: "culture_example", serializedProfile: "serializedProfile_example") // SignupAccountRequestDto |  (optional)
+let signupAccountRequestDto = SignupAccountRequestDto(employeeType: EmployeeType(), key: "key_example", culture: "culture_example", serializedProfile: "serializedProfile_example") // SignupAccountRequestDto |  (optional)
 
 // Create a third-pary account
 PeopleThirdPartyAccountsAPIApi.signupThirdPartyAccount(signupAccountRequestDto: signupAccountRequestDto) { (response, error) in

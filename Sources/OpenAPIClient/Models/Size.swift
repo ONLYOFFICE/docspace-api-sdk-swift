@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,9 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-public struct Size: Sendable, Codable, ParameterConvertible, Hashable {
+/** Represents dimensions with width and height values. */
+public struct Size: Sendable, Codable, Hashable {
 
+    /** Gets or sets the height dimension of an object, typically measured in pixels or other unit.  It defines the vertical size of the object. */
     public var height: Int?
+    /** Gets or sets the width dimension of an object, typically measured in pixels or other unit. */
     public var width: Int?
 
     public init(height: Int? = nil, width: Int? = nil) {

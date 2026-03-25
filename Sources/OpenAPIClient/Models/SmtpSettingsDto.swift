@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The SMTP settings parameters. */
-public struct SmtpSettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct SmtpSettingsDto: Sendable, Codable, Hashable {
 
     public static let hostRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let portRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 65535, exclusiveMaximum: false, multipleOf: nil)

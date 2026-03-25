@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The Firebase user parameters. */
-public struct FireBaseUser: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FireBaseUser: Sendable, Codable, Hashable {
 
     public static let firebaseDeviceTokenRule = StringRule(minLength: nil, maxLength: 255, pattern: nil)
     public static let applicationRule = StringRule(minLength: nil, maxLength: 20, pattern: nil)

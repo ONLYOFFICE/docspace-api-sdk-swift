@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The configuration parameters. */
-public struct ConfigurationDtoInteger: Sendable, Codable, ParameterConvertible, Hashable {
+public struct ConfigurationDtoInteger: Sendable, Codable, Hashable {
 
     public var document: DocumentConfigDto
     /** The document type. */
@@ -38,8 +38,10 @@ public struct ConfigurationDtoInteger: Sendable, Codable, ParameterConvertible, 
     public var startFillingMode: StartFillingMode?
     /** The file filling session ID. */
     public var fillingSessionId: String?
+    public var quotaExceededScope: QuotaScope?
+    public var generationToolCallState: EditorToolCallStateDto?
 
-    public init(document: DocumentConfigDto, documentType: String?, editorConfig: EditorConfigurationDto, editorType: EditorType, editorUrl: String?, token: String? = nil, type: String? = nil, file: FileDtoInteger, errorMessage: String? = nil, startFilling: Bool? = nil, fillingStatus: Bool? = nil, startFillingMode: StartFillingMode? = nil, fillingSessionId: String? = nil) {
+    public init(document: DocumentConfigDto, documentType: String?, editorConfig: EditorConfigurationDto, editorType: EditorType, editorUrl: String?, token: String? = nil, type: String? = nil, file: FileDtoInteger, errorMessage: String? = nil, startFilling: Bool? = nil, fillingStatus: Bool? = nil, startFillingMode: StartFillingMode? = nil, fillingSessionId: String? = nil, quotaExceededScope: QuotaScope? = nil, generationToolCallState: EditorToolCallStateDto? = nil) {
         self.document = document
         self.documentType = documentType
         self.editorConfig = editorConfig
@@ -53,6 +55,8 @@ public struct ConfigurationDtoInteger: Sendable, Codable, ParameterConvertible, 
         self.fillingStatus = fillingStatus
         self.startFillingMode = startFillingMode
         self.fillingSessionId = fillingSessionId
+        self.quotaExceededScope = quotaExceededScope
+        self.generationToolCallState = generationToolCallState
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -69,6 +73,8 @@ public struct ConfigurationDtoInteger: Sendable, Codable, ParameterConvertible, 
         case fillingStatus
         case startFillingMode
         case fillingSessionId
+        case quotaExceededScope
+        case generationToolCallState
     }
 
     // Encodable protocol methods
@@ -88,6 +94,8 @@ public struct ConfigurationDtoInteger: Sendable, Codable, ParameterConvertible, 
         try container.encodeIfPresent(fillingStatus, forKey: .fillingStatus)
         try container.encodeIfPresent(startFillingMode, forKey: .startFillingMode)
         try container.encodeIfPresent(fillingSessionId, forKey: .fillingSessionId)
+        try container.encodeIfPresent(quotaExceededScope, forKey: .quotaExceededScope)
+        try container.encodeIfPresent(generationToolCallState, forKey: .generationToolCallState)
     }
 }
 

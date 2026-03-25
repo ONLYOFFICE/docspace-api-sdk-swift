@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for changing the tenant wallet service state. */
-public struct ChangeWalletServiceStateRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct ChangeWalletServiceStateRequestDto: Sendable, Codable, Hashable {
 
     public var service: TenantWalletService?
     /** Specifies whether the wallet service is enabled. */

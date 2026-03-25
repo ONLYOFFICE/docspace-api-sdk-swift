@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **linkType** | [**LinkType**](LinkType.md) |  | [optional] 
 **password** | **String** | The link password. | [optional] 
 **denyDownload** | **Bool** | Specifies if downloading the file from the link is disabled or not. | [optional] 
+**maxUseCount** | **Int** | The maximum number of times the invitation link can be used. | [optional] 
+**currentUseCount** | **Int** | The current number of times the invitation link has been used. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

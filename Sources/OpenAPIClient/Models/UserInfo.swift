@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,13 +15,13 @@
 import Foundation
 
 /** The user information. */
-public struct UserInfo: Sendable, Codable, ParameterConvertible, Hashable {
+public struct UserInfo: Sendable, Codable, Hashable {
 
     /** The user ID. */
     public var id: UUID?
-    /** The user first name. */
+    /** The user's first name. */
     public var firstName: String?
-    /** The user last name. */
+    /** The user's last name. */
     public var lastName: String?
     /** The user username. */
     public var userName: String?
@@ -60,13 +60,13 @@ public struct UserInfo: Sendable, Codable, ParameterConvertible, Hashable {
     /** The user mobile phone. */
     public var mobilePhone: String?
     public var mobilePhoneActivationStatus: MobilePhoneActivationStatus?
-    /** The LDAP user identificator. */
+    /** The LDAP user identifier. */
     public var sid: String?
     /** The LDAP user quota attribute. */
     public var ldapQouta: Int64?
-    /** The SSO SAML user identificator. */
+    /** The SSO SAML user identifier. */
     public var ssoNameId: String?
-    /** The SSO SAML user session identificator. */
+    /** The SSO SAML user session identifier. */
     public var ssoSessionId: String?
     /** The date and time when the user account was created. */
     public var createDate: Date?
@@ -74,6 +74,7 @@ public struct UserInfo: Sendable, Codable, ParameterConvertible, Hashable {
     public var createdBy: UUID?
     /** Specifies if tips, updates and offers are allowed to be sent to the user or not. */
     public var spam: Bool?
+    /** Indicates whether the activation status of the employee or recipient is unchecked or inactive.  Depending on the context, this property evaluates the activation or eligibility status accordingly. */
     public var checkActivation: Bool?
 
     public init(id: UUID? = nil, firstName: String? = nil, lastName: String? = nil, userName: String? = nil, birthDate: Date? = nil, sex: Bool? = nil, status: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, terminatedDate: Date? = nil, title: String? = nil, workFromDate: Date? = nil, email: String? = nil, contacts: String? = nil, contactsList: [String]? = nil, location: String? = nil, notes: String? = nil, removed: Bool? = nil, lastModified: Date? = nil, tenantId: Int? = nil, isActive: Bool? = nil, cultureName: String? = nil, mobilePhone: String? = nil, mobilePhoneActivationStatus: MobilePhoneActivationStatus? = nil, sid: String? = nil, ldapQouta: Int64? = nil, ssoNameId: String? = nil, ssoSessionId: String? = nil, createDate: Date? = nil, createdBy: UUID? = nil, spam: Bool? = nil, checkActivation: Bool? = nil) {

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -108,7 +108,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-all-providers/
      
      - GET /api/2.0/files/thirdparty/providers
-     - Returns a list of all providers.   **Note**: Available provider keys: Dropbox, Box, WebDav, OneDrive, GoogleDrive, kDrive, ownCloud, Nextcloud.
+     - Returns a list of all providers.
      - BASIC:
        - type: http
        - name: Basic
@@ -240,7 +240,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-capabilities/
      
      - GET /api/2.0/files/thirdparty/capabilities
-     - Returns the list of the available providers.   **Note**: Available provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+     - Returns the list of the available providers.
      - BASIC:
        - type: http
        - name: Basic
@@ -432,7 +432,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party/
      
      - POST /api/2.0/files/thirdparty
-     - Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+     - Saves the third-party storage service account. For WebDav, Yandex, kDrive and SharePoint, the login and password are used for authentication. For other providers, the authentication is performed using a token received via OAuth 2.0.
      - BASIC:
        - type: http
        - name: Basic
@@ -497,7 +497,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-third-party-backup/
      
      - POST /api/2.0/files/thirdparty/backup
-     - Saves a backup of the connected third-party account.   **Note**: List of provider keys: DropboxV2, Box, WebDav, Yandex, OneDrive, SharePoint, GoogleDrive, kDrive.
+     - Saves a backup of the connected third-party account.
      - BASIC:
        - type: http
        - name: Basic

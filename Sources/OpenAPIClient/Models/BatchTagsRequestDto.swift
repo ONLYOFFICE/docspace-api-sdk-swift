@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 import Foundation
 
 /** The parameters for managing room tags. */
-public struct BatchTagsRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct BatchTagsRequestDto: Sendable, Codable, Hashable {
 
     /** The list of tag names. */
-    public var names: [String]?
+    public var names: [String]
 
-    public init(names: [String]? = nil) {
+    public init(names: [String]) {
         self.names = names
     }
 
@@ -32,7 +32,7 @@ public struct BatchTagsRequestDto: Sendable, Codable, ParameterConvertible, Hash
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(names, forKey: .names)
+        try container.encode(names, forKey: .names)
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for putting money on deposit. */
-public struct TopUpDepositRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TopUpDepositRequestDto: Sendable, Codable, Hashable {
 
     public static let amountRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 999999, exclusiveMaximum: false, multipleOf: nil)
     /** The amount of money for the operation. */

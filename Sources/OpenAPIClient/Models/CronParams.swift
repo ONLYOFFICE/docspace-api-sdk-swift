@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,10 +14,13 @@
 //  limitations under the License.
 import Foundation
 
-public struct CronParams: Sendable, Codable, ParameterConvertible, Hashable {
+/** The backup cron parameters. */
+public struct CronParams: Sendable, Codable, Hashable {
 
     public var period: BackupPeriod?
+    /** The time of the day to start the backup process. */
     public var hour: Int?
+    /** The day of the week to start the backup process. */
     public var day: Int?
 
     public init(period: BackupPeriod? = nil, hour: Int? = nil, day: Int? = nil) {

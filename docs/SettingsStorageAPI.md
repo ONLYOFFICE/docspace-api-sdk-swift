@@ -28,7 +28,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dump** | **Bool** |  | [optional] 
+ **dump** | **Bool** | Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process. | [optional] 
 
 ### Return type
 
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let dump = true // Bool |  (optional)
+let dump = true // Bool | Indicates whether the operation should perform a dump of backup storage data.  This property is used as a parameter in backup-related API requests to specify  if additional details or data dumping is required during the process. (optional)
 
 // Get the backup storages
 SettingsStorageAPIApi.getAllBackupStorages(dump: dump) { (response, error) in

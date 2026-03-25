@@ -163,7 +163,7 @@ SettingsWebhooksAPIApi.getTenantWebhooks() { (response, error) in
 
 # **getWebhookTriggers**
 ```swift
-    open class func getWebhookTriggers(completion: @escaping (_ data: UnknownWrapper?, _ error: Error?) -> Void)
+    open class func getWebhookTriggers(completion: @escaping (_ data: GetWebhookTriggers200Response?, _ error: Error?) -> Void)
 ```
 
 Returns a list of triggers for a webhook.
@@ -175,7 +175,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**UnknownWrapper**](UnknownWrapper.md)
+[**GetWebhookTriggers200Response**](GetWebhookTriggers200Response.md)
 
 ### Authorization
 

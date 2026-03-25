@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-progress/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: DoubleWrapper
+     - returns: DoubleNullableWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getStorageEncryptionProgress(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DoubleWrapper {
+    open class func getStorageEncryptionProgress(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DoubleNullableWrapper {
         return try await getStorageEncryptionProgressWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -60,9 +60,9 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<DoubleWrapper> 
+     - returns: RequestBuilder<DoubleNullableWrapper> 
      */
-    open class func getStorageEncryptionProgressWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DoubleWrapper> {
+    open class func getStorageEncryptionProgressWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DoubleNullableWrapper> {
         let localVariablePath = "/api/2.0/settings/encryption/progress"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -76,7 +76,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DoubleWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DoubleNullableWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

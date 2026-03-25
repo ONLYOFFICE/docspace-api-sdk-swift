@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The folder parameters. */
-public struct FolderDtoString: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FolderDtoString: Sendable, Codable, Hashable {
 
     /** The file entry title. */
     public var title: String?
@@ -112,10 +112,14 @@ public struct FolderDtoString: Sendable, Codable, ParameterConvertible, Hashable
     /** Specifies if an external link to the folder is expired or not. */
     @available(*, deprecated, message: "This property is deprecated.")
     public var expired: Bool?
-    public var chatSettings: ChatSettings?
+    public var chatSettings: ChatSettingsDto?
     public var rootRoomType: RoomType?
+    /** Specifies whether to save form data as XLSX file. */
+    public var saveFormAsXLSX: Bool?
+    /** Specifies whether to send form data to external database. */
+    public var sendFormToExternalDB: Bool?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, parentId: String? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: Logo? = nil, pinned: Bool? = nil, roomType: RoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkDto? = nil, type: FolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, chatSettings: ChatSettings? = nil, rootRoomType: RoomType? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, parentId: String? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: Logo? = nil, pinned: Bool? = nil, roomType: RoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkDto? = nil, type: FolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, chatSettings: ChatSettingsDto? = nil, rootRoomType: RoomType? = nil, saveFormAsXLSX: Bool? = nil, sendFormToExternalDB: Bool? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -175,6 +179,8 @@ public struct FolderDtoString: Sendable, Codable, ParameterConvertible, Hashable
         self.expired = expired
         self.chatSettings = chatSettings
         self.rootRoomType = rootRoomType
+        self.saveFormAsXLSX = saveFormAsXLSX
+        self.sendFormToExternalDB = sendFormToExternalDB
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -237,6 +243,8 @@ public struct FolderDtoString: Sendable, Codable, ParameterConvertible, Hashable
         case expired
         case chatSettings
         case rootRoomType
+        case saveFormAsXLSX
+        case sendFormToExternalDB
     }
 
     // Encodable protocol methods
@@ -302,6 +310,8 @@ public struct FolderDtoString: Sendable, Codable, ParameterConvertible, Hashable
         try container.encodeIfPresent(expired, forKey: .expired)
         try container.encodeIfPresent(chatSettings, forKey: .chatSettings)
         try container.encodeIfPresent(rootRoomType, forKey: .rootRoomType)
+        try container.encodeIfPresent(saveFormAsXLSX, forKey: .saveFormAsXLSX)
+        try container.encodeIfPresent(sendFormToExternalDB, forKey: .sendFormToExternalDB)
     }
 }
 

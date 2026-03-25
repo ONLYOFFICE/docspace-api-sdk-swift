@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The current tenant quota. */
-public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantQuota: Sendable, Codable, Hashable {
 
     /** The tenant ID. */
     public var tenantId: Int?
@@ -31,6 +31,8 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
     public var productId: String?
     /** The service name. */
     public var serviceName: String?
+    /** The service group. */
+    public var serviceGroup: String?
     /** Specifies if the tenant quota is visible or not. */
     public var visible: Bool?
     /** Specifies if the tenant quota applies to the wallet or not */
@@ -75,6 +77,8 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
     public var customization: Bool?
     /** Specifies if the license has the lifetime settings or not. */
     public var lifetime: Bool?
+    /** Specifies if the Automation API is available or not. */
+    public var automationApi: Bool?
     /** Specifies if the custom domain URL is available or not. */
     public var custom: Bool?
     /** Specifies if the restore is enabled or not. */
@@ -89,12 +93,14 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
     public var year: Bool?
     /** The number of free backups within a month. */
     public var countFreeBackup: Int?
-    /** Specifies if the backup anabled as a wallet service or not. */
+    /** Specifies if the backup enabled as a wallet service or not. */
     public var backup: Bool?
     /** The number of AI agents. */
     public var countAIAgent: Int?
+    /** Specifies if the AI tools enabled as a wallet service or not. */
+    public var aiTools: Bool?
 
-    public init(tenantId: Int? = nil, name: String? = nil, price: Double? = nil, priceCurrencySymbol: String? = nil, priceISOCurrencySymbol: String? = nil, productId: String? = nil, serviceName: String? = nil, visible: Bool? = nil, wallet: Bool? = nil, dueDate: Date? = nil, features: String? = nil, maxFileSize: Int64? = nil, maxTotalSize: Int64? = nil, countUser: Int? = nil, countRoomAdmin: Int? = nil, usersInRoom: Int? = nil, countRoom: Int? = nil, nonProfit: Bool? = nil, trial: Bool? = nil, free: Bool? = nil, update: Bool? = nil, audit: Bool? = nil, docsEdition: Bool? = nil, ldap: Bool? = nil, sso: Bool? = nil, statistic: Bool? = nil, branding: Bool? = nil, customization: Bool? = nil, lifetime: Bool? = nil, custom: Bool? = nil, restore: Bool? = nil, oauth: Bool? = nil, contentSearch: Bool? = nil, thirdParty: Bool? = nil, year: Bool? = nil, countFreeBackup: Int? = nil, backup: Bool? = nil, countAIAgent: Int? = nil) {
+    public init(tenantId: Int? = nil, name: String? = nil, price: Double? = nil, priceCurrencySymbol: String? = nil, priceISOCurrencySymbol: String? = nil, productId: String? = nil, serviceName: String? = nil, serviceGroup: String? = nil, visible: Bool? = nil, wallet: Bool? = nil, dueDate: Date? = nil, features: String? = nil, maxFileSize: Int64? = nil, maxTotalSize: Int64? = nil, countUser: Int? = nil, countRoomAdmin: Int? = nil, usersInRoom: Int? = nil, countRoom: Int? = nil, nonProfit: Bool? = nil, trial: Bool? = nil, free: Bool? = nil, update: Bool? = nil, audit: Bool? = nil, docsEdition: Bool? = nil, ldap: Bool? = nil, sso: Bool? = nil, statistic: Bool? = nil, branding: Bool? = nil, customization: Bool? = nil, lifetime: Bool? = nil, automationApi: Bool? = nil, custom: Bool? = nil, restore: Bool? = nil, oauth: Bool? = nil, contentSearch: Bool? = nil, thirdParty: Bool? = nil, year: Bool? = nil, countFreeBackup: Int? = nil, backup: Bool? = nil, countAIAgent: Int? = nil, aiTools: Bool? = nil) {
         self.tenantId = tenantId
         self.name = name
         self.price = price
@@ -102,6 +108,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         self.priceISOCurrencySymbol = priceISOCurrencySymbol
         self.productId = productId
         self.serviceName = serviceName
+        self.serviceGroup = serviceGroup
         self.visible = visible
         self.wallet = wallet
         self.dueDate = dueDate
@@ -124,6 +131,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         self.branding = branding
         self.customization = customization
         self.lifetime = lifetime
+        self.automationApi = automationApi
         self.custom = custom
         self.restore = restore
         self.oauth = oauth
@@ -133,6 +141,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         self.countFreeBackup = countFreeBackup
         self.backup = backup
         self.countAIAgent = countAIAgent
+        self.aiTools = aiTools
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -143,6 +152,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         case priceISOCurrencySymbol
         case productId
         case serviceName
+        case serviceGroup
         case visible
         case wallet
         case dueDate
@@ -165,6 +175,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         case branding
         case customization
         case lifetime
+        case automationApi
         case custom
         case restore
         case oauth
@@ -174,6 +185,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         case countFreeBackup
         case backup
         case countAIAgent
+        case aiTools
     }
 
     // Encodable protocol methods
@@ -187,6 +199,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(priceISOCurrencySymbol, forKey: .priceISOCurrencySymbol)
         try container.encodeIfPresent(productId, forKey: .productId)
         try container.encodeIfPresent(serviceName, forKey: .serviceName)
+        try container.encodeIfPresent(serviceGroup, forKey: .serviceGroup)
         try container.encodeIfPresent(visible, forKey: .visible)
         try container.encodeIfPresent(wallet, forKey: .wallet)
         try container.encodeIfPresent(dueDate, forKey: .dueDate)
@@ -209,6 +222,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(branding, forKey: .branding)
         try container.encodeIfPresent(customization, forKey: .customization)
         try container.encodeIfPresent(lifetime, forKey: .lifetime)
+        try container.encodeIfPresent(automationApi, forKey: .automationApi)
         try container.encodeIfPresent(custom, forKey: .custom)
         try container.encodeIfPresent(restore, forKey: .restore)
         try container.encodeIfPresent(oauth, forKey: .oauth)
@@ -218,6 +232,7 @@ public struct TenantQuota: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encodeIfPresent(countFreeBackup, forKey: .countFreeBackup)
         try container.encodeIfPresent(backup, forKey: .backup)
         try container.encodeIfPresent(countAIAgent, forKey: .countAIAgent)
+        try container.encodeIfPresent(aiTools, forKey: .aiTools)
     }
 }
 

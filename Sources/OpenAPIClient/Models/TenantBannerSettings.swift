@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,10 +15,11 @@
 import Foundation
 
 /** The visibility settings of the promotional banners. */
-public struct TenantBannerSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantBannerSettings: Sendable, Codable, Hashable {
 
     /** The banners visibility flag. */
     public var hidden: Bool?
+    /** The timestamp indicating when the settings were last modified. */
     public var lastModified: Date?
 
     public init(hidden: Bool? = nil, lastModified: Date? = nil) {

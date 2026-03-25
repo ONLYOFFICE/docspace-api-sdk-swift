@@ -16,11 +16,14 @@ Method | HTTP request | Description
 [**getPortalSettings**](SettingsCommonSettingsAPI.md#getportalsettings) | **GET** /api/2.0/settings | Get the portal settings
 [**getSocketSettings**](SettingsCommonSettingsAPI.md#getsocketsettings) | **GET** /api/2.0/settings/socket | Get the socket settings
 [**getSupportedCultures**](SettingsCommonSettingsAPI.md#getsupportedcultures) | **GET** /api/2.0/settings/cultures | Get supported languages
+[**getTenantAiAccessSettings**](SettingsCommonSettingsAPI.md#gettenantaiaccesssettings) | **GET** /api/2.0/settings/ai-access | Get the AI access settings for the portal
 [**getTenantUserInvitationSettings**](SettingsCommonSettingsAPI.md#gettenantuserinvitationsettings) | **GET** /api/2.0/settings/invitationsettings | Get the user invitation settings
 [**getTimeZones**](SettingsCommonSettingsAPI.md#gettimezones) | **GET** /api/2.0/settings/timezones | Get time zones
+[**saveDefaultFolder**](SettingsCommonSettingsAPI.md#savedefaultfolder) | **PUT** /api/2.0/settings/defaultfolder | Set the default folder
 [**saveDnsSettings**](SettingsCommonSettingsAPI.md#savednssettings) | **PUT** /api/2.0/settings/dns | Save the DNS settings
 [**saveMailDomainSettings**](SettingsCommonSettingsAPI.md#savemaildomainsettings) | **POST** /api/2.0/settings/maildomainsettings | Save the mail domain settings
 [**savePortalColorTheme**](SettingsCommonSettingsAPI.md#saveportalcolortheme) | **PUT** /api/2.0/settings/colortheme | Save a color theme
+[**setTenantAiAccessSettings**](SettingsCommonSettingsAPI.md#settenantaiaccesssettings) | **POST** /api/2.0/settings/ai-access | Set the AI access for the portal
 [**updateEmailActivationSettings**](SettingsCommonSettingsAPI.md#updateemailactivationsettings) | **PUT** /api/2.0/settings/emailactivation | Update the email activation settings
 [**updateInvitationSettings**](SettingsCommonSettingsAPI.md#updateinvitationsettings) | **PUT** /api/2.0/settings/invitationsettings | Update user invitation settings
 
@@ -593,6 +596,52 @@ SettingsCommonSettingsAPIApi.getSupportedCultures() { (response, error) in
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getTenantAiAccessSettings**
+```swift
+    open class func getTenantAiAccessSettings(completion: @escaping (_ data: TenantAiAccessSettingsWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the current portal-level AI access settings that control whether all AI functionality  (chat, agents, vectorization) is available for the portal. AI is enabled by default.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-ai-access-settings/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TenantAiAccessSettingsWrapper**](TenantAiAccessSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Get the AI access settings for the portal
+SettingsCommonSettingsAPIApi.getTenantAiAccessSettings() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getTenantUserInvitationSettings**
 ```swift
     open class func getTenantUserInvitationSettings(completion: @escaping (_ data: TenantUserInvitationSettingsWrapper?, _ error: Error?) -> Void)
@@ -685,6 +734,56 @@ SettingsCommonSettingsAPIApi.getTimeZones() { (response, error) in
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **saveDefaultFolder**
+```swift
+    open class func saveDefaultFolder(defaultProductRequestDto: DefaultProductRequestDto? = nil, completion: @escaping (_ data: StudioDefaultPageSettingsWrapper?, _ error: Error?) -> Void)
+```
+
+Sets the default folder.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-default-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **defaultProductRequestDto** | [**DefaultProductRequestDto**](DefaultProductRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**StudioDefaultPageSettingsWrapper**](StudioDefaultPageSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let defaultProductRequestDto = DefaultProductRequestDto(defaultFolderType: FolderType()) // DefaultProductRequestDto |  (optional)
+
+// Set the default folder
+SettingsCommonSettingsAPIApi.saveDefaultFolder(defaultProductRequestDto: defaultProductRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **saveDnsSettings**
 ```swift
     open class func saveDnsSettings(dnsSettingsRequestsDto: DnsSettingsRequestsDto? = nil, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
@@ -763,7 +862,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let mailDomainSettingsRequestsDto = MailDomainSettingsRequestsDto(type: TenantTrustedDomainsType(), domains: ["domains_example"], inviteUsersAsVisitors: true) // MailDomainSettingsRequestsDto |  (optional)
+let mailDomainSettingsRequestsDto = MailDomainSettingsRequestsDto(type: TenantTrustedDomainsType(), domains: ["domains_example"], inviteUsersAsVisitors: false) // MailDomainSettingsRequestsDto |  (optional)
 
 // Save the mail domain settings
 SettingsCommonSettingsAPIApi.saveMailDomainSettings(mailDomainSettingsRequestsDto: mailDomainSettingsRequestsDto) { (response, error) in
@@ -817,6 +916,56 @@ let customColorThemesSettingsRequestsDto = CustomColorThemesSettingsRequestsDto(
 
 // Save a color theme
 SettingsCommonSettingsAPIApi.savePortalColorTheme(customColorThemesSettingsRequestsDto: customColorThemesSettingsRequestsDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **setTenantAiAccessSettings**
+```swift
+    open class func setTenantAiAccessSettings(tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = nil, completion: @escaping (_ data: TenantAiAccessSettingsWrapper?, _ error: Error?) -> Void)
+```
+
+Updates the portal-level AI access settings. When AI is disabled, all AI features are turned off:  the AI Agents folder is hidden from root folder listings, AI status checks immediately return disabled,  and AI chat endpoints become inaccessible. Only users with the DocSpaceAdmin role  (EditPortalSettings permission) can change this setting.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-ai-access-settings/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tenantAiAccessSettingsDto** | [**TenantAiAccessSettingsDto**](TenantAiAccessSettingsDto.md) |  | [optional] 
+
+### Return type
+
+[**TenantAiAccessSettingsWrapper**](TenantAiAccessSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let tenantAiAccessSettingsDto = TenantAiAccessSettingsDto(enabled: false) // TenantAiAccessSettingsDto |  (optional)
+
+// Set the AI access for the portal
+SettingsCommonSettingsAPIApi.setTenantAiAccessSettings(tenantAiAccessSettingsDto: tenantAiAccessSettingsDto) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -913,7 +1062,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let tenantUserInvitationSettingsRequestDto = TenantUserInvitationSettingsRequestDto(allowInvitingMembers: true, allowInvitingGuests: true) // TenantUserInvitationSettingsRequestDto |  (optional)
+let tenantUserInvitationSettingsRequestDto = TenantUserInvitationSettingsRequestDto(allowInvitingMembers: true, allowInvitingGuests: false) // TenantUserInvitationSettingsRequestDto |  (optional)
 
 // Update user invitation settings
 SettingsCommonSettingsAPIApi.updateInvitationSettings(tenantUserInvitationSettingsRequestDto: tenantUserInvitationSettingsRequestDto) { (response, error) in

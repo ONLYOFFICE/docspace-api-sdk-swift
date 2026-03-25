@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
 //  limitations under the License.
 import Foundation
 
-/** The registration Telegram status. */
+/** [] */
 public enum RegStatus: Int, Sendable, Codable, CaseIterable {
-    case _0 = 0
-    case _1 = 1
-    case _2 = 2
+    case unlinked = 0
+    case linked = 1
+    case linking = 2
 }

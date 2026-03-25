@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** A dictionary representing the sharing settings for the file entry. */
-public struct FileEntryDtoIntegerAllOfShareSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct FileEntryDtoIntegerAllOfShareSettings: Sendable, Codable, Hashable {
 
     public var user: Int?
     public var externalLink: Int?

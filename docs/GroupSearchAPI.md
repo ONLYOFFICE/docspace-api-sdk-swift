@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The group ID.
-let excludeShared = true // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
+let excludeShared = false // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
 let count = 987 // Int | The number of groups to retrieve in the request. (optional)
 let startIndex = 987 // Int | The starting index from which to begin retrieving groups with their sharing settings. (optional)
 let filterValue = "filterValue_example" // String | The text used as a filter for retrieving groups with their sharing settings. (optional)
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The group ID.
-let excludeShared = true // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
+let excludeShared = false // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
 let count = 987 // Int | The number of groups to retrieve in the request. (optional)
 let startIndex = 987 // Int | The starting index from which to begin retrieving groups with their sharing settings. (optional)
 let filterValue = "filterValue_example" // String | The text used as a filter for retrieving groups with their sharing settings. (optional)
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The group ID.
-let excludeShared = true // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
+let excludeShared = false // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
 let count = 987 // Int | The number of groups to retrieve in the request. (optional)
 let startIndex = 987 // Int | The starting index from which to begin retrieving groups with their sharing settings. (optional)
 let filterValue = "filterValue_example" // String | The text used as a filter for retrieving groups with their sharing settings. (optional)

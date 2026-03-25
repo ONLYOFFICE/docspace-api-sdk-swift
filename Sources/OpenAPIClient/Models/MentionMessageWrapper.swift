@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The mention message parameters. */
-public struct MentionMessageWrapper: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MentionMessageWrapper: Sendable, Codable, Hashable {
 
     public static let messageRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public var actionLink: ActionLinkConfig?

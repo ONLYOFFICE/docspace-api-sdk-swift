@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The authorization key parameters. */
-public struct AuthKey: Sendable, Codable, ParameterConvertible, Hashable {
+public struct AuthKey: Sendable, Codable, Hashable {
 
     public static let valueRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** The authorization key name. */
@@ -24,17 +24,33 @@ public struct AuthKey: Sendable, Codable, ParameterConvertible, Hashable {
     public var value: String?
     /** The authorization key title. */
     public var title: String?
+    /** The field type: text, password, select, toggle. */
+    public var type: String?
+    /** The list of options for select type fields. */
+    public var options: [String]?
+    /** The name of another key this field depends on for visibility. */
+    public var dependsOn: String?
+    /** The value of ASC.Web.Studio.UserControls.Management.AuthKey.DependsOn key that makes this field visible. */
+    public var dependsOnValue: String?
 
-    public init(name: String?, value: String?, title: String? = nil) {
+    public init(name: String?, value: String?, title: String? = nil, type: String? = nil, options: [String]? = nil, dependsOn: String? = nil, dependsOnValue: String? = nil) {
         self.name = name
         self.value = value
         self.title = title
+        self.type = type
+        self.options = options
+        self.dependsOn = dependsOn
+        self.dependsOnValue = dependsOnValue
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case name
         case value
         case title
+        case type
+        case options
+        case dependsOn
+        case dependsOnValue
     }
 
     // Encodable protocol methods
@@ -44,6 +60,10 @@ public struct AuthKey: Sendable, Codable, ParameterConvertible, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(value, forKey: .value)
         try container.encodeIfPresent(title, forKey: .title)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(options, forKey: .options)
+        try container.encodeIfPresent(dependsOn, forKey: .dependsOn)
+        try container.encodeIfPresent(dependsOnValue, forKey: .dependsOnValue)
     }
 }
 

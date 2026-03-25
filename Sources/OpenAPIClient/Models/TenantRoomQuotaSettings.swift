@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The room quota settings. */
-public struct TenantRoomQuotaSettings: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantRoomQuotaSettings: Sendable, Codable, Hashable {
 
     /** Specifies if the quota is enabled for the tenant entity or not. */
     public var enableQuota: Bool?
@@ -23,6 +23,7 @@ public struct TenantRoomQuotaSettings: Sendable, Codable, ParameterConvertible, 
     public var defaultQuota: Int64?
     /** The date of the last quota recalculation. */
     public var lastRecalculateDate: Date?
+    /** The timestamp indicating when the settings were last modified. */
     public var lastModified: Date?
 
     public init(enableQuota: Bool? = nil, defaultQuota: Int64? = nil, lastRecalculateDate: Date? = nil, lastModified: Date? = nil) {

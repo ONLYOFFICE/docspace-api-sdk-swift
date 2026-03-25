@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,6 +16,78 @@
 import Foundation
 
 open class {{{{x-classname}}}} {
+
+    /**
+     Aborts an in-progress file upload session.
+     
+     See also:
+     REST API Reference for abortUploadSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/
+     - parameter sessionId: (path) The session ID.      - parameter folderId: (path) The folder ID. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: Void
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func abortUploadSession(sessionId: String, folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await abortUploadSessionWithRequestBuilder(sessionId: sessionId, folderId: folderId, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Aborts an in-progress file upload session.
+     
+     See also:
+     REST API Reference for abortUploadSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/
+     
+     - DELETE /api/2.0/files/{folderId}/session/{sessionId}
+     - This method allows users to cancel an ongoing upload session identified by the session ID.  Once the session is aborted, the associated resources will be cleaned up, and the session will no longer accept further uploads.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter sessionId: (path) The session ID. 
+     - parameter folderId: (path) The folder ID. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<Void> 
+     */
+    open class func abortUploadSessionWithRequestBuilder(sessionId: String, folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<Void> {
+        var localVariablePath = "/api/2.0/files/{folderId}/session/{sessionId}"
+        let sessionIdPreEscape = "\(APIHelper.mapValueToPathItem(sessionId))"
+        let sessionIdPostEscape = sessionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
 
     /**
      Add favorite files and folders
@@ -410,10 +482,11 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/
      - parameter folderId: (path) The session folder ID.      - parameter sessionRequest: (body) The session parameters. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ObjectWrapper
+     - returns: ChunkedUploadSessionResponseWrapperIntegerWrapper
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createUploadSession(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ObjectWrapper {
+    open class func createUploadSession(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResponseWrapperIntegerWrapper {
         return try await createUploadSessionWithRequestBuilder(folderId: folderId, sessionRequest: sessionRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -425,7 +498,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/
      
      - POST /api/2.0/files/{folderId}/upload/create_session
-     - Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.   **Note**: Each chunk can have different length but the length should be multiple of <b>512</b> and greater or equal to <b>10 mb</b>. Last chunk can have any size.  After the initial response to the request with the <b>200 OK</b> status, you must get the <em>location</em> field value from the response. Send all your chunks to this location.  Each chunk must be sent in the exact order the chunks appear in the file.  After receiving each chunk, the server will respond with the current information about the upload session if no errors occurred.  When the number of bytes uploaded is equal to the number of bytes you sent in the initial request, the server responds with the <b>201 Created</b> status and sends you information about the uploaded file.  Information about created session which includes:  <ul>  <li><b>id:</b> unique ID of this upload session,</li>  <li><b>created:</b> UTC time when the session was created,</li>  <li><b>expired:</b> UTC time when the session will expire if no chunks are sent before that time,</li>  <li><b>location:</b> URL where you should send your next chunk,</li>  <li><b>bytes_uploaded:</b> number of bytes uploaded for the specific upload ID,</li>  <li><b>bytes_total:</b> total number of bytes which will be uploaded.</li>  </ul>
+     - Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.
      - BASIC:
        - type: http
        - name: Basic
@@ -447,9 +520,10 @@ open class {{{{x-classname}}}} {
      - parameter folderId: (path) The session folder ID. 
      - parameter sessionRequest: (body) The session parameters. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ObjectWrapper> 
+     - returns: RequestBuilder<ChunkedUploadSessionResponseWrapperIntegerWrapper> 
      */
-    open class func createUploadSessionWithRequestBuilder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ObjectWrapper> {
+    @available(*, deprecated, message: "This operation is deprecated.")
+    open class func createUploadSessionWithRequestBuilder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResponseWrapperIntegerWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/upload/create_session"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -466,7 +540,76 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ObjectWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResponseWrapperIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Creates a session for uploading a file to a specific folder in chunks.
+     
+     See also:
+     REST API Reference for createUploadSessionInFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/
+     - parameter folderId: (path) The session folder ID.      - parameter sessionRequest: (body) The session parameters. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: ChunkedUploadSessionResponseIntegerWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func createUploadSessionInFolder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResponseIntegerWrapper {
+        return try await createUploadSessionInFolderWithRequestBuilder(folderId: folderId, sessionRequest: sessionRequest, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Creates a session for uploading a file to a specific folder in chunks.
+     
+     See also:
+     REST API Reference for createUploadSessionInFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/
+     
+     - POST /api/2.0/files/{folderId}/session
+     - The session allows the user to upload a file in smaller chunks to the folder identified by its ID.  The file information, such as name, size, and additional metadata, must be provided in the request.  This method facilitates large file upload scenarios by enabling chunked file uploads.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter folderId: (path) The session folder ID. 
+     - parameter sessionRequest: (body) The session parameters. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<ChunkedUploadSessionResponseIntegerWrapper> 
+     */
+    open class func createUploadSessionInFolderWithRequestBuilder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResponseIntegerWrapper> {
+        var localVariablePath = "/api/2.0/files/{folderId}/session"
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sessionRequest, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResponseIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -795,6 +938,78 @@ open class {{{{x-classname}}}} {
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Finalize an upload session
+     
+     See also:
+     REST API Reference for finalizeSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/
+     - parameter folderId: (path) The folder ID.      - parameter sessionId: (path) The session ID. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: UploadSessionResponseIntegerWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func finalizeSession(folderId: Int, sessionId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UploadSessionResponseIntegerWrapper {
+        return try await finalizeSessionWithRequestBuilder(folderId: folderId, sessionId: sessionId, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Finalize an upload session
+     
+     See also:
+     REST API Reference for finalizeSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/
+     
+     - PUT /api/2.0/files/{folderId}/session/{sessionId}/finalize
+     - Finalizes the upload session by processing the uploaded file chunks and marking the upload as complete.  This method consolidates chunked uploads into a complete file if required, sends notifications about the upload event,  and performs any additional cleanup or related actions, such as socket updates and webhook publishing.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter folderId: (path) The folder ID. 
+     - parameter sessionId: (path) The session ID. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<UploadSessionResponseIntegerWrapper> 
+     */
+    open class func finalizeSessionWithRequestBuilder(folderId: Int, sessionId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<UploadSessionResponseIntegerWrapper> {
+        var localVariablePath = "/api/2.0/files/{folderId}/session/{sessionId}/finalize"
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let sessionIdPreEscape = "\(APIHelper.mapValueToPathItem(sessionId))"
+        let sessionIdPostEscape = sessionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<UploadSessionResponseIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -1219,5 +1434,165 @@ open class {{{{x-classname}}}} {
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Handles the upload of a chunk for an existing upload session.
+     
+     See also:
+     REST API Reference for uploadAsyncSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/
+     - parameter folderId: (path) The folder ID.      - parameter sessionId: (path) The upload session ID.      - parameter chunkNumber: (query) The chunk number. (optional)     - parameter file: (form) The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: ChunkedUploadSessionResponseIntegerWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func uploadAsyncSession(folderId: Int, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResponseIntegerWrapper {
+        return try await uploadAsyncSessionWithRequestBuilder(folderId: folderId, sessionId: sessionId, chunkNumber: chunkNumber, file: file, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Handles the upload of a chunk for an existing upload session.
+     
+     See also:
+     REST API Reference for uploadAsyncSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/
+     
+     - POST /api/2.0/files/{folderId}/session/{sessionId}/upload
+     - This method allows the caller to upload a specific chunk of a file to an ongoing upload session.  The session is identified by the session ID provided in the request. The chunk can be of any size  within the limits allowed during the session initialization. Each chunk must be uploaded in the  correct order for the server to process it appropriately.  The server updates the upload session status and stores the progress information after processing  each chunk. The updated session details are returned in the response.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter folderId: (path) The folder ID. 
+     - parameter sessionId: (path) The upload session ID. 
+     - parameter chunkNumber: (query) The chunk number. (optional)
+     - parameter file: (form) The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<ChunkedUploadSessionResponseIntegerWrapper> 
+     */
+    open class func uploadAsyncSessionWithRequestBuilder(folderId: Int, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResponseIntegerWrapper> {
+        var localVariablePath = "/api/2.0/files/{folderId}/session/{sessionId}/upload"
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let sessionIdPreEscape = "\(APIHelper.mapValueToPathItem(sessionId))"
+        let sessionIdPostEscape = sessionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableFormParams: [String: (any Sendable)?] = [
+            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+        ]
+
+        let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
+        let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "ChunkNumber": (wrappedValue: chunkNumber?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "multipart/form-data",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResponseIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Resumes an ongoing file upload session for uploading additional chunks of data.
+     
+     See also:
+     REST API Reference for uploadSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/
+     - parameter folderId: (path) The folder ID.      - parameter sessionId: (path) The upload session ID.      - parameter file: (form) The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: UploadSessionResponseIntegerWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func uploadSession(folderId: Int, sessionId: String, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UploadSessionResponseIntegerWrapper {
+        return try await uploadSessionWithRequestBuilder(folderId: folderId, sessionId: sessionId, file: file, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Resumes an ongoing file upload session for uploading additional chunks of data.
+     
+     See also:
+     REST API Reference for uploadSession Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/
+     
+     - POST /api/2.0/files/{folderId}/session/{sessionId}
+     - This method allows continuing an interrupted or partially completed file upload session by uploading subsequent data chunks.  The server will validate each uploaded chunk, update the session state, and respond with the status of the current upload. Once  the total bytes uploaded match the total file size, the file upload process is finalized and related events are triggered.  If the file is newly uploaded, the server responds with a 201 Created status upon completion. If it overwrites an existing file,  versioning information is updated accordingly. The method also triggers associated webhooks and socket notifications to reflect  the updated file state.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter folderId: (path) The folder ID. 
+     - parameter sessionId: (path) The upload session ID. 
+     - parameter file: (form) The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<UploadSessionResponseIntegerWrapper> 
+     */
+    open class func uploadSessionWithRequestBuilder(folderId: Int, sessionId: String, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<UploadSessionResponseIntegerWrapper> {
+        var localVariablePath = "/api/2.0/files/{folderId}/session/{sessionId}"
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let sessionIdPreEscape = "\(APIHelper.mapValueToPathItem(sessionId))"
+        let sessionIdPostEscape = sessionIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableFormParams: [String: (any Sendable)?] = [
+            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+        ]
+
+        let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
+        let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "multipart/form-data",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<UploadSessionResponseIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

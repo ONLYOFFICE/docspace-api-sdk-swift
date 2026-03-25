@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request parameters for managing the visibility settings of the promotional banners for the current tenant. */
-public struct TenantBannerSettingsDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct TenantBannerSettingsDto: Sendable, Codable, Hashable {
 
     /** The banners visibility flag. */
     public var hidden: Bool?

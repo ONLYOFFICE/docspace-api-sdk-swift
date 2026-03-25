@@ -4,6 +4,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**abortUploadSession**](FilesOperationsAPI.md#abortuploadsession) | **DELETE** /api/2.0/files/{folderId}/session/{sessionId} | Aborts an in-progress file upload session.
 [**addFavorites**](FilesOperationsAPI.md#addfavorites) | **POST** /api/2.0/files/favorites | Add favorite files and folders
 [**bulkDownload**](FilesOperationsAPI.md#bulkdownload) | **PUT** /api/2.0/files/fileops/bulkdownload | Bulk download
 [**checkConversionStatus**](FilesOperationsAPI.md#checkconversionstatus) | **GET** /api/2.0/files/file/{fileId}/checkconversion | Get conversion status
@@ -11,11 +12,13 @@ Method | HTTP request | Description
 [**checkMoveOrCopyDestFolder**](FilesOperationsAPI.md#checkmoveorcopydestfolder) | **GET** /api/2.0/files/fileops/checkdestfolder | Check for moving or copying files to a folder
 [**copyBatchItems**](FilesOperationsAPI.md#copybatchitems) | **PUT** /api/2.0/files/fileops/copy | Copy to the folder
 [**createUploadSession**](FilesOperationsAPI.md#createuploadsession) | **POST** /api/2.0/files/{folderId}/upload/create_session | Chunked upload
+[**createUploadSessionInFolder**](FilesOperationsAPI.md#createuploadsessioninfolder) | **POST** /api/2.0/files/{folderId}/session | Creates a session for uploading a file to a specific folder in chunks.
 [**deleteBatchItems**](FilesOperationsAPI.md#deletebatchitems) | **PUT** /api/2.0/files/fileops/delete | Delete files and folders
 [**deleteFavoritesFromBody**](FilesOperationsAPI.md#deletefavoritesfrombody) | **DELETE** /api/2.0/files/favorites | Delete favorite files and folders (using body parameters)
 [**deleteFileVersions**](FilesOperationsAPI.md#deletefileversions) | **PUT** /api/2.0/files/fileops/deleteversion | Delete file versions
 [**duplicateBatchItems**](FilesOperationsAPI.md#duplicatebatchitems) | **PUT** /api/2.0/files/fileops/duplicate | Duplicate files and folders
 [**emptyTrash**](FilesOperationsAPI.md#emptytrash) | **PUT** /api/2.0/files/fileops/emptytrash | Empty the Trash folder
+[**finalizeSession**](FilesOperationsAPI.md#finalizesession) | **PUT** /api/2.0/files/{folderId}/session/{sessionId}/finalize | Finalize an upload session
 [**getOperationStatuses**](FilesOperationsAPI.md#getoperationstatuses) | **GET** /api/2.0/files/fileops | Get active file operations
 [**getOperationStatusesByType**](FilesOperationsAPI.md#getoperationstatusesbytype) | **GET** /api/2.0/files/fileops/{operationType} | Get file operation statuses
 [**markAsRead**](FilesOperationsAPI.md#markasread) | **PUT** /api/2.0/files/fileops/markasread | Mark as read
@@ -23,7 +26,61 @@ Method | HTTP request | Description
 [**startFileConversion**](FilesOperationsAPI.md#startfileconversion) | **PUT** /api/2.0/files/file/{fileId}/checkconversion | Start file conversion
 [**terminateTasks**](FilesOperationsAPI.md#terminatetasks) | **PUT** /api/2.0/files/fileops/terminate/{id} | Finish active operations
 [**updateFileComment**](FilesOperationsAPI.md#updatefilecomment) | **PUT** /api/2.0/files/file/{fileId}/comment | Update a comment
+[**uploadAsyncSession**](FilesOperationsAPI.md#uploadasyncsession) | **POST** /api/2.0/files/{folderId}/session/{sessionId}/upload | Handles the upload of a chunk for an existing upload session.
+[**uploadSession**](FilesOperationsAPI.md#uploadsession) | **POST** /api/2.0/files/{folderId}/session/{sessionId} | Resumes an ongoing file upload session for uploading additional chunks of data.
 
+
+# **abortUploadSession**
+```swift
+    open class func abortUploadSession(sessionId: String, folderId: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+```
+
+This method allows users to cancel an ongoing upload session identified by the session ID.  Once the session is aborted, the associated resources will be cleaned up, and the session will no longer accept further uploads.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/abort-upload-session/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sessionId** | **String** | The session ID. | 
+ **folderId** | **Int** | The folder ID. | 
+
+### Return type
+
+Void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let sessionId = "sessionId_example" // String | The session ID.
+let folderId = 987 // Int | The folder ID.
+
+// Aborts an in-progress file upload session.
+FilesOperationsAPIApi.abortUploadSession(sessionId: sessionId, folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **addFavorites**
 ```swift
@@ -53,7 +110,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
+let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: false, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
 // Add favorite files and folders
 FilesOperationsAPIApi.addFavorites(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
@@ -103,7 +160,7 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let downloadRequestDto = DownloadRequestDto(returnSingleOperation: true, folderIds: [DownloadRequestDto_allOf_folderIds()], fileIds: [DownloadRequestDto_allOf_fileIds()], fileConvertIds: [DownloadRequestItemDto(key: DownloadRequestItemDto_key(), value: "value_example", password: "password_example")]) // DownloadRequestDto |  (optional)
+let downloadRequestDto = DownloadRequestDto(returnSingleOperation: false, folderIds: [DownloadRequestDto_allOf_folderIds()], fileIds: [DownloadRequestDto_allOf_fileIds()], fileConvertIds: [DownloadRequestItemDto(key: DownloadRequestItemDto_key(), value: "value_example", password: "password_example")]) // DownloadRequestDto |  (optional)
 
 // Bulk download
 FilesOperationsAPIApi.bulkDownload(downloadRequestDto: downloadRequestDto) { (response, error) in
@@ -155,7 +212,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let fileId = 987 // Int | The file ID to check conversion status.
-let start = true // Bool | Specifies whether a conversion operation is started or not. (optional)
+let start = false // Bool | Specifies whether a conversion operation is started or not. (optional)
 
 // Get conversion status
 FilesOperationsAPIApi.checkConversionStatus(fileId: fileId, start: start) { (response, error) in
@@ -205,7 +262,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let inDto = BatchRequestDto(returnSingleOperation: true, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: true, content: true, toFillOut: true) // BatchRequestDto | The request parameters for copying/moving files. (optional)
+let inDto = BatchRequestDto(returnSingleOperation: false, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: false, content: false, toFillOut: false) // BatchRequestDto | The request parameters for copying/moving files. (optional)
 
 // Move or copy files to a folder
 FilesOperationsAPIApi.checkMoveOrCopyBatchItems(inDto: inDto) { (response, error) in
@@ -255,7 +312,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let inDto = BatchRequestDto(returnSingleOperation: true, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: true, content: true, toFillOut: true) // BatchRequestDto | The request parameters for copying/moving files. (optional)
+let inDto = BatchRequestDto(returnSingleOperation: false, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: false, content: false, toFillOut: false) // BatchRequestDto | The request parameters for copying/moving files. (optional)
 
 // Check for moving or copying files to a folder
 FilesOperationsAPIApi.checkMoveOrCopyDestFolder(inDto: inDto) { (response, error) in
@@ -305,7 +362,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let batchRequestDto = BatchRequestDto(returnSingleOperation: true, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: true, content: true, toFillOut: true) // BatchRequestDto |  (optional)
+let batchRequestDto = BatchRequestDto(returnSingleOperation: false, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: false, content: false, toFillOut: false) // BatchRequestDto |  (optional)
 
 // Copy to the folder
 FilesOperationsAPIApi.copyBatchItems(batchRequestDto: batchRequestDto) { (response, error) in
@@ -329,10 +386,10 @@ FilesOperationsAPIApi.copyBatchItems(batchRequestDto: batchRequestDto) { (respon
 
 # **createUploadSession**
 ```swift
-    open class func createUploadSession(folderId: Int, sessionRequest: SessionRequest, completion: @escaping (_ data: ObjectWrapper?, _ error: Error?) -> Void)
+    open class func createUploadSession(folderId: Int, sessionRequest: SessionRequest, completion: @escaping (_ data: ChunkedUploadSessionResponseWrapperIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
-Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.   **Note**: Each chunk can have different length but the length should be multiple of <b>512</b> and greater or equal to <b>10 mb</b>. Last chunk can have any size.  After the initial response to the request with the <b>200 OK</b> status, you must get the <em>location</em> field value from the response. Send all your chunks to this location.  Each chunk must be sent in the exact order the chunks appear in the file.  After receiving each chunk, the server will respond with the current information about the upload session if no errors occurred.  When the number of bytes uploaded is equal to the number of bytes you sent in the initial request, the server responds with the <b>201 Created</b> status and sends you information about the uploaded file.  Information about created session which includes:  <ul>  <li><b>id:</b> unique ID of this upload session,</li>  <li><b>created:</b> UTC time when the session was created,</li>  <li><b>expired:</b> UTC time when the session will expire if no chunks are sent before that time,</li>  <li><b>location:</b> URL where you should send your next chunk,</li>  <li><b>bytes_uploaded:</b> number of bytes uploaded for the specific upload ID,</li>  <li><b>bytes_total:</b> total number of bytes which will be uploaded.</li>  </ul>
+Creates the session to upload large files in multiple chunks to the folder with the ID specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/).
 
@@ -345,7 +402,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**ChunkedUploadSessionResponseWrapperIntegerWrapper**](ChunkedUploadSessionResponseWrapperIntegerWrapper.md)
 
 ### Authorization
 
@@ -357,10 +414,62 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let folderId = 987 // Int | The session folder ID.
-let sessionRequest = SessionRequest(fileName: "fileName_example", fileSize: 123, relativePath: "relativePath_example", createOn: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), encrypted: true, createNewIfExist: true) // SessionRequest | The session parameters.
+let sessionRequest = SessionRequest(fileName: "fileName_example", fileSize: 123, relativePath: "relativePath_example", createOn: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), encrypted: false, createNewIfExist: true) // SessionRequest | The session parameters.
 
 // Chunked upload
 FilesOperationsAPIApi.createUploadSession(folderId: folderId, sessionRequest: sessionRequest) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createUploadSessionInFolder**
+```swift
+    open class func createUploadSessionInFolder(folderId: Int, sessionRequest: SessionRequest, completion: @escaping (_ data: ChunkedUploadSessionResponseIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+The session allows the user to upload a file in smaller chunks to the folder identified by its ID.  The file information, such as name, size, and additional metadata, must be provided in the request.  This method facilitates large file upload scenarios by enabling chunked file uploads.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The session folder ID. | 
+ **sessionRequest** | [**SessionRequest**](SessionRequest.md) | The session parameters. | 
+
+### Return type
+
+[**ChunkedUploadSessionResponseIntegerWrapper**](ChunkedUploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The session folder ID.
+let sessionRequest = SessionRequest(fileName: "fileName_example", fileSize: 123, relativePath: "relativePath_example", createOn: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), encrypted: false, createNewIfExist: true) // SessionRequest | The session parameters.
+
+// Creates a session for uploading a file to a specific folder in chunks.
+FilesOperationsAPIApi.createUploadSessionInFolder(folderId: folderId, sessionRequest: sessionRequest) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -407,7 +516,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let deleteBatchRequestDto = DeleteBatchRequestDto(returnSingleOperation: true, folderIds: [DeleteBatchRequestDto_allOf_folderIds()], fileIds: [DeleteBatchRequestDto_allOf_fileIds()], deleteAfter: true, immediately: true) // DeleteBatchRequestDto |  (optional)
+let deleteBatchRequestDto = DeleteBatchRequestDto(returnSingleOperation: false, folderIds: [DeleteBatchRequestDto_allOf_folderIds()], fileIds: [DeleteBatchRequestDto_allOf_fileIds()], deleteAfter: false, immediately: false) // DeleteBatchRequestDto |  (optional)
 
 // Delete files and folders
 FilesOperationsAPIApi.deleteBatchItems(deleteBatchRequestDto: deleteBatchRequestDto) { (response, error) in
@@ -457,7 +566,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
+let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: false, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
 // Delete favorite files and folders (using body parameters)
 FilesOperationsAPIApi.deleteFavoritesFromBody(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
@@ -507,7 +616,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let deleteVersionBatchRequestDto = DeleteVersionBatchRequestDto(returnSingleOperation: true, deleteAfter: true, fileId: 123, versions: [123]) // DeleteVersionBatchRequestDto |  (optional)
+let deleteVersionBatchRequestDto = DeleteVersionBatchRequestDto(returnSingleOperation: false, deleteAfter: false, fileId: 123, versions: [123]) // DeleteVersionBatchRequestDto |  (optional)
 
 // Delete file versions
 FilesOperationsAPIApi.deleteFileVersions(deleteVersionBatchRequestDto: deleteVersionBatchRequestDto) { (response, error) in
@@ -557,7 +666,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let duplicateRequestDto = DuplicateRequestDto(returnSingleOperation: true, folderIds: [DuplicateRequestDto_allOf_folderIds()], fileIds: [DuplicateRequestDto_allOf_fileIds()]) // DuplicateRequestDto |  (optional)
+let duplicateRequestDto = DuplicateRequestDto(returnSingleOperation: false, folderIds: [DuplicateRequestDto_allOf_folderIds()], fileIds: [DuplicateRequestDto_allOf_fileIds()]) // DuplicateRequestDto |  (optional)
 
 // Duplicate files and folders
 FilesOperationsAPIApi.duplicateBatchItems(duplicateRequestDto: duplicateRequestDto) { (response, error) in
@@ -607,10 +716,62 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let single = true // Bool | Specifies whether to return only the current operation (optional)
+let single = false // Bool | Specifies whether to return only the current operation (optional)
 
 // Empty the Trash folder
 FilesOperationsAPIApi.emptyTrash(single: single) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **finalizeSession**
+```swift
+    open class func finalizeSession(folderId: Int, sessionId: String, completion: @escaping (_ data: UploadSessionResponseIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Finalizes the upload session by processing the uploaded file chunks and marking the upload as complete.  This method consolidates chunked uploads into a complete file if required, sends notifications about the upload event,  and performs any additional cleanup or related actions, such as socket updates and webhook publishing.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/finalize-session/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID. | 
+ **sessionId** | **String** | The session ID. | 
+
+### Return type
+
+[**UploadSessionResponseIntegerWrapper**](UploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID.
+let sessionId = "sessionId_example" // String | The session ID.
+
+// Finalize an upload session
+FilesOperationsAPIApi.finalizeSession(folderId: folderId, sessionId: sessionId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -759,7 +920,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
+let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: false, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
 // Mark as read
 FilesOperationsAPIApi.markAsRead(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
@@ -809,7 +970,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let batchRequestDto = BatchRequestDto(returnSingleOperation: true, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: true, content: true, toFillOut: true) // BatchRequestDto |  (optional)
+let batchRequestDto = BatchRequestDto(returnSingleOperation: false, folderIds: [BatchRequestDto_allOf_folderIds()], fileIds: [BatchRequestDto_allOf_fileIds()], destFolderId: BatchRequestDto_allOf_destFolderId(), conflictResolveType: FileConflictResolveType(), deleteAfter: false, content: false, toFillOut: false) // BatchRequestDto |  (optional)
 
 // Move or copy to a folder
 FilesOperationsAPIApi.moveBatchItems(batchRequestDto: batchRequestDto) { (response, error) in
@@ -861,7 +1022,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let fileId = 987 // Int | The file ID to start conversion proccess.
-let checkConversionRequestDtoInteger = CheckConversionRequestDtoInteger(fileId: 123, sync: true, startConvert: true, version: 123, password: "password_example", outputType: "outputType_example", createNewIfExist: true) // CheckConversionRequestDtoInteger | The parameters for checking file conversion. (optional)
+let checkConversionRequestDtoInteger = CheckConversionRequestDtoInteger(fileId: 123, sync: false, startConvert: true, version: 123, password: "password_example", outputType: "outputType_example", createNewIfExist: false) // CheckConversionRequestDtoInteger | The parameters for checking file conversion. (optional)
 
 // Start file conversion
 FilesOperationsAPIApi.startFileConversion(fileId: fileId, checkConversionRequestDtoInteger: checkConversionRequestDtoInteger) { (response, error) in
@@ -981,6 +1142,116 @@ FilesOperationsAPIApi.updateFileComment(fileId: fileId, updateComment: updateCom
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **uploadAsyncSession**
+```swift
+    open class func uploadAsyncSession(folderId: Int, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, completion: @escaping (_ data: ChunkedUploadSessionResponseIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+This method allows the caller to upload a specific chunk of a file to an ongoing upload session.  The session is identified by the session ID provided in the request. The chunk can be of any size  within the limits allowed during the session initialization. Each chunk must be uploaded in the  correct order for the server to process it appropriately.  The server updates the upload session status and stores the progress information after processing  each chunk. The updated session details are returned in the response.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID. | 
+ **sessionId** | **String** | The upload session ID. | 
+ **chunkNumber** | **Int** | The chunk number. | [optional] 
+ **file** | **URL** | The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. | [optional] 
+
+### Return type
+
+[**ChunkedUploadSessionResponseIntegerWrapper**](ChunkedUploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID.
+let sessionId = "sessionId_example" // String | The upload session ID.
+let chunkNumber = 987 // Int | The chunk number. (optional)
+let file = URL(string: "https://example.com")! // URL | The file chunk to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file chunk content from the HTTP request form for chunked upload operations.  The file chunk is accessed via the IFormFile interface which provides access to the chunk content and length. (optional)
+
+// Handles the upload of a chunk for an existing upload session.
+FilesOperationsAPIApi.uploadAsyncSession(folderId: folderId, sessionId: sessionId, chunkNumber: chunkNumber, file: file) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **uploadSession**
+```swift
+    open class func uploadSession(folderId: Int, sessionId: String, file: URL? = nil, completion: @escaping (_ data: UploadSessionResponseIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+This method allows continuing an interrupted or partially completed file upload session by uploading subsequent data chunks.  The server will validate each uploaded chunk, update the session state, and respond with the status of the current upload. Once  the total bytes uploaded match the total file size, the file upload process is finalized and related events are triggered.  If the file is newly uploaded, the server responds with a 201 Created status upon completion. If it overwrites an existing file,  versioning information is updated accordingly. The method also triggers associated webhooks and socket notifications to reflect  the updated file state.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-session/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID. | 
+ **sessionId** | **String** | The upload session ID. | 
+ **file** | **URL** | The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. | [optional] 
+
+### Return type
+
+[**UploadSessionResponseIntegerWrapper**](UploadSessionResponseIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID.
+let sessionId = "sessionId_example" // String | The upload session ID.
+let file = URL(string: "https://example.com")! // URL | The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)
+
+// Resumes an ongoing file upload session for uploading additional chunks of data.
+FilesOperationsAPIApi.uploadSession(folderId: folderId, sessionId: sessionId, file: file) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

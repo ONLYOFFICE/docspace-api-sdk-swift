@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,9 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-public struct TelegramStatusDto: Sendable, Codable, ParameterConvertible, Hashable {
+/** The Telegram connection status parameters. */
+public struct TelegramStatusDto: Sendable, Codable, Hashable {
 
     public var status: RegStatus
+    /** The Telegram username. */
     public var username: String?
 
     public init(status: RegStatus, username: String? = nil) {

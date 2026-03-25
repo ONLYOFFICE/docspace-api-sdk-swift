@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The parameters for managing form filling. */
-public struct ManageFormFillingDtoInteger: Sendable, Codable, ParameterConvertible, Hashable {
+public struct ManageFormFillingDtoInteger: Sendable, Codable, Hashable {
 
     /** The ID of the form to manage. */
     public var formId: Int

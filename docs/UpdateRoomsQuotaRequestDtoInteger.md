@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**roomIds** | [DuplicateRequestDtoAllOfFileIds] | The list of room IDs. | [optional] 
+**roomIds** | [ContinueChatBodyFilesInner] | The list of room IDs. | [optional] 
 **quota** | **Int64** | The room quota. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

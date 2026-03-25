@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,9 +14,8 @@
 //  limitations under the License.
 import Foundation
 
-/** [-14 - WebSearch, -13 - AITools, -12 - Backup, -11 - Storage] */
+/** [-13 - AITools, -12 - Backup, -11 - Storage] */
 public enum TenantWalletService: Int, Sendable, Codable, CaseIterable {
-    case WebSearch = -14
     case AITools = -13
     case Backup = -12
     case Storage = -11

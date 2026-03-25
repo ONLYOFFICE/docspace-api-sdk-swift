@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The collection of items to be ordered. */
-public struct OrdersRequestDtoInteger: Sendable, Codable, ParameterConvertible, Hashable {
+public struct OrdersRequestDtoInteger: Sendable, Codable, Hashable {
 
     /** The list of items with their ordering information. */
     public var items: [OrdersItemRequestDtoInteger]?

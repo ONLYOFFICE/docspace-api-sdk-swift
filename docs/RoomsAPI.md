@@ -30,6 +30,7 @@ Method | HTTP request | Description
 [**getRoomsFolder**](RoomsAPI.md#getroomsfolder) | **GET** /api/2.0/files/rooms | Get rooms
 [**getRoomsNewItems**](RoomsAPI.md#getroomsnewitems) | **GET** /api/2.0/files/rooms/news | Get the room new items
 [**getRoomsPrimaryExternalLink**](RoomsAPI.md#getroomsprimaryexternallink) | **GET** /api/2.0/files/rooms/{id}/link | Get the room primary external link
+[**hasTagLinks**](RoomsAPI.md#hastaglinks) | **GET** /api/2.0/files/tags/{tagName}/haslinks | Has tag links
 [**pinRoom**](RoomsAPI.md#pinroom) | **PUT** /api/2.0/files/rooms/{id}/pin | Pin a room
 [**reorderRoom**](RoomsAPI.md#reorderroom) | **PUT** /api/2.0/files/rooms/{id}/reorder | Reorder the room
 [**resendEmailInvitations**](RoomsAPI.md#resendemailinvitations) | **POST** /api/2.0/files/rooms/{id}/resend | Resend the room invitations
@@ -41,6 +42,7 @@ Method | HTTP request | Description
 [**unarchiveRoom**](RoomsAPI.md#unarchiveroom) | **PUT** /api/2.0/files/rooms/{id}/unarchive | Unarchive a room
 [**unpinRoom**](RoomsAPI.md#unpinroom) | **PUT** /api/2.0/files/rooms/{id}/unpin | Unpin a room
 [**updateRoom**](RoomsAPI.md#updateroom) | **PUT** /api/2.0/files/rooms/{id} | Update a room
+[**updateRoomTag**](RoomsAPI.md#updateroomtag) | **PUT** /api/2.0/files/tags | Update tag
 [**uploadRoomLogo**](RoomsAPI.md#uploadroomlogo) | **POST** /api/2.0/files/logos | Upload a room logo image
 
 
@@ -126,7 +128,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The room ID.
-let archiveRoomRequest = ArchiveRoomRequest(deleteAfter: true) // ArchiveRoomRequest | The parameters for archiving a room. (optional)
+let archiveRoomRequest = ArchiveRoomRequest(deleteAfter: false) // ArchiveRoomRequest | The parameters for archiving a room. (optional)
 
 // Archive a room
 RoomsAPIApi.archiveRoom(id: id, archiveRoomRequest: archiveRoomRequest) { (response, error) in
@@ -228,7 +230,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createRoomRequestDto = CreateRoomRequestDto(title: "title_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", roomType: RoomType(), _private: true, share: [FileShareParams(shareTo: 123, email: "email_example", access: FileShare())], chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example")) // CreateRoomRequestDto |  (optional)
+let createRoomRequestDto = CreateRoomRequestDto(title: "title_example", quota: 123, indexing: true, denyDownload: false, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", roomType: RoomType(), _private: false, share: [FileShareParams(email: "email_example", shareTo: 123, access: FileShare())], chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example", _internal: false)) // CreateRoomRequestDto |  (optional)
 
 // Create a room
 RoomsAPIApi.createRoom(createRoomRequestDto: createRoomRequestDto) { (response, error) in
@@ -278,7 +280,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createRoomFromTemplateDto = CreateRoomFromTemplateDto(templateId: 123, title: "title_example", logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), copyLogo: true, tags: ["tags_example"], color: "color_example", cover: "cover_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), _private: true) // CreateRoomFromTemplateDto |  (optional)
+let createRoomFromTemplateDto = CreateRoomFromTemplateDto(templateId: 123, title: "title_example", logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), copyLogo: false, tags: ["tags_example"], color: "color_example", cover: "cover_example", quota: 123, indexing: true, denyDownload: false, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), _private: false) // CreateRoomFromTemplateDto |  (optional)
 
 // Create a room from the template
 RoomsAPIApi.createRoomFromTemplate(createRoomFromTemplateDto: createRoomFromTemplateDto) { (response, error) in
@@ -354,7 +356,7 @@ RoomsAPIApi.createRoomLogo(id: id, logoRequest: logoRequest) { (response, error)
 
 # **createRoomTag**
 ```swift
-    open class func createRoomTag(createTagRequestDto: CreateTagRequestDto? = nil, completion: @escaping (_ data: ObjectWrapper?, _ error: Error?) -> Void)
+    open class func createRoomTag(createTagRequestDto: CreateTagRequestDto? = nil, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
 ```
 
 Creates a custom room tag with the parameters specified in the request.
@@ -369,7 +371,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ObjectWrapper**](ObjectWrapper.md)
+[**StringWrapper**](StringWrapper.md)
 
 ### Authorization
 
@@ -482,7 +484,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = "id_example" // String | The ID of the folder in the third-party storage in which the contents of the room will be stored.
-let createThirdPartyRoom = CreateThirdPartyRoom(createAsNewFolder: true, title: "title_example", roomType: RoomType(), _private: true, indexing: true, denyDownload: true, color: "color_example", cover: "cover_example", tags: ["tags_example"], logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123)) // CreateThirdPartyRoom | The third-party room information.
+let createThirdPartyRoom = CreateThirdPartyRoom(createAsNewFolder: false, title: "title_example", roomType: RoomType(), _private: false, indexing: true, denyDownload: false, color: "color_example", cover: "cover_example", tags: ["tags_example"], logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123)) // CreateThirdPartyRoom | The third-party room information.
 
 // Create a third-party room
 RoomsAPIApi.createRoomThirdParty(id: id, createThirdPartyRoom: createThirdPartyRoom) { (response, error) in
@@ -509,7 +511,7 @@ RoomsAPIApi.createRoomThirdParty(id: id, createThirdPartyRoom: createThirdPartyR
     open class func deleteCustomTags(batchTagsRequestDto: BatchTagsRequestDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-Deletes a bunch of custom room tags specified in the request.
+Deletes a bunch of custom tags specified in the request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-custom-tags/).
 
@@ -584,7 +586,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The room ID.
-let deleteRoomRequest = DeleteRoomRequest(deleteAfter: true) // DeleteRoomRequest | The parameters for deleting a room.
+let deleteRoomRequest = DeleteRoomRequest(deleteAfter: false) // DeleteRoomRequest | The parameters for deleting a room.
 
 // Remove a room
 RoomsAPIApi.deleteRoom(id: id, deleteRoomRequest: deleteRoomRequest) { (response, error) in
@@ -1111,7 +1113,7 @@ RoomsAPIApi.getRoomSecurityInfo(id: id, filterType: filterType, count: count, st
     open class func getRoomTagsInfo(count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: ObjectArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-Returns a list of custom room tags.
+Returns a list of custom tags.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/).
 
@@ -1208,7 +1210,7 @@ RoomsAPIApi.getRoomTemplateCreatingStatus() { (response, error) in
 
 # **getRoomsFolder**
 ```swift
-    open class func getRoomsFolder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+    open class func getRoomsFolder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, groupId: Int? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
 Returns the contents of the Rooms section by the parameters specified in the request.
@@ -1234,6 +1236,7 @@ Name | Type | Description  | Notes
  **sortBy** | **String** | Specifies the field by which the room content should be sorted. | [optional] 
  **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
  **filterValue** | **String** | The text filter value used to refine search or query operations. | [optional] 
+ **groupId** | **Int** | The group ID | [optional] 
 
 ### Return type
 
@@ -1251,9 +1254,9 @@ import OpenAPIClient
 let type = [[RoomType()]] // [RoomType] | The filter by room type. (optional)
 let subjectId = "subjectId_example" // String | The filter by user ID. (optional)
 let searchArea = SearchArea() // SearchArea | The room search area (Active, Archive, Any, Recent by links). (optional)
-let withoutTags = true // Bool | Specifies whether to search by tags or not. (optional)
+let withoutTags = false // Bool | Specifies whether to search by tags or not. (optional)
 let tags = "tags_example" // String | The tags in the serialized format. (optional)
-let excludeSubject = true // Bool | Specifies whether to exclude search by user or group ID. (optional)
+let excludeSubject = false // Bool | Specifies whether to exclude search by user or group ID. (optional)
 let provider = ProviderFilter() // ProviderFilter | The filter by provider name (None, Box, DropBox, GoogleDrive, kDrive, OneDrive, SharePoint, WebDav, Yandex, Storage). (optional)
 let subjectFilter = SubjectFilter() // SubjectFilter | The filter by user (Owner - 0, Member - 1). (optional)
 let quotaFilter = QuotaFilter() // QuotaFilter | The filter by quota (All - 0, Default - 1, Custom - 2). (optional)
@@ -1263,9 +1266,10 @@ let startIndex = 987 // Int | The index from which to start retrieving the room 
 let sortBy = "sortBy_example" // String | Specifies the field by which the room content should be sorted. (optional)
 let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
 let filterValue = "filterValue_example" // String | The text filter value used to refine search or query operations. (optional)
+let groupId = 987 // Int | The group ID (optional)
 
 // Get rooms
-RoomsAPIApi.getRoomsFolder(type: type, subjectId: subjectId, searchArea: searchArea, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, provider: provider, subjectFilter: subjectFilter, quotaFilter: quotaFilter, storageFilter: storageFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+RoomsAPIApi.getRoomsFolder(type: type, subjectId: subjectId, searchArea: searchArea, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, provider: provider, subjectFilter: subjectFilter, quotaFilter: quotaFilter, storageFilter: storageFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, groupId: groupId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1362,6 +1366,58 @@ let id = 987 // Int | The room ID.
 
 // Get the room primary external link
 RoomsAPIApi.getRoomsPrimaryExternalLink(id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **hasTagLinks**
+```swift
+    open class func hasTagLinks(tagName2: String, tagName: String? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
+```
+
+Checks if a specific custom tag has linked items.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/has-tag-links/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tagName2** | **String** |  | 
+ **tagName** | **String** | Represents the name of a tag | [optional] 
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let tagName2 = "tagName2_example" // String | 
+let tagName = "tagName_example" // String | Represents the name of a tag (optional)
+
+// Has tag links
+RoomsAPIApi.hasTagLinks(tagName2: tagName2, tagName: tagName) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -1510,7 +1566,7 @@ Void (empty response body)
 import OpenAPIClient
 
 let id = 987 // Int | The room ID.
-let userInvitation = UserInvitation(usersIds: [123], resendAll: true) // UserInvitation | The user invitation parameters.
+let userInvitation = UserInvitation(usersIds: [123], resendAll: false) // UserInvitation | The user invitation parameters.
 
 // Resend the room invitations
 RoomsAPIApi.resendEmailInvitations(id: id, userInvitation: userInvitation) { (response, error) in
@@ -1612,7 +1668,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The room ID.
-let roomLinkRequest = RoomLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), _internal: true, title: "title_example", linkType: LinkType(), password: "password_example", denyDownload: true) // RoomLinkRequest | The room link parameters.
+let roomLinkRequest = RoomLinkRequest(linkId: 123, access: FileShare(), expirationDate: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), _internal: false, title: "title_example", linkType: LinkType(), password: "password_example", denyDownload: false, maxUseCount: 123, currentUseCount: 123) // RoomLinkRequest | The room link parameters.
 
 // Set the room external or invitation link
 RoomsAPIApi.setRoomLink(id: id, roomLinkRequest: roomLinkRequest) { (response, error) in
@@ -1664,7 +1720,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The room ID.
-let roomInvitationRequest = RoomInvitationRequest(invitations: [RoomInvitation(email: "email_example", id: 123, access: FileShare())], notify: true, message: "message_example", culture: "culture_example", force: true) // RoomInvitationRequest | The room invitation request.
+let roomInvitationRequest = RoomInvitationRequest(invitations: [RoomInvitation(email: "email_example", id: 123, access: FileShare())], notify: true, message: "message_example", culture: "culture_example", force: false) // RoomInvitationRequest | The room invitation request.
 
 // Set the room access rights
 RoomsAPIApi.setRoomSecurity(id: id, roomInvitationRequest: roomInvitationRequest) { (response, error) in
@@ -1812,7 +1868,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The room ID.
-let archiveRoomRequest = ArchiveRoomRequest(deleteAfter: true) // ArchiveRoomRequest | The parameters for archiving a room. (optional)
+let archiveRoomRequest = ArchiveRoomRequest(deleteAfter: false) // ArchiveRoomRequest | The parameters for archiving a room. (optional)
 
 // Unarchive a room
 RoomsAPIApi.unarchiveRoom(id: id, archiveRoomRequest: archiveRoomRequest) { (response, error) in
@@ -1914,7 +1970,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The room ID.
-let updateRoomRequest = UpdateRoomRequest(title: "title_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example")) // UpdateRoomRequest | The request parameters for updating a room.
+let updateRoomRequest = UpdateRoomRequest(title: "title_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example", _internal: false), sendFormToExternalDB: false, saveFormAsXLSX: false) // UpdateRoomRequest | The request parameters for updating a room.
 
 // Update a room
 RoomsAPIApi.updateRoom(id: id, updateRoomRequest: updateRoomRequest) { (response, error) in
@@ -1936,9 +1992,59 @@ RoomsAPIApi.updateRoom(id: id, updateRoomRequest: updateRoomRequest) { (response
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **updateRoomTag**
+```swift
+    open class func updateRoomTag(updateTagRequestDto: UpdateTagRequestDto? = nil, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
+```
+
+Updates the name of a custom tag.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-room-tag/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateTagRequestDto** | [**UpdateTagRequestDto**](UpdateTagRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**StringWrapper**](StringWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let updateTagRequestDto = UpdateTagRequestDto(oldName: "oldName_example", newName: "newName_example") // UpdateTagRequestDto |  (optional)
+
+// Update tag
+RoomsAPIApi.updateRoomTag(updateTagRequestDto: updateTagRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **uploadRoomLogo**
 ```swift
-    open class func uploadRoomLogo(formCollection: [KeyValuePairStringStringValues]? = nil, completion: @escaping (_ data: UploadResultWrapper?, _ error: Error?) -> Void)
+    open class func uploadRoomLogo(file: URL? = nil, completion: @escaping (_ data: UploadResultWrapper?, _ error: Error?) -> Void)
 ```
 
 Uploads a temporary image to create a room logo.
@@ -1949,7 +2055,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **formCollection** | [**[KeyValuePairStringStringValues]**](KeyValuePairStringStringValues.md) | The image data. | [optional] 
+ **file** | **URL** | The image data. | [optional] 
 
 ### Return type
 
@@ -1964,10 +2070,10 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let formCollection = [KeyValuePairStringStringValues(key: "key_example", value: ["value_example"])] // [KeyValuePairStringStringValues] | The image data. (optional)
+let file = URL(string: "https://example.com")! // URL | The image data. (optional)
 
 // Upload a room logo image
-RoomsAPIApi.uploadRoomLogo(formCollection: formCollection) { (response, error) in
+RoomsAPIApi.uploadRoomLogo(file: file) { (response, error) in
     guard error == nil else {
         print(error)
         return

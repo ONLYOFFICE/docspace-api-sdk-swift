@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ var fields: String?
             "invitedByMe": (wrappedValue: invitedByMe?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "inviterId": (wrappedValue: inviterId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "area": (wrappedValue: area?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterSeparator": (wrappedValue: filterSeparator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -187,7 +187,7 @@ var fields: String?
             "invitedByMe": (wrappedValue: invitedByMe?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "inviterId": (wrappedValue: inviterId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "area": (wrappedValue: area?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterSeparator": (wrappedValue: filterSeparator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -281,7 +281,7 @@ var fields: String?
             "invitedByMe": (wrappedValue: invitedByMe?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "inviterId": (wrappedValue: inviterId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "area": (wrappedValue: area?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterSeparator": (wrappedValue: filterSeparator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -461,7 +461,7 @@ var fields: String?
             "groupId": (wrappedValue: groupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "activationStatus": (wrappedValue: activationStatus?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "employeeType": (wrappedValue: employeeType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "isAdministrator": (wrappedValue: isAdministrator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "payments": (wrappedValue: payments?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "accountLoginType": (wrappedValue: accountLoginType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -570,7 +570,7 @@ var fields: String?
             "invitedByMe": (wrappedValue: invitedByMe?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "inviterId": (wrappedValue: inviterId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "area": (wrappedValue: area?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterSeparator": (wrappedValue: filterSeparator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -664,7 +664,7 @@ var fields: String?
             "invitedByMe": (wrappedValue: invitedByMe?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "inviterId": (wrappedValue: inviterId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "area": (wrappedValue: area?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterSeparator": (wrappedValue: filterSeparator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -758,7 +758,7 @@ var fields: String?
             "invitedByMe": (wrappedValue: invitedByMe?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "inviterId": (wrappedValue: inviterId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "area": (wrappedValue: area?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterSeparator": (wrappedValue: filterSeparator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -864,7 +864,7 @@ var fields: String?
             "groupId": (wrappedValue: groupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "activationStatus": (wrappedValue: activationStatus?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "employeeType": (wrappedValue: employeeType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: false),
+            "employeeTypes": (wrappedValue: employeeTypes?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "isAdministrator": (wrappedValue: isAdministrator?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "payments": (wrappedValue: payments?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "accountLoginType": (wrappedValue: accountLoginType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),

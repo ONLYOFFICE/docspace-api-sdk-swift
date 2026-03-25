@@ -5,7 +5,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getUserTypeUpdateProgress**](PeopleUserTypeAPI.md#getusertypeupdateprogress) | **GET** /api/2.0/people/type/progress/{userid} | Get the progress of updating user type
-[**starUserTypetUpdate**](PeopleUserTypeAPI.md#starusertypetupdate) | **POST** /api/2.0/people/type | Start updating user type
+[**startUserTypeUpdate**](PeopleUserTypeAPI.md#startusertypeupdate) | **POST** /api/2.0/people/type | Start updating user type
 [**terminateUserTypeUpdate**](PeopleUserTypeAPI.md#terminateusertypeupdate) | **PUT** /api/2.0/people/type/terminate | Terminate updating user type
 [**updateUserType**](PeopleUserTypeAPI.md#updateusertype) | **PUT** /api/2.0/people/type/{type} | Change a user type
 
@@ -60,14 +60,14 @@ PeopleUserTypeAPIApi.getUserTypeUpdateProgress(userid: userid) { (response, erro
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **starUserTypetUpdate**
+# **startUserTypeUpdate**
 ```swift
-    open class func starUserTypetUpdate(startUpdateUserTypeDto: StartUpdateUserTypeDto? = nil, completion: @escaping (_ data: TaskProgressResponseWrapper?, _ error: Error?) -> Void)
+    open class func startUserTypeUpdate(startUpdateUserTypeDto: StartUpdateUserTypeDto? = nil, completion: @escaping (_ data: TaskProgressResponseWrapper?, _ error: Error?) -> Void)
 ```
 
 Starts updating the type of the user or guest when reassigning rooms and shared files.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/star-user-typet-update/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-user-type-update/).
 
 ### Parameters
 
@@ -91,7 +91,7 @@ import OpenAPIClient
 let startUpdateUserTypeDto = StartUpdateUserTypeDto(type: EmployeeType(), userId: 123, reassignUserId: 123) // StartUpdateUserTypeDto |  (optional)
 
 // Start updating user type
-PeopleUserTypeAPIApi.starUserTypetUpdate(startUpdateUserTypeDto: startUpdateUserTypeDto) { (response, error) in
+PeopleUserTypeAPIApi.startUserTypeUpdate(startUpdateUserTypeDto: startUpdateUserTypeDto) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let type = EmployeeType() // EmployeeType | The new user type.
-let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: true) // UpdateMembersRequestDto | The request parameters for updating the user information.
+let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: false) // UpdateMembersRequestDto | The request parameters for updating the user information.
 
 // Change a user type
 PeopleUserTypeAPIApi.updateUserType(type: type, updateMembersRequestDto: updateMembersRequestDto) { (response, error) in

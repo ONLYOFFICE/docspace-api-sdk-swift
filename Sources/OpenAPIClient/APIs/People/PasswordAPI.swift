@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for changeUserPassword Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-password/
-     - parameter userid: (path) The user ID.      - parameter memberBaseRequestDto: (body) The request parameters for the user generic information. 
+     - parameter userid: (path) The user ID.      - parameter changePasswordRequest: (body) The request parameters for updating a user password. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: EmployeeFullWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func changeUserPassword(userid: UUID, memberBaseRequestDto: MemberBaseRequestDto, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
-        return try await changeUserPasswordWithRequestBuilder(userid: userid, memberBaseRequestDto: memberBaseRequestDto, apiConfiguration: apiConfiguration).execute().body
+    open class func changeUserPassword(userid: UUID, changePasswordRequest: ChangePasswordRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
+        return try await changeUserPasswordWithRequestBuilder(userid: userid, changePasswordRequest: changePasswordRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -60,17 +60,17 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - parameter userid: (path) The user ID. 
-     - parameter memberBaseRequestDto: (body) The request parameters for the user generic information. 
+     - parameter changePasswordRequest: (body) The request parameters for updating a user password. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
      */
-    open class func changeUserPasswordWithRequestBuilder(userid: UUID, memberBaseRequestDto: MemberBaseRequestDto, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
+    open class func changeUserPasswordWithRequestBuilder(userid: UUID, changePasswordRequest: ChangePasswordRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
         var localVariablePath = "/api/2.0/people/{userid}/password"
         let useridPreEscape = "\(APIHelper.mapValueToPathItem(userid))"
         let useridPostEscape = useridPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{userid}", with: useridPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: memberBaseRequestDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: changePasswordRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 

@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,6 +16,70 @@
 import Foundation
 
 open class {{{{x-classname}}}} {
+
+    /**
+     Cancel current backup
+     
+     See also:
+     REST API Reference for cancelBackup Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-backup/
+
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: BooleanWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func cancelBackup(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
+        return try await cancelBackupWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Cancel current backup
+     
+     See also:
+     REST API Reference for cancelBackup Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/cancel-backup/
+     
+     - POST /api/2.0/backup/cancelbackup
+     - Cancel current backup.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<BooleanWrapper> 
+     */
+    open class func cancelBackupWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
+        let localVariablePath = "/api/2.0/backup/cancelbackup"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
 
     /**
      Create the backup schedule
@@ -513,7 +577,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-backups-count/
      
      - GET /api/2.0/backup/getbackupscount
-     - Returns the number of backups for a period of time. The default is one month.
+     - Returns the number of backups for a period of time. The default is the current calendar month.
      - BASIC:
        - type: http
        - name: Basic

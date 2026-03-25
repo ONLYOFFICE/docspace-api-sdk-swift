@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,13 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The culture code parameters. */
-public struct Culture: Sendable, Codable, ParameterConvertible, Hashable {
+/** The culture name parameters. */
+public struct Culture: Sendable, Codable, Hashable {
 
-    /** The user language. */
-    public var cultureName: String?
+    public static let cultureNameRule = StringRule(minLength: 0, maxLength: 85, pattern: nil)
+    /** The user culture name (en-US, de, fr, es, ...). */
+    public var cultureName: String
 
-    public init(cultureName: String? = nil) {
+    public init(cultureName: String) {
         self.cultureName = cultureName
     }
 
@@ -32,7 +33,7 @@ public struct Culture: Sendable, Codable, ParameterConvertible, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(cultureName, forKey: .cultureName)
+        try container.encode(cultureName, forKey: .cultureName)
     }
 }
 

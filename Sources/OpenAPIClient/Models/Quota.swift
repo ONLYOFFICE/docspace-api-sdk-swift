@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
 //  limitations under the License.
 import Foundation
 
-/** The quota parameters. */
-public struct Quota: Sendable, Codable, ParameterConvertible, Hashable {
+/** The quota parameters.  &lt;example&gt;  {    id: 1,    quantity: 50,    wallet: false,    dueDate: 2026-03-31T00:00:00Z,    nextQuantity: 100,    state: Active  }  &lt;/example&gt; */
+public struct Quota: Sendable, Codable, Hashable {
 
     /** The quota ID. */
     public var id: Int?

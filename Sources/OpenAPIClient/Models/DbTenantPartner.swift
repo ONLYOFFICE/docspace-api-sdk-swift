@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The database tenant partner parameters. */
-public struct DbTenantPartner: Sendable, Codable, ParameterConvertible, Hashable {
+public struct DbTenantPartner: Sendable, Codable, Hashable {
 
     public static let partnerIdRule = StringRule(minLength: nil, maxLength: 36, pattern: nil)
     public static let affiliateIdRule = StringRule(minLength: nil, maxLength: 50, pattern: nil)

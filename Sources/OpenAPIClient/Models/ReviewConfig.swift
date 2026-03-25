@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-public struct ReviewConfig: Sendable, Codable, ParameterConvertible, Hashable {
+/** Configuration for review display settings. */
+public struct ReviewConfig: Sendable, Codable, Hashable {
 
+    /** The review display string representation. */
     public var reviewDisplay: String?
 
     public init(reviewDisplay: String? = nil) {

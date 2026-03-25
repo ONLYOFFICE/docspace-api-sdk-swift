@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -724,6 +724,70 @@ open class {{{{x-classname}}}} {
     }
 
     /**
+     Get the AI access settings for the portal
+     
+     See also:
+     REST API Reference for getTenantAiAccessSettings Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-ai-access-settings/
+
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: TenantAiAccessSettingsWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func getTenantAiAccessSettings(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAiAccessSettingsWrapper {
+        return try await getTenantAiAccessSettingsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get the AI access settings for the portal
+     
+     See also:
+     REST API Reference for getTenantAiAccessSettings Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-ai-access-settings/
+     
+     - GET /api/2.0/settings/ai-access
+     - Returns the current portal-level AI access settings that control whether all AI functionality  (chat, agents, vectorization) is available for the portal. AI is enabled by default.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<TenantAiAccessSettingsWrapper> 
+     */
+    open class func getTenantAiAccessSettingsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAiAccessSettingsWrapper> {
+        let localVariablePath = "/api/2.0/settings/ai-access"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<TenantAiAccessSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
      Get the user invitation settings
      
      See also:
@@ -831,6 +895,71 @@ open class {{{{x-classname}}}} {
         let localVariableRequestBuilder: RequestBuilder<TimezonesRequestsArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Set the default folder
+     
+     See also:
+     REST API Reference for saveDefaultFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/save-default-folder/
+     - parameter defaultProductRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: StudioDefaultPageSettingsWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func saveDefaultFolder(defaultProductRequestDto: DefaultProductRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StudioDefaultPageSettingsWrapper {
+        return try await saveDefaultFolderWithRequestBuilder(defaultProductRequestDto: defaultProductRequestDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Set the default folder
+     
+     See also:
+     REST API Reference for saveDefaultFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/save-default-folder/
+     
+     - PUT /api/2.0/settings/defaultfolder
+     - Sets the default folder.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter defaultProductRequestDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<StudioDefaultPageSettingsWrapper> 
+     */
+    open class func saveDefaultFolderWithRequestBuilder(defaultProductRequestDto: DefaultProductRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StudioDefaultPageSettingsWrapper> {
+        let localVariablePath = "/api/2.0/settings/defaultfolder"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: defaultProductRequestDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<StudioDefaultPageSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -1026,6 +1155,71 @@ open class {{{{x-classname}}}} {
         let localVariableRequestBuilder: RequestBuilder<CustomColorThemesSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Set the AI access for the portal
+     
+     See also:
+     REST API Reference for setTenantAiAccessSettings Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-ai-access-settings/
+     - parameter tenantAiAccessSettingsDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: TenantAiAccessSettingsWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func setTenantAiAccessSettings(tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAiAccessSettingsWrapper {
+        return try await setTenantAiAccessSettingsWithRequestBuilder(tenantAiAccessSettingsDto: tenantAiAccessSettingsDto, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Set the AI access for the portal
+     
+     See also:
+     REST API Reference for setTenantAiAccessSettings Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-ai-access-settings/
+     
+     - POST /api/2.0/settings/ai-access
+     - Updates the portal-level AI access settings. When AI is disabled, all AI features are turned off:  the AI Agents folder is hidden from root folder listings, AI status checks immediately return disabled,  and AI chat endpoints become inaccessible. Only users with the DocSpaceAdmin role  (EditPortalSettings permission) can change this setting.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter tenantAiAccessSettingsDto: (body)  (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<TenantAiAccessSettingsWrapper> 
+     */
+    open class func setTenantAiAccessSettingsWithRequestBuilder(tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAiAccessSettingsWrapper> {
+        let localVariablePath = "/api/2.0/settings/ai-access"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: tenantAiAccessSettingsDto, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<TenantAiAccessSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**

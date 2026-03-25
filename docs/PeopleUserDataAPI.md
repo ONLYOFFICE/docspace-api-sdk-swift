@@ -334,7 +334,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let startReassignRequestDto = StartReassignRequestDto(fromUserId: 123, toUserId: 123, deleteProfile: true) // StartReassignRequestDto |  (optional)
+let startReassignRequestDto = StartReassignRequestDto(fromUserId: 123, toUserId: 123, deleteProfile: false) // StartReassignRequestDto |  (optional)
 
 // Start the data reassignment
 PeopleUserDataAPIApi.startReassign(startReassignRequestDto: startReassignRequestDto) { (response, error) in

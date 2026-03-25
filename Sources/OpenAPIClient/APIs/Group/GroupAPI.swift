@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -243,7 +243,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group/
      
      - GET /api/2.0/group/{id}
-     - Returns the detailed information about the selected group.   **Note**: This method returns full group information.
+     - Returns the detailed information about the selected group.
      - BASIC:
        - type: http
        - name: Basic
@@ -383,7 +383,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/
      
      - GET /api/2.0/group
-     - Returns the general information about all the groups, such as group ID and group manager.   **Note**: This method returns partial group information.
+     - Returns the general information about all the groups, such as group ID and group manager.
      - BASIC:
        - type: http
        - name: Basic

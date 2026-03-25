@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
 import Foundation
 
 /** The security information request parameters. */
-public struct SecurityInfoRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct SecurityInfoRequestDto: Sendable, Codable, Hashable {
 
+    public static let sharingMessageRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** The list of the shared folder IDs. */
     public var folderIds: [DuplicateRequestDtoAllOfFileIds]?
     /** The list of the shared file IDs. */

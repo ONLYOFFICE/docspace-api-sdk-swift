@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
 import Foundation
 
 /** The request parameters for updating the room quota. */
-public struct UpdateRoomsQuotaRequestDtoInteger: Sendable, Codable, ParameterConvertible, Hashable {
+public struct UpdateRoomsQuotaRequestDtoInteger: Sendable, Codable, Hashable {
 
     /** The list of room IDs. */
-    public var roomIds: [DuplicateRequestDtoAllOfFileIds]?
+    public var roomIds: [ContinueChatBodyFilesInner]?
     /** The room quota. */
     public var quota: Int64?
 
-    public init(roomIds: [DuplicateRequestDtoAllOfFileIds]? = nil, quota: Int64? = nil) {
+    public init(roomIds: [ContinueChatBodyFilesInner]? = nil, quota: Int64? = nil) {
         self.roomIds = roomIds
         self.quota = quota
     }

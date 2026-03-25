@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The user request parameters. */
-public struct MemberRequestDto: Sendable, Codable, ParameterConvertible, Hashable {
+public struct MemberRequestDto: Sendable, Codable, Hashable {
 
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let firstNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)

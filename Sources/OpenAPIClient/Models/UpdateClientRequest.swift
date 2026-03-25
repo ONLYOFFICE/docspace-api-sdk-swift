@@ -1,5 +1,5 @@
 //
-//  Copyright (c) Ascensio System SIA 2025
+//  Copyright (c) Ascensio System SIA 2026
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 import Foundation
 
 /** The request for updating client details. */
-public struct UpdateClientRequest: Sendable, Codable, ParameterConvertible, Hashable {
+public struct UpdateClientRequest: Sendable, Codable, Hashable {
 
     public static let nameRule = StringRule(minLength: 1, maxLength: nil, pattern: nil)
     public static let descriptionRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)

@@ -9,8 +9,8 @@ Method | HTTP request | Description
 [**getExternalShareData**](FilesSharingAPI.md#getexternalsharedata) | **GET** /api/2.0/files/share/{key} | Get the external data
 [**getFileSecurityInfo**](FilesSharingAPI.md#getfilesecurityinfo) | **GET** /api/2.0/files/file/{id}/share | Get the shared file information
 [**getFolderSecurityInfo**](FilesSharingAPI.md#getfoldersecurityinfo) | **GET** /api/2.0/files/folder/{id}/share | Get the shared folder information
-[**getGroupsMembersWithFileSecurity**](FilesSharingAPI.md#getgroupsmemberswithfilesecurity) | **GET** /api/2.0/files/file/{fileId}/group/{groupId}/share | Get group members with security information
-[**getGroupsMembersWithFolderSecurity**](FilesSharingAPI.md#getgroupsmemberswithfoldersecurity) | **GET** /api/2.0/files/folder/{folderId}/group/{groupId}/share | Get group members with security information
+[**getGroupsMembersWithFileSecurity**](FilesSharingAPI.md#getgroupsmemberswithfilesecurity) | **GET** /api/2.0/files/file/{fileId}/group/{groupId}/share | Get file group members with security information
+[**getGroupsMembersWithFolderSecurity**](FilesSharingAPI.md#getgroupsmemberswithfoldersecurity) | **GET** /api/2.0/files/folder/{folderId}/group/{groupId}/share | Get folder group members with security information
 [**getSecurityInfo**](FilesSharingAPI.md#getsecurityinfo) | **POST** /api/2.0/files/share | Get the sharing rights
 [**getSharedUsers**](FilesSharingAPI.md#getsharedusers) | **GET** /api/2.0/files/file/{fileId}/sharedusers | Get user access rights by file ID
 [**removeSecurityInfo**](FilesSharingAPI.md#removesecurityinfo) | **DELETE** /api/2.0/files/share | Remove the sharing rights
@@ -322,7 +322,7 @@ let count = 987 // Int | The number of items to be retrieved in the current quer
 let startIndex = 987 // Int | The starting index for the query result set. (optional)
 let filterValue = "filterValue_example" // String | The filter value used for searching or querying group members based on text input. (optional)
 
-// Get group members with security information
+// Get file group members with security information
 FilesSharingAPIApi.getGroupsMembersWithFileSecurity(fileId: fileId, groupId: groupId, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
     guard error == nil else {
         print(error)
@@ -380,7 +380,7 @@ let count = 987 // Int | The number of items to be retrieved in the current quer
 let startIndex = 987 // Int | The starting index for the query result set. (optional)
 let filterValue = "filterValue_example" // String | The filter value used for searching or querying group members based on text input. (optional)
 
-// Get group members with security information
+// Get folder group members with security information
 FilesSharingAPIApi.getGroupsMembersWithFolderSecurity(folderId: folderId, groupId: groupId, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
     guard error == nil else {
         print(error)
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
+let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: false, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
 // Get the sharing rights
 FilesSharingAPIApi.getSecurityInfo(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
@@ -528,7 +528,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: true, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
+let baseBatchRequestDto = BaseBatchRequestDto(returnSingleOperation: false, folderIds: [BaseBatchRequestDto_allOf_folderIds()], fileIds: [BaseBatchRequestDto_allOf_fileIds()]) // BaseBatchRequestDto |  (optional)
 
 // Remove the sharing rights
 FilesSharingAPIApi.removeSecurityInfo(baseBatchRequestDto: baseBatchRequestDto) { (response, error) in
@@ -632,7 +632,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let fileId = 987 // Int | The file ID.
-let securityInfoSimpleRequestDto = SecurityInfoSimpleRequestDto(share: [FileShareParams(shareTo: 123, email: "email_example", access: FileShare())], notify: true, sharingMessage: "sharingMessage_example") // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
+let securityInfoSimpleRequestDto = SecurityInfoSimpleRequestDto(share: [FileShareParams(email: "email_example", shareTo: 123, access: FileShare())], notify: true, sharingMessage: "sharingMessage_example") // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
 
 // Share a file
 FilesSharingAPIApi.setFileSecurityInfo(fileId: fileId, securityInfoSimpleRequestDto: securityInfoSimpleRequestDto) { (response, error) in
@@ -684,7 +684,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let folderId = 987 // Int | The folder ID.
-let securityInfoSimpleRequestDto = SecurityInfoSimpleRequestDto(share: [FileShareParams(shareTo: 123, email: "email_example", access: FileShare())], notify: true, sharingMessage: "sharingMessage_example") // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
+let securityInfoSimpleRequestDto = SecurityInfoSimpleRequestDto(share: [FileShareParams(email: "email_example", shareTo: 123, access: FileShare())], notify: true, sharingMessage: "sharingMessage_example") // SecurityInfoSimpleRequestDto | The parameters of the security information simple request.
 
 // Share a folder
 FilesSharingAPIApi.setFolderSecurityInfo(folderId: folderId, securityInfoSimpleRequestDto: securityInfoSimpleRequestDto) { (response, error) in
@@ -734,7 +734,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let securityInfoRequestDto = SecurityInfoRequestDto(folderIds: [DuplicateRequestDto_allOf_fileIds()], fileIds: [nil], share: [FileShareParams(shareTo: 123, email: "email_example", access: FileShare())], notify: true, sharingMessage: "sharingMessage_example") // SecurityInfoRequestDto |  (optional)
+let securityInfoRequestDto = SecurityInfoRequestDto(folderIds: [DuplicateRequestDto_allOf_fileIds()], fileIds: [nil], share: [FileShareParams(email: "email_example", shareTo: 123, access: FileShare())], notify: true, sharingMessage: "sharingMessage_example") // SecurityInfoRequestDto |  (optional)
 
 // Set the sharing rights
 FilesSharingAPIApi.setSecurityInfo(securityInfoRequestDto: securityInfoRequestDto) { (response, error) in
