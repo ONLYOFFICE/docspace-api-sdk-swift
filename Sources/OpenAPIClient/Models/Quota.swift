@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** The quota parameters.  &lt;example&gt;  {    id: 1,    quantity: 50,    wallet: false,    dueDate: 2026-03-31T00:00:00Z,    nextQuantity: 100,    state: Active  }  &lt;/example&gt; */
+/** The quota parameters.  <example>  {    id: 1,    quantity: 50,    wallet: false,    dueDate: 2026-03-31T00:00:00Z,    nextQuantity: 100,    state: Active  }  </example> */
 public struct Quota: Sendable, Codable, Hashable {
 
     /** The quota ID. */

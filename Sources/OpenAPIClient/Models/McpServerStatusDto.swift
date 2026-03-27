@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** MCP server status within a room, reflecting the current user&#39;s connection state for OAuth-based servers. */
+/** MCP server status within a room, reflecting the current user's connection state for OAuth-based servers. */
 public struct McpServerStatusDto: Sendable, Codable, Hashable {
 
     /** Unique identifier of the MCP server. */

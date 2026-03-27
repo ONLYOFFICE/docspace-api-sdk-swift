@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Parameters for updating an AI provider&#39;s configuration. */
+/** Parameters for updating an AI provider's configuration. */
 public struct UpdateProviderBody: Sendable, Codable, Hashable {
 
     /** The new display title for the AI provider. If null, the title is not changed. */

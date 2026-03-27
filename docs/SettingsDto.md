@@ -37,7 +37,7 @@ Name | Type | Description | Notes
 **limitedAccessSpace** | **Bool** | Specifies whether the access to the space management is limited or not. | [optional] 
 **limitedAccessDevToolsForUsers** | **Bool** | Specifies whether the access to the Developer Tools is limited for users or not. | [optional] 
 **displayBanners** | **Bool** | Specifies whether to display the promotional banners. | [optional] 
-**aiEnabled** | **Bool** | Specifies whether AI functionality (chat, agents, vectorization) is enabled for the current tenant.  When &#x60;false&#x60;, all AI features are disabled and the AI Agents folder is hidden. | [optional] 
+**aiEnabled** | **Bool** | Specifies whether AI functionality (chat, agents, vectorization) is enabled for the current tenant.  When `false`, all AI features are disabled and the AI Agents folder is hidden. | [optional] 
 **userNameRegex** | **String** | The user name validation regex. | [optional] 
 **invitationLimit** | **Int** | The maximum number of invitations to the portal. | [optional] 
 **plugins** | [**PluginsDto**](PluginsDto.md) |  | [optional] 

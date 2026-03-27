@@ -1428,7 +1428,7 @@ var fields: String?
      See also:
      REST API Reference for getRoomTagsInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-room-tags-info/
-     - parameter count: (query) Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set. (optional)     - parameter startIndex: (query) Represents the starting index from which the tags&#39; information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. (optional)     - parameter filterValue: (query) Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information. (optional)
+     - parameter count: (query) Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set. (optional)     - parameter startIndex: (query) Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. (optional)     - parameter filterValue: (query) Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ObjectArrayWrapper
      */
@@ -1465,7 +1465,7 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - parameter count: (query) Gets or sets the number of tag results to retrieve.  This property specifies the maximum amount of tag data to be included in the result set. (optional)
-     - parameter startIndex: (query) Represents the starting index from which the tags&#39; information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. (optional)
+     - parameter startIndex: (query) Represents the starting index from which the tags' information will be retrieved.  This property is used to define the offset for pagination when retrieving a list of tags. It determines  the point in the data set from which the retrieval begins. (optional)
      - parameter filterValue: (query) Gets or sets the text value used for searching tags.  This property is typically used as a filter value when retrieving tag information. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectArrayWrapper> 

@@ -23,7 +23,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for authorizeOAuth Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/authorize-oauth/
-     - parameter responseType: (query) The OAuth 2.0 response type, must be &#39;code&#39; for authorization code flow.      - parameter clientId: (query) The client identifier issued to the client during registration.      - parameter redirectUri: (query) The URL to redirect to after authorization is complete.      - parameter scope: (query) The space-separated list of requested scope permissions. 
+     - parameter responseType: (query) The OAuth 2.0 response type, must be 'code' for authorization code flow.      - parameter clientId: (query) The client identifier issued to the client during registration.      - parameter redirectUri: (query) The URL to redirect to after authorization is complete.      - parameter scope: (query) The space-separated list of requested scope permissions. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
@@ -44,7 +44,7 @@ open class {{{{x-classname}}}} {
      - API Key:
        - type: apiKey asc_auth_key 
        - name: asc_auth_key
-     - parameter responseType: (query) The OAuth 2.0 response type, must be &#39;code&#39; for authorization code flow. 
+     - parameter responseType: (query) The OAuth 2.0 response type, must be 'code' for authorization code flow. 
      - parameter clientId: (query) The client identifier issued to the client during registration. 
      - parameter redirectUri: (query) The URL to redirect to after authorization is complete. 
      - parameter scope: (query) The space-separated list of requested scope permissions. 
@@ -82,7 +82,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for exchangeToken Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/exchange-token/
-     - parameter grantType: (form) The OAuth2 grant type, must be &#39;authorization_code&#39; for the authorization code flow. (optional)     - parameter code: (form) A temporary authorization code that is sent to the client to be exchanged for a token. (optional)     - parameter redirectUri: (form) The URL where the user will be redirected after successful or unsuccessful authentication. (optional)     - parameter clientId: (form) The client identifier issued to the client during registration. (optional)     - parameter clientSecret: (form) The client secret issued to the client during registration. (optional)
+     - parameter grantType: (form) The OAuth2 grant type, must be 'authorization_code' for the authorization code flow. (optional)     - parameter code: (form) A temporary authorization code that is sent to the client to be exchanged for a token. (optional)     - parameter redirectUri: (form) The URL where the user will be redirected after successful or unsuccessful authentication. (optional)     - parameter clientId: (form) The client identifier issued to the client during registration. (optional)     - parameter clientSecret: (form) The client secret issued to the client during registration. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ExchangeToken200Response
      */
@@ -100,7 +100,7 @@ open class {{{{x-classname}}}} {
      
      - POST /oauth2/token
      - Exchanges an authorization code specified in the request for the access token.
-     - parameter grantType: (form) The OAuth2 grant type, must be &#39;authorization_code&#39; for the authorization code flow. (optional)
+     - parameter grantType: (form) The OAuth2 grant type, must be 'authorization_code' for the authorization code flow. (optional)
      - parameter code: (form) A temporary authorization code that is sent to the client to be exchanged for a token. (optional)
      - parameter redirectUri: (form) The URL where the user will be redirected after successful or unsuccessful authentication. (optional)
      - parameter clientId: (form) The client identifier issued to the client during registration. (optional)

@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**createApiKey**](ApiKeysAPI.md#createapikey) | **POST** /api/2.0/keys | Create a user API key
 [**deleteApiKey**](ApiKeysAPI.md#deleteapikey) | **DELETE** /api/2.0/keys/{keyId} | Delete a user API key
 [**getAllPermissions**](ApiKeysAPI.md#getallpermissions) | **GET** /api/2.0/keys/permissions | Get API key permissions
-[**getApiKey**](ApiKeysAPI.md#getapikey) | **GET** /api/2.0/keys/@self | Get current user&#39;s API key
-[**getApiKeys**](ApiKeysAPI.md#getapikeys) | **GET** /api/2.0/keys | Get current user&#39;s API keys
+[**getApiKey**](ApiKeysAPI.md#getapikey) | **GET** /api/2.0/keys/@self | Get current user's API key
+[**getApiKeys**](ApiKeysAPI.md#getapikeys) | **GET** /api/2.0/keys | Get current user's API keys
 [**updateApiKey**](ApiKeysAPI.md#updateapikey) | **PUT** /api/2.0/keys/{keyId} | Update an API key
 
 

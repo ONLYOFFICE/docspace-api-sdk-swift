@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** The settings for the Feedback &amp; Support menu button. */
+/** The settings for the Feedback & Support menu button. */
 public struct FeedbackConfig: Sendable, Codable, Hashable {
 
     /** The absolute URL to the website address which will be opened when clicking the Feedback & Support menu button. */

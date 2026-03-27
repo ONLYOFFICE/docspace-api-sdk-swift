@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** The agent new item&#39;s information. */
+/** The agent new item's information. */
 public struct AgentNewItemsDto: Sendable, Codable, Hashable {
 
     public var agent: FileEntryBaseDto

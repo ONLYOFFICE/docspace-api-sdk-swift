@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** The Complete &amp; Submit button settings. */
+/** The Complete & Submit button settings. */
 public struct SubmitForm: Sendable, Codable, Hashable {
 
     /** Specifies whether the Complete  & Submit button will be displayed or hidden on the top toolbar. */
