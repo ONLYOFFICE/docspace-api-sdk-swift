@@ -18,7 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
-     Get available OAuth2 scopes
+     List available OAuth2 scopes
      
      See also:
      REST API Reference for getScopes Operation
@@ -33,7 +33,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get available OAuth2 scopes
+     List available OAuth2 scopes
      
      See also:
      REST API Reference for getScopes Operation
@@ -42,8 +42,8 @@ open class {{{{x-classname}}}} {
      - GET /api/2.0/scopes
      - Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the 'openid' scope always appearing first.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
+       - type: apiKey x-signature 
+       - name: x-signature
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ScopeResponse> 
      */

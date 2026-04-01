@@ -23,7 +23,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getClient Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ClientResponse
      */
@@ -42,9 +42,9 @@ open class {{{{x-classname}}}} {
      - GET /api/2.0/clients/{clientId}
      - Retrieves detailed information about a specific OAuth2 client including its name, description, redirect URIs, and scopes.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientResponse> 
      */
@@ -71,12 +71,12 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get detailed client information
+     Retrieves detailed information for a specific client
      
      See also:
      REST API Reference for getClientInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client-info/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ClientInfoResponse
      */
@@ -86,7 +86,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get detailed client information
+     Retrieves detailed information for a specific client
      
      See also:
      REST API Reference for getClientInfo Operation
@@ -95,9 +95,9 @@ open class {{{{x-classname}}}} {
      - GET /api/2.0/clients/{clientId}/info
      - Retrieves the detailed information for a client with the ID specified in the request.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientInfoResponse> 
      */
@@ -124,12 +124,12 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get clients
+     List clients
      
      See also:
      REST API Reference for getClients Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/
-     - parameter limit: (query) The maximum number of results returned per page.      - parameter lastClientId: (query) The ID of the last retrieved client. (optional)     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+     - parameter limit: (query) Pagination limit      - parameter lastClientId: (query) ID of the last retrieved client (optional)     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: PageableResponse
      */
@@ -139,20 +139,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get clients
+     List clients
      
      See also:
      REST API Reference for getClients Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/
      
      - GET /api/2.0/clients
-     - Retrieves a paginated list of OAuth2 clients. The results can be paginated using the 'limit' parameter and the last seen client ID or creation date.
+     - Retrieves a paginated list of OAuth2 clients. The results can be paginated using the limit parameter and last seen client ID/creation date.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter limit: (query) The maximum number of results returned per page. 
-     - parameter lastClientId: (query) The ID of the last retrieved client. (optional)
-     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter limit: (query) Pagination limit 
+     - parameter lastClientId: (query) ID of the last retrieved client (optional)
+     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PageableResponse> 
      */
@@ -181,12 +181,12 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get detailed information of clients
+     Retrieves a pageable list of client information
      
      See also:
      REST API Reference for getClientsInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients-info/
-     - parameter limit: (query) The maximum number of results returned per page.      - parameter lastClientId: (query) The identifier of the last retrieved client. (optional)     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+     - parameter limit: (query) Pagination limit      - parameter lastClientId: (query) ID of the last retrieved client (optional)     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: PageableResponseClientInfoResponse
      */
@@ -196,7 +196,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get detailed information of clients
+     Retrieves a pageable list of client information
      
      See also:
      REST API Reference for getClientsInfo Operation
@@ -205,11 +205,11 @@ open class {{{{x-classname}}}} {
      - GET /api/2.0/clients/info
      - Retrieves a paginated list of information for all clients.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter limit: (query) The maximum number of results returned per page. 
-     - parameter lastClientId: (query) The identifier of the last retrieved client. (optional)
-     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter limit: (query) Pagination limit 
+     - parameter lastClientId: (query) ID of the last retrieved client (optional)
+     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PageableResponseClientInfoResponse> 
      */
@@ -238,12 +238,12 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get user consents
+     Retrieves a pageable list of consents
      
      See also:
      REST API Reference for getConsents Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-consents/
-     - parameter limit: (query) The maximum number of results returned per page.      - parameter lastModifiedOn: (query) The date when the user consent was last modified. (optional)
+     - parameter limit: (query) Pagination limit      - parameter lastModifiedOn: (query) Date of the last retrieved consent (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: PageableModificationResponse
      */
@@ -253,7 +253,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get user consents
+     Retrieves a pageable list of consents
      
      See also:
      REST API Reference for getConsents Operation
@@ -262,10 +262,10 @@ open class {{{{x-classname}}}} {
      - GET /api/2.0/clients/consents
      - Retrieves a paginated list of user consents.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter limit: (query) The maximum number of results returned per page. 
-     - parameter lastModifiedOn: (query) The date when the user consent was last modified. (optional)
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter limit: (query) Pagination limit 
+     - parameter lastModifiedOn: (query) Date of the last retrieved consent (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PageableModificationResponse> 
      */
@@ -293,12 +293,12 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get public client information
+     Handles the GET request for public client information
      
      See also:
      REST API Reference for getPublicClientInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-client-info/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ClientInfoResponse
      */
@@ -308,15 +308,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get public client information
+     Handles the GET request for public client information
      
      See also:
      REST API Reference for getPublicClientInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-client-info/
      
      - GET /api/2.0/clients/{clientId}/public/info
-     - Returns the public information for a client with the ID secified din the request.
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientInfoResponse> 
      */

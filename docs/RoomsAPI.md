@@ -1210,7 +1210,7 @@ RoomsAPIApi.getRoomTemplateCreatingStatus() { (response, error) in
 
 # **getRoomsFolder**
 ```swift
-    open class func getRoomsFolder(type: [RoomType]? = nil, subjectId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, groupId: Int? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+    open class func getRoomsFolder(type: [RoomType]? = nil, subjectId: String? = nil, subjectOwnerId: String? = nil, searchArea: SearchArea? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, provider: ProviderFilter? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, storageFilter: StorageFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, groupId: Int? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
 Returns the contents of the Rooms section by the parameters specified in the request.
@@ -1223,6 +1223,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **type** | [**[RoomType]**](RoomType.md) | The filter by room type. | [optional] 
  **subjectId** | **String** | The filter by user ID. | [optional] 
+ **subjectOwnerId** | **String** | The filter by room owner ID. | [optional] 
  **searchArea** | [**SearchArea**](.md) | The room search area (Active, Archive, Any, Recent by links). | [optional] 
  **withoutTags** | **Bool** | Specifies whether to search by tags or not. | [optional] 
  **tags** | **String** | The tags in the serialized format. | [optional] 
@@ -1253,6 +1254,7 @@ import OpenAPIClient
 
 let type = [[RoomType()]] // [RoomType] | The filter by room type. (optional)
 let subjectId = "subjectId_example" // String | The filter by user ID. (optional)
+let subjectOwnerId = "subjectOwnerId_example" // String | The filter by room owner ID. (optional)
 let searchArea = SearchArea() // SearchArea | The room search area (Active, Archive, Any, Recent by links). (optional)
 let withoutTags = false // Bool | Specifies whether to search by tags or not. (optional)
 let tags = "tags_example" // String | The tags in the serialized format. (optional)
@@ -1269,7 +1271,7 @@ let filterValue = "filterValue_example" // String | The text filter value used t
 let groupId = 987 // Int | The group ID (optional)
 
 // Get rooms
-RoomsAPIApi.getRoomsFolder(type: type, subjectId: subjectId, searchArea: searchArea, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, provider: provider, subjectFilter: subjectFilter, quotaFilter: quotaFilter, storageFilter: storageFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, groupId: groupId) { (response, error) in
+RoomsAPIApi.getRoomsFolder(type: type, subjectId: subjectId, subjectOwnerId: subjectOwnerId, searchArea: searchArea, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, provider: provider, subjectFilter: subjectFilter, quotaFilter: quotaFilter, storageFilter: storageFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, groupId: groupId) { (response, error) in
     guard error == nil else {
         print(error)
         return

@@ -363,6 +363,74 @@ var fields: String?
     }
 
     /**
+     Generate XLSX report by folder
+     
+     See also:
+     REST API Reference for generateXlsxByFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/
+     - parameter folderId: (path) The folder unique identifier. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: FileIntegerWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func generateXlsxByFolder(folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileIntegerWrapper {
+        return try await generateXlsxByFolderWithRequestBuilder(folderId: folderId, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Generate XLSX report by folder
+     
+     See also:
+     REST API Reference for generateXlsxByFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/
+     
+     - POST /api/2.0/files/folder/{folderId}/xlsx
+     - Triggers asynchronous XLSX report generation for the specified form results folder.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - parameter folderId: (path) The folder unique identifier. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<FileIntegerWrapper> 
+     */
+    open class func generateXlsxByFolderWithRequestBuilder(folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileIntegerWrapper> {
+        var localVariablePath = "/api/2.0/files/folder/{folderId}/xlsx"
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
      Get the Favorites section
      
      See also:

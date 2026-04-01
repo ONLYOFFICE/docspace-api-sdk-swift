@@ -297,7 +297,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for uploadMemberPhoto Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-member-photo/
-     - parameter userid: (path) The user ID.      - parameter file: (form) The image data.      - parameter autosave: (form)  (optional)
+     - parameter userid: (path) The user ID.      - parameter file: (form) The image data.      - parameter autosave: (form) Specifies whether to autosave a photo or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileUploadResultWrapper
      */
@@ -335,7 +335,7 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - parameter userid: (path) The user ID. 
      - parameter file: (form) The image data. 
-     - parameter autosave: (form)  (optional)
+     - parameter autosave: (form) Specifies whether to autosave a photo or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileUploadResultWrapper> 
      */

@@ -168,7 +168,7 @@ AIAgentsAPIApi.getAgentInfo(id: id) { (response, error) in
 
 # **getAgents**
 ```swift
-    open class func getAgents(subjectId: String? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+    open class func getAgents(subjectId: String? = nil, subjectOwnerId: String? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
 Get ai agents
@@ -180,6 +180,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subjectId** | **String** | The filter by user ID. | [optional] 
+ **subjectOwnerId** | **String** | The filter by room owner ID. | [optional] 
  **withoutTags** | **Bool** | Specifies whether to search by tags or not. | [optional] 
  **tags** | **String** | The tags in the serialized format. | [optional] 
  **excludeSubject** | **Bool** | Specifies whether to exclude search by user or group ID. | [optional] 
@@ -205,6 +206,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let subjectId = "subjectId_example" // String | The filter by user ID. (optional)
+let subjectOwnerId = "subjectOwnerId_example" // String | The filter by room owner ID. (optional)
 let withoutTags = false // Bool | Specifies whether to search by tags or not. (optional)
 let tags = "tags_example" // String | The tags in the serialized format. (optional)
 let excludeSubject = false // Bool | Specifies whether to exclude search by user or group ID. (optional)
@@ -217,7 +219,7 @@ let sortOrder = SortOrder() // SortOrder | The order in which the results are so
 let filterValue = "filterValue_example" // String | The text filter value used to refine search or query operations. (optional)
 
 // Get ai agents
-AIAgentsAPIApi.getAgents(subjectId: subjectId, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, subjectFilter: subjectFilter, quotaFilter: quotaFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+AIAgentsAPIApi.getAgents(subjectId: subjectId, subjectOwnerId: subjectOwnerId, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, subjectFilter: subjectFilter, quotaFilter: quotaFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
     guard error == nil else {
         print(error)
         return

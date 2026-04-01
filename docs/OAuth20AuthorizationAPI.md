@@ -4,8 +4,8 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**authorizeOAuth**](OAuth20AuthorizationAPI.md#authorizeoauth) | **GET** /oauth2/authorize | OAuth2 authorization endpoint
-[**exchangeToken**](OAuth20AuthorizationAPI.md#exchangetoken) | **POST** /oauth2/token | OAuth2 token endpoint
+[**authorizeOAuth**](OAuth20AuthorizationAPI.md#authorizeoauth) | **GET** /oauth2/authorize | OAuth2 Authorization Endpoint
+[**exchangeToken**](OAuth20AuthorizationAPI.md#exchangetoken) | **POST** /oauth2/token | OAuth2 Token Endpoint
 [**submitConsent**](OAuth20AuthorizationAPI.md#submitconsent) | **POST** /oauth2/authorize | OAuth2 consent endpoint
 
 
@@ -33,7 +33,7 @@ Void (empty response body)
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
@@ -45,7 +45,7 @@ let clientId = "clientId_example" // String | The client identifier issued to th
 let redirectUri = "redirectUri_example" // String | The URL to redirect to after authorization is complete.
 let scope = "scope_example" // String | The space-separated list of requested scope permissions.
 
-// OAuth2 authorization endpoint
+// OAuth2 Authorization Endpoint
 OAuth20AuthorizationAPIApi.authorizeOAuth(responseType: responseType, clientId: clientId, redirectUri: redirectUri, scope: scope) { (response, error) in
     guard error == nil else {
         print(error)
@@ -70,7 +70,7 @@ OAuth20AuthorizationAPIApi.authorizeOAuth(responseType: responseType, clientId: 
     open class func exchangeToken(grantType: String? = nil, code: String? = nil, redirectUri: String? = nil, clientId: String? = nil, clientSecret: String? = nil, completion: @escaping (_ data: ExchangeToken200Response?, _ error: Error?) -> Void)
 ```
 
-Exchanges an authorization code specified in the request for the access token.
+Exchange authorization code for access token
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/exchange-token/).
 
@@ -103,7 +103,7 @@ let redirectUri = "redirectUri_example" // String | The URL where the user will 
 let clientId = "clientId_example" // String | The client identifier issued to the client during registration. (optional)
 let clientSecret = "clientSecret_example" // String | The client secret issued to the client during registration. (optional)
 
-// OAuth2 token endpoint
+// OAuth2 Token Endpoint
 OAuth20AuthorizationAPIApi.exchangeToken(grantType: grantType, code: code, redirectUri: redirectUri, clientId: clientId, clientSecret: clientSecret) { (response, error) in
     guard error == nil else {
         print(error)
@@ -128,7 +128,7 @@ OAuth20AuthorizationAPIApi.exchangeToken(grantType: grantType, code: code, redir
     open class func submitConsent(clientId: String? = nil, state: String? = nil, scope: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
-Sends a consent request with the specified parameters.
+Sends consent approval
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/submit-consent/).
 
@@ -146,7 +146,7 @@ Void (empty response body)
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift

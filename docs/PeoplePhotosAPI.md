@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userid** | **String** | The user ID. | 
  **file** | **URL** | The image data. | 
- **autosave** | **Bool** |  | [optional] 
+ **autosave** | **Bool** | Specifies whether to autosave a photo or not. | [optional] 
 
 ### Return type
 
@@ -247,7 +247,7 @@ import OpenAPIClient
 
 let userid = "userid_example" // String | The user ID.
 let file = URL(string: "https://example.com")! // URL | The image data.
-let autosave = true // Bool |  (optional)
+let autosave = true // Bool | Specifies whether to autosave a photo or not. (optional)
 
 // Upload a user photo
 PeoplePhotosAPIApi.uploadMemberPhoto(userid: userid, file: file, autosave: autosave) { (response, error) in

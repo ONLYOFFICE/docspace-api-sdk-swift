@@ -226,13 +226,13 @@ var fields: String?
      See also:
      REST API Reference for getAgents Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents/
-     - parameter subjectId: (query) The filter by user ID. (optional)     - parameter withoutTags: (query) Specifies whether to search by tags or not. (optional)     - parameter tags: (query) The tags in the serialized format. (optional)     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)     - parameter subjectFilter: (query) The filter by user (Owner - 0, Member - 1). (optional)     - parameter quotaFilter: (query) The filter by quota (All - 0, Default - 1, Custom - 2). (optional)     - parameter count: (query) Specifies the maximum number of items to retrieve. (optional)     - parameter startIndex: (query) The index from which to start retrieving the room content. (optional)     - parameter sortBy: (query) Specifies the field by which the room content should be sorted. (optional)     - parameter sortOrder: (query) The order in which the results are sorted. (optional)     - parameter filterValue: (query) The text filter value used to refine search or query operations. (optional)
+     - parameter subjectId: (query) The filter by user ID. (optional)     - parameter subjectOwnerId: (query) The filter by room owner ID. (optional)     - parameter withoutTags: (query) Specifies whether to search by tags or not. (optional)     - parameter tags: (query) The tags in the serialized format. (optional)     - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)     - parameter subjectFilter: (query) The filter by user (Owner - 0, Member - 1). (optional)     - parameter quotaFilter: (query) The filter by quota (All - 0, Default - 1, Custom - 2). (optional)     - parameter count: (query) Specifies the maximum number of items to retrieve. (optional)     - parameter startIndex: (query) The index from which to start retrieving the room content. (optional)     - parameter sortBy: (query) Specifies the field by which the room content should be sorted. (optional)     - parameter sortOrder: (query) The order in which the results are sorted. (optional)     - parameter filterValue: (query) The text filter value used to refine search or query operations. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentIntegerWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getAgents(subjectId: String? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentIntegerWrapper {
-        return try await getAgentsWithRequestBuilder(subjectId: subjectId, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, subjectFilter: subjectFilter, quotaFilter: quotaFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getAgents(subjectId: String? = nil, subjectOwnerId: String? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentIntegerWrapper {
+        return try await getAgentsWithRequestBuilder(subjectId: subjectId, subjectOwnerId: subjectOwnerId, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, subjectFilter: subjectFilter, quotaFilter: quotaFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -263,6 +263,7 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - parameter subjectId: (query) The filter by user ID. (optional)
+     - parameter subjectOwnerId: (query) The filter by room owner ID. (optional)
      - parameter withoutTags: (query) Specifies whether to search by tags or not. (optional)
      - parameter tags: (query) The tags in the serialized format. (optional)
      - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)
@@ -276,7 +277,7 @@ var fields: String?
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentIntegerWrapper> 
      */
-    open class func getAgentsWithRequestBuilder(subjectId: String? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
+    open class func getAgentsWithRequestBuilder(subjectId: String? = nil, subjectOwnerId: String? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentIntegerWrapper> {
         let localVariablePath = "/api/2.0/ai/agents"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -284,6 +285,7 @@ var fields: String?
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "subjectId": (wrappedValue: subjectId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "subjectOwnerId": (wrappedValue: subjectOwnerId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "withoutTags": (wrappedValue: withoutTags?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "tags": (wrappedValue: tags?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "excludeSubject": (wrappedValue: excludeSubject?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),

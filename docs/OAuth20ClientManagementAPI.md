@@ -4,10 +4,12 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**changeActivation**](OAuth20ClientManagementAPI.md#changeactivation) | **PATCH** /api/2.0/clients/{clientId}/activation | Change the client activation status
+[**changeActivation**](OAuth20ClientManagementAPI.md#changeactivation) | **PATCH** /api/2.0/clients/{clientId}/activation | Change client activation status
 [**createClient**](OAuth20ClientManagementAPI.md#createclient) | **POST** /api/2.0/clients | Create a new OAuth2 client
 [**deleteClient**](OAuth20ClientManagementAPI.md#deleteclient) | **DELETE** /api/2.0/clients/{clientId} | Delete an OAuth2 client
-[**regenerateSecret**](OAuth20ClientManagementAPI.md#regeneratesecret) | **PATCH** /api/2.0/clients/{clientId}/regenerate | Regenerate the client secret
+[**deleteTenantClients**](OAuth20ClientManagementAPI.md#deletetenantclients) | **DELETE** /api/2.0/clients/tenant | Delete all tenant OAuth2 clients
+[**deleteUserClients**](OAuth20ClientManagementAPI.md#deleteuserclients) | **DELETE** /api/2.0/clients | Delete all user OAuth2 clients
+[**regenerateSecret**](OAuth20ClientManagementAPI.md#regeneratesecret) | **PATCH** /api/2.0/clients/{clientId}/regenerate | Regenerate client secret
 [**revokeUserClient**](OAuth20ClientManagementAPI.md#revokeuserclient) | **DELETE** /api/2.0/clients/{clientId}/revoke | Revoke client consent
 [**updateClient**](OAuth20ClientManagementAPI.md#updateclient) | **PUT** /api/2.0/clients/{clientId} | Update an existing OAuth2 client
 
@@ -25,7 +27,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to change activation for | 
  **changeClientActivationRequest** | [**ChangeClientActivationRequest**](ChangeClientActivationRequest.md) |  | 
 
 ### Return type
@@ -34,17 +36,17 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
+let clientId = "clientId_example" // String | ID of the client to change activation for
 let changeClientActivationRequest = ChangeClientActivationRequest(status: true) // ChangeClientActivationRequest | 
 
-// Change the client activation status
+// Change client activation status
 OAuth20ClientManagementAPIApi.changeActivation(clientId: clientId, changeClientActivationRequest: changeClientActivationRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -85,14 +87,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createClientRequest = CreateClientRequest(name: "name_example", description: "description_example", logo: "logo_example", scopes: ["scopes_example"], allowPkce: true, isPublic: false, websiteUrl: "websiteUrl_example", termsUrl: "termsUrl_example", policyUrl: "policyUrl_example", redirectUris: ["redirectUris_example"], allowedOrigins: ["allowedOrigins_example"], logoutRedirectUri: "logoutRedirectUri_example") // CreateClientRequest | 
+let createClientRequest = CreateClientRequest(name: "name_example", description: "description_example", logo: "logo_example", scopes: ["scopes_example"], _public: false, allowPkce: true, isPublic: false, websiteUrl: "websiteUrl_example", termsUrl: "termsUrl_example", policyUrl: "policyUrl_example", redirectUris: ["redirectUris_example"], allowedOrigins: ["allowedOrigins_example"], logoutRedirectUri: "logoutRedirectUri_example") // CreateClientRequest | 
 
 // Create a new OAuth2 client
 OAuth20ClientManagementAPIApi.createClient(createClientRequest: createClientRequest) { (response, error) in
@@ -119,7 +121,7 @@ OAuth20ClientManagementAPIApi.createClient(createClientRequest: createClientRequ
     open class func deleteClient(clientId: String, completion: @escaping (_ data: JSONValue?, _ error: Error?) -> Void)
 ```
 
-Permanently deletes an OAuth2 client and all associated data. All access and refresh tokens issued to this client will be invalidated. This operation cannot be undone.
+Permanently deletes an OAuth2 client and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-client/).
 
@@ -127,7 +129,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to delete | 
 
 ### Return type
 
@@ -135,17 +137,109 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
+let clientId = "clientId_example" // String | ID of the client to delete
 
 // Delete an OAuth2 client
 OAuth20ClientManagementAPIApi.deleteClient(clientId: clientId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteTenantClients**
+```swift
+    open class func deleteTenantClients(completion: @escaping (_ data: JSONValue?, _ error: Error?) -> Void)
+```
+
+Permanently deletes tenant OAuth2 clients and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-tenant-clients/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**JSONValue**
+
+### Authorization
+
+[x-signature](../README.md#x-signature)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Delete all tenant OAuth2 clients
+OAuth20ClientManagementAPIApi.deleteTenantClients() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteUserClients**
+```swift
+    open class func deleteUserClients(completion: @escaping (_ data: JSONValue?, _ error: Error?) -> Void)
+```
+
+Permanently deletes user OAuth2 clients and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-user-clients/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**JSONValue**
+
+### Authorization
+
+[x-signature](../README.md#x-signature)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Delete all user OAuth2 clients
+OAuth20ClientManagementAPIApi.deleteUserClients() { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -177,7 +271,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to regenerate secret for | 
 
 ### Return type
 
@@ -185,16 +279,16 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
+let clientId = "clientId_example" // String | ID of the client to regenerate secret for
 
-// Regenerate the client secret
+// Regenerate client secret
 OAuth20ClientManagementAPIApi.regenerateSecret(clientId: clientId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -227,7 +321,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to revoke consent for | 
 
 ### Return type
 
@@ -235,14 +329,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
+let clientId = "clientId_example" // String | ID of the client to revoke consent for
 
 // Revoke client consent
 OAuth20ClientManagementAPIApi.revokeUserClient(clientId: clientId) { (response, error) in
@@ -269,7 +363,7 @@ OAuth20ClientManagementAPIApi.revokeUserClient(clientId: clientId) { (response, 
     open class func updateClient(clientId: String, updateClientRequest: UpdateClientRequest, completion: @escaping (_ data: JSONValue?, _ error: Error?) -> Void)
 ```
 
-Updates the configuration of an existing OAuth2 client, allowing modifications to the client name, description, redirect URIs, and other settings. The client ID cannot be modified.
+Updates the configuration of an existing OAuth2 client. Allows modification of client name, description, redirect URIs, and other settings. The client ID cannot be modified.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-client/).
 
@@ -277,7 +371,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to update | 
  **updateClientRequest** | [**UpdateClientRequest**](UpdateClientRequest.md) |  | 
 
 ### Return type
@@ -286,15 +380,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
-let updateClientRequest = UpdateClientRequest(name: "name_example", description: "description_example", logo: "logo_example", allowPkce: true, isPublic: false, allowedOrigins: ["allowedOrigins_example"]) // UpdateClientRequest | 
+let clientId = "clientId_example" // String | ID of the client to update
+let updateClientRequest = UpdateClientRequest(name: "name_example", description: "description_example", logo: "logo_example", _public: false, allowPkce: true, isPublic: false, allowedOrigins: ["allowedOrigins_example"]) // UpdateClientRequest | 
 
 // Update an existing OAuth2 client
 OAuth20ClientManagementAPIApi.updateClient(clientId: clientId, updateClientRequest: updateClientRequest) { (response, error) in

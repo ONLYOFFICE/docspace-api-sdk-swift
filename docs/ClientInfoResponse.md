@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **name** | **String** | The client name. | [optional] 
 **description** | **String** | The client description. | [optional] 
 **scopes** | **Set<String>** | The client scopes. | [optional] 
+**_public** | **Bool** |  | [optional] 
 **clientId** | **String** | The client ID. | [optional] 
 **websiteUrl** | **String** | The URL to the client's website | [optional] 
 **termsUrl** | **String** | The URL to the client's terms of service. | [optional] 

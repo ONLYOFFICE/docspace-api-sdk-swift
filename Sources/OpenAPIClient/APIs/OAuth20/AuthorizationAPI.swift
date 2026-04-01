@@ -18,7 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
-     OAuth2 authorization endpoint
+     OAuth2 Authorization Endpoint
      
      See also:
      REST API Reference for authorizeOAuth Operation
@@ -33,7 +33,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     OAuth2 authorization endpoint
+     OAuth2 Authorization Endpoint
      
      See also:
      REST API Reference for authorizeOAuth Operation
@@ -42,8 +42,8 @@ open class {{{{x-classname}}}} {
      - GET /oauth2/authorize
      - Initiates the OAuth2 authorization flow.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
+       - type: apiKey x-signature 
+       - name: x-signature
      - parameter responseType: (query) The OAuth 2.0 response type, must be 'code' for authorization code flow. 
      - parameter clientId: (query) The client identifier issued to the client during registration. 
      - parameter redirectUri: (query) The URL to redirect to after authorization is complete. 
@@ -77,7 +77,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     OAuth2 token endpoint
+     OAuth2 Token Endpoint
      
      See also:
      REST API Reference for exchangeToken Operation
@@ -92,14 +92,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     OAuth2 token endpoint
+     OAuth2 Token Endpoint
      
      See also:
      REST API Reference for exchangeToken Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/exchange-token/
      
      - POST /oauth2/token
-     - Exchanges an authorization code specified in the request for the access token.
+     - Exchange authorization code for access token
      - parameter grantType: (form) The OAuth2 grant type, must be 'authorization_code' for the authorization code flow. (optional)
      - parameter code: (form) A temporary authorization code that is sent to the client to be exchanged for a token. (optional)
      - parameter redirectUri: (form) The URL where the user will be redirected after successful or unsuccessful authentication. (optional)
@@ -159,10 +159,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/submit-consent/
      
      - POST /oauth2/authorize
-     - Sends a consent request with the specified parameters.
+     - Sends consent approval
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
+       - type: apiKey x-signature 
+       - name: x-signature
      - parameter clientId: (form) The client identifier issued to the client during registration. (optional)
      - parameter state: (form) The random string used to solve the CSRF vulnerability problem. (optional)
      - parameter scope: (form) The space-separated list of requested scope permissions. (optional)

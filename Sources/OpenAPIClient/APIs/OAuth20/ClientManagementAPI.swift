@@ -18,12 +18,12 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
-     Change the client activation status
+     Change client activation status
      
      See also:
      REST API Reference for changeActivation Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-activation/
-     - parameter clientId: (path) The client identifier.      - parameter changeClientActivationRequest: (body)  
+     - parameter clientId: (path) ID of the client to change activation for      - parameter changeClientActivationRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: JSONValue
      */
@@ -33,7 +33,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Change the client activation status
+     Change client activation status
      
      See also:
      REST API Reference for changeActivation Operation
@@ -42,9 +42,9 @@ open class {{{{x-classname}}}} {
      - PATCH /api/2.0/clients/{clientId}/activation
      - Activates or deactivates an OAuth2 client. When deactivated, the client cannot request new access tokens, but existing tokens will remain valid until they expire.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to change activation for 
      - parameter changeClientActivationRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<JSONValue> 
@@ -96,8 +96,8 @@ open class {{{{x-classname}}}} {
      - POST /api/2.0/clients
      - Creates a new OAuth2 client with the specified configuration. The client will be created with the provided scopes, redirect URIs, and other settings. Returns the created client details including the generated client ID.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
+       - type: apiKey x-signature 
+       - name: x-signature
      - parameter createClientRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientResponse> 
@@ -127,7 +127,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for deleteClient Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-client/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to delete 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: JSONValue
      */
@@ -144,11 +144,11 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-client/
      
      - DELETE /api/2.0/clients/{clientId}
-     - Permanently deletes an OAuth2 client and all associated data. All access and refresh tokens issued to this client will be invalidated. This operation cannot be undone.
+     - Permanently deletes an OAuth2 client and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to delete 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<JSONValue> 
      */
@@ -175,12 +175,110 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Regenerate the client secret
+     Delete all tenant OAuth2 clients
+     
+     See also:
+     REST API Reference for deleteTenantClients Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-tenant-clients/
+
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: JSONValue
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func deleteTenantClients(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> JSONValue {
+        return try await deleteTenantClientsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Delete all tenant OAuth2 clients
+     
+     See also:
+     REST API Reference for deleteTenantClients Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-tenant-clients/
+     
+     - DELETE /api/2.0/clients/tenant
+     - Permanently deletes tenant OAuth2 clients and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
+     - API Key:
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<JSONValue> 
+     */
+    open class func deleteTenantClientsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<JSONValue> {
+        let localVariablePath = "/api/2.0/clients/tenant"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<JSONValue>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Delete all user OAuth2 clients
+     
+     See also:
+     REST API Reference for deleteUserClients Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-user-clients/
+
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: JSONValue
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func deleteUserClients(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> JSONValue {
+        return try await deleteUserClientsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Delete all user OAuth2 clients
+     
+     See also:
+     REST API Reference for deleteUserClients Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-user-clients/
+     
+     - DELETE /api/2.0/clients
+     - Permanently deletes user OAuth2 clients and all associated data. This will invalidate all access tokens and refresh tokens issued to this client. This operation cannot be undone.
+     - API Key:
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<JSONValue> 
+     */
+    open class func deleteUserClientsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<JSONValue> {
+        let localVariablePath = "/api/2.0/clients"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<JSONValue>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Regenerate client secret
      
      See also:
      REST API Reference for regenerateSecret Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/regenerate-secret/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to regenerate secret for 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ClientSecretResponse
      */
@@ -190,7 +288,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Regenerate the client secret
+     Regenerate client secret
      
      See also:
      REST API Reference for regenerateSecret Operation
@@ -199,9 +297,9 @@ open class {{{{x-classname}}}} {
      - PATCH /api/2.0/clients/{clientId}/regenerate
      - Generates a new client secret for the specified OAuth2 client. The old secret will be immediately invalidated. This operation should be used with caution as it requires updating the secret in all client applications.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to regenerate secret for 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientSecretResponse> 
      */
@@ -233,7 +331,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for revokeUserClient Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/revoke-user-client/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to revoke consent for 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: JSONValue
      */
@@ -252,9 +350,9 @@ open class {{{{x-classname}}}} {
      - DELETE /api/2.0/clients/{clientId}/revoke
      - Revokes all user consents for the specified OAuth2 client. This will invalidate all access tokens and refresh tokens issued to this client for the current user. The user will need to re-authorize the client to access their resources.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to revoke consent for 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<JSONValue> 
      */
@@ -286,7 +384,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateClient Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-client/
-     - parameter clientId: (path) The client identifier.      - parameter updateClientRequest: (body)  
+     - parameter clientId: (path) ID of the client to update      - parameter updateClientRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: JSONValue
      */
@@ -303,11 +401,11 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-client/
      
      - PUT /api/2.0/clients/{clientId}
-     - Updates the configuration of an existing OAuth2 client, allowing modifications to the client name, description, redirect URIs, and other settings. The client ID cannot be modified.
+     - Updates the configuration of an existing OAuth2 client. Allows modification of client name, description, redirect URIs, and other settings. The client ID cannot be modified.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to update 
      - parameter updateClientRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<JSONValue> 

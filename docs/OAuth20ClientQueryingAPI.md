@@ -5,11 +5,11 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getClient**](OAuth20ClientQueryingAPI.md#getclient) | **GET** /api/2.0/clients/{clientId} | Get client details
-[**getClientInfo**](OAuth20ClientQueryingAPI.md#getclientinfo) | **GET** /api/2.0/clients/{clientId}/info | Get detailed client information
-[**getClients**](OAuth20ClientQueryingAPI.md#getclients) | **GET** /api/2.0/clients | Get clients
-[**getClientsInfo**](OAuth20ClientQueryingAPI.md#getclientsinfo) | **GET** /api/2.0/clients/info | Get detailed information of clients
-[**getConsents**](OAuth20ClientQueryingAPI.md#getconsents) | **GET** /api/2.0/clients/consents | Get user consents
-[**getPublicClientInfo**](OAuth20ClientQueryingAPI.md#getpublicclientinfo) | **GET** /api/2.0/clients/{clientId}/public/info | Get public client information
+[**getClientInfo**](OAuth20ClientQueryingAPI.md#getclientinfo) | **GET** /api/2.0/clients/{clientId}/info | Retrieves detailed information for a specific client
+[**getClients**](OAuth20ClientQueryingAPI.md#getclients) | **GET** /api/2.0/clients | List clients
+[**getClientsInfo**](OAuth20ClientQueryingAPI.md#getclientsinfo) | **GET** /api/2.0/clients/info | Retrieves a pageable list of client information
+[**getConsents**](OAuth20ClientQueryingAPI.md#getconsents) | **GET** /api/2.0/clients/consents | Retrieves a pageable list of consents
+[**getPublicClientInfo**](OAuth20ClientQueryingAPI.md#getpublicclientinfo) | **GET** /api/2.0/clients/{clientId}/public/info | Handles the GET request for public client information
 
 
 # **getClient**
@@ -25,7 +25,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to retrieve | 
 
 ### Return type
 
@@ -33,14 +33,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
+let clientId = "clientId_example" // String | ID of the client to retrieve
 
 // Get client details
 OAuth20ClientQueryingAPIApi.getClient(clientId: clientId) { (response, error) in
@@ -75,7 +75,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to retrieve | 
 
 ### Return type
 
@@ -83,16 +83,16 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
+let clientId = "clientId_example" // String | ID of the client to retrieve
 
-// Get detailed client information
+// Retrieves detailed information for a specific client
 OAuth20ClientQueryingAPIApi.getClientInfo(clientId: clientId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -117,7 +117,7 @@ OAuth20ClientQueryingAPIApi.getClientInfo(clientId: clientId) { (response, error
     open class func getClients(limit: Int, lastClientId: String? = nil, lastCreatedOn: Date? = nil, completion: @escaping (_ data: PageableResponse?, _ error: Error?) -> Void)
 ```
 
-Retrieves a paginated list of OAuth2 clients. The results can be paginated using the 'limit' parameter and the last seen client ID or creation date.
+Retrieves a paginated list of OAuth2 clients. The results can be paginated using the limit parameter and last seen client ID/creation date.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/).
 
@@ -125,9 +125,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Int** | The maximum number of results returned per page. | 
- **lastClientId** | **String** | The ID of the last retrieved client. | [optional] 
- **lastCreatedOn** | **Date** | The creation date of the last retrieved client. | [optional] 
+ **limit** | **Int** | Pagination limit | [default to 30]
+ **lastClientId** | **String** | ID of the last retrieved client | [optional] 
+ **lastCreatedOn** | **Date** | Date of the last retrieved client | [optional] 
 
 ### Return type
 
@@ -135,18 +135,18 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let limit = 987 // Int | The maximum number of results returned per page.
-let lastClientId = "lastClientId_example" // String | The ID of the last retrieved client. (optional)
-let lastCreatedOn = Date() // Date | The creation date of the last retrieved client. (optional)
+let limit = 987 // Int | Pagination limit (default to 30)
+let lastClientId = "lastClientId_example" // String | ID of the last retrieved client (optional)
+let lastCreatedOn = Date() // Date | Date of the last retrieved client (optional)
 
-// Get clients
+// List clients
 OAuth20ClientQueryingAPIApi.getClients(limit: limit, lastClientId: lastClientId, lastCreatedOn: lastCreatedOn) { (response, error) in
     guard error == nil else {
         print(error)
@@ -179,9 +179,9 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Int** | The maximum number of results returned per page. | 
- **lastClientId** | **String** | The identifier of the last retrieved client. | [optional] 
- **lastCreatedOn** | **Date** | The creation date of the last retrieved client. | [optional] 
+ **limit** | **Int** | Pagination limit | 
+ **lastClientId** | **String** | ID of the last retrieved client | [optional] 
+ **lastCreatedOn** | **Date** | Date of the last retrieved client | [optional] 
 
 ### Return type
 
@@ -189,18 +189,18 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let limit = 987 // Int | The maximum number of results returned per page.
-let lastClientId = "lastClientId_example" // String | The identifier of the last retrieved client. (optional)
-let lastCreatedOn = Date() // Date | The creation date of the last retrieved client. (optional)
+let limit = 987 // Int | Pagination limit
+let lastClientId = "lastClientId_example" // String | ID of the last retrieved client (optional)
+let lastCreatedOn = Date() // Date | Date of the last retrieved client (optional)
 
-// Get detailed information of clients
+// Retrieves a pageable list of client information
 OAuth20ClientQueryingAPIApi.getClientsInfo(limit: limit, lastClientId: lastClientId, lastCreatedOn: lastCreatedOn) { (response, error) in
     guard error == nil else {
         print(error)
@@ -233,8 +233,8 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Int** | The maximum number of results returned per page. | 
- **lastModifiedOn** | **Date** | The date when the user consent was last modified. | [optional] 
+ **limit** | **Int** | Pagination limit | 
+ **lastModifiedOn** | **Date** | Date of the last retrieved consent | [optional] 
 
 ### Return type
 
@@ -242,17 +242,17 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let limit = 987 // Int | The maximum number of results returned per page.
-let lastModifiedOn = Date() // Date | The date when the user consent was last modified. (optional)
+let limit = 987 // Int | Pagination limit
+let lastModifiedOn = Date() // Date | Date of the last retrieved consent (optional)
 
-// Get user consents
+// Retrieves a pageable list of consents
 OAuth20ClientQueryingAPIApi.getConsents(limit: limit, lastModifiedOn: lastModifiedOn) { (response, error) in
     guard error == nil else {
         print(error)
@@ -277,7 +277,7 @@ OAuth20ClientQueryingAPIApi.getConsents(limit: limit, lastModifiedOn: lastModifi
     open class func getPublicClientInfo(clientId: String, completion: @escaping (_ data: ClientInfoResponse?, _ error: Error?) -> Void)
 ```
 
-Returns the public information for a client with the ID secified din the request.
+
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-client-info/).
 
@@ -285,7 +285,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **String** | The client identifier. | 
+ **clientId** | **String** | ID of the client to retrieve | 
 
 ### Return type
 
@@ -300,9 +300,9 @@ No authorization required
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let clientId = "clientId_example" // String | The client identifier.
+let clientId = "clientId_example" // String | ID of the client to retrieve
 
-// Get public client information
+// Handles the GET request for public client information
 OAuth20ClientQueryingAPIApi.getPublicClientInfo(clientId: clientId) { (response, error) in
     guard error == nil else {
         print(error)

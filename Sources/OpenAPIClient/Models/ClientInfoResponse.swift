@@ -25,6 +25,7 @@ public struct ClientInfoResponse: Sendable, Codable, Hashable {
     public var description: String?
     /** The client scopes. */
     public var scopes: Set<String>?
+    public var _public: Bool?
     /** The client ID. */
     public var clientId: String?
     /** The URL to the client's website */
@@ -48,10 +49,11 @@ public struct ClientInfoResponse: Sendable, Codable, Hashable {
     /** The user who last modified the client. */
     public var modifiedBy: String?
 
-    public init(name: String? = nil, description: String? = nil, scopes: Set<String>? = nil, clientId: String? = nil, websiteUrl: String? = nil, termsUrl: String? = nil, policyUrl: String? = nil, logo: String? = nil, authenticationMethods: Set<String>? = nil, isPublic: Bool? = nil, createdOn: Date? = nil, createdBy: String? = nil, modifiedOn: Date? = nil, modifiedBy: String? = nil) {
+    public init(name: String? = nil, description: String? = nil, scopes: Set<String>? = nil, _public: Bool? = nil, clientId: String? = nil, websiteUrl: String? = nil, termsUrl: String? = nil, policyUrl: String? = nil, logo: String? = nil, authenticationMethods: Set<String>? = nil, isPublic: Bool? = nil, createdOn: Date? = nil, createdBy: String? = nil, modifiedOn: Date? = nil, modifiedBy: String? = nil) {
         self.name = name
         self.description = description
         self.scopes = scopes
+        self._public = _public
         self.clientId = clientId
         self.websiteUrl = websiteUrl
         self.termsUrl = termsUrl
@@ -69,6 +71,7 @@ public struct ClientInfoResponse: Sendable, Codable, Hashable {
         case name
         case description
         case scopes
+        case _public = "public"
         case clientId = "client_id"
         case websiteUrl = "website_url"
         case termsUrl = "terms_url"
@@ -89,6 +92,7 @@ public struct ClientInfoResponse: Sendable, Codable, Hashable {
         try container.encodeIfPresent(name, forKey: .name)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encodeIfPresent(scopes, forKey: .scopes)
+        try container.encodeIfPresent(_public, forKey: ._public)
         try container.encodeIfPresent(clientId, forKey: .clientId)
         try container.encodeIfPresent(websiteUrl, forKey: .websiteUrl)
         try container.encodeIfPresent(termsUrl, forKey: .termsUrl)

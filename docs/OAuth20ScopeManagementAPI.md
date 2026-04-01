@@ -4,7 +4,7 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getScopes**](OAuth20ScopeManagementAPI.md#getscopes) | **GET** /api/2.0/scopes | Get available OAuth2 scopes
+[**getScopes**](OAuth20ScopeManagementAPI.md#getscopes) | **GET** /api/2.0/scopes | List available OAuth2 scopes
 
 
 # **getScopes**
@@ -25,7 +25,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[asc_auth_key](../README.md#asc_auth_key)
+[x-signature](../README.md#x-signature)
 
 ### Example
 ```swift
@@ -33,7 +33,7 @@ This endpoint does not need any parameter.
 import OpenAPIClient
 
 
-// Get available OAuth2 scopes
+// List available OAuth2 scopes
 OAuth20ScopeManagementAPIApi.getScopes() { (response, error) in
     guard error == nil else {
         print(error)

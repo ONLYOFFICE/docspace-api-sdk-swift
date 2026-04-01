@@ -60,8 +60,9 @@ public struct FileEntryDtoIntegerAllOfSecurity: Sendable, Codable, Hashable {
     public var vectorization: Bool?
     public var askAi: Bool?
     public var useChat: Bool?
+    public var updateXlsx: Bool?
 
-    public init(read: Bool? = nil, comment: Bool? = nil, fillForms: Bool? = nil, review: Bool? = nil, create: Bool? = nil, createFrom: Bool? = nil, edit: Bool? = nil, delete: Bool? = nil, customFilter: Bool? = nil, editRoom: Bool? = nil, rename: Bool? = nil, readHistory: Bool? = nil, lock: Bool? = nil, editHistory: Bool? = nil, copyTo: Bool? = nil, copy: Bool? = nil, moveTo: Bool? = nil, move: Bool? = nil, pin: Bool? = nil, mute: Bool? = nil, editAccess: Bool? = nil, duplicate: Bool? = nil, submitToFormGallery: Bool? = nil, download: Bool? = nil, convert: Bool? = nil, copySharedLink: Bool? = nil, readLinks: Bool? = nil, reconnect: Bool? = nil, createRoomFrom: Bool? = nil, copyLink: Bool? = nil, embed: Bool? = nil, changeOwner: Bool? = nil, indexExport: Bool? = nil, startFilling: Bool? = nil, fillingStatus: Bool? = nil, resetFilling: Bool? = nil, stopFilling: Bool? = nil, openForm: Bool? = nil, editInternal: Bool? = nil, editExpiration: Bool? = nil, vectorization: Bool? = nil, askAi: Bool? = nil, useChat: Bool? = nil) {
+    public init(read: Bool? = nil, comment: Bool? = nil, fillForms: Bool? = nil, review: Bool? = nil, create: Bool? = nil, createFrom: Bool? = nil, edit: Bool? = nil, delete: Bool? = nil, customFilter: Bool? = nil, editRoom: Bool? = nil, rename: Bool? = nil, readHistory: Bool? = nil, lock: Bool? = nil, editHistory: Bool? = nil, copyTo: Bool? = nil, copy: Bool? = nil, moveTo: Bool? = nil, move: Bool? = nil, pin: Bool? = nil, mute: Bool? = nil, editAccess: Bool? = nil, duplicate: Bool? = nil, submitToFormGallery: Bool? = nil, download: Bool? = nil, convert: Bool? = nil, copySharedLink: Bool? = nil, readLinks: Bool? = nil, reconnect: Bool? = nil, createRoomFrom: Bool? = nil, copyLink: Bool? = nil, embed: Bool? = nil, changeOwner: Bool? = nil, indexExport: Bool? = nil, startFilling: Bool? = nil, fillingStatus: Bool? = nil, resetFilling: Bool? = nil, stopFilling: Bool? = nil, openForm: Bool? = nil, editInternal: Bool? = nil, editExpiration: Bool? = nil, vectorization: Bool? = nil, askAi: Bool? = nil, useChat: Bool? = nil, updateXlsx: Bool? = nil) {
         self.read = read
         self.comment = comment
         self.fillForms = fillForms
@@ -105,6 +106,7 @@ public struct FileEntryDtoIntegerAllOfSecurity: Sendable, Codable, Hashable {
         self.vectorization = vectorization
         self.askAi = askAi
         self.useChat = useChat
+        self.updateXlsx = updateXlsx
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -151,6 +153,7 @@ public struct FileEntryDtoIntegerAllOfSecurity: Sendable, Codable, Hashable {
         case vectorization = "Vectorization"
         case askAi = "AskAi"
         case useChat = "UseChat"
+        case updateXlsx = "UpdateXlsx"
     }
 
     // Encodable protocol methods
@@ -200,6 +203,7 @@ public struct FileEntryDtoIntegerAllOfSecurity: Sendable, Codable, Hashable {
         try container.encodeIfPresent(vectorization, forKey: .vectorization)
         try container.encodeIfPresent(askAi, forKey: .askAi)
         try container.encodeIfPresent(useChat, forKey: .useChat)
+        try container.encodeIfPresent(updateXlsx, forKey: .updateXlsx)
     }
 }
 

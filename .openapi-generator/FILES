@@ -31,6 +31,7 @@ Sources/OpenAPIClient/APIs/Migration/MigrationAPI.swift
 Sources/OpenAPIClient/APIs/OAuth20/AuthorizationAPI.swift
 Sources/OpenAPIClient/APIs/OAuth20/ClientManagementAPI.swift
 Sources/OpenAPIClient/APIs/OAuth20/ClientQueryingAPI.swift
+Sources/OpenAPIClient/APIs/OAuth20/DiscoveryAPI.swift
 Sources/OpenAPIClient/APIs/OAuth20/ScopeManagementAPI.swift
 Sources/OpenAPIClient/APIs/People/EmailAPI.swift
 Sources/OpenAPIClient/APIs/People/GuestsAPI.swift
@@ -534,7 +535,6 @@ Sources/OpenAPIClient/Models/MobilePhoneActivationStatus.swift
 Sources/OpenAPIClient/Models/MobileRequestsDto.swift
 Sources/OpenAPIClient/Models/ModelArrayWrapper.swift
 Sources/OpenAPIClient/Models/ModelDto.swift
-Sources/OpenAPIClient/Models/ModelErrorResponse.swift
 Sources/OpenAPIClient/Models/Module.swift
 Sources/OpenAPIClient/Models/ModuleWrapper.swift
 Sources/OpenAPIClient/Models/MultiSizeLogoCover.swift
@@ -587,6 +587,7 @@ Sources/OpenAPIClient/Models/PermissionsConfig.swift
 Sources/OpenAPIClient/Models/PluginsConfig.swift
 Sources/OpenAPIClient/Models/PluginsDto.swift
 Sources/OpenAPIClient/Models/PriceDto.swift
+Sources/OpenAPIClient/Models/ProblemDetail.swift
 Sources/OpenAPIClient/Models/ProductAdministratorDto.swift
 Sources/OpenAPIClient/Models/ProductAdministratorWrapper.swift
 Sources/OpenAPIClient/Models/ProductQuantityType.swift
@@ -1312,7 +1313,6 @@ docs/MobilePhoneActivationStatus.md
 docs/MobileRequestsDto.md
 docs/ModelArrayWrapper.md
 docs/ModelDto.md
-docs/ModelErrorResponse.md
 docs/Module.md
 docs/ModuleWrapper.md
 docs/MultiSizeLogoCover.md
@@ -1334,6 +1334,7 @@ docs/NotificationType.md
 docs/OAuth20AuthorizationAPI.md
 docs/OAuth20ClientManagementAPI.md
 docs/OAuth20ClientQueryingAPI.md
+docs/OAuth20DiscoveryAPI.md
 docs/OAuth20ScopeManagementAPI.md
 docs/OAuth20Token.md
 docs/ObjectArrayWrapper.md
@@ -1386,6 +1387,7 @@ docs/PortalQuotaAPI.md
 docs/PortalSettingsAPI.md
 docs/PortalUsersAPI.md
 docs/PriceDto.md
+docs/ProblemDetail.md
 docs/ProductAdministratorDto.md
 docs/ProductAdministratorWrapper.md
 docs/ProductQuantityType.md

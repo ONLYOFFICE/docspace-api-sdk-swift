@@ -927,7 +927,7 @@ FilesFilesAPIApi.deleteTemplates(requestBody: requestBody) { (response, error) i
 
 # **generateXlsx**
 ```swift
-    open class func generateXlsx(fileId: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func generateXlsx(fileId: Int, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
 ```
 
 Triggers asynchronous XLSX report generation for the specified form file.
@@ -942,7 +942,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-Void (empty response body)
+[**FileIntegerWrapper**](FileIntegerWrapper.md)
 
 ### Authorization
 
@@ -971,7 +971,7 @@ FilesFilesAPIApi.generateXlsx(fileId: fileId) { (response, error) in
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

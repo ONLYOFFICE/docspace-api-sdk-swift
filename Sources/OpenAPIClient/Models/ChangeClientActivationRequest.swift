@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for changing the client activation status. */
+/** Client activation change request */
 public struct ChangeClientActivationRequest: Sendable, Codable, Hashable {
 
-    /** The client activation status. */
+    /** The activation status of the client */
     public var status: Bool
 
     public init(status: Bool) {
