@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The ID extracted from the route parameters. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UsageSpaceStatItemArrayWrapper> 

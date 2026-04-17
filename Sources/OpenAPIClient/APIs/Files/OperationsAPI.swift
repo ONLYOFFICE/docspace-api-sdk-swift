@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter sessionId: (path) The session ID. 
      - parameter folderId: (path) The folder ID. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -131,6 +132,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -178,6 +180,7 @@ open class {{{{x-classname}}}} {
      
      - PUT /api/2.0/files/fileops/bulkdownload
      - Starts the download process of files and folders with the IDs specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter downloadRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -243,6 +246,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to check conversion status. 
      - parameter start: (query) Specifies whether a conversion operation is started or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -315,6 +319,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter inDto: (query) The request parameters for copying/moving files. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -383,6 +388,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter inDto: (query) The request parameters for copying/moving files. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CheckDestFolderWrapper> 
@@ -451,6 +457,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter batchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -517,6 +524,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The session folder ID. 
      - parameter sessionRequest: (body) The session parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -587,6 +595,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The session folder ID. 
      - parameter sessionRequest: (body) The session parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -656,6 +665,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter deleteBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -721,6 +731,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -786,6 +797,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter deleteVersionBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationWrapper> 
@@ -851,6 +863,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter duplicateRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -916,6 +929,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter single: (query) Specifies whether to return only the current operation (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -984,6 +998,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID. 
      - parameter sessionId: (path) The session ID. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1038,6 +1053,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/fileops
      - Returns a list of all the active file operations.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (query) The ID of the file operation. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -1088,6 +1104,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/fileops/{operationType}
      - Retrieves the statuses of operations filtered by the specified operation type.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter operationType: (path) Specifies the type of file operation to be retrieved. 
      - parameter id: (query) The ID of the file operation. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1160,6 +1177,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -1225,6 +1243,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter batchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -1290,6 +1309,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to start conversion proccess. 
      - parameter checkConversionRequestDtoInteger: (body) The parameters for checking file conversion. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1341,6 +1361,7 @@ open class {{{{x-classname}}}} {
      
      - PUT /api/2.0/files/fileops/terminate/{id}
      - Finishes an operation with the ID specified in the request or all the active operations.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The operation unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
@@ -1409,6 +1430,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID where the comment is located. 
      - parameter updateComment: (body) The parameters for updating a comment. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1478,6 +1500,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID. 
      - parameter sessionId: (path) The upload session ID. 
      - parameter chunkNumber: (query) The chunk number. (optional)
@@ -1560,6 +1583,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID. 
      - parameter sessionId: (path) The upload session ID. 
      - parameter file: (form) The file to be uploaded as part of the multipart/form-data request.  This property represents the uploaded file content from the HTTP request form.  The file is accessed via the IFormFile interface which provides access to the file name, content type, length, and stream. (optional)

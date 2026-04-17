@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateMemberRequestDto = UpdateMemberRequestDto(userId: "userId_example", disable: false, email: "email_example", isUser: true, firstName: "firstName_example", lastName: "lastName_example", department: [123], title: "title_example", location: "location_example", sex: SexEnum(), birthday: ApiDateTime(utcTime: Date(), timeZoneOffset: "timeZoneOffset_example"), worksfrom: nil, comment: "comment_example", contacts: [Contact(type: "type_example", value: "value_example")], files: "files_example", spam: false) // UpdateMemberRequestDto |  (optional)
+let updateMemberRequestDto = UpdateMemberRequestDto(userId: "userId_example", disable: false, email: "email_example", isUser: true, firstName: "firstName_example", lastName: "lastName_example", department: [123], location: "location_example", comment: "comment_example", contacts: [Contact(type: "type_example", value: "value_example")], files: "files_example", spam: false) // UpdateMemberRequestDto |  (optional)
 
 // Send instructions to change email
 PeopleEmailAPIApi.sendEmailChangeInstructions(updateMemberRequestDto: updateMemberRequestDto) { (response, error) in

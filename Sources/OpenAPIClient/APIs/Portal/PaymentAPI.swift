@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter buyWalletServiceRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ServicePaymentWrapper> 
@@ -124,6 +125,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter walletQuantityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PaymentCalculationWrapper> 
@@ -189,6 +191,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter changeWalletServiceStateRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantWalletServiceSettingsWrapper> 
@@ -254,6 +257,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter customerOperationsReportRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DocumentBuilderTaskWrapper> 
@@ -319,6 +323,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiPricesResponseWrapper> 
      */
@@ -383,6 +388,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter backUrl: (query) The URL where the user will be redirected after completing the setup. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -451,6 +457,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter refresh: (query) Specifies whether to refresh the payment information cache or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BalanceWrapper> 
@@ -519,6 +526,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter refresh: (query) Specifies whether to refresh the payment information cache or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CustomerInfoWrapper> 
@@ -587,6 +595,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter offset: (query) The number of items to skip for pagination. The default value is 0. (optional)
      - parameter limit: (query) The maximum number of items to return for pagination. The default value is 25. (optional)
      - parameter serviceName: (query) The service name. (optional)
@@ -679,6 +688,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DocumentBuilderTaskWrapper> 
      */
@@ -743,6 +753,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter serviceName: (query) The service name. (optional)
      - parameter refresh: (query) Specifies whether to refresh the payment information cache or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -813,6 +824,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter backUrl: (query) The URL where the user will be redirected after payment processing. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -881,6 +893,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CurrenciesArrayWrapper> 
      */
@@ -945,6 +958,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter wallet: (query) Specifies whether to return the wallet quotas only. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<QuotaArrayWrapper> 
@@ -1013,6 +1027,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter paymentUrlRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -1078,6 +1093,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GetPortalPrices200Response> 
      */
@@ -1142,6 +1158,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter refresh: (query) Specifies whether to refresh the payment information cache or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<QuotaWrapper> 
@@ -1210,6 +1227,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RestrictedModelsResponseWrapper> 
      */
@@ -1274,6 +1292,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantWalletServiceSettingsWrapper> 
      */
@@ -1338,6 +1357,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantWalletSettingsWrapper> 
      */
@@ -1402,6 +1422,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter service: (query) The wallet service type. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WalletServiceWrapper> 
@@ -1470,6 +1491,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WalletServiceArrayWrapper> 
      */
@@ -1534,6 +1556,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter salesRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
@@ -1599,6 +1622,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter setRestrictedAiModelsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RestrictedModelsResponseWrapper> 
@@ -1664,6 +1688,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter tenantWalletSettingsWrapper: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantWalletSettingsWrapper> 
@@ -1729,6 +1754,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
@@ -1793,6 +1819,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter topUpDepositRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -1858,6 +1885,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter quantityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -1923,6 +1951,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter walletQuantityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 

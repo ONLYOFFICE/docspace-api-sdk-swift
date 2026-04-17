@@ -41,6 +41,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/authentication
      - Authenticates the current user by SMS, authenticator app, or without two-factor authentication.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter authRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 
@@ -88,6 +89,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/authentication/{code}
      - Authenticates the current user by SMS or two-factor authentication code.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter code: (path)  
      - parameter authWithCodeRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -139,6 +141,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/authentication/confirm
      - Opens a confirmation email URL to validate a certain action (employee invitation, portal removal, phone activation, etc.).
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter emailValidationKeyModel: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ConfirmWrapper> 
@@ -186,6 +189,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/authentication
      - Checks if the current user is authenticated or not.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
      */
@@ -232,6 +236,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/authentication/logout
      - Logs out of the current user account.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
@@ -296,6 +301,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter mobileRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 
@@ -343,6 +349,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/authentication/sendsms
      - Sends SMS with an authentication code.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter authRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 

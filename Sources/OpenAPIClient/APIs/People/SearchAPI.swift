@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The user ID. 
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -154,6 +155,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The user ID. 
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -248,6 +250,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The user ID. 
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -342,6 +345,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter query: (path) The search query. 
      - parameter filterBy: (query) Specifies a filter criteria for the user search query. (optional)
      - parameter filterValue: (query) The value used for filtering users, allowing additional constraints for the query. (optional)
@@ -427,6 +431,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter groupId: (query) The group ID. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -537,6 +542,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The user ID. 
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -631,6 +637,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The user ID. 
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -725,6 +732,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The user ID. 
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -830,6 +838,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter employeeStatus: (query) The user status. (optional)
      - parameter groupId: (query) The group ID. (optional)
      - parameter activationStatus: (query) The user activation status. (optional)
@@ -940,6 +949,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter query: (query) The search query. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeArrayWrapper> 
@@ -1008,6 +1018,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter status: (path) The user status. 
      - parameter query: (query) The advanced search query. (optional)
      - parameter filterBy: (query) Specifies the criteria used to filter search results in advanced queries. (optional)

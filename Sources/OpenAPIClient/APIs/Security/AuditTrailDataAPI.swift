@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
@@ -124,6 +125,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userId: (query) The ID of the user who triggered the audit event. (optional)
      - parameter moduleType: (query) The location where the audit event occurred. (optional)
      - parameter actionType: (query) The type of action performed in the audit event (e.g., Create, Update, Delete). (optional)
@@ -214,6 +216,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantAuditSettingsWrapper> 
      */
@@ -260,6 +263,7 @@ var fields: String?
      
      - GET /api/2.0/security/audit/mappers
      - Returns the mappers for the audit trail types.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter productType: (query) The type of product related to the audit trail. (optional)
      - parameter moduleType: (query) The location associated with the audit trail. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -312,6 +316,7 @@ var fields: String?
      
      - GET /api/2.0/security/audit/types
      - Returns all the available audit trail types.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectWrapper> 
      */
@@ -376,6 +381,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuditEventArrayWrapper> 
      */
@@ -440,6 +446,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter tenantAuditSettingsWrapper: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantAuditSettingsWrapper> 

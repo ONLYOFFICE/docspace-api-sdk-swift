@@ -47,7 +47,6 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
     public var order: String?
     /** Specifies if the file is a favorite or not. */
     public var isFavorite: Bool?
-    public var fileEntryType: FileEntryType?
     /** The file entry ID. */
     public var id: String?
     /** The root folder ID of the file entry. */
@@ -62,9 +61,9 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
     public var originRoomTitle: String?
     /** Specifies if the file entry can be shared or not. */
     public var canShare: Bool?
-    public var shareSettings: FileEntryDtoIntegerAllOfShareSettings?
-    public var security: FileEntryDtoIntegerAllOfSecurity?
-    public var availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights?
+    public var shareSettings: FolderDtoIntegerShareSettings?
+    public var security: FolderDtoIntegerSecurity?
+    public var availableShareRights: FolderDtoIntegerAvailableShareRights?
     /** The request token of the file entry. */
     public var requestToken: String?
     /** Specifies if the folder can be accessed via an external link or not. */
@@ -112,6 +111,7 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
     /** Specifies if an external link to the folder is expired or not. */
     @available(*, deprecated, message: "This property is deprecated.")
     public var expired: Bool?
+    public var fileEntryType: FileEntryType?
     public var chatSettings: ChatSettingsDto?
     public var rootRoomType: RoomType?
     /** Specifies whether to save form data as XLSX file. */
@@ -119,7 +119,7 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
     /** Specifies whether to send form data to external database. */
     public var sendFormToExternalDB: Bool?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, parentId: String? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: Logo? = nil, pinned: Bool? = nil, roomType: RoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkDto? = nil, type: FolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, chatSettings: ChatSettingsDto? = nil, rootRoomType: RoomType? = nil, saveFormAsXLSX: Bool? = nil, sendFormToExternalDB: Bool? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FolderDtoIntegerShareSettings? = nil, security: FolderDtoIntegerSecurity? = nil, availableShareRights: FolderDtoIntegerAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, parentId: String? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: Logo? = nil, pinned: Bool? = nil, roomType: RoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkDto? = nil, type: FolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, fileEntryType: FileEntryType? = nil, chatSettings: ChatSettingsDto? = nil, rootRoomType: RoomType? = nil, saveFormAsXLSX: Bool? = nil, sendFormToExternalDB: Bool? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -140,7 +140,6 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
         self.providerId = providerId
         self.order = order
         self.isFavorite = isFavorite
-        self.fileEntryType = fileEntryType
         self.id = id
         self.rootFolderId = rootFolderId
         self.originId = originId
@@ -177,6 +176,7 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
         self.usedSpace = usedSpace
         self.passwordProtected = passwordProtected
         self.expired = expired
+        self.fileEntryType = fileEntryType
         self.chatSettings = chatSettings
         self.rootRoomType = rootRoomType
         self.saveFormAsXLSX = saveFormAsXLSX
@@ -204,7 +204,6 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
         case providerId
         case order
         case isFavorite
-        case fileEntryType
         case id
         case rootFolderId
         case originId
@@ -241,6 +240,7 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
         case usedSpace
         case passwordProtected
         case expired
+        case fileEntryType
         case chatSettings
         case rootRoomType
         case saveFormAsXLSX
@@ -271,7 +271,6 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
         try container.encodeIfPresent(providerId, forKey: .providerId)
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(isFavorite, forKey: .isFavorite)
-        try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(rootFolderId, forKey: .rootFolderId)
         try container.encodeIfPresent(originId, forKey: .originId)
@@ -308,6 +307,7 @@ public struct FolderDtoString: Sendable, Codable, Hashable {
         try container.encodeIfPresent(usedSpace, forKey: .usedSpace)
         try container.encodeIfPresent(passwordProtected, forKey: .passwordProtected)
         try container.encodeIfPresent(expired, forKey: .expired)
+        try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
         try container.encodeIfPresent(chatSettings, forKey: .chatSettings)
         try container.encodeIfPresent(rootRoomType, forKey: .rootRoomType)
         try container.encodeIfPresent(saveFormAsXLSX, forKey: .saveFormAsXLSX)

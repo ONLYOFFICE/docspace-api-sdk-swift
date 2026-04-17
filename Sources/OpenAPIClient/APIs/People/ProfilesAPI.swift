@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter memberRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
@@ -125,6 +126,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter email: (query) The user email address. (optional)
      - parameter encemail: (query) The user encrypted email address. (optional)
      - parameter culture: (query) Culture (optional)
@@ -197,6 +199,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
@@ -265,6 +268,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
      */
@@ -329,6 +333,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter count: (query) The maximum number of items to be retrieved in the response. (optional)
      - parameter startIndex: (query) The zero-based index of the first item to be retrieved in a filtered result set. (optional)
      - parameter filterBy: (query) Specifies the filter criteria for user-related queries. (optional)
@@ -413,6 +418,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectWrapper> 
      */
@@ -477,6 +483,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter email: (query) The user email address. (optional)
      - parameter encemail: (query) The user encrypted email address. (optional)
      - parameter culture: (query) Culture (optional)
@@ -549,6 +556,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
@@ -617,6 +625,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
      */
@@ -681,6 +690,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter inviteUsersRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeArrayWrapper> 
@@ -746,6 +756,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter updateMembersRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullArrayWrapper> 
@@ -811,6 +822,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter updateMembersRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullArrayWrapper> 
@@ -876,6 +888,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter updateMemberRequestDto: (body) The request parameters for updating the user information. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -945,6 +958,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter culture: (body) The culture name parameters. (optional)
      - parameter apiConfiguration: The configuration for the http request.

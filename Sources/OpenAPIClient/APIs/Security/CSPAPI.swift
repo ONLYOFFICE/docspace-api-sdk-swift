@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter cspRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CspWrapper> 
@@ -106,6 +107,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/security/csp
      - Returns the CSP (Content Security Policy) settings for the current portal.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CspWrapper> 
      */

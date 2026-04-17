@@ -23,17 +23,24 @@ public struct DefaultProviderDto: Sendable, Codable, Hashable {
     public var defaultModel: String?
     /** AI provider title. */
     public var providerTitle: String?
+    public var providerType: ProviderType?
+    /** Display alias of the default model. */
+    public var defaultModelAlias: String?
 
-    public init(providerId: Int? = nil, defaultModel: String?, providerTitle: String? = nil) {
+    public init(providerId: Int? = nil, defaultModel: String?, providerTitle: String? = nil, providerType: ProviderType? = nil, defaultModelAlias: String? = nil) {
         self.providerId = providerId
         self.defaultModel = defaultModel
         self.providerTitle = providerTitle
+        self.providerType = providerType
+        self.defaultModelAlias = defaultModelAlias
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case providerId
         case defaultModel
         case providerTitle
+        case providerType
+        case defaultModelAlias
     }
 
     // Encodable protocol methods
@@ -43,6 +50,8 @@ public struct DefaultProviderDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(providerId, forKey: .providerId)
         try container.encode(defaultModel, forKey: .defaultModel)
         try container.encodeIfPresent(providerTitle, forKey: .providerTitle)
+        try container.encodeIfPresent(providerType, forKey: .providerType)
+        try container.encodeIfPresent(defaultModelAlias, forKey: .defaultModelAlias)
     }
 }
 

@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) Identifier of the room to which MCP servers will be assigned. 
      - parameter addRoomServersRequestBody: (body) Server identifiers to assign. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -129,6 +130,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter addMcpServerRequestBody: (body) MCP server registration parameters. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<McpServerWrapper> 
@@ -194,6 +196,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) Identifier of the room containing the MCP server. 
      - parameter serverId: (path) Unique identifier of the MCP server to connect. 
      - parameter connectServerRequestBody: (body) The request body containing additional data necessary for connecting to the server,  such as authentication or operation-specific information. 
@@ -401,6 +404,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) Identifier of the room containing the MCP server. 
      - parameter serverId: (path) Unique identifier of the MCP server to disconnect from. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -473,6 +477,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter startIndex: (query) The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      - parameter count: (query) The maximum number of items to return per page. Defaults to 100. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -547,6 +552,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) Identifier of the room whose assigned MCP servers are being retrieved. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<McpServerStatusArrayWrapper> 
@@ -615,6 +621,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) Unique identifier of the MCP server to retrieve. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<McpServerShortWrapper> 
@@ -683,6 +690,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter startIndex: (query) The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      - parameter count: (query) The maximum number of items to return per page. Defaults to 100. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -757,6 +765,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) Identifier of the room containing the MCP server. 
      - parameter serverId: (path) Unique identifier of the MCP server whose tools are being retrieved. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -829,6 +838,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) Unique identifier of the MCP server whose status is being changed. 
      - parameter setServerStatusRequestBody: (body) New status value. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -898,6 +908,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) Identifier of the room containing the MCP server. 
      - parameter serverId: (path) Unique identifier of the MCP server whose tools are being configured. 
      - parameter setMcpToolsRequestBody: (body) Tool configuration parameters. 
@@ -971,6 +982,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) Unique identifier of the MCP server to update. 
      - parameter updateServerRequestBody: (body) Updated server configuration fields. 
      - parameter apiConfiguration: The configuration for the http request.

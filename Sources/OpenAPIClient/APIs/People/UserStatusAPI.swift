@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter status: (path) The user status. 
      - parameter filterBy: (query) Specifies the criteria used to filter the profiles in the request. (optional)
      - parameter count: (query) The maximum number of user profiles to retrieve. (optional)
@@ -143,6 +144,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter activationstatus: (path) The new user activation status. 
      - parameter updateMembersRequestDto: (body) The request parameters for updating the user information. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -212,6 +214,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter status: (path) The new user status. 
      - parameter updateMembersRequestDto: (body) The request parameters for updating the user information. 
      - parameter apiConfiguration: The configuration for the http request.

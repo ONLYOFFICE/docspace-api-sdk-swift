@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **exportMessage**
 ```swift
-    open class func exportMessage(messageId: Int, exportMessageRequestBodyInteger: ExportMessageRequestBodyInteger, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func exportMessage(messageId: Int, exportMessageRequestBody: ExportMessageRequestBody, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Exports a specific AI chat message as a document into the specified folder. The system verifies that the message exists  and belongs to a chat accessible by the current user, then publishes an asynchronous export task to the event bus.  The exported document will be created in the target folder with the given title once the background task completes.
@@ -21,7 +21,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **messageId** | **Int** | The unique identifier of the AI chat message to export. | 
- **exportMessageRequestBodyInteger** | [**ExportMessageRequestBodyInteger**](ExportMessageRequestBodyInteger.md) | The export parameters including destination folder and file title. | 
+ **exportMessageRequestBody** | [**ExportMessageRequestBody**](ExportMessageRequestBody.md) | The export parameters including destination folder and file title. | 
 
 ### Return type
 
@@ -37,10 +37,10 @@ Void (empty response body)
 import OpenAPIClient
 
 let messageId = 987 // Int | The unique identifier of the AI chat message to export.
-let exportMessageRequestBodyInteger = ExportMessageRequestBodyInteger(folderId: 123, title: "title_example") // ExportMessageRequestBodyInteger | The export parameters including destination folder and file title.
+let exportMessageRequestBody = ExportMessageRequestBody(folderId: ExportChatRequestBody_folderId(), title: "title_example") // ExportMessageRequestBody | The export parameters including destination folder and file title.
 
 // Export a single AI message to a document
-AIMessagesAPIApi.exportMessage(messageId: messageId, exportMessageRequestBodyInteger: exportMessageRequestBodyInteger) { (response, error) in
+AIMessagesAPIApi.exportMessage(messageId: messageId, exportMessageRequestBody: exportMessageRequestBody) { (response, error) in
     guard error == nil else {
         print(error)
         return

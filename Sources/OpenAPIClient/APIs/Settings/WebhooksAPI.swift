@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter createWebhooksConfigRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWrapper> 
@@ -125,6 +126,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter updateWebhooksConfigRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWrapper> 
@@ -190,6 +192,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWithStatusArrayWrapper> 
      */
@@ -254,6 +257,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GetWebhookTriggers200Response> 
      */
@@ -318,6 +322,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter deliveryFrom: (query) The delivery start time for filtering webhook logs. (optional)
      - parameter deliveryTo: (query) The delivery end time for filtering webhook logs. (optional)
      - parameter hookUri: (query) The destination URL where webhooks are delivered. (optional)
@@ -408,6 +413,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The ID extracted from the route parameters. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWrapper> 
@@ -476,6 +482,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The ID extracted from the route parameters. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksLogWrapper> 
@@ -544,6 +551,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter webhookRetryRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksLogArrayWrapper> 
@@ -609,6 +617,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter updateWebhooksConfigRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWrapper> 

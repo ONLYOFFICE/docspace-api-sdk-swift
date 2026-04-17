@@ -41,6 +41,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/files/share/{key}/password
      - Applies a password specified in the request to get the external data.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter key: (path) The unique document identifier. 
      - parameter externalShareRequestParam: (body) The external data share request parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -110,6 +111,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter changeOwnerRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -157,6 +159,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/share/{key}
      - Returns the external data by the key specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter key: (path) The unique key of the external shared data. 
      - parameter fileId: (query) The unique document identifier. (optional)
      - parameter folderId: (query) The unique folder identifier. (optional)
@@ -231,6 +234,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The file unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -305,6 +309,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The folder unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -379,6 +384,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID. 
      - parameter groupId: (path) The group ID. 
      - parameter count: (query) The number of items to be retrieved in the current query. (optional)
@@ -459,6 +465,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID. 
      - parameter groupId: (path) The group ID. 
      - parameter count: (query) The number of items to be retrieved in the current query. (optional)
@@ -539,6 +546,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareArrayWrapper> 
@@ -604,6 +612,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<MentionWrapperArrayWrapper> 
@@ -672,6 +681,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -737,6 +747,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID with the mention message. 
      - parameter mentionMessageWrapper: (body) The mention message. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -806,6 +817,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID. 
      - parameter securityInfoSimpleRequestDto: (body) The parameters of the security information simple request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -875,6 +887,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID. 
      - parameter securityInfoSimpleRequestDto: (body) The parameters of the security information simple request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -944,6 +957,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter securityInfoRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareArrayWrapper> 

@@ -24,7 +24,7 @@ public struct TfaSettingsDto: Sendable, Codable, Hashable {
     /** Indicates whether the TFA configuration is currently active. */
     public var enabled: Bool
     /** Indicates whether the TFA configuration can be used. */
-    public var avaliable: Bool
+    public var available: Bool
     /** The list of IP addresses that are exempt from TFA requirements. */
     public var trustedIps: [String]?
     /** The list of user IDs that are required to use TFA. */
@@ -32,11 +32,11 @@ public struct TfaSettingsDto: Sendable, Codable, Hashable {
     /** The list of group IDs whose members are required to use TFA. */
     public var mandatoryGroups: [UUID]?
 
-    public init(id: String?, title: String?, enabled: Bool, avaliable: Bool, trustedIps: [String]? = nil, mandatoryUsers: [UUID]? = nil, mandatoryGroups: [UUID]? = nil) {
+    public init(id: String?, title: String?, enabled: Bool, available: Bool, trustedIps: [String]? = nil, mandatoryUsers: [UUID]? = nil, mandatoryGroups: [UUID]? = nil) {
         self.id = id
         self.title = title
         self.enabled = enabled
-        self.avaliable = avaliable
+        self.available = available
         self.trustedIps = trustedIps
         self.mandatoryUsers = mandatoryUsers
         self.mandatoryGroups = mandatoryGroups
@@ -46,7 +46,7 @@ public struct TfaSettingsDto: Sendable, Codable, Hashable {
         case id
         case title
         case enabled
-        case avaliable
+        case available
         case trustedIps
         case mandatoryUsers
         case mandatoryGroups
@@ -59,7 +59,7 @@ public struct TfaSettingsDto: Sendable, Codable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
         try container.encode(enabled, forKey: .enabled)
-        try container.encode(avaliable, forKey: .avaliable)
+        try container.encode(available, forKey: .available)
         try container.encodeIfPresent(trustedIps, forKey: .trustedIps)
         try container.encodeIfPresent(mandatoryUsers, forKey: .mandatoryUsers)
         try container.encodeIfPresent(mandatoryGroups, forKey: .mandatoryGroups)

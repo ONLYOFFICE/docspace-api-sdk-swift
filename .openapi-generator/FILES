@@ -120,6 +120,7 @@ Sources/OpenAPIClient/Models/AiChatModelPricing.swift
 Sources/OpenAPIClient/Models/AiChatPrice.swift
 Sources/OpenAPIClient/Models/AiEmbeddingModelPricing.swift
 Sources/OpenAPIClient/Models/AiEmbeddingPrice.swift
+Sources/OpenAPIClient/Models/AiModelCapabilities.swift
 Sources/OpenAPIClient/Models/AiPricesResponse.swift
 Sources/OpenAPIClient/Models/AiPricesResponseWrapper.swift
 Sources/OpenAPIClient/Models/AiProviderArrayWrapper.swift
@@ -354,8 +355,9 @@ Sources/OpenAPIClient/Models/EncryptionSettingsWrapper.swift
 Sources/OpenAPIClient/Models/EngineType.swift
 Sources/OpenAPIClient/Models/EntryType.swift
 Sources/OpenAPIClient/Models/ExchangeToken200Response.swift
-Sources/OpenAPIClient/Models/ExportChatRequestBodyInteger.swift
-Sources/OpenAPIClient/Models/ExportMessageRequestBodyInteger.swift
+Sources/OpenAPIClient/Models/ExportChatRequestBody.swift
+Sources/OpenAPIClient/Models/ExportChatRequestBodyFolderId.swift
+Sources/OpenAPIClient/Models/ExportMessageRequestBody.swift
 Sources/OpenAPIClient/Models/ExternalDatabaseSettings.swift
 Sources/OpenAPIClient/Models/ExternalDatabaseType.swift
 Sources/OpenAPIClient/Models/ExternalShareDto.swift
@@ -365,15 +367,11 @@ Sources/OpenAPIClient/Models/FeatureUsedDto.swift
 Sources/OpenAPIClient/Models/FeedbackConfig.swift
 Sources/OpenAPIClient/Models/FileConflictResolveType.swift
 Sources/OpenAPIClient/Models/FileDtoInteger.swift
-Sources/OpenAPIClient/Models/FileDtoIntegerAllOfViewAccessibility.swift
+Sources/OpenAPIClient/Models/FileDtoIntegerViewAccessibility.swift
 Sources/OpenAPIClient/Models/FileEntryBaseArrayWrapper.swift
 Sources/OpenAPIClient/Models/FileEntryBaseDto.swift
 Sources/OpenAPIClient/Models/FileEntryBaseWrapper.swift
 Sources/OpenAPIClient/Models/FileEntryDtoInteger.swift
-Sources/OpenAPIClient/Models/FileEntryDtoIntegerAllOfAvailableShareRights.swift
-Sources/OpenAPIClient/Models/FileEntryDtoIntegerAllOfSecurity.swift
-Sources/OpenAPIClient/Models/FileEntryDtoIntegerAllOfShareSettings.swift
-Sources/OpenAPIClient/Models/FileEntryDtoString.swift
 Sources/OpenAPIClient/Models/FileEntryIntegerArrayWrapper.swift
 Sources/OpenAPIClient/Models/FileEntryType.swift
 Sources/OpenAPIClient/Models/FileIntegerArrayWrapper.swift
@@ -417,6 +415,9 @@ Sources/OpenAPIClient/Models/FolderContentDtoInteger.swift
 Sources/OpenAPIClient/Models/FolderContentIntegerArrayWrapper.swift
 Sources/OpenAPIClient/Models/FolderContentIntegerWrapper.swift
 Sources/OpenAPIClient/Models/FolderDtoInteger.swift
+Sources/OpenAPIClient/Models/FolderDtoIntegerAvailableShareRights.swift
+Sources/OpenAPIClient/Models/FolderDtoIntegerSecurity.swift
+Sources/OpenAPIClient/Models/FolderDtoIntegerShareSettings.swift
 Sources/OpenAPIClient/Models/FolderDtoString.swift
 Sources/OpenAPIClient/Models/FolderIntegerArrayWrapper.swift
 Sources/OpenAPIClient/Models/FolderIntegerWrapper.swift
@@ -535,6 +536,9 @@ Sources/OpenAPIClient/Models/MobilePhoneActivationStatus.swift
 Sources/OpenAPIClient/Models/MobileRequestsDto.swift
 Sources/OpenAPIClient/Models/ModelArrayWrapper.swift
 Sources/OpenAPIClient/Models/ModelDto.swift
+Sources/OpenAPIClient/Models/ModelSettingsArrayWrapper.swift
+Sources/OpenAPIClient/Models/ModelSettingsDto.swift
+Sources/OpenAPIClient/Models/ModelSettingsItemDto.swift
 Sources/OpenAPIClient/Models/Module.swift
 Sources/OpenAPIClient/Models/ModuleWrapper.swift
 Sources/OpenAPIClient/Models/MultiSizeLogoCover.swift
@@ -586,6 +590,7 @@ Sources/OpenAPIClient/Models/Payments.swift
 Sources/OpenAPIClient/Models/PermissionsConfig.swift
 Sources/OpenAPIClient/Models/PluginsConfig.swift
 Sources/OpenAPIClient/Models/PluginsDto.swift
+Sources/OpenAPIClient/Models/PreviewProviderModelsRequestDto.swift
 Sources/OpenAPIClient/Models/PriceDto.swift
 Sources/OpenAPIClient/Models/ProblemDetail.swift
 Sources/OpenAPIClient/Models/ProductAdministratorDto.swift
@@ -673,7 +678,6 @@ Sources/OpenAPIClient/Models/SettingsRequestDto.swift
 Sources/OpenAPIClient/Models/SettingsWrapper.swift
 Sources/OpenAPIClient/Models/SetupCode.swift
 Sources/OpenAPIClient/Models/SetupCodeWrapper.swift
-Sources/OpenAPIClient/Models/SexEnum.swift
 Sources/OpenAPIClient/Models/ShareFilterType.swift
 Sources/OpenAPIClient/Models/SignupAccountRequestDto.swift
 Sources/OpenAPIClient/Models/Size.swift
@@ -763,6 +767,8 @@ Sources/OpenAPIClient/Models/TenantWalletSettings.swift
 Sources/OpenAPIClient/Models/TenantWalletSettingsWrapper.swift
 Sources/OpenAPIClient/Models/TenantWrapper.swift
 Sources/OpenAPIClient/Models/TerminateRequestDto.swift
+Sources/OpenAPIClient/Models/TfaAppCodeArrayWrapper.swift
+Sources/OpenAPIClient/Models/TfaAppCodeDto.swift
 Sources/OpenAPIClient/Models/TfaRequestsDto.swift
 Sources/OpenAPIClient/Models/TfaRequestsDtoType.swift
 Sources/OpenAPIClient/Models/TfaSettingsArrayWrapper.swift
@@ -854,6 +860,8 @@ Sources/OpenAPIClient/Models/WhiteLabelRequestsDto.swift
 Sources/OpenAPIClient/Models/WizardRequestsDto.swift
 Sources/OpenAPIClient/Models/WizardSettings.swift
 Sources/OpenAPIClient/Models/WizardSettingsWrapper.swift
+Sources/OpenAPIClient/Models/XlsxReportResponseDto.swift
+Sources/OpenAPIClient/Models/XlsxReportResponseWrapper.swift
 docs/AIAgentsAPI.md
 docs/AIChatAPI.md
 docs/AIMCPAPI.md
@@ -884,6 +892,7 @@ docs/AiChatModelPricing.md
 docs/AiChatPrice.md
 docs/AiEmbeddingModelPricing.md
 docs/AiEmbeddingPrice.md
+docs/AiModelCapabilities.md
 docs/AiPricesResponse.md
 docs/AiPricesResponseWrapper.md
 docs/AiProviderArrayWrapper.md
@@ -1122,8 +1131,9 @@ docs/EncryptionSettingsWrapper.md
 docs/EngineType.md
 docs/EntryType.md
 docs/ExchangeToken200Response.md
-docs/ExportChatRequestBodyInteger.md
-docs/ExportMessageRequestBodyInteger.md
+docs/ExportChatRequestBody.md
+docs/ExportChatRequestBodyFolderId.md
+docs/ExportMessageRequestBody.md
 docs/ExternalDatabaseSettings.md
 docs/ExternalDatabaseType.md
 docs/ExternalShareDto.md
@@ -1133,15 +1143,11 @@ docs/FeatureUsedDto.md
 docs/FeedbackConfig.md
 docs/FileConflictResolveType.md
 docs/FileDtoInteger.md
-docs/FileDtoIntegerAllOfViewAccessibility.md
+docs/FileDtoIntegerViewAccessibility.md
 docs/FileEntryBaseArrayWrapper.md
 docs/FileEntryBaseDto.md
 docs/FileEntryBaseWrapper.md
 docs/FileEntryDtoInteger.md
-docs/FileEntryDtoIntegerAllOfAvailableShareRights.md
-docs/FileEntryDtoIntegerAllOfSecurity.md
-docs/FileEntryDtoIntegerAllOfShareSettings.md
-docs/FileEntryDtoString.md
 docs/FileEntryIntegerArrayWrapper.md
 docs/FileEntryType.md
 docs/FileIntegerArrayWrapper.md
@@ -1192,6 +1198,9 @@ docs/FolderContentDtoInteger.md
 docs/FolderContentIntegerArrayWrapper.md
 docs/FolderContentIntegerWrapper.md
 docs/FolderDtoInteger.md
+docs/FolderDtoIntegerAvailableShareRights.md
+docs/FolderDtoIntegerSecurity.md
+docs/FolderDtoIntegerShareSettings.md
 docs/FolderDtoString.md
 docs/FolderIntegerArrayWrapper.md
 docs/FolderIntegerWrapper.md
@@ -1313,6 +1322,9 @@ docs/MobilePhoneActivationStatus.md
 docs/MobileRequestsDto.md
 docs/ModelArrayWrapper.md
 docs/ModelDto.md
+docs/ModelSettingsArrayWrapper.md
+docs/ModelSettingsDto.md
+docs/ModelSettingsItemDto.md
 docs/Module.md
 docs/ModuleWrapper.md
 docs/MultiSizeLogoCover.md
@@ -1386,6 +1398,7 @@ docs/PortalPaymentAPI.md
 docs/PortalQuotaAPI.md
 docs/PortalSettingsAPI.md
 docs/PortalUsersAPI.md
+docs/PreviewProviderModelsRequestDto.md
 docs/PriceDto.md
 docs/ProblemDetail.md
 docs/ProductAdministratorDto.md
@@ -1507,7 +1520,6 @@ docs/SettingsWebpluginsAPI.md
 docs/SettingsWrapper.md
 docs/SetupCode.md
 docs/SetupCodeWrapper.md
-docs/SexEnum.md
 docs/ShareFilterType.md
 docs/SignupAccountRequestDto.md
 docs/Size.md
@@ -1597,6 +1609,8 @@ docs/TenantWalletSettings.md
 docs/TenantWalletSettingsWrapper.md
 docs/TenantWrapper.md
 docs/TerminateRequestDto.md
+docs/TfaAppCodeArrayWrapper.md
+docs/TfaAppCodeDto.md
 docs/TfaRequestsDto.md
 docs/TfaRequestsDtoType.md
 docs/TfaSettingsArrayWrapper.md
@@ -1689,4 +1703,6 @@ docs/WhiteLabelRequestsDto.md
 docs/WizardRequestsDto.md
 docs/WizardSettings.md
 docs/WizardSettingsWrapper.md
+docs/XlsxReportResponseDto.md
+docs/XlsxReportResponseWrapper.md
 project.yml

@@ -1,0 +1,53 @@
+# FolderDtoIntegerSecurity
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**read** | **Bool** |  | [optional] 
+**comment** | **Bool** |  | [optional] 
+**fillForms** | **Bool** |  | [optional] 
+**review** | **Bool** |  | [optional] 
+**create** | **Bool** |  | [optional] 
+**createFrom** | **Bool** |  | [optional] 
+**edit** | **Bool** |  | [optional] 
+**delete** | **Bool** |  | [optional] 
+**customFilter** | **Bool** |  | [optional] 
+**editRoom** | **Bool** |  | [optional] 
+**rename** | **Bool** |  | [optional] 
+**readHistory** | **Bool** |  | [optional] 
+**lock** | **Bool** |  | [optional] 
+**editHistory** | **Bool** |  | [optional] 
+**copyTo** | **Bool** |  | [optional] 
+**copy** | **Bool** |  | [optional] 
+**moveTo** | **Bool** |  | [optional] 
+**move** | **Bool** |  | [optional] 
+**pin** | **Bool** |  | [optional] 
+**mute** | **Bool** |  | [optional] 
+**editAccess** | **Bool** |  | [optional] 
+**duplicate** | **Bool** |  | [optional] 
+**submitToFormGallery** | **Bool** |  | [optional] 
+**download** | **Bool** |  | [optional] 
+**convert** | **Bool** |  | [optional] 
+**copySharedLink** | **Bool** |  | [optional] 
+**readLinks** | **Bool** |  | [optional] 
+**reconnect** | **Bool** |  | [optional] 
+**createRoomFrom** | **Bool** |  | [optional] 
+**copyLink** | **Bool** |  | [optional] 
+**embed** | **Bool** |  | [optional] 
+**changeOwner** | **Bool** |  | [optional] 
+**indexExport** | **Bool** |  | [optional] 
+**startFilling** | **Bool** |  | [optional] 
+**fillingStatus** | **Bool** |  | [optional] 
+**resetFilling** | **Bool** |  | [optional] 
+**stopFilling** | **Bool** |  | [optional] 
+**openForm** | **Bool** |  | [optional] 
+**editInternal** | **Bool** |  | [optional] 
+**editExpiration** | **Bool** |  | [optional] 
+**vectorization** | **Bool** |  | [optional] 
+**askAi** | **Bool** |  | [optional] 
+**useChat** | **Bool** |  | [optional] 
+**updateXlsx** | **Bool** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

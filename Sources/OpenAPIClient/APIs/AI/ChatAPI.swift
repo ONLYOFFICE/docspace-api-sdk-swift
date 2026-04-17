@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter chatId: (path) The unique identifier of the existing AI chat session to continue. 
      - parameter continueChatBody: (body) The message and optional file attachments. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -160,13 +161,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for exportChat Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/export-chat/
-     - parameter chatId: (path) The unique identifier of the AI chat session to export.      - parameter exportChatRequestBodyInteger: (body) The export parameters including destination folder and file title. 
+     - parameter chatId: (path) The unique identifier of the AI chat session to export.      - parameter exportChatRequestBody: (body) The export parameters including destination folder and file title. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func exportChat(chatId: UUID, exportChatRequestBodyInteger: ExportChatRequestBodyInteger, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) {
-        return try await exportChatWithRequestBuilder(chatId: chatId, exportChatRequestBodyInteger: exportChatRequestBodyInteger, apiConfiguration: apiConfiguration).execute().body
+    open class func exportChat(chatId: UUID, exportChatRequestBody: ExportChatRequestBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await exportChatWithRequestBuilder(chatId: chatId, exportChatRequestBody: exportChatRequestBody, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -196,18 +197,19 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter chatId: (path) The unique identifier of the AI chat session to export. 
-     - parameter exportChatRequestBodyInteger: (body) The export parameters including destination folder and file title. 
+     - parameter exportChatRequestBody: (body) The export parameters including destination folder and file title. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func exportChatWithRequestBuilder(chatId: UUID, exportChatRequestBodyInteger: ExportChatRequestBodyInteger, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<Void> {
+    open class func exportChatWithRequestBuilder(chatId: UUID, exportChatRequestBody: ExportChatRequestBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/api/2.0/ai/chats/{chatId}/messages/export"
         let chatIdPreEscape = "\(APIHelper.mapValueToPathItem(chatId))"
         let chatIdPostEscape = chatIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{chatId}", with: chatIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: exportChatRequestBodyInteger, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: exportChatRequestBody, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -265,6 +267,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter chatId: (path) The unique identifier of the AI chat session to retrieve. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ChatWrapper> 
@@ -333,6 +336,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter provider: (query) The optional AI provider identifier to filter models by. When set to 0, models from all providers are returned. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ModelArrayWrapper> 
@@ -401,6 +405,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) The identifier of the room whose AI chat sessions are to be listed. 
      - parameter startIndex: (query) The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      - parameter count: (query) The maximum number of items to return per page. Defaults to 100. (optional)
@@ -475,6 +480,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter chatId: (path) The unique identifier of the AI chat session whose messages are to be listed. 
      - parameter startIndex: (query) The number of items to skip before returning results (zero-based offset). Defaults to 0. (optional)
      - parameter count: (query) The maximum number of items to return per page. Defaults to 100. (optional)
@@ -549,6 +555,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) The identifier of the room whose chat settings are to be retrieved. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<UserChatSettingsWrapper> 
@@ -617,6 +624,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter callId: (path) The unique identifier of the pending tool execution call awaiting a permission decision. 
      - parameter toolDecisionRequestBody: (body) The permission decision parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -686,6 +694,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter chatId: (path) The unique identifier of the AI chat session to rename. 
      - parameter renameChatBody: (body) The new chat name. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -755,6 +764,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) The identifier of the room whose chat settings are to be updated. 
      - parameter setUserChatSettingsRequestBody: (body) The chat settings to apply. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -824,6 +834,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomId: (path) The identifier of the room in which to create the new AI chat session. 
      - parameter startNewChatBody: (body) The initial message and optional file attachments. 
      - parameter apiConfiguration: The configuration for the http request.

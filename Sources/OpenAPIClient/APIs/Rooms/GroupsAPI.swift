@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter roomGroupRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<RoomGroupWrapper> 
@@ -124,6 +125,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) Group id 
      - parameter iconRequest: (body) Icon update data. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -193,6 +195,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group unique identifier. 
      - parameter includeMembers: (query) Whether to include group members. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -265,6 +268,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group unique identifier. 
      - parameter includeMembers: (query) Whether to include group members. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -337,6 +341,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group unique identifier. 
      - parameter includeMembers: (query) Whether to include group members. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -409,6 +414,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter updateRoomGroupRequest: (body) The request for updating a group. 
      - parameter apiConfiguration: The configuration for the http request.

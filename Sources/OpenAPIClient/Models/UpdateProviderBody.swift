@@ -17,23 +17,28 @@ import Foundation
 /** Parameters for updating an AI provider's configuration. */
 public struct UpdateProviderBody: Sendable, Codable, Hashable {
 
+    public static let modelSettingsRule = ArrayRule(minItems: nil, maxItems: nil, uniqueItems: true)
     /** The new display title for the AI provider. If null, the title is not changed. */
     public var title: String?
     /** The new API endpoint URL for the AI provider. If null, the URL is not changed. */
     public var url: String?
     /** The new authentication API key for the AI provider. If null, the key is not changed. */
     public var key: String?
+    /** Optional list of model settings changes to apply atomically with the provider update. */
+    public var modelSettings: Set<ModelSettingsItemDto>?
 
-    public init(title: String? = nil, url: String? = nil, key: String? = nil) {
+    public init(title: String? = nil, url: String? = nil, key: String? = nil, modelSettings: Set<ModelSettingsItemDto>? = nil) {
         self.title = title
         self.url = url
         self.key = key
+        self.modelSettings = modelSettings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case title
         case url
         case key
+        case modelSettings
     }
 
     // Encodable protocol methods
@@ -43,6 +48,7 @@ public struct UpdateProviderBody: Sendable, Codable, Hashable {
         try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(url, forKey: .url)
         try container.encodeIfPresent(key, forKey: .key)
+        try container.encodeIfPresent(modelSettings, forKey: .modelSettings)
     }
 }
 

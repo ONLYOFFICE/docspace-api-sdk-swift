@@ -27,17 +27,20 @@ public struct ChatSettingsDto: Sendable, Codable, Hashable {
     public var prompt: String?
     public var multimodal: ChatMultimodalSettingsDto?
     /** Indicates whether the model supports extended thinking mode. */
+    @available(*, deprecated, message: "This property is deprecated.")
     public var thinking: Bool?
+    public var capabilities: AiModelCapabilities?
     /** Indicates whether this is an internal AI gateway provider. */
     public var _internal: Bool?
 
-    public init(providerId: Int? = nil, modelId: String? = nil, modelAlias: String? = nil, prompt: String? = nil, multimodal: ChatMultimodalSettingsDto? = nil, thinking: Bool? = nil, _internal: Bool? = nil) {
+    public init(providerId: Int? = nil, modelId: String? = nil, modelAlias: String? = nil, prompt: String? = nil, multimodal: ChatMultimodalSettingsDto? = nil, thinking: Bool? = nil, capabilities: AiModelCapabilities? = nil, _internal: Bool? = nil) {
         self.providerId = providerId
         self.modelId = modelId
         self.modelAlias = modelAlias
         self.prompt = prompt
         self.multimodal = multimodal
         self.thinking = thinking
+        self.capabilities = capabilities
         self._internal = _internal
     }
 
@@ -48,6 +51,7 @@ public struct ChatSettingsDto: Sendable, Codable, Hashable {
         case prompt
         case multimodal
         case thinking
+        case capabilities
         case _internal = "internal"
     }
 
@@ -61,6 +65,7 @@ public struct ChatSettingsDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(prompt, forKey: .prompt)
         try container.encodeIfPresent(multimodal, forKey: .multimodal)
         try container.encodeIfPresent(thinking, forKey: .thinking)
+        try container.encodeIfPresent(capabilities, forKey: .capabilities)
         try container.encodeIfPresent(_internal, forKey: ._internal)
     }
 }

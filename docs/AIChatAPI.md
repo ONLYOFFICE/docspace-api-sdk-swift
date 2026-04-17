@@ -122,7 +122,7 @@ AIChatAPIApi.deleteChat(chatId: chatId) { (response, error) in
 
 # **exportChat**
 ```swift
-    open class func exportChat(chatId: UUID, exportChatRequestBodyInteger: ExportChatRequestBodyInteger, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func exportChat(chatId: UUID, exportChatRequestBody: ExportChatRequestBody, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
 ```
 
 Exports the entire message history of an AI chat session and saves it as a document in the specified folder.  The exported file is created with the provided title. Only the chat owner can export their own chat sessions.
@@ -134,7 +134,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **chatId** | **UUID** | The unique identifier of the AI chat session to export. | 
- **exportChatRequestBodyInteger** | [**ExportChatRequestBodyInteger**](ExportChatRequestBodyInteger.md) | The export parameters including destination folder and file title. | 
+ **exportChatRequestBody** | [**ExportChatRequestBody**](ExportChatRequestBody.md) | The export parameters including destination folder and file title. | 
 
 ### Return type
 
@@ -150,10 +150,10 @@ Void (empty response body)
 import OpenAPIClient
 
 let chatId = 987 // UUID | The unique identifier of the AI chat session to export.
-let exportChatRequestBodyInteger = ExportChatRequestBodyInteger(folderId: 123, title: "title_example") // ExportChatRequestBodyInteger | The export parameters including destination folder and file title.
+let exportChatRequestBody = ExportChatRequestBody(folderId: ExportChatRequestBody_folderId(), title: "title_example") // ExportChatRequestBody | The export parameters including destination folder and file title.
 
 // Export AI chat messages to a file
-AIChatAPIApi.exportChat(chatId: chatId, exportChatRequestBodyInteger: exportChatRequestBodyInteger) { (response, error) in
+AIChatAPIApi.exportChat(chatId: chatId, exportChatRequestBody: exportChatRequestBody) { (response, error) in
     guard error == nil else {
         print(error)
         return

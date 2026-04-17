@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter groupRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GroupWrapper> 
@@ -125,6 +126,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter membersRequest: (body) The member request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -194,6 +196,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<NoContentResultWrapper> 
@@ -262,6 +265,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter includeMembers: (query) Specifies whether to include the group members or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -334,6 +338,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GroupSummaryArrayWrapper> 
@@ -402,6 +407,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userId: (query) The user ID. (optional)
      - parameter manager: (query) Specifies if the user is a manager or not. (optional)
      - parameter count: (query) The number of records to retrieve. (optional)
@@ -486,6 +492,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fromId: (path) The group ID to move from. 
      - parameter toId: (path) The group ID to move to. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -558,6 +565,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter membersRequest: (body) The member request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -627,6 +635,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter setManagerRequest: (body) The request for setting a group manager. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -696,6 +705,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter membersRequest: (body) The member request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -765,6 +775,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter updateGroupRequest: (body) The request for updating a group. 
      - parameter apiConfiguration: The configuration for the http request.

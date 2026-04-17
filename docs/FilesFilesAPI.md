@@ -36,6 +36,7 @@ Method | HTTP request | Description
 [**getPresignedUri**](FilesFilesAPI.md#getpresigneduri) | **GET** /api/2.0/files/file/{fileId}/presigneduri | Get file download link
 [**getProtectedFileUsers**](FilesFilesAPI.md#getprotectedfileusers) | **GET** /api/2.0/files/file/{fileId}/protectusers | Get users access rights to the protected file
 [**getReferenceData**](FilesFilesAPI.md#getreferencedata) | **POST** /api/2.0/files/file/referencedata | Get reference data
+[**getXlsx**](FilesFilesAPI.md#getxlsx) | **GET** /api/2.0/files/file/{fileId}/xlsx | Get XLSX report generation status
 [**isFormPDF**](FilesFilesAPI.md#isformpdf) | **GET** /api/2.0/files/file/{fileId}/isformpdf | Check the PDF file
 [**lockFile**](FilesFilesAPI.md#lockfile) | **PUT** /api/2.0/files/file/{fileId}/lock | Lock a file
 [**manageFormFilling**](FilesFilesAPI.md#manageformfilling) | **PUT** /api/2.0/files/file/{fileId}/manageformfilling | Perform form filling action
@@ -927,7 +928,7 @@ FilesFilesAPIApi.deleteTemplates(requestBody: requestBody) { (response, error) i
 
 # **generateXlsx**
 ```swift
-    open class func generateXlsx(fileId: Int, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
+    open class func generateXlsx(fileId: Int, completion: @escaping (_ data: XlsxReportResponseWrapper?, _ error: Error?) -> Void)
 ```
 
 Triggers asynchronous XLSX report generation for the specified form file.
@@ -942,7 +943,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FileIntegerWrapper**](FileIntegerWrapper.md)
+[**XlsxReportResponseWrapper**](XlsxReportResponseWrapper.md)
 
 ### Authorization
 
@@ -1691,6 +1692,56 @@ FilesFilesAPIApi.getReferenceData(getReferenceDataDtoInteger: getReferenceDataDt
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getXlsx**
+```swift
+    open class func getXlsx(fileId: Int, completion: @escaping (_ data: DocumentBuilderTaskWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the status of the XLSX report generation task for the specified form.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-xlsx/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fileId** | **Int** | The file unique identifier. | 
+
+### Return type
+
+[**DocumentBuilderTaskWrapper**](DocumentBuilderTaskWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let fileId = 987 // Int | The file unique identifier.
+
+// Get XLSX report generation status
+FilesFilesAPIApi.getXlsx(fileId: fileId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

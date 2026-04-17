@@ -47,7 +47,6 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
     public var order: String?
     /** Specifies if the file is a favorite or not. */
     public var isFavorite: Bool?
-    public var fileEntryType: FileEntryType?
     /** The file entry ID. */
     public var id: Int?
     /** The root folder ID of the file entry. */
@@ -62,9 +61,9 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
     public var originRoomTitle: String?
     /** Specifies if the file entry can be shared or not. */
     public var canShare: Bool?
-    public var shareSettings: FileEntryDtoIntegerAllOfShareSettings?
-    public var security: FileEntryDtoIntegerAllOfSecurity?
-    public var availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights?
+    public var shareSettings: FolderDtoIntegerShareSettings?
+    public var security: FolderDtoIntegerSecurity?
+    public var availableShareRights: FolderDtoIntegerAvailableShareRights?
     /** The request token of the file entry. */
     public var requestToken: String?
     /** Specifies if the folder can be accessed via an external link or not. */
@@ -123,13 +122,14 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
     /** The InProcess folder title of the file. */
     public var inProcessFolderTitle: String?
     public var draftLocation: DraftLocationInteger?
-    public var viewAccessibility: FileDtoIntegerAllOfViewAccessibility?
+    public var viewAccessibility: FileDtoIntegerViewAccessibility?
     public var lastOpened: ApiDateTime?
     public var expired: ApiDateTime?
+    public var fileEntryType: FileEntryType?
     public var vectorizationStatus: VectorizationStatus?
     public var dimensions: Size?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, editingBy: [String: String]? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, isFillingPreparing: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, draftLocation: DraftLocationInteger? = nil, viewAccessibility: FileDtoIntegerAllOfViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, vectorizationStatus: VectorizationStatus? = nil, dimensions: Size? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FolderDtoIntegerShareSettings? = nil, security: FolderDtoIntegerSecurity? = nil, availableShareRights: FolderDtoIntegerAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, editingBy: [String: String]? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, isFillingPreparing: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, draftLocation: DraftLocationInteger? = nil, viewAccessibility: FileDtoIntegerViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, fileEntryType: FileEntryType? = nil, vectorizationStatus: VectorizationStatus? = nil, dimensions: Size? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -150,7 +150,6 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
         self.providerId = providerId
         self.order = order
         self.isFavorite = isFavorite
-        self.fileEntryType = fileEntryType
         self.id = id
         self.rootFolderId = rootFolderId
         self.originId = originId
@@ -196,6 +195,7 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
         self.viewAccessibility = viewAccessibility
         self.lastOpened = lastOpened
         self.expired = expired
+        self.fileEntryType = fileEntryType
         self.vectorizationStatus = vectorizationStatus
         self.dimensions = dimensions
     }
@@ -221,7 +221,6 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
         case providerId
         case order
         case isFavorite
-        case fileEntryType
         case id
         case rootFolderId
         case originId
@@ -267,6 +266,7 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
         case viewAccessibility
         case lastOpened
         case expired
+        case fileEntryType
         case vectorizationStatus
         case dimensions
     }
@@ -295,7 +295,6 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
         try container.encodeIfPresent(providerId, forKey: .providerId)
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(isFavorite, forKey: .isFavorite)
-        try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(rootFolderId, forKey: .rootFolderId)
         try container.encodeIfPresent(originId, forKey: .originId)
@@ -341,6 +340,7 @@ public struct FileDtoInteger: Sendable, Codable, Hashable {
         try container.encodeIfPresent(viewAccessibility, forKey: .viewAccessibility)
         try container.encodeIfPresent(lastOpened, forKey: .lastOpened)
         try container.encodeIfPresent(expired, forKey: .expired)
+        try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
         try container.encodeIfPresent(vectorizationStatus, forKey: .vectorizationStatus)
         try container.encodeIfPresent(dimensions, forKey: .dimensions)
     }

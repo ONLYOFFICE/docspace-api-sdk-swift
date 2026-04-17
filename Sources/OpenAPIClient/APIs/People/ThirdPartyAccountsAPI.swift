@@ -41,6 +41,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/people/thirdparty/providers
      - Returns a list of the available third-party accounts.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter inviteView: (query) Specifies whether to return providers that are available for invitation links, i.e. the user can login or register through these providers. (optional)
      - parameter settingsView: (query) Specifies whether to display the provider settings in a pop-up window (true) or redirect them to the desktop application (false). (optional)
      - parameter clientCallback: (query) The method that is called after authentication. (optional)
@@ -115,6 +116,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter linkAccountRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
@@ -162,6 +164,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/people/thirdparty/signup
      - Creates a third-party account with the parameters specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter signupAccountRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeWrapper> 
@@ -227,6 +230,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter provider: (query) The provider name. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 

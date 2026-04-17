@@ -62,9 +62,9 @@ public struct FileEntryDtoInteger: Sendable, Codable, Hashable {
     public var originRoomTitle: String?
     /** Specifies if the file entry can be shared or not. */
     public var canShare: Bool?
-    public var shareSettings: FileEntryDtoIntegerAllOfShareSettings?
-    public var security: FileEntryDtoIntegerAllOfSecurity?
-    public var availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights?
+    public var shareSettings: FolderDtoIntegerShareSettings?
+    public var security: FolderDtoIntegerSecurity?
+    public var availableShareRights: FolderDtoIntegerAvailableShareRights?
     /** The request token of the file entry. */
     public var requestToken: String?
     /** Specifies if the folder can be accessed via an external link or not. */
@@ -73,7 +73,7 @@ public struct FileEntryDtoInteger: Sendable, Codable, Hashable {
     /** Indicates whether the shareable link associated with the file or folder has expired. */
     public var isLinkExpired: Bool?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoIntegerAllOfShareSettings? = nil, security: FileEntryDtoIntegerAllOfSecurity? = nil, availableShareRights: FileEntryDtoIntegerAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FolderDtoIntegerShareSettings? = nil, security: FolderDtoIntegerSecurity? = nil, availableShareRights: FolderDtoIntegerAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy

@@ -295,7 +295,7 @@ FilesFoldersAPIApi.deleteFolder(folderId: folderId, deleteFolder: deleteFolder) 
 
 # **generateXlsxByFolder**
 ```swift
-    open class func generateXlsxByFolder(folderId: Int, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
+    open class func generateXlsxByFolder(folderId: Int, completion: @escaping (_ data: XlsxReportResponseWrapper?, _ error: Error?) -> Void)
 ```
 
 Triggers asynchronous XLSX report generation for the specified form results folder.
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**FileIntegerWrapper**](FileIntegerWrapper.md)
+[**XlsxReportResponseWrapper**](XlsxReportResponseWrapper.md)
 
 ### Authorization
 

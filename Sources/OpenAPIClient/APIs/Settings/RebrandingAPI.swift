@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AdditionalWhiteLabelSettingsWrapper> 
      */
@@ -123,6 +124,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CompanyWhiteLabelSettingsWrapper> 
      */
@@ -187,6 +189,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AdditionalWhiteLabelSettingsWrapper> 
      */
@@ -251,6 +254,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CompanyWhiteLabelSettingsWrapper> 
      */
@@ -315,6 +319,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
      */
@@ -379,6 +384,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -449,6 +455,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -519,6 +526,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CompanyWhiteLabelSettingsArrayWrapper> 
      */
@@ -583,6 +591,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -635,6 +644,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/settings/whitelabel/logos
      - Returns the white label logos.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -705,6 +715,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -775,6 +786,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -845,6 +857,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter additionalWhiteLabelSettingsWrapper: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -910,6 +923,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter companyWhiteLabelSettingsWrapper: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -975,6 +989,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter whiteLabelRequestsDto: (body)  (optional)
@@ -1046,6 +1061,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter whiteLabelRequestsDto: (body)  (optional)
@@ -1117,6 +1133,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter isDark: (query) Specifies if the white label logo is for the dark theme or not. (optional)
      - parameter isDefault: (query) Specifies if the logo is for a default tenant or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.

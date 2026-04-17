@@ -20,7 +20,6 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let firstNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let lastNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    public static let titleRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** The user ID. */
     public var userId: String?
     /** Specifies whether to disable a user or not. */
@@ -35,13 +34,8 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
     public var lastName: String?
     /** The list of the user departments. */
     public var department: [UUID]?
-    /** The user title. */
-    public var title: String?
     /** The user location. */
     public var location: String?
-    public var sex: SexEnum?
-    public var birthday: ApiDateTime?
-    public var worksfrom: ApiDateTime?
     /** The user comment. */
     public var comment: String?
     /** The list of the user contacts. */
@@ -51,7 +45,7 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
     /** Specifies if tips, updates and offers are allowed to be sent to the user or not. */
     public var spam: Bool?
 
-    public init(userId: String? = nil, disable: Bool? = nil, email: String? = nil, isUser: Bool? = nil, firstName: String? = nil, lastName: String? = nil, department: [UUID]? = nil, title: String? = nil, location: String? = nil, sex: SexEnum? = nil, birthday: ApiDateTime? = nil, worksfrom: ApiDateTime? = nil, comment: String? = nil, contacts: [Contact]? = nil, files: String? = nil, spam: Bool? = nil) {
+    public init(userId: String? = nil, disable: Bool? = nil, email: String? = nil, isUser: Bool? = nil, firstName: String? = nil, lastName: String? = nil, department: [UUID]? = nil, location: String? = nil, comment: String? = nil, contacts: [Contact]? = nil, files: String? = nil, spam: Bool? = nil) {
         self.userId = userId
         self.disable = disable
         self.email = email
@@ -59,11 +53,7 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
         self.firstName = firstName
         self.lastName = lastName
         self.department = department
-        self.title = title
         self.location = location
-        self.sex = sex
-        self.birthday = birthday
-        self.worksfrom = worksfrom
         self.comment = comment
         self.contacts = contacts
         self.files = files
@@ -78,11 +68,7 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
         case firstName
         case lastName
         case department
-        case title
         case location
-        case sex
-        case birthday
-        case worksfrom
         case comment
         case contacts
         case files
@@ -100,11 +86,7 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(firstName, forKey: .firstName)
         try container.encodeIfPresent(lastName, forKey: .lastName)
         try container.encodeIfPresent(department, forKey: .department)
-        try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(location, forKey: .location)
-        try container.encodeIfPresent(sex, forKey: .sex)
-        try container.encodeIfPresent(birthday, forKey: .birthday)
-        try container.encodeIfPresent(worksfrom, forKey: .worksfrom)
         try container.encodeIfPresent(comment, forKey: .comment)
         try container.encodeIfPresent(contacts, forKey: .contacts)
         try container.encodeIfPresent(files, forKey: .files)

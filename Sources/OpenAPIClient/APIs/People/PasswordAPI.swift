@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter changePasswordRequest: (body) The request parameters for updating a user password. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -110,6 +111,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/people/password
      - Reminds a password to the user using the email address specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter emailMemberRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 

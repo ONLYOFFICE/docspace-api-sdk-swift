@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID. 
      - parameter checkUploadRequest: (body) The request parameters for checking file uploads. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -129,6 +130,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID for the folder creation. 
      - parameter createFolder: (body) The parameters for creating a folder. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -198,6 +200,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The folder ID. 
      - parameter folderLinkRequest: (body) The folder link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -267,6 +270,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -335,6 +339,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID to delete. 
      - parameter deleteFolder: (body) The parameters for deleting a folder. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -370,10 +375,10 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: FileIntegerWrapper
+     - returns: XlsxReportResponseWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func generateXlsxByFolder(folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileIntegerWrapper {
+    open class func generateXlsxByFolder(folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> XlsxReportResponseWrapper {
         return try await generateXlsxByFolderWithRequestBuilder(folderId: folderId, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -404,11 +409,12 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<FileIntegerWrapper> 
+     - returns: RequestBuilder<XlsxReportResponseWrapper> 
      */
-    open class func generateXlsxByFolderWithRequestBuilder(folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileIntegerWrapper> {
+    open class func generateXlsxByFolderWithRequestBuilder(folderId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<XlsxReportResponseWrapper> {
         var localVariablePath = "/api/2.0/files/folder/{folderId}/xlsx"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -425,7 +431,7 @@ var fields: String?
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<XlsxReportResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -472,6 +478,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter count: (query) The maximum number of items to retrieve in the request. (optional)
@@ -556,6 +563,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FilesStatisticsResultWrapper> 
      */
@@ -602,6 +610,7 @@ var fields: String?
      
      - GET /api/2.0/files/{folderId}/formfilter
      - Returns the form filter of a folder with the ID specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FormsItemArrayWrapper> 
@@ -652,6 +661,7 @@ var fields: String?
      
      - GET /api/2.0/files/{folderId}
      - Returns the detailed list of files and folders located in the folder with the ID specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID. 
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter sharedBy: (query) The identifier of the user who shared the folder or file. (optional)
@@ -754,6 +764,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID of the history request. 
      - parameter fromDate: (query) The start date of the history request. (optional)
      - parameter toDate: (query) The end date of the history request. (optional)
@@ -814,6 +825,7 @@ var fields: String?
      
      - GET /api/2.0/files/folder/{folderId}
      - Returns the detailed information about a folder with the ID specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -882,6 +894,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The folder ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileShareArrayWrapper> 
@@ -950,6 +963,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -1000,6 +1014,7 @@ var fields: String?
      
      - GET /api/2.0/files/folder/{id}/link
      - Returns the primary external link by the identifier specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The folder unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -1074,6 +1089,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -1142,6 +1158,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter applyFilterOption: (query) Specifies whether to return only files, only folders or all elements. (optional)
@@ -1228,6 +1245,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
@@ -1296,6 +1314,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter count: (query) The maximum number of items to retrieve in the request. (optional)
@@ -1380,6 +1399,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter excludeSubject: (query) Specifies whether to exclude search by user or group ID. (optional)
@@ -1472,6 +1492,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter withoutTrash: (query) Specifies whether to return the Trash section or not. (optional)
@@ -1558,6 +1579,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userIdOrGroupId: (query) The user or group ID. (optional)
      - parameter filterType: (query) The filter type. (optional)
      - parameter applyFilterOption: (query) Specifies whether to return only files, only folders or all elements. (optional)
@@ -1644,6 +1666,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID for inserting a file. 
      - parameter insertFileFile: (form) The file to be inserted. (optional)
      - parameter insertFileTitle: (form) The file title to be inserted. (optional)
@@ -1740,6 +1763,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter file: (form) The file to be inserted. (optional)
      - parameter title: (form) The file title to be inserted. (optional)
      - parameter createNewIfExist: (form) Specifies whether to create a new file if it already exists or not. (optional)
@@ -1832,6 +1856,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID for the folder creation. 
      - parameter createFolder: (body) The parameters for creating a folder. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -1901,6 +1926,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder unique identifier. 
      - parameter orderRequestDto: (body) The folder order information. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1970,6 +1996,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The folder ID. 
      - parameter folderLinkRequest: (body) The folder link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -2039,6 +2066,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID to upload a file. 
      - parameter uploadRequestDto: (body) The request parameters for uploading a file. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -2108,6 +2136,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter inDto: (query) The request parameters for uploading a file. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectWrapper> 

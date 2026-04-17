@@ -17,6 +17,7 @@ import Foundation
 /** Request parameters for creating a new AI provider. */
 public struct CreateProviderRequestDto: Sendable, Codable, Hashable {
 
+    public static let modelSettingsRule = ArrayRule(minItems: nil, maxItems: nil, uniqueItems: true)
     public var type: ProviderType?
     /** The display title for the AI provider. */
     public var title: String?
@@ -24,12 +25,15 @@ public struct CreateProviderRequestDto: Sendable, Codable, Hashable {
     public var url: String?
     /** The authentication API key for the AI provider. */
     public var key: String?
+    /** Optional list of model settings to configure atomically with the provider creation. */
+    public var modelSettings: Set<ModelSettingsItemDto>?
 
-    public init(type: ProviderType? = nil, title: String?, url: String? = nil, key: String?) {
+    public init(type: ProviderType? = nil, title: String?, url: String? = nil, key: String?, modelSettings: Set<ModelSettingsItemDto>? = nil) {
         self.type = type
         self.title = title
         self.url = url
         self.key = key
+        self.modelSettings = modelSettings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -37,6 +41,7 @@ public struct CreateProviderRequestDto: Sendable, Codable, Hashable {
         case title
         case url
         case key
+        case modelSettings
     }
 
     // Encodable protocol methods
@@ -47,6 +52,7 @@ public struct CreateProviderRequestDto: Sendable, Codable, Hashable {
         try container.encode(title, forKey: .title)
         try container.encodeIfPresent(url, forKey: .url)
         try container.encode(key, forKey: .key)
+        try container.encodeIfPresent(modelSettings, forKey: .modelSettings)
     }
 }
 

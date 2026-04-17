@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter thumbnailsRequest: (body) The thumbnail request. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -128,6 +129,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThumbnailsDataWrapper> 
@@ -196,6 +198,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThumbnailsDataWrapper> 
@@ -264,6 +267,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter updatePhotoMemberRequest: (body) The request parameters for updating a photo. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -333,6 +337,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter userid: (path) The user ID. 
      - parameter file: (form) The image data. 
      - parameter autosave: (form) Specifies whether to autosave a photo or not. (optional)

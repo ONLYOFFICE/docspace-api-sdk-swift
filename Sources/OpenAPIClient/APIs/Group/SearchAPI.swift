@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter excludeShared: (query) Specifies whether to exclude the group sharing settings from the response. (optional)
      - parameter count: (query) The number of groups to retrieve in the request. (optional)
@@ -137,6 +138,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter excludeShared: (query) Specifies whether to exclude the group sharing settings from the response. (optional)
      - parameter count: (query) The number of groups to retrieve in the request. (optional)
@@ -215,6 +217,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The group ID. 
      - parameter excludeShared: (query) Specifies whether to exclude the group sharing settings from the response. (optional)
      - parameter count: (query) The number of groups to retrieve in the request. (optional)

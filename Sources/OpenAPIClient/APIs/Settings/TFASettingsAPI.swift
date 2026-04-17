@@ -25,10 +25,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-app-codes/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ObjectArrayWrapper
+     - returns: TfaAppCodeArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getTfaAppCodes(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ObjectArrayWrapper {
+    open class func getTfaAppCodes(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TfaAppCodeArrayWrapper {
         return try await getTfaAppCodesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -59,10 +59,11 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ObjectArrayWrapper> 
+     - returns: RequestBuilder<TfaAppCodeArrayWrapper> 
      */
-    open class func getTfaAppCodesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ObjectArrayWrapper> {
+    open class func getTfaAppCodesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TfaAppCodeArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/tfaappcodes"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -76,13 +77,13 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ObjectArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TfaAppCodeArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Get confirmation email
+     Get TFA confirmation URL
      
      See also:
      REST API Reference for getTfaConfirmUrl Operation
@@ -97,14 +98,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get confirmation email
+     Get TFA confirmation URL
      
      See also:
      REST API Reference for getTfaConfirmUrl Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-url/
      
      - GET /api/2.0/settings/tfaapp/confirm
-     - Returns the confirmation email URL for authorization via SMS or TFA application.
+     - Returns the confirmation URL for authorization via SMS or TFA application.
      - BASIC:
        - type: http
        - name: Basic
@@ -123,6 +124,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
@@ -187,6 +189,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TfaSettingsArrayWrapper> 
      */
@@ -251,6 +254,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SetupCodeWrapper> 
      */
@@ -315,6 +319,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter tfaValidateRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -380,6 +385,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter tfaRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -411,10 +417,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-app-codes/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ObjectArrayWrapper
+     - returns: TfaAppCodeArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateTfaAppCodes(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ObjectArrayWrapper {
+    open class func updateTfaAppCodes(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TfaAppCodeArrayWrapper {
         return try await updateTfaAppCodesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -445,10 +451,11 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ObjectArrayWrapper> 
+     - returns: RequestBuilder<TfaAppCodeArrayWrapper> 
      */
-    open class func updateTfaAppCodesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ObjectArrayWrapper> {
+    open class func updateTfaAppCodesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TfaAppCodeArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/tfaappnewcodes"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -462,7 +469,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ObjectArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TfaAppCodeArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -509,6 +516,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter tfaRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -533,7 +541,7 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get a confirmation email for updating TFA settings
+     Updates TFA settings
      
      See also:
      REST API Reference for updateTfaSettingsLink Operation
@@ -548,14 +556,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get a confirmation email for updating TFA settings
+     Updates TFA settings
      
      See also:
      REST API Reference for updateTfaSettingsLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings-link/
      
      - PUT /api/2.0/settings/tfaappwithlink
-     - Returns the confirmation email URL for updating TFA settings.
+     - Updates TFA settings and returns the confirmation URL for authorization via SMS or TFA application.
      - BASIC:
        - type: http
        - name: Basic
@@ -574,6 +582,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter tfaRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 

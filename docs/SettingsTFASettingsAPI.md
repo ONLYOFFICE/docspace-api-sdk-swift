@@ -5,19 +5,19 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getTfaAppCodes**](SettingsTFASettingsAPI.md#gettfaappcodes) | **GET** /api/2.0/settings/tfaappcodes | Get the TFA codes
-[**getTfaConfirmUrl**](SettingsTFASettingsAPI.md#gettfaconfirmurl) | **GET** /api/2.0/settings/tfaapp/confirm | Get confirmation email
+[**getTfaConfirmUrl**](SettingsTFASettingsAPI.md#gettfaconfirmurl) | **GET** /api/2.0/settings/tfaapp/confirm | Get TFA confirmation URL
 [**getTfaSettings**](SettingsTFASettingsAPI.md#gettfasettings) | **GET** /api/2.0/settings/tfaapp | Get the TFA settings
 [**tfaAppGenerateSetupCode**](SettingsTFASettingsAPI.md#tfaappgeneratesetupcode) | **GET** /api/2.0/settings/tfaapp/setup | Generate setup code
 [**tfaValidateAuthCode**](SettingsTFASettingsAPI.md#tfavalidateauthcode) | **POST** /api/2.0/settings/tfaapp/validate | Validate the TFA code
 [**unlinkTfaApp**](SettingsTFASettingsAPI.md#unlinktfaapp) | **PUT** /api/2.0/settings/tfaappnewapp | Unlink the TFA application
 [**updateTfaAppCodes**](SettingsTFASettingsAPI.md#updatetfaappcodes) | **PUT** /api/2.0/settings/tfaappnewcodes | Update the TFA codes
 [**updateTfaSettings**](SettingsTFASettingsAPI.md#updatetfasettings) | **PUT** /api/2.0/settings/tfaapp | Update the TFA settings
-[**updateTfaSettingsLink**](SettingsTFASettingsAPI.md#updatetfasettingslink) | **PUT** /api/2.0/settings/tfaappwithlink | Get a confirmation email for updating TFA settings
+[**updateTfaSettingsLink**](SettingsTFASettingsAPI.md#updatetfasettingslink) | **PUT** /api/2.0/settings/tfaappwithlink | Updates TFA settings
 
 
 # **getTfaAppCodes**
 ```swift
-    open class func getTfaAppCodes(completion: @escaping (_ data: ObjectArrayWrapper?, _ error: Error?) -> Void)
+    open class func getTfaAppCodes(completion: @escaping (_ data: TfaAppCodeArrayWrapper?, _ error: Error?) -> Void)
 ```
 
 Returns the two-factor authentication application codes.
@@ -29,7 +29,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ObjectArrayWrapper**](ObjectArrayWrapper.md)
+[**TfaAppCodeArrayWrapper**](TfaAppCodeArrayWrapper.md)
 
 ### Authorization
 
@@ -66,7 +66,7 @@ SettingsTFASettingsAPIApi.getTfaAppCodes() { (response, error) in
     open class func getTfaConfirmUrl(completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
 ```
 
-Returns the confirmation email URL for authorization via SMS or TFA application.
+Returns the confirmation URL for authorization via SMS or TFA application.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tfa-confirm-url/).
 
@@ -87,7 +87,7 @@ This endpoint does not need any parameter.
 import OpenAPIClient
 
 
-// Get confirmation email
+// Get TFA confirmation URL
 SettingsTFASettingsAPIApi.getTfaConfirmUrl() { (response, error) in
     guard error == nil else {
         print(error)
@@ -301,7 +301,7 @@ SettingsTFASettingsAPIApi.unlinkTfaApp(tfaRequestsDto: tfaRequestsDto) { (respon
 
 # **updateTfaAppCodes**
 ```swift
-    open class func updateTfaAppCodes(completion: @escaping (_ data: ObjectArrayWrapper?, _ error: Error?) -> Void)
+    open class func updateTfaAppCodes(completion: @escaping (_ data: TfaAppCodeArrayWrapper?, _ error: Error?) -> Void)
 ```
 
 Requests the new backup codes for the two-factor authentication application.
@@ -313,7 +313,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ObjectArrayWrapper**](ObjectArrayWrapper.md)
+[**TfaAppCodeArrayWrapper**](TfaAppCodeArrayWrapper.md)
 
 ### Authorization
 
@@ -400,7 +400,7 @@ SettingsTFASettingsAPIApi.updateTfaSettings(tfaRequestsDto: tfaRequestsDto) { (r
     open class func updateTfaSettingsLink(tfaRequestsDto: TfaRequestsDto? = nil, completion: @escaping (_ data: StringWrapper?, _ error: Error?) -> Void)
 ```
 
-Returns the confirmation email URL for updating TFA settings.
+Updates TFA settings and returns the confirmation URL for authorization via SMS or TFA application.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-tfa-settings-link/).
 
@@ -425,7 +425,7 @@ import OpenAPIClient
 
 let tfaRequestsDto = TfaRequestsDto(type: TfaRequestsDtoType(), id: 123, trustedIps: ["trustedIps_example"], mandatoryUsers: [123], mandatoryGroups: [123]) // TfaRequestsDto |  (optional)
 
-// Get a confirmation email for updating TFA settings
+// Updates TFA settings
 SettingsTFASettingsAPIApi.updateTfaSettingsLink(tfaRequestsDto: tfaRequestsDto) { (response, error) in
     guard error == nil else {
         print(error)

@@ -8,7 +8,9 @@ Method | HTTP request | Description
 [**deleteProviders**](AIProvidersAPI.md#deleteproviders) | **DELETE** /api/2.0/ai/providers | Delete AI providers
 [**getAvailableProviders**](AIProvidersAPI.md#getavailableproviders) | **GET** /api/2.0/ai/providers/available | Get available AI provider types
 [**getDefaultProvider**](AIProvidersAPI.md#getdefaultprovider) | **GET** /api/2.0/ai/providers/default | Get the default AI provider
+[**getProviderModels**](AIProvidersAPI.md#getprovidermodels) | **GET** /api/2.0/ai/providers/{providerId}/models | Get all models for a provider with their settings
 [**getProviders**](AIProvidersAPI.md#getproviders) | **GET** /api/2.0/ai/providers | Get AI providers
+[**previewProviderModels**](AIProvidersAPI.md#previewprovidermodels) | **POST** /api/2.0/ai/providers/models/preview | Preview models for a new AI provider
 [**setDefaultProvider**](AIProvidersAPI.md#setdefaultprovider) | **PUT** /api/2.0/ai/providers/default | Set the default AI provider
 [**updateProvider**](AIProvidersAPI.md#updateprovider) | **PUT** /api/2.0/ai/providers/{id} | Update an AI provider
 
@@ -41,7 +43,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createProviderRequestDto = CreateProviderRequestDto(type: ProviderType(), title: "title_example", url: "url_example", key: "key_example") // CreateProviderRequestDto |  (optional)
+let createProviderRequestDto = CreateProviderRequestDto(type: ProviderType(), title: "title_example", url: "url_example", key: "key_example", modelSettings: [ModelSettingsItemDto(modelId: "modelId_example", isEnabled: true, alias: "alias_example", capabilities: AiModelCapabilities(vision: true, toolCalling: true, thinking: false))]) // CreateProviderRequestDto |  (optional)
 
 // Add an AI provider
 AIProvidersAPIApi.addProvider(createProviderRequestDto: createProviderRequestDto) { (response, error) in
@@ -205,6 +207,56 @@ AIProvidersAPIApi.getDefaultProvider() { (response, error) in
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getProviderModels**
+```swift
+    open class func getProviderModels(providerId: Int, completion: @escaping (_ data: ModelSettingsArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the full list of AI models available from a provider, including both recommended and additional models.  Each model includes its current settings: enabled state, display alias, and capabilities (vision, tool calling, thinking).  Recommended models are enabled by default and their alias and capabilities come from configuration.  Additional models are disabled by default and can be configured by the admin.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-provider-models/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **providerId** | **Int** | The identifier of the AI provider. | 
+
+### Return type
+
+[**ModelSettingsArrayWrapper**](ModelSettingsArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let providerId = 987 // Int | The identifier of the AI provider.
+
+// Get all models for a provider with their settings
+AIProvidersAPIApi.getProviderModels(providerId: providerId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getProviders**
 ```swift
     open class func getProviders(startIndex: Int? = nil, count: Int? = nil, completion: @escaping (_ data: AiProviderArrayWrapper?, _ error: Error?) -> Void)
@@ -253,6 +305,56 @@ AIProvidersAPIApi.getProviders(startIndex: startIndex, count: count) { (response
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **previewProviderModels**
+```swift
+    open class func previewProviderModels(previewProviderModelsRequestDto: PreviewProviderModelsRequestDto? = nil, completion: @escaping (_ data: ModelSettingsArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Connects to the specified AI provider using the provided credentials and returns the available models  with their default settings. This is used to preview models before saving the provider.  Recommended models are enabled by default with configuration-defined settings.  Additional models are disabled by default with empty capabilities.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/preview-provider-models/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **previewProviderModelsRequestDto** | [**PreviewProviderModelsRequestDto**](PreviewProviderModelsRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**ModelSettingsArrayWrapper**](ModelSettingsArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let previewProviderModelsRequestDto = PreviewProviderModelsRequestDto(type: ProviderType(), url: "url_example", key: "key_example") // PreviewProviderModelsRequestDto |  (optional)
+
+// Preview models for a new AI provider
+AIProvidersAPIApi.previewProviderModels(previewProviderModelsRequestDto: previewProviderModelsRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -337,7 +439,7 @@ Name | Type | Description  | Notes
 import OpenAPIClient
 
 let id = 987 // Int | The identifier of the AI provider to update.
-let updateProviderBody = UpdateProviderBody(title: "title_example", url: "url_example", key: "key_example") // UpdateProviderBody | The AI provider configuration parameters to update.
+let updateProviderBody = UpdateProviderBody(title: "title_example", url: "url_example", key: "key_example", modelSettings: [ModelSettingsItemDto(modelId: "modelId_example", isEnabled: true, alias: "alias_example", capabilities: AiModelCapabilities(vision: true, toolCalling: true, thinking: false))]) // UpdateProviderBody | The AI provider configuration parameters to update.
 
 // Update an AI provider
 AIProvidersAPIApi.updateProvider(id: id, updateProviderBody: updateProviderBody) { (response, error) in

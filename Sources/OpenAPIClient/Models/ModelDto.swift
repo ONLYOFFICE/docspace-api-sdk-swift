@@ -23,13 +23,18 @@ public struct ModelDto: Sendable, Codable, Hashable {
     public var providerTitle: String?
     /** The model identifier as recognized by the AI provider (e.g., gpt-4o, claude-sonnet-4-20250514). */
     public var modelId: String?
+    /** The display name for the model. */
+    public var alias: String?
+    public var capabilities: AiModelCapabilities?
     public var price: AiChatPrice?
     public var currency: CurrencyInfo?
 
-    public init(providerId: Int? = nil, providerTitle: String?, modelId: String?, price: AiChatPrice? = nil, currency: CurrencyInfo? = nil) {
+    public init(providerId: Int? = nil, providerTitle: String?, modelId: String?, alias: String? = nil, capabilities: AiModelCapabilities? = nil, price: AiChatPrice? = nil, currency: CurrencyInfo? = nil) {
         self.providerId = providerId
         self.providerTitle = providerTitle
         self.modelId = modelId
+        self.alias = alias
+        self.capabilities = capabilities
         self.price = price
         self.currency = currency
     }
@@ -38,6 +43,8 @@ public struct ModelDto: Sendable, Codable, Hashable {
         case providerId
         case providerTitle
         case modelId
+        case alias
+        case capabilities
         case price
         case currency
     }
@@ -49,6 +56,8 @@ public struct ModelDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(providerId, forKey: .providerId)
         try container.encode(providerTitle, forKey: .providerTitle)
         try container.encode(modelId, forKey: .modelId)
+        try container.encodeIfPresent(alias, forKey: .alias)
+        try container.encodeIfPresent(capabilities, forKey: .capabilities)
         try container.encodeIfPresent(price, forKey: .price)
         try container.encodeIfPresent(currency, forKey: .currency)
     }

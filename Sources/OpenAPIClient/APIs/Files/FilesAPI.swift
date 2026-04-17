@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -127,6 +128,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter templatesRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -192,6 +194,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file Id to change its version history. 
      - parameter changeHistory: (body) The parameters for changing version history. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -243,6 +246,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/files/masterform/{fileId}/checkfillformdraft
      - Checks if the current file is a form draft which can be filled out.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID of the form draft. 
      - parameter checkFillFormDraft: (body) The parameters for checking the form draft filling. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -312,6 +316,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to copy. 
      - parameter copyAsJsonElement: (body) The parameters for copying a file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -381,6 +386,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID. 
      - parameter fileSize: (query) The file size in bytes. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -453,6 +459,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID for the file creation. 
      - parameter createFileJsonElement: (body) The parameters for creating a file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -522,6 +529,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter createFileJsonElement: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -587,6 +595,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The file ID. 
      - parameter fileLinkRequest: (body) The file external link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -656,6 +665,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID to create the text or HTML file. 
      - parameter createTextOrHtmlFile: (body) The parameters for creating an HTML or text file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -725,6 +735,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter createTextOrHtmlFile: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -790,6 +801,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter folderId: (path) The folder ID to create the text or HTML file. 
      - parameter createTextOrHtmlFile: (body) The parameters for creating an HTML or text file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -859,6 +871,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter createTextOrHtmlFile: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -906,6 +919,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/files/thumbnails
      - Creates thumbnails for the files with the IDs specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ObjectArrayWrapper> 
@@ -971,6 +985,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to delete. 
      - parameter delete: (body) The parameters for deleting a file. 
      - parameter returnSingleOperation: (query) Specifies whether to return only the current operation (optional)
@@ -1044,6 +1059,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter baseBatchRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<NoContentResultWrapper> 
@@ -1109,6 +1125,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter requestBody: (body) The file IDs. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -1140,10 +1157,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx/
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: FileIntegerWrapper
+     - returns: XlsxReportResponseWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func generateXlsx(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileIntegerWrapper {
+    open class func generateXlsx(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> XlsxReportResponseWrapper {
         return try await generateXlsxWithRequestBuilder(fileId: fileId, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -1174,11 +1191,12 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<FileIntegerWrapper> 
+     - returns: RequestBuilder<XlsxReportResponseWrapper> 
      */
-    open class func generateXlsxWithRequestBuilder(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileIntegerWrapper> {
+    open class func generateXlsxWithRequestBuilder(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<XlsxReportResponseWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/xlsx"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1195,7 +1213,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<FileIntegerWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<XlsxReportResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -1242,6 +1260,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FormRoleArrayWrapper> 
@@ -1292,6 +1311,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/{fileId}/edit/diff
      - Returns a URL to the changes of a file version specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID. 
      - parameter version: (query) The file version. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1346,6 +1366,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/{fileId}/edit/history
      - Returns the version history of a file with the ID specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EditHistoryArrayWrapper> 
@@ -1414,6 +1435,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID of the history request. 
      - parameter fromDate: (query) The start date of the history. (optional)
      - parameter toDate: (query) The end date of the history. (optional)
@@ -1474,6 +1496,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/{fileId}
      - Returns the detailed information about a file with the ID specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID. 
      - parameter version: (query) The file version. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -1546,6 +1569,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The file unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -1602,6 +1626,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/{id}/link
      - Returns the primary external link by the identifier specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The file unique identifier. 
      - parameter count: (query) The number of items to retrieve in the request. (optional)
      - parameter startIndex: (query) The starting index for the query results. (optional)
@@ -1658,6 +1683,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/{fileId}/history
      - Returns the detailed information about all the available file versions with the ID specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerArrayWrapper> 
@@ -1708,6 +1734,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/fillresult
      - Retrieves the result of a form-filling session.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fillingSessionId: (query) The form-filling session ID. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FillingFormResultIntegerWrapper> 
@@ -1776,6 +1803,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FormSubmissionsWrapper> 
@@ -1844,6 +1872,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileLinkWrapper> 
@@ -1912,6 +1941,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
@@ -1980,6 +2010,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<MentionWrapperArrayWrapper> 
@@ -2048,6 +2079,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter getReferenceDataDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileReferenceWrapper> 
@@ -2069,6 +2101,75 @@ open class {{{{x-classname}}}} {
         let localVariableRequestBuilder: RequestBuilder<FileReferenceWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Get XLSX report generation status
+     
+     See also:
+     REST API Reference for getXlsx Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-xlsx/
+     - parameter fileId: (path) The file unique identifier. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: DocumentBuilderTaskWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func getXlsx(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DocumentBuilderTaskWrapper {
+        return try await getXlsxWithRequestBuilder(fileId: fileId, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get XLSX report generation status
+     
+     See also:
+     REST API Reference for getXlsx Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/get-xlsx/
+     
+     - GET /api/2.0/files/file/{fileId}/xlsx
+     - Returns the status of the XLSX report generation task for the specified form.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
+     - parameter fileId: (path) The file unique identifier. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<DocumentBuilderTaskWrapper> 
+     */
+    open class func getXlsxWithRequestBuilder(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DocumentBuilderTaskWrapper> {
+        var localVariablePath = "/api/2.0/files/file/{fileId}/xlsx"
+        let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
+        let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
+
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DocumentBuilderTaskWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -2113,6 +2214,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
@@ -2181,6 +2283,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID for locking. 
      - parameter lockFileParameters: (body) The parameters for locking a file. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -2250,6 +2353,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path)  
      - parameter manageFormFillingDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -2301,6 +2405,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/{fileId}/openedit
      - Returns the initialization configuration of a file to open it in the editor.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to open. 
      - parameter version: (query) The file version to open. (optional)
      - parameter view: (query) Specifies if the document will be opened for viewing only or not. (optional)
@@ -2363,6 +2468,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/files/file/{fileId}/restoreversion
      - Restores a file version specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID of the restore version. 
      - parameter version: (query) The file version of the restore. (optional)
      - parameter url: (query) The file version URL of the restore. (optional)
@@ -2437,6 +2543,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The editing file ID from the request. 
      - parameter downloadUri: (query) The URI to download the editing file. (optional)
      - parameter fileExtension: (form) The editing file extension from the request. (optional)
@@ -2519,6 +2626,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The file ID to save as PDF. 
      - parameter saveAsPdfInteger: (body) The parameters for saving the file as PDF. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -2588,6 +2696,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path)  
      - parameter saveFormRoleMappingDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -2657,6 +2766,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID. 
      - parameter customFilterParameters: (body) The parameters for setting the Custom Filter editing mode. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -2726,6 +2836,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The file ID. 
      - parameter fileLinkRequest: (body) The file external link parameters. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -2795,6 +2906,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file unique identifier. 
      - parameter orderRequestDto: (body) The file order information. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -2864,6 +2976,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter ordersRequestDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryIntegerArrayWrapper> 
@@ -2911,6 +3024,7 @@ open class {{{{x-classname}}}} {
      
      - POST /api/2.0/files/file/{fileId}/startedit
      - Informs about opening a file with the ID specified in the request for editing, locking it from being deleted or moved (this method is called by the mobile editors).
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to start editing. 
      - parameter startEdit: (body) The file parameters to start editing. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -2980,6 +3094,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to start filling. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileIntegerWrapper> 
@@ -3048,6 +3163,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID. 
      - parameter favorite: (query) Specifies if the file is marked as favorite or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -3102,6 +3218,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/files/file/{fileId}/trackeditfile
      - Tracks file changes when editing.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to track editing changes. 
      - parameter tabId: (query) The tab ID to track editing changes. (optional)
      - parameter docKeyForTrack: (query) The document key for tracking changes. (optional)
@@ -3160,6 +3277,7 @@ open class {{{{x-classname}}}} {
      
      - PUT /api/2.0/files/file/{fileId}
      - Updates the information of the selected file with the parameters specified in the request.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter fileId: (path) The file ID to update. 
      - parameter updateFile: (body) The parameters for updating a file. 
      - parameter apiConfiguration: The configuration for the http request.

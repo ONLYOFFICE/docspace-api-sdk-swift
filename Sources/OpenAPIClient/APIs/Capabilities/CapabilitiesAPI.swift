@@ -41,6 +41,7 @@ open class {{{{x-classname}}}} {
      
      - GET /api/2.0/capabilities
      - Returns the information about portal capabilities.
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CapabilitiesWrapper> 
      */

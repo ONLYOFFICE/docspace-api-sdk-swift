@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter system: (query) Specifies whether to load the system plugins or not. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebPluginWrapper> 
@@ -127,6 +128,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter name: (path) The web plugin name. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
@@ -195,6 +197,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter name: (path) The web plugin name. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebPluginWrapper> 
@@ -263,6 +266,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter enabled: (query) The optional filter for the plugin enabled state. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebPluginArrayWrapper> 
@@ -331,6 +335,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter name: (path) The web plugin name. 
      - parameter webPluginRequests: (body) The configuration settings for the web plugin instance. 
      - parameter apiConfiguration: The configuration for the http request.

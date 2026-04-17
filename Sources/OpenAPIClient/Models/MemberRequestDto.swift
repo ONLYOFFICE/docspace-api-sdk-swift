@@ -20,7 +20,6 @@ public struct MemberRequestDto: Sendable, Codable, Hashable {
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let firstNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let lastNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    public static let titleRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     /** The user password. */
     public var password: String?
     /** The user password hash. */
@@ -36,13 +35,8 @@ public struct MemberRequestDto: Sendable, Codable, Hashable {
     public var lastName: String?
     /** The list of the user departments IDs. */
     public var department: [UUID]?
-    /** The user title. */
-    public var title: String?
     /** The user location. */
     public var location: String?
-    public var sex: SexEnum?
-    public var birthday: ApiDateTime?
-    public var worksfrom: ApiDateTime?
     /** The user comment. */
     public var comment: String?
     /** The list of the user contacts. */
@@ -60,7 +54,7 @@ public struct MemberRequestDto: Sendable, Codable, Hashable {
     /** Specifies if tips, updates and offers are allowed to be sent to the user or not. */
     public var spam: Bool?
 
-    public init(password: String? = nil, passwordHash: String? = nil, email: String? = nil, type: EmployeeType? = nil, isUser: Bool? = nil, firstName: String? = nil, lastName: String? = nil, department: [UUID]? = nil, title: String? = nil, location: String? = nil, sex: SexEnum? = nil, birthday: ApiDateTime? = nil, worksfrom: ApiDateTime? = nil, comment: String? = nil, contacts: [Contact]? = nil, files: String? = nil, fromInviteLink: Bool? = nil, key: String? = nil, cultureName: String? = nil, target: UUID? = nil, spam: Bool? = nil) {
+    public init(password: String? = nil, passwordHash: String? = nil, email: String? = nil, type: EmployeeType? = nil, isUser: Bool? = nil, firstName: String? = nil, lastName: String? = nil, department: [UUID]? = nil, location: String? = nil, comment: String? = nil, contacts: [Contact]? = nil, files: String? = nil, fromInviteLink: Bool? = nil, key: String? = nil, cultureName: String? = nil, target: UUID? = nil, spam: Bool? = nil) {
         self.password = password
         self.passwordHash = passwordHash
         self.email = email
@@ -69,11 +63,7 @@ public struct MemberRequestDto: Sendable, Codable, Hashable {
         self.firstName = firstName
         self.lastName = lastName
         self.department = department
-        self.title = title
         self.location = location
-        self.sex = sex
-        self.birthday = birthday
-        self.worksfrom = worksfrom
         self.comment = comment
         self.contacts = contacts
         self.files = files
@@ -93,11 +83,7 @@ public struct MemberRequestDto: Sendable, Codable, Hashable {
         case firstName
         case lastName
         case department
-        case title
         case location
-        case sex
-        case birthday
-        case worksfrom
         case comment
         case contacts
         case files
@@ -120,11 +106,7 @@ public struct MemberRequestDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(firstName, forKey: .firstName)
         try container.encodeIfPresent(lastName, forKey: .lastName)
         try container.encodeIfPresent(department, forKey: .department)
-        try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(location, forKey: .location)
-        try container.encodeIfPresent(sex, forKey: .sex)
-        try container.encodeIfPresent(birthday, forKey: .birthday)
-        try container.encodeIfPresent(worksfrom, forKey: .worksfrom)
         try container.encodeIfPresent(comment, forKey: .comment)
         try container.encodeIfPresent(contacts, forKey: .contacts)
         try container.encodeIfPresent(files, forKey: .files)

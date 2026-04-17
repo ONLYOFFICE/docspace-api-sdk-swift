@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **prompt** | **String** | The system prompt for the chat. | [optional] 
 **multimodal** | [**ChatMultimodalSettingsDto**](ChatMultimodalSettingsDto.md) |  | [optional] 
 **thinking** | **Bool** | Indicates whether the model supports extended thinking mode. | [optional] 
+**capabilities** | [**AiModelCapabilities**](AiModelCapabilities.md) |  | [optional] 
 **_internal** | **Bool** | Indicates whether this is an internal AI gateway provider. | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -60,6 +60,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter createAgentRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -125,6 +126,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The room ID. 
      - parameter deleteRoomRequest: (body) The parameters for deleting a room. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -194,6 +196,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The room ID. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerWrapper> 
@@ -262,6 +265,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter subjectId: (query) The filter by user ID. (optional)
      - parameter subjectOwnerId: (query) The filter by room owner ID. (optional)
      - parameter withoutTags: (query) Specifies whether to search by tags or not. (optional)
@@ -356,6 +360,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<NewItemsAgentNewItemsArrayWrapper> 
      */
@@ -420,6 +425,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter updateRoomsRoomIdsRequestDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerArrayWrapper> 
@@ -485,6 +491,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter id: (path) The room ID. 
      - parameter updateRoomRequest: (body) The request parameters for updating a room. 
      - parameter apiConfiguration: The configuration for the http request.
@@ -554,6 +561,7 @@ var fields: String?
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter updateRoomsQuotaRequestDtoInteger: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderIntegerArrayWrapper> 

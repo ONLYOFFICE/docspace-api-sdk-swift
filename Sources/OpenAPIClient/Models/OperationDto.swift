@@ -38,8 +38,12 @@ public struct OperationDto: Sendable, Codable, Hashable {
     public var participantName: String?
     /** The participant display name. */
     public var participantDisplayName: String?
+    /** AI Agent id. */
+    public var agentId: String?
+    /** AI Agent name. */
+    public var agentTitle: String?
 
-    public init(date: ApiDateTime? = nil, service: String? = nil, description: String? = nil, details: String? = nil, serviceUnit: String? = nil, quantity: Int? = nil, currency: String? = nil, credit: Double? = nil, debit: Double? = nil, participantName: String? = nil, participantDisplayName: String? = nil) {
+    public init(date: ApiDateTime? = nil, service: String? = nil, description: String? = nil, details: String? = nil, serviceUnit: String? = nil, quantity: Int? = nil, currency: String? = nil, credit: Double? = nil, debit: Double? = nil, participantName: String? = nil, participantDisplayName: String? = nil, agentId: String? = nil, agentTitle: String? = nil) {
         self.date = date
         self.service = service
         self.description = description
@@ -51,6 +55,8 @@ public struct OperationDto: Sendable, Codable, Hashable {
         self.debit = debit
         self.participantName = participantName
         self.participantDisplayName = participantDisplayName
+        self.agentId = agentId
+        self.agentTitle = agentTitle
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -65,6 +71,8 @@ public struct OperationDto: Sendable, Codable, Hashable {
         case debit
         case participantName
         case participantDisplayName
+        case agentId
+        case agentTitle
     }
 
     // Encodable protocol methods
@@ -82,6 +90,8 @@ public struct OperationDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(debit, forKey: .debit)
         try container.encodeIfPresent(participantName, forKey: .participantName)
         try container.encodeIfPresent(participantDisplayName, forKey: .participantDisplayName)
+        try container.encodeIfPresent(agentId, forKey: .agentId)
+        try container.encodeIfPresent(agentTitle, forKey: .agentTitle)
     }
 }
 

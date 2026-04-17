@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for exportMessage Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/export-message/
-     - parameter messageId: (path) The unique identifier of the AI chat message to export.      - parameter exportMessageRequestBodyInteger: (body) The export parameters including destination folder and file title. 
+     - parameter messageId: (path) The unique identifier of the AI chat message to export.      - parameter exportMessageRequestBody: (body) The export parameters including destination folder and file title. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: Void
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func exportMessage(messageId: Int, exportMessageRequestBodyInteger: ExportMessageRequestBodyInteger, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) {
-        return try await exportMessageWithRequestBuilder(messageId: messageId, exportMessageRequestBodyInteger: exportMessageRequestBodyInteger, apiConfiguration: apiConfiguration).execute().body
+    open class func exportMessage(messageId: Int, exportMessageRequestBody: ExportMessageRequestBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) {
+        return try await exportMessageWithRequestBuilder(messageId: messageId, exportMessageRequestBody: exportMessageRequestBody, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -59,18 +59,19 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int)]
      - parameter messageId: (path) The unique identifier of the AI chat message to export. 
-     - parameter exportMessageRequestBodyInteger: (body) The export parameters including destination folder and file title. 
+     - parameter exportMessageRequestBody: (body) The export parameters including destination folder and file title. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Void> 
      */
-    open class func exportMessageWithRequestBuilder(messageId: Int, exportMessageRequestBodyInteger: ExportMessageRequestBodyInteger, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<Void> {
+    open class func exportMessageWithRequestBuilder(messageId: Int, exportMessageRequestBody: ExportMessageRequestBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<Void> {
         var localVariablePath = "/api/2.0/ai/messages/{messageId}/export"
         let messageIdPreEscape = "\(APIHelper.mapValueToPathItem(messageId))"
         let messageIdPostEscape = messageIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{messageId}", with: messageIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: exportMessageRequestBodyInteger, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: exportMessageRequestBody, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
