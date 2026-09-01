@@ -1,0 +1,1799 @@
+# FilesFoldersAPIApi
+
+All URIs are relative to *https://your-docspace.onlyoffice.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**checkUpload**](FilesFoldersAPI.md#checkupload) | **POST** /api/2.0/files/{folderId}/upload/check | Check file uploads
+[**createFolder**](FilesFoldersAPI.md#createfolder) | **POST** /api/2.0/files/folder/{folderId} | Create a folder
+[**createFolderPrimaryExternalLink**](FilesFoldersAPI.md#createfolderprimaryexternallink) | **POST** /api/2.0/files/folder/{id}/link | Create primary external link
+[**createReportFolderHistory**](FilesFoldersAPI.md#createreportfolderhistory) | **POST** /api/2.0/files/folder/{folderId}/log/report | Start the folder history report generation
+[**deleteFolder**](FilesFoldersAPI.md#deletefolder) | **DELETE** /api/2.0/files/folder/{folderId} | Delete a folder
+[**generateXlsxByFolder**](FilesFoldersAPI.md#generatexlsxbyfolder) | **POST** /api/2.0/files/folder/{folderId}/xlsx | Generate XLSX report by folder
+[**getFavoritesFolder**](FilesFoldersAPI.md#getfavoritesfolder) | **GET** /api/2.0/files/@favorites | Get the Favorites section
+[**getFilesUsedSpace**](FilesFoldersAPI.md#getfilesusedspace) | **GET** /api/2.0/files/filesusedspace | Get used space of files
+[**getFolder**](FilesFoldersAPI.md#getfolder) | **GET** /api/2.0/files/{folderId}/formfilter | Get folder form filter
+[**getFolderByFolderId**](FilesFoldersAPI.md#getfolderbyfolderid) | **GET** /api/2.0/files/{folderId} | Get a folder by ID
+[**getFolderHistory**](FilesFoldersAPI.md#getfolderhistory) | **GET** /api/2.0/files/folder/{folderId}/log | Get folder history
+[**getFolderInfo**](FilesFoldersAPI.md#getfolderinfo) | **GET** /api/2.0/files/folder/{folderId} | Get folder information
+[**getFolderLinks**](FilesFoldersAPI.md#getfolderlinks) | **GET** /api/2.0/files/folder/{id}/links | Get the folder links
+[**getFolderPath**](FilesFoldersAPI.md#getfolderpath) | **GET** /api/2.0/files/folder/{folderId}/path | Get the folder path
+[**getFolderPrimaryExternalLink**](FilesFoldersAPI.md#getfolderprimaryexternallink) | **GET** /api/2.0/files/folder/{id}/link | Get primary external link
+[**getFolders**](FilesFoldersAPI.md#getfolders) | **GET** /api/2.0/files/{folderId}/subfolders | Get subfolders
+[**getFormsFolder**](FilesFoldersAPI.md#getformsfolder) | **GET** /api/2.0/files/@forms | Get the Forms section
+[**getMyFolder**](FilesFoldersAPI.md#getmyfolder) | **GET** /api/2.0/files/@my | Get the My documents section
+[**getNewFolderItems**](FilesFoldersAPI.md#getnewfolderitems) | **GET** /api/2.0/files/{folderId}/news | Get new folder items
+[**getRecentFolder**](FilesFoldersAPI.md#getrecentfolder) | **GET** /api/2.0/files/recent | Get the Recent section
+[**getReportFolderHistory**](FilesFoldersAPI.md#getreportfolderhistory) | **GET** /api/2.0/files/folder/{folderId}/log/report | Get the folder history report generation status
+[**getRootFolders**](FilesFoldersAPI.md#getrootfolders) | **GET** /api/2.0/files/@root | Get filtered sections
+[**getTrashFolder**](FilesFoldersAPI.md#gettrashfolder) | **GET** /api/2.0/files/@trash | Get the Trash section
+[**insertFile**](FilesFoldersAPI.md#insertfile) | **POST** /api/2.0/files/{folderId}/insert | Insert a file
+[**insertFileToMyFromBody**](FilesFoldersAPI.md#insertfiletomyfrombody) | **POST** /api/2.0/files/@my/insert | Insert a file to the My documents section
+[**renameFolder**](FilesFoldersAPI.md#renamefolder) | **PUT** /api/2.0/files/folder/{folderId} | Rename a folder
+[**setFolderOrder**](FilesFoldersAPI.md#setfolderorder) | **PUT** /api/2.0/files/folder/{folderId}/order | Set folder order
+[**setFolderPrimaryExternalLink**](FilesFoldersAPI.md#setfolderprimaryexternallink) | **PUT** /api/2.0/files/folder/{id}/links | Set the folder external link
+[**terminateReportFolderHistory**](FilesFoldersAPI.md#terminatereportfolderhistory) | **DELETE** /api/2.0/files/folder/{folderId}/log/report | Terminate the folder history report generation
+[**uploadFile**](FilesFoldersAPI.md#uploadfile) | **POST** /api/2.0/files/{folderId}/upload | Upload a file
+[**uploadFileToMy**](FilesFoldersAPI.md#uploadfiletomy) | **POST** /api/2.0/files/@my/upload | Upload a file to the My documents section
+
+
+# **checkUpload**
+```swift
+    open class func checkUpload(folderId: Int, checkUploadRequest: CheckUploadRequest, completion: @escaping (_ data: STRINGArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Checks the file uploads to the folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID. | 
+ **checkUploadRequest** | [**CheckUploadRequest**](CheckUploadRequest.md) | The request parameters for checking file uploads. | 
+
+### Return type
+
+[**STRINGArrayWrapper**](STRINGArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID.
+let checkUploadRequest = CheckUploadRequest(filesTitle: ["filesTitle_example"]) // CheckUploadRequest | The request parameters for checking file uploads.
+
+// Check file uploads
+FilesFoldersAPIApi.checkUpload(folderId: folderId, checkUploadRequest: checkUploadRequest) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createFolder**
+```swift
+    open class func createFolder(folderId: Int, createFolder: CreateFolder, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Creates a new folder with the title specified in the request. The parent folder ID can be also specified.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID for the folder creation. | 
+ **createFolder** | [**CreateFolder**](CreateFolder.md) | The parameters for creating a folder. | 
+
+### Return type
+
+[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID for the folder creation.
+let createFolder = CreateFolder(title: "title_example") // CreateFolder | The parameters for creating a folder.
+
+// Create a folder
+FilesFoldersAPIApi.createFolder(folderId: folderId, createFolder: createFolder) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createFolderPrimaryExternalLink**
+```swift
+    open class func createFolderPrimaryExternalLink(id: Int, folderLinkRequest: FolderLinkRequest, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
+```
+
+Creates a primary external link by the identifier specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder-primary-external-link/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Int** | The folder ID. | 
+ **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md) | The folder link parameters. | 
+
+### Return type
+
+[**FileShareWrapper**](FileShareWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = 987 // Int | The folder ID.
+let folderLinkRequest = FolderLinkRequest(linkId: 123, access: FileShare(), expirationDate: Date(), title: "title_example", password: "password_example", denyDownload: false, _internal: false, primary: true) // FolderLinkRequest | The folder link parameters.
+
+// Create primary external link
+FilesFoldersAPIApi.createFolderPrimaryExternalLink(id: id, folderLinkRequest: folderLinkRequest) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createReportFolderHistory**
+```swift
+    open class func createReportFolderHistory(folderId: Int, format: AuditReportFormat? = nil, from: Date? = nil, to: Date? = nil, completion: @escaping (_ data: DocumentBuilderTaskWrapper?, _ error: Error?) -> Void)
+```
+
+Starts generating the activity history report of a folder (XLSX by default, or CSV) and saves it to My documents.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID whose history is exported. | 
+ **format** | [**AuditReportFormat**](.md) | The output file format of the report. Defaults to XLSX. | [optional] 
+ **from** | **Date** | The start date of the history period to export. | [optional] 
+ **to** | **Date** | The end date of the history period to export. | [optional] 
+
+### Return type
+
+[**DocumentBuilderTaskWrapper**](DocumentBuilderTaskWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID whose history is exported.
+let format = AuditReportFormat() // AuditReportFormat | The output file format of the report. Defaults to XLSX. (optional)
+let from = Date() // Date | The start date of the history period to export. (optional)
+let to = Date() // Date | The end date of the history period to export. (optional)
+
+// Start the folder history report generation
+FilesFoldersAPIApi.createReportFolderHistory(folderId: folderId, format: format, from: from, to: to) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteFolder**
+```swift
+    open class func deleteFolder(folderId: Int, deleteFolder: DeleteFolder, completion: @escaping (_ data: FileOperationArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Deletes a folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID to delete. | 
+ **deleteFolder** | [**DeleteFolder**](DeleteFolder.md) | The parameters for deleting a folder. | 
+
+### Return type
+
+[**FileOperationArrayWrapper**](FileOperationArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID to delete.
+let deleteFolder = DeleteFolder(deleteAfter: false, immediately: false) // DeleteFolder | The parameters for deleting a folder.
+
+// Delete a folder
+FilesFoldersAPIApi.deleteFolder(folderId: folderId, deleteFolder: deleteFolder) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **generateXlsxByFolder**
+```swift
+    open class func generateXlsxByFolder(folderId: Int, completion: @escaping (_ data: XlsxReportResponseWrapper?, _ error: Error?) -> Void)
+```
+
+Triggers asynchronous XLSX report generation for the specified form results folder.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/generate-xlsx-by-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+[**XlsxReportResponseWrapper**](XlsxReportResponseWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Generate XLSX report by folder
+FilesFoldersAPIApi.generateXlsxByFolder(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFavoritesFolder**
+```swift
+    open class func getFavoritesFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the detailed list of files and folders located in the Favorites section.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-favorites-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
+ **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
+ **count** | **Int** | The maximum number of items to retrieve in the request. | [optional] 
+ **startIndex** | **Int** | The zero-based index of the first item to retrieve in a paginated list. | [optional] 
+ **sortBy** | **String** | Specifies the field by which the folder content should be sorted. | [optional] 
+ **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
+ **filterValue** | **String** | The text used as a filter or search criterion for folder content queries. | [optional] 
+
+### Return type
+
+[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
+let filterType = FilterType() // FilterType | The filter type. (optional)
+let count = 987 // Int | The maximum number of items to retrieve in the request. (optional)
+let startIndex = 987 // Int | The zero-based index of the first item to retrieve in a paginated list. (optional)
+let sortBy = "sortBy_example" // String | Specifies the field by which the folder content should be sorted. (optional)
+let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
+let filterValue = "filterValue_example" // String | The text used as a filter or search criterion for folder content queries. (optional)
+
+// Get the Favorites section
+FilesFoldersAPIApi.getFavoritesFolder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFilesUsedSpace**
+```swift
+    open class func getFilesUsedSpace(completion: @escaping (_ data: FilesStatisticsResultWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the used space of files in the root folders.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-files-used-space/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**FilesStatisticsResultWrapper**](FilesStatisticsResultWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Get used space of files
+FilesFoldersAPIApi.getFilesUsedSpace() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolder**
+```swift
+    open class func getFolder(folderId: Int, completion: @escaping (_ data: FormsItemArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the form filter of a folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+[**FormsItemArrayWrapper**](FormsItemArrayWrapper.md)
+
+### Authorization
+
+No authorization required
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Get folder form filter
+FilesFoldersAPIApi.getFolder(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolderByFolderId**
+```swift
+    open class func getFolderByFolderId(folderId: Int, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the detailed list of files and folders located in the folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID. | 
+ **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
+ **sharedBy** | **UUID** | The identifier of the user who shared the folder or file. | [optional] 
+ **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
+ **roomId** | **Int** | The room ID. | [optional] 
+ **folderType** | [**[Int]**](Int.md) | The parent folder types used to filter the folder contents by folder type. | [optional] 
+ **excludeSubject** | **Bool** | Specifies whether to exclude search by user or group ID. | [optional] 
+ **applyFilterOption** | [**ApplyFilterOption**](.md) | Specifies whether to return only files, only folders, or all elements from the specified folder. | [optional] 
+ **withSubFolders** | **Bool** | Specifies whether to include files from subfolders in the results. | [optional] 
+ **_extension** | **String** | Specifies whether to search for the specific file extension. | [optional] 
+ **searchArea** | [**SearchArea**](.md) | The search area. | [optional] 
+ **formsItemKey** | **String** | The forms item key. | [optional] 
+ **formsItemType** | **String** | The forms item type. | [optional] 
+ **count** | **Int** | The maximum number of items to retrieve in the request. | [optional] 
+ **startIndex** | **Int** | The zero-based index of the first item to retrieve in a paginated request. | [optional] 
+ **sortBy** | **String** | The property used for sorting the folder request results. | [optional] 
+ **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
+ **filterValue** | **String** | The text value used as a filter parameter for folder content queries. | [optional] 
+ **location** | [**Location**](.md) | The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link. | [optional] 
+
+### Return type
+
+[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+
+### Authorization
+
+No authorization required
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID.
+let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
+let sharedBy = 987 // UUID | The identifier of the user who shared the folder or file. (optional)
+let filterType = FilterType() // FilterType | The filter type. (optional)
+let roomId = 987 // Int | The room ID. (optional)
+let folderType = [123] // [Int] | The parent folder types used to filter the folder contents by folder type. (optional)
+let excludeSubject = false // Bool | Specifies whether to exclude search by user or group ID. (optional)
+let applyFilterOption = ApplyFilterOption() // ApplyFilterOption | Specifies whether to return only files, only folders, or all elements from the specified folder. (optional)
+let withSubFolders = true // Bool | Specifies whether to include files from subfolders in the results. (optional)
+let _extension = "_extension_example" // String | Specifies whether to search for the specific file extension. (optional)
+let searchArea = SearchArea() // SearchArea | The search area. (optional)
+let formsItemKey = "formsItemKey_example" // String | The forms item key. (optional)
+let formsItemType = "formsItemType_example" // String | The forms item type. (optional)
+let count = 987 // Int | The maximum number of items to retrieve in the request. (optional)
+let startIndex = 987 // Int | The zero-based index of the first item to retrieve in a paginated request. (optional)
+let sortBy = "sortBy_example" // String | The property used for sorting the folder request results. (optional)
+let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
+let filterValue = "filterValue_example" // String | The text value used as a filter parameter for folder content queries. (optional)
+let location = Location() // Location | The location context of the request, specifying the area  where the operation is performed, such as a room, documents, or a link. (optional)
+
+// Get a folder by ID
+FilesFoldersAPIApi.getFolderByFolderId(folderId: folderId, userIdOrGroupId: userIdOrGroupId, sharedBy: sharedBy, filterType: filterType, roomId: roomId, folderType: folderType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, withSubFolders: withSubFolders, _extension: _extension, searchArea: searchArea, formsItemKey: formsItemKey, formsItemType: formsItemType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, location: location) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolderHistory**
+```swift
+    open class func getFolderHistory(folderId: Int, fromDate: Date? = nil, toDate: Date? = nil, count: Int? = nil, startIndex: Int? = nil, completion: @escaping (_ data: HistoryArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the activity history of a folder with a specified identifier.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-history/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID of the history request. | 
+ **fromDate** | **Date** | The start date of the history request. | [optional] 
+ **toDate** | **Date** | The end date of the history request. | [optional] 
+ **count** | **Int** | The number of records to retrieve for the folder history. | [optional] 
+ **startIndex** | **Int** | The starting index from which the history records are retrieved in the request. | [optional] 
+
+### Return type
+
+[**HistoryArrayWrapper**](HistoryArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID of the history request.
+let fromDate = Date() // Date | The start date of the history request. (optional)
+let toDate = Date() // Date | The end date of the history request. (optional)
+let count = 987 // Int | The number of records to retrieve for the folder history. (optional)
+let startIndex = 987 // Int | The starting index from which the history records are retrieved in the request. (optional)
+
+// Get folder history
+FilesFoldersAPIApi.getFolderHistory(folderId: folderId, fromDate: fromDate, toDate: toDate, count: count, startIndex: startIndex) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolderInfo**
+```swift
+    open class func getFolderInfo(folderId: Int, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the detailed information about a folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-info/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+
+### Authorization
+
+No authorization required
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Get folder information
+FilesFoldersAPIApi.getFolderInfo(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolderLinks**
+```swift
+    open class func getFolderLinks(id: Int, completion: @escaping (_ data: FileShareArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the links of the folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-links/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Int** | The folder ID. | 
+
+### Return type
+
+[**FileShareArrayWrapper**](FileShareArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = 987 // Int | The folder ID.
+
+// Get the folder links
+FilesFoldersAPIApi.getFolderLinks(id: id) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolderPath**
+```swift
+    open class func getFolderPath(folderId: Int, completion: @escaping (_ data: FileEntryBaseArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns a path to the folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-path/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+[**FileEntryBaseArrayWrapper**](FileEntryBaseArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Get the folder path
+FilesFoldersAPIApi.getFolderPath(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolderPrimaryExternalLink**
+```swift
+    open class func getFolderPrimaryExternalLink(id: Int, count: Int? = nil, startIndex: Int? = nil, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the primary external link by the identifier specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-primary-external-link/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Int** | The folder unique identifier. | 
+ **count** | **Int** | The number of items to retrieve in the request. | [optional] 
+ **startIndex** | **Int** | The starting index for the query results. | [optional] 
+
+### Return type
+
+[**FileShareWrapper**](FileShareWrapper.md)
+
+### Authorization
+
+No authorization required
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = 987 // Int | The folder unique identifier.
+let count = 987 // Int | The number of items to retrieve in the request. (optional)
+let startIndex = 987 // Int | The starting index for the query results. (optional)
+
+// Get primary external link
+FilesFoldersAPIApi.getFolderPrimaryExternalLink(id: id, count: count, startIndex: startIndex) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFolders**
+```swift
+    open class func getFolders(folderId: Int, completion: @escaping (_ data: FileEntryBaseArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns a list of all the subfolders from a folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folders/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+[**FileEntryBaseArrayWrapper**](FileEntryBaseArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Get subfolders
+FilesFoldersAPIApi.getFolders(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFormsFolder**
+```swift
+    open class func getFormsFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the detailed list of rooms used for filling out forms located in the Forms section.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-forms-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
+ **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
+ **count** | **Int** | The maximum number of items to retrieve in the request. | [optional] 
+ **startIndex** | **Int** | The zero-based index of the first item to retrieve in a paginated list. | [optional] 
+ **sortBy** | **String** | Specifies the field by which the folder content should be sorted. | [optional] 
+ **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
+ **filterValue** | **String** | The text used as a filter or search criterion for folder content queries. | [optional] 
+
+### Return type
+
+[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
+let filterType = FilterType() // FilterType | The filter type. (optional)
+let count = 987 // Int | The maximum number of items to retrieve in the request. (optional)
+let startIndex = 987 // Int | The zero-based index of the first item to retrieve in a paginated list. (optional)
+let sortBy = "sortBy_example" // String | Specifies the field by which the folder content should be sorted. (optional)
+let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
+let filterValue = "filterValue_example" // String | The text used as a filter or search criterion for folder content queries. (optional)
+
+// Get the Forms section
+FilesFoldersAPIApi.getFormsFolder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getMyFolder**
+```swift
+    open class func getMyFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the detailed list of files and folders located in the My documents section.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
+ **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
+ **applyFilterOption** | [**ApplyFilterOption**](.md) | Specifies whether to return only files, only folders or all elements. | [optional] 
+ **count** | **Int** | The maximum number of items to retrieve in the response. | [optional] 
+ **startIndex** | **Int** | The starting position of the items to be retrieved. | [optional] 
+ **sortBy** | **String** | The property used to specify the sorting criteria for folder contents. | [optional] 
+ **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
+ **filterValue** | **String** | The text used for filtering or searching folder contents. | [optional] 
+
+### Return type
+
+[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
+let filterType = FilterType() // FilterType | The filter type. (optional)
+let applyFilterOption = ApplyFilterOption() // ApplyFilterOption | Specifies whether to return only files, only folders or all elements. (optional)
+let count = 987 // Int | The maximum number of items to retrieve in the response. (optional)
+let startIndex = 987 // Int | The starting position of the items to be retrieved. (optional)
+let sortBy = "sortBy_example" // String | The property used to specify the sorting criteria for folder contents. (optional)
+let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
+let filterValue = "filterValue_example" // String | The text used for filtering or searching folder contents. (optional)
+
+// Get the My documents section
+FilesFoldersAPIApi.getMyFolder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, applyFilterOption: applyFilterOption, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getNewFolderItems**
+```swift
+    open class func getNewFolderItems(folderId: Int, completion: @escaping (_ data: FileEntryBaseArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns a list of all the new items from a folder with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-new-folder-items/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+[**FileEntryBaseArrayWrapper**](FileEntryBaseArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Get new folder items
+FilesFoldersAPIApi.getNewFolderItems(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getRecentFolder**
+```swift
+    open class func getRecentFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the detailed list of files located in the Recent section.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
+ **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
+ **excludeSubject** | **Bool** | Specifies whether to exclude search by user or group ID. | [optional] 
+ **applyFilterOption** | [**ApplyFilterOption**](.md) | Specifies whether to return only files, only folders or all elements. | [optional] 
+ **searchArea** | [**SearchArea**](.md) | The search area. | [optional] 
+ **_extension** | [**[String]**](String.md) | Specifies whether to search for a specific file extension in the Recent folder. | [optional] 
+ **count** | **Int** | The maximum number of items to return. | [optional] 
+ **startIndex** | **Int** | The starting position of the results to be returned in the query response. | [optional] 
+ **sortBy** | **String** | Specifies the sorting criteria for the folder request. | [optional] 
+ **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
+ **filterValue** | **String** | The text used for filtering or searching folder contents. | [optional] 
+
+### Return type
+
+[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
+let filterType = FilterType() // FilterType | The filter type. (optional)
+let excludeSubject = false // Bool | Specifies whether to exclude search by user or group ID. (optional)
+let applyFilterOption = ApplyFilterOption() // ApplyFilterOption | Specifies whether to return only files, only folders or all elements. (optional)
+let searchArea = SearchArea() // SearchArea | The search area. (optional)
+let _extension = ["inner_example"] // [String] | Specifies whether to search for a specific file extension in the Recent folder. (optional)
+let count = 987 // Int | The maximum number of items to return. (optional)
+let startIndex = 987 // Int | The starting position of the results to be returned in the query response. (optional)
+let sortBy = "sortBy_example" // String | Specifies the sorting criteria for the folder request. (optional)
+let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
+let filterValue = "filterValue_example" // String | The text used for filtering or searching folder contents. (optional)
+
+// Get the Recent section
+FilesFoldersAPIApi.getRecentFolder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, searchArea: searchArea, _extension: _extension, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getReportFolderHistory**
+```swift
+    open class func getReportFolderHistory(folderId: Int, completion: @escaping (_ data: DocumentBuilderTaskWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the status of generating the folder history report.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-report-folder-history/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+[**DocumentBuilderTaskWrapper**](DocumentBuilderTaskWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Get the folder history report generation status
+FilesFoldersAPIApi.getReportFolderHistory(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getRootFolders**
+```swift
+    open class func getRootFolders(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, withoutTrash: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Returns all the sections matching the parameters specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-root-folders/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
+ **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
+ **withoutTrash** | **Bool** | Specifies whether to return the Trash section or not. | [optional] 
+ **count** | **Int** | The maximum number of items to retrieve in the response. | [optional] 
+ **startIndex** | **Int** | The starting position of the items to be retrieved. | [optional] 
+ **sortBy** | **String** | Specifies the field by which the folder content should be sorted. | [optional] 
+ **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
+ **filterValue** | **String** | The text used as a filter for searching or retrieving folder contents. | [optional] 
+
+### Return type
+
+[**FolderContentIntegerArrayWrapper**](FolderContentIntegerArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
+let filterType = FilterType() // FilterType | The filter type. (optional)
+let withoutTrash = false // Bool | Specifies whether to return the Trash section or not. (optional)
+let count = 987 // Int | The maximum number of items to retrieve in the response. (optional)
+let startIndex = 987 // Int | The starting position of the items to be retrieved. (optional)
+let sortBy = "sortBy_example" // String | Specifies the field by which the folder content should be sorted. (optional)
+let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
+let filterValue = "filterValue_example" // String | The text used as a filter for searching or retrieving folder contents. (optional)
+
+// Get filtered sections
+FilesFoldersAPIApi.getRootFolders(userIdOrGroupId: userIdOrGroupId, filterType: filterType, withoutTrash: withoutTrash, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getTrashFolder**
+```swift
+    open class func getTrashFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Returns the detailed list of files and folders located in the Trash section.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userIdOrGroupId** | **UUID** | The user or group ID. | [optional] 
+ **filterType** | [**FilterType**](.md) | The filter type. | [optional] 
+ **applyFilterOption** | [**ApplyFilterOption**](.md) | Specifies whether to return only files, only folders or all elements. | [optional] 
+ **count** | **Int** | The maximum number of items to retrieve in the response. | [optional] 
+ **startIndex** | **Int** | The starting position of the items to be retrieved. | [optional] 
+ **sortBy** | **String** | The property used to specify the sorting criteria for folder contents. | [optional] 
+ **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
+ **filterValue** | **String** | The text used for filtering or searching folder contents. | [optional] 
+
+### Return type
+
+[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let userIdOrGroupId = 987 // UUID | The user or group ID. (optional)
+let filterType = FilterType() // FilterType | The filter type. (optional)
+let applyFilterOption = ApplyFilterOption() // ApplyFilterOption | Specifies whether to return only files, only folders or all elements. (optional)
+let count = 987 // Int | The maximum number of items to retrieve in the response. (optional)
+let startIndex = 987 // Int | The starting position of the items to be retrieved. (optional)
+let sortBy = "sortBy_example" // String | The property used to specify the sorting criteria for folder contents. (optional)
+let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
+let filterValue = "filterValue_example" // String | The text used for filtering or searching folder contents. (optional)
+
+// Get the Trash section
+FilesFoldersAPIApi.getTrashFolder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, applyFilterOption: applyFilterOption, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **insertFile**
+```swift
+    open class func insertFile(folderId: Int, insertFileFile: URL? = nil, insertFileTitle: String? = nil, insertFileCreateNewIfExist: Bool? = nil, insertFileKeepConvertStatus: Bool? = nil, insertFileStreamCanRead: Bool? = nil, insertFileStreamCanWrite: Bool? = nil, insertFileStreamCanSeek: Bool? = nil, insertFileStreamCanTimeout: Bool? = nil, insertFileStreamLength: Int64? = nil, insertFileStreamPosition: Int64? = nil, insertFileStreamReadTimeout: Int? = nil, insertFileStreamWriteTimeout: Int? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Inserts a file specified in the request to the selected folder by single file uploading.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID for inserting a file. | 
+ **insertFileFile** | **URL** | The file to be inserted. | [optional] 
+ **insertFileTitle** | **String** | The file title to be inserted. | [optional] 
+ **insertFileCreateNewIfExist** | **Bool** | Specifies whether to create a new file if it already exists or not. | [optional] 
+ **insertFileKeepConvertStatus** | **Bool** | Specifies whether to keep the file converting status or not. | [optional] 
+ **insertFileStreamCanRead** | **Bool** |  | [optional] 
+ **insertFileStreamCanWrite** | **Bool** |  | [optional] 
+ **insertFileStreamCanSeek** | **Bool** |  | [optional] 
+ **insertFileStreamCanTimeout** | **Bool** |  | [optional] 
+ **insertFileStreamLength** | **Int64** |  | [optional] 
+ **insertFileStreamPosition** | **Int64** |  | [optional] 
+ **insertFileStreamReadTimeout** | **Int** |  | [optional] 
+ **insertFileStreamWriteTimeout** | **Int** |  | [optional] 
+
+### Return type
+
+[**FileIntegerWrapper**](FileIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID for inserting a file.
+let insertFileFile = URL(string: "https://example.com")! // URL | The file to be inserted. (optional)
+let insertFileTitle = "insertFileTitle_example" // String | The file title to be inserted. (optional)
+let insertFileCreateNewIfExist = true // Bool | Specifies whether to create a new file if it already exists or not. (optional)
+let insertFileKeepConvertStatus = true // Bool | Specifies whether to keep the file converting status or not. (optional)
+let insertFileStreamCanRead = true // Bool |  (optional)
+let insertFileStreamCanWrite = true // Bool |  (optional)
+let insertFileStreamCanSeek = true // Bool |  (optional)
+let insertFileStreamCanTimeout = true // Bool |  (optional)
+let insertFileStreamLength = 987 // Int64 |  (optional)
+let insertFileStreamPosition = 987 // Int64 |  (optional)
+let insertFileStreamReadTimeout = 987 // Int |  (optional)
+let insertFileStreamWriteTimeout = 987 // Int |  (optional)
+
+// Insert a file
+FilesFoldersAPIApi.insertFile(folderId: folderId, insertFileFile: insertFileFile, insertFileTitle: insertFileTitle, insertFileCreateNewIfExist: insertFileCreateNewIfExist, insertFileKeepConvertStatus: insertFileKeepConvertStatus, insertFileStreamCanRead: insertFileStreamCanRead, insertFileStreamCanWrite: insertFileStreamCanWrite, insertFileStreamCanSeek: insertFileStreamCanSeek, insertFileStreamCanTimeout: insertFileStreamCanTimeout, insertFileStreamLength: insertFileStreamLength, insertFileStreamPosition: insertFileStreamPosition, insertFileStreamReadTimeout: insertFileStreamReadTimeout, insertFileStreamWriteTimeout: insertFileStreamWriteTimeout) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **insertFileToMyFromBody**
+```swift
+    open class func insertFileToMyFromBody(file: URL? = nil, title: String? = nil, createNewIfExist: Bool? = nil, keepConvertStatus: Bool? = nil, streamCanRead: Bool? = nil, streamCanWrite: Bool? = nil, streamCanSeek: Bool? = nil, streamCanTimeout: Bool? = nil, streamLength: Int64? = nil, streamPosition: Int64? = nil, streamReadTimeout: Int? = nil, streamWriteTimeout: Int? = nil, completion: @escaping (_ data: FileIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Inserts a file specified in the request to the My documents section by single file uploading.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/insert-file-to-my-from-body/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **URL** | The file to be inserted. | [optional] 
+ **title** | **String** | The file title to be inserted. | [optional] 
+ **createNewIfExist** | **Bool** | Specifies whether to create a new file if it already exists or not. | [optional] 
+ **keepConvertStatus** | **Bool** | Specifies whether to keep the file converting status or not. | [optional] 
+ **streamCanRead** | **Bool** |  | [optional] 
+ **streamCanWrite** | **Bool** |  | [optional] 
+ **streamCanSeek** | **Bool** |  | [optional] 
+ **streamCanTimeout** | **Bool** |  | [optional] 
+ **streamLength** | **Int64** |  | [optional] 
+ **streamPosition** | **Int64** |  | [optional] 
+ **streamReadTimeout** | **Int** |  | [optional] 
+ **streamWriteTimeout** | **Int** |  | [optional] 
+
+### Return type
+
+[**FileIntegerWrapper**](FileIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let file = URL(string: "https://example.com")! // URL | The file to be inserted. (optional)
+let title = "title_example" // String | The file title to be inserted. (optional)
+let createNewIfExist = true // Bool | Specifies whether to create a new file if it already exists or not. (optional)
+let keepConvertStatus = true // Bool | Specifies whether to keep the file converting status or not. (optional)
+let streamCanRead = true // Bool |  (optional)
+let streamCanWrite = true // Bool |  (optional)
+let streamCanSeek = true // Bool |  (optional)
+let streamCanTimeout = true // Bool |  (optional)
+let streamLength = 987 // Int64 |  (optional)
+let streamPosition = 987 // Int64 |  (optional)
+let streamReadTimeout = 987 // Int |  (optional)
+let streamWriteTimeout = 987 // Int |  (optional)
+
+// Insert a file to the My documents section
+FilesFoldersAPIApi.insertFileToMyFromBody(file: file, title: title, createNewIfExist: createNewIfExist, keepConvertStatus: keepConvertStatus, streamCanRead: streamCanRead, streamCanWrite: streamCanWrite, streamCanSeek: streamCanSeek, streamCanTimeout: streamCanTimeout, streamLength: streamLength, streamPosition: streamPosition, streamReadTimeout: streamReadTimeout, streamWriteTimeout: streamWriteTimeout) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **renameFolder**
+```swift
+    open class func renameFolder(folderId: Int, createFolder: CreateFolder, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Renames the selected folder with a new title specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID for the folder creation. | 
+ **createFolder** | [**CreateFolder**](CreateFolder.md) | The parameters for creating a folder. | 
+
+### Return type
+
+[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID for the folder creation.
+let createFolder = CreateFolder(title: "title_example") // CreateFolder | The parameters for creating a folder.
+
+// Rename a folder
+FilesFoldersAPIApi.renameFolder(folderId: folderId, createFolder: createFolder) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **setFolderOrder**
+```swift
+    open class func setFolderOrder(folderId: Int, orderRequestDto: OrderRequestDto? = nil, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
+```
+
+Sets the order of a folder with ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-order/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+ **orderRequestDto** | [**OrderRequestDto**](OrderRequestDto.md) | The folder order information. | [optional] 
+
+### Return type
+
+[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+let orderRequestDto = OrderRequestDto(order: 123) // OrderRequestDto | The folder order information. (optional)
+
+// Set folder order
+FilesFoldersAPIApi.setFolderOrder(folderId: folderId, orderRequestDto: orderRequestDto) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **setFolderPrimaryExternalLink**
+```swift
+    open class func setFolderPrimaryExternalLink(id: Int, folderLinkRequest: FolderLinkRequest, completion: @escaping (_ data: FileShareWrapper?, _ error: Error?) -> Void)
+```
+
+Sets the folder external link with the ID specified in the request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-folder-primary-external-link/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Int** | The folder ID. | 
+ **folderLinkRequest** | [**FolderLinkRequest**](FolderLinkRequest.md) | The folder link parameters. | 
+
+### Return type
+
+[**FileShareWrapper**](FileShareWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = 987 // Int | The folder ID.
+let folderLinkRequest = FolderLinkRequest(linkId: 123, access: FileShare(), expirationDate: Date(), title: "title_example", password: "password_example", denyDownload: false, _internal: false, primary: true) // FolderLinkRequest | The folder link parameters.
+
+// Set the folder external link
+FilesFoldersAPIApi.setFolderPrimaryExternalLink(id: id, folderLinkRequest: folderLinkRequest) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **terminateReportFolderHistory**
+```swift
+    open class func terminateReportFolderHistory(folderId: Int, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+```
+
+Terminates generating the folder history report.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-report-folder-history/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder unique identifier. | 
+
+### Return type
+
+Void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder unique identifier.
+
+// Terminate the folder history report generation
+FilesFoldersAPIApi.terminateReportFolderHistory(folderId: folderId) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **uploadFile**
+```swift
+    open class func uploadFile(folderId: Int, createNewIfExist: Bool? = nil, storeOriginalFile: Bool? = nil, keepConvertStatus: Bool? = nil, file: URL? = nil, completion: @escaping (_ data: FileIntegerArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Uploads a file specified in the request to the selected folder by single file uploading or standart multipart/form-data method.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folderId** | **Int** | The folder ID to upload a file. | 
+ **createNewIfExist** | **Bool** | Specifies whether to create the new file if it already exists or not. | [optional] 
+ **storeOriginalFile** | **Bool** | Specifies whether to upload documents in the original formats as well or not. | [optional] 
+ **keepConvertStatus** | **Bool** | Specifies whether to keep the file converting status or not. | [optional] 
+ **file** | **URL** | The file to be uploaded. | [optional] 
+
+### Return type
+
+[**FileIntegerArrayWrapper**](FileIntegerArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let folderId = 987 // Int | The folder ID to upload a file.
+let createNewIfExist = true // Bool | Specifies whether to create the new file if it already exists or not. (optional)
+let storeOriginalFile = true // Bool | Specifies whether to upload documents in the original formats as well or not. (optional)
+let keepConvertStatus = false // Bool | Specifies whether to keep the file converting status or not. (optional)
+let file = URL(string: "https://example.com")! // URL | The file to be uploaded. (optional)
+
+// Upload a file
+FilesFoldersAPIApi.uploadFile(folderId: folderId, createNewIfExist: createNewIfExist, storeOriginalFile: storeOriginalFile, keepConvertStatus: keepConvertStatus, file: file) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **uploadFileToMy**
+```swift
+    open class func uploadFileToMy(createNewIfExist: Bool? = nil, storeOriginalFile: Bool? = nil, keepConvertStatus: Bool? = nil, file: URL? = nil, completion: @escaping (_ data: FileIntegerArrayWrapper?, _ error: Error?) -> Void)
+```
+
+Uploads a file specified in the request to the My documents section by single file uploading or standart multipart/form-data method.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-file-to-my/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createNewIfExist** | **Bool** | Specifies whether to create the new file if it already exists or not. | [optional] 
+ **storeOriginalFile** | **Bool** | Specifies whether to upload documents in the original formats as well or not. | [optional] 
+ **keepConvertStatus** | **Bool** | Specifies whether to keep the file converting status or not. | [optional] 
+ **file** | **URL** | The file to be uploaded. | [optional] 
+
+### Return type
+
+[**FileIntegerArrayWrapper**](FileIntegerArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let createNewIfExist = true // Bool | Specifies whether to create the new file if it already exists or not. (optional)
+let storeOriginalFile = true // Bool | Specifies whether to upload documents in the original formats as well or not. (optional)
+let keepConvertStatus = false // Bool | Specifies whether to keep the file converting status or not. (optional)
+let file = URL(string: "https://example.com")! // URL | The file to be uploaded. (optional)
+
+// Upload a file to the My documents section
+FilesFoldersAPIApi.uploadFileToMy(createNewIfExist: createNewIfExist, storeOriginalFile: storeOriginalFile, keepConvertStatus: keepConvertStatus, file: file) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

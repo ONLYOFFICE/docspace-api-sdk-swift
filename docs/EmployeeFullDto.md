@@ -1,0 +1,53 @@
+# EmployeeFullDto
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **UUID** | The user ID. | [optional] 
+**displayName** | **String** | The HTML-encoded user's display name formatted according to the default format for the current culture. | [optional] 
+**avatar** | **String** | The user avatar. | [optional] 
+**avatarOriginal** | **String** | The user original size avatar. | [optional] 
+**avatarMax** | **String** | The user maximum size avatar. | [optional] 
+**avatarMedium** | **String** | The user medium size avatar. | [optional] 
+**avatarSmall** | **String** | The user small size avatar. | [optional] 
+**profileUrl** | **String** | The user profile URL. | [optional] 
+**hasAvatar** | **Bool** | Specifies if the user has an avatar or not. | [optional] 
+**isAnonim** | **Bool** | Specifies if the user is anonymous or not. | [optional] 
+**firstName** | **String** | The user first name. | [optional] 
+**lastName** | **String** | The user last name. | [optional] 
+**userName** | **String** | The user username. | [optional] 
+**email** | **String** | The user email. | [optional] 
+**contacts** | [Contact] | The list of user contacts. | [optional] 
+**status** | [**EmployeeStatus**](EmployeeStatus.md) | The user status. | [optional] 
+**activationStatus** | [**EmployeeActivationStatus**](EmployeeActivationStatus.md) | The user activation status. | [optional] 
+**terminated** | **Date** | The date when the user account was terminated. | [optional] 
+**department** | **String** | The user department. | [optional] 
+**groups** | [GroupSummaryDto] | The list of user groups. | [optional] 
+**location** | **String** | The user location. | [optional] 
+**notes** | **String** | The user notes. | [optional] 
+**isAdmin** | **Bool** | Specifies if the user is an administrator or not. | [optional] 
+**isRoomAdmin** | **Bool** | Specifies if the user is a room administrator or not. | [optional] 
+**isLDAP** | **Bool** | Specifies if the LDAP settings are enabled for the user or not. | [optional] 
+**listAdminModules** | **[String]** | The list of the administrator modules. | [optional] 
+**isOwner** | **Bool** | Specifies if the user is a portal owner or not. | [optional] 
+**isVisitor** | **Bool** | Specifies if the user is a portal visitor or not. | [optional] 
+**isCollaborator** | **Bool** | Specifies if the user is a portal collaborator or not. | [optional] 
+**cultureName** | **String** | The user culture code. | [optional] 
+**mobilePhone** | **String** | The user mobile phone number. | [optional] 
+**mobilePhoneActivationStatus** | [**MobilePhoneActivationStatus**](MobilePhoneActivationStatus.md) | The mobile phone activation status. | [optional] 
+**isSSO** | **Bool** | Specifies if the SSO settings are enabled for the user or not. | [optional] 
+**theme** | [**DarkThemeSettingsType**](DarkThemeSettingsType.md) | The user theme settings. | [optional] 
+**quotaLimit** | **Int64** | The user quota limit. | [optional] 
+**usedSpace** | **Double** | The portal used space of the user. | [optional] 
+**shared** | **Bool** | Specifies if the user has access rights. | [optional] 
+**isCustomQuota** | **Bool** | Specifies if the user has a custom quota or not. | [optional] 
+**loginEventId** | **Int** | The current login event ID. | [optional] 
+**authCookieLifetime** | **Double** | The auth cookie lifetime in seconds. | [optional] 
+**createdBy** | [**EmployeeDto**](EmployeeDto.md) | The user who created the current user. | [optional] 
+**registrationDate** | **Date** | The user registration date. | [optional] 
+**hasPersonalFolder** | **Bool** | Specifies if the user has a personal folder or not. | [optional] 
+**tfaAppEnabled** | **Bool** | Indicates whether the user has enabled two-factor authentication (TFA) using an authentication app. | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

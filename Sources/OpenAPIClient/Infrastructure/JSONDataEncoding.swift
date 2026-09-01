@@ -1,0 +1,63 @@
+//
+//  Copyright (c) Ascensio System SIA 2026
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
+public struct JSONDataEncoding: Sendable {
+
+    // MARK: Properties
+
+    private static let jsonDataKey = "jsonData"
+
+    // MARK: Encoding
+
+    /// Creates a URL request by encoding parameters and applying them onto an existing request.
+    ///
+    /// - parameter urlRequest: The request to have parameters applied.
+    /// - parameter parameters: The parameters to apply. This should have a single key/value
+    ///                         pair with "jsonData" as the key and a Data object as the value.
+    ///
+    /// - throws: An `Error` if the encoding process encounters an error.
+    ///
+    /// - returns: The encoded request.
+    public func encode(request: URLRequest, with parameters: [String: any Sendable]?) -> URLRequest {
+        var urlRequest = request
+
+        guard let jsonData = parameters?[JSONDataEncoding.jsonDataKey] as? Data, !jsonData.isEmpty else {
+            return urlRequest
+        }
+
+        if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+
+        urlRequest.httpBody = jsonData
+
+        return urlRequest
+    }
+
+    public static func encodingParameters(jsonData: Data?) -> [String: any Sendable]? {
+        var returnedParams: [String: any Sendable]?
+        if let jsonData = jsonData, !jsonData.isEmpty {
+            var params: [String: any Sendable] = [:]
+            params[jsonDataKey] = jsonData
+            returnedParams = params
+        }
+        return returnedParams
+    }
+
+}
