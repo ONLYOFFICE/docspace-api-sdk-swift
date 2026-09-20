@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** The result of checking whether files can be moved or copied to the specified folder. */
+/** The verdict on placing the requested files in the destination folder. */
 public struct CheckDestFolderDto: Sendable, Codable, Hashable {
 
-    /** The result of the validation operation. */
+    /** Whether the destination folder accepts all of the requested files, only some of them or none at all. */
     public var result: CheckDestFolderResult?
-    /** The list of files in the destination folder. */
+    /** The requested files the destination accepts, each with the information it was listed under. The files it  rejects are absent, so an empty list means that none of them is accepted. */
     public var files: [FileEntryBaseDto]?
 
     public init(result: CheckDestFolderResult? = nil, files: [FileEntryBaseDto]? = nil) {

@@ -18,12 +18,12 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
-     Clear
+     Clear the web-search configuration
      
      See also:
      REST API Reference for aiWebSearchClear Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-clear/
-     - parameter body: (body)  
+     - parameter body: (body) Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
@@ -33,15 +33,21 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Clear
+     Clear the web-search configuration
      
      See also:
      REST API Reference for aiWebSearchClear Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-clear/
      
      - DELETE /api/2.0/ai/web-search/clear
-     - Removes the web-search configuration of the scope. Does nothing when web search was not configured there.
-     - parameter body: (body)  
+     - Removes the portal's web-search configuration, after which web search is unavailable everywhere it was not configured separately. This is not scoped: it takes no `entityId` and any body sent with it is ignored, so it cannot be used to clear one room's configuration. Clearing an already-unconfigured portal is not an error and the call answers success either way. The stored provider key is destroyed with the configuration and has to be entered again.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter body: (body) Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
@@ -61,11 +67,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Configure
+     Configure and verify web search
      
      See also:
      REST API Reference for aiWebSearchConfigure Operation
@@ -80,14 +86,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Configure
+     Configure and verify web search
      
      See also:
      REST API Reference for aiWebSearchConfigure Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-configure/
      
      - PUT /api/2.0/ai/web-search/configure
-     - Validates a web-search configuration against the live provider and stores it only when the provider answers, replacing the previous one in a single write.
+     - Validates a web-search configuration against the live provider and stores it only if the provider answers, which makes it the safe way to save a form in one step. `entityId` scopes the configuration to a room and has to name one the caller can open; omitting it configures the portal. A `baseUrl` pointing at a private network address is refused. Use `PUT api/2.0/ai/web-search/set-active-config` when the configuration should be stored without a provider round trip.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiWebSearchConfigureRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiWebSearchMutationResult> 
@@ -108,7 +120,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiWebSearchMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -134,7 +146,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-get-active-config/
      
      - GET /api/2.0/ai/web-search/get-active-config
-     - Returns the web-search configuration active in the scope, or an empty result when web search is not configured.
+     - Returns the web-search configuration in force for a scope - the provider, its endpoint and its settings. `entityId` picks a room and has to name one the caller can open; omitting it reads the portal-wide configuration, and a room with none of its own falls back to that. An unconfigured scope answers an empty result rather than 404. The provider key is not part of the answer, so a client cannot read it back after storing it.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter entityId: (query) The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiWebSearchConfig> 
@@ -158,7 +176,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiWebSearchConfig>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -184,7 +202,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-is-configured/
      
      - GET /api/2.0/ai/web-search/is-configured
-     - Tells whether web search is configured in the scope.
+     - Tells whether web search is available in a scope, as a bare boolean, which is the cheap check for hiding or showing the feature. `entityId` picks a room and has to name one the caller can open. It reports the same state as `GET api/2.0/ai/web-search/get-active-config` without transferring the configuration itself. A true answer means a provider is stored, not that the provider is currently reachable - probe that with `POST api/2.0/ai/web-search/test-connection`.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter entityId: (query) The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<Bool> 
@@ -208,38 +232,44 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<Bool>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Web page contents proxied to the portal's active web-search provider
+     Web page contents passthrough
      
      See also:
      REST API Reference for aiWebSearchPassthroughContents Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-contents/
-     - parameter requestBody: (body)  
+     - parameter requestBody: (body) A page-contents request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: AiSuccessResponse
+     - returns: [String: JSONValue]
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiWebSearchPassthroughContents(requestBody: [String: JSONValue], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+    open class func aiWebSearchPassthroughContents(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: JSONValue] {
         return try await aiWebSearchPassthroughContentsWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
-     Web page contents proxied to the portal's active web-search provider
+     Web page contents passthrough
      
      See also:
      REST API Reference for aiWebSearchPassthroughContents Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-contents/
      
      - POST /api/2.0/ai/websearch/v1/contents
-     - Fetches web page contents on behalf of the document editor's AI plugin, against the portal's active web-search provider, the same way as the search passthrough.
-     - parameter requestBody: (body)  
+     - Fetches the contents of web pages on behalf of the document editor's AI plugin, against the portal's active web-search provider, exactly as the search passthrough does — including the `entityId` / `entityKind` billing attribution. The portal-wide configuration is used and a portal without one answers 404. The provider's status, body and content type are relayed verbatim, so its 429 and its failures surface unchanged. This is the follow-up to `POST api/2.0/ai/websearch/v1/search`, which returns the results whose contents this operation retrieves.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter requestBody: (body) A page-contents request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<AiSuccessResponse> 
+     - returns: RequestBuilder<[String: JSONValue]> 
      */
-    open class func aiWebSearchPassthroughContentsWithRequestBuilder(requestBody: [String: JSONValue], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiWebSearchPassthroughContentsWithRequestBuilder(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[String: JSONValue]> {
         let localVariablePath = "/api/2.0/ai/websearch/v1/contents"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
@@ -253,40 +283,46 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<[String: JSONValue]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Web search proxied to the portal's active web-search provider
+     Web search passthrough
      
      See also:
      REST API Reference for aiWebSearchPassthroughSearch Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-search/
-     - parameter requestBody: (body)  
+     - parameter requestBody: (body) A search request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration and must not be sent here. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: AiSuccessResponse
+     - returns: [String: JSONValue]
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiWebSearchPassthroughSearch(requestBody: [String: JSONValue], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+    open class func aiWebSearchPassthroughSearch(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: JSONValue] {
         return try await aiWebSearchPassthroughSearchWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
-     Web search proxied to the portal's active web-search provider
+     Web search passthrough
      
      See also:
      REST API Reference for aiWebSearchPassthroughSearch Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-search/
      
      - POST /api/2.0/ai/websearch/v1/search
-     - Runs a web search on behalf of the document editor's AI plugin. The plugin only holds a placeholder configuration; the portal's active provider and its key are resolved here and never reach the browser.
-     - parameter requestBody: (body)  
+     - Runs a web search on behalf of the document editor's AI plugin, which holds only a placeholder configuration - the portal's active provider and its key are resolved here, so neither ever reaches the browser. The portal-wide configuration is used, and a portal without one answers 404. The `entityId` and `entityKind` query parameters name the document the search is billed to; with the ONLYOFFICE provider the entry is resolved under the caller's credentials and sent to the gateway as the request `metadata` (`source_id` / `source_type` / `source_title`), and an entry the caller cannot open sends none. The provider's own status, body and content type are relayed as they stand, so a provider that rate-limits answers 429 and one that is unreachable answers 502. Closing the connection aborts the upstream request.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter requestBody: (body) A search request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration and must not be sent here. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<AiSuccessResponse> 
+     - returns: RequestBuilder<[String: JSONValue]> 
      */
-    open class func aiWebSearchPassthroughSearchWithRequestBuilder(requestBody: [String: JSONValue], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiWebSearchPassthroughSearchWithRequestBuilder(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[String: JSONValue]> {
         let localVariablePath = "/api/2.0/ai/websearch/v1/search"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
@@ -300,9 +336,9 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<[String: JSONValue]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -328,7 +364,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-set-active-config/
      
      - PUT /api/2.0/ai/web-search/set-active-config
-     - Stores a web-search configuration without contacting the provider first, for forms that validate locally.
+     - Stores a web-search configuration without contacting the provider first, for a form that has already validated its input or for restoring a known-good configuration. `entityId` scopes it to a room and has to name one the caller can open. A `baseUrl` pointing at a private network address is still refused, because that check is local. Nothing guarantees the stored provider works: follow up with `POST api/2.0/ai/web-search/test-connection`, or use `PUT api/2.0/ai/web-search/configure` to have the store gated on a live probe.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiWebSearchConfigureRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
@@ -349,11 +391,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Test connection
+     Test a web-search provider
      
      See also:
      REST API Reference for aiWebSearchTestConnection Operation
@@ -368,14 +410,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Test connection
+     Test a web-search provider
      
      See also:
      REST API Reference for aiWebSearchTestConnection Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-test-connection/
      
      - POST /api/2.0/ai/web-search/test-connection
-     - Checks a web-search configuration against the live provider without storing it - for a Test button that must not commit on success.
+     - Probes a web-search configuration against the live provider and reports the outcome, storing nothing - this is what a Test button calls so that a failure commits no state. The configuration is taken from the request rather than from storage, so credentials that were never saved can be checked. A `baseUrl` pointing at a private network address is refused before any request leaves the portal. The verdict is carried in the body rather than in the status, so a failed probe still answers 200 and the caller has to read the payload.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiWebSearchConfig: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiProfilesTestConnection200Response> 
@@ -396,6 +444,6 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiProfilesTestConnection200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

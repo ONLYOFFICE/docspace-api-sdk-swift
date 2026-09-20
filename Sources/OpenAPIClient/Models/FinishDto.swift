@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The parameters for terminating a process or operation. */
+/** Whether the finished import mails the imported people their activation links before it is cleared away. */
 public struct FinishDto: Sendable, Codable, Hashable {
 
-    /** Specifies whether to send a welcome email or not. */
+    /** Whether every imported account that has not been activated yet is mailed its activation link. Setting it  requires the finished job to still be in the queue, so the import must not have been cleared first; the  letters go out again on each call, and already active accounts are skipped either way. Setting it false ends  the import quietly and leaves inviting those people for later. */
     public var isSendWelcomeEmail: Bool
 
     public init(isSendWelcomeEmail: Bool) {

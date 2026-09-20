@@ -14,28 +14,28 @@
 //  limitations under the License.
 import Foundation
 
-/** The file operation information. */
+/** One background file operation of the caller, as it stood when the answer was built. */
 public struct AiFileOperationDto: Sendable, Codable, Hashable {
 
-    /** The file operation ID. */
+    /** The identifier of the operation, the one to pass to `PUT api/2.0/files/fileops/terminate/{id}` to stop it.  Operations belong to the account that started them, so an identifier of somebody else is never listed here. */
     public var id: String?
-    /** The file operation type. */
+    /** What the operation does with the entries, which also decides what else is reported: only a download fills  `url`, and a deletion leaves `files` and `folders` empty. */
     public var operation: AiFileOperationType
-    /** The file operation progress in percentage. */
+    /** How far the operation has come, from 0 to 100. Reaching 100 only means it stopped; whether it did what it was  asked for is told by `error`. */
     public var progress: Int
-    /** The file operation error message. */
+    /** The reason the operation could not finish its work, in the language of the request. Empty when nothing went  wrong, which is the only way to tell a successful operation from a failed one. */
     public var error: String?
-    /** The file operation processing status. */
+    /** How many entries the operation has handled so far, written as a decimal number in a string. It counts items,  not percent, and stays behind `progress` on operations that walk into subfolders. */
     public var processed: String?
-    /** Specifies if the file operation is finished or not. */
+    /** Whether the operation has stopped running. A finished operation is reported once and then dropped, so the next  read of the operation list no longer contains it. */
     public var finished: Bool
-    /** The file operation URL. */
+    /** The address the packed archive can be downloaded from once a bulk download has finished. Empty for every other  kind of operation. */
     public var url: String?
-    /** The list of files of the file operation. */
+    /** The files the operation produced or moved, in the order it wrote them down. Empty while nothing has been  written yet and for a deletion, which reports no entries at all. */
     public var files: [AiFileEntryBaseDto]?
-    /** The list of folders of the file operation. */
+    /** The folders the operation produced or moved, in the order it wrote them down. Empty while nothing has been  written yet and for a deletion. */
     public var folders: [AiFileEntryBaseDto]?
-    /** The status of the distributed task related to the file operation. */
+    /** The state of the background task behind the operation, which tells a task that was cancelled or that crashed  from one that ran to its end. */
     public var status: AiDistributedTaskStatus?
 
     public init(id: String?, operation: AiFileOperationType, progress: Int, error: String?, processed: String?, finished: Bool, url: String? = nil, files: [AiFileEntryBaseDto]? = nil, folders: [AiFileEntryBaseDto]? = nil, status: AiDistributedTaskStatus? = nil) {

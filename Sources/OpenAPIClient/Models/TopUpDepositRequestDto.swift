@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for putting money on deposit. */
+/** How much money is charged to the payment method on file and added to the portal wallet. */
 public struct TopUpDepositRequestDto: Sendable, Codable, Hashable {
 
     public static let amountRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 999999, exclusiveMaximum: false, multipleOf: nil)
     public static let currencyRule = StringRule(minLength: 0, maxLength: 3, pattern: nil)
-    /** The amount of money for the operation. */
+    /** The sum to charge, as a whole number of units of `currency` - 10 means ten dollars and not ten cents. The  bounds are what one call may move, not what the wallet may hold, so a larger top-up is made of several calls. */
     public var amount: Int?
-    /** The three-character ISO 4217 currency symbol. */
+    /** The currency the charge is made in, as an ISO 4217 code in upper case. It has to be one of the accounting  currencies this installation supports, which `GET api/2.0/portal/payment/accounting/currencies` lists; any  other code is refused with 400. The money lands on the wallet sub-account of that currency, so topping up in  a second currency does not add to the first one. */
     public var currency: String?
 
     public init(amount: Int? = nil, currency: String? = nil) {

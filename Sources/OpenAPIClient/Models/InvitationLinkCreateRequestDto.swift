@@ -14,15 +14,15 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for creating an invitation link. */
+/** The role a new invitation link grants, and the limits placed on it. */
 public struct InvitationLinkCreateRequestDto: Sendable, Codable, Hashable {
 
     public static let maxUseCountRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 1000, exclusiveMaximum: false, multipleOf: nil)
-    /** The type of employee role for the invitation link (DocSpaceAdmin, RoomAdmin or User). */
+    /** The role whoever follows the link joins with. Only `DocSpaceAdmin`, `RoomAdmin` and `User` are accepted, and  the role cannot be changed afterwards - delete the link and create one for the other role instead. */
     public var employeeType: EmployeeType
-    /** The expiration date of the invitation link. */
+    /** When the link stops letting anyone in, read in the portal time zone. It has to lie in the future; leaving it  out creates a link with no deadline at all. */
     public var expiration: Date?
-    /** The maximum number of times the invitation link can be used. */
+    /** How many accounts may join through the link in total. Leaving it out creates a link with no use limit; the  uses spent so far are reported as `currentUseCount`. */
     public var maxUseCount: Int?
 
     public init(employeeType: EmployeeType, expiration: Date? = nil, maxUseCount: Int? = nil) {

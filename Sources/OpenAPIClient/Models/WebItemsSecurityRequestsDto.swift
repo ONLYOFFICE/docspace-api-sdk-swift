@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for configuring security settings across multiple web modules. */
+/** The modules switched on or off together, one entry per module. */
 public struct WebItemsSecurityRequestsDto: Sendable, Codable, Hashable {
 
-    /** The list of module security configurations. */
+    /** The modules to switch, each entry pairing a module GUID as its `key` with the new enabled flag as its  `value`. A key that is not a GUID fails the whole request as invalid, and a module listed twice is applied  once, from its first entry. No allow-list travels here: switching a product module on restores the users and  groups it was last restricted to, and everything else is stored as a plain allow or deny for everyone. */
     public var items: [ItemKeyValuePairStringBoolean]?
 
     public init(items: [ItemKeyValuePairStringBoolean]? = nil) {

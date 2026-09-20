@@ -17,7 +17,7 @@ import Foundation
 /** The request parameters for linking accounts. */
 public struct LinkAccountRequestDto: Sendable, Codable, Hashable {
 
-    /** The third-party profile in the serialized format. */
+    /** The profile a completed provider authorization produced, in the serialized form the login flow hands back.  Pass that value unchanged; it carries the provider, the third-party account ID and the authorization result,  and a hand-written object is not accepted. */
     public var serializedProfile: String?
 
     public init(serializedProfile: String? = nil) {

@@ -17,15 +17,15 @@ import Foundation
 /** The task progress response parameters. */
 public struct TaskProgressResponseDto: Sendable, Codable, Hashable {
 
-    /** The task progress ID. */
+    /** The ID of the queued job. It identifies this run of the job and changes every time the job is started again. */
     public var id: String?
-    /** The task progress error message. */
+    /** The message of the error that stopped the job. It is empty while the job is running and after a job that  succeeded, and it is the only place where the reason for a failure is reported. */
     public var error: String?
-    /** The percentage of the task progress. */
+    /** The share of the job that is already done, from 0 to 100. */
     public var percentage: Int
-    /** Specifies if the task peogress is completed or not. */
+    /** Specifies whether the job has stopped running. This is the field to poll: true means the job will not change  any more, whether it succeeded, failed or was cancelled, and `status` tells which of the three it is. */
     public var isCompleted: Bool
-    /** The status of the distributed task. */
+    /** The state of the job: `Created` while it waits in the queue, `Running` while it works, `Completed` once it has  finished on its own, `Canceled` after a terminate operation, and `Failted` when it stopped on an error, in  which case `error` carries the reason. */
     public var status: DistributedTaskStatus
 
     public init(id: String?, error: String? = nil, percentage: Int, isCompleted: Bool, status: DistributedTaskStatus) {

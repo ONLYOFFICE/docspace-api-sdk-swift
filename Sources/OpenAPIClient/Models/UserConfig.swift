@@ -14,18 +14,18 @@
 //  limitations under the License.
 import Foundation
 
-/** The configuration parameters of the user currently viewing or editing the document. */
+/** The account the editors attribute the changes of this session to. */
 public struct UserConfig: Sendable, Codable, Hashable {
 
-    /** The user ID. */
+    /** The account the changes are recorded under. Two sessions carrying the same value are taken by the editors for  the same person. */
     public var id: String?
-    /** The full name of the user. */
+    /** The name shown next to the changes and in the list of participants. */
     public var name: String?
-    /** The path to the user's avatar. */
+    /** An absolute address of the avatar shown for this participant. */
     public var image: String?
-    /** Roles */
+    /** The filling roles this participant holds in the form being filled out. It is set only for a form in a virtual  data room, where the role decides which fields open for them. */
     public var roles: [String]?
-    /** Customer identifier associated with the user. */
+    /** Identifies the paying customer this participant belongs to, on deployments where the editors are licensed per  customer. */
     public var customerId: String?
 
     public init(id: String? = nil, name: String? = nil, image: String? = nil, roles: [String]? = nil, customerId: String? = nil) {

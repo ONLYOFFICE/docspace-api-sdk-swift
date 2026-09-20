@@ -52,7 +52,7 @@ public struct EmployeeFullDto: Sendable, Codable, Hashable {
     /** The user activation status. */
     public var activationStatus: EmployeeActivationStatus?
     /** The date when the user account was terminated. */
-    public var terminated: Date?
+    public var terminated: ApiDateTime?
     /** The user department. */
     public var department: String?
     /** The list of user groups. */
@@ -100,13 +100,13 @@ public struct EmployeeFullDto: Sendable, Codable, Hashable {
     /** The user who created the current user. */
     public var createdBy: EmployeeDto?
     /** The user registration date. */
-    public var registrationDate: Date?
+    public var registrationDate: ApiDateTime?
     /** Specifies if the user has a personal folder or not. */
     public var hasPersonalFolder: Bool?
     /** Indicates whether the user has enabled two-factor authentication (TFA) using an authentication app. */
     public var tfaAppEnabled: Bool?
 
-    public init(id: UUID? = nil, displayName: String? = nil, avatar: String? = nil, avatarOriginal: String? = nil, avatarMax: String? = nil, avatarMedium: String? = nil, avatarSmall: String? = nil, profileUrl: String? = nil, hasAvatar: Bool? = nil, isAnonim: Bool? = nil, firstName: String? = nil, lastName: String? = nil, userName: String? = nil, email: String? = nil, contacts: [Contact]? = nil, status: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, terminated: Date? = nil, department: String? = nil, groups: [GroupSummaryDto]? = nil, location: String? = nil, notes: String? = nil, isAdmin: Bool? = nil, isRoomAdmin: Bool? = nil, isLDAP: Bool? = nil, listAdminModules: [String]? = nil, isOwner: Bool? = nil, isVisitor: Bool? = nil, isCollaborator: Bool? = nil, cultureName: String? = nil, mobilePhone: String? = nil, mobilePhoneActivationStatus: MobilePhoneActivationStatus? = nil, isSSO: Bool? = nil, theme: DarkThemeSettingsType? = nil, quotaLimit: Int64? = nil, usedSpace: Double? = nil, shared: Bool? = nil, isCustomQuota: Bool? = nil, loginEventId: Int? = nil, authCookieLifetime: Double? = nil, createdBy: EmployeeDto? = nil, registrationDate: Date? = nil, hasPersonalFolder: Bool? = nil, tfaAppEnabled: Bool? = nil) {
+    public init(id: UUID? = nil, displayName: String? = nil, avatar: String? = nil, avatarOriginal: String? = nil, avatarMax: String? = nil, avatarMedium: String? = nil, avatarSmall: String? = nil, profileUrl: String? = nil, hasAvatar: Bool? = nil, isAnonim: Bool? = nil, firstName: String? = nil, lastName: String? = nil, userName: String? = nil, email: String? = nil, contacts: [Contact]? = nil, status: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, terminated: ApiDateTime? = nil, department: String? = nil, groups: [GroupSummaryDto]? = nil, location: String? = nil, notes: String? = nil, isAdmin: Bool? = nil, isRoomAdmin: Bool? = nil, isLDAP: Bool? = nil, listAdminModules: [String]? = nil, isOwner: Bool? = nil, isVisitor: Bool? = nil, isCollaborator: Bool? = nil, cultureName: String? = nil, mobilePhone: String? = nil, mobilePhoneActivationStatus: MobilePhoneActivationStatus? = nil, isSSO: Bool? = nil, theme: DarkThemeSettingsType? = nil, quotaLimit: Int64? = nil, usedSpace: Double? = nil, shared: Bool? = nil, isCustomQuota: Bool? = nil, loginEventId: Int? = nil, authCookieLifetime: Double? = nil, createdBy: EmployeeDto? = nil, registrationDate: ApiDateTime? = nil, hasPersonalFolder: Bool? = nil, tfaAppEnabled: Bool? = nil) {
         self.id = id
         self.displayName = displayName
         self.avatar = avatar

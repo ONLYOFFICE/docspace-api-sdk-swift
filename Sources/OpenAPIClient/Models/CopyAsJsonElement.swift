@@ -14,17 +14,17 @@
 //  limitations under the License.
 import Foundation
 
-/** The parameters for copying a file. */
+/** The parameters of a file copy that may change the format on the way. */
 public struct CopyAsJsonElement: Sendable, Codable, Hashable {
 
-    /** The copied file name. */
+    /** The title of the copy, extension included. That extension decides the format: the same one as the source  copies the content as it is, a different one has it converted first. */
     public var destTitle: String?
     public var destFolderId: CopyAsJsonElementDestFolderId
-    /** Specifies whether to allow creating the copied file of an external extension or not. */
+    /** Whether the extension of the new title may be one the portal does not edit itself. */
     public var enableExternalExt: Bool?
-    /** The copied file password. */
+    /** The password that opens the source document, for a file that is protected by one. */
     public var password: String?
-    /** Specifies whether to convert the file to form or not. */
+    /** Whether the copy is to become a PDF form rather than a plain document, which the conversion supports for the  text formats it can read. */
     public var toForm: Bool?
 
     public init(destTitle: String?, destFolderId: CopyAsJsonElementDestFolderId, enableExternalExt: Bool? = nil, password: String? = nil, toForm: Bool? = nil) {

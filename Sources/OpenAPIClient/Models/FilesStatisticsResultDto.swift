@@ -14,20 +14,20 @@
 //  limitations under the License.
 import Foundation
 
-/** The file statistics result parameters. */
+/** The space that stored documents take in each section of the portal, in bytes. The figures cover every account of  the portal rather than the caller alone, and a section the portal does not have comes back as null instead of a  zero figure. */
 public struct FilesStatisticsResultDto: Sendable, Codable, Hashable {
 
-    /** The used space of files in the \\My Documents\\ section. */
+    /** The space taken by the personal Files sections of all accounts of the portal added together. An item deleted  to the trash keeps taking space and is counted in `trashUsedSpace` until the trash is emptied. */
     public var myDocumentsUsedSpace: FilesStatisticsFolder?
-    /** The used space of files in the \\Trash\\ section. */
+    /** The space held by the items deleted to the trash from any section, which is given back only when the trash is  emptied or the items are erased for good. */
     public var trashUsedSpace: FilesStatisticsFolder?
-    /** The used space of files in the \\Archive\\ section. */
+    /** The space taken by the content of the archived rooms, the archived form filling rooms included. Restoring a  room moves its space back to `roomsUsedSpace` or `formsUsedSpace`. */
     public var archiveUsedSpace: FilesStatisticsFolder?
-    /** The used space of files in the \\Rooms\\ section. */
+    /** The space taken by the content of the active rooms, except the form filling rooms, whose content is reported  in `formsUsedSpace`. Archiving a room moves its space to `archiveUsedSpace`. */
     public var roomsUsedSpace: FilesStatisticsFolder?
-    /** The used space of files in the \\AI agents\\ section. */
+    /** The space taken by the content of the AI agents section, which exists only in a portal where the AI agents  feature is active; creating an AI room is not enough to bring the section into being. */
     public var aiAgentsUsedSpace: FilesStatisticsFolder?
-    /** The used space of files in the \\Forms\\ section. */
+    /** The space taken by the content of the active form filling rooms, which is kept apart from `roomsUsedSpace`  even though those rooms are listed among the rooms. */
     public var formsUsedSpace: FilesStatisticsFolder?
 
     public init(myDocumentsUsedSpace: FilesStatisticsFolder? = nil, trashUsedSpace: FilesStatisticsFolder? = nil, archiveUsedSpace: FilesStatisticsFolder? = nil, roomsUsedSpace: FilesStatisticsFolder? = nil, aiAgentsUsedSpace: FilesStatisticsFolder? = nil, formsUsedSpace: FilesStatisticsFolder? = nil) {

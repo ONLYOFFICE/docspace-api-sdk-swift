@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The room security parameters. */
+/** The outcome of a change of the room membership. */
 public struct RoomSecurityDto: Sendable, Codable, Hashable {
 
-    /** The list of room members. */
+    /** The access entries of the subjects named in the request, read back after the change was applied. A subject the  caller may not see is missing from it, so comparing this list with the request is the way to learn who was  skipped; it is null when nothing was applied at all. */
     public var members: [FileShareDto]?
-    /** The warning message. */
+    /** The reason the first subject that could not be handled was skipped, in the language of the request, while the  rest of the list was still applied. Null when every named subject went through. The text is meant to be shown  to a person, not matched against. */
     public var warning: String?
-    /** The error type. */
+    /** Reports the one case in which nothing at all was changed: a member being removed still holds a role in a form  of the room, and the request did not ask to remove them anyway. Repeat the call with `force` to remove them  together with the role. */
     public var error: RoomSecurityError?
 
     public init(members: [FileShareDto]? = nil, warning: String? = nil, error: RoomSecurityError? = nil) {

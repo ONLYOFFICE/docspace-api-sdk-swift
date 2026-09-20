@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for switch the DocsCloud subscription to DocsCloudDevPack. */
+/** The request parameters for switching the DocsCloud subscription to DocsCloudDevPack, or for calculating  the cost of that switch. */
 public struct DocsCloudDevPackRequestDto: Sendable, Codable, Hashable {
 
     public static let quantityRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 2147483647, exclusiveMaximum: false, multipleOf: nil)
-    /** The number of users for DocsCloudDevPack subscription. */
+    /** The number of users to subscribe to DocsCloudDevPack for. It must be at least the number of users of  the currently purchased DocsCloud subscription, and at least the DocsCloudDevPack minimum configured  for the installation, which is 10 users by default; a smaller value is rejected with 400. */
     public var quantity: Int?
 
     public init(quantity: Int? = nil) {

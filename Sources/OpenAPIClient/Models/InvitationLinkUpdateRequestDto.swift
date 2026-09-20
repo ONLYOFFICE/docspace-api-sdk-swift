@@ -14,15 +14,15 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for updating an invitation link. */
+/** The invitation link being changed, with the deadline and use limit it is to have afterwards. */
 public struct InvitationLinkUpdateRequestDto: Sendable, Codable, Hashable {
 
     public static let maxUseCountRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 1000, exclusiveMaximum: false, multipleOf: nil)
-    /** The ID of the invitation link. */
+    /** The link to change, by the `id` that creating or reading it returned. The role behind that id cannot be  changed here. */
     public var id: UUID
-    /** The expiration date of the invitation link. */
+    /** The new deadline, read in the portal time zone. The body is applied as a whole, so leaving it out clears the  deadline rather than keeping the current one; a moment in the past is refused. */
     public var expiration: Date?
-    /** The maximum number of times the invitation link can be used. */
+    /** The new total number of accounts that may join through the link. It may not be lower than the uses already  spent, which the link reports as `currentUseCount`, and leaving it out removes the limit rather than keeping  the current one. */
     public var maxUseCount: Int?
 
     public init(id: UUID, expiration: Date? = nil, maxUseCount: Int? = nil) {

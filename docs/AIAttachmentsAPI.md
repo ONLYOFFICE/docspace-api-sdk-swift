@@ -4,9 +4,9 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**aiAttachmentsDelete**](AIAttachmentsAPI.md#aiattachmentsdelete) | **DELETE** /api/2.0/ai/attachments/delete | Delete
+[**aiAttachmentsDelete**](AIAttachmentsAPI.md#aiattachmentsdelete) | **DELETE** /api/2.0/ai/attachments/delete | Delete one attachment
 [**aiAttachmentsDeleteMany**](AIAttachmentsAPI.md#aiattachmentsdeletemany) | **DELETE** /api/2.0/ai/attachments/delete-many | Delete many
-[**aiAttachmentsGet**](AIAttachmentsAPI.md#aiattachmentsget) | **POST** /api/2.0/ai/attachments/get | Get
+[**aiAttachmentsGet**](AIAttachmentsAPI.md#aiattachmentsget) | **POST** /api/2.0/ai/attachments/get | Get one attachment
 [**aiAttachmentsGetMany**](AIAttachmentsAPI.md#aiattachmentsgetmany) | **POST** /api/2.0/ai/attachments/get-many | Get many
 [**aiAttachmentsLinkToMessage**](AIAttachmentsAPI.md#aiattachmentslinktomessage) | **POST** /api/2.0/ai/attachments/link-to-message | Link to message
 [**aiAttachmentsSaveFile**](AIAttachmentsAPI.md#aiattachmentssavefile) | **POST** /api/2.0/ai/attachments/save-file | Save file
@@ -18,7 +18,7 @@ Method | HTTP request | Description
     open class func aiAttachmentsDelete(body: String, completion: @escaping (_ data: AiSuccessResponse?, _ error: Error?) -> Void)
 ```
 
-Permanently deletes one attachment, whether it is still a draft or already linked to a message.
+Permanently deletes one attachment, whether it is still a draft or already bound to a message. The ID is not validated here, so a malformed one surfaces as an error relayed from storage rather than as a 400, and an ID that does not exist answers success without deleting anything. Deleting a bound attachment leaves the message in place without it. The deletion cannot be undone.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete/).
 
@@ -26,7 +26,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **String** |  | 
+ **body** | **String** | The ID of the attachment to delete, as a bare JSON string. | 
 
 ### Return type
 
@@ -34,16 +34,16 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let body = "body_example" // String | 
+let body = "body_example" // String | The ID of the attachment to delete, as a bare JSON string.
 
-// Delete
+// Delete one attachment
 AIAttachmentsAPIApi.aiAttachmentsDelete(body: body) { (response, error) in
     guard error == nil else {
         print(error)
@@ -68,7 +68,7 @@ AIAttachmentsAPIApi.aiAttachmentsDelete(body: body) { (response, error) in
     open class func aiAttachmentsDeleteMany(requestBody: [String], completion: @escaping (_ data: AiSuccessResponse?, _ error: Error?) -> Void)
 ```
 
-Permanently deletes a batch of attachments in a single round trip.
+Permanently deletes several attachments in one round trip. `ids` is optional and an absent value is treated as an empty list, so a malformed request quietly deletes nothing instead of failing. IDs that do not exist are skipped without being reported, so the answer confirms only that the call was accepted. The deletions cannot be undone.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete-many/).
 
@@ -76,7 +76,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestBody** | [**[String]**](String.md) |  | 
+ **requestBody** | [**[String]**](String.md) | The IDs of the attachments to delete, as a bare JSON array of strings. | 
 
 ### Return type
 
@@ -84,14 +84,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let requestBody = ["property_example"] // [String] | 
+let requestBody = ["property_example"] // [String] | The IDs of the attachments to delete, as a bare JSON array of strings.
 
 // Delete many
 AIAttachmentsAPIApi.aiAttachmentsDeleteMany(requestBody: requestBody) { (response, error) in
@@ -118,7 +118,7 @@ AIAttachmentsAPIApi.aiAttachmentsDeleteMany(requestBody: requestBody) { (respons
     open class func aiAttachmentsGet(body: String, completion: @escaping (_ data: AiAttachment?, _ error: Error?) -> Void)
 ```
 
-Returns one attachment by identifier.
+Returns one attachment by its ID, whether it is still a draft or already bound to a message. The ID is required and has to be a non-empty string. An ID that no longer exists is not reported as 404: the answer is a null body with status 200, so treat a missing payload as no such attachment. Use `POST api/2.0/ai/attachments/get-many` to read several at once.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get/).
 
@@ -126,7 +126,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **String** |  | 
+ **body** | **String** | The ID of the attachment to read, as a bare JSON string. | 
 
 ### Return type
 
@@ -134,16 +134,16 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let body = "body_example" // String | 
+let body = "body_example" // String | The ID of the attachment to read, as a bare JSON string.
 
-// Get
+// Get one attachment
 AIAttachmentsAPIApi.aiAttachmentsGet(body: body) { (response, error) in
     guard error == nil else {
         print(error)
@@ -168,7 +168,7 @@ AIAttachmentsAPIApi.aiAttachmentsGet(body: body) { (response, error) in
     open class func aiAttachmentsGetMany(requestBody: [String], completion: @escaping (_ data: [AiAttachment]?, _ error: Error?) -> Void)
 ```
 
-Returns a batch of attachments, preserving the requested order; an identifier that no longer exists comes back empty.
+Returns several attachments in one call, aligned by position with the `ids` that were sent, so the answer can be zipped straight onto the request. An ID that no longer exists leaves its slot empty rather than shortening the list, which is how a caller tells which of them are gone. `ids` has to be present and non-empty - an empty batch is rejected rather than answered with an empty list. Nothing is changed by the call.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get-many/).
 
@@ -176,7 +176,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestBody** | [**[String]**](String.md) |  | 
+ **requestBody** | [**[String]**](String.md) | The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position. | 
 
 ### Return type
 
@@ -184,14 +184,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let requestBody = ["property_example"] // [String] | 
+let requestBody = ["property_example"] // [String] | The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position.
 
 // Get many
 AIAttachmentsAPIApi.aiAttachmentsGetMany(requestBody: requestBody) { (response, error) in
@@ -218,7 +218,7 @@ AIAttachmentsAPIApi.aiAttachmentsGetMany(requestBody: requestBody) { (response, 
     open class func aiAttachmentsLinkToMessage(aiAttachmentsLinkToMessageRequest: AiAttachmentsLinkToMessageRequest, completion: @escaping (_ data: AiSuccessResponse?, _ error: Error?) -> Void)
 ```
 
-Binds draft attachments to the chat message that owns them, once that message has been persisted, so deleting the message removes them too. Identifiers that no longer exist are skipped.
+Binds draft attachments to the chat message that owns them, after that message has been persisted, so that deleting the message removes them too. All three of `ids`, `messageId` and `threadId` are required, and the references are verified rather than trusted: an unknown message answers 404, a message that belongs to a different thread answers 400, and attachments that no longer exist answer 404 naming each missing ID. That verification exists because the underlying binding call skips unknown IDs silently, which used to report success for a link that had not happened. Drafts stay unbound until this succeeds.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-link-to-message/).
 
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -268,7 +268,7 @@ AIAttachmentsAPIApi.aiAttachmentsLinkToMessage(aiAttachmentsLinkToMessageRequest
     open class func aiAttachmentsSaveFile(aiAttachmentsSaveFileRequest: AiAttachmentsSaveFileRequest, completion: @escaping (_ data: AiAttachment?, _ error: Error?) -> Void)
 ```
 
-Stores one file attachment as a draft, carrying the host-extracted text of the file. Prefer `save-files-many` when adding several files at once so they land as one round trip.
+Stores one file attachment as a draft and returns it, so its ID can be attached to a message later. `input` carries the host `path` - the DocSpace entry ID the AI backend resolves server-side - the text `content` already extracted from that file, the ONLYOFFICE numeric file `type`, and optionally a `title`; the text is what the model reads, so this operation does not open the file itself. Archives are refused outright, whatever their declared name says. Drafts are not bound to a conversation until `POST api/2.0/ai/attachments/link-to-message` is called, so an unlinked draft outlives the round that created it.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-save-file/).
 
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -318,7 +318,7 @@ AIAttachmentsAPIApi.aiAttachmentsSaveFile(aiAttachmentsSaveFileRequest: aiAttach
     open class func aiAttachmentsSaveFilesMany(aiAttachmentsSaveFilesManyRequest: AiAttachmentsSaveFilesManyRequest, completion: @escaping (_ data: [AiAttachment]?, _ error: Error?) -> Void)
 ```
 
-Stores a batch of file attachments as drafts in a single round trip. The returned records keep the order of the input.
+Stores several file attachments as drafts in one round trip and returns them in the order they were sent. Each entry is validated exactly as the single-file operation validates its `input`, and the first bad one rejects the whole batch with its index named in the message - nothing is stored. `inputs` has to be present and an array: an absent or null value is a malformed request rather than an empty batch, and only an explicit empty array means no files. Follow up with `POST api/2.0/ai/attachments/link-to-message` to bind the drafts to a message.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-save-files-many/).
 
@@ -334,7 +334,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift

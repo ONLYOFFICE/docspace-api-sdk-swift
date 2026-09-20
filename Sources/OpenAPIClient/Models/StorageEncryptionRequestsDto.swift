@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for managing storage encryption operations and notifications. */
+/** Whether the users are warned before the portals go down for the storage encryption pass. */
 public struct StorageEncryptionRequestsDto: Sendable, Codable, Hashable {
 
-    /** Specifies whether the users receive notifications about the storage encryption operations. */
+    /** Whether every user of every portal on the server is mailed before the encryption or decryption pass starts.  The pass runs either way; the flag only decides whether people are told that their portal is about to become  unavailable. */
     public var notifyUsers: Bool?
 
     public init(notifyUsers: Bool? = nil) {

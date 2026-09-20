@@ -25,10 +25,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-export-text-to-docx/
      - parameter aiExportTextToDocxRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: AiExportTextToDocx200Response
+     - returns: AiExportTextToDocx202Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiExportTextToDocx200Response {
+    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiExportTextToDocx202Response {
         return try await aiExportTextToDocxWithRequestBuilder(aiExportTextToDocxRequest: aiExportTextToDocxRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -40,12 +40,18 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-export-text-to-docx/
      
      - POST /api/2.0/ai/text-to-docx
-     - Starts an asynchronous markdown-to-docx export. The response only acknowledges the task: the AI Worker converts the content and saves the .docx into the target folder (an agent room resolves to its result-storage subfolder), and completion reaches the client as the usual folder-modified socket event.
+     - Queues a markdown-to-docx export and answers 202 as soon as the job is accepted, without waiting for it. `title`, `content` and `folderId` are all required, and a `content` of only whitespace counts as missing even though it is not empty. The conversion runs in the AI worker, which saves the .docx into the target folder - an agent room resolves to its own result-storage subfolder - so there is nothing to poll here: completion arrives as the ordinary folder-modified socket event. This route accepts a body of up to 15 MB rather than the 100 KB the rest of the API allows, because a whole thread transcript is sent in one request.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiExportTextToDocxRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<AiExportTextToDocx200Response> 
+     - returns: RequestBuilder<AiExportTextToDocx202Response> 
      */
-    open class func aiExportTextToDocxWithRequestBuilder(aiExportTextToDocxRequest: AiExportTextToDocxRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiExportTextToDocx200Response> {
+    open class func aiExportTextToDocxWithRequestBuilder(aiExportTextToDocxRequest: AiExportTextToDocxRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiExportTextToDocx202Response> {
         let localVariablePath = "/api/2.0/ai/text-to-docx"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiExportTextToDocxRequest, codableHelper: apiConfiguration.codableHelper)
@@ -59,8 +65,8 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AiExportTextToDocx200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AiExportTextToDocx202Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

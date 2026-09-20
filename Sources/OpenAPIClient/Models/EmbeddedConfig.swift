@@ -14,18 +14,18 @@
 //  limitations under the License.
 import Foundation
 
-/** The configuration parameters for the embedded document type. */
+/** The addresses the framed viewer needs. It is reported for the embedded layout only. */
 public struct EmbeddedConfig: Sendable, Codable, Hashable {
 
-    /** The absolute URL to the document serving as a source file for the document embedded into the web page. */
+    /** The page to put into the frame. It is empty when the opening carries no external share key, since a framed  viewer cannot authenticate a portal member. */
     public var embedUrl: String?
-    /** The absolute URL that will allow the document to be saved onto the user personal computer. */
+    /** Where the download button of the framed viewer leads. */
     public var saveUrl: String?
-    /** The shared URL parameter. */
+    /** The query fragment carrying the external share key, ampersand included, out of which the addresses around it  are built. */
     public var shareLinkParam: String?
-    /** The absolute URL that will allow other users to share this document. */
+    /** The address behind the share button of the framed viewer, the document opened full-screen for reading. It is  empty when the opening carries no external share key. */
     public var shareUrl: String?
-    /** The place for the embedded viewer toolbar, can be either top or bottom. */
+    /** Where the framed viewer puts its toolbar. The portal always asks for the top. */
     public var toolbarDocked: String?
 
     public init(embedUrl: String? = nil, saveUrl: String? = nil, shareLinkParam: String? = nil, shareUrl: String? = nil, toolbarDocked: String? = nil) {

@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The currencies parameters. */
+/** One currency the portal's subscription prices can be quoted in, with the region it belongs to. */
 public struct CurrenciesDto: Sendable, Codable, Hashable {
 
-    /** The ISO country code. */
+    /** The two-letter ISO code of the country the currency is that of, which is the region the price list was  picked for rather than the country of the caller. */
     public var isoCountryCode: String?
-    /** The ISO currency symbol. */
+    /** The three-letter ISO 4217 code of the currency. On the first item of the answer it is the currency the  amounts from `GET api/2.0/portal/payment/prices` are expressed in. */
     public var isoCurrencySymbol: String?
-    /** The currency native name. */
+    /** The currency name in the language of its own region - not in the portal language, and not a symbol. */
     public var currencyNativeName: String?
 
     public init(isoCountryCode: String? = nil, isoCurrencySymbol: String? = nil, currencyNativeName: String? = nil) {

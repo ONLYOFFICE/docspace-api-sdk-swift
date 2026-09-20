@@ -14,22 +14,22 @@
 //  limitations under the License.
 import Foundation
 
-/** The form gallery parameters. */
+/** Where the ready-made form templates are served from, for browsing them and for submitting new ones. */
 public struct FormGalleryDto: Sendable, Codable, Hashable {
 
-    /** The form gallery path. */
+    /** The path under `domain` that the gallery's own listing API is reached at. It is joined to `domain` by the  client; the portal only relays the values from its configuration. */
     public var path: String?
-    /** The form gallery domain. */
+    /** The address of the gallery service, which is a service of the vendor rather than part of the portal. Every  field of this object is empty on an installation that configures no gallery, and a client should then not  offer the gallery at all. */
     public var domain: String?
-    /** The form gallery extension. */
+    /** The file extension to ask the gallery for, which decides which rendition of a template is downloaded when  several are published. */
     public var ext: String?
-    /** The form gallery upload path. */
+    /** The path used for submitting a form of one's own to the gallery, the counterpart of `path` for the upload  side. The four `upload` fields are empty when the installation allows browsing but not submitting. */
     public var uploadPath: String?
-    /** The form gallery upload domain. */
+    /** The address the submission is sent to, which may differ from `domain`. */
     public var uploadDomain: String?
-    /** The form gallery upload extension. */
+    /** The file extension a submitted form has to carry. */
     public var uploadExt: String?
-    /** The form gallery upload dashboard. */
+    /** The page a person is sent to in order to follow up on a submission, joined to `uploadDomain` the same way  as `uploadPath`. */
     public var uploadDashboard: String?
 
     public init(path: String?, domain: String?, ext: String?, uploadPath: String?, uploadDomain: String?, uploadExt: String?, uploadDashboard: String?) {

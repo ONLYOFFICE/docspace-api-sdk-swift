@@ -14,16 +14,16 @@
 //  limitations under the License.
 import Foundation
 
-/** The room template status. */
+/** The progress of the job that builds a room template out of an existing room. */
 public struct RoomTemplateStatusDto: Sendable, Codable, Hashable {
 
-    /** The room template ID. */
+    /** The template the job is building. It is meaningful once the job has created the template folder, and the  template can be opened with the room operations only after `isCompleted` turns true. */
     public var templateId: Int
-    /** The progress of the room template creation process. */
+    /** How far the job has got. The value climbs while the contents of the room are being copied and reaches its  maximum at the very end, so it is an indication of life rather than a reliable estimate of the time left. */
     public var progress: Double
-    /** The error message that is sent when the room template is not created successfully. */
+    /** Why the job stopped. It is empty while the job runs and after a successful one; when it is filled the  half-built template has already been removed, so nothing has to be cleaned up by the caller. */
     public var error: String?
-    /** Specifies whether the process of creating the room template is completed. */
+    /** Whether the job has ended. It is set both after a successful build and after a failure, so `error` is what  tells the two apart, and the record keeps answering with the same values until another job is started. */
     public var isCompleted: Bool
 
     public init(templateId: Int, progress: Double, error: String? = nil, isCompleted: Bool) {

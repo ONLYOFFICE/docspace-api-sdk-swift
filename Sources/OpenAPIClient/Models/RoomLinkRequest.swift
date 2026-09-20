@@ -14,34 +14,34 @@
 //  limitations under the License.
 import Foundation
 
-/** The room link parameters. */
+/** The link of a room to create, change or revoke. */
 public struct RoomLinkRequest: Sendable, Codable, Hashable {
 
     public static let titleRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let passwordRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let maxUseCountRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 1000, exclusiveMaximum: false, multipleOf: nil)
-    /** The room link ID. */
+    /** Which link to change, taken from `GET api/2.0/files/rooms/{id}/links`. Leaving it out creates a link, and an  identifier the room does not know creates a link carrying that identifier. */
     public var linkId: UUID?
-    /** The link sharing rights. */
+    /** What whoever opens the link may do in the room. The value 0 revokes the link instead of changing it, and the  levels a room accepts depend on its kind. */
     public var access: FileShare?
-    /** The link expiration date. */
-    public var expirationDate: Date?
-    /** The link scope, whether it is internal or not. */
+    /** When the link stops working, written with the offset of the portal time zone. A date already past is dropped  silently for an external link and refused for an invitation link, and a date further ahead than the portal  allows is refused as well; leaving it out means the link does not expire. */
+    public var expirationDate: ApiDateTime?
+    /** Whether the external link works only for people already signed in to the portal. With it off the link opens  the room for anyone who has the address, subject to the password. */
     public var _internal: Bool?
-    /** The link name. */
+    /** The name the link is shown under in the room. An empty value is accepted and the portal names the link itself,  so the answer is what tells the caller the name in use. */
     public var title: String?
-    /** The link type. */
+    /** Which kind of link to create: an invitation link makes whoever opens it a member of the room, while an  external link opens the room without an account. It is fixed when the link is created and is ignored on later  changes. */
     public var linkType: LinkType?
-    /** The link password. */
+    /** The password an external link asks for before it opens the room. An empty value leaves the link open to anyone  who has the address, and the password is never returned when links are listed. */
     public var password: String?
-    /** Specifies if downloading the file from the link is disabled or not. */
+    /** Whether people arriving through the link are stopped from downloading and printing what they open. They can  still read the documents in the editor. */
     public var denyDownload: Bool?
-    /** The maximum number of times the invitation link can be used. */
+    /** How many people an invitation link may still let in before it stops working. A value below the number of  people who already used it is refused, and leaving it out puts no ceiling on the link. */
     public var maxUseCount: Int?
-    /** The current number of times the invitation link has been used. */
+    /** How many people have already joined through this invitation link. The value is kept by the portal: it is  reported back when links are listed and anything sent here is ignored. */
     public var currentUseCount: Int?
 
-    public init(linkId: UUID? = nil, access: FileShare? = nil, expirationDate: Date? = nil, _internal: Bool? = nil, title: String? = nil, linkType: LinkType? = nil, password: String? = nil, denyDownload: Bool? = nil, maxUseCount: Int? = nil, currentUseCount: Int? = nil) {
+    public init(linkId: UUID? = nil, access: FileShare? = nil, expirationDate: ApiDateTime? = nil, _internal: Bool? = nil, title: String? = nil, linkType: LinkType? = nil, password: String? = nil, denyDownload: Bool? = nil, maxUseCount: Int? = nil, currentUseCount: Int? = nil) {
         self.linkId = linkId
         self.access = access
         self.expirationDate = expirationDate

@@ -14,33 +14,35 @@
 //  limitations under the License.
 import Foundation
 
-/** The customization config parameters. */
+/** How the editor interface is dressed: branding, the buttons that lead back into the portal, and the behaviour of  review, mentions and form submission. */
 public struct CustomizationConfigDto: Sendable, Codable, Hashable {
 
-    /** Specifies if the customization is about. */
+    /** Whether the About entry of the editor menu is shown. */
     public var about: Bool?
-    /** The customization customer configuration. */
+    /** The branding of the organization running the portal. It is filled in on a server installation only and is  empty in the cloud. */
     public var customer: CustomerConfigDto?
-    /** The anonymous configuration of the customization. */
+    /** How an anonymous participant is treated in this session. */
     public var anonymous: AnonymousConfigDto?
-    /** The feedback configuration of the customization. */
+    /** The support link the editor offers behind its feedback button. */
     public var feedback: FeedbackConfig?
-    /** Specifies if the customization should be force saved. */
+    /** Whether the editors write intermediate revisions while the document stays open. It is empty when the portal  leaves the decision to the editors themselves. */
     public var forcesave: Bool?
-    /** The go back configuration of the customization. */
+    /** Where the editor returns the user to when they leave the document. It is empty when there is nowhere to go  back to, as in an embedded opening. */
     public var goback: GobackConfig?
-    /** The review configuration of the customization. */
+    /** How tracked changes are displayed when the document opens; it depends on whether this session may write. */
     public var review: ReviewConfig?
-    /** The logo of the customization. */
+    /** The logo the editor shows, in the variants the current layout and file type need. */
     public var logo: LogoConfigDto?
-    /** Specifies if the share should be mentioned. */
+    /** Whether mentioning a user who cannot yet open the document offers to share it with them, instead of silently  notifying nobody. */
     public var mentionShare: Bool?
-    /** The Complete & Submit button settings. */
+    /** The submit button of a form: whether it is shown and what it says. */
     public var submitForm: SubmitForm?
-    /** The parameters of the button that starts filling out the form. */
+    /** The button that starts filling out the form. It is empty when this opening offers no such button. */
     public var startFillingForm: StartFillingForm?
+    /** The AI configuration settings. */
+    public var ai: AIConfig?
 
-    public init(about: Bool? = nil, customer: CustomerConfigDto? = nil, anonymous: AnonymousConfigDto? = nil, feedback: FeedbackConfig? = nil, forcesave: Bool? = nil, goback: GobackConfig? = nil, review: ReviewConfig? = nil, logo: LogoConfigDto? = nil, mentionShare: Bool? = nil, submitForm: SubmitForm? = nil, startFillingForm: StartFillingForm? = nil) {
+    public init(about: Bool? = nil, customer: CustomerConfigDto? = nil, anonymous: AnonymousConfigDto? = nil, feedback: FeedbackConfig? = nil, forcesave: Bool? = nil, goback: GobackConfig? = nil, review: ReviewConfig? = nil, logo: LogoConfigDto? = nil, mentionShare: Bool? = nil, submitForm: SubmitForm? = nil, startFillingForm: StartFillingForm? = nil, ai: AIConfig? = nil) {
         self.about = about
         self.customer = customer
         self.anonymous = anonymous
@@ -52,6 +54,7 @@ public struct CustomizationConfigDto: Sendable, Codable, Hashable {
         self.mentionShare = mentionShare
         self.submitForm = submitForm
         self.startFillingForm = startFillingForm
+        self.ai = ai
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -66,6 +69,7 @@ public struct CustomizationConfigDto: Sendable, Codable, Hashable {
         case mentionShare
         case submitForm
         case startFillingForm
+        case ai
     }
 
     // Encodable protocol methods
@@ -83,6 +87,7 @@ public struct CustomizationConfigDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(mentionShare, forKey: .mentionShare)
         try container.encodeIfPresent(submitForm, forKey: .submitForm)
         try container.encodeIfPresent(startFillingForm, forKey: .startFillingForm)
+        try container.encodeIfPresent(ai, forKey: .ai)
     }
 }
 

@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** A key-value pair of a list item. */
+/** One entry of a keyed collection, carried as an explicit pair of `key` and `value` fields instead of as a member  of a JSON object, so that the key is not restricted to a string and the entries keep the order they are sent in. */
 public struct ItemKeyValuePairObjectObject: Sendable, Codable, Hashable {
 
     public var key: JSONValue?

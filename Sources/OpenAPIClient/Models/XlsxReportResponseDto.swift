@@ -14,17 +14,17 @@
 //  limitations under the License.
 import Foundation
 
-/** The XLSX report task response parameters. */
+/** The answer to a report generation request: the queued task, the form whose answers are collected, and whether the  report file is being created or refreshed. */
 public struct XlsxReportResponseDto: Sendable, Codable, Hashable {
 
-    /** The original form file information. */
-    public var form: FileDtoInteger?
-    /** The Document Builder task information. */
+    /** The original form the answers are collected from. It is not the produced spreadsheet - that one arrives with  the task, once the task reports completion. */
+    public var form: FileDto?
+    /** The queued generation. Poll it with `GET api/2.0/files/file/{fileId}/xlsx` until it reports completion, and  take the produced file from it then. */
     public var task: DocumentBuilderTaskDto?
-    /** Specifies whether the XLSX report file is newly created or an existing file will be updated. */
+    /** True when this run creates the report file, false when an existing report is rewritten in place, which means  it keeps its id and the links already shared for it. */
     public var isNewFile: Bool?
 
-    public init(form: FileDtoInteger? = nil, task: DocumentBuilderTaskDto? = nil, isNewFile: Bool? = nil) {
+    public init(form: FileDto? = nil, task: DocumentBuilderTaskDto? = nil, isNewFile: Bool? = nil) {
         self.form = form
         self.task = task
         self.isNewFile = isNewFile

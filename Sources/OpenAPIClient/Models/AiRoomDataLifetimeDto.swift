@@ -14,17 +14,17 @@
 //  limitations under the License.
 import Foundation
 
-/** The room data lifetime information. */
+/** The rule by which the files of a room are removed once they have been lying in it for too long. */
 public struct AiRoomDataLifetimeDto: Sendable, Codable, Hashable {
 
     public static let valueRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 999, exclusiveMaximum: false, multipleOf: nil)
-    /** Specifies whether to permanently delete the room data or not. */
+    /** Decides what happens to a file that has grown too old: it is erased outright, or it is moved to the trash of  the account that created the room, from where it can still be brought back. */
     public var deletePermanently: Bool?
-    /** Specifies the time period type of the room data lifetime. */
+    /** The unit the age is counted in. Months and years are counted as calendar ones, so the same number of them  covers a different number of days depending on when the clean-up runs. */
     public var period: AiRoomDataLifetimePeriod?
-    /** Specifies the time period value of the room data lifetime. */
+    /** How many periods a file may stay in the room, counted from the moment it was last changed rather than from the  moment the rule was set. Files that are already older than this are removed by the next clean-up. */
     public var value: Int?
-    /** Specifies whether the room data lifetime setting is enabled or not. */
+    /** Switches the rule on and off. Switching it off erases the rule instead of keeping it aside, so afterwards the  room reports no rule at all and the other three values have to be sent again to bring it back. */
     public var enabled: Bool?
 
     public init(deletePermanently: Bool? = nil, period: AiRoomDataLifetimePeriod? = nil, value: Int? = nil, enabled: Bool? = nil) {

@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** The presence or absence of the templates in the Create New... menu option. */
+/** One creation template offered in the editor. The portal no longer offers any, so this never appears in an editor  configuration. */
 public struct TemplatesConfig: Sendable, Codable, Hashable {
 
     /** The absolute URL to the image for template. */

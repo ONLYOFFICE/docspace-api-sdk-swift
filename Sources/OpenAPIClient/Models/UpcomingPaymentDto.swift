@@ -14,29 +14,29 @@
 //  limitations under the License.
 import Foundation
 
-/** The upcoming payment parameters. */
+/** One charge the portal is going to be billed for at the start of the next period. */
 public struct UpcomingPaymentDto: Sendable, Codable, Hashable {
 
-    /** The quota ID. */
+    /** The quota that is going to be charged. When a switch to another quota is scheduled, this is the quota  being switched to, so it can differ from what `GET api/2.0/portal/tariff` reports for today. */
     public var id: Int?
-    /** The quota name. */
+    /** The quota's stable key, which is the same identifier the wallet operations use for a service. */
     public var name: String?
-    /** The quota title. */
+    /** The quota name in the portal language, meant to be printed on an invoice preview. */
     public var title: String?
-    /** The quota unit of measure. */
+    /** What `quantity` counts, in the portal language - seats, administrators, gigabytes. It is empty for a quota  that is simply on or off. */
     public var unitOfMeasure: String?
-    /** The quantity that will be charged (the next quantity if set, otherwise the current quantity). */
+    /** How much is going to be charged for, which is the quantity scheduled for the next period when one has been  scheduled and today's quantity otherwise. */
     public var quantity: Int?
-    /** The quota applies to the wallet or not. */
+    /** Whether the charge is paid out of the portal wallet rather than from the subscription. */
     public var wallet: Bool?
-    /** The due date of the upcoming payment in the portal time zone. */
-    public var dueDate: Date?
-    /** The amount that will be charged (unit price multiplied by the quantity). */
+    /** When the charge falls due, in the portal time zone. */
+    public var dueDate: ApiDateTime?
+    /** What the charge comes to: the unit price of the quota multiplied by `quantity`. Taxes are not part of it,  and a quota with no price of its own is not listed at all rather than listed with a zero. */
     public var amount: Double?
-    /** The three-character ISO 4217 currency symbol of the amount. */
+    /** The currency `amount` is expressed in, as a three-letter ISO 4217 code. It follows the portal's billing  account, so every entry of one answer carries the same code. */
     public var currency: String?
 
-    public init(id: Int? = nil, name: String? = nil, title: String? = nil, unitOfMeasure: String? = nil, quantity: Int? = nil, wallet: Bool? = nil, dueDate: Date? = nil, amount: Double? = nil, currency: String? = nil) {
+    public init(id: Int? = nil, name: String? = nil, title: String? = nil, unitOfMeasure: String? = nil, quantity: Int? = nil, wallet: Bool? = nil, dueDate: ApiDateTime? = nil, amount: Double? = nil, currency: String? = nil) {
         self.id = id
         self.name = name
         self.title = title

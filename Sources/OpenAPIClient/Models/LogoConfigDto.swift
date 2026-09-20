@@ -14,20 +14,20 @@
 //  limitations under the License.
 import Foundation
 
-/** The logo config parameters. */
+/** The logo the editor shows, resolved for the file type and the layout of this opening. */
 public struct LogoConfigDto: Sendable, Codable, Hashable {
 
-    /** The image of the logo. */
+    /** The logo for the current layout and file type, as the portal branding defines it. */
     public var image: String?
-    /** The dark image of the logo. */
+    /** The variant for a dark interface theme. */
     public var imageDark: String?
-    /** The light image of the logo. */
+    /** The variant for a light interface theme. */
     public var imageLight: String?
-    /** The embedded image of the logo. */
+    /** The variant for the framed viewer. It is empty in every layout but the embedded one. */
     public var imageEmbedded: String?
-    /** The url link of the logo. */
+    /** Where clicking the logo takes the user. */
     public var url: String?
-    /** Specifies if the logo is visible. */
+    /** Whether the logo is shown at all; the mobile layout hides it. */
     public var visible: Bool?
 
     public init(image: String? = nil, imageDark: String? = nil, imageLight: String? = nil, imageEmbedded: String? = nil, url: String? = nil, visible: Bool? = nil) {

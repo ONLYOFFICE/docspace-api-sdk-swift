@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents dimensions with width and height values. */
+/** A pixel size measured on the image itself. */
 public struct Size: Sendable, Codable, Hashable {
 
-    /** Gets or sets the height dimension of an object, typically measured in pixels or other unit.  It defines the vertical size of the object. */
+    /** The height of the image in pixels, read from the stored file rather than from any display setting. */
     public var height: Int?
-    /** Gets or sets the width dimension of an object, typically measured in pixels or other unit. */
+    /** The width of the image in pixels, read from the stored file rather than from any display setting. */
     public var width: Int?
 
     public init(height: Int? = nil, width: Int? = nil) {

@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for generating a customer monthly usage report. */
+/** The period covered by the monthly wallet spending report. */
 public struct CustomerMonthlyUsageReportRequestDto: Sendable, Codable, Hashable {
 
-    /** The report start date. */
+    /** The beginning of the reported period, inclusive. The months are cut in the portal time zone rather than in  UTC, so spending at the turn of a month falls where the portal sees it; defaults to the portal creation date. */
     public var startDate: Date?
-    /** The report end date. */
+    /** The end of the reported period, inclusive. Cut in the portal time zone in the same way as `startDate`, and  defaults to the moment the call is made. */
     public var endDate: Date?
 
     public init(startDate: Date? = nil, endDate: Date? = nil) {

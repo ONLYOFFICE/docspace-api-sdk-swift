@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** The webhook configuration with its status. */
+/** A webhook subscription together with how its last delivery ended. */
 public struct WebhooksConfigWithStatusDto: Sendable, Codable, Hashable {
 
-    /** The webhook configuration. */
+    /** The subscription itself. Despite the plural name it is one subscription, not a list. */
     public var configs: WebhooksConfigDto?
-    /** The webhook status. */
+    /** The HTTP status code the target answered on the last attempt. `0` means nothing has been delivered yet,  which is not the same as a failure. */
     public var status: Int?
 
     public init(configs: WebhooksConfigDto? = nil, status: Int? = nil) {

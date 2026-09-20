@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The webhook trigger with its availability for the current user. */
+/** One event a webhook can listen to, with the bit that selects it and whether the caller may subscribe to it. */
 public struct WebhookTriggerDto: Sendable, Codable, Hashable {
 
-    /** The trigger name. */
+    /** The event name exactly as it appears in a delivered payload, so a receiver can match on it. The entry  named `*` is not an event but the catch-all. */
     public var name: String?
-    /** The trigger bit value. */
+    /** The bit that stands for this event in the `triggers` bitmask of a subscription. Add the bits of the wanted  events together; the catch-all entry has the value `0` and is used on its own rather than added to  anything. */
     public var id: Int64?
-    /** Specifies whether this trigger is available for the current user's role. */
+    /** Whether the caller's own role may subscribe to this event - a plain member cannot subscribe to user, group  or room creation, where a room administrator can. An unavailable event is listed all the same, and sending  its bit to `POST api/2.0/settings/webhook` is refused as an invalid request. */
     public var available: Bool?
 
     public init(name: String? = nil, id: Int64? = nil, available: Bool? = nil) {

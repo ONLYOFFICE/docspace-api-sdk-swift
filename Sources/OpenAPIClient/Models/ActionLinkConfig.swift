@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The config parameter which contains the information about the action in the document that will be scrolled to. */
+/** The place inside a document that a link should open at. */
 public struct ActionLinkConfig: Sendable, Codable, Hashable {
 
-    /** The information about the action in the document that will be scrolled to. */
+    /** The anchor itself. It is passed on to the editor unchanged, so it has to be the value the editor produced for  the comment or the mention it points at. */
     public var action: ActionConfig?
 
     public init(action: ActionConfig? = nil) {

@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** The file statictics folder parameters. */
+/** One section of the portal and the space its documents take. */
 public struct FilesStatisticsFolder: Sendable, Codable, Hashable {
 
-    /** The folder title. */
+    /** The name of the section as the interface shows it, translated into the language used by the caller, so it  suits display but not matching - which section an entry describes is told by the field that carries it. */
     public var title: String?
-    /** The used space in the folder. */
+    /** The size of the files kept in the section, in bytes, counting every folder and room inside it; 0 means the  section holds nothing. The counter is brought up to date as an operation finishes, so a reading taken right  after an upload or a delete can still show the previous value. */
     public var usedSpace: Int64?
 
     public init(title: String? = nil, usedSpace: Int64? = nil) {

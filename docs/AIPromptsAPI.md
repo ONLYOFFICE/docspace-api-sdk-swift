@@ -4,19 +4,19 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**aiPromptsCreate**](AIPromptsAPI.md#aipromptscreate) | **POST** /api/2.0/ai/prompts/create | Create
+[**aiPromptsCreate**](AIPromptsAPI.md#aipromptscreate) | **POST** /api/2.0/ai/prompts/create | Save a prompt
 [**aiPromptsCreateFolder**](AIPromptsAPI.md#aipromptscreatefolder) | **POST** /api/2.0/ai/prompts/create-folder | Create folder
-[**aiPromptsDelete**](AIPromptsAPI.md#aipromptsdelete) | **DELETE** /api/2.0/ai/prompts/delete | Delete
+[**aiPromptsDelete**](AIPromptsAPI.md#aipromptsdelete) | **DELETE** /api/2.0/ai/prompts/delete | Delete a saved prompt
 [**aiPromptsDeleteFolder**](AIPromptsAPI.md#aipromptsdeletefolder) | **DELETE** /api/2.0/ai/prompts/delete-folder | Delete folder
-[**aiPromptsExport**](AIPromptsAPI.md#aipromptsexport) | **GET** /api/2.0/ai/prompts/export | Export
-[**aiPromptsGetById**](AIPromptsAPI.md#aipromptsgetbyid) | **GET** /api/2.0/ai/prompts/get-by-id | Get by id
-[**aiPromptsGetFolderById**](AIPromptsAPI.md#aipromptsgetfolderbyid) | **GET** /api/2.0/ai/prompts/get-folder-by-id | Get folder by id
+[**aiPromptsExport**](AIPromptsAPI.md#aipromptsexport) | **GET** /api/2.0/ai/prompts/export | Export the prompt library
+[**aiPromptsGetById**](AIPromptsAPI.md#aipromptsgetbyid) | **GET** /api/2.0/ai/prompts/get-by-id | Get a saved prompt
+[**aiPromptsGetFolderById**](AIPromptsAPI.md#aipromptsgetfolderbyid) | **GET** /api/2.0/ai/prompts/get-folder-by-id | Get a prompt folder
 [**aiPromptsImportBundle**](AIPromptsAPI.md#aipromptsimportbundle) | **POST** /api/2.0/ai/prompts/import-bundle | Import bundle
-[**aiPromptsList**](AIPromptsAPI.md#aipromptslist) | **GET** /api/2.0/ai/prompts/list | List
+[**aiPromptsList**](AIPromptsAPI.md#aipromptslist) | **GET** /api/2.0/ai/prompts/list | List saved prompts
 [**aiPromptsListFolders**](AIPromptsAPI.md#aipromptslistfolders) | **GET** /api/2.0/ai/prompts/list-folders | List folders
-[**aiPromptsMove**](AIPromptsAPI.md#aipromptsmove) | **PUT** /api/2.0/ai/prompts/move | Move
+[**aiPromptsMove**](AIPromptsAPI.md#aipromptsmove) | **PUT** /api/2.0/ai/prompts/move | Move a prompt to a folder
 [**aiPromptsRenameFolder**](AIPromptsAPI.md#aipromptsrenamefolder) | **PUT** /api/2.0/ai/prompts/rename-folder | Rename folder
-[**aiPromptsUpdate**](AIPromptsAPI.md#aipromptsupdate) | **PUT** /api/2.0/ai/prompts/update | Update
+[**aiPromptsUpdate**](AIPromptsAPI.md#aipromptsupdate) | **PUT** /api/2.0/ai/prompts/update | Update a saved prompt
 
 
 # **aiPromptsCreate**
@@ -24,7 +24,7 @@ Method | HTTP request | Description
     open class func aiPromptsCreate(aiCreatePromptInput: AiCreatePromptInput, completion: @escaping (_ data: AiPromptMutationResult?, _ error: Error?) -> Void)
 ```
 
-Saves a new prompt. The name must be non-empty and unique inside its folder, and `folderId` must point at an existing folder - omit it for the root.
+Saves a new prompt in the caller's own prompt library and returns it. The name has to be non-empty and unique inside its folder, and `folderId` has to name an existing folder - omit it to save the prompt at the root. Prompts are per-user: another user's library is never visible here, and no permission beyond having AI enabled is needed. The answer carries the stored prompt including the ID to use with the update, move and delete operations.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create/).
 
@@ -40,7 +40,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -49,7 +49,7 @@ import OpenAPIClient
 
 let aiCreatePromptInput = AiCreatePromptInput(name: "name_example", text: "text_example", folderId: "folderId_example") // AiCreatePromptInput | 
 
-// Create
+// Save a prompt
 AIPromptsAPIApi.aiPromptsCreate(aiCreatePromptInput: aiCreatePromptInput) { (response, error) in
     guard error == nil else {
         print(error)
@@ -74,7 +74,7 @@ AIPromptsAPIApi.aiPromptsCreate(aiCreatePromptInput: aiCreatePromptInput) { (res
     open class func aiPromptsCreateFolder(body: String, completion: @escaping (_ data: AiFolderMutationResult?, _ error: Error?) -> Void)
 ```
 
-Creates a prompt folder. The name must be non-empty and unique across the portal - prompt folders do not nest.
+Creates a folder in the caller's prompt library and returns it. The name has to be non-empty and unique across that library. Folders do not nest: there is one flat level, so a folder cannot be created inside another. The answer carries the folder ID to use as `folderId` when saving or moving prompts.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create-folder/).
 
@@ -82,7 +82,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **String** |  | 
+ **body** | **String** | The name of the folder to create, as a bare JSON string. | 
 
 ### Return type
 
@@ -90,14 +90,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let body = "body_example" // String | 
+let body = "body_example" // String | The name of the folder to create, as a bare JSON string.
 
 // Create folder
 AIPromptsAPIApi.aiPromptsCreateFolder(body: body) { (response, error) in
@@ -124,7 +124,7 @@ AIPromptsAPIApi.aiPromptsCreateFolder(body: body) { (response, error) in
     open class func aiPromptsDelete(body: String, completion: @escaping (_ data: AiSuccessResponse?, _ error: Error?) -> Void)
 ```
 
-Deletes a saved prompt. Does nothing when it no longer exists.
+Deletes one saved prompt from the caller's library. The ID may be sent in the body or as a query parameter, and it is required. An ID that does not exist, or that belongs to another user, is not reported: the call answers success without deleting anything. The deletion is permanent.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete/).
 
@@ -132,7 +132,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **String** |  | 
+ **body** | **String** | The ID of the prompt to delete, as a bare JSON string. | 
 
 ### Return type
 
@@ -140,16 +140,16 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let body = "body_example" // String | 
+let body = "body_example" // String | The ID of the prompt to delete, as a bare JSON string.
 
-// Delete
+// Delete a saved prompt
 AIPromptsAPIApi.aiPromptsDelete(body: body) { (response, error) in
     guard error == nil else {
         print(error)
@@ -174,7 +174,7 @@ AIPromptsAPIApi.aiPromptsDelete(body: body) { (response, error) in
     open class func aiPromptsDeleteFolder(body: String, completion: @escaping (_ data: AiSuccessResponse?, _ error: Error?) -> Void)
 ```
 
-Deletes a prompt folder together with the prompts inside it.
+Deletes a folder together with every prompt inside it, permanently. The ID is required and may be sent in the body or as a query parameter. Unlike deleting a prompt, this checks first: a folder that does not exist, and one that belongs to another user, both answer 404 - the two cases are deliberately indistinguishable, so a foreign folder cannot be probed. Move the prompts out with `PUT api/2.0/ai/prompts/move` first if they should survive.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete-folder/).
 
@@ -182,7 +182,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **String** |  | 
+ **body** | **String** | The ID of the folder to delete, as a bare JSON string. | 
 
 ### Return type
 
@@ -190,14 +190,14 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let body = "body_example" // String | 
+let body = "body_example" // String | The ID of the folder to delete, as a bare JSON string.
 
 // Delete folder
 AIPromptsAPIApi.aiPromptsDeleteFolder(body: body) { (response, error) in
@@ -224,7 +224,7 @@ AIPromptsAPIApi.aiPromptsDeleteFolder(body: body) { (response, error) in
     open class func aiPromptsExport(completion: @escaping (_ data: AiPromptBundle?, _ error: Error?) -> Void)
 ```
 
-Builds a self-contained, versioned bundle of every saved prompt and folder, ready for `import-bundle`.
+Builds a versioned bundle of every prompt and folder in the caller's library and returns it, with no parameters. The bundle is self-contained: it carries its own format version so an older export can still be read back, and it is the input `POST api/2.0/ai/prompts/import-bundle` expects. This is also the only way to read the whole library at once, since listing is folder-scoped. Nothing is changed by the call.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-export/).
 
@@ -237,7 +237,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -245,7 +245,7 @@ No authorization required
 import OpenAPIClient
 
 
-// Export
+// Export the prompt library
 AIPromptsAPIApi.aiPromptsExport() { (response, error) in
     guard error == nil else {
         print(error)
@@ -270,7 +270,7 @@ AIPromptsAPIApi.aiPromptsExport() { (response, error) in
     open class func aiPromptsGetById(id: String, completion: @escaping (_ data: AiPrompt?, _ error: Error?) -> Void)
 ```
 
-Returns one saved prompt, or an empty result when the identifier is unknown.
+Returns one saved prompt by its ID. The ID is required and is read from the query. An ID that is unknown, or that belongs to another user, is not reported as 404: the answer is an empty body with status 200, so treat a missing payload as no such prompt. Prompt IDs come from `GET api/2.0/ai/prompts/list` or from the answer of the create operation.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-by-id/).
 
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -295,7 +295,7 @@ import OpenAPIClient
 
 let id = "id_example" // String | The saved prompt identifier.
 
-// Get by id
+// Get a saved prompt
 AIPromptsAPIApi.aiPromptsGetById(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -320,7 +320,7 @@ AIPromptsAPIApi.aiPromptsGetById(id: id) { (response, error) in
     open class func aiPromptsGetFolderById(id: String, completion: @escaping (_ data: AiPromptFolder?, _ error: Error?) -> Void)
 ```
 
-Returns one prompt folder, or an empty result when the identifier is unknown.
+Returns one folder of the caller's prompt library by its ID, without the prompts inside it. The ID is required and is read from the query. An unknown or foreign ID is not reported as 404: the answer is an empty body with status 200. This differs from the delete operation on the same ID, which does answer 404.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-folder-by-id/).
 
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -345,7 +345,7 @@ import OpenAPIClient
 
 let id = "id_example" // String | The prompt folder identifier.
 
-// Get folder by id
+// Get a prompt folder
 AIPromptsAPIApi.aiPromptsGetFolderById(id: id) { (response, error) in
     guard error == nil else {
         print(error)
@@ -370,7 +370,7 @@ AIPromptsAPIApi.aiPromptsGetFolderById(id: id) { (response, error) in
     open class func aiPromptsImportBundle(aiPromptsImportBundleRequest: AiPromptsImportBundleRequest, completion: @escaping (_ data: AiImportResult?, _ error: Error?) -> Void)
 ```
 
-Restores a prompt bundle. `replace` wipes the current prompts and folders before writing the bundle, `merge` writes the bundle on top of what is already there; both validate the folder references inside the bundle before any write, so a corrupt bundle is rejected whole.
+Writes a bundle produced by `GET api/2.0/ai/prompts/export` back into the caller's library. `mode` decides how: `replace` deletes the current prompts and folders before writing, and `merge` writes the bundle on top of what is already there. The folder references inside the bundle are validated before anything is written, so a corrupt bundle is rejected whole rather than applied halfway. `replace` is destructive and cannot be undone - export first if the current library matters.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-import-bundle/).
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -420,7 +420,7 @@ AIPromptsAPIApi.aiPromptsImportBundle(aiPromptsImportBundleRequest: aiPromptsImp
     open class func aiPromptsList(folderId: String? = nil, completion: @escaping (_ data: [AiPrompt]?, _ error: Error?) -> Void)
 ```
 
-Lists saved prompts. Scope the answer to one folder, ask for the root-level prompts only, or omit the folder to get every prompt newest first.
+Lists the caller's saved prompts, newest first. `folderId` scopes the answer to one folder, and omitting it - or sending it empty - lists the prompts that sit at the root rather than every prompt, because the client fetcher cannot tell an absent value from a null one. There is therefore no way to ask for the whole library in one call: walk the folders from `GET api/2.0/ai/prompts/list-folders`, or take everything at once with `GET api/2.0/ai/prompts/export`. The prompts of other users are never included.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-list/).
 
@@ -436,7 +436,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -445,7 +445,7 @@ import OpenAPIClient
 
 let folderId = "folderId_example" // String | The prompt folder identifier. Omit to list the prompts that sit outside any folder. (optional)
 
-// List
+// List saved prompts
 AIPromptsAPIApi.aiPromptsList(folderId: folderId) { (response, error) in
     guard error == nil else {
         print(error)
@@ -470,7 +470,7 @@ AIPromptsAPIApi.aiPromptsList(folderId: folderId) { (response, error) in
     open class func aiPromptsListFolders(completion: @escaping (_ data: [AiPromptFolder]?, _ error: Error?) -> Void)
 ```
 
-Lists the prompt folders, newest first.
+Lists every folder of the caller's prompt library, newest first, with no parameters and no pagination. Folders are flat, so the answer is a single list rather than a tree. The prompts inside them are not included - read those with `GET api/2.0/ai/prompts/list` per folder. Another user's folders are never listed.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-list-folders/).
 
@@ -483,7 +483,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -516,7 +516,7 @@ AIPromptsAPIApi.aiPromptsListFolders() { (response, error) in
     open class func aiPromptsMove(aiPromptsMoveRequest: AiPromptsMoveRequest, completion: @escaping (_ data: AiPromptMutationResult?, _ error: Error?) -> Void)
 ```
 
-Moves a saved prompt into another folder, or to the root. The name is re-validated in the target folder, so the move fails when a prompt of that name is already there.
+Moves a saved prompt into another folder, or to the root when `folderId` is omitted or null. The name is re-validated in the target folder, so the move fails when a prompt of that name already sits there - rename it first with `PUT api/2.0/ai/prompts/update`. Nothing about the prompt other than its folder changes. The answer carries the moved prompt.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-move/).
 
@@ -532,7 +532,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -541,7 +541,7 @@ import OpenAPIClient
 
 let aiPromptsMoveRequest = aiPromptsMove_request(id: "id_example", folderId: "folderId_example") // AiPromptsMoveRequest | 
 
-// Move
+// Move a prompt to a folder
 AIPromptsAPIApi.aiPromptsMove(aiPromptsMoveRequest: aiPromptsMoveRequest) { (response, error) in
     guard error == nil else {
         print(error)
@@ -566,7 +566,7 @@ AIPromptsAPIApi.aiPromptsMove(aiPromptsMoveRequest: aiPromptsMoveRequest) { (res
     open class func aiPromptsRenameFolder(aiPromptsRenameFolderRequest: AiPromptsRenameFolderRequest, completion: @escaping (_ data: AiFolderMutationResult?, _ error: Error?) -> Void)
 ```
 
-Renames a prompt folder, validating the new name against the existing folders.
+Renames a folder in the caller's prompt library, validating the new name against the folders already there. The prompts inside it are untouched and keep their IDs. The answer carries the renamed folder. A name that another folder already uses is rejected.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-rename-folder/).
 
@@ -582,7 +582,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -616,7 +616,7 @@ AIPromptsAPIApi.aiPromptsRenameFolder(aiPromptsRenameFolderRequest: aiPromptsRen
     open class func aiPromptsUpdate(aiPromptsUpdateRequest: AiPromptsUpdateRequest, completion: @escaping (_ data: AiPromptMutationResult?, _ error: Error?) -> Void)
 ```
 
-Updates a saved prompt. The name and the folder reference are re-validated whenever either of them changes.
+Changes a saved prompt and returns the stored result. Only the fields present in `updates` are written, so a partial object leaves the rest of the prompt alone. The name and the folder reference are re-validated whenever either changes, which means an update can fail on a name another prompt in the same folder already uses. Use `PUT api/2.0/ai/prompts/move` to change only the folder.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-update/).
 
@@ -632,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -641,7 +641,7 @@ import OpenAPIClient
 
 let aiPromptsUpdateRequest = aiPromptsUpdate_request(id: "id_example", updates: aiPromptsUpdate_request_updates(name: "name_example", text: "text_example", folderId: "folderId_example")) // AiPromptsUpdateRequest | 
 
-// Update
+// Update a saved prompt
 AIPromptsAPIApi.aiPromptsUpdate(aiPromptsUpdateRequest: aiPromptsUpdateRequest) { (response, error) in
     guard error == nil else {
         print(error)

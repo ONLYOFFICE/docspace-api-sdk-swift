@@ -9,10 +9,10 @@ Method | HTTP request | Description
 
 # **aiExportTextToDocx**
 ```swift
-    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, completion: @escaping (_ data: AiExportTextToDocx200Response?, _ error: Error?) -> Void)
+    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, completion: @escaping (_ data: AiExportTextToDocx202Response?, _ error: Error?) -> Void)
 ```
 
-Starts an asynchronous markdown-to-docx export. The response only acknowledges the task: the AI Worker converts the content and saves the .docx into the target folder (an agent room resolves to its result-storage subfolder), and completion reaches the client as the usual folder-modified socket event.
+Queues a markdown-to-docx export and answers 202 as soon as the job is accepted, without waiting for it. `title`, `content` and `folderId` are all required, and a `content` of only whitespace counts as missing even though it is not empty. The conversion runs in the AI worker, which saves the .docx into the target folder - an agent room resolves to its own result-storage subfolder - so there is nothing to poll here: completion arrives as the ordinary folder-modified socket event. This route accepts a body of up to 15 MB rather than the 100 KB the rest of the API allows, because a whole thread transcript is sent in one request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-export-text-to-docx/).
 
@@ -24,11 +24,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AiExportTextToDocx200Response**](AiExportTextToDocx200Response.md)
+[**AiExportTextToDocx202Response**](AiExportTextToDocx202Response.md)
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift

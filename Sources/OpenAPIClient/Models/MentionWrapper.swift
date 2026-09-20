@@ -14,20 +14,20 @@
 //  limitations under the License.
 import Foundation
 
-/** The parameters of a user mentioned in a message. */
+/** A user the editor may offer: to be mentioned in a comment, or to be picked when protecting a document. */
 public struct MentionWrapper: Sendable, Codable, Hashable {
 
-    /** The user information. */
+    /** The account itself, in the shape the people listings use. */
     public var user: UserInfo?
-    /** The user email address. */
+    /** Where a mention notification for this user is delivered. */
     public var email: String?
-    /** The user unique identification. */
+    /** The account id as text, the same value the account object carries; it is what identifies the user in a sharing  request built from this list. */
     public var id: String?
-    /** The path to the user's avatar. */
+    /** An absolute address of the medium-sized avatar. A generated default avatar is reported when the user never  uploaded one, so the field is never empty. */
     public var image: String?
-    /** Specifies whether the user has the access to the file where they are mentioned. */
+    /** Not filled in by the operations that return this list: it always comes back false. Whether a user can already  open the document has to be read from the sharing settings of the file. */
     public var hasAccess: Bool?
-    /** The user full name. */
+    /** The name to display, assembled the way the portal is configured to show names. */
     public var name: String?
 
     public init(user: UserInfo? = nil, email: String? = nil, id: String? = nil, image: String? = nil, hasAccess: Bool? = nil, name: String? = nil) {

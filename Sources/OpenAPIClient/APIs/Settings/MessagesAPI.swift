@@ -18,7 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
-     Enable the administrator message settings
+     Enable or disable administrator messages
      
      See also:
      REST API Reference for enableAdminMessageSettings Operation
@@ -33,14 +33,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Enable the administrator message settings
+     Enable or disable administrator messages
      
      See also:
      REST API Reference for enableAdminMessageSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/enable-admin-message-settings/
      
      - POST /api/2.0/settings/messagesettings
-     - Displays the contact form on the Sign In page, allowing users to send a message to the DocSpace administrator in case they encounter any issues while accessing DocSpace.
+     - Switches on or off the contact form the sign-in page offers a visitor who cannot get into the portal, and  which delivers their message to the portal administrators. The caller needs the portal-settings right of a  DocSpace administrator - the portal owner and a DocSpace administrator qualify, any other member is refused.  Send the new state as `turnOn`: `true` publishes the form, `false` hides it. The change covers the whole  portal, applies to the next sign-in page without a restart, is recorded in the audit trail, and repeating the  call with the same value leaves the portal as it is. What comes back is a localized confirmation message  rather than the stored flag - read the flag as `enableAdmMess` from `GET api/2.0/settings`, which needs no  token. That flag is also forced on while the portal's payment has lapsed, so it can report `true` on a portal  where the form was switched off here. The form itself posts to `POST api/2.0/settings/sendadmmail` and this  setting gates nothing else: the notifications administrators receive as portal members are subscribed  separately with `POST api/2.0/settings/notification`.
      - BASIC:
        - type: http
        - name: Basic
@@ -106,7 +106,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/send-admin-mail/
      
      - POST /api/2.0/settings/sendadmmail
-     - Sends a message to the administrator email when unauthorized users encounter issues accessing DocSpace.
+     - Sends a message from someone who cannot get into the portal to its administrators - the contact form the  sign-in page offers unauthenticated visitors. No token is needed. The form has to be published first with  `POST api/2.0/settings/messagesettings` unless the portal's payment has lapsed, otherwise nothing is sent;  `enableAdmMess` in `GET api/2.0/settings` reports whether the call is worth making. `email` is the address the  administrators answer to and has to be a real address, and `message` is reduced to plain text first, so a body  carrying nothing but markup counts as empty - either fault is refused with 400. When the caller is not signed  in and this installation has a CAPTCHA configured, `recaptchaResponse` has to carry a solved challenge of the  `recaptchaType` that `GET api/2.0/settings` publishes together with the site key, and a missing or stale  answer refuses the call. `culture` picks the language of the letter. Delivery is queued and reaches the  administrators subscribed to administrator notifications, so a confirmed call means accepted rather than read,  and the answer is a localized confirmation. Attempts are rate limited per address and per operation, and  further ones are refused with 429.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter adminMessageSettingsRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -128,11 +134,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Sends an invitation email
+     Send an invitation email
      
      See also:
      REST API Reference for sendJoinInviteMail Operation
@@ -147,14 +153,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Sends an invitation email
+     Send an invitation email
      
      See also:
      REST API Reference for sendJoinInviteMail Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/send-join-invite-mail/
      
      - POST /api/2.0/settings/sendjoininvite
-     - Sends an invitation email with a link to the DocSpace.
+     - Sends an invitation email with a join link to the address in the request - the self-registration the sign-in  page's register link performs. No token is needed. The portal has to publish a trusted-domain policy first,  saved with `POST api/2.0/settings/maildomainsettings`: without one there is nothing to join and every caller  alike is answered with 405 - the same condition `GET api/2.0/settings` reports as `enabledJoin`. `email` has  to be a real address written in ASCII rather than an internationalized one, must not already belong to a  portal member, and, when the policy names domains rather than accepting all of them, has to end with one of  them - each of those faults is refused with 400. `culture` picks the language of the letter. The invitation is  not an account: the invitee becomes a member only after following the link, and the role it grants, user or  room administrator, follows the trusted-domain settings and drops to user once the portal's paid places are  taken. Where the installation caps invitations, an accepted call spends one of those counted by  `invitationLimit`, and only about a dozen calls from one address in two minutes are accepted. What comes back  is a localized confirmation.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter adminMessageBaseSettingsRequestsDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -176,6 +188,6 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

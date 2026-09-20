@@ -14,21 +14,27 @@
 //  limitations under the License.
 import Foundation
 
-/** The customer information. */
+/** The billing customer behind the portal, and which portal member pays for it. */
 public struct CustomerInfoDto: Sendable, Codable, Hashable {
 
-    /** The portal ID. */
+    /** The portal's identifier in the billing system, which is what support and invoices refer to. It is not the  portal alias. */
     public var portalId: String?
-    /** The customer's payment method. */
+    /** Whether a payment method is stored for the account and usable. Without one the portal can hold a wallet  balance but cannot be charged automatically. */
     public var paymentMethodStatus: PaymentMethodStatus?
-    /** The customer email address. */
+    /** The customer's payment method type. */
+    public var paymentMethodType: String?
+    /** Indicates whether the customer's payment method is delayed, i.e. the money reaches the wallet only after  the transfer settles rather than immediately. */
+    public var isDelayedPaymentMethod: Bool?
+    /** The address the billing account is registered to, lower-cased. It need not belong to a portal member,  which is exactly when `payer` stays empty. */
     public var email: String?
-    /** The paying user. */
+    /** The portal member whose account is behind the billing address. It is empty when `email` matches no member  of this portal, and while it is empty every operation of this group that only the payer may call is out  of reach for everybody. */
     public var payer: EmployeeDto?
 
-    public init(portalId: String? = nil, paymentMethodStatus: PaymentMethodStatus? = nil, email: String? = nil, payer: EmployeeDto? = nil) {
+    public init(portalId: String? = nil, paymentMethodStatus: PaymentMethodStatus? = nil, paymentMethodType: String? = nil, isDelayedPaymentMethod: Bool? = nil, email: String? = nil, payer: EmployeeDto? = nil) {
         self.portalId = portalId
         self.paymentMethodStatus = paymentMethodStatus
+        self.paymentMethodType = paymentMethodType
+        self.isDelayedPaymentMethod = isDelayedPaymentMethod
         self.email = email
         self.payer = payer
     }
@@ -36,6 +42,8 @@ public struct CustomerInfoDto: Sendable, Codable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case portalId
         case paymentMethodStatus
+        case paymentMethodType
+        case isDelayedPaymentMethod
         case email
         case payer
     }
@@ -46,6 +54,8 @@ public struct CustomerInfoDto: Sendable, Codable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(portalId, forKey: .portalId)
         try container.encodeIfPresent(paymentMethodStatus, forKey: .paymentMethodStatus)
+        try container.encodeIfPresent(paymentMethodType, forKey: .paymentMethodType)
+        try container.encodeIfPresent(isDelayedPaymentMethod, forKey: .isDelayedPaymentMethod)
         try container.encodeIfPresent(email, forKey: .email)
         try container.encodeIfPresent(payer, forKey: .payer)
     }

@@ -14,23 +14,23 @@
 //  limitations under the License.
 import Foundation
 
-/** The file history information. */
+/** One record of the activity log of a file or a folder. */
 public struct HistoryDto: Sendable, Codable, Hashable {
 
-    /** The unique identifier for the file history entry. */
+    /** The identifier of the record, which tells two records of the same action apart and stays stable as long as the  portal keeps the log. */
     public var id: Int
-    /** The action performed on the file. */
+    /** What happened - the kind of event the record stands for, such as a file being uploaded, renamed, moved or  shared - with the key a client can key its own wording off. */
     public var action: HistoryAction
-    /** The action initiator. */
+    /** Who caused the event. For an event caused by a visitor following an external link only the name they gave is  filled in, the account fields staying empty. */
     public var initiator: EmployeeDto
-    /** The date and time when an action on the file was performed. */
-    public var date: Date?
-    /** The history data. */
-    public var data: HistoryData
-    /** The list of related history. */
+    /** When the event happened, written with the offset of the portal's time zone. */
+    public var date: ApiDateTime
+    /** The history data. Absent for actions that carry no payload of their own - changing a room's  logo, icon colour or cover, whose interpreter returns no data (see  `RoomLogoChangedInterpreter`). It used to be declared required, which put it in the  OpenAPI document's required list while the null-dropping serializer left it out of the  response, so a generated client threw on any history page holding one of those entries. */
+    public var data: HistoryData?
+    /** The records folded into this one because they belong to the same action, the separate files of one upload for  instance. It is empty when the record stands alone, and the records inside it carry no further nesting. */
     public var related: [HistoryDto]?
 
-    public init(id: Int, action: HistoryAction, initiator: EmployeeDto, date: Date?, data: HistoryData, related: [HistoryDto]? = nil) {
+    public init(id: Int, action: HistoryAction, initiator: EmployeeDto, date: ApiDateTime, data: HistoryData? = nil, related: [HistoryDto]? = nil) {
         self.id = id
         self.action = action
         self.initiator = initiator
@@ -56,7 +56,7 @@ public struct HistoryDto: Sendable, Codable, Hashable {
         try container.encode(action, forKey: .action)
         try container.encode(initiator, forKey: .initiator)
         try container.encode(date, forKey: .date)
-        try container.encode(data, forKey: .data)
+        try container.encodeIfPresent(data, forKey: .data)
         try container.encodeIfPresent(related, forKey: .related)
     }
 }

@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Optional entity hint (lib 0.5.64): only `entityId` is read; the pair is re-resolved server-side before reaching the provider as metadata. */
+/** Optional entity hint (lib 0.5.64): only `entityId` is read; the source (`source_id` / `source_type` / `source_title`) is re-resolved server-side before reaching the provider as metadata. */
 public struct AiThreadsOpenOrCreateRequestEntityMeta: Sendable, Codable, Hashable {
 
     public var entityId: String?

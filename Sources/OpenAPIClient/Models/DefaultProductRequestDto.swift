@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for setting the default product configuration. */
+/** The section the calling user's account opens into after signing in. */
 public struct DefaultProductRequestDto: Sendable, Codable, Hashable {
 
-    /** The ID of the product to be set as default. */
+    /** The section to land on. Only the folder types the client offers as a landing page are accepted - the rooms  list, My documents, shared with me, favorites, recent, forms and the AI agents folder - and anything else is  refused. My documents is refused for a guest as well, since a guest has no personal storage. */
     public var defaultFolderType: FolderType
 
     public init(defaultFolderType: FolderType) {

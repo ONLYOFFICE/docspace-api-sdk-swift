@@ -14,37 +14,37 @@
 //  limitations under the License.
 import Foundation
 
-/** A shareable link for a file with its configuration and status. */
+/** A sharing link of a file, a folder or a room, with everything set on it. */
 public struct FileShareLink: Sendable, Codable, Hashable {
 
-    /** The unique identifier of the shared link. */
+    /** The identifier of the link, the one to send back as `linkId` to change or delete it. */
     public var id: UUID?
-    /** The title of the shared content. */
+    /** The name the link is listed under, which its author is free to choose and to leave empty. */
     public var title: String?
-    /** The URL for accessing the shared content. */
+    /** The shortened address to hand out. Opening it is what turns the link into access; the address stays the same  while the link exists. */
     public var shareLink: String?
-    /** The date when the shared link expires. */
-    public var expirationDate: Date?
-    /** The sharing link type (e.g., Invitation). */
+    /** The moment the link stops working, written with the offset of the portal time zone. Null when the link was  left without an end. */
+    public var expirationDate: ApiDateTime?
+    /** Which of the two jobs the link does: letting somebody into the room as a member, or handing out the entry  itself. The counters of uses are filled in for the first kind only. */
     public var linkType: LinkType?
-    /** The password protection for accessing the shared content. */
+    /** The password a visitor has to send before the link resolves, readable only by those who may manage the link.  Empty when the link asks for none. */
     public var password: String?
-    /** Indicates whether downloading of the shared content is prohibited. */
+    /** Whether visitors coming through this link may only read the entry in the editor and not download or print it. */
     public var denyDownload: Bool?
-    /** Indicates whether the shared link has expired. */
+    /** Whether the moment in `expirationDate` has already passed, which leaves the link in place but refuses  everybody who opens it. */
     public var isExpired: Bool?
-    /** Indicates whether this is the primary shared link. */
+    /** Whether this is the one link the entry always keeps: a public or a form-filling room is given it at creation,  and deleting it there only makes a new one. */
     public var primary: Bool?
-    /** Indicates whether the link is for the internal sharing only. */
+    /** Whether the visitor has to sign in to the portal before the link resolves, as opposed to it being open to  anybody who has the address. */
     public var _internal: Bool?
-    /** The token for validating access requests. */
+    /** The key that stands for this link in the calls that resolve it, such as `GET api/2.0/files/share/{key}`. It is  filled in for links that hand out the entry, and empty for the ones that invite into a room. */
     public var requestToken: String?
-    /** The maximum number of times the invitation link can be used. */
+    /** How many accounts may still join the room through this invitation link in total. Null on a link that hands out  the entry, where nothing is counted. */
     public var maxUseCount: Int?
-    /** The current number of times the invitation link has been used. */
+    /** How many accounts have already joined through this invitation link. Once it reaches `maxUseCount` the link  stops letting anybody else in. Null on a link that hands out the entry. */
     public var currentUseCount: Int?
 
-    public init(id: UUID? = nil, title: String? = nil, shareLink: String? = nil, expirationDate: Date? = nil, linkType: LinkType? = nil, password: String? = nil, denyDownload: Bool? = nil, isExpired: Bool? = nil, primary: Bool? = nil, _internal: Bool? = nil, requestToken: String? = nil, maxUseCount: Int? = nil, currentUseCount: Int? = nil) {
+    public init(id: UUID? = nil, title: String? = nil, shareLink: String? = nil, expirationDate: ApiDateTime? = nil, linkType: LinkType? = nil, password: String? = nil, denyDownload: Bool? = nil, isExpired: Bool? = nil, primary: Bool? = nil, _internal: Bool? = nil, requestToken: String? = nil, maxUseCount: Int? = nil, currentUseCount: Int? = nil) {
         self.id = id
         self.title = title
         self.shareLink = shareLink
