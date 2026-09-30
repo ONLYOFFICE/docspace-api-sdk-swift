@@ -3,12 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **UUID** | The identifier of the key pair. | [optional] 
-**userId** | **UUID** | The identifier of the user the key pair belongs to. | [optional] 
-**date** | **Date** | The date and time when the key pair was created. | [optional] 
-**publicKey** | **String** | The public key of the pair, used to encrypt the file keys. | [optional] 
-**privateKeyEnc** | **String** | The private key of the pair, encrypted with the user password. | [optional] 
-**cryptoEngineId** | **String** | The identifier of the crypto engine the key pair was issued for. | [optional] 
+**id** | **UUID** | Names the pair inside its owner's key set. Pass it back to rotate the pair or to delete it; the all-zero value  belongs to a client that stores its keys without sending an identifier. | [optional] 
+**userId** | **UUID** | The member the pair belongs to. In the key set of a room or of a file this is how the caller tells its own  entries, the ones carrying a private half, from those of the other members. | [optional] 
+**date** | **Date** | When this key material was written. Rotating the pair refreshes it, so it dates the material that is being  reported rather than the first appearance of the identifier. | [optional] 
+**publicKey** | **String** | The public half of the pair, the half a client encrypts file keys with. A pair whose public half is missing  is treated as no access and left out of a room's or a file's key set. | [optional] 
+**privateKeyEnc** | **String** | The private half, encrypted with its owner's password. It is filled in only when the pair belongs to the  calling user; on another member's entry it comes back empty, because the private half is not handed out. | [optional] 
+**cryptoEngineId** | **String** | The crypto engine this material was issued for, as a braced GUID. The engine is portal-wide, so the same value  comes back for every key of every member. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

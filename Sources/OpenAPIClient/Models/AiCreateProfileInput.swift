@@ -33,6 +33,8 @@ public struct AiCreateProfileInput: Sendable, Codable, Hashable {
     public var modelId: String
     /** Whether extended thinking is enabled for this profile's model. */
     public var reasoning: Bool?
+    /** Extended-thinking capabilities of the selected model as reported by the provider's catalogue at save time (see `Model.reasoningSupport`). When present the composer's Effort row follows it exactly; when absent the provider's id-based table answers. Hosts persist it with the rest of the profile. */
+    public var reasoningSupport: AiReasoningSupport?
     /** Bitmask of capabilities supported by the selected model. */
     public var capabilities: Double?
     /** Result of the live tool-capability probe performed at create time and on changes to `modelId` / `providerType` / `baseUrl`. `undefined` means the probe has never run for this profile (legacy record). */
@@ -44,7 +46,7 @@ public struct AiCreateProfileInput: Sendable, Codable, Hashable {
     /** Route every provider request through the host's `fetchProxy` instead of the global `fetch`. Useful when the host runs the widget in a sandbox without direct network access (CORS, custom auth, etc.). Has no effect when the `PlatformAdapter.fetchProxy` is not configured. */
     public var useProxy: Bool?
 
-    public init(name: String, providerType: AiProviderType, basedOn: AiBuiltinProviderType? = nil, baseUrl: String, key: String? = nil, headers: [String: String]? = nil, modelId: String, reasoning: Bool? = nil, capabilities: Double? = nil, canUseTool: Bool? = nil, useResponsesApi: Bool? = nil, isCloudProvider: Bool? = nil, useProxy: Bool? = nil) {
+    public init(name: String, providerType: AiProviderType, basedOn: AiBuiltinProviderType? = nil, baseUrl: String, key: String? = nil, headers: [String: String]? = nil, modelId: String, reasoning: Bool? = nil, reasoningSupport: AiReasoningSupport? = nil, capabilities: Double? = nil, canUseTool: Bool? = nil, useResponsesApi: Bool? = nil, isCloudProvider: Bool? = nil, useProxy: Bool? = nil) {
         self.name = name
         self.providerType = providerType
         self.basedOn = basedOn
@@ -53,6 +55,7 @@ public struct AiCreateProfileInput: Sendable, Codable, Hashable {
         self.headers = headers
         self.modelId = modelId
         self.reasoning = reasoning
+        self.reasoningSupport = reasoningSupport
         self.capabilities = capabilities
         self.canUseTool = canUseTool
         self.useResponsesApi = useResponsesApi
@@ -69,6 +72,7 @@ public struct AiCreateProfileInput: Sendable, Codable, Hashable {
         case headers
         case modelId
         case reasoning
+        case reasoningSupport
         case capabilities
         case canUseTool
         case useResponsesApi
@@ -88,6 +92,7 @@ public struct AiCreateProfileInput: Sendable, Codable, Hashable {
         try container.encodeIfPresent(headers, forKey: .headers)
         try container.encode(modelId, forKey: .modelId)
         try container.encodeIfPresent(reasoning, forKey: .reasoning)
+        try container.encodeIfPresent(reasoningSupport, forKey: .reasoningSupport)
         try container.encodeIfPresent(capabilities, forKey: .capabilities)
         try container.encodeIfPresent(canUseTool, forKey: .canUseTool)
         try container.encodeIfPresent(useResponsesApi, forKey: .useResponsesApi)

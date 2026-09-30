@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the security configuration of a DocsCloud tenant. */
+/** Represents the security configuration of a Docs Connect tenant. */
 public struct DocsCloudSecurityConfig: Sendable, Codable, Hashable {
 
     public static let secretRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)

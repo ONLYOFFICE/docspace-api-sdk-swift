@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the IP filter rule of a DocsCloud tenant. */
+/** Represents the IP filter rule of a Docs Connect tenant. */
 public struct DocsCloudIpFilterRule: Sendable, Codable, Hashable {
 
     public static let addressRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)

@@ -4,15 +4,15 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**aiExportTextToDocx**](AIExportAPI.md#aiexporttexttodocx) | **POST** /api/2.0/ai/text-to-docx | Start markdown → docx export
+[**aiExportTextToDocx**](AIExportAPI.md#aiexporttexttodocx) | **POST** /api/2.0/ai/text-to-docx | Start markdown export
 
 
 # **aiExportTextToDocx**
 ```swift
-    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, completion: @escaping (_ data: AiExportTextToDocx200Response?, _ error: Error?) -> Void)
+    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, completion: @escaping (_ data: AiExportTextToDocx202Response?, _ error: Error?) -> Void)
 ```
 
-Starts an asynchronous markdown-to-docx export. The response only acknowledges the task: the AI Worker converts the content and saves the .docx into the target folder (an agent room resolves to its result-storage subfolder), and completion reaches the client as the usual folder-modified socket event.
+Queues a markdown export and answers 202 as soon as the job is accepted, without waiting for it. `title`, `content` and `folderId` are all required, and a `content` of only whitespace counts as missing even though it is not empty. `format` is optional and selects the output - `Docx` (the default), `Pdf`, or `Md`, which stores the markdown verbatim instead of converting it. The conversion runs in the AI worker, which saves the .docx into the target folder - an agent room resolves to its own result-storage subfolder - so there is nothing to poll here: completion arrives as the ordinary folder-modified socket event. This route accepts a body of up to 15 MB rather than the 100 KB the rest of the API allows, because a whole thread transcript is sent in one request.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-export-text-to-docx/).
 
@@ -24,11 +24,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AiExportTextToDocx200Response**](AiExportTextToDocx200Response.md)
+[**AiExportTextToDocx202Response**](AiExportTextToDocx202Response.md)
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -37,7 +37,7 @@ import OpenAPIClient
 
 let aiExportTextToDocxRequest = aiExportTextToDocx_request(title: "title_example", content: "content_example", folderId: aiExportTextToDocx_request_folderId()) // AiExportTextToDocxRequest | 
 
-// Start markdown → docx export
+// Start markdown export
 AIExportAPIApi.aiExportTextToDocx(aiExportTextToDocxRequest: aiExportTextToDocxRequest) { (response, error) in
     guard error == nil else {
         print(error)

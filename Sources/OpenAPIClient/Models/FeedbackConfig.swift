@@ -19,7 +19,7 @@ public struct FeedbackConfig: Sendable, Codable, Hashable {
 
     /** The absolute URL to the website address which will be opened when clicking the Feedback & Support menu button. */
     public var url: String?
-    /** Shows or hides the Feedback & Support menu button. */
+    /** Whether the support button is shown. The portal always asks for it to be shown. */
     public var visible: Bool?
 
     public init(url: String? = nil, visible: Bool? = nil) {

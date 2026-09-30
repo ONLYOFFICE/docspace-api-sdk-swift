@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents a single user entry of a DocsCloud quota. */
+/** Represents a single user entry of a Docs Connect quota. */
 public struct DocsCloudQuotaUser: Sendable, Codable, Hashable {
 
     /** The user ID. */

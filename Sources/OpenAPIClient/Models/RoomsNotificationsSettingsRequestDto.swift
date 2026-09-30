@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for configuring notification settings for the chat or collaboration rooms. */
+/** Which single room the calling user silences, and which way. */
 public struct RoomsNotificationsSettingsRequestDto: Sendable, Codable, Hashable {
 
     public var roomsId: JSONValue?
-    /** Specifies whether the notifications will be delivered to the specified room or not. */
+    /** Which way the room goes: `true` adds it to the caller silenced list, `false` takes it off again. While a room  is silenced its activity is left out of the hourly and daily digests, the letters it would send at once are  not sent, and its new-item counters are hidden. */
     public var mute: Bool?
 
     public init(roomsId: JSONValue? = nil, mute: Bool? = nil) {

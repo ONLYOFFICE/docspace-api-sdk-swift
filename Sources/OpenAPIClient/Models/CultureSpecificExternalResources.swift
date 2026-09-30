@@ -17,6 +17,8 @@ import Foundation
 /** The external resources settings. */
 public struct CultureSpecificExternalResources: Sendable, Codable, Hashable {
 
+    /** The link to the administration panel. It is returned only to the full administrators of a licensed (Enterprise) server (standalone) portal. */
+    public var adminPanel: CultureSpecificExternalResource?
     /** The link to the product API. */
     public var api: CultureSpecificExternalResource?
     /** The link to the common product information. */
@@ -36,7 +38,8 @@ public struct CultureSpecificExternalResources: Sendable, Codable, Hashable {
     /** The link to the video guides. */
     public var videoguides: CultureSpecificExternalResource?
 
-    public init(api: CultureSpecificExternalResource? = nil, common: CultureSpecificExternalResource? = nil, forum: CultureSpecificExternalResource? = nil, helpcenter: CultureSpecificExternalResource? = nil, integrations: CultureSpecificExternalResource? = nil, site: CultureSpecificExternalResource? = nil, socialNetworks: CultureSpecificExternalResource? = nil, support: CultureSpecificExternalResource? = nil, videoguides: CultureSpecificExternalResource? = nil) {
+    public init(adminPanel: CultureSpecificExternalResource? = nil, api: CultureSpecificExternalResource? = nil, common: CultureSpecificExternalResource? = nil, forum: CultureSpecificExternalResource? = nil, helpcenter: CultureSpecificExternalResource? = nil, integrations: CultureSpecificExternalResource? = nil, site: CultureSpecificExternalResource? = nil, socialNetworks: CultureSpecificExternalResource? = nil, support: CultureSpecificExternalResource? = nil, videoguides: CultureSpecificExternalResource? = nil) {
+        self.adminPanel = adminPanel
         self.api = api
         self.common = common
         self.forum = forum
@@ -49,6 +52,7 @@ public struct CultureSpecificExternalResources: Sendable, Codable, Hashable {
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case adminPanel
         case api
         case common
         case forum
@@ -64,6 +68,7 @@ public struct CultureSpecificExternalResources: Sendable, Codable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(adminPanel, forKey: .adminPanel)
         try container.encodeIfPresent(api, forKey: .api)
         try container.encodeIfPresent(common, forKey: .common)
         try container.encodeIfPresent(forum, forKey: .forum)

@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for managing the user storage quota configurations. */
+/** The default storage limit given to newly created users, rooms or AI agents, and whether it is enforced. */
 public struct QuotaSettingsRequestsDto: Sendable, Codable, Hashable {
 
-    /** Specifies whether the storage quota restrictions are enabled. */
+    /** Whether the limit is enforced at all. While it is false the size is ignored and nothing created afterwards  carries a limit; objects that already have one keep it either way. */
     public var enableQuota: Bool?
     public var defaultQuota: QuotaSettingsRequestsDtoDefaultQuota
 

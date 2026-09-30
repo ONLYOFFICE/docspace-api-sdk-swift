@@ -25,14 +25,17 @@ public struct AiModel: Sendable, Codable, Hashable {
     public var provider: AiProviderType
     /** Whether this model supports extended thinking / chain-of-thought reasoning. */
     public var reasoning: Bool?
+    /** What the model can do with extended thinking, when the provider's catalogue says so (OpenRouter and the ONLYOFFICE route report a per-model `reasoning` object). Copied onto the profile at save time; absent, the widget falls back to the provider's id-based table. */
+    public var reasoningSupport: AiReasoningSupport?
     /** Bitmask of model capabilities (Chat, Image, Vision, Tools, etc.). Used to filter models per `ActionType`. */
     public var capabilities: Double?
 
-    public init(id: String, name: String, provider: AiProviderType, reasoning: Bool? = nil, capabilities: Double? = nil) {
+    public init(id: String, name: String, provider: AiProviderType, reasoning: Bool? = nil, reasoningSupport: AiReasoningSupport? = nil, capabilities: Double? = nil) {
         self.id = id
         self.name = name
         self.provider = provider
         self.reasoning = reasoning
+        self.reasoningSupport = reasoningSupport
         self.capabilities = capabilities
     }
 
@@ -41,6 +44,7 @@ public struct AiModel: Sendable, Codable, Hashable {
         case name
         case provider
         case reasoning
+        case reasoningSupport
         case capabilities
     }
 
@@ -52,6 +56,7 @@ public struct AiModel: Sendable, Codable, Hashable {
         try container.encode(name, forKey: .name)
         try container.encode(provider, forKey: .provider)
         try container.encodeIfPresent(reasoning, forKey: .reasoning)
+        try container.encodeIfPresent(reasoningSupport, forKey: .reasoningSupport)
         try container.encodeIfPresent(capabilities, forKey: .capabilities)
     }
 }

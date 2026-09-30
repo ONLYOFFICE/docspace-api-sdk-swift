@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** Request body for saving application-specific settings. */
+/** The configuration document a portal application keeps. */
 public struct SetAppSettingsBody: Sendable, Codable, Hashable {
 
-    public var settings: SetAppSettingsBodySettings?
+    public var settings: JSONValue?
 
-    public init(settings: SetAppSettingsBodySettings? = nil) {
+    public init(settings: JSONValue? = nil) {
         self.settings = settings
     }
 

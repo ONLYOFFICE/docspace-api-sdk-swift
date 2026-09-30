@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** Configuration for review display settings. */
+/** How tracked changes are displayed when the document opens. */
 public struct ReviewConfig: Sendable, Codable, Hashable {
 
-    /** The review display string representation. */
+    /** How the editors render tracked changes at first: with the markup, in a simplified markup, as the final text,  or as the original text. A session that may not write opens on the final text. */
     public var reviewDisplay: String?
 
     public init(reviewDisplay: String? = nil) {

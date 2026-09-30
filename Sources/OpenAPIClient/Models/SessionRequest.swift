@@ -14,23 +14,23 @@
 //  limitations under the License.
 import Foundation
 
-/** The session request parameters. */
+/** The file a chunked upload session is opened for, and how a clash with an existing name is settled. */
 public struct SessionRequest: Sendable, Codable, Hashable {
 
-    /** The file name. */
+    /** The name to store the file under, extension included. Characters a title cannot hold are replaced and the name  is truncated, so the stored title can differ from the one sent. */
     public var fileName: String?
-    /** The file size. */
+    /** The exact number of bytes that will be sent. The size is reserved when the session opens and compared with the  parts as they arrive; below the portal chunk size the session takes the whole payload in one part, and above  the portal limit for chunked uploads it is refused. */
     public var fileSize: Int64?
-    /** The relative path to the file. */
+    /** A slash-separated chain of folder titles under the target folder to store the file in; folders in the chain  that do not exist yet are created. Leave it empty to store the file in the folder from the path itself. */
     public var relativePath: String?
-    /** The date and time when the file was created. */
-    public var createOn: Date?
-    /** Specifies whether the file is encrypted or not. */
+    /** The creation time to stamp on a newly created file instead of the moment the upload finishes. It is ignored  when the upload lands on a file that already exists. */
+    public var createOn: ApiDateTime?
+    /** Marks the stored file as client-side encrypted, which is how content uploaded into a private room is kept;  with false the bytes are stored as they arrive. */
     public var encrypted: Bool?
-    /** Specifies whether to create a new file if it already exists. */
+    /** Settles the clash when the folder already holds a file with this name: true stores the upload beside it under  a name with a numeric suffix, false takes the existing file over and adds the content to it as a new version. */
     public var createNewIfExist: Bool?
 
-    public init(fileName: String?, fileSize: Int64? = nil, relativePath: String? = nil, createOn: Date? = nil, encrypted: Bool? = nil, createNewIfExist: Bool? = nil) {
+    public init(fileName: String?, fileSize: Int64? = nil, relativePath: String? = nil, createOn: ApiDateTime? = nil, encrypted: Bool? = nil, createNewIfExist: Bool? = nil) {
         self.fileName = fileName
         self.fileSize = fileSize
         self.relativePath = relativePath

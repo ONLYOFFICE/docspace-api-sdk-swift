@@ -3,19 +3,19 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **Int** | The login event ID. | [optional] 
-**date** | **Date** | The login event date. | [optional] 
-**user** | **String** | The user name of the login event. | [optional] 
-**userId** | **UUID** | The user ID of the login event. | [optional] 
-**login** | **String** | The user login of the login event. | [optional] 
-**action** | **String** | The login event action. | [optional] 
-**actionId** | [**MessageAction**](MessageAction.md) | The login-related action to filter events by. | [optional] 
-**ip** | **String** | The login event IP. | [optional] 
-**country** | **String** | The login event country. | [optional] 
-**city** | **String** | The login event city. | [optional] 
-**browser** | **String** | The login event browser. | [optional] 
-**platform** | **String** | The login event platform. | [optional] 
-**page** | **String** | The login event page. | [optional] 
+**id** | **Int** | The ID of the recorded sign-in. When the entry is a successful sign-in that is still open, this is also  the value `GET api/2.0/security/activeconnections` reports as the connection's `id`. | [optional] 
+**date** | [**ApiDateTime**](ApiDateTime.md) | When the attempt was made, in the portal time zone. The `from` and `to` filters are read as UTC instants,  so the two do not line up on a portal that is not on UTC. | [optional] 
+**user** | **String** | The display name of the account the attempt was made against, taken from the account as it stands now  rather than as it stood at the time. A localised placeholder stands in when there is no account to read,  which is the usual case for a failed attempt on an address nobody owns. | [optional] 
+**userId** | **UUID** | The ID of that account, which is what the `userId` filter of this operation matches on. It is the empty  GUID when the attempt could not be tied to an account. | [optional] 
+**login** | **String** | The login string as it was typed - normally the email address. It is the only field that survives a failed  attempt against an unknown account, which makes it the one to read when `user` is a placeholder. | [optional] 
+**action** | **String** | The event as a readable sentence in the portal language. On `GET api/2.0/security/audit/login/last` each  substituted value is cut to 50 characters; the filtered operation substitutes them in full. | [optional] 
+**actionId** | [**MessageAction**](MessageAction.md) | What happened, as the `action` filter of this operation spells it: a successful sign-in, a failed one, a  sign-out. Use this rather than parsing `action`, which is prose and changes with the portal language. | [optional] 
+**ip** | **String** | The IP address the attempt came from, with the port stripped off. | [optional] 
+**country** | **String** | The English name of the country the IP address is located in, empty when the address cannot be located -  the normal outcome for private and loopback addresses. | [optional] 
+**city** | **String** | The city the IP address is located in, empty under the same conditions as `country`. | [optional] 
+**browser** | **String** | The browser and its version as parsed from the user agent of the attempt, empty when the client sent none  that could be parsed. | [optional] 
+**platform** | **String** | The operating system as parsed from the same user agent, empty under the same conditions as `browser`. | [optional] 
+**page** | **String** | Where in the portal the attempt was made from: the referrer of the request, or that request's own path  when it carried no referrer. Long values are cut off at 512 characters. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

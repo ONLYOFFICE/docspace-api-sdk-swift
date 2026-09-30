@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the license information of a DocsCloud tenant. */
+/** Represents the license information of a Docs Connect tenant. */
 public struct DocsCloudLicenseInfo: Sendable, Codable, Hashable {
 
     /** The date and time until which the license is valid. */

@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The parameters for updating a comment. */
+/** The comment to store on one version of a file. */
 public struct UpdateComment: Sendable, Codable, Hashable {
 
     public static let versionRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 2147483647, exclusiveMaximum: false, multipleOf: nil)
     public static let commentRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    /** The comment version. */
+    /** The version the comment belongs to, as reported by `GET api/2.0/files/file/{fileId}/edit/history`. A version  that does not exist is rejected as an invalid request. */
     public var version: Int
-    /** The comment text. */
+    /** The note that explains what changed in that version, as the version history shows it. An empty text clears the  note, and a longer one is cut rather than refused, so read the stored text from the answer. */
     public var comment: String?
 
     public init(version: Int, comment: String? = nil) {

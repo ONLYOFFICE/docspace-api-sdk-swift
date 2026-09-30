@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The chat settings parameters. */
+/** The chat configuration of an AI room. */
 public struct ChatSettingsDto: Sendable, Codable, Hashable {
 
-    /** The system prompt for the chat. */
+    /** The instruction put in front of every conversation held in the room, which sets the role the assistant takes  and the way it answers. Empty when the room was left on the behaviour the portal provides by default. */
     public var prompt: String?
 
     public init(prompt: String? = nil) {

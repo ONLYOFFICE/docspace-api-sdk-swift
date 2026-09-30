@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the payment information of a DocsCloud tenant. */
+/** Represents the payment information of a Docs Connect tenant. */
 public struct DocsCloudPayment: Sendable, Codable, Hashable {
 
     /** The cart ID. */

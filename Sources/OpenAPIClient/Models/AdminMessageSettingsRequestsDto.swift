@@ -14,20 +14,20 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for configuring the administrator message content. */
+/** The message sent to the portal administrators, with the CAPTCHA proof that a person wrote it. */
 public struct AdminMessageSettingsRequestsDto: Sendable, Codable, Hashable {
 
     public static let messageRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    /** The content of the administrator message to be sent. */
+    /** What the sender wants to tell the portal administrators. Markup is stripped before the letter is written, so  a body that carries nothing but markup counts as empty and is refused with 400. */
     public var message: String?
-    /** Email */
+    /** The address the sender can be answered at, which the letter is signed with. It has to be a well-formed email  address. */
     public var email: String?
-    /** Culture */
+    /** The language the letter is written in, as a culture name such as `en-US`. A culture the installation does not  have falls back to the portal language rather than failing the call. */
     public var culture: String?
-    /** The type of CAPTCHA validation used. */
+    /** Which CAPTCHA service the proof in `recaptchaResponse` came from. It has to match the service the  installation is configured with, which `GET api/2.0/capabilities` reports; the default value means the  installation is left to decide. */
     public var recaptchaType: RecaptchaType?
-    /** The user's response to the CAPTCHA challenge. */
+    /** The token the CAPTCHA widget produced in the browser, passed on unchanged for the portal to verify with the  CAPTCHA service. It is single-use and short-lived, so it cannot be reused for a second message. */
     public var recaptchaResponse: String?
 
     public init(message: String?, email: String?, culture: String? = nil, recaptchaType: RecaptchaType? = nil, recaptchaResponse: String? = nil) {

@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the WOPI configuration of a DocsCloud tenant. */
+/** Represents the WOPI configuration of a Docs Connect tenant. */
 public struct DocsCloudWopiConfig: Sendable, Codable, Hashable {
 
     /** Whether WOPI is enabled. */

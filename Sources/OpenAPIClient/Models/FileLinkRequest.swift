@@ -14,29 +14,29 @@
 //  limitations under the License.
 import Foundation
 
-/** The external link request parameters. */
+/** The settings of an external link to a file. */
 public struct FileLinkRequest: Sendable, Codable, Hashable {
 
     public static let titleRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let passwordRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    /** The external link ID. */
+    /** The link to rewrite, as reported by `GET api/2.0/files/file/{id}/links`. An identifier that is not yet in use,  the empty one included, creates a link instead. */
     public var linkId: UUID?
-    /** The link sharing rights. */
+    /** The rights the link grants to whoever follows it. The value that denies everything revokes the link. */
     public var access: FileShare?
-    /** The link expiration date. */
-    public var expirationDate: Date?
-    /** The link name. */
+    /** The moment the link stops working, read in the time zone of the portal. A date more than a few years ahead is  rejected as an invalid request; left out, the link does not expire on its own. */
+    public var expirationDate: ApiDateTime?
+    /** The name the link carries in the sharing list of the file, for the people who manage it; it is not shown to  whoever follows the link. */
     public var title: String?
-    /** The link scope, whether it is internal or not. */
+    /** Who may follow the link: `true` admits only accounts that are signed in to the portal, `false` admits anybody  who has the address. */
     public var _internal: Bool?
-    /** Specifies whether the file link is primary or not. */
+    /** Whether this link becomes the primary link of the file - the one the Copy link action of a client hands out.  A file has one primary link at a time. */
     public var primary: Bool?
-    /** Specifies whether to deny downloading the file or not. */
+    /** What a visitor may do with the content: `true` leaves them with viewing in the browser, `false` lets them  download and print it as their rights allow. */
     public var denyDownload: Bool?
-    /** Password for access via link. */
+    /** The secret a visitor has to type before the file opens; left out, the link opens without one. */
     public var password: String?
 
-    public init(linkId: UUID? = nil, access: FileShare? = nil, expirationDate: Date? = nil, title: String? = nil, _internal: Bool? = nil, primary: Bool? = nil, denyDownload: Bool? = nil, password: String? = nil) {
+    public init(linkId: UUID? = nil, access: FileShare? = nil, expirationDate: ApiDateTime? = nil, title: String? = nil, _internal: Bool? = nil, primary: Bool? = nil, denyDownload: Bool? = nil, password: String? = nil) {
         self.linkId = linkId
         self.access = access
         self.expirationDate = expirationDate

@@ -20,10 +20,10 @@ public struct AiProfilesListProviderModelsRequest: Sendable, Codable, Hashable {
     public var providerType: AiProviderType
     /** Provider API base URL. */
     public var baseUrl: String
-    /** Provider API key. */
-    public var apiKey: String
+    /** Provider API key. Omit it for a provider that needs none; the request is then made without one. */
+    public var apiKey: String?
 
-    public init(providerType: AiProviderType, baseUrl: String, apiKey: String) {
+    public init(providerType: AiProviderType, baseUrl: String, apiKey: String? = nil) {
         self.providerType = providerType
         self.baseUrl = baseUrl
         self.apiKey = apiKey
@@ -41,7 +41,7 @@ public struct AiProfilesListProviderModelsRequest: Sendable, Codable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(providerType, forKey: .providerType)
         try container.encode(baseUrl, forKey: .baseUrl)
-        try container.encode(apiKey, forKey: .apiKey)
+        try container.encodeIfPresent(apiKey, forKey: .apiKey)
     }
 }
 

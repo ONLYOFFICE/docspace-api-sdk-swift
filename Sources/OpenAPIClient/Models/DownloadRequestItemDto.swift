@@ -14,13 +14,13 @@
 //  limitations under the License.
 import Foundation
 
-/** The download request item with conversion parameters and security settings. */
+/** One file of a bulk download, together with the format it is converted to. */
 public struct DownloadRequestItemDto: Sendable, Codable, Hashable {
 
     public var key: DownloadRequestItemDtoKey
-    /** The target format or conversion type for the file download. */
+    /** The format the file is converted to before it is packed, as a file extension without a leading dot. */
     public var value: String?
-    /** The optional password for accessing protected files. */
+    /** The password that opens the source file, for a file protected with one; a protected file cannot be converted  without it. */
     public var password: String?
 
     public init(key: DownloadRequestItemDtoKey, value: String?, password: String? = nil) {

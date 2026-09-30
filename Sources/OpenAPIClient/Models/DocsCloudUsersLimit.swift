@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the user limits of a DocsCloud license. */
+/** Represents the user limits of a Docs Connect license. */
 public struct DocsCloudUsersLimit: Sendable, Codable, Hashable {
 
     /** The maximum number of users who can edit documents. */

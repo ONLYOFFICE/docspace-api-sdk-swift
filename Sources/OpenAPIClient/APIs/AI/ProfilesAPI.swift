@@ -18,7 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
-     Create
+     Create a provider profile
      
      See also:
      REST API Reference for aiProfilesCreate Operation
@@ -33,14 +33,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Create
+     Create a provider profile
      
      See also:
      REST API Reference for aiProfilesCreate Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-create/
      
      - POST /api/2.0/ai/profiles/create
-     - Creates an AI provider profile. The name must be unique and the credentials are validated against the provider before the profile is stored; the portal's first profile also takes the `Default` assignment slot.
+     - Creates an AI provider profile - the endpoint, credentials and model that a chat round runs on - and returns it. The name has to be unique, the credentials are probed against the live provider before anything is stored, and the portal's first profile also takes the `Default` assignment slot. Two inputs are refused outright: a `baseUrl` pointing at a private network address, and `providerType: external`, which delegates transport to the host application and therefore cannot work for a profile the server manages. On a portal running the AI gateway, profiles are managed centrally and this operation answers 403.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiCreateProfileInput: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiProfileMutationResult> 
@@ -61,16 +67,16 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiProfileMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Delete
+     Delete a provider profile
      
      See also:
      REST API Reference for aiProfilesDelete Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-delete/
-     - parameter body: (body)  
+     - parameter body: (body) The ID of the profile to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
@@ -80,15 +86,21 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Delete
+     Delete a provider profile
      
      See also:
      REST API Reference for aiProfilesDelete Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-delete/
      
      - DELETE /api/2.0/ai/profiles/delete
-     - Deletes an AI provider profile and cleans up the assignments pointing at it - the `Default` slot moves to the first remaining profile, the other slots are unbound.
-     - parameter body: (body)  
+     - Deletes an AI provider profile and cleans up every assignment pointing at it: the `Default` slot moves to the first remaining profile and the other slots are left unbound. The ID is required and may be sent in the body or as a query parameter. An unknown ID is not reported - the call answers success without deleting anything. Threads already bound to the profile keep the stored reference, so a round on such a thread falls back to whatever the scope resolves to.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter body: (body) The ID of the profile to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
@@ -108,11 +120,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Get by id
+     Get a provider profile
      
      See also:
      REST API Reference for aiProfilesGetById Operation
@@ -127,14 +139,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get by id
+     Get a provider profile
      
      See also:
      REST API Reference for aiProfilesGetById Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-get-by-id/
      
      - GET /api/2.0/ai/profiles/get-by-id
-     - Returns one AI provider profile, or an empty result when the identifier is unknown.
+     - Returns one AI provider profile by its ID, with its secrets stripped: neither the API key nor the custom headers are ever sent back, on any portal. The ID is required and is read from the query, and an unknown one answers 404. The `baseUrl` in the answer is the one that was stored, not the internal gateway address a round actually dials, so it cannot be used to reach the provider directly. Use `GET api/2.0/ai/profiles/list` to enumerate profiles instead of reading them one by one.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter id: (query) The AI provider profile identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiProfilesGetById200Response> 
@@ -158,11 +176,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiProfilesGetById200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     List
+     List provider profiles
      
      See also:
      REST API Reference for aiProfilesList Operation
@@ -177,14 +195,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     List
+     List provider profiles
      
      See also:
      REST API Reference for aiProfilesList Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list/
      
      - GET /api/2.0/ai/profiles/list
-     - Lists the portal's AI provider profiles.
+     - Lists the portal's AI provider profiles with their secrets stripped, the same way the single-profile read does. It takes no parameters and is not paginated, because a portal holds few profiles. On a portal running the AI gateway the answer is synthesised from the gateway's own catalogue rather than from stored records. The IDs in the answer are what the assignment operations and every round's `profileId` accept.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<[AiProfile]> 
      */
@@ -204,7 +228,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<[AiProfile]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -230,7 +254,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list-models/
      
      - GET /api/2.0/ai/profiles/list-models
-     - Lists the models the given profile's provider offers, as reported by the provider itself.
+     - Lists the models a stored profile's provider currently offers, asking the provider itself rather than reading a cached list. `profileId` is required and is read from the query. A failure is reported with the provider's own verdict: an unusable key comes back as 400 and a provider that is unreachable or broken as 502, while a missing profile or a caller without access keeps the status the portal gave it. Use `POST api/2.0/ai/profiles/list-provider-models` to probe an endpoint that has no profile yet.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter profileId: (query) The AI provider profile identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<[AiModel]> 
@@ -254,7 +284,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<[AiModel]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -280,7 +310,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-list-provider-models/
      
      - POST /api/2.0/ai/profiles/list-provider-models
-     - Lists the models a provider offers for the supplied endpoint and key, before any profile is created from them.
+     - Lists the models an endpoint offers for credentials supplied in the request, before any profile exists - this is what a provider-setup form calls to fill its model picker. `providerType` and `baseUrl` are both required, and a 400 for either names the offending input in a `field` member so the form can highlight it; a `baseUrl` pointing at a private network address is refused as well. For `providerType: onlyoffice` the answer comes from the portal gateway's catalogue, which carries richer capability data than the provider's own listing and matches what `GET api/2.0/ai/profiles/list` reports; a portal without that gateway falls back to asking the provider. A provider that is unreachable or broken is reported as 502, and one that rejects the key as 400.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiProfilesListProviderModelsRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<[AiModel]> 
@@ -301,16 +337,16 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<[AiModel]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Test connection
+     Test a profile's provider
      
      See also:
      REST API Reference for aiProfilesTestConnection Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-test-connection/
-     - parameter body: (body)  
+     - parameter body: (body) The ID of the profile to probe, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiProfilesTestConnection200Response
      */
@@ -320,15 +356,21 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Test connection
+     Test a profile's provider
      
      See also:
      REST API Reference for aiProfilesTestConnection Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-test-connection/
      
      - POST /api/2.0/ai/profiles/test-connection
-     - Checks a stored profile's credentials against its provider and reports the provider's own error when the call fails. Nothing is written.
-     - parameter body: (body)  
+     - Probes a stored profile's credentials against its provider and reports the outcome in the answer, writing nothing - this is what a Test button calls so that a failure does not commit anything. `profileId` is required and may be sent in the body or as a query parameter. The result is carried in the body rather than in the status, so a failed probe still answers 200 and the caller has to read the payload. To validate credentials that are not stored yet, use `POST api/2.0/ai/profiles/list-provider-models`.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter body: (body) The ID of the profile to probe, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiProfilesTestConnection200Response> 
      */
@@ -348,11 +390,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiProfilesTestConnection200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Update
+     Update a provider profile
      
      See also:
      REST API Reference for aiProfilesUpdate Operation
@@ -367,14 +409,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Update
+     Update a provider profile
      
      See also:
      REST API Reference for aiProfilesUpdate Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-profiles-update/
      
      - PUT /api/2.0/ai/profiles/update
-     - Updates an AI provider profile, re-checking name uniqueness and the provider credentials.
+     - Replaces a stored AI provider profile and returns it, re-checking name uniqueness and probing the credentials against the live provider again. The same two inputs are refused as on create - a private-network `baseUrl` and `providerType: external` - and the whole profile is overwritten by the one supplied rather than merged. On a portal running the AI gateway this answers 403, because profiles are managed centrally there. A profile that is bound to an action or an agent keeps those bindings.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiProfile: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiProfileMutationResult> 
@@ -395,6 +443,6 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiProfileMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }

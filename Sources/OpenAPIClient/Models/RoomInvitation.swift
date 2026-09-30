@@ -14,15 +14,15 @@
 //  limitations under the License.
 import Foundation
 
-/** The room invitation parameters. */
+/** One membership change in a room: an account or an email address, and the access level it is given. */
 public struct RoomInvitation: Sendable, Codable, Hashable {
 
     public static let emailRule = StringRule(minLength: nil, maxLength: 255, pattern: nil)
-    /** The email address. */
+    /** The address of somebody who has no portal account yet. An invitation is sent to it and an account is created  once it is accepted, so this is the field to use instead of an account identifier when the person is new to  the portal. */
     public var email: String?
-    /** The ID of the user to share a room with. */
+    /** The account or the group the entry is about, taken from the portal people and group listings. Leave it out and  give an email address instead to invite somebody who has no account yet. */
     public var id: UUID?
-    /** The room sharing rights. */
+    /** What the subject may do in the room. The value 0 removes the subject from the room, and the levels on offer  depend on the kind of room. */
     public var access: FileShare?
 
     public init(email: String? = nil, id: UUID? = nil, access: FileShare? = nil) {

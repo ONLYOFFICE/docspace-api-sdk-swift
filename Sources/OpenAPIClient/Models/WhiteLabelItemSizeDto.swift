@@ -14,30 +14,30 @@
 //  limitations under the License.
 import Foundation
 
-/** The white label logo size parameters. */
+/** The pixel box a logo slot is drawn in, in the shape the imaging library reports a geometry. */
 public struct WhiteLabelItemSizeDto: Sendable, Codable, Hashable {
 
-    /** Specifies whether the size is an aspect ratio. */
+    /** Whether the numbers are to be read as an aspect ratio rather than as pixels. Always `false` on the sizes  this API reports. */
     public var aspectRatio: Bool?
-    /** Specifies whether the logo is resized based on the smallest fitting dimension. */
+    /** Whether an image would be scaled to cover the box rather than to fit inside it. Always `false` here. */
     public var fillArea: Bool?
-    /** Specifies whether the logo is resized only if it is greater than the size. */
+    /** Whether scaling would apply only to an image larger than the box. Always `false` here. */
     public var greater: Bool?
-    /** The logo height, in pixels. */
+    /** The height of the box in pixels - one of the two fields of this object that carry information. */
     public var height: Int?
-    /** Specifies whether the logo is resized without preserving the aspect ratio. */
+    /** Whether scaling would be allowed to distort the image. Always `false` here. */
     public var ignoreAspectRatio: Bool?
-    /** Specifies whether the width and height are expressed as percentages. */
+    /** Whether `width` and `height` are to be read as percentages. Always `false` here, so both are pixels. */
     public var isPercentage: Bool?
-    /** Specifies whether the logo is resized only if it is less than the size. */
+    /** Whether scaling would apply only to an image smaller than the box. Always `false` here. */
     public var less: Bool?
-    /** Specifies whether the logo is resized using a pixel area count limit. */
+    /** Whether the box is to be read as a total pixel-area budget instead of as two dimensions. Always `false`  here. */
     public var limitPixels: Bool?
-    /** The logo width, in pixels. */
+    /** The width of the box in pixels - the other field of this object that carries information. */
     public var width: Int?
-    /** The X offset from the origin, in pixels. */
+    /** The horizontal offset of the box from the origin. Always `0` here. */
     public var x: Int?
-    /** The Y offset from the origin, in pixels. */
+    /** The vertical offset of the box from the origin. Always `0` here. */
     public var y: Int?
 
     public init(aspectRatio: Bool? = nil, fillArea: Bool? = nil, greater: Bool? = nil, height: Int? = nil, ignoreAspectRatio: Bool? = nil, isPercentage: Bool? = nil, less: Bool? = nil, limitPixels: Bool? = nil, width: Int? = nil, x: Int? = nil, y: Int? = nil) {

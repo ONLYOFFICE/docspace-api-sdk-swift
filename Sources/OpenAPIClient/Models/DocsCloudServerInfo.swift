@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the DocsCloud server information. */
+/** Represents the Docs Connect server information. */
 public struct DocsCloudServerInfo: Sendable, Codable, Hashable {
 
     /** The server version. */

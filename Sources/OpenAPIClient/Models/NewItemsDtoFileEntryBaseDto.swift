@@ -14,15 +14,15 @@
 //  limitations under the License.
 import Foundation
 
-/** The new item parameters. */
+/** One day of the entries the caller has not opened yet, the groups running from the most recent day backwards. */
 public struct NewItemsDtoFileEntryBaseDto: Sendable, Codable, Hashable {
 
-    /** The date and time when the new item was created. */
-    public var date: Date?
-    /** The list of items. */
+    /** The day the grouped entries were last changed, written with the offset of the portal time zone. The time part  is the moment of the newest entry of the group. */
+    public var date: ApiDateTime
+    /** What changed on that day, the most recent first. Folders are left out of it, so an entry here is always a file  or a room that holds them. */
     public var items: [FileEntryBaseDto]?
 
-    public init(date: Date?, items: [FileEntryBaseDto]?) {
+    public init(date: ApiDateTime, items: [FileEntryBaseDto]?) {
         self.date = date
         self.items = items
     }

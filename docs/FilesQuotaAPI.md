@@ -10,10 +10,10 @@ Method | HTTP request | Description
 
 # **resetRoomQuota**
 ```swift
-    open class func resetRoomQuota(updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = nil, completion: @escaping (_ data: FolderIntegerArrayWrapper?, _ error: Error?) -> Void)
+    open class func resetRoomQuota(updateRoomsRoomIdsRequestDto: UpdateRoomsRoomIdsRequestDto? = nil, completion: @escaping (_ data: FolderArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-Resets the quota limit for the rooms with the IDs specified in the request.
+Returns every listed room to the default room quota of the portal and streams the updated rooms back in the  order they were given. This is not the same as removing the limit: the room stops carrying its own value and  starts following the portal default, which a portal administrator can change at any time. The per-room quota  feature has to be on, the caller must be a manager of each listed room, and an archived room or a room in the  trash is refused. The list is not transactional, so rooms processed before a failing one keep the default and  the rest keep what they had. Only numeric room ids are processed, which means ids of rooms stored in a  connected third-party account are silently skipped. Use `PUT api/2.0/files/rooms/roomquota` to set an explicit  value, and a quota of -1 in `PUT api/2.0/files/rooms/{id}` to leave the room with no custom limit at all.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-room-quota/).
 
@@ -21,11 +21,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateRoomsRoomIdsRequestDtoInteger** | [**UpdateRoomsRoomIdsRequestDtoInteger**](UpdateRoomsRoomIdsRequestDtoInteger.md) |  | [optional] 
+ **updateRoomsRoomIdsRequestDto** | [**UpdateRoomsRoomIdsRequestDto**](UpdateRoomsRoomIdsRequestDto.md) |  | [optional] 
 
 ### Return type
 
-[**FolderIntegerArrayWrapper**](FolderIntegerArrayWrapper.md)
+[**FolderArrayWrapper**](FolderArrayWrapper.md)
 
 ### Authorization
 
@@ -36,10 +36,10 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateRoomsRoomIdsRequestDtoInteger = UpdateRoomsRoomIdsRequestDtoInteger(roomIds: [DuplicateRequestDto_allOf_fileIds()]) // UpdateRoomsRoomIdsRequestDtoInteger |  (optional)
+let updateRoomsRoomIdsRequestDto = UpdateRoomsRoomIdsRequestDto(roomIds: [DuplicateRequestDto_allOf_fileIds()]) // UpdateRoomsRoomIdsRequestDto |  (optional)
 
 // Reset the room quota limit
-FilesQuotaAPIApi.resetRoomQuota(updateRoomsRoomIdsRequestDtoInteger: updateRoomsRoomIdsRequestDtoInteger) { (response, error) in
+FilesQuotaAPIApi.resetRoomQuota(updateRoomsRoomIdsRequestDto: updateRoomsRoomIdsRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -60,10 +60,10 @@ FilesQuotaAPIApi.resetRoomQuota(updateRoomsRoomIdsRequestDtoInteger: updateRooms
 
 # **updateRoomsQuota**
 ```swift
-    open class func updateRoomsQuota(updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = nil, completion: @escaping (_ data: FolderIntegerArrayWrapper?, _ error: Error?) -> Void)
+    open class func updateRoomsQuota(updateRoomsQuotaRequestDto: UpdateRoomsQuotaRequestDto? = nil, completion: @escaping (_ data: FolderArrayWrapper?, _ error: Error?) -> Void)
 ```
 
-Changes the quota limit for the rooms with the IDs specified in the request.
+Sets the same custom storage limit, in bytes, on every listed room and streams the updated rooms back in the  order they were given. The per-room quota feature has to be on for the portal, and the value must stay within  the portal own limit, otherwise the call is refused before anything is written. The caller must be a manager  of each listed room, and an archived room or a room in the trash is refused. The list is not transactional:  rooms processed before the offending one keep their new limit, so a failed call has to be checked room by  room. Only numeric room ids are processed, which means ids of rooms stored in a connected third-party account  are silently skipped. A room whose limit already equals the requested value is left untouched and still  returned. To go back to the portal default use `PUT api/2.0/files/rooms/resetquota`, and to drop the custom  limit entirely send a quota of -1 to `PUT api/2.0/files/rooms/{id}`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-rooms-quota/).
 
@@ -71,11 +71,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateRoomsQuotaRequestDtoInteger** | [**UpdateRoomsQuotaRequestDtoInteger**](UpdateRoomsQuotaRequestDtoInteger.md) |  | [optional] 
+ **updateRoomsQuotaRequestDto** | [**UpdateRoomsQuotaRequestDto**](UpdateRoomsQuotaRequestDto.md) |  | [optional] 
 
 ### Return type
 
-[**FolderIntegerArrayWrapper**](FolderIntegerArrayWrapper.md)
+[**FolderArrayWrapper**](FolderArrayWrapper.md)
 
 ### Authorization
 
@@ -86,10 +86,10 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateRoomsQuotaRequestDtoInteger = UpdateRoomsQuotaRequestDtoInteger(roomIds: [DuplicateRequestDto_allOf_fileIds()], quota: 123) // UpdateRoomsQuotaRequestDtoInteger |  (optional)
+let updateRoomsQuotaRequestDto = UpdateRoomsQuotaRequestDto(roomIds: [DuplicateRequestDto_allOf_fileIds()], quota: 123) // UpdateRoomsQuotaRequestDto |  (optional)
 
 // Change the room quota limit
-FilesQuotaAPIApi.updateRoomsQuota(updateRoomsQuotaRequestDtoInteger: updateRoomsQuotaRequestDtoInteger) { (response, error) in
+FilesQuotaAPIApi.updateRoomsQuota(updateRoomsQuotaRequestDto: updateRoomsQuotaRequestDto) { (response, error) in
     guard error == nil else {
         print(error)
         return

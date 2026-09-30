@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The response containing the regenerated client secret. */
+/** The response carrying a regenerated client secret. */
 public struct ClientSecretResponse: Sendable, Codable, Hashable {
 
-    /** The newly generated client secret. */
+    /** The newly generated client secret. It replaces the previous one immediately, so every deployed copy of the client has to be updated with this value. */
     public var clientSecret: String?
 
     public init(clientSecret: String? = nil) {

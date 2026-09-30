@@ -20,29 +20,29 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let firstNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let lastNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    /** The user ID. */
+    /** The account the change applies to. It is read from this body by `POST api/2.0/people/email`, while  `PUT api/2.0/people/{userid}` takes the account from the route and ignores this field. */
     public var userId: String?
-    /** Specifies whether to disable a user or not. */
+    /** Set it to true to give the account the `Terminated` status and end every session it has, and to false to  bring it back. It is applied only when the caller edits somebody else, and omitting it keeps the current  status. */
     public var disable: Bool?
-    /** The user email address. */
+    /** The new email address, up to 255 characters. It is read only by `POST api/2.0/people/email`, which either  mails a confirmation letter or, for an administrator acting on somebody else, applies the address at once;  `PUT api/2.0/people/{userid}` ignores it. */
     public var email: String?
-    /** Specifies if this is a guest or a user. */
+    /** Set it to true to turn the account into a guest and to false to turn it back into a member. Either direction  takes a seat and can answer 402, it is applied only when the caller edits somebody else, and a request to  make the portal owner, a DocSpace administrator or a module administrator a guest is ignored. */
     public var isUser: Bool?
-    /** The user first name. */
+    /** The new first name, up to 255 characters. It is applied only to the caller's own profile, is left alone on an  LDAP or SSO account, and a pair the portal does not accept as a name answers 400. */
     public var firstName: String?
-    /** The user last name. */
+    /** The new last name, up to 255 characters. It is applied only to the caller's own profile, is left alone on an  LDAP or SSO account, and a pair the portal does not accept as a name answers 400. */
     public var lastName: String?
-    /** The list of the user departments. */
+    /** The groups the profile should belong to, by group ID, replacing the current ones. It is applied only to the  caller's own profile. */
     public var department: [UUID]?
-    /** The user location. */
+    /** The new free-text location shown on the profile. It is applied only to the caller's own profile and is left  alone on an LDAP or SSO account. */
     public var location: String?
-    /** The user comment. */
+    /** The new free-text note kept with the profile. It is applied only to the caller's own profile. */
     public var comment: String?
-    /** The list of the user contacts. */
+    /** The additional ways to reach the person, replacing the current ones. Each entry is a free-text type such as  `email`, `phone`, `skype` or `telegram` and its value, an entry with an empty value is dropped, and the field  is applied only to the caller's own profile. */
     public var contacts: [Contact]?
-    /** The user avatar photo URL. */
+    /** The address the portal downloads the new avatar from. It is applied only to the caller's own profile, has to  use HTTPS unless the request itself came over HTTP, and passing the address the profile already uses  downloads nothing. */
     public var files: String?
-    /** Specifies if tips, updates and offers are allowed to be sent to the user or not. */
+    /** Whether the account agrees to receive tips, updates and offers. It is applied only to the caller's own  profile, and omitting it on such a request stores false rather than keeping the current value. */
     public var spam: Bool?
 
     public init(userId: String? = nil, disable: Bool? = nil, email: String? = nil, isUser: Bool? = nil, firstName: String? = nil, lastName: String? = nil, department: [UUID]? = nil, location: String? = nil, comment: String? = nil, contacts: [Contact]? = nil, files: String? = nil, spam: Bool? = nil) {

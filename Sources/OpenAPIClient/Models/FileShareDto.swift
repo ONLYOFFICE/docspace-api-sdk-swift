@@ -14,33 +14,33 @@
 //  limitations under the License.
 import Foundation
 
-/** The file sharing information and access rights. */
+/** One access entry on a file, a folder or a room: who holds it, at which level, and what the caller may change about  it. */
 public struct FileShareDto: Sendable, Codable, Hashable {
 
-    /** The access rights type. */
+    /** The level the subject holds on the entry. On a link entry it is the level the link hands to whoever opens it,  and in a batch answer `Varies` means the subject holds different levels on the listed entries. */
     public var access: FileShare?
     public var sharedTo: JSONValue?
-    /** The user who has the access to the specified file. */
+    /** The account the entry belongs to. It is filled in only when `subjectType` says an account, and is null for a  group entry and for a link. */
     public var sharedToUser: EmployeeFullDto?
-    /** The user who has the access to the specified file. */
+    /** The portal group the entry belongs to, which hands the level to everybody in it. It is filled in only for a  group entry, and is null otherwise. */
     public var sharedToGroup: GroupSummaryDto?
-    /** The user who has the access to the specified file. */
+    /** The sharing link the entry stands for, together with everything set on it. It is filled in only for a link  entry, and is null for an account or a group. */
     public var sharedLink: FileShareLink?
-    /** Specifies if the access right is locked or not. */
+    /** Whether this entry is the caller's own, which is why they cannot change its level. Link entries never report  it. */
     public var isLocked: Bool
-    /** Specifies if the user is an owner of the specified file or not. */
+    /** Whether the subject created the entry the access is given on, and so cannot be removed from it. */
     public var isOwner: Bool
-    /** Specifies if the user can edit the access to the specified file or not. */
+    /** Whether the caller may change the level of this entry. It is false on the caller's own entry, on every link,  and whenever the caller may not hand out access at all. */
     public var canEditAccess: Bool
-    /** Indicates whether internal editing permissions are granted. */
+    /** Whether the caller may switch this link between being open to anybody and asking the visitor to sign in to the  portal first. */
     public var canEditInternal: Bool
-    /** Determines whether the user has permission to modify the deny download setting for the file share. */
+    /** Whether the caller may forbid downloading through this link. Only a link of a virtual data room reports true,  and only while the room itself still allows downloads. */
     public var canEditDenyDownload: Bool
-    /** Indicates whether the expiration date of access permissions can be edited. */
+    /** Whether the caller may move the moment this link stops working. */
     public var canEditExpirationDate: Bool
-    /** Specifies whether the file sharing access can be revoked by the current user. */
+    /** Whether the caller may take this entry away altogether, which for a link means deleting the link. */
     public var canRevoke: Bool
-    /** The subject type. */
+    /** What the entry was given to, which tells which of the three subject fields is filled in: an account, a group,  or one of the kinds of link. */
     public var subjectType: SubjectType
 
     public init(access: FileShare? = nil, sharedTo: JSONValue? = nil, sharedToUser: EmployeeFullDto? = nil, sharedToGroup: GroupSummaryDto? = nil, sharedLink: FileShareLink? = nil, isLocked: Bool, isOwner: Bool, canEditAccess: Bool, canEditInternal: Bool, canEditDenyDownload: Bool, canEditExpirationDate: Bool, canRevoke: Bool, subjectType: SubjectType) {

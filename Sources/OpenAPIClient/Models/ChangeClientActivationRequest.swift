@@ -17,7 +17,7 @@ import Foundation
 /** Client activation change request */
 public struct ChangeClientActivationRequest: Sendable, Codable, Hashable {
 
-    /** The activation status of the client */
+    /** Whether the client may obtain tokens from now on. Sending false leaves the registration and the already issued tokens in place but refuses new authorization requests; sending true allows them again. */
     public var status: Bool
 
     public init(status: Bool) {

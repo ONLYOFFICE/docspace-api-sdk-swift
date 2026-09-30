@@ -17,21 +17,21 @@ import Foundation
 /** The OAuth 2.0 token issued by a third-party provider. */
 public struct OAuth20Token: Sendable, Codable, Hashable {
 
-    /** Access token */
+    /** The token sent to the provider with every request made on behalf of the account. */
     public var accessToken: String?
-    /** Refresh token */
+    /** The token used to obtain a new access token when the current one expires. A provider that issues no refresh  token leaves it empty, and the account then has to be connected again to keep working. */
     public var refreshToken: String?
-    /** Expires in */
+    /** How long the access token stays usable, in seconds counted from `timestamp`. Zero means the provider did not  say, and the token is then treated as expired. */
     public var expiresIn: Int64?
-    /** Client id */
+    /** The OAuth 2.0 client ID of the application the token was issued to. */
     public var clientId: String?
-    /** Client secret */
+    /** The client secret of the application the token was issued to, needed when the token is refreshed. */
     public var clientSecret: String?
-    /** Redirect uri */
+    /** The redirect URL the authorization code behind this token was obtained with; providers require the same value  again when the token is refreshed. */
     public var redirectUri: String?
-    /** Timestamp */
+    /** When the token was issued, in UTC. This is the point `expires_in` is counted from. */
     public var timestamp: Date?
-    /** Is expired */
+    /** Whether the access token can no longer be used and has to be refreshed. It is also true when the provider did  not say how long the token lives. */
     public var isExpired: Bool?
 
     public init(accessToken: String? = nil, refreshToken: String? = nil, expiresIn: Int64? = nil, clientId: String? = nil, clientSecret: String? = nil, redirectUri: String? = nil, timestamp: Date? = nil, isExpired: Bool? = nil) {

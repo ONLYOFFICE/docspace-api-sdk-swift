@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The co-editing configuration parameters. */
+/** How co-editing is preset when the document opens, and whether the user may switch it afterwards. */
 public struct CoEditingConfig: Sendable, Codable, Hashable {
 
-    /** Specifies if the co-editing mode can be changed in the editor interface or not. */
+    /** Whether the user may switch between the two co-editing modes from the editor interface, or is held to the one  the portal preset. */
     public var change: Bool?
-    /** Specifies if the co-editing mode is fast. */
+    /** Whether other participants see each change as it is typed. Left off, changes are exchanged only when a  participant saves, and the paragraph being edited is locked for the others meanwhile. */
     public var fast: Bool?
-    /** The co-editing mode (fast or strict). */
+    /** The mode the two settings above amount to, as the editors name it. */
     public var mode: CoEditingConfigMode?
 
     public init(change: Bool? = nil, fast: Bool? = nil, mode: CoEditingConfigMode? = nil) {

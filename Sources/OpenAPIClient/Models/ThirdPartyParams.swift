@@ -14,20 +14,20 @@
 //  limitations under the License.
 import Foundation
 
-/** The third-party account parameters. */
+/** A third-party storage account connected to the portal. */
 public struct ThirdPartyParams: Sendable, Codable, Hashable {
 
-    /** The authentication data. */
+    /** The stored credentials of the account. They are not filled in here: the portal does not give back credentials  once an account is saved. */
     public var authData: AuthData?
-    /** Specifies if this is a corporate account or not. */
+    /** Whether the account is attached to the legacy Common section, which is the case only for accounts inherited  from an older portal. */
     public var corporate: Bool?
-    /** Specifies if this is a room storage or not. */
+    /** Whether the account is attached to the Rooms section, room templates and the archive counted in. This is where  `POST api/2.0/files/thirdparty` puts every account it connects. */
     public var roomsStorage: Bool?
-    /** The customer title. */
+    /** The name the account is shown under in the portal, as it was saved when the account was connected. */
     public var customerTitle: String?
-    /** The provider ID. */
+    /** The account ID to send to `DELETE api/2.0/files/thirdparty/{providerId}`, or as `providerId` to  re-authenticate the account. */
     public var providerId: Int?
-    /** The provider key. */
+    /** The storage service behind the account. `WebDav` stands for every WebDAV preset, so it does not tell which of  them was chosen when the account was connected. */
     public var providerKey: String?
 
     public init(authData: AuthData? = nil, corporate: Bool? = nil, roomsStorage: Bool? = nil, customerTitle: String? = nil, providerId: Int? = nil, providerKey: String? = nil) {

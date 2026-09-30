@@ -14,18 +14,18 @@
 //  limitations under the License.
 import Foundation
 
-/** The Access Control external sharing settings. */
+/** The external sharing policy of the portal as it now stands. */
 public struct ExternalSharingSettingsDto: Sendable, Codable, Hashable {
 
-    /** Specifies whether external (public) link creation is allowed. */
+    /** Whether links that open a file or a room without a portal account may be created. While it is false the portal  also reports sharing on social networks as off and the default link type as internal, whatever was asked for. */
     public var externalShare: Bool?
-    /** Specifies the default sharing link type: true = DocSpace users only, false = Anyone with the link. */
+    /** The kind of link the portal offers first: true means a link only accounts of this portal can open, false one  that anyone holding it can open. */
     public var defaultShareLinkInternal: Bool?
-    /** When external sharing is restricted, specifies whether the restriction applies to the My Documents section. */
+    /** Whether the restriction covers personal documents. It only has an effect while external sharing is off, so a  true here with sharing allowed restricts nothing. */
     public var externalShareApplyToDocuments: Bool?
-    /** When external sharing is restricted, specifies whether the restriction applies to the Rooms section. */
+    /** Whether the restriction covers rooms, including the creation of new public ones. It only has an effect while  external sharing is off. */
     public var externalShareApplyToRooms: Bool?
-    /** When external sharing is restricted, specifies whether existing public links are blocked immediately. */
+    /** Whether links created before the restriction stop opening as well. With false they keep working and only new  ones are refused. */
     public var blockExistingLinksOnRestrict: Bool?
 
     public init(externalShare: Bool? = nil, defaultShareLinkInternal: Bool? = nil, externalShareApplyToDocuments: Bool? = nil, externalShareApplyToRooms: Bool? = nil, blockExistingLinksOnRestrict: Bool? = nil) {

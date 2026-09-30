@@ -14,33 +14,33 @@
 //  limitations under the License.
 import Foundation
 
-/** The active connection item parameters. */
+/** One open connection of a user: where the sign-in behind it came from, and the ID it can be closed by. */
 public struct ActiveConnectionsItemDto: Sendable, Codable, Hashable {
 
-    /** The active connection ID. */
+    /** The ID of the sign-in this connection was opened by. Pass it as `loginEventId` to  `PUT api/2.0/security/activeconnections/logout/{loginEventId}` to end this one connection; the item whose  value equals `loginEvent` is the connection the current request uses. */
     public var id: Int
-    /** The tenant ID. */
+    /** The portal the sign-in was made on. The operation never crosses portals, so it is the current one on every  item. */
     public var tenantId: Int
-    /** The user ID. */
+    /** The user the connection belongs to, which is the calling user on every item - the operation cannot report  anyone else's connections. */
     public var userId: UUID
-    /** Specifies if the active connection has a mobile phone or not. */
+    /** Whether the sign-in came from a mobile client. No mobile marker is stored with a connection, so the value  is `false` on every item and tells a caller nothing about the device. */
     public var mobile: Bool?
-    /** The IP address of the active connection. */
+    /** The IP address the sign-in came from, with the port stripped off. On the item that matches `loginEvent` it  is taken from the address the current request arrives from instead of the one stored at sign-in. */
     public var ip: String?
-    /** The active connection country. */
+    /** The English name of the country the IP address is located in. It is empty when the address cannot be  located, which is the normal outcome for private and loopback addresses. */
     public var country: String?
-    /** The active connection city. */
+    /** The city the IP address is located in, empty under the same conditions as `country`. */
     public var city: String?
-    /** The active connection browser. */
+    /** The browser and its version as parsed from the user agent of the sign-in, empty when the client sent no  recognisable one. It is refreshed from the current request on the item that matches `loginEvent`. */
     public var browser: String?
-    /** The active connection platform. */
+    /** The operating system as parsed from the user agent of the sign-in, refreshed and left empty under the same  conditions as `browser`. */
     public var platform: String?
-    /** The active connection date. */
-    public var date: Date?
-    /** The active connection page. */
+    /** When the sign-in happened, in the portal time zone rather than in UTC. */
+    public var date: ApiDateTime?
+    /** Where in the portal the sign-in was made from: the referrer of the request that created it, or that  request's own path when it carried no referrer. Long values are cut off at 512 characters. */
     public var page: String?
 
-    public init(id: Int, tenantId: Int, userId: UUID, mobile: Bool? = nil, ip: String? = nil, country: String? = nil, city: String? = nil, browser: String? = nil, platform: String? = nil, date: Date? = nil, page: String? = nil) {
+    public init(id: Int, tenantId: Int, userId: UUID, mobile: Bool? = nil, ip: String? = nil, country: String? = nil, city: String? = nil, browser: String? = nil, platform: String? = nil, date: ApiDateTime? = nil, page: String? = nil) {
         self.id = id
         self.tenantId = tenantId
         self.userId = userId

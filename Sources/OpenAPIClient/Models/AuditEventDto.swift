@@ -14,47 +14,47 @@
 //  limitations under the License.
 import Foundation
 
-/** The audit event parameters. */
+/** One entry of the portal audit trail: who changed what, from where, and where it belongs in the product. */
 public struct AuditEventDto: Sendable, Codable, Hashable {
 
-    /** The audit event ID. */
+    /** The ID of the recorded entry. Nothing accepts it as an argument - no operation fetches a single audit event  - so it serves only to tell two otherwise identical entries apart. */
     public var id: Int?
-    /** The audit event date. */
-    public var date: Date?
-    /** The name of the user who triggered the audit event. */
+    /** When the action happened, in the portal time zone. The `from` and `to` filters are read as UTC instants, so  the two do not line up on a portal that is not on UTC. */
+    public var date: ApiDateTime?
+    /** The display name of the user who acted, taken from the account as it stands now rather than as it stood  when the entry was written. A localised placeholder stands in when there is no account to read: a portal  background job, an anonymous guest, or a user who has since been deleted. */
     public var user: String?
-    /** The ID of the user who triggered the audit event. */
+    /** The ID of the user who acted, which is what the `userId` filter of this operation matches on. It stays  readable after the account is deleted, which is when `user` falls back to a placeholder. */
     public var userId: UUID?
-    /** The audit event action. */
+    /** The whole event as a readable sentence in the portal language, with the names of the objects involved  substituted into it. On the two `audit/.../last` operations each substituted value is cut to 50 characters;  the filtered operations substitute them in full. It is empty when the build has no wording for the action. */
     public var action: String?
-    /** The specific action that occurred within the audit event. */
+    /** The action itself, as the `action` filter of this operation spells it and as  `GET api/2.0/security/audit/mappers` lists it under `messageAction`. Use this rather than parsing `action`,  which is prose and changes with the portal language. */
     public var actionId: MessageAction?
-    /** The audit event IP. */
+    /** The IP address the request came from, with the port stripped off. It is empty for an action a portal  background job performed, which has no request behind it. */
     public var ip: String?
-    /** The audit event country. */
+    /** The English name of the country the IP address is located in, empty when the address cannot be located -  the normal outcome for private and loopback addresses. */
     public var country: String?
-    /** The audit event city. */
+    /** The city the IP address is located in, empty under the same conditions as `country`. */
     public var city: String?
-    /** The audit event browser. */
+    /** The browser and its version as parsed from the user agent of the request, empty when the client sent none  that could be parsed or when no request was involved. */
     public var browser: String?
-    /** The audit event platform. */
+    /** The operating system as parsed from the same user agent, empty under the same conditions as `browser`. */
     public var platform: String?
-    /** The audit event page. */
+    /** Where in the portal the action was made from: the referrer of the request, or that request's own path when  it carried no referrer. Long values are cut off at 512 characters. */
     public var page: String?
-    /** The type of action performed in the audit event (e.g., Create, Update, Delete). */
+    /** The kind of change the action stands for, as the `actionType` filter of this operation spells it. It is  derived from `actionId`, not stored per entry, so it is the same on every entry of one action. */
     public var actionType: ActionType?
-    /** The type of product related to the audit event. */
+    /** The product the action belongs to. It cannot be filtered on here; the tree that groups actions by product  is `GET api/2.0/security/audit/mappers`. */
     public var product: ProductType?
-    /** The location where the audit event occurred. */
+    /** The location inside that product, as the `moduleType` filter of this operation spells it. It is also  derived from `actionId` rather than stored per entry. */
     public var location: LocationType?
-    /** The list of target objects affected by the audit event (e.g., document ID, user account). */
+    /** The objects the action was applied to, as the trail recorded them - a title, an account, an ID - one string  each. It is empty for an action that targets nothing, such as a settings change, and the `target` filter of  this operation matches one of these values in full. */
     public var target: [String]?
-    /** The list of audit entry types (e.g., Folder, User, File). */
+    /** The kinds of object the action applies to, holding at most two entries and none at all for an action that  targets nothing. Only the first of them can be filtered on, through `entryType`. */
     public var entries: [EntryType]?
-    /** The audit event context. */
+    /** Where the action took place, spelled out in the portal language rather than as a code: for a Documents  event the room or the root folder it happened in, and for anything else the name of the module. Nothing  filters on it. */
     public var context: String?
 
-    public init(id: Int? = nil, date: Date? = nil, user: String? = nil, userId: UUID? = nil, action: String? = nil, actionId: MessageAction? = nil, ip: String? = nil, country: String? = nil, city: String? = nil, browser: String? = nil, platform: String? = nil, page: String? = nil, actionType: ActionType? = nil, product: ProductType? = nil, location: LocationType? = nil, target: [String]? = nil, entries: [EntryType]? = nil, context: String? = nil) {
+    public init(id: Int? = nil, date: ApiDateTime? = nil, user: String? = nil, userId: UUID? = nil, action: String? = nil, actionId: MessageAction? = nil, ip: String? = nil, country: String? = nil, city: String? = nil, browser: String? = nil, platform: String? = nil, page: String? = nil, actionType: ActionType? = nil, product: ProductType? = nil, location: LocationType? = nil, target: [String]? = nil, entries: [EntryType]? = nil, context: String? = nil) {
         self.id = id
         self.date = date
         self.user = user

@@ -14,18 +14,18 @@
 //  limitations under the License.
 import Foundation
 
-/** The backup schedule parameters. */
+/** The request parameters for setting the backup schedule. */
 public struct BackupScheduleDto: Sendable, Codable, Hashable {
 
-    /** The backup storage type. */
+    /** The storage the scheduled archives are written to. It defaults to `Documents`, and it decides which  keys `storageParams` has to carry. */
     public var storageType: BackupStorageType?
-    /** The backup storage parameters. */
+    /** The settings of the chosen storage, as an array of key and value pairs. `Documents` and  `ThridpartyDocuments` need `folderId`, `Local` needs `filePath`, `ThirdPartyConsumer` needs `module`  plus the settings of that consumer, and `DataStore` needs none. */
     public var storageParams: [ItemKeyValuePairObjectObject]?
-    /** The maximum number of the stored backup copies. */
+    /** The number of scheduled copies to keep, from 1 to 30. It defaults to 1, and only the copies this  schedule creates are counted and removed - archives started by hand are left alone. */
     public var backupsStored: Int?
-    /** The backup cron parameters. */
+    /** When the backup runs. It is required: a request without it fails rather than falling back to a  default. */
     public var cronParams: Cron?
-    /** Specifies if a dump will be created or not. */
+    /** Schedules a backup of the whole server rather than of this one portal. It requires the space access  permission and works on a standalone installation only. */
     public var dump: Bool?
 
     public init(storageType: BackupStorageType? = nil, storageParams: [ItemKeyValuePairObjectObject]? = nil, backupsStored: Int? = nil, cronParams: Cron? = nil, dump: Bool? = nil) {

@@ -14,13 +14,13 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters to change the room cover. */
+/** The picture and the colour a room is drawn with while it has no logo. */
 public struct CoverRequestDto: Sendable, Codable, Hashable {
 
     public static let colorRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^[A-Fa-f0-9]{6}$/")
-    /** The cover color. */
+    /** The background colour the room is drawn with while it has no logo, as six hexadecimal digits with no leading  number sign. An empty value restores the default colour of the room type. */
     public var color: String?
-    /** The cover name. */
+    /** The picture drawn on the room while it has no logo, named by an identifier from  `GET api/2.0/files/rooms/covers`. Any other value is rejected, and an empty value leaves the room without a  cover. */
     public var cover: String?
 
     public init(color: String? = nil, cover: String? = nil) {

@@ -16,13 +16,13 @@ import Foundation
 
 public struct ExchangeToken200Response: Sendable, Codable, Hashable {
 
-    /** The access token issued by the authorization server. */
+    /** The token to send as a Bearer credential when calling the portal on the user behalf. */
     public var accessToken: String?
-    /** The type of token issued, typically 'Bearer'. */
+    /** How the access token is to be presented. It is always Bearer. */
     public var tokenType: String?
-    /** The number of seconds until the access token expires. */
+    /** How many seconds the access token stays valid, counted from the moment it was issued. */
     public var expiresIn: Int?
-    /** The token used to obtain a new access token when the current one expires. */
+    /** The token that buys a new access token once the current one expires. It is present only when the client is registered for the refresh token grant. */
     public var refreshToken: String?
 
     public init(accessToken: String? = nil, tokenType: String? = nil, expiresIn: Int? = nil, refreshToken: String? = nil) {

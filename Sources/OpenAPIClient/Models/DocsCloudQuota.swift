@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the current user quota of a DocsCloud tenant. */
+/** Represents the current user quota of a Docs Connect tenant. */
 public struct DocsCloudQuota: Sendable, Codable, Hashable {
 
     /** The editor users. */

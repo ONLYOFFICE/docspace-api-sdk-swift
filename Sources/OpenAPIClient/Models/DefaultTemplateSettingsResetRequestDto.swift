@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** Default templates settings reset request parameters. */
+/** The extension whose custom blank is dropped in favour of the built-in one. */
 public struct DefaultTemplateSettingsResetRequestDto: Sendable, Codable, Hashable {
 
-    /** File extension of a template to reset */
+    /** The extension whose custom blank is dropped, written in lower case with the leading dot. Only the extensions  the portal's built-in template set covers are accepted, and `GET api/2.0/files/settings/defaulttemplate`  returns exactly that list; an extension outside it leaves the settings unchanged instead of failing. */
     public var fileExtension: String?
 
     public init(fileExtension: String?) {

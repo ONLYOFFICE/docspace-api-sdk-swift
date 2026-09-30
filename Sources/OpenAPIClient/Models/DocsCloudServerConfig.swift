@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the server configuration of a DocsCloud tenant. */
+/** Represents the server configuration of a Docs Connect tenant. */
 public struct DocsCloudServerConfig: Sendable, Codable, Hashable {
 
     public static let fileSizeLimitRule = NumericRule<Int64>(minimum: 0, exclusiveMinimum: false, maximum: 209715200, exclusiveMaximum: false, multipleOf: nil)

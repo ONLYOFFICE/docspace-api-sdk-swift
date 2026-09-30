@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the license and server information of a DocsCloud tenant, with usage statistics for the current period. */
+/** Represents the license and server information of a Docs Connect tenant, with usage statistics for the current period. */
 public struct DocsCloudTenantInfo: Sendable, Codable, Hashable {
 
     /** The license information. */
     public var license: DocsCloudLicenseInfo?
-    /** The DocsCloud server information. */
+    /** The Docs Connect server information. */
     public var server: DocsCloudServerInfo?
     /** The user limits of the license. */
     public var usersLimit: DocsCloudUsersLimit?

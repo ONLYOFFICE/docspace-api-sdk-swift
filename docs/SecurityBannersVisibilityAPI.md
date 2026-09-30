@@ -12,7 +12,7 @@ Method | HTTP request | Description
     open class func setTenantBannerSettings(tenantBannerSettingsDto: TenantBannerSettingsDto? = nil, completion: @escaping (_ data: TenantBannerSettingsWrapper?, _ error: Error?) -> Void)
 ```
 
-Sets the visibility settings of the promotional banners in the portal.
+Sets whether the portal's promotional banners are hidden for every user. Available only on an Enterprise  license; every other plan is refused regardless of the caller's role. Requires Owner or DocSpaceAdmin (the  EditPortalSettings permission). The flag only takes effect on a Standalone (self-hosted) installation; on  SaaS, banners are always shown no matter what is saved here. This is a mutating, idempotent, portal-wide call:  it applies to every user on the tenant immediately. It returns the saved setting; read the current value at  any time from `GET api/2.0/settings/banner`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-banner-settings/).
 

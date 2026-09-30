@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The information about the action in the document that will be scrolled to. */
+/** An anchor inside a document, as the editor writes it. */
 public struct ActionConfig: Sendable, Codable, Hashable {
 
     public static let dataRule = StringRule(minLength: 0, maxLength: 256, pattern: nil)
     public static let typeRule = StringRule(minLength: 0, maxLength: 128, pattern: nil)
-    /** The action data that will be scrolled to. */
+    /** The anchor value produced by the editor, opaque to the portal: it names the comment, the mention or the  place the document is scrolled to. */
     public var data: String?
-    /** The action type. */
+    /** What the anchor points at, as the editor names it - a comment thread, for instance. */
     public var type: String?
 
     public init(data: String? = nil, type: String? = nil) {

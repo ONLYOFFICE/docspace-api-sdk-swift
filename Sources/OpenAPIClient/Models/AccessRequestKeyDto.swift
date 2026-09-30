@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The encryption key granting one user access to a file. */
+/** The file key issued to one account. */
 public struct AccessRequestKeyDto: Sendable, Codable, Hashable {
 
-    /** User ID */
+    /** The account that is to open the file with this key; it has to have read access to the file. */
     public var userId: UUID?
-    /** Public key ID */
+    /** The public key the file key was encrypted with, as reported for that account by  `GET api/2.0/files/file/{fileId}/publickeys`. */
     public var publicKeyId: UUID?
-    /** Encrypted private key */
+    /** The key of the file itself, encrypted by the client with that public key, so that the plain key never reaches  the portal. */
     public var privateKeyEnc: String?
 
     public init(userId: UUID? = nil, publicKeyId: UUID? = nil, privateKeyEnc: String? = nil) {

@@ -103,11 +103,11 @@ public struct TenantQuota: Sendable, Codable, Hashable {
     public var aiTools: Bool?
     /** Specifies if the AI search enabled as a wallet service or not. */
     public var aiSearch: Bool?
-    /** The number of DocsCloud users. */
+    /** The number of Docs Connect users. */
     public var docsCloud: Int?
-    /** Specifies if the DocsCloudDevPack enabled or not. */
+    /** Specifies if the Docs Connect Dev Pack enabled or not. */
     public var docsCloudDevPack: Bool?
-    /** Specifies if the DocsCloudTrial enabled or not. */
+    /** Specifies if the Docs Connect trial enabled or not. */
     public var docsCloudTrial: Bool?
 
     public init(tenantId: Int? = nil, name: String? = nil, price: Double? = nil, priceCurrencySymbol: String? = nil, priceISOCurrencySymbol: String? = nil, productId: String? = nil, serviceName: String? = nil, serviceGroup: String? = nil, visible: Bool? = nil, wallet: Bool? = nil, additional: Bool? = nil, dueDate: Date? = nil, features: String? = nil, maxFileSize: Int64? = nil, maxTotalSize: Int64? = nil, countUser: Int? = nil, countRoomAdmin: Int? = nil, usersInRoom: Int? = nil, countRoom: Int? = nil, nonProfit: Bool? = nil, trial: Bool? = nil, free: Bool? = nil, update: Bool? = nil, audit: Bool? = nil, docsEdition: Bool? = nil, ldap: Bool? = nil, sso: Bool? = nil, statistic: Bool? = nil, branding: Bool? = nil, customization: Bool? = nil, lifetime: Bool? = nil, automationApi: Bool? = nil, custom: Bool? = nil, restore: Bool? = nil, oauth: Bool? = nil, contentSearch: Bool? = nil, thirdParty: Bool? = nil, year: Bool? = nil, countFreeBackup: Int? = nil, backup: Bool? = nil, countAIAgent: Int? = nil, aiTools: Bool? = nil, aiSearch: Bool? = nil, docsCloud: Int? = nil, docsCloudDevPack: Bool? = nil, docsCloudTrial: Bool? = nil) {

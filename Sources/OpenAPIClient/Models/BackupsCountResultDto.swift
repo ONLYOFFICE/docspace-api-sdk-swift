@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** The number of backups. */
+/** The backups of a portal, split by who paid for them. */
 public struct BackupsCountResultDto: Sendable, Codable, Hashable {
 
-    /** The number of free backups. */
+    /** The number of backups covered by the free monthly allowance. */
     public var free: Int?
-    /** The number of paid backups. */
+    /** The number of backups charged to the portal wallet. */
     public var paid: Int?
 
     public init(free: Int? = nil, paid: Int? = nil) {

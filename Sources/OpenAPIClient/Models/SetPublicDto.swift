@@ -14,13 +14,13 @@
 //  limitations under the License.
 import Foundation
 
-/** The public settings of the room template to set. */
+/** The public access to set on a room template. */
 public struct SetPublicDto: Sendable, Codable, Hashable {
 
     public static let idRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 2147483647, exclusiveMaximum: false, multipleOf: nil)
-    /** The room template ID. */
+    /** The identifier of the room template. Take it from `templateId` of `GET api/2.0/files/roomtemplate/status`, or  from the folder list of `GET api/2.0/files/rooms` called with `searchArea` set to 4; an identifier of an  ordinary room is not accepted. */
     public var id: Int
-    /** Specifies whether the room template is public or not. */
+    /** Whether the Everyone group keeps read access to the template. True shares it with every member allowed to  create rooms; false leaves it reachable only for its owner. */
     public var _public: Bool?
 
     public init(id: Int, _public: Bool? = nil) {

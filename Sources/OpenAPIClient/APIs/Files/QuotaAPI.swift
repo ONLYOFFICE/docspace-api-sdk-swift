@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for resetRoomQuota Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-room-quota/
-     - parameter updateRoomsRoomIdsRequestDtoInteger: (body)  (optional)
+     - parameter updateRoomsRoomIdsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: FolderIntegerArrayWrapper
+     - returns: FolderArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func resetRoomQuota(updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderIntegerArrayWrapper {
-        return try await resetRoomQuotaWithRequestBuilder(updateRoomsRoomIdsRequestDtoInteger: updateRoomsRoomIdsRequestDtoInteger, apiConfiguration: apiConfiguration).execute().body
+    open class func resetRoomQuota(updateRoomsRoomIdsRequestDto: UpdateRoomsRoomIdsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderArrayWrapper {
+        return try await resetRoomQuotaWithRequestBuilder(updateRoomsRoomIdsRequestDto: updateRoomsRoomIdsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -40,7 +40,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-room-quota/
      
      - PUT /api/2.0/files/rooms/resetquota
-     - Resets the quota limit for the rooms with the IDs specified in the request.
+     - Returns every listed room to the default room quota of the portal and streams the updated rooms back in the  order they were given. This is not the same as removing the limit: the room stops carrying its own value and  starts following the portal default, which a portal administrator can change at any time. The per-room quota  feature has to be on, the caller must be a manager of each listed room, and an archived room or a room in the  trash is refused. The list is not transactional, so rooms processed before a failing one keep the default and  the rest keep what they had. Only numeric room ids are processed, which means ids of rooms stored in a  connected third-party account are silently skipped. Use `PUT api/2.0/files/rooms/roomquota` to set an explicit  value, and a quota of -1 in `PUT api/2.0/files/rooms/{id}` to leave the room with no custom limit at all.
      - BASIC:
        - type: http
        - name: Basic
@@ -60,14 +60,14 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter updateRoomsRoomIdsRequestDtoInteger: (body)  (optional)
+     - parameter updateRoomsRoomIdsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<FolderIntegerArrayWrapper> 
+     - returns: RequestBuilder<FolderArrayWrapper> 
      */
-    open class func resetRoomQuotaWithRequestBuilder(updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderIntegerArrayWrapper> {
+    open class func resetRoomQuotaWithRequestBuilder(updateRoomsRoomIdsRequestDto: UpdateRoomsRoomIdsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderArrayWrapper> {
         let localVariablePath = "/api/2.0/files/rooms/resetquota"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateRoomsRoomIdsRequestDtoInteger, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateRoomsRoomIdsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -78,7 +78,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<FolderIntegerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<FolderArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -89,13 +89,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateRoomsQuota Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-rooms-quota/
-     - parameter updateRoomsQuotaRequestDtoInteger: (body)  (optional)
+     - parameter updateRoomsQuotaRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: FolderIntegerArrayWrapper
+     - returns: FolderArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateRoomsQuota(updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderIntegerArrayWrapper {
-        return try await updateRoomsQuotaWithRequestBuilder(updateRoomsQuotaRequestDtoInteger: updateRoomsQuotaRequestDtoInteger, apiConfiguration: apiConfiguration).execute().body
+    open class func updateRoomsQuota(updateRoomsQuotaRequestDto: UpdateRoomsQuotaRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderArrayWrapper {
+        return try await updateRoomsQuotaWithRequestBuilder(updateRoomsQuotaRequestDto: updateRoomsQuotaRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -106,7 +106,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-rooms-quota/
      
      - PUT /api/2.0/files/rooms/roomquota
-     - Changes the quota limit for the rooms with the IDs specified in the request.
+     - Sets the same custom storage limit, in bytes, on every listed room and streams the updated rooms back in the  order they were given. The per-room quota feature has to be on for the portal, and the value must stay within  the portal own limit, otherwise the call is refused before anything is written. The caller must be a manager  of each listed room, and an archived room or a room in the trash is refused. The list is not transactional:  rooms processed before the offending one keep their new limit, so a failed call has to be checked room by  room. Only numeric room ids are processed, which means ids of rooms stored in a connected third-party account  are silently skipped. A room whose limit already equals the requested value is left untouched and still  returned. To go back to the portal default use `PUT api/2.0/files/rooms/resetquota`, and to drop the custom  limit entirely send a quota of -1 to `PUT api/2.0/files/rooms/{id}`.
      - BASIC:
        - type: http
        - name: Basic
@@ -126,14 +126,14 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter updateRoomsQuotaRequestDtoInteger: (body)  (optional)
+     - parameter updateRoomsQuotaRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<FolderIntegerArrayWrapper> 
+     - returns: RequestBuilder<FolderArrayWrapper> 
      */
-    open class func updateRoomsQuotaWithRequestBuilder(updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderIntegerArrayWrapper> {
+    open class func updateRoomsQuotaWithRequestBuilder(updateRoomsQuotaRequestDto: UpdateRoomsQuotaRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderArrayWrapper> {
         let localVariablePath = "/api/2.0/files/rooms/roomquota"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateRoomsQuotaRequestDtoInteger, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateRoomsQuotaRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -144,7 +144,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<FolderIntegerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<FolderArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

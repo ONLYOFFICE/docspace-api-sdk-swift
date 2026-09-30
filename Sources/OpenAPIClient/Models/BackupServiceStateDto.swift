@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** Backup service state. */
+/** Whether the paid backup service is switched on for a portal. */
 public struct BackupServiceStateDto: Sendable, Codable, Hashable {
 
-    /** Specifies if the backup service is enabled or not. */
+    /** Specifies whether the paid backup service is switched on for this portal, which is a setting of its  wallet rather than the health of the backup service. While it is true, backups beyond the free  monthly allowance are charged to the wallet. */
     public var enabled: Bool?
 
     public init(enabled: Bool? = nil) {

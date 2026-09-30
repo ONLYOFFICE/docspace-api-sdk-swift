@@ -14,24 +14,27 @@
 //  limitations under the License.
 import Foundation
 
-/** Wire-serializable subset of the engine's `ActionArgs` — drops the engine-injected `signal`/`fetch`; `profile`/`messages` are owned by the engine and never sent by the caller. */
 public struct AiAiActionArgs: Sendable, Codable, Hashable {
 
     /** Extra tools offered to the model for this request. */
     public var tools: [AiTMCPItem]?
-    /** Enable extended thinking / reasoning for this request. */
+    /** Legacy extended-thinking switch; stands for `medium`. `reasoningLevel` wins when both are set. */
     public var isReasoning: Bool?
+    /** Depth of extended thinking for the round; providers clamp it to what the model accepts. */
+    public var reasoningLevel: AiAiReasoningLevel?
     public var prompt: AiAiActionArgsPrompt?
 
-    public init(tools: [AiTMCPItem]? = nil, isReasoning: Bool? = nil, prompt: AiAiActionArgsPrompt? = nil) {
+    public init(tools: [AiTMCPItem]? = nil, isReasoning: Bool? = nil, reasoningLevel: AiAiReasoningLevel? = nil, prompt: AiAiActionArgsPrompt? = nil) {
         self.tools = tools
         self.isReasoning = isReasoning
+        self.reasoningLevel = reasoningLevel
         self.prompt = prompt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case tools
         case isReasoning
+        case reasoningLevel
         case prompt
     }
 
@@ -41,6 +44,7 @@ public struct AiAiActionArgs: Sendable, Codable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(tools, forKey: .tools)
         try container.encodeIfPresent(isReasoning, forKey: .isReasoning)
+        try container.encodeIfPresent(reasoningLevel, forKey: .reasoningLevel)
         try container.encodeIfPresent(prompt, forKey: .prompt)
     }
 }

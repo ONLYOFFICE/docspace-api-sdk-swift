@@ -14,15 +14,15 @@
 //  limitations under the License.
 import Foundation
 
-/** The editor tool call state. Used to run the agent flow in the editor. */
+/** A generation the editor is expected to run as soon as the document opens, left behind by an AI agent that created  the file but not its content. */
 public struct EditorToolCallStateDto: Sendable, Codable, Hashable {
 
-    /** The tool name. */
+    /** Which generation to run, which also decides the shape of the parameters below. */
     public var toolName: String?
-    /** The tool call parameters. */
-    public var parameters: JSONValue
+    /** The arguments of the generation named above. */
+    public var parameters: EditorToolCallParametersDto
 
-    public init(toolName: String?, parameters: JSONValue) {
+    public init(toolName: String?, parameters: EditorToolCallParametersDto) {
         self.toolName = toolName
         self.parameters = parameters
     }

@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the usage statistics of a DocsCloud tenant for the current period. */
+/** Represents the usage statistics of a Docs Connect tenant for the current period. */
 public struct DocsCloudStats: Sendable, Codable, Hashable {
 
     /** The length of the statistics period in days. */

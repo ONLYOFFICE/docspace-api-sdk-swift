@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** The parameters for deleting a file. */
+/** The parameters of a single file deletion. */
 public struct Delete: Sendable, Codable, Hashable {
 
-    /** Specifies whether to delete a file after the editing session is finished or not. */
+    /** When to delete: `true` waits until the editing session on the file has ended, `false` deletes at once, pulling  the file away from whoever is working on it. */
     public var deleteAfter: Bool?
-    /** Specifies whether to move a file to the \\Trash\\ folder or delete it immediately. */
+    /** Where the file goes: `false` moves it to Trash, from where it can be restored, `true` deletes it for good.  Inside a room, where there is no Trash, deletion is always final. */
     public var immediately: Bool?
 
     public init(deleteAfter: Bool? = nil, immediately: Bool? = nil) {

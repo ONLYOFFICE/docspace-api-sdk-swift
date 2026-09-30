@@ -14,15 +14,15 @@
 //  limitations under the License.
 import Foundation
 
-/** The collection of file sharing parameters. */
+/** One sharing entry: an account, a group or an email address, and the access level it is given. */
 public struct FileShareParams: Sendable, Codable, Hashable {
 
     public static let emailRule = StringRule(minLength: nil, maxLength: 255, pattern: nil)
-    /** The email address. */
+    /** The address of somebody who has no portal account yet. An invitation is sent to it and an account is created  once it is accepted, so this is the field to use instead of an account identifier when the person is new to  the portal. */
     public var email: String?
-    /** The ID of the user to whom the file will be shared. */
+    /** The account or the group the entry is about, taken from the portal people and group listings. Leave it out and  give an email address instead to share with somebody who has no account yet. */
     public var shareTo: UUID?
-    /** The sharing access rights. */
+    /** What the subject may do with the shared item. The value 0 takes the access away again, and which of the other  levels are accepted depends on what is being shared. */
     public var access: FileShare?
 
     public init(email: String? = nil, shareTo: UUID? = nil, access: FileShare? = nil) {

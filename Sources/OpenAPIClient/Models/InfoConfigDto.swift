@@ -14,20 +14,20 @@
 //  limitations under the License.
 import Foundation
 
-/** The information config parameters. */
+/** The facts the editor information panel shows about the open document. */
 public struct InfoConfigDto: Sendable, Codable, Hashable {
 
-    /** Specifies if the file is favorite or not. */
+    /** Whether the caller has this document among their favorites. It is empty when favorites do not apply - for an  anonymous caller, for a guest, and for an encrypted document. */
     public var favorite: Bool?
-    /** The folder of the file. */
+    /** The place of the document as a readable path, its folders joined from the root downwards. It is empty in the  embedded layout, which shows no such panel. */
     public var folder: String?
-    /** The file owner. */
+    /** The display name of the owner of the document. It is empty for an anonymous session. */
     public var owner: String?
-    /** The sharing settings of the file. */
+    /** Who the document is shared with, as the information panel lists it. An empty list means it is shared with  nobody beyond its owner. */
     public var sharingSettings: [AceShortWrapper]?
-    /** The editor type of the file. */
+    /** The layout the information panel is rendered for. */
     public var type: EditorType?
-    /** The uploaded file. */
+    /** When the document was created on the portal, already formatted for reading in the culture of the caller rather  than as a machine timestamp. */
     public var uploaded: String?
 
     public init(favorite: Bool? = nil, folder: String? = nil, owner: String? = nil, sharingSettings: [AceShortWrapper]? = nil, type: EditorType? = nil, uploaded: String? = nil) {

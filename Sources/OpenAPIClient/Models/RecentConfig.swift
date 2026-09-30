@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The presence or absence of the documents in the Open Recent... menu option. */
+/** One entry of the recent-documents list the editor offers. */
 public struct RecentConfig: Sendable, Codable, Hashable {
 
-    /** The folder where the document is stored. */
+    /** The folder shown next to the entry, as a readable name rather than an id. */
     public var folder: String?
-    /** The document title that will be displayed in the Open Recent... menu option. */
+    /** The name shown for the entry. */
     public var title: String?
-    /** The absolute URL to the document where it is stored. */
+    /** Where the entry opens. */
     public var url: String?
 
     public init(folder: String? = nil, title: String? = nil, url: String? = nil) {

@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents the IP filter configuration of a DocsCloud tenant. */
+/** Represents the IP filter configuration of a Docs Connect tenant. */
 public struct DocsCloudIpFilterConfig: Sendable, Codable, Hashable {
 
     /** The IP filter rules. */

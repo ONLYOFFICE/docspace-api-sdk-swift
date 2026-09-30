@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Represents a DocsCloud tenant of a portal. */
+/** Represents a Docs Connect tenant of a portal. */
 public struct DocsCloudTenant: Sendable, Codable, Hashable {
 
     /** The external ID of the dedicated resource the tenant is hosted on. */

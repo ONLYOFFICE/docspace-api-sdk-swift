@@ -18,7 +18,7 @@ import Foundation
 open class {{{{x-classname}}}} {
 
     /**
-     Create
+     Save a prompt
      
      See also:
      REST API Reference for aiPromptsCreate Operation
@@ -33,14 +33,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Create
+     Save a prompt
      
      See also:
      REST API Reference for aiPromptsCreate Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create/
      
      - POST /api/2.0/ai/prompts/create
-     - Saves a new prompt. The name must be non-empty and unique inside its folder, and `folderId` must point at an existing folder - omit it for the root.
+     - Saves a new prompt in the caller's own prompt library and returns it. The name has to be non-empty and unique inside its folder, and `folderId` has to name an existing folder - omit it to save the prompt at the root. Prompts are per-user: another user's library is never visible here, and no permission beyond having AI enabled is needed. The answer carries the stored prompt including the ID to use with the update, move and delete operations.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiCreatePromptInput: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiPromptMutationResult> 
@@ -61,7 +67,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiPromptMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -70,7 +76,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiPromptsCreateFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create-folder/
-     - parameter body: (body)  
+     - parameter body: (body) The name of the folder to create, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiFolderMutationResult
      */
@@ -87,8 +93,14 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create-folder/
      
      - POST /api/2.0/ai/prompts/create-folder
-     - Creates a prompt folder. The name must be non-empty and unique across the portal - prompt folders do not nest.
-     - parameter body: (body)  
+     - Creates a folder in the caller's prompt library and returns it. The name has to be non-empty and unique across that library. Folders do not nest: there is one flat level, so a folder cannot be created inside another. The answer carries the folder ID to use as `folderId` when saving or moving prompts.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter body: (body) The name of the folder to create, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiFolderMutationResult> 
      */
@@ -108,16 +120,16 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiFolderMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Delete
+     Delete a saved prompt
      
      See also:
      REST API Reference for aiPromptsDelete Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete/
-     - parameter body: (body)  
+     - parameter body: (body) The ID of the prompt to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
@@ -127,15 +139,21 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Delete
+     Delete a saved prompt
      
      See also:
      REST API Reference for aiPromptsDelete Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete/
      
      - DELETE /api/2.0/ai/prompts/delete
-     - Deletes a saved prompt. Does nothing when it no longer exists.
-     - parameter body: (body)  
+     - Deletes one saved prompt from the caller's library. The ID may be sent in the body or as a query parameter, and it is required. An ID that does not exist, or that belongs to another user, is not reported: the call answers success without deleting anything. The deletion is permanent.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter body: (body) The ID of the prompt to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
@@ -155,7 +173,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -164,7 +182,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiPromptsDeleteFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete-folder/
-     - parameter body: (body)  
+     - parameter body: (body) The ID of the folder to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
@@ -181,8 +199,14 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete-folder/
      
      - DELETE /api/2.0/ai/prompts/delete-folder
-     - Deletes a prompt folder together with the prompts inside it.
-     - parameter body: (body)  
+     - Deletes a folder together with every prompt inside it, permanently. The ID is required and may be sent in the body or as a query parameter. Unlike deleting a prompt, this checks first: a folder that does not exist, and one that belongs to another user, both answer 404 - the two cases are deliberately indistinguishable, so a foreign folder cannot be probed. Move the prompts out with `PUT api/2.0/ai/prompts/move` first if they should survive.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter body: (body) The ID of the folder to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
@@ -202,11 +226,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Export
+     Export the prompt library
      
      See also:
      REST API Reference for aiPromptsExport Operation
@@ -221,14 +245,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Export
+     Export the prompt library
      
      See also:
      REST API Reference for aiPromptsExport Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-export/
      
      - GET /api/2.0/ai/prompts/export
-     - Builds a self-contained, versioned bundle of every saved prompt and folder, ready for `import-bundle`.
+     - Builds a versioned bundle of every prompt and folder in the caller's library and returns it, with no parameters. The bundle is self-contained: it carries its own format version so an older export can still be read back, and it is the input `POST api/2.0/ai/prompts/import-bundle` expects. This is also the only way to read the whole library at once, since listing is folder-scoped. Nothing is changed by the call.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiPromptBundle> 
      */
@@ -248,11 +278,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiPromptBundle>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Get by id
+     Get a saved prompt
      
      See also:
      REST API Reference for aiPromptsGetById Operation
@@ -267,14 +297,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get by id
+     Get a saved prompt
      
      See also:
      REST API Reference for aiPromptsGetById Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-by-id/
      
      - GET /api/2.0/ai/prompts/get-by-id
-     - Returns one saved prompt, or an empty result when the identifier is unknown.
+     - Returns one saved prompt by its ID. The ID is required and is read from the query. An ID that is unknown, or that belongs to another user, is not reported as 404: the answer is an empty body with status 200, so treat a missing payload as no such prompt. Prompt IDs come from `GET api/2.0/ai/prompts/list` or from the answer of the create operation.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter id: (query) The saved prompt identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiPrompt> 
@@ -298,11 +334,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiPrompt>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Get folder by id
+     Get a prompt folder
      
      See also:
      REST API Reference for aiPromptsGetFolderById Operation
@@ -317,14 +353,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get folder by id
+     Get a prompt folder
      
      See also:
      REST API Reference for aiPromptsGetFolderById Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-get-folder-by-id/
      
      - GET /api/2.0/ai/prompts/get-folder-by-id
-     - Returns one prompt folder, or an empty result when the identifier is unknown.
+     - Returns one folder of the caller's prompt library by its ID, without the prompts inside it. The ID is required and is read from the query. An unknown or foreign ID is not reported as 404: the answer is an empty body with status 200. This differs from the delete operation on the same ID, which does answer 404.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter id: (query) The prompt folder identifier. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiPromptFolder> 
@@ -348,7 +390,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiPromptFolder>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -374,7 +416,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-import-bundle/
      
      - POST /api/2.0/ai/prompts/import-bundle
-     - Restores a prompt bundle. `replace` wipes the current prompts and folders before writing the bundle, `merge` writes the bundle on top of what is already there; both validate the folder references inside the bundle before any write, so a corrupt bundle is rejected whole.
+     - Writes a bundle produced by `GET api/2.0/ai/prompts/export` back into the caller's library. `mode` decides how: `replace` deletes the current prompts and folders before writing, and `merge` writes the bundle on top of what is already there. The folder references inside the bundle are validated before anything is written, so a corrupt bundle is rejected whole rather than applied halfway. `replace` is destructive and cannot be undone - export first if the current library matters.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiPromptsImportBundleRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiImportResult> 
@@ -395,11 +443,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiImportResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     List
+     List saved prompts
      
      See also:
      REST API Reference for aiPromptsList Operation
@@ -414,14 +462,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     List
+     List saved prompts
      
      See also:
      REST API Reference for aiPromptsList Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-list/
      
      - GET /api/2.0/ai/prompts/list
-     - Lists saved prompts. Scope the answer to one folder, ask for the root-level prompts only, or omit the folder to get every prompt newest first.
+     - Lists the caller's saved prompts, newest first. `folderId` scopes the answer to one folder, and omitting it - or sending it empty - lists the prompts that sit at the root rather than every prompt, because the client fetcher cannot tell an absent value from a null one. There is therefore no way to ask for the whole library in one call: walk the folders from `GET api/2.0/ai/prompts/list-folders`, or take everything at once with `GET api/2.0/ai/prompts/export`. The prompts of other users are never included.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter folderId: (query) The prompt folder identifier. Omit to list the prompts that sit outside any folder. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<[AiPrompt]> 
@@ -445,7 +499,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<[AiPrompt]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -471,7 +525,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-list-folders/
      
      - GET /api/2.0/ai/prompts/list-folders
-     - Lists the prompt folders, newest first.
+     - Lists every folder of the caller's prompt library, newest first, with no parameters and no pagination. Folders are flat, so the answer is a single list rather than a tree. The prompts inside them are not included - read those with `GET api/2.0/ai/prompts/list` per folder. Another user's folders are never listed.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<[AiPromptFolder]> 
      */
@@ -491,11 +551,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<[AiPromptFolder]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Move
+     Move a prompt to a folder
      
      See also:
      REST API Reference for aiPromptsMove Operation
@@ -510,14 +570,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Move
+     Move a prompt to a folder
      
      See also:
      REST API Reference for aiPromptsMove Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-move/
      
      - PUT /api/2.0/ai/prompts/move
-     - Moves a saved prompt into another folder, or to the root. The name is re-validated in the target folder, so the move fails when a prompt of that name is already there.
+     - Moves a saved prompt into another folder, or to the root when `folderId` is omitted or null. The name is re-validated in the target folder, so the move fails when a prompt of that name already sits there - rename it first with `PUT api/2.0/ai/prompts/update`. Nothing about the prompt other than its folder changes. The answer carries the moved prompt.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiPromptsMoveRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiPromptMutationResult> 
@@ -538,7 +604,7 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiPromptMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -564,7 +630,13 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-rename-folder/
      
      - PUT /api/2.0/ai/prompts/rename-folder
-     - Renames a prompt folder, validating the new name against the existing folders.
+     - Renames a folder in the caller's prompt library, validating the new name against the folders already there. The prompts inside it are untouched and keep their IDs. The answer carries the renamed folder. A name that another folder already uses is rejected.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiPromptsRenameFolderRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiFolderMutationResult> 
@@ -585,11 +657,11 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiFolderMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Update
+     Update a saved prompt
      
      See also:
      REST API Reference for aiPromptsUpdate Operation
@@ -604,14 +676,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Update
+     Update a saved prompt
      
      See also:
      REST API Reference for aiPromptsUpdate Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-update/
      
      - PUT /api/2.0/ai/prompts/update
-     - Updates a saved prompt. The name and the folder reference are re-validated whenever either of them changes.
+     - Changes a saved prompt and returns the stored result. Only the fields present in `updates` are written, so a partial object leaves the rest of the prompt alone. The name and the folder reference are re-validated whenever either changes, which means an update can fail on a name another prompt in the same folder already uses. Use `PUT api/2.0/ai/prompts/move` to change only the folder.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
      - parameter aiPromptsUpdateRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiPromptMutationResult> 
@@ -632,6 +710,6 @@ open class {{{{x-classname}}}} {
 
         let localVariableRequestBuilder: RequestBuilder<AiPromptMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
-        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: false, apiConfiguration: apiConfiguration)
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 }
