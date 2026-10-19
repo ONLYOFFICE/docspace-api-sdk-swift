@@ -17,9 +17,9 @@ import Foundation
 public struct AiToolsBulkResultErrorsInner: Sendable, Codable, Hashable {
 
     public var name: String
-    public var error: AiTErrorData
+    public var error: AiErrorData
 
-    public init(name: String, error: AiTErrorData) {
+    public init(name: String, error: AiErrorData) {
         self.name = name
         self.error = error
     }

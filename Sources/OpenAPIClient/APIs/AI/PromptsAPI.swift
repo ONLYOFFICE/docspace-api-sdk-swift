@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AIPromptsAPIApi {
 
     /**
      Save a prompt
@@ -40,7 +40,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create/
      
      - POST /api/2.0/ai/prompts/create
-     - Saves a new prompt in the caller's own prompt library and returns it. The name has to be non-empty and unique inside its folder, and `folderId` has to name an existing folder - omit it to save the prompt at the root. Prompts are per-user: another user's library is never visible here, and no permission beyond having AI enabled is needed. The answer carries the stored prompt including the ID to use with the update, move and delete operations.
+     - Saves a new prompt in the caller's own prompt library and returns it. `name` and `text` have to be strings and `folderId`, when sent, a string or null, or the call answers 400 before the library is touched. The name has to be non-empty and unique inside its folder, and `folderId` has to name an existing folder - omit it to save the prompt at the root. A refusal keeps the `{ success: false, error }` body but answers 400 for an empty value, 404 for an unknown folder and 409 for a name already in use. Prompts are per-user: another user's library is never visible here, and no permission beyond having AI enabled is needed. The answer carries the stored prompt including the ID to use with the update, move and delete operations.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -62,7 +62,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiPromptMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -76,13 +75,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiPromptsCreateFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create-folder/
-     - parameter body: (body) The name of the folder to create, as a bare JSON string. 
+     - parameter aiPromptsCreateFolderRequest: (body) The name of the folder to create, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiFolderMutationResult
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiPromptsCreateFolder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderMutationResult {
-        return try await aiPromptsCreateFolderWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiPromptsCreateFolder(aiPromptsCreateFolderRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderMutationResult {
+        return try await aiPromptsCreateFolderWithRequestBuilder(aiPromptsCreateFolderRequest: aiPromptsCreateFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -93,28 +92,27 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-create-folder/
      
      - POST /api/2.0/ai/prompts/create-folder
-     - Creates a folder in the caller's prompt library and returns it. The name has to be non-empty and unique across that library. Folders do not nest: there is one flat level, so a folder cannot be created inside another. The answer carries the folder ID to use as `folderId` when saving or moving prompts.
+     - Creates a folder in the caller's prompt library and returns it. The name has to be a non-empty string and unique across that library - a non-string or empty one answers 400, a name in use 409, both with the `{ success: false, error }` body. Folders do not nest: there is one flat level, so a folder cannot be created inside another. The answer carries the folder ID to use as `folderId` when saving or moving prompts.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body) The name of the folder to create, as a bare JSON string. 
+     - parameter aiPromptsCreateFolderRequest: (body) The name of the folder to create, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiFolderMutationResult> 
      */
-    open class func aiPromptsCreateFolderWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiFolderMutationResult> {
+    open class func aiPromptsCreateFolderWithRequestBuilder(aiPromptsCreateFolderRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiFolderMutationResult> {
         let localVariablePath = "/api/2.0/ai/prompts/create-folder"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiPromptsCreateFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -129,13 +127,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiPromptsDelete Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete/
-     - parameter body: (body) The ID of the prompt to delete, as a bare JSON string. 
+     - parameter aiPromptsDeleteRequest: (body) The ID of the prompt to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiPromptsDelete(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiPromptsDeleteWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiPromptsDelete(aiPromptsDeleteRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiPromptsDeleteWithRequestBuilder(aiPromptsDeleteRequest: aiPromptsDeleteRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -153,21 +151,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body) The ID of the prompt to delete, as a bare JSON string. 
+     - parameter aiPromptsDeleteRequest: (body) The ID of the prompt to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiPromptsDeleteWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiPromptsDeleteWithRequestBuilder(aiPromptsDeleteRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/prompts/delete"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiPromptsDeleteRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -182,13 +179,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiPromptsDeleteFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-delete-folder/
-     - parameter body: (body) The ID of the folder to delete, as a bare JSON string. 
+     - parameter aiPromptsDeleteFolderRequest: (body) The ID of the folder to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiPromptsDeleteFolder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiPromptsDeleteFolderWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiPromptsDeleteFolder(aiPromptsDeleteFolderRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiPromptsDeleteFolderWithRequestBuilder(aiPromptsDeleteFolderRequest: aiPromptsDeleteFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -206,21 +203,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body) The ID of the folder to delete, as a bare JSON string. 
+     - parameter aiPromptsDeleteFolderRequest: (body) The ID of the folder to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiPromptsDeleteFolderWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiPromptsDeleteFolderWithRequestBuilder(aiPromptsDeleteFolderRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/prompts/delete-folder"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiPromptsDeleteFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -273,7 +269,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiPromptBundle>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -320,15 +315,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "id": (wrappedValue: id.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -376,15 +371,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "id": (wrappedValue: id.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -416,7 +411,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-import-bundle/
      
      - POST /api/2.0/ai/prompts/import-bundle
-     - Writes a bundle produced by `GET api/2.0/ai/prompts/export` back into the caller's library. `mode` decides how: `replace` deletes the current prompts and folders before writing, and `merge` writes the bundle on top of what is already there. The folder references inside the bundle are validated before anything is written, so a corrupt bundle is rejected whole rather than applied halfway. `replace` is destructive and cannot be undone - export first if the current library matters.
+     - Writes a bundle produced by `GET api/2.0/ai/prompts/export` back into the caller's library. `mode` decides how: `replace` deletes the current prompts and folders before writing, and `merge` writes the bundle on top of what is already there. The bundle's shape - version 1, `folders` and `prompts` arrays of objects with string ids, names and texts - and the folder references inside it are validated before anything is written, so a corrupt bundle is rejected whole rather than applied halfway: 400 with the refusals in `errors`, or 409 when every refusal is a name that already exists in the library. `replace` is destructive and cannot be undone - export first if the current library matters.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -437,7 +432,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -485,15 +479,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "folderId": (wrappedValue: folderId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -546,7 +540,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<[AiPromptFolder]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -577,7 +570,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-move/
      
      - PUT /api/2.0/ai/prompts/move
-     - Moves a saved prompt into another folder, or to the root when `folderId` is omitted or null. The name is re-validated in the target folder, so the move fails when a prompt of that name already sits there - rename it first with `PUT api/2.0/ai/prompts/update`. Nothing about the prompt other than its folder changes. The answer carries the moved prompt.
+     - Moves a saved prompt into another folder, or to the root when `folderId` is omitted or null. The name is re-validated in the target folder, so the move fails with 409 when a prompt of that name already sits there - rename it first with `PUT api/2.0/ai/prompts/update`; an unknown prompt or folder answers 404. Nothing about the prompt other than its folder changes. The answer carries the moved prompt.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -598,7 +591,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -630,7 +622,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-rename-folder/
      
      - PUT /api/2.0/ai/prompts/rename-folder
-     - Renames a folder in the caller's prompt library, validating the new name against the folders already there. The prompts inside it are untouched and keep their IDs. The answer carries the renamed folder. A name that another folder already uses is rejected.
+     - Renames a folder in the caller's prompt library, validating the new name against the folders already there. The prompts inside it are untouched and keep their IDs. The answer carries the renamed folder. A name that another folder already uses is rejected with 409, an unknown folder with 404 and a non-string or empty name with 400, always with the `{ success: false, error }` body.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -651,7 +643,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -683,7 +674,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-prompts-update/
      
      - PUT /api/2.0/ai/prompts/update
-     - Changes a saved prompt and returns the stored result. Only the fields present in `updates` are written, so a partial object leaves the rest of the prompt alone. The name and the folder reference are re-validated whenever either changes, which means an update can fail on a name another prompt in the same folder already uses. Use `PUT api/2.0/ai/prompts/move` to change only the folder.
+     - Changes a saved prompt and returns the stored result. Only the fields present in `updates` are written, so a partial object leaves the rest of the prompt alone. The name and the folder reference are re-validated whenever either changes, which means an update can fail on a name another prompt in the same folder already uses - that answers 409, an unknown prompt or folder 404, an empty or non-string value 400, always with the `{ success: false, error }` body. Use `PUT api/2.0/ai/prompts/move` to change only the folder.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -704,7 +695,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SecurityOAuth2APIApi {
 
     /**
      Generate JWT token
@@ -73,7 +73,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

@@ -14,16 +14,38 @@
 //  limitations under the License.
 import Foundation
 
-public struct BaseBatchRequestDtoAllOfFolderIds: Sendable, Codable, Hashable {
-
-
-    public enum CodingKeys: CodingKey, CaseIterable {
-    }
-
-    // Encodable protocol methods
+public enum BaseBatchRequestDtoAllOfFolderIds: Sendable, Codable, Hashable, ParameterConvertible {
+    case typeInt(Int)
+    case typeString(String)
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .typeInt(let value):
+            try container.encode(value)
+        case .typeString(let value):
+            try container.encode(value)
+        }
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Int.self) {
+            self = .typeInt(value)
+        } else if let value = try? container.decode(String.self) {
+            self = .typeString(value)
+        } else {
+            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of BaseBatchRequestDtoAllOfFolderIds"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeInt(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        }
     }
 }
 

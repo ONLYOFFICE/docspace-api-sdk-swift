@@ -20,13 +20,13 @@ public struct EditorConfigurationDto: Sendable, Codable, Hashable {
     /** Where the editors post the document back to when they save it. A client must not call it itself; it is the  address the document service uses. */
     public var callbackUrl: String?
     /** How co-editing starts out for this session and whether the user may switch it in the interface. */
-    public var coEditing: CoEditingConfig?
+    public var coEditing: CoEditingConfigDto?
     /** Where the editor sends the user when they ask for a new document of the same type. It is empty when creating  one is not offered here. */
     public var createUrl: String?
     /** How the editor interface is dressed for this portal, this document and this layout. */
     public var customization: CustomizationConfigDto?
     /** The addresses the framed viewer needs. It is filled in only for the embedded layout. */
-    public var embedded: EmbeddedConfig?
+    public var embedded: EmbeddedConfigDto?
     /** The caller's end-to-end encryption keys, added only when the document lies in a private room, so that the  editors can decrypt it in the browser. It is empty everywhere else. */
     public var encryptionKeys: [EncryptionKeyDto]?
     /** The culture the editor interface is shown in, taken from the profile of the caller. */
@@ -36,15 +36,15 @@ public struct EditorConfigurationDto: Sendable, Codable, Hashable {
     /** Whether this session may write; it is what the mode above says in one word. */
     public var modeWrite: Bool?
     /** Which editor plugins are offered. The portal currently offers none, so the list inside comes back empty. */
-    public var plugins: PluginsConfig?
+    public var plugins: PluginsConfigDto?
     /** The documents offered in the editor's recent list. It is left out altogether when there is nothing to offer. */
-    public var recent: [RecentConfig]?
+    public var recent: [RecentConfigDto]?
     /** Always empty: the portal no longer passes creation templates through the editor configuration. */
-    public var templates: [TemplatesConfig]?
+    public var templates: [TemplatesConfigDto]?
     /** The account the editors attribute changes to. It is empty for an anonymous session opened through an external  link, and the editors then ask for a name themselves. */
-    public var user: UserConfig?
+    public var user: UserConfigDto?
 
-    public init(callbackUrl: String? = nil, coEditing: CoEditingConfig? = nil, createUrl: String? = nil, customization: CustomizationConfigDto? = nil, embedded: EmbeddedConfig? = nil, encryptionKeys: [EncryptionKeyDto]? = nil, lang: String?, mode: String?, modeWrite: Bool? = nil, plugins: PluginsConfig? = nil, recent: [RecentConfig]? = nil, templates: [TemplatesConfig]? = nil, user: UserConfig? = nil) {
+    public init(callbackUrl: String? = nil, coEditing: CoEditingConfigDto? = nil, createUrl: String? = nil, customization: CustomizationConfigDto? = nil, embedded: EmbeddedConfigDto? = nil, encryptionKeys: [EncryptionKeyDto]? = nil, lang: String?, mode: String?, modeWrite: Bool? = nil, plugins: PluginsConfigDto? = nil, recent: [RecentConfigDto]? = nil, templates: [TemplatesConfigDto]? = nil, user: UserConfigDto? = nil) {
         self.callbackUrl = callbackUrl
         self.coEditing = coEditing
         self.createUrl = createUrl

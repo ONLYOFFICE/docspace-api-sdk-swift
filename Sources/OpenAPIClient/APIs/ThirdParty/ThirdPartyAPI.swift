@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class ThirdPartyAPIApi {
 
     /**
      Get provider consent URL
@@ -77,7 +77,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

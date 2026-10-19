@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **authorizeOAuth**
 ```swift
-    open class func authorizeOAuth(responseType: String, clientId: String, redirectUri: String, scope: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func authorizeOAuth(responseType: String, clientId: String, redirectUri: String, scope: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Starts the OAuth2 authorization code flow for the client named by client_id. The caller has to present the portal signature cookie, and a request without a valid one is not refused with 401 or 403 but redirected to the portal login page, carrying the client ID so the flow can resume after signing in. When the user has not yet consented to the requested scopes the browser is redirected to the consent page; once the consent exists the browser is redirected to the client's redirect URI with the authorization code and, when one was sent, the original state. A caller that cannot follow redirects may send the X-Disable-Redirect header, and then the response is 200 with an empty body and the target URL in the X-Redirect-URI header. The code returned here is exchanged for tokens at the token endpoint.
@@ -46,15 +46,10 @@ let redirectUri = "redirectUri_example" // String | Where to send the user once 
 let scope = "scope_example" // String | The permissions being asked for, as a space-separated list. Every scope has to be one the client is registered for, and the consent screen lists exactly these.
 
 // Start the authorization flow
-OAuth20AuthorizationAPIApi.authorizeOAuth(responseType: responseType, clientId: clientId, redirectUri: redirectUri, scope: scope) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20AuthorizationAPIApi.authorizeOAuth(responseType: responseType, clientId: clientId, redirectUri: redirectUri, scope: scope)
+} catch {
+    print(error)
 }
 ```
 
@@ -67,7 +62,7 @@ OAuth20AuthorizationAPIApi.authorizeOAuth(responseType: responseType, clientId: 
 
 # **exchangeToken**
 ```swift
-    open class func exchangeToken(grantType: String? = nil, code: String? = nil, redirectUri: String? = nil, clientId: String? = nil, clientSecret: String? = nil, completion: @escaping (_ data: ExchangeToken200Response?, _ error: Error?) -> Void)
+    open class func exchangeToken(grantType: String? = nil, code: String? = nil, redirectUri: String? = nil, clientId: String? = nil, clientSecret: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ExchangeToken200Response
 ```
 
 Exchanges an authorization code for an access token. The request is form-encoded and has to carry the grant type, the code, the same redirect URI that was used to obtain the code, and the client credentials: the client authenticates itself here rather than through the portal signature cookie the authorization endpoint uses. The response carries the access token, its type and its lifetime in seconds, plus a refresh token when the client is configured for the refresh token grant. Client authentication that fails is answered with 401, while a malformed, unknown or expired code is answered with 400. The code is single use, so replaying it fails.
@@ -104,15 +99,11 @@ let clientId = "clientId_example" // String | The identifier of the client redee
 let clientSecret = "clientSecret_example" // String | The secret of the client redeeming the code. It is omitted by a public client, which proves itself with a PKCE code verifier instead. (optional)
 
 // Exchange the authorization code
-OAuth20AuthorizationAPIApi.exchangeToken(grantType: grantType, code: code, redirectUri: redirectUri, clientId: clientId, clientSecret: clientSecret) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await OAuth20AuthorizationAPIApi.exchangeToken(grantType: grantType, code: code, redirectUri: redirectUri, clientId: clientId, clientSecret: clientSecret)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -125,7 +116,7 @@ OAuth20AuthorizationAPIApi.exchangeToken(grantType: grantType, code: code, redir
 
 # **submitConsent**
 ```swift
-    open class func submitConsent(clientId: String? = nil, state: String? = nil, scope: String? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func submitConsent(clientId: String? = nil, state: String? = nil, scope: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Submits the user's consent decision for the scopes an authorization request asked for. It is the form post the consent page makes, so it carries the client ID, the state and the agreed scopes as multipart form data, along with the same portal signature cookie the authorization request needed. On success the browser is redirected to the client's redirect URI with an authorization code, or, when the request carries the X-Disable-Redirect header, answered 200 with that URL in the X-Redirect-URI header. The consent is stored per user and client, so a later authorization request for the same scopes no longer stops at the consent page.
@@ -158,15 +149,10 @@ let state = "state_example" // String | The opaque value carried through from th
 let scope = "scope_example" // String | The scopes the user agreed to, as a space-separated list. Anything the user declined is left out, so this may be narrower than what was requested. (optional)
 
 // Submit the consent decision
-OAuth20AuthorizationAPIApi.submitConsent(clientId: clientId, state: state, scope: scope) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20AuthorizationAPIApi.submitConsent(clientId: clientId, state: state, scope: scope)
+} catch {
+    print(error)
 }
 ```
 

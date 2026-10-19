@@ -22,13 +22,13 @@ public struct StorageDto: Sendable, Codable, Hashable {
     /** The provider name in the portal language, falling back to `id` when this build ships no wording for it. */
     public var title: String?
     /** The settings the provider expects, each with its key, its localised label and the value the server  currently holds. For the entry marked `current` the values come from the portal's saved storage settings  and for the others from the installation configuration, so a setting nobody has configured comes back with  an empty value rather than being left out. */
-    public var properties: [AuthKey]?
+    public var properties: [AuthKeyDto]?
     /** Whether the portal is using this provider right now. At most one entry of a listing has it set. */
     public var current: Bool
     /** Whether the provider's keys are already filled in on the server, so it could be switched to without  sending credentials. It says nothing about whether the credentials still work. */
     public var isSet: Bool
 
-    public init(id: String?, title: String?, properties: [AuthKey]? = nil, current: Bool, isSet: Bool) {
+    public init(id: String?, title: String?, properties: [AuthKeyDto]? = nil, current: Bool, isSet: Bool) {
         self.id = id
         self.title = title
         self.properties = properties

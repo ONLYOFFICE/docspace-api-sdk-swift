@@ -15,7 +15,7 @@
 import Foundation
 
 /** The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. */
-public enum BatchRequestDtoAllOfDestFolderId: Sendable, Codable, Hashable {
+public enum BatchRequestDtoAllOfDestFolderId: Sendable, Codable, Hashable, ParameterConvertible {
     case typeInt(Int)
     case typeString(String)
 
@@ -37,6 +37,15 @@ public enum BatchRequestDtoAllOfDestFolderId: Sendable, Codable, Hashable {
             self = .typeString(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of BatchRequestDtoAllOfDestFolderId"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeInt(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
         }
     }
 }

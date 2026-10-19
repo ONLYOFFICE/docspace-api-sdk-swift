@@ -20,9 +20,9 @@ public struct AiAssignmentMutationResult: Sendable, Codable, Hashable {
     /** True when the assignment was persisted. */
     public var success: Bool
     /** Why the assignment was rejected. Present on failure. */
-    public var error: AiTErrorData?
+    public var error: AiErrorData?
 
-    public init(success: Bool, error: AiTErrorData? = nil) {
+    public init(success: Bool, error: AiErrorData? = nil) {
         self.success = success
         self.error = error
     }

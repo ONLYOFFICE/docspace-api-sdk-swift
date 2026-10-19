@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class FilesOperationsAPIApi {
 
     /**
      Abort an upload session
@@ -81,7 +81,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -155,7 +154,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -220,7 +218,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -287,7 +284,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -351,15 +347,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start": (wrappedValue: start?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -424,15 +420,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "start": (wrappedValue: start?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -447,13 +443,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for checkMoveOrCopyBatchItems Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-batch-items/
-     - parameter inDto: (query) The files and folders to move or copy, the folder they go to, and the way name clashes are settled. (optional)
+     - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)     - parameter folderIds: (query) The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. (optional)     - parameter fileIds: (query) The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. (optional)     - parameter destFolderId: (query) The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. (optional)     - parameter conflictResolveType: (query) What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. (optional)     - parameter deleteAfter: (query) Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. (optional)     - parameter content: (query) What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. (optional)     - parameter toFillOut: (query) Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileEntryBaseArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkMoveOrCopyBatchItems(inDto: BatchRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseArrayWrapper {
-        return try await checkMoveOrCopyBatchItemsWithRequestBuilder(inDto: inDto, apiConfiguration: apiConfiguration).execute().body
+    open class func checkMoveOrCopyBatchItems(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseArrayWrapper {
+        return try await checkMoveOrCopyBatchItemsWithRequestBuilder(returnSingleOperation: returnSingleOperation, folderIds: folderIds, fileIds: fileIds, destFolderId: destFolderId, conflictResolveType: conflictResolveType, deleteAfter: deleteAfter, content: content, toFillOut: toFillOut, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -484,24 +480,38 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter inDto: (query) The files and folders to move or copy, the folder they go to, and the way name clashes are settled. (optional)
+     - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
+     - parameter folderIds: (query) The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. (optional)
+     - parameter fileIds: (query) The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. (optional)
+     - parameter destFolderId: (query) The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. (optional)
+     - parameter conflictResolveType: (query) What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. (optional)
+     - parameter deleteAfter: (query) Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. (optional)
+     - parameter content: (query) What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. (optional)
+     - parameter toFillOut: (query) Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
      */
-    open class func checkMoveOrCopyBatchItemsWithRequestBuilder(inDto: BatchRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseArrayWrapper> {
+    open class func checkMoveOrCopyBatchItemsWithRequestBuilder(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseArrayWrapper> {
         let localVariablePath = "/api/2.0/files/fileops/move"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "returnSingleOperation": (wrappedValue: returnSingleOperation?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "folderIds": (wrappedValue: folderIds?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "fileIds": (wrappedValue: fileIds?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "destFolderId": (wrappedValue: destFolderId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "conflictResolveType": (wrappedValue: conflictResolveType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "deleteAfter": (wrappedValue: deleteAfter?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "content": (wrappedValue: content?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "toFillOut": (wrappedValue: toFillOut?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "inDto": (wrappedValue: inDto?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -516,13 +526,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for checkMoveOrCopyDestFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-move-or-copy-dest-folder/
-     - parameter inDto: (query) The files and folders to move or copy, the folder they go to, and the way name clashes are settled. (optional)
+     - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)     - parameter folderIds: (query) The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. (optional)     - parameter fileIds: (query) The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. (optional)     - parameter destFolderId: (query) The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. (optional)     - parameter conflictResolveType: (query) What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. (optional)     - parameter deleteAfter: (query) Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. (optional)     - parameter content: (query) What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. (optional)     - parameter toFillOut: (query) Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: CheckDestFolderWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkMoveOrCopyDestFolder(inDto: BatchRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CheckDestFolderWrapper {
-        return try await checkMoveOrCopyDestFolderWithRequestBuilder(inDto: inDto, apiConfiguration: apiConfiguration).execute().body
+    open class func checkMoveOrCopyDestFolder(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CheckDestFolderWrapper {
+        return try await checkMoveOrCopyDestFolderWithRequestBuilder(returnSingleOperation: returnSingleOperation, folderIds: folderIds, fileIds: fileIds, destFolderId: destFolderId, conflictResolveType: conflictResolveType, deleteAfter: deleteAfter, content: content, toFillOut: toFillOut, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -553,24 +563,38 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter inDto: (query) The files and folders to move or copy, the folder they go to, and the way name clashes are settled. (optional)
+     - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
+     - parameter folderIds: (query) The folders to move or copy, by id. A number addresses a folder stored in the portal itself, a string  addresses a folder on a connected third-party account, and both kinds may be sent in one list. (optional)
+     - parameter fileIds: (query) The files to move or copy, by id. A number addresses a file stored in the portal itself, a string addresses a  file on a connected third-party account, and both kinds may be sent in one list. (optional)
+     - parameter destFolderId: (query) The folder the items go to, by id — a number for a folder stored in the portal itself, a string for a folder  on a connected third-party account. Take it from a folder listing such as `GET api/2.0/files/@root`; the  caller has to be allowed to create items in it, and the id of a room addresses the root of that room. (optional)
+     - parameter conflictResolveType: (query) What happens to an item whose name is already taken in the destination folder: `skip` leaves it where it is,  `overwrite` replaces the entry at the destination, and `duplicate` places it beside that entry under a name  with a numeric suffix. `GET api/2.0/files/fileops/move` reports which items would clash. (optional)
+     - parameter deleteAfter: (query) Whether the finished operation is still reported: `false` keeps its final record readable through  `GET api/2.0/files/fileops` until it has been read once, `true` drops the record as soon as the work is done.  It deletes nothing: a move takes the sources away in any case, and a copy always leaves them. (optional)
+     - parameter content: (query) What is taken from a listed folder: `false` moves or copies the folder itself, `true` takes only what it  contains, so its files and subfolders land in the destination and the folder is not recreated there. (optional)
+     - parameter toFillOut: (query) Marks every copied PDF form as a draft prepared for filling, which is how such a copy reports its filling  status in a virtual data room. Files that are not forms are left unaffected. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CheckDestFolderWrapper> 
      */
-    open class func checkMoveOrCopyDestFolderWithRequestBuilder(inDto: BatchRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CheckDestFolderWrapper> {
+    open class func checkMoveOrCopyDestFolderWithRequestBuilder(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CheckDestFolderWrapper> {
         let localVariablePath = "/api/2.0/files/fileops/checkdestfolder"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "returnSingleOperation": (wrappedValue: returnSingleOperation?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "folderIds": (wrappedValue: folderIds?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "fileIds": (wrappedValue: fileIds?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "destFolderId": (wrappedValue: destFolderId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "conflictResolveType": (wrappedValue: conflictResolveType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "deleteAfter": (wrappedValue: deleteAfter?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "content": (wrappedValue: content?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "toFillOut": (wrappedValue: toFillOut?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "inDto": (wrappedValue: inDto?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -637,7 +661,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -653,11 +676,11 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ChunkedUploadSessionResponseWrapperWrapper
+     - returns: ChunkedUploadSessionResultWrapper
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createUploadSession(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResponseWrapperWrapper {
+    open class func createUploadSession(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResultWrapper {
         return try await createUploadSessionWithRequestBuilder(folderId: folderId, sessionRequest: sessionRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -692,10 +715,10 @@ open class {{{{x-classname}}}} {
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. 
      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ChunkedUploadSessionResponseWrapperWrapper> 
+     - returns: RequestBuilder<ChunkedUploadSessionResultWrapper> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func createUploadSessionWithRequestBuilder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResponseWrapperWrapper> {
+    open class func createUploadSessionWithRequestBuilder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResultWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/upload/create_session"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -709,10 +732,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResponseWrapperWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResultWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -725,11 +747,11 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session/
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ThirdPartyChunkedUploadSessionResponseWrapperWrapper
+     - returns: ThirdPartyChunkedUploadSessionResultWrapper
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createUploadSession(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionResponseWrapperWrapper {
+    open class func createUploadSession(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionResultWrapper {
         return try await createUploadSessionWithRequestBuilder(folderId: folderId, sessionRequest: sessionRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -764,10 +786,10 @@ open class {{{{x-classname}}}} {
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. 
      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionResponseWrapperWrapper> 
+     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionResultWrapper> 
      */
     @available(*, deprecated, message: "This operation is deprecated.")
-    open class func createUploadSessionWithRequestBuilder(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionResponseWrapperWrapper> {
+    open class func createUploadSessionWithRequestBuilder(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionResultWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/upload/create_session"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -781,10 +803,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionResponseWrapperWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionResultWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -797,10 +818,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ChunkedUploadSessionResponseResponseWrapper
+     - returns: ChunkedUploadSessionWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createUploadSessionInFolder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResponseResponseWrapper {
+    open class func createUploadSessionInFolder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionWrapper {
         return try await createUploadSessionInFolderWithRequestBuilder(folderId: folderId, sessionRequest: sessionRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -835,9 +856,9 @@ open class {{{{x-classname}}}} {
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. 
      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ChunkedUploadSessionResponseResponseWrapper> 
+     - returns: RequestBuilder<ChunkedUploadSessionWrapper> 
      */
-    open class func createUploadSessionInFolderWithRequestBuilder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResponseResponseWrapper> {
+    open class func createUploadSessionInFolderWithRequestBuilder(folderId: Int, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/session"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -851,10 +872,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResponseResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -867,10 +887,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-upload-session-in-folder/
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not.      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ThirdPartyChunkedUploadSessionResponseResponseWrapper
+     - returns: ThirdPartyChunkedUploadSessionWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createUploadSessionInFolder(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionResponseResponseWrapper {
+    open class func createUploadSessionInFolder(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionWrapper {
         return try await createUploadSessionInFolderWithRequestBuilder(folderId: folderId, sessionRequest: sessionRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -905,9 +925,9 @@ open class {{{{x-classname}}}} {
      - parameter folderId: (path) The folder that receives the file; take the id from a listing such as `GET api/2.0/files/@root`. A room or an  ordinary folder inside one is accepted, a section root is not. 
      - parameter sessionRequest: (body) The file the session is opened for, and how a clash with an existing name is settled. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionResponseResponseWrapper> 
+     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionWrapper> 
      */
-    open class func createUploadSessionInFolderWithRequestBuilder(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionResponseResponseWrapper> {
+    open class func createUploadSessionInFolderWithRequestBuilder(folderId: String, sessionRequest: SessionRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/session"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -921,10 +941,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionResponseResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -986,7 +1005,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1053,7 +1071,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1118,7 +1135,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1185,7 +1201,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1196,7 +1211,7 @@ open class {{{{x-classname}}}} {
     /**
      * enum for parameter folderType
      */
-    public enum FolderType_emptyTrash: String, Sendable, CaseIterable {
+    public enum FolderType_emptyTrash: Int, Sendable, CaseIterable {
         case DEFAULT = 0
         case COMMON = 1
         case BUNCH = 2
@@ -1227,6 +1242,7 @@ open class {{{{x-classname}}}} {
         case AiAgents = 34
         case DefaultTemplates = 35
         case Forms = 36
+        case Ai = 37
     }
 
     /**
@@ -1282,16 +1298,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "Single": (wrappedValue: single?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "single": (wrappedValue: single?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "folderType": (wrappedValue: folderType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1365,7 +1381,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<UploadSessionResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1438,7 +1453,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ThirdPartyUploadSessionResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1469,7 +1483,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-operation-statuses/
      
      - GET /api/2.0/files/fileops
-     - Returns the background file operations of the caller that are still running or whose finished result has not  been read yet, grouped by kind: duplications first, then moves and copies, deletions, downloads and  mark-as-read. This is the polling target for every operation in this section — an operation appears here as  soon as it is queued and carries `progress` from 0 to 100, `finished`, the `error` of a failed item and, for a  download, the address of the archive in `url`. A record is dropped once its finished state has been handed  out, so a completed operation is reported once and an empty array means there is nothing left to report rather  than that the work failed. Pass `id` to follow a single operation; an id that is not among the caller's  operations gives an empty array. Operations are private to the account that started them, an anonymous caller  being scoped to the session of the external link. The call changes nothing. To follow one kind only use  `GET api/2.0/files/fileops/{operationType}`.
+     - Returns the background file operations of the caller that are still running or whose finished result has not  been read yet, grouped by kind: duplications first, then moves and copies, deletions, downloads, mark-as-read  and builder runs. This is the polling target for every operation in this section — an operation appears here as  soon as it is queued and carries `progress` from 0 to 100, `finished`, the `error` of a failed item and, for a  download, the address of the archive in `url`. A record is dropped once its finished state has been handed  out, so a completed operation is reported once and an empty array means there is nothing left to report rather  than that the work failed. Pass `id` to follow a single operation; an id that is not among the caller's  operations gives an empty array. Operations are private to the account that started them, an anonymous caller  being scoped to the session of the external link. The call changes nothing. To follow one kind only use  `GET api/2.0/files/fileops/{operationType}`.
      - BASIC:
        - type: http
        - name: Basic
@@ -1498,15 +1512,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "id": (wrappedValue: id?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1538,7 +1552,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-operation-statuses-by-type/
      
      - GET /api/2.0/files/fileops/{operationType}
-     - Returns the background file operations of the caller that are of one kind, named by the number in the route:  `1` for a copy, `2` for a deletion, `3` for a download, `4` for a mark-as-read and `7` for a duplication. The  answer carries the same records as `GET api/2.0/files/fileops`, with the same rule that a finished operation  is reported once and then dropped, and `id` narrows it further to a single operation. Moves, kind `0`, cannot  be read through this route: the address `api/2.0/files/fileops/move` belongs to another operation, so read  moves from `GET api/2.0/files/fileops` and pick the records whose `operation` is `0`. A kind that has no queue  of its own — `5` for an import, `6` for a conversion — is accepted and answers with an empty array, while a  number outside the operation type is rejected as an invalid request. The call changes nothing and never shows  another account's operations.
+     - Returns the background file operations of the caller that are of one kind, named by the number in the route: `1`  for a copy, `2` for a deletion, `3` for a download, `4` for a mark-as-read, `7` for a duplication and `8` for a  document builder run. The answer carries the same records as `GET api/2.0/files/fileops`, with the same rule  that a finished operation is reported once and then dropped, and `id` narrows it further to a single operation.  Moves, kind `0`, cannot be read through this route: the address `api/2.0/files/fileops/move` belongs to another  operation, so read moves from `GET api/2.0/files/fileops` and pick the records whose `operation` is `0`. A kind  that has no queue of its own — `5` for an import, `6` for a conversion — is accepted and answers with an empty  array, while a number outside the operation type is rejected as an invalid request. The call changes nothing and  never shows another account's operations.
      - BASIC:
        - type: http
        - name: Basic
@@ -1571,15 +1585,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "id": (wrappedValue: id?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1646,7 +1660,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1711,7 +1724,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1782,7 +1794,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ConversationResultArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1852,7 +1863,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ConversationResultArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1921,7 +1931,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileOperationArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1935,13 +1944,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateFileComment Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file-comment/
-     - parameter fileId: (path) The file whose version comment is replaced.      - parameter updateComment: (body) The version and the comment to store on it. 
+     - parameter fileId: (path) The file whose version comment is replaced.      - parameter updateCommentRequest: (body) The version and the comment to store on it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateFileComment(fileId: Int, updateComment: UpdateComment, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await updateFileCommentWithRequestBuilder(fileId: fileId, updateComment: updateComment, apiConfiguration: apiConfiguration).execute().body
+    open class func updateFileComment(fileId: Int, updateCommentRequest: UpdateCommentRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await updateFileCommentWithRequestBuilder(fileId: fileId, updateCommentRequest: updateCommentRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1973,24 +1982,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file whose version comment is replaced. 
-     - parameter updateComment: (body) The version and the comment to store on it. 
+     - parameter updateCommentRequest: (body) The version and the comment to store on it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func updateFileCommentWithRequestBuilder(fileId: Int, updateComment: UpdateComment, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func updateFileCommentWithRequestBuilder(fileId: Int, updateCommentRequest: UpdateCommentRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/comment"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateComment, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateCommentRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2005,13 +2013,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateFileComment Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file-comment/
-     - parameter fileId: (path) The file whose version comment is replaced.      - parameter updateComment: (body) The version and the comment to store on it. 
+     - parameter fileId: (path) The file whose version comment is replaced.      - parameter updateCommentRequest: (body) The version and the comment to store on it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateFileComment(fileId: String, updateComment: UpdateComment, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await updateFileCommentWithRequestBuilder(fileId: fileId, updateComment: updateComment, apiConfiguration: apiConfiguration).execute().body
+    open class func updateFileComment(fileId: String, updateCommentRequest: UpdateCommentRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await updateFileCommentWithRequestBuilder(fileId: fileId, updateCommentRequest: updateCommentRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2043,24 +2051,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file whose version comment is replaced. 
-     - parameter updateComment: (body) The version and the comment to store on it. 
+     - parameter updateCommentRequest: (body) The version and the comment to store on it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func updateFileCommentWithRequestBuilder(fileId: String, updateComment: UpdateComment, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func updateFileCommentWithRequestBuilder(fileId: String, updateCommentRequest: UpdateCommentRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/comment"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateComment, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateCommentRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2077,10 +2084,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/
      - parameter folderId: (path) The folder the session was opened against. It is part of the route only and is not matched against the  session, which is found by its own id.      - parameter sessionId: (path) The session this part belongs to, as returned in `id` when it was created; a 32-character hexadecimal string.      - parameter chunkNumber: (query) The position of this part in the file, counted from 1. Sending the same number again replaces that part  instead of adding one, which is how a failed part is retried; leaving the number out makes the server count  the parts itself. (optional)     - parameter file: (form) The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ChunkedUploadSessionResponseResponseWrapper
+     - returns: ChunkedUploadSessionWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func uploadAsyncSession(folderId: Int, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResponseResponseWrapper {
+    open class func uploadAsyncSession(folderId: Int, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionWrapper {
         return try await uploadAsyncSessionWithRequestBuilder(folderId: folderId, sessionId: sessionId, chunkNumber: chunkNumber, file: file, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -2117,9 +2124,9 @@ open class {{{{x-classname}}}} {
      - parameter chunkNumber: (query) The position of this part in the file, counted from 1. Sending the same number again replaces that part  instead of adding one, which is how a failed part is retried; leaving the number out makes the server count  the parts itself. (optional)
      - parameter file: (form) The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ChunkedUploadSessionResponseResponseWrapper> 
+     - returns: RequestBuilder<ChunkedUploadSessionWrapper> 
      */
-    open class func uploadAsyncSessionWithRequestBuilder(folderId: Int, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResponseResponseWrapper> {
+    open class func uploadAsyncSessionWithRequestBuilder(folderId: Int, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/session/{sessionId}/upload"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2129,25 +2136,25 @@ open class {{{{x-classname}}}} {
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
         let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "chunkNumber": (wrappedValue: chunkNumber?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "ChunkNumber": (wrappedValue: chunkNumber?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResponseResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -2160,10 +2167,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/upload-async-session/
      - parameter folderId: (path) The folder the session was opened against. It is part of the route only and is not matched against the  session, which is found by its own id.      - parameter sessionId: (path) The session this part belongs to, as returned in `id` when it was created; a 32-character hexadecimal string.      - parameter chunkNumber: (query) The position of this part in the file, counted from 1. Sending the same number again replaces that part  instead of adding one, which is how a failed part is retried; leaving the number out makes the server count  the parts itself. (optional)     - parameter file: (form) The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ThirdPartyChunkedUploadSessionResponseResponseWrapper
+     - returns: ThirdPartyChunkedUploadSessionWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func uploadAsyncSession(folderId: String, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionResponseResponseWrapper {
+    open class func uploadAsyncSession(folderId: String, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionWrapper {
         return try await uploadAsyncSessionWithRequestBuilder(folderId: folderId, sessionId: sessionId, chunkNumber: chunkNumber, file: file, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -2200,9 +2207,9 @@ open class {{{{x-classname}}}} {
      - parameter chunkNumber: (query) The position of this part in the file, counted from 1. Sending the same number again replaces that part  instead of adding one, which is how a failed part is retried; leaving the number out makes the server count  the parts itself. (optional)
      - parameter file: (form) The part of the file to store, sent as the multipart field of the same name. It is kept under the number given  beside it, and a part larger than the portal chunk size is refused. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionResponseResponseWrapper> 
+     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionWrapper> 
      */
-    open class func uploadAsyncSessionWithRequestBuilder(folderId: String, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionResponseResponseWrapper> {
+    open class func uploadAsyncSessionWithRequestBuilder(folderId: String, sessionId: String, chunkNumber: Int? = nil, file: URL? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/session/{sessionId}/upload"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -2212,25 +2219,25 @@ open class {{{{x-classname}}}} {
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
         let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "chunkNumber": (wrappedValue: chunkNumber?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "ChunkNumber": (wrappedValue: chunkNumber?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionResponseResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -2294,7 +2301,7 @@ open class {{{{x-classname}}}} {
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
@@ -2305,7 +2312,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2373,7 +2379,7 @@ open class {{{{x-classname}}}} {
         localVariablePath = localVariablePath.replacingOccurrences(of: "{sessionId}", with: sessionIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
@@ -2384,7 +2390,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

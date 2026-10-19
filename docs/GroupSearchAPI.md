@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **getGroupsWithFilesShared**
 ```swift
-    open class func getGroupsWithFilesShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithFilesShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
 Returns the groups that can be given access to the file with the ID given in the route, and reports for each  of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the file yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/file/{id}/search`.
@@ -51,15 +51,11 @@ let startIndex = 987 // Int | The number of matching groups to skip before the p
 let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
 // Search groups for a file
-GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -72,7 +68,7 @@ GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared,
 
 # **getGroupsWithFilesShared** (third-party storage)
 ```swift
-    open class func getGroupsWithFilesShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithFilesShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
 Returns the groups that can be given access to the file with the ID given in the route, and reports for each  of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the file yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/file/{id}/search`.
@@ -109,15 +105,11 @@ let startIndex = 987 // Int | The number of matching groups to skip before the p
 let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
 // Search groups for a file (third-party storage)
-GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -130,7 +122,7 @@ GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared,
 
 # **getGroupsWithFoldersShared**
 ```swift
-    open class func getGroupsWithFoldersShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithFoldersShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
 Returns the groups that can be given access to the folder with the ID given in the route, and reports for  each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the folder yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/folder/{id}/search`.
@@ -167,15 +159,11 @@ let startIndex = 987 // Int | The number of matching groups to skip before the p
 let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
 // Search groups for a folder
-GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -188,7 +176,7 @@ GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShare
 
 # **getGroupsWithFoldersShared** (third-party storage)
 ```swift
-    open class func getGroupsWithFoldersShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithFoldersShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
 Returns the groups that can be given access to the folder with the ID given in the route, and reports for  each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the folder yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/folder/{id}/search`.
@@ -225,15 +213,11 @@ let startIndex = 987 // Int | The number of matching groups to skip before the p
 let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
 // Search groups for a folder (third-party storage)
-GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -246,7 +230,7 @@ GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShare
 
 # **getGroupsWithRoomsShared**
 ```swift
-    open class func getGroupsWithRoomsShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithRoomsShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
 Returns the groups that can be given access to the room with the ID given in the route, and reports for each  of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the room yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/room/{id}/search`.
@@ -283,15 +267,11 @@ let startIndex = 987 // Int | The number of matching groups to skip before the p
 let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
 // Search groups for a room
-GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -304,7 +284,7 @@ GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared,
 
 # **getGroupsWithRoomsShared** (third-party storage)
 ```swift
-    open class func getGroupsWithRoomsShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithRoomsShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
 Returns the groups that can be given access to the room with the ID given in the route, and reports for each  of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the room yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/room/{id}/search`.
@@ -341,15 +321,11 @@ let startIndex = 987 // Int | The number of matching groups to skip before the p
 let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
 // Search groups for a room (third-party storage)
-GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

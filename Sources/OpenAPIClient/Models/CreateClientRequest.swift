@@ -19,14 +19,14 @@ public struct CreateClientRequest: Sendable, Codable, Hashable {
 
     public static let nameRule = StringRule(minLength: 3, maxLength: 256, pattern: nil)
     public static let descriptionRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    public static let logoRule = StringRule(minLength: 1, maxLength: nil, pattern: "/^data:image\/(?:png|jpeg|jpg|svg\\+xml);base64,.*.{1,}/")
+    public static let logoRule = StringRule(minLength: 1, maxLength: nil, pattern: "^data:image\\/(?:png|jpeg|jpg|svg\\+xml);base64,.*.{1,}")
     public static let scopesRule = ArrayRule(minItems: 1, maxItems: nil, uniqueItems: true)
-    public static let websiteUrlRule = StringRule(minLength: 1, maxLength: nil, pattern: "/^(https?:\/\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$|^https?:\/\/(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$/")
-    public static let termsUrlRule = StringRule(minLength: 1, maxLength: nil, pattern: "/^(https?:\/\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$|^https?:\/\/(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$/")
-    public static let policyUrlRule = StringRule(minLength: 1, maxLength: nil, pattern: "/^(https?:\/\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$|^https?:\/\/(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$/")
+    public static let websiteUrlRule = StringRule(minLength: 1, maxLength: nil, pattern: "^(https?://)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$|^https?://(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$")
+    public static let termsUrlRule = StringRule(minLength: 1, maxLength: nil, pattern: "^(https?://)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$|^https?://(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$")
+    public static let policyUrlRule = StringRule(minLength: 1, maxLength: nil, pattern: "^(https?://)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$|^https?://(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$")
     public static let redirectUrisRule = ArrayRule(minItems: 1, maxItems: 12, uniqueItems: true)
     public static let allowedOriginsRule = ArrayRule(minItems: 1, maxItems: 12, uniqueItems: true)
-    public static let logoutRedirectUriRule = StringRule(minLength: 1, maxLength: nil, pattern: "/^(https?:\/\/)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$|^https?:\/\/(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(\/[a-zA-Z0-9-._~:\/?#\\[\\]@!$&'()*+,;=]*)?$/")
+    public static let logoutRedirectUriRule = StringRule(minLength: 1, maxLength: nil, pattern: "^(https?://)?([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$|^https?://(\\d{1,3}\\.){3}\\d{1,3}(:\\d+)?(/[a-zA-Z0-9-._~:/?#\\[\\]@!$&'()*+,;=]*)?$")
     /** The display name shown to the user on the consent screen. It has to be between 3 and 256 characters long. */
     public var name: String
     /** The free-text description shown next to the name on the consent screen, at most 255 characters. */

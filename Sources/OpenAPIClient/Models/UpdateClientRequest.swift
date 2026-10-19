@@ -19,7 +19,7 @@ public struct UpdateClientRequest: Sendable, Codable, Hashable {
 
     public static let nameRule = StringRule(minLength: 3, maxLength: 256, pattern: nil)
     public static let descriptionRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    public static let logoRule = StringRule(minLength: 1, maxLength: nil, pattern: "/^data:image\/(?:png|jpeg|jpg|svg\\+xml);base64,.*.{1,}/")
+    public static let logoRule = StringRule(minLength: 1, maxLength: nil, pattern: "^data:image\\/(?:png|jpeg|jpg|svg\\+xml);base64,.*.{1,}")
     public static let scopesRule = ArrayRule(minItems: 1, maxItems: nil, uniqueItems: true)
     public static let allowedOriginsRule = ArrayRule(minItems: 1, maxItems: 12, uniqueItems: true)
     public static let redirectUrisRule = ArrayRule(minItems: 1, maxItems: 12, uniqueItems: true)

@@ -15,7 +15,7 @@
 import Foundation
 
 /** The editor tool call parameters. */
-public enum EditorToolCallParametersDto: Sendable, Codable, Hashable {
+public enum EditorToolCallParametersDto: Sendable, Codable, Hashable, ParameterConvertible {
     case typeGenerateDocxToolCallParametersDto(GenerateDocxToolCallParametersDto)
     case typeGenerateFormToolCallParametersDto(GenerateFormToolCallParametersDto)
     case typeGeneratePresentationToolCallParametersDto(GeneratePresentationToolCallParametersDto)
@@ -42,6 +42,17 @@ public enum EditorToolCallParametersDto: Sendable, Codable, Hashable {
             self = .typeGeneratePresentationToolCallParametersDto(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of EditorToolCallParametersDto"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeGenerateDocxToolCallParametersDto(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeGenerateFormToolCallParametersDto(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeGeneratePresentationToolCallParametersDto(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
         }
     }
 }

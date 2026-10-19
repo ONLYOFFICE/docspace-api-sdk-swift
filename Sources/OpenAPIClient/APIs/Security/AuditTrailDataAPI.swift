@@ -15,8 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
-var fields: String?
+open class SecurityAuditTrailDataAPIApi {
 
     /**
      Start audit trail report
@@ -24,13 +23,13 @@ var fields: String?
      See also:
      REST API Reference for createAuditTrailReport Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-audit-trail-report/
-     - parameter format: (query) The format the report file is written in. The workbook format is the default and is the only one that leaves  the finished file addressable by ID: a report asked for as CSV comes back with an empty `resultFileId`, so it  can only be reached through `resultFileName` and `resultFileUrl`. (optional)
+     - parameter format: (query) The format the report file is written in: a spreadsheet workbook, which is the default, or a comma-separated  text file. (optional)     - parameter from: (query) The earliest moment a reported event may have been recorded at, read as a UTC instant. (optional)     - parameter to: (query) The latest moment a reported event may have been recorded at, read as a UTC instant in the same way as `from`. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: DocumentBuilderTaskWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createAuditTrailReport(format: AuditReportFormat? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DocumentBuilderTaskWrapper {
-        return try await createAuditTrailReportWithRequestBuilder(format: format, apiConfiguration: apiConfiguration).execute().body
+    open class func createAuditTrailReport(format: AuditReportFormat? = nil, from: Date? = nil, to: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DocumentBuilderTaskWrapper {
+        return try await createAuditTrailReportWithRequestBuilder(format: format, from: from, to: to, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -41,7 +40,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-audit-trail-report/
      
      - POST /api/2.0/security/audit/events/report
-     - Queues a report of the portal's audit trail and returns the state of the background job that builds it. The  report covers the period reaching from now back by the audit trail lifetime that  `GET api/2.0/security/audit/settings/lifetime` reports and is never filtered: the query parameters of  `GET api/2.0/security/audit/events/filter` do not apply here. The caller needs the portal-settings right of a  DocSpace administrator plus the audit option of the portal's pricing plan, otherwise the call is answered with  402. The file is not ready when the response arrives - poll `GET api/2.0/security/audit/events/report` until  `isCompleted` is true, then take `resultFileUrl`, and treat a non-empty `error` as a failed build. The  finished file is saved to the caller's My documents section, as an XLSX workbook by default or as CSV when  `format=Csv`, in which case `resultFileId` stays empty and only the name and the URL identify it. One job runs  per caller and kind: calling again while the previous one is still building returns that job instead of  starting a second, and `DELETE api/2.0/security/audit/events/report` cancels it.
+     - Queues a report of the portal's audit trail and returns the state of the background job that builds it. By  default the report covers the period reaching from now back by the audit trail lifetime that  `GET api/2.0/security/audit/settings/lifetime` reports; `from` and `to` narrow it, a `from` older than that  window is moved up to its start, a `to` in the future is moved back to now, and a period that ends before it  starts is answered with 400. No other filter of `GET api/2.0/security/audit/events/filter` applies here. The  caller needs the portal-settings right of a DocSpace administrator plus the audit option of the portal's pricing  plan, otherwise the call is answered with 402. The file is not ready when the response arrives - poll  `GET api/2.0/security/audit/events/report` until `isCompleted` is true, then take `resultFileUrl`, and treat a  non-empty `error` as a failed build. The finished file is saved to the caller's My documents section, as an XLSX  workbook by default or as CSV when `format=Csv`, and `resultFileId` identifies it in either format;  `resultFileUrl` opens it in the editor, except for a CSV file too large for the editor, which it downloads  instead. An XLSX report keeps only the most recent events, at most 200,000 by default and fewer when the events  are long, and its header says how many were left out; `format=Csv` exports every event of the period. One job  runs per caller and kind: calling again while the previous one is still building returns that job instead of  starting a second, and `DELETE api/2.0/security/audit/events/report` cancels it.
      - BASIC:
        - type: http
        - name: Basic
@@ -61,24 +60,28 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter format: (query) The format the report file is written in. The workbook format is the default and is the only one that leaves  the finished file addressable by ID: a report asked for as CSV comes back with an empty `resultFileId`, so it  can only be reached through `resultFileName` and `resultFileUrl`. (optional)
+     - parameter format: (query) The format the report file is written in: a spreadsheet workbook, which is the default, or a comma-separated  text file. (optional)
+     - parameter from: (query) The earliest moment a reported event may have been recorded at, read as a UTC instant. (optional)
+     - parameter to: (query) The latest moment a reported event may have been recorded at, read as a UTC instant in the same way as `from`. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<DocumentBuilderTaskWrapper> 
      */
-    open class func createAuditTrailReportWithRequestBuilder(format: AuditReportFormat? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DocumentBuilderTaskWrapper> {
+    open class func createAuditTrailReportWithRequestBuilder(format: AuditReportFormat? = nil, from: Date? = nil, to: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<DocumentBuilderTaskWrapper> {
         let localVariablePath = "/api/2.0/security/audit/events/report"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "format": (wrappedValue: format?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "from": (wrappedValue: from?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "to": (wrappedValue: to?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -94,12 +97,13 @@ var fields: String?
      REST API Reference for getAuditEventsByFilter Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-events-by-filter/
      - parameter userId: (query) The user who performed the action, given by portal user ID. Leave it at the empty GUID to keep the events of  every user. (optional)     - parameter moduleType: (query) The module the recorded action belongs to, spelled as `GET api/2.0/security/audit/types` lists it under  `moduleTypes`. `GET api/2.0/security/audit/mappers` shows which module records which action. The default  value keeps every module. (optional)     - parameter actionType: (query) The kind of change the action made, spelled as `GET api/2.0/security/audit/types` lists it under  `actionTypes`. The default value keeps every kind. (optional)     - parameter action: (query) The exact action recorded, spelled as the `messageAction` of `GET api/2.0/security/audit/mappers`. Naming  one narrows the answer to that single action and overrides `moduleType` and `actionType`, which stop  narrowing anything once it is set. (optional)     - parameter entryType: (query) The kind of object the action was performed on, spelled as `GET api/2.0/security/audit/types` lists it under  `entryTypes`. Pair it with `target` to filter by object without pinning a single action. (optional)     - parameter target: (query) The object the action was performed on, as the audit trail recorded it - a file name, a user account, a room  title. It is matched in full and exactly as stored, so it narrows the answer only when `action` or  `entryType` is set as well. (optional)     - parameter from: (query) The earliest moment an event may have been recorded at, read as a UTC instant. The `date` of the events that  come back is in the portal time zone instead, so the two do not line up on a portal that is not on UTC. (optional)     - parameter to: (query) The latest moment an event may have been recorded at, read as a UTC instant in the same way as `from`. (optional)     - parameter count: (query) How many events one page may hold. The maximum is also the default, so a client that wants shorter pages has  to ask for them; a full page means there may be further matches beyond it. (optional)     - parameter startIndex: (query) How many matching events to skip before the page begins, counting from the newest. Advance it by `count` to  walk backwards through the trail. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AuditEventArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getAuditEventsByFilter(userId: UUID? = nil, moduleType: LocationType? = nil, actionType: ActionType? = nil, action: MessageAction? = nil, entryType: EntryType? = nil, target: String? = nil, from: Date? = nil, to: Date? = nil, count: Int? = nil, startIndex: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuditEventArrayWrapper {
-        return try await getAuditEventsByFilterWithRequestBuilder(userId: userId, moduleType: moduleType, actionType: actionType, action: action, entryType: entryType, target: target, from: from, to: to, count: count, startIndex: startIndex, apiConfiguration: apiConfiguration).execute().body
+    open class func getAuditEventsByFilter(userId: UUID? = nil, moduleType: LocationType? = nil, actionType: ActionType? = nil, action: MessageAction? = nil, entryType: EntryType? = nil, target: String? = nil, from: Date? = nil, to: Date? = nil, count: Int? = nil, startIndex: Int? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuditEventArrayWrapper {
+        return try await getAuditEventsByFilterWithRequestBuilder(userId: userId, moduleType: moduleType, actionType: actionType, action: action, entryType: entryType, target: target, from: from, to: to, count: count, startIndex: startIndex, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -140,16 +144,16 @@ var fields: String?
      - parameter to: (query) The latest moment an event may have been recorded at, read as a UTC instant in the same way as `from`. (optional)
      - parameter count: (query) How many events one page may hold. The maximum is also the default, so a client that wants shorter pages has  to ask for them; a full page means there may be further matches beyond it. (optional)
      - parameter startIndex: (query) How many matching events to skip before the page begins, counting from the newest. Advance it by `count` to  walk backwards through the trail. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuditEventArrayWrapper> 
      */
-    open class func getAuditEventsByFilterWithRequestBuilder(userId: UUID? = nil, moduleType: LocationType? = nil, actionType: ActionType? = nil, action: MessageAction? = nil, entryType: EntryType? = nil, target: String? = nil, from: Date? = nil, to: Date? = nil, count: Int? = nil, startIndex: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuditEventArrayWrapper> {
+    open class func getAuditEventsByFilterWithRequestBuilder(userId: UUID? = nil, moduleType: LocationType? = nil, actionType: ActionType? = nil, action: MessageAction? = nil, entryType: EntryType? = nil, target: String? = nil, from: Date? = nil, to: Date? = nil, count: Int? = nil, startIndex: Int? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuditEventArrayWrapper> {
         let localVariablePath = "/api/2.0/security/audit/events/filter"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userId": (wrappedValue: userId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "moduleType": (wrappedValue: moduleType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "actionType": (wrappedValue: actionType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -160,16 +164,13 @@ var fields: String?
             "to": (wrappedValue: to?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -186,10 +187,10 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-settings/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: TenantAuditSettingsResponseWrapper
+     - returns: TenantAuditSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getAuditSettings(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAuditSettingsResponseWrapper {
+    open class func getAuditSettings(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAuditSettingsWrapper {
         return try await getAuditSettingsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -222,9 +223,9 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<TenantAuditSettingsResponseWrapper> 
+     - returns: RequestBuilder<TenantAuditSettingsWrapper> 
      */
-    open class func getAuditSettingsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAuditSettingsResponseWrapper> {
+    open class func getAuditSettingsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAuditSettingsWrapper> {
         let localVariablePath = "/api/2.0/security/audit/settings/lifetime"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -235,10 +236,9 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TenantAuditSettingsResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TenantAuditSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -251,10 +251,10 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-trail-mappers/
      - parameter productType: (query) The product to keep, spelled as `GET api/2.0/security/audit/types` lists it under `productTypes`. Omitting  it keeps every product; a value no product matches yields an empty list rather than an error. (optional)     - parameter moduleType: (query) The module to keep inside the products that survive `productType`, spelled as  `GET api/2.0/security/audit/types` lists it under `moduleTypes`. Omitting it keeps every module of those  products. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: AuditTrailProductMapperArrayWrapper
+     - returns: AuditTrailProductArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getAuditTrailMappers(productType: ProductType? = nil, moduleType: LocationType? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuditTrailProductMapperArrayWrapper {
+    open class func getAuditTrailMappers(productType: ProductType? = nil, moduleType: LocationType? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuditTrailProductArrayWrapper {
         return try await getAuditTrailMappersWithRequestBuilder(productType: productType, moduleType: moduleType, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -289,27 +289,27 @@ var fields: String?
      - parameter productType: (query) The product to keep, spelled as `GET api/2.0/security/audit/types` lists it under `productTypes`. Omitting  it keeps every product; a value no product matches yields an empty list rather than an error. (optional)
      - parameter moduleType: (query) The module to keep inside the products that survive `productType`, spelled as  `GET api/2.0/security/audit/types` lists it under `moduleTypes`. Omitting it keeps every module of those  products. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<AuditTrailProductMapperArrayWrapper> 
+     - returns: RequestBuilder<AuditTrailProductArrayWrapper> 
      */
-    open class func getAuditTrailMappersWithRequestBuilder(productType: ProductType? = nil, moduleType: LocationType? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuditTrailProductMapperArrayWrapper> {
+    open class func getAuditTrailMappersWithRequestBuilder(productType: ProductType? = nil, moduleType: LocationType? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuditTrailProductArrayWrapper> {
         let localVariablePath = "/api/2.0/security/audit/mappers"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "productType": (wrappedValue: productType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "moduleType": (wrappedValue: moduleType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AuditTrailProductMapperArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AuditTrailProductArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -337,7 +337,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-audit-trail-report/
      
      - GET /api/2.0/security/audit/events/report
-     - Returns the state of the audit trail report the calling user has started, and is the operation to poll after  `POST api/2.0/security/audit/events/report`. The caller needs the portal-settings right of a DocSpace  administrator plus the audit option of the portal's pricing plan, otherwise the call is answered with 402.  Jobs are kept per user and per report kind: this operation never shows another administrator's report, nor the  login history report, which has its own status at `GET api/2.0/security/audit/login/report`. The answer is  empty when no report of this kind is known for the caller; otherwise `percentage` grows towards 100,  `isCompleted` turns true when the build has ended, `error` carries the failure message when it ended badly,  and `resultFileName` and `resultFileUrl` point at the file saved to the caller's My documents section, while  `resultFileId` is filled for an XLSX report only. The operation is read-only and safe to poll every few  seconds; a finished job is dropped as soon as the next report of this kind is started.
+     - Returns the state of the audit trail report the calling user has started, and is the operation to poll after  `POST api/2.0/security/audit/events/report`. The caller needs the portal-settings right of a DocSpace  administrator plus the audit option of the portal's pricing plan, otherwise the call is answered with 402. Jobs  are kept per user and per report kind: this operation never shows another administrator's report, nor the login  history report, which has its own status at `GET api/2.0/security/audit/login/report`. The answer is empty when  no report of this kind is known for the caller; otherwise `percentage` grows towards 100, `isCompleted` turns  true when the build has ended, `error` carries the failure message when it ended badly, and `resultFileId`,  `resultFileName` and `resultFileUrl` point at the file saved to the caller's My documents section. The operation  is read-only and safe to poll every few seconds; a finished job is dropped as soon as the next report of this  kind is started.
      - BASIC:
        - type: http
        - name: Basic
@@ -370,7 +370,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -436,7 +435,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AuditTrailTypesWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -501,7 +499,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AuditEventArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -515,13 +512,13 @@ var fields: String?
      See also:
      REST API Reference for setAuditSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-audit-settings/
-     - parameter tenantAuditSettingsWrapper: (body)  (optional)
+     - parameter tenantAuditSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: TenantAuditSettingsResponseWrapper
+     - returns: TenantAuditSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setAuditSettings(tenantAuditSettingsWrapper: TenantAuditSettingsWrapper? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAuditSettingsResponseWrapper {
-        return try await setAuditSettingsWithRequestBuilder(tenantAuditSettingsWrapper: tenantAuditSettingsWrapper, apiConfiguration: apiConfiguration).execute().body
+    open class func setAuditSettings(tenantAuditSettingsRequestDto: TenantAuditSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAuditSettingsWrapper {
+        return try await setAuditSettingsWithRequestBuilder(tenantAuditSettingsRequestDto: tenantAuditSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -552,14 +549,14 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter tenantAuditSettingsWrapper: (body)  (optional)
+     - parameter tenantAuditSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<TenantAuditSettingsResponseWrapper> 
+     - returns: RequestBuilder<TenantAuditSettingsWrapper> 
      */
-    open class func setAuditSettingsWithRequestBuilder(tenantAuditSettingsWrapper: TenantAuditSettingsWrapper? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAuditSettingsResponseWrapper> {
+    open class func setAuditSettingsWithRequestBuilder(tenantAuditSettingsRequestDto: TenantAuditSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAuditSettingsWrapper> {
         let localVariablePath = "/api/2.0/security/audit/settings/lifetime"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: tenantAuditSettingsWrapper, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: tenantAuditSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -567,10 +564,9 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TenantAuditSettingsResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TenantAuditSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -632,18 +628,10 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
-    }
-}
-extension SecurityAuditTrailDataAPIApi {
-    @discardableResult
-    public func withFields(_ fields: String) -> SecurityAuditTrailDataAPIApi {
-        self.fields = fields
-        return self
     }
 }

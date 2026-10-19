@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 # **getAccountsEntriesWithFilesShared**
 ```swift
-    open class func getAccountsEntriesWithFilesShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: IAccountEntryArrayWrapper?, _ error: Error?) -> Void)
+    open class func getAccountsEntriesWithFilesShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AccountEntryArrayWrapper
 ```
 
 Searches the portal users and groups that can be given access to the file with the ID given in the route, and  reports for each of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -70,7 +70,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
@@ -78,15 +78,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
 
 // Search accounts for a file
-PeopleSearchAPIApi.getAccountsEntriesWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getAccountsEntriesWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -99,7 +95,7 @@ PeopleSearchAPIApi.getAccountsEntriesWithFilesShared(id: id, employeeStatus: emp
 
 # **getAccountsEntriesWithFilesShared** (third-party storage)
 ```swift
-    open class func getAccountsEntriesWithFilesShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: IAccountEntryArrayWrapper?, _ error: Error?) -> Void)
+    open class func getAccountsEntriesWithFilesShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AccountEntryArrayWrapper
 ```
 
 Searches the portal users and groups that can be given access to the file with the ID given in the route, and  reports for each of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
@@ -117,7 +113,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] 
@@ -126,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -144,7 +140,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
@@ -152,15 +148,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
 
 // Search accounts for a file (third-party storage)
-PeopleSearchAPIApi.getAccountsEntriesWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getAccountsEntriesWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -173,7 +165,7 @@ PeopleSearchAPIApi.getAccountsEntriesWithFilesShared(id: id, employeeStatus: emp
 
 # **getAccountsEntriesWithFoldersShared**
 ```swift
-    open class func getAccountsEntriesWithFoldersShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: IAccountEntryArrayWrapper?, _ error: Error?) -> Void)
+    open class func getAccountsEntriesWithFoldersShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AccountEntryArrayWrapper
 ```
 
 Searches the portal users and groups that can be given access to the folder with the ID given in the route,  and reports for each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
@@ -191,7 +183,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] 
@@ -200,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -218,7 +210,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
@@ -226,15 +218,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
 
 // Search accounts for a folder
-PeopleSearchAPIApi.getAccountsEntriesWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getAccountsEntriesWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -247,7 +235,7 @@ PeopleSearchAPIApi.getAccountsEntriesWithFoldersShared(id: id, employeeStatus: e
 
 # **getAccountsEntriesWithFoldersShared** (third-party storage)
 ```swift
-    open class func getAccountsEntriesWithFoldersShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: IAccountEntryArrayWrapper?, _ error: Error?) -> Void)
+    open class func getAccountsEntriesWithFoldersShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AccountEntryArrayWrapper
 ```
 
 Searches the portal users and groups that can be given access to the folder with the ID given in the route,  and reports for each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
@@ -265,7 +253,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] 
@@ -274,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -292,7 +280,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
@@ -300,15 +288,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
 
 // Search accounts for a folder (third-party storage)
-PeopleSearchAPIApi.getAccountsEntriesWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getAccountsEntriesWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -321,7 +305,7 @@ PeopleSearchAPIApi.getAccountsEntriesWithFoldersShared(id: id, employeeStatus: e
 
 # **getAccountsEntriesWithRoomsShared**
 ```swift
-    open class func getAccountsEntriesWithRoomsShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: IAccountEntryArrayWrapper?, _ error: Error?) -> Void)
+    open class func getAccountsEntriesWithRoomsShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AccountEntryArrayWrapper
 ```
 
 Searches the portal users and groups that can be given access to the room with the ID given in the route, and  reports for each of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
@@ -339,7 +323,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] 
@@ -348,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -366,7 +350,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
@@ -374,15 +358,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
 
 // Search accounts for a room
-PeopleSearchAPIApi.getAccountsEntriesWithRoomsShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getAccountsEntriesWithRoomsShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -395,7 +375,7 @@ PeopleSearchAPIApi.getAccountsEntriesWithRoomsShared(id: id, employeeStatus: emp
 
 # **getAccountsEntriesWithRoomsShared** (third-party storage)
 ```swift
-    open class func getAccountsEntriesWithRoomsShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: IAccountEntryArrayWrapper?, _ error: Error?) -> Void)
+    open class func getAccountsEntriesWithRoomsShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AccountEntryArrayWrapper
 ```
 
 Searches the portal users and groups that can be given access to the room with the ID given in the route, and  reports for each of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The search is read-only and needs `filterValue`: while it is empty the operation returns an empty list and a  total of 0 instead of every account, so it cannot be used to enumerate the portal.  `filterValue` is matched case-insensitively against the first name, the last name and the email; without  `filterSeparator` it is split on spaces and every term has to match, and with a separator it is split on that  separator and any term may match.  Matching groups are streamed first and users after them, both paged together by `count` and `startIndex`,  while the number of matches is reported in the total count of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.
@@ -413,7 +393,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. | [optional] 
@@ -422,7 +402,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IAccountEntryArrayWrapper**](IAccountEntryArrayWrapper.md)
+[**AccountEntryArrayWrapper**](AccountEntryArrayWrapper.md)
 
 ### Authorization
 
@@ -440,7 +420,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when  `excludeShared` is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the users invited by the caller when true, and only the users invited by somebody else when false.  Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the users invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the users of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page, counting groups and users together. It defaults to 100, which is also the largest value  the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts, counted over the groups and users together. It defaults  to 0, and the total number of matches is reported in the total count of the response. (optional)
@@ -448,15 +428,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to search for, matched case-insensitively against the first name, the last name and the email. It is  required in practice: while it is empty the search returns nothing at all rather than every account. (optional)
 
 // Search accounts for a room (third-party storage)
-PeopleSearchAPIApi.getAccountsEntriesWithRoomsShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getAccountsEntriesWithRoomsShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -469,7 +445,7 @@ PeopleSearchAPIApi.getAccountsEntriesWithRoomsShared(id: id, employeeStatus: emp
 
 # **getSearch**
 ```swift
-    open class func getSearch(query: String, filterBy: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func getSearch(query: String, filterBy: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Searches the active accounts of the portal by a term taken from the path, and is the same search as  `GET api/2.0/people/search`, which takes the term in the query string instead.  Only a DocSpace administrator may call it; every other account, including a room admin, gets 403.  Only accounts with the `Active` status are searched, so a pending invitation and a disabled account are never  found - use `GET api/2.0/people/filter` to search across states.  The call is read-only and is not paged: every match is streamed, without a total.  `filterBy` set to `group` turns `text` into a group ID and keeps only the members of that group, so `text`  then has to be a valid identifier.  The answer holds full profiles.
@@ -502,15 +478,11 @@ let filterBy = "filterBy_example" // String | The only recognised value is `grou
 let filterValue = "filterValue_example" // String | The group ID to keep the members of, used only when `filterBy` is `group`. It has to be a valid identifier -  a group name is not accepted. (optional)
 
 // Search users
-PeopleSearchAPIApi.getSearch(query: query, filterBy: filterBy, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getSearch(query: query, filterBy: filterBy, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -523,7 +495,7 @@ PeopleSearchAPIApi.getSearch(query: query, filterBy: filterBy, filterValue: filt
 
 # **getSimpleByFilter**
 ```swift
-    open class func getSimpleByFilter(employeeStatus: EmployeeStatus? = nil, groupId: UUID? = nil, activationStatus: EmployeeActivationStatus? = nil, employeeType: EmployeeType? = nil, employeeTypes: [EmployeeTypes_getSimpleByFilter]? = nil, isAdministrator: Bool? = nil, payments: Payments? = nil, accountLoginType: AccountLoginType? = nil, quotaFilter: QuotaFilter? = nil, withoutGroup: Bool? = nil, excludeGroup: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeArrayWrapper?, _ error: Error?) -> Void)
+    open class func getSimpleByFilter(employeeStatus: EmployeeStatus? = nil, groupId: UUID? = nil, activationStatus: EmployeeActivationStatus? = nil, employeeType: EmployeeType? = nil, employeeTypes: [EmployeeTypes_getSimpleByFilter]? = nil, isAdministrator: Bool? = nil, payments: Payments? = nil, accountLoginType: AccountLoginType? = nil, quotaFilter: QuotaFilter? = nil, withoutGroup: Bool? = nil, excludeGroup: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterSeparator: String? = nil, filterValue: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeArrayWrapper
 ```
 
 Returns a page of portal accounts selected by the full set of account filters, with the short profile of each  of them - the identifying fields, the avatar and the display name, without the contacts, the groups or the  quota.  The caller has to be a room admin, a DocSpace admin or a People module admin; a member or a guest gets 403.  The call is read-only, paged by `count` and `startIndex`, ordered by `sortBy` and `sortOrder`, and reports  the number of matches in the total count of the response.  It accepts exactly the same filters as `GET api/2.0/people/filter` and differs only in how much of each  profile comes back, so prefer this one for pickers, mentions and any list that shows names, and switch to the  other only when the full profile is needed.  Filters combine as conditions that all have to hold, and the same interactions apply: `withoutGroup` makes  `groupId` irrelevant, `employeeType` wins over `employeeTypes`, and `area` cancels the type filters that  contradict it.
@@ -547,13 +519,14 @@ Name | Type | Description  | Notes
  **excludeGroup** | **Bool** | Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
  **sortBy** | **String** | What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`. | [optional] 
  **sortOrder** | [**SortOrder**](.md) | The direction of the ordering: `Ascending`, which is the default, or `Descending`. | [optional] 
  **filterSeparator** | **String** | The character that splits `filterValue` into several terms, of which any one may match. Omit it to split  the value on spaces instead, in which case every term has to match. | [optional] 
  **filterValue** | **String** | The text to match against the first name, the last name and the email, case-insensitively. Omit it to apply  no text filter at all. | [optional] 
+ **fields** | **String** | A comma-separated list of the response fields to return. | [optional]
 
 ### Return type
 
@@ -581,7 +554,7 @@ let withoutGroup = false // Bool | Set it to true to keep only the accounts that
 let excludeGroup = false // Bool | Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
 let sortBy = "sortBy_example" // String | What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`. (optional)
@@ -590,15 +563,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to apply  no text filter at all. (optional)
 
 // Filter users in brief
-PeopleSearchAPIApi.getSimpleByFilter(employeeStatus: employeeStatus, groupId: groupId, activationStatus: activationStatus, employeeType: employeeType, employeeTypes: employeeTypes, isAdministrator: isAdministrator, payments: payments, accountLoginType: accountLoginType, quotaFilter: quotaFilter, withoutGroup: withoutGroup, excludeGroup: excludeGroup, invitedByMe: invitedByMe, inviterId: inviterId, area: area, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getSimpleByFilter(employeeStatus: employeeStatus, groupId: groupId, activationStatus: activationStatus, employeeType: employeeType, employeeTypes: employeeTypes, isAdministrator: isAdministrator, payments: payments, accountLoginType: accountLoginType, quotaFilter: quotaFilter, withoutGroup: withoutGroup, excludeGroup: excludeGroup, invitedByMe: invitedByMe, inviterId: inviterId, area: area, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -611,7 +580,7 @@ PeopleSearchAPIApi.getSimpleByFilter(employeeStatus: employeeStatus, groupId: gr
 
 # **getUsersWithFilesShared**
 ```swift
-    open class func getUsersWithFilesShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func getUsersWithFilesShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Returns the accounts that are relevant to the file with the ID given in the route, and reports for each of  them whether it already has access to that file.  The caller only needs read access to the file, not the right to manage its access, but a guest may not call  it at all; an ID that matches no file answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/file/{id}/search` instead.
@@ -629,7 +598,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
@@ -656,7 +625,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
@@ -664,15 +633,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to get  every account the caller may offer access to. (optional)
 
 // Search users for a file
-PeopleSearchAPIApi.getUsersWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getUsersWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -685,7 +650,7 @@ PeopleSearchAPIApi.getUsersWithFilesShared(id: id, employeeStatus: employeeStatu
 
 # **getUsersWithFilesShared** (third-party storage)
 ```swift
-    open class func getUsersWithFilesShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func getUsersWithFilesShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Returns the accounts that are relevant to the file with the ID given in the route, and reports for each of  them whether it already has access to that file.  The caller only needs read access to the file, not the right to manage its access, but a guest may not call  it at all; an ID that matches no file answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/file/{id}/search` instead.
@@ -703,7 +668,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
@@ -730,7 +695,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
@@ -738,15 +703,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to get  every account the caller may offer access to. (optional)
 
 // Search users for a file (third-party storage)
-PeopleSearchAPIApi.getUsersWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getUsersWithFilesShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -759,7 +720,7 @@ PeopleSearchAPIApi.getUsersWithFilesShared(id: id, employeeStatus: employeeStatu
 
 # **getUsersWithFoldersShared**
 ```swift
-    open class func getUsersWithFoldersShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func getUsersWithFoldersShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Returns the accounts that are relevant to the folder with the ID given in the route, and reports for each of  them whether it already has access to that folder.  The caller only needs read access to the folder, not the right to manage its access, but a guest may not call  it at all; an ID that matches no folder answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/folder/{id}/search` instead.
@@ -777,7 +738,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
@@ -804,7 +765,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
@@ -812,15 +773,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to get  every account the caller may offer access to. (optional)
 
 // Search users for a folder
-PeopleSearchAPIApi.getUsersWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getUsersWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -833,7 +790,7 @@ PeopleSearchAPIApi.getUsersWithFoldersShared(id: id, employeeStatus: employeeSta
 
 # **getUsersWithFoldersShared** (third-party storage)
 ```swift
-    open class func getUsersWithFoldersShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func getUsersWithFoldersShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Returns the accounts that are relevant to the folder with the ID given in the route, and reports for each of  them whether it already has access to that folder.  The caller only needs read access to the folder, not the right to manage its access, but a guest may not call  it at all; an ID that matches no folder answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/folder/{id}/search` instead.
@@ -851,7 +808,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
@@ -878,7 +835,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
@@ -886,15 +843,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to get  every account the caller may offer access to. (optional)
 
 // Search users for a folder (third-party storage)
-PeopleSearchAPIApi.getUsersWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getUsersWithFoldersShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -907,7 +860,7 @@ PeopleSearchAPIApi.getUsersWithFoldersShared(id: id, employeeStatus: employeeSta
 
 # **getUsersWithRoomShared**
 ```swift
-    open class func getUsersWithRoomShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func getUsersWithRoomShared(id: Int, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Returns the accounts that are relevant to the room with the ID given in the route, and reports for each of  them whether it already has access to that room.  The caller only needs read access to the room, not the right to manage its access, but a guest may not call  it at all; an ID that matches no room answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/room/{id}/search` instead.
@@ -925,7 +878,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
@@ -952,7 +905,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
@@ -960,15 +913,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to get  every account the caller may offer access to. (optional)
 
 // Search users for a room
-PeopleSearchAPIApi.getUsersWithRoomShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getUsersWithRoomShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -981,7 +930,7 @@ PeopleSearchAPIApi.getUsersWithRoomShared(id: id, employeeStatus: employeeStatus
 
 # **getUsersWithRoomShared** (third-party storage)
 ```swift
-    open class func getUsersWithRoomShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func getUsersWithRoomShared(id: String, employeeStatus: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, excludeShared: Bool? = nil, includeShared: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, employeeTypes: [EmployeeType]? = nil, count: Int? = nil, startIndex: Int? = nil, filterSeparator: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Returns the accounts that are relevant to the room with the ID given in the route, and reports for each of  them whether it already has access to that room.  The caller only needs read access to the room, not the right to manage its access, but a guest may not call  it at all; an ID that matches no room answers 404.  The call is read-only, works without a filter - leaving `filterValue` empty returns every matching account  rather than nothing - and is paged by `count` and `startIndex`, with the number of matches in the total count  of the response.  Pass `excludeShared` to keep only the accounts that have no access yet, `includeShared` to keep only those  that already have it, and neither to get both kinds with the `shared` field telling them apart.  A DocSpace administrator additionally sees the guests that are not related to the caller.  To search users and groups together, or to build an access dialog that needs the right to manage sharing, use  `GET api/2.0/accounts/room/{id}/search` instead.
@@ -999,7 +948,7 @@ Name | Type | Description  | Notes
  **includeShared** | **Bool** | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. | [optional] 
  **employeeTypes** | [**[EmployeeType]**](EmployeeType.md) | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
@@ -1026,7 +975,7 @@ let excludeShared = false // Bool | Keeps only the accounts that do not have acc
 let includeShared = false // Bool | Keeps only the accounts that already have access to the entry, which is the set to offer when changing or  revoking access. Every returned entry has `shared` set to true, and the flag is ignored when `excludeShared`  is also set. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only - and for a caller who is not a DocSpace  administrator, only the guests that caller is related to. (optional)
 let employeeTypes = [EmployeeType()] // [EmployeeType] | Keeps only the accounts of the listed types, combined as alternatives. An empty list, which is the default,  searches every type. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
@@ -1034,15 +983,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to get  every account the caller may offer access to. (optional)
 
 // Search users for a room (third-party storage)
-PeopleSearchAPIApi.getUsersWithRoomShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.getUsersWithRoomShared(id: id, employeeStatus: employeeStatus, activationStatus: activationStatus, excludeShared: excludeShared, includeShared: includeShared, invitedByMe: invitedByMe, inviterId: inviterId, area: area, employeeTypes: employeeTypes, count: count, startIndex: startIndex, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1055,7 +1000,7 @@ PeopleSearchAPIApi.getUsersWithRoomShared(id: id, employeeStatus: employeeStatus
 
 # **searchUsersByExtendedFilter**
 ```swift
-    open class func searchUsersByExtendedFilter(employeeStatus: EmployeeStatus? = nil, groupId: UUID? = nil, activationStatus: EmployeeActivationStatus? = nil, employeeType: EmployeeType? = nil, employeeTypes: [EmployeeTypes_searchUsersByExtendedFilter]? = nil, isAdministrator: Bool? = nil, payments: Payments? = nil, accountLoginType: AccountLoginType? = nil, quotaFilter: QuotaFilter? = nil, withoutGroup: Bool? = nil, excludeGroup: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: Area? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterSeparator: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func searchUsersByExtendedFilter(employeeStatus: EmployeeStatus? = nil, groupId: UUID? = nil, activationStatus: EmployeeActivationStatus? = nil, employeeType: EmployeeType? = nil, employeeTypes: [EmployeeTypes_searchUsersByExtendedFilter]? = nil, isAdministrator: Bool? = nil, payments: Payments? = nil, accountLoginType: AccountLoginType? = nil, quotaFilter: QuotaFilter? = nil, withoutGroup: Bool? = nil, excludeGroup: Bool? = nil, invitedByMe: Bool? = nil, inviterId: UUID? = nil, area: AccountSearchArea? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterSeparator: String? = nil, filterValue: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Returns a page of portal accounts selected by the full set of account filters, with the complete profile of  each of them.  The caller has to be a room admin, a DocSpace admin or a People module admin; a member or a guest gets 403,  and a DocSpace admin additionally sees the accounts an ordinary admin does not.  The call is read-only, paged by `count` and `startIndex`, ordered by `sortBy` and `sortOrder`, and reports  the number of matches in the total count of the response.  Filters combine as conditions that all have to hold, with three interactions worth knowing: `withoutGroup`  makes `groupId` irrelevant, `employeeType` wins over `employeeTypes` when both are sent, and `area` set to  `Guests` or `People` cancels the type filters that contradict it.  `GET api/2.0/people/simple/filter` accepts exactly the same filters and returns the short profile instead, so  use that one for pickers and lists and this one when the full profile is really needed.  It is available on an unpaid portal.
@@ -1079,13 +1024,14 @@ Name | Type | Description  | Notes
  **excludeGroup** | **Bool** | Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`. | [optional] 
  **invitedByMe** | **Bool** | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. | [optional] 
  **inviterId** | **UUID** | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. | [optional] 
- **area** | [**Area**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] 
+ **area** | [**AccountSearchArea**](.md) | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. | [optional] 
  **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
  **startIndex** | **Int** | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. | [optional] 
  **sortBy** | **String** | What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`. | [optional] 
  **sortOrder** | [**SortOrder**](.md) | The direction of the ordering: `Ascending`, which is the default, or `Descending`. | [optional] 
  **filterSeparator** | **String** | The character that splits `filterValue` into several terms, of which any one may match. Omit it to split  the value on spaces instead, in which case every term has to match. | [optional] 
  **filterValue** | **String** | The text to match against the first name, the last name and the email, case-insensitively. Omit it to apply  no text filter at all. | [optional] 
+ **fields** | **String** | A comma-separated list of the response fields to return. | [optional]
 
 ### Return type
 
@@ -1113,7 +1059,7 @@ let withoutGroup = false // Bool | Set it to true to keep only the accounts that
 let excludeGroup = false // Bool | Inverts `groupId`: with true the members of that group are left out instead of being the only ones kept. It  has no effect without `groupId`. (optional)
 let invitedByMe = false // Bool | Keeps only the accounts invited by the caller when true, and only those invited by somebody else when  false. Omit it to search regardless of who sent the invitation. (optional)
 let inviterId = 987 // UUID | Keeps only the accounts invited by the account with this ID. Omit it to search regardless of who sent the  invitation. (optional)
-let area = Area() // Area | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. (optional)
+let area = AccountSearchArea() // AccountSearchArea | The part of the portal to search in: `All`, the default, searches members and guests together, `People`  leaves the guests out, and `Guests` returns guests only. It also cancels the type filters that contradict  it. (optional)
 let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
 let startIndex = 987 // Int | The number of matches to skip before the page starts. It defaults to 0, and the total number of matches is  reported in the total count of the response. (optional)
 let sortBy = "sortBy_example" // String | What to order the accounts by, compared without regard to case: `FirstName`, `LastName`, `DisplayName`,  `Type`, `Email`, `Department`, `UsedSpace`, `CreatedBy` or `RegistrationDate`. (optional)
@@ -1122,15 +1068,11 @@ let filterSeparator = "filterSeparator_example" // String | The character that s
 let filterValue = "filterValue_example" // String | The text to match against the first name, the last name and the email, case-insensitively. Omit it to apply  no text filter at all. (optional)
 
 // Filter users in detail
-PeopleSearchAPIApi.searchUsersByExtendedFilter(employeeStatus: employeeStatus, groupId: groupId, activationStatus: activationStatus, employeeType: employeeType, employeeTypes: employeeTypes, isAdministrator: isAdministrator, payments: payments, accountLoginType: accountLoginType, quotaFilter: quotaFilter, withoutGroup: withoutGroup, excludeGroup: excludeGroup, invitedByMe: invitedByMe, inviterId: inviterId, area: area, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterSeparator: filterSeparator, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.searchUsersByExtendedFilter(employeeStatus: employeeStatus, groupId: groupId, activationStatus: activationStatus, employeeType: employeeType, employeeTypes: employeeTypes, isAdministrator: isAdministrator, payments: payments, accountLoginType: accountLoginType, quotaFilter: quotaFilter, withoutGroup: withoutGroup, excludeGroup: excludeGroup, invitedByMe: invitedByMe, inviterId: inviterId, area: area, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterSeparator: filterSeparator, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1143,7 +1085,7 @@ PeopleSearchAPIApi.searchUsersByExtendedFilter(employeeStatus: employeeStatus, g
 
 # **searchUsersByQuery**
 ```swift
-    open class func searchUsersByQuery(query: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func searchUsersByQuery(query: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Searches the active accounts of the portal by a term passed in the query string, and is the same search as  `GET api/2.0/people/@search/{query}`, which takes the term in the path instead.  Only a DocSpace administrator may call it; every other account, including a room admin, gets 403.  Only accounts with the `Active` status are searched, so a pending invitation and a disabled account are never  found - use `GET api/2.0/people/filter` to search across states.  The call is read-only and is not paged: every match is streamed, without a total.  It takes the search term and nothing else - the group filter of  `GET api/2.0/people/@search/{query}` is not reachable here, because the handler forwards only `query` - so  use that operation when the result has to be narrowed to one group.  The answer holds full profiles, because the handler passes the request on to the operation that builds the  complete profile.
@@ -1172,15 +1114,11 @@ import OpenAPIClient
 let query = "query_example" // String | The term to look for. Only accounts with the `Active` status are searched, and this is the only parameter the  operation reads. (optional)
 
 // Search users by query
-PeopleSearchAPIApi.searchUsersByQuery(query: query) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.searchUsersByQuery(query: query)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -1193,7 +1131,7 @@ PeopleSearchAPIApi.searchUsersByQuery(query: query) { (response, error) in
 
 # **searchUsersByStatus**
 ```swift
-    open class func searchUsersByStatus(status: EmployeeStatus, query: String? = nil, filterBy: String? = nil, filterValue: String? = nil, completion: @escaping (_ data: EmployeeFullArrayWrapper?, _ error: Error?) -> Void)
+    open class func searchUsersByStatus(status: EmployeeStatus, query: String? = nil, filterBy: String? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullArrayWrapper
 ```
 
 Searches the accounts that are in one particular state - the status is taken from the route - and whose name,  user name, email or contacts contain the search term.  Only a DocSpace administrator may call it; every other account, including a room admin, gets 403.  The call is read-only and is not paged: it matches in memory over every account of that status and streams  all of them, so it is meant for administrative lookups rather than for a user-facing list - use  `GET api/2.0/people/filter` when a page and a total are needed.  The term is matched as a case-insensitive substring and is required; `filterBy` set to `group` turns `text`  into a group ID and keeps only the members of that group, so `text` then has to be a valid identifier.  The answer holds full profiles, in no particular order.
@@ -1228,15 +1166,11 @@ let filterBy = "filterBy_example" // String | The only recognised value is `grou
 let filterValue = "filterValue_example" // String | The group ID to keep the members of, used only when `filterBy` is `group`. It has to be a valid identifier -  a group name is not accepted. (optional)
 
 // Search users by status filter
-PeopleSearchAPIApi.searchUsersByStatus(status: status, query: query, filterBy: filterBy, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleSearchAPIApi.searchUsersByStatus(status: status, query: query, filterBy: filterBy, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

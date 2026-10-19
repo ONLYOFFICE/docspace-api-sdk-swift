@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class PeopleUserTypeAPIApi {
 
     /**
      Get the user type change progress
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getUserTypeUpdateProgress Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-type-update-progress/
-     - parameter userid: (path) The ID of the user the operation applies to, taken from the route. For a progress operation it has to be the  same ID that was passed when the job was started. 
+     - parameter userId: (path) The ID of the user the operation applies to, taken from the route. For a progress operation it has to be the  same ID that was passed when the job was started. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: TaskProgressResponseWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getUserTypeUpdateProgress(userid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TaskProgressResponseWrapper {
-        return try await getUserTypeUpdateProgressWithRequestBuilder(userid: userid, apiConfiguration: apiConfiguration).execute().body
+    open class func getUserTypeUpdateProgress(userId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TaskProgressResponseWrapper {
+        return try await getUserTypeUpdateProgressWithRequestBuilder(userId: userId, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -39,7 +39,7 @@ open class {{{{x-classname}}}} {
      REST API Reference for getUserTypeUpdateProgress Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-user-type-update-progress/
      
-     - GET /api/2.0/people/type/progress/{userid}
+     - GET /api/2.0/people/type/progress/{userId}
      - Returns the current state of the user type change queued for the user with the ID specified in the request.  A conversion must have been queued by `POST api/2.0/people/type` first: when nothing is queued for that user  the operation answers 200 with an empty body.  The caller needs the permission to add and remove users.  The call is read-only and is the polling operation of this flow - repeat it until `isCompleted` is true,  reading `percentage` for the 0 to 100 progress and `error` for the message left by a failed job.  Use `PUT api/2.0/people/type/terminate` to cancel a conversion that is still running.
      - BASIC:
        - type: http
@@ -60,15 +60,15 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter userid: (path) The ID of the user the operation applies to, taken from the route. For a progress operation it has to be the  same ID that was passed when the job was started. 
+     - parameter userId: (path) The ID of the user the operation applies to, taken from the route. For a progress operation it has to be the  same ID that was passed when the job was started. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TaskProgressResponseWrapper> 
      */
-    open class func getUserTypeUpdateProgressWithRequestBuilder(userid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TaskProgressResponseWrapper> {
-        var localVariablePath = "/api/2.0/people/type/progress/{userid}"
-        let useridPreEscape = "\(APIHelper.mapValueToPathItem(userid))"
-        let useridPostEscape = useridPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{userid}", with: useridPostEscape, options: .literal, range: nil)
+    open class func getUserTypeUpdateProgressWithRequestBuilder(userId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TaskProgressResponseWrapper> {
+        var localVariablePath = "/api/2.0/people/type/progress/{userId}"
+        let userIdPreEscape = "\(APIHelper.mapValueToPathItem(userId))"
+        let userIdPostEscape = userIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{userId}", with: userIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
@@ -77,7 +77,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -109,7 +108,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/start-user-type-update/
      
      - POST /api/2.0/people/type
-     - Queues an asynchronous job that converts one account to `Guest` or `User` and, in the same job, hands the  rooms and the shared files of that account over to another administrator.  Only `Guest` and `User` are accepted here, because they are the types that cannot own rooms; for any other  type use `PUT api/2.0/people/type/{type}`, which converts immediately and transfers nothing.  The caller needs the permission to add and remove users of the requested type, has to be the portal owner to  convert a DocSpace administrator, and converting to `Guest` also requires the portal to allow inviting guests.  The account being converted has to be active and cannot be the caller, and the recipient - `reassignUserId`,  or the caller when it is omitted - has to be an active room admin or DocSpace admin other than that account.  The conversion does not finish within this call: poll `GET api/2.0/people/type/progress/{userid}` with the  converted user ID until `isCompleted` is true, and cancel it through `PUT api/2.0/people/type/terminate`.  A failure inside the running job is reported in the `error` field of the progress, not as a status code here.
+     - Queues an asynchronous job that converts one account to `Guest` or `User` and, in the same job, hands the  rooms and the shared files of that account over to another administrator.  Only `Guest` and `User` are accepted here, because they are the types that cannot own rooms; for any other  type use `PUT api/2.0/people/type/{type}`, which converts immediately and transfers nothing.  The caller needs the permission to add and remove users of the requested type, has to be the portal owner to  convert a DocSpace administrator, and converting to `Guest` also requires the portal to allow inviting guests.  The account being converted has to be active and cannot be the caller, and the recipient - `reassignUserId`,  or the caller when it is omitted - has to be an active room admin or DocSpace admin other than that account.  The conversion does not finish within this call: poll `GET api/2.0/people/type/progress/{userId}` with the  converted user ID until `isCompleted` is true, and cancel it through `PUT api/2.0/people/type/terminate`.  A failure inside the running job is reported in the `error` field of the progress, not as a status code here.
      - BASIC:
        - type: http
        - name: Basic
@@ -143,7 +142,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -209,7 +207,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -279,7 +276,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

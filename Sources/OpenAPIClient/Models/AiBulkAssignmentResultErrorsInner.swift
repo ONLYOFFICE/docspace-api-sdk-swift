@@ -17,9 +17,9 @@ import Foundation
 public struct AiBulkAssignmentResultErrorsInner: Sendable, Codable, Hashable {
 
     public var actionType: AiActionType
-    public var error: AiTErrorData
+    public var error: AiErrorData
 
-    public init(actionType: AiActionType, error: AiTErrorData) {
+    public init(actionType: AiActionType, error: AiErrorData) {
         self.actionType = actionType
         self.error = error
     }

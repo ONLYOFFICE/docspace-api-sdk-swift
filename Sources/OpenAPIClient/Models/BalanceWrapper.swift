@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the Balance object. */
+/** The successful API response containing the BalanceDto object. */
 public struct BalanceWrapper: Sendable, Codable, Hashable {
 
-    /** The Balance object returned by the operation. */
-    public var response: Balance?
+    /** The BalanceDto object returned by the operation. */
+    public var response: BalanceDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct BalanceWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: Balance? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: BalanceDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsEncryptionAPIApi {
 
     /**
      Get the storage encryption progress
@@ -74,7 +74,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<DoubleNullableWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -105,7 +104,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-storage-encryption-settings/
      
      - GET /api/2.0/settings/encryption/settings
-     - Returns the encryption state of the installation storage: the status, which is one of decrypted, encryption  started, encrypted or decryption started, and the flag saying whether users are mailed when an encryption run  begins. The password is deliberately blanked out, so the field always comes back empty even on an encrypted  installation. The caller is expected to have the permission to edit portal settings, which in practice means  the portal owner or a DocSpace admin, on a server installation with an unrestricted access space; on any other  installation, and whenever the check fails, the operation answers with an empty body instead of an error. An  empty answer is therefore not proof that encryption is off, only that the settings cannot be read in this  context. Nothing is written and the call is safe to repeat. Use `GET api/2.0/settings/encryption/progress` to  follow a run that is in flight, and `POST api/2.0/settings/encryption/start` to encrypt or decrypt the  storage.
+     - Returns the encryption state of the installation storage: the status, which is one of decrypted, encryption  started, encrypted or decryption started, and the flag saying whether users are mailed when an encryption run  begins. The encryption password is never returned. The caller is expected to have the permission to edit portal settings, which in practice means  the portal owner or a DocSpace admin, on a server installation with an unrestricted access space; on any other  installation, and whenever the check fails, the operation answers with an empty body instead of an error. An  empty answer is therefore not proof that encryption is off, only that the settings cannot be read in this  context. Nothing is written and the call is safe to repeat. Use `GET api/2.0/settings/encryption/progress` to  follow a run that is in flight, and `POST api/2.0/settings/encryption/start` to encrypt or decrypt the  storage.
      - BASIC:
        - type: http
        - name: Basic
@@ -139,7 +138,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<EncryptionSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -153,13 +151,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for startStorageEncryption Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/start-storage-encryption/
-     - parameter storageEncryptionRequestsDto: (body)  (optional)
+     - parameter storageEncryptionRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: BooleanWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func startStorageEncryption(storageEncryptionRequestsDto: StorageEncryptionRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
-        return try await startStorageEncryptionWithRequestBuilder(storageEncryptionRequestsDto: storageEncryptionRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func startStorageEncryption(storageEncryptionRequestDto: StorageEncryptionRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
+        return try await startStorageEncryptionWithRequestBuilder(storageEncryptionRequestDto: storageEncryptionRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -190,21 +188,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter storageEncryptionRequestsDto: (body)  (optional)
+     - parameter storageEncryptionRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
      */
-    open class func startStorageEncryptionWithRequestBuilder(storageEncryptionRequestsDto: StorageEncryptionRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
+    open class func startStorageEncryptionWithRequestBuilder(storageEncryptionRequestDto: StorageEncryptionRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
         let localVariablePath = "/api/2.0/settings/encryption/start"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: storageEncryptionRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: storageEncryptionRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

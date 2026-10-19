@@ -17,8 +17,8 @@ import Foundation
 /** The request parameters for updating an existing API key. */
 public struct UpdateApiKeyRequest: Sendable, Codable, Hashable {
 
-    public static let nameRule = StringRule(minLength: 0, maxLength: 30, pattern: nil)
-    /** The new label of the key, up to 30 characters. Omit it to keep the current name. */
+    public static let nameRule = StringRule(minLength: 1, maxLength: 30, pattern: "[\\s\\S]*\\S[\\s\\S]*")
+    /** The new label of the key, up to 30 characters, neither empty nor made of whitespace only. Omit it to keep the  current name. */
     public var name: String?
     /** The scopes that replace the current ones. Every value has to come from `GET api/2.0/keys/permissions`, an  unknown value or an empty array is rejected, and omitting the field keeps the current scopes. */
     public var permissions: [String]?

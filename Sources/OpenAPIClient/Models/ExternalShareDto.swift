@@ -18,7 +18,7 @@ import Foundation
 public struct ExternalShareDto: Sendable, Codable, Hashable {
 
     /** How validating the link went. It is the first field to read: a refused link is reported here with the answer  still arriving as a success. A link that resolved describes both the entry and the link, one that is waiting  for its password describes only the entry, and one that failed outright leaves the rest of the object empty. */
-    public var status: Status
+    public var status: ExternalShareStatus
     /** The identifier of the room, folder or file the link points at, always rendered as a string even where the  portal stores it as a number. It is null when the link could not be resolved. */
     public var id: String?
     /** The title of the entry the link points at, suitable for showing to the visitor before they are let in. It is  null when the link could not be resolved. */
@@ -44,7 +44,7 @@ public struct ExternalShareDto: Sendable, Codable, Hashable {
     /** Whether the signed-in caller already has rights of their own on the room that holds the entry, as opposed to  reaching it through this link. It is false for an anonymous visitor and for a member who has never been  invited. */
     public var isRoomMember: Bool?
 
-    public init(status: Status, id: String? = nil, title: String? = nil, type: FileEntryType? = nil, tenantId: Int, entityId: String? = nil, entityTitle: String? = nil, entityType: FileEntryType? = nil, isRoom: Bool? = nil, shared: Bool, linkId: UUID, isAuthenticated: Bool, isRoomMember: Bool? = nil) {
+    public init(status: ExternalShareStatus, id: String? = nil, title: String? = nil, type: FileEntryType? = nil, tenantId: Int, entityId: String? = nil, entityTitle: String? = nil, entityType: FileEntryType? = nil, isRoom: Bool? = nil, shared: Bool, linkId: UUID, isAuthenticated: Bool, isRoomMember: Bool? = nil) {
         self.status = status
         self.id = id
         self.title = title

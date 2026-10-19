@@ -17,7 +17,7 @@ import Foundation
 /** Versioned, self-contained bundle of every saved prompt and folder. Stable wire format — `version` lets the import path migrate older shapes if the schema ever changes. */
 public struct AiPromptBundle: Sendable, Codable, Hashable {
 
-    public enum Version: Double, Sendable, Codable, ParameterConvertible, CaseIterable {
+    public enum Version: Double, Sendable, Codable, CaseIterable {
         case _1 = 1
     }
     /** The bundle format version, so an import can migrate an older export. */

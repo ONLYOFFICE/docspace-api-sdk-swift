@@ -86,6 +86,10 @@ public struct FileDto: Sendable, Codable, Hashable {
     public var expirationDate: ApiDateTime?
     /** Set when the link being used has already passed its expiration date, which is why the entry cannot be opened  even though it is described here. It is null when no link is involved. */
     public var isLinkExpired: Bool?
+    /** The IDs of the metadata templates assigned to the file entry. */
+    public var assignedMetadataTemplates: [Int]?
+    /** Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here. */
+    public var metadataMatches: [MetadataMatchDto]?
     /** The folder the file is stored in. When the file was reached through a share and the caller cannot open its  real parent, the identifier of the Shared with me section is reported instead, so this is where the file is  visible rather than where it physically sits. */
     public var folderId: Int?
     /** The revision this entry describes. It starts at 1 and moves to the next number each time new content is stored  over the file, except for an editing session opened against the file itself, which replaces the content and  keeps the number. `GET api/2.0/files/file/{fileId}/history` lists them all. */
@@ -154,9 +158,9 @@ public struct FileDto: Sendable, Codable, Hashable {
     /** The table collecting the submitted values of this form in the external database configured for its room. The  field is left out of the answer entirely when the form has no such table. */
     public var externalDbTableName: String?
     /** The pixel size of the picture, measured by reading the stored file rather than taken from any stored metadata.  Null for anything that is not a picture the portal can show, and also when the file could not be read. */
-    public var dimensions: Size?
+    public var dimensions: ImageSizeDto?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, editingBy: [String: String?]? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, isFillingPreparing: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, resultsFolderId: Int? = nil, draftLocation: DraftLocation? = nil, viewAccessibility: FileDtoAllOfViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, vectorizationStatus: VectorizationStatus? = nil, externalDbTableName: String? = nil, dimensions: Size? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, editingBy: [String: String?]? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, isFillingPreparing: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, resultsFolderId: Int? = nil, draftLocation: DraftLocation? = nil, viewAccessibility: FileDtoAllOfViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, vectorizationStatus: VectorizationStatus? = nil, externalDbTableName: String? = nil, dimensions: ImageSizeDto? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -193,6 +197,8 @@ public struct FileDto: Sendable, Codable, Hashable {
         self.external = external
         self.expirationDate = expirationDate
         self.isLinkExpired = isLinkExpired
+        self.assignedMetadataTemplates = assignedMetadataTemplates
+        self.metadataMatches = metadataMatches
         self.folderId = folderId
         self.version = version
         self.versionGroup = versionGroup
@@ -267,6 +273,8 @@ public struct FileDto: Sendable, Codable, Hashable {
         case external
         case expirationDate
         case isLinkExpired
+        case assignedMetadataTemplates
+        case metadataMatches
         case folderId
         case version
         case versionGroup
@@ -344,6 +352,8 @@ public struct FileDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(external, forKey: .external)
         try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
         try container.encodeIfPresent(isLinkExpired, forKey: .isLinkExpired)
+        try container.encodeIfPresent(assignedMetadataTemplates, forKey: .assignedMetadataTemplates)
+        try container.encodeIfPresent(metadataMatches, forKey: .metadataMatches)
         try container.encodeIfPresent(folderId, forKey: .folderId)
         try container.encodeIfPresent(version, forKey: .version)
         try container.encodeIfPresent(versionGroup, forKey: .versionGroup)

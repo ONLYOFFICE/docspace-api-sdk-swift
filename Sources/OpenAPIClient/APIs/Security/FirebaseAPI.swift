@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SecurityFirebaseAPIApi {
 
     /**
      Register a push device
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for docRegisterPusnNotificationDevice Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/doc-register-pusn-notification-device/
-     - parameter firebaseRequestsDto: (body)  (optional)
+     - parameter firebaseRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: FireBaseUserWrapper
+     - returns: FirebaseDeviceWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func docRegisterPusnNotificationDevice(firebaseRequestsDto: FirebaseRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FireBaseUserWrapper {
-        return try await docRegisterPusnNotificationDeviceWithRequestBuilder(firebaseRequestsDto: firebaseRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func docRegisterPusnNotificationDevice(firebaseRequestDto: FirebaseRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FirebaseDeviceWrapper {
+        return try await docRegisterPusnNotificationDeviceWithRequestBuilder(firebaseRequestDto: firebaseRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -60,14 +60,14 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter firebaseRequestsDto: (body)  (optional)
+     - parameter firebaseRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<FireBaseUserWrapper> 
+     - returns: RequestBuilder<FirebaseDeviceWrapper> 
      */
-    open class func docRegisterPusnNotificationDeviceWithRequestBuilder(firebaseRequestsDto: FirebaseRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FireBaseUserWrapper> {
+    open class func docRegisterPusnNotificationDeviceWithRequestBuilder(firebaseRequestDto: FirebaseRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FirebaseDeviceWrapper> {
         let localVariablePath = "/api/2.0/settings/push/docregisterdevice"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: firebaseRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: firebaseRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -75,10 +75,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<FireBaseUserWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<FirebaseDeviceWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -89,13 +88,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for subscribeDocumentsPushNotification Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/subscribe-documents-push-notification/
-     - parameter firebaseRequestsDto: (body)  (optional)
+     - parameter firebaseRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: FireBaseUserWrapper
+     - returns: FirebaseDeviceWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func subscribeDocumentsPushNotification(firebaseRequestsDto: FirebaseRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FireBaseUserWrapper {
-        return try await subscribeDocumentsPushNotificationWithRequestBuilder(firebaseRequestsDto: firebaseRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func subscribeDocumentsPushNotification(firebaseRequestDto: FirebaseRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FirebaseDeviceWrapper {
+        return try await subscribeDocumentsPushNotificationWithRequestBuilder(firebaseRequestDto: firebaseRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -126,14 +125,14 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter firebaseRequestsDto: (body)  (optional)
+     - parameter firebaseRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<FireBaseUserWrapper> 
+     - returns: RequestBuilder<FirebaseDeviceWrapper> 
      */
-    open class func subscribeDocumentsPushNotificationWithRequestBuilder(firebaseRequestsDto: FirebaseRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FireBaseUserWrapper> {
+    open class func subscribeDocumentsPushNotificationWithRequestBuilder(firebaseRequestDto: FirebaseRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FirebaseDeviceWrapper> {
         let localVariablePath = "/api/2.0/settings/push/docsubscribe"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: firebaseRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: firebaseRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -141,10 +140,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<FireBaseUserWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<FirebaseDeviceWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

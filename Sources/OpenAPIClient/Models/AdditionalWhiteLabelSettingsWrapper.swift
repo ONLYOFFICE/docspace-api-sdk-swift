@@ -14,25 +14,45 @@
 //  limitations under the License.
 import Foundation
 
-/** The additional white label settings wrapper. */
+/** The successful API response containing the AdditionalWhiteLabelSettingsDto object. */
 public struct AdditionalWhiteLabelSettingsWrapper: Sendable, Codable, Hashable {
 
-    /** The additional white label settings. */
-    public var settings: AdditionalWhiteLabelSettings?
+    /** The AdditionalWhiteLabelSettingsDto object returned by the operation. */
+    public var response: AdditionalWhiteLabelSettingsDto?
+    /** The total number of items in the response */
+    public var count: Int?
+    /** List of links related to the response */
+    public var links: [GetPortalPrices200ResponseLinksInner]?
+    /** HTTP status code of the response */
+    public var status: Int?
+    /** HTTP status code of the response (duplicate of status) */
+    public var statusCode: Int?
 
-    public init(settings: AdditionalWhiteLabelSettings? = nil) {
-        self.settings = settings
+    public init(response: AdditionalWhiteLabelSettingsDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+        self.response = response
+        self.count = count
+        self.links = links
+        self.status = status
+        self.statusCode = statusCode
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
-        case settings
+        case response
+        case count
+        case links
+        case status
+        case statusCode
     }
 
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(settings, forKey: .settings)
+        try container.encodeIfPresent(response, forKey: .response)
+        try container.encodeIfPresent(count, forKey: .count)
+        try container.encodeIfPresent(links, forKey: .links)
+        try container.encodeIfPresent(status, forKey: .status)
+        try container.encodeIfPresent(statusCode, forKey: .statusCode)
     }
 }
 

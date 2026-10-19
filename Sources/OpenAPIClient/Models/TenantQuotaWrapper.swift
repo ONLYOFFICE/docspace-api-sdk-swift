@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the TenantQuota object. */
+/** The successful API response containing the TenantQuotaDto object. */
 public struct TenantQuotaWrapper: Sendable, Codable, Hashable {
 
-    /** The TenantQuota object returned by the operation. */
-    public var response: TenantQuota?
+    /** The TenantQuotaDto object returned by the operation. */
+    public var response: TenantQuotaDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct TenantQuotaWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: TenantQuota? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: TenantQuotaDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

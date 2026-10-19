@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **handleOptions**
 ```swift
-    open class func handleOptions(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func handleOptions(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Answers the CORS preflight for the OAuth 2.0 Authorization Server metadata endpoint. The endpoint needs no authentication and reads nothing from the request: it always answers 200 with an empty body, and the CORS headers are added by the surrounding filter chain rather than by this handler. It changes no state, and it does not return the authorization server metadata document - issue a GET against the same path for that.
@@ -34,15 +34,10 @@ import OpenAPIClient
 
 
 // Probe the discovery endpoint
-OAuth20DiscoveryAPIApi.handleOptions() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20DiscoveryAPIApi.handleOptions()
+} catch {
+    print(error)
 }
 ```
 

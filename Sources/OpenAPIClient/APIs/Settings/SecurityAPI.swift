@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsSecurityAPIApi {
 
     /**
      Get enabled modules
@@ -74,7 +74,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<EnabledModuleArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -88,13 +87,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getIsProductAdministrator Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-product-administrator/
-     - parameter productid: (query) The module being asked about, by module GUID. The all-zero GUID asks about the portal itself rather than a  single module.      - parameter userid: (query) The account being asked about, by portal user ID. An ID that names no account is answered as a plain negative  rather than a failure, so a negative answer does not prove the account exists. 
+     - parameter productId: (query) The module being asked about, by module GUID. The all-zero GUID asks about the portal itself rather than a  single module.      - parameter userId: (query) The account being asked about, by portal user ID. An ID that names no account is answered as a plain negative  rather than a failure, so a negative answer does not prove the account exists. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ProductAdministratorWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getIsProductAdministrator(productid: UUID, userid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProductAdministratorWrapper {
-        return try await getIsProductAdministratorWithRequestBuilder(productid: productid, userid: userid, apiConfiguration: apiConfiguration).execute().body
+    open class func getIsProductAdministrator(productId: UUID, userId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProductAdministratorWrapper {
+        return try await getIsProductAdministratorWithRequestBuilder(productId: productId, userId: userId, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -105,7 +104,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-is-product-administrator/
      
      - GET /api/2.0/settings/security/administrator
-     - Reports whether one user administers one portal module, as the identifiers asked about plus an `administrator`  flag. Both `productid` and `userid` are query parameters and both are required; the all-zero product GUID asks  about the portal itself rather than about a single module. The caller needs the portal-settings right of a  DocSpace administrator, otherwise the call is refused. The operation is read-only. The flag is `true` when the  user belongs to the DocSpace administrator group or to the module's own group, so a portal-wide administrator  is reported as an administrator of every module, whatever the module identifier says. Identifiers that name no  user and no group are answered with `false` instead of a failure, so a `false` does not prove the user exists.  The verdict is read out of group membership alone and says nothing about whether the module is enabled for  this portal, which `GET api/2.0/settings/security/{id}` reports. Use  `GET api/2.0/settings/security/administrator/{productid}` to list everyone who administers a module, and  `PUT api/2.0/settings/security/administrator` to change the membership.
+     - Reports whether one user administers one portal module, as the identifiers asked about plus an `administrator`  flag. Both `productid` and `userid` are query parameters and both are required; the all-zero product GUID asks  about the portal itself rather than about a single module. The caller needs the portal-settings right of a  DocSpace administrator, otherwise the call is refused. The operation is read-only. The flag is `true` when the  user belongs to the DocSpace administrator group or to the module's own group, so a portal-wide administrator  is reported as an administrator of every module, whatever the module identifier says. Identifiers that name no  user and no group are answered with `false` instead of a failure, so a `false` does not prove the user exists.  The verdict is read out of group membership alone and says nothing about whether the module is enabled for  this portal, which `GET api/2.0/settings/security/{id}` reports. Use  `GET api/2.0/settings/security/administrator/{productId}` to list everyone who administers a module, and  `PUT api/2.0/settings/security/administrator` to change the membership.
      - BASIC:
        - type: http
        - name: Basic
@@ -125,26 +124,26 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter productid: (query) The module being asked about, by module GUID. The all-zero GUID asks about the portal itself rather than a  single module. 
-     - parameter userid: (query) The account being asked about, by portal user ID. An ID that names no account is answered as a plain negative  rather than a failure, so a negative answer does not prove the account exists. 
+     - parameter productId: (query) The module being asked about, by module GUID. The all-zero GUID asks about the portal itself rather than a  single module. 
+     - parameter userId: (query) The account being asked about, by portal user ID. An ID that names no account is answered as a plain negative  rather than a failure, so a negative answer does not prove the account exists. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProductAdministratorWrapper> 
      */
-    open class func getIsProductAdministratorWithRequestBuilder(productid: UUID, userid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ProductAdministratorWrapper> {
+    open class func getIsProductAdministratorWithRequestBuilder(productId: UUID, userId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ProductAdministratorWrapper> {
         let localVariablePath = "/api/2.0/settings/security/administrator"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "productId": (wrappedValue: productId.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "userId": (wrappedValue: userId.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "productid": (wrappedValue: productid.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "userid": (wrappedValue: userid.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -210,7 +209,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<PasswordSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -224,13 +222,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getProductAdministrators Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-product-administrators/
-     - parameter productid: (path) The module the operation acts on, by module GUID. The all-zero GUID stands for the portal itself rather than  for a single module, and a GUID that names no module group is answered with an empty result instead of a  failure. 
+     - parameter productId: (path) The module the operation acts on, by module GUID. The all-zero GUID stands for the portal itself rather than  for a single module, and a GUID that names no module group is answered with an empty result instead of a  failure. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: EmployeeArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getProductAdministrators(productid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeArrayWrapper {
-        return try await getProductAdministratorsWithRequestBuilder(productid: productid, apiConfiguration: apiConfiguration).execute().body
+    open class func getProductAdministrators(productId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeArrayWrapper {
+        return try await getProductAdministratorsWithRequestBuilder(productId: productId, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -240,7 +238,7 @@ open class {{{{x-classname}}}} {
      REST API Reference for getProductAdministrators Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-product-administrators/
      
-     - GET /api/2.0/settings/security/administrator/{productid}
+     - GET /api/2.0/settings/security/administrator/{productId}
      - Lists the users who administer the portal module identified by `productid` in the path. The all-zero GUID  stands for the portal itself: the answer then covers the DocSpace administrator group together with every  product group, and includes the portal owner, who administers everything by default. The caller needs the  portal-settings right of a DocSpace administrator, otherwise the call is refused. `productid` has to be a  GUID, and one that names no group is answered with an empty list rather than a failure. The operation is  read-only and returns whole user profiles, a heavier answer than a membership check, and a user who belongs to  more than one of the groups asked about is listed once per group. Entries arrive in group order, the DocSpace  administrator group first, the list is neither paged nor filterable, and a promotion made through the sibling  `PUT` shows up here at once. Use `GET api/2.0/settings/security/administrator` to test a single user against a  single module, and `PUT api/2.0/settings/security/administrator` to promote or demote somebody.
      - BASIC:
        - type: http
@@ -261,15 +259,15 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter productid: (path) The module the operation acts on, by module GUID. The all-zero GUID stands for the portal itself rather than  for a single module, and a GUID that names no module group is answered with an empty result instead of a  failure. 
+     - parameter productId: (path) The module the operation acts on, by module GUID. The all-zero GUID stands for the portal itself rather than  for a single module, and a GUID that names no module group is answered with an empty result instead of a  failure. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeArrayWrapper> 
      */
-    open class func getProductAdministratorsWithRequestBuilder(productid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeArrayWrapper> {
-        var localVariablePath = "/api/2.0/settings/security/administrator/{productid}"
-        let productidPreEscape = "\(APIHelper.mapValueToPathItem(productid))"
-        let productidPostEscape = productidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{productid}", with: productidPostEscape, options: .literal, range: nil)
+    open class func getProductAdministratorsWithRequestBuilder(productId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeArrayWrapper> {
+        var localVariablePath = "/api/2.0/settings/security/administrator/{productId}"
+        let productIdPreEscape = "\(APIHelper.mapValueToPathItem(productId))"
+        let productIdPostEscape = productIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{productId}", with: productIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
@@ -278,7 +276,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -348,7 +345,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -408,15 +404,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "ids": (wrappedValue: ids?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -431,13 +427,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setAccessToWebItems Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-access-to-web-items/
-     - parameter webItemsSecurityRequestsDto: (body)  (optional)
+     - parameter webItemsSecurityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: SecurityArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setAccessToWebItems(webItemsSecurityRequestsDto: WebItemsSecurityRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SecurityArrayWrapper {
-        return try await setAccessToWebItemsWithRequestBuilder(webItemsSecurityRequestsDto: webItemsSecurityRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func setAccessToWebItems(webItemsSecurityRequestDto: WebItemsSecurityRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SecurityArrayWrapper {
+        return try await setAccessToWebItemsWithRequestBuilder(webItemsSecurityRequestDto: webItemsSecurityRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -468,21 +464,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter webItemsSecurityRequestsDto: (body)  (optional)
+     - parameter webItemsSecurityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SecurityArrayWrapper> 
      */
-    open class func setAccessToWebItemsWithRequestBuilder(webItemsSecurityRequestsDto: WebItemsSecurityRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SecurityArrayWrapper> {
+    open class func setAccessToWebItemsWithRequestBuilder(webItemsSecurityRequestDto: WebItemsSecurityRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SecurityArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/security/access"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webItemsSecurityRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webItemsSecurityRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -497,13 +492,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setProductAdministrator Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-product-administrator/
-     - parameter securityRequestsDto: (body)  (optional)
+     - parameter securityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ProductAdministratorWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setProductAdministrator(securityRequestsDto: SecurityRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProductAdministratorWrapper {
-        return try await setProductAdministratorWithRequestBuilder(securityRequestsDto: securityRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func setProductAdministrator(securityRequestDto: SecurityRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ProductAdministratorWrapper {
+        return try await setProductAdministratorWithRequestBuilder(securityRequestDto: securityRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -534,21 +529,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter securityRequestsDto: (body)  (optional)
+     - parameter securityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ProductAdministratorWrapper> 
      */
-    open class func setProductAdministratorWithRequestBuilder(securityRequestsDto: SecurityRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ProductAdministratorWrapper> {
+    open class func setProductAdministratorWithRequestBuilder(securityRequestDto: SecurityRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ProductAdministratorWrapper> {
         let localVariablePath = "/api/2.0/settings/security/administrator"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: securityRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: securityRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -563,13 +557,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setWebItemSecurity Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-web-item-security/
-     - parameter webItemSecurityRequestsDto: (body)  (optional)
+     - parameter webItemSecurityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: SecurityArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setWebItemSecurity(webItemSecurityRequestsDto: WebItemSecurityRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SecurityArrayWrapper {
-        return try await setWebItemSecurityWithRequestBuilder(webItemSecurityRequestsDto: webItemSecurityRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func setWebItemSecurity(webItemSecurityRequestDto: WebItemSecurityRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SecurityArrayWrapper {
+        return try await setWebItemSecurityWithRequestBuilder(webItemSecurityRequestDto: webItemSecurityRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -600,21 +594,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter webItemSecurityRequestsDto: (body)  (optional)
+     - parameter webItemSecurityRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<SecurityArrayWrapper> 
      */
-    open class func setWebItemSecurityWithRequestBuilder(webItemSecurityRequestsDto: WebItemSecurityRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SecurityArrayWrapper> {
+    open class func setWebItemSecurityWithRequestBuilder(webItemSecurityRequestDto: WebItemSecurityRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SecurityArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/security"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webItemSecurityRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webItemSecurityRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -629,13 +622,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updatePasswordSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-password-settings/
-     - parameter passwordSettingsRequestsDto: (body)  (optional)
+     - parameter passwordSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: PasswordSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updatePasswordSettings(passwordSettingsRequestsDto: PasswordSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PasswordSettingsWrapper {
-        return try await updatePasswordSettingsWithRequestBuilder(passwordSettingsRequestsDto: passwordSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func updatePasswordSettings(passwordSettingsRequestDto: PasswordSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PasswordSettingsWrapper {
+        return try await updatePasswordSettingsWithRequestBuilder(passwordSettingsRequestDto: passwordSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -666,21 +659,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter passwordSettingsRequestsDto: (body)  (optional)
+     - parameter passwordSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PasswordSettingsWrapper> 
      */
-    open class func updatePasswordSettingsWithRequestBuilder(passwordSettingsRequestsDto: PasswordSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<PasswordSettingsWrapper> {
+    open class func updatePasswordSettingsWithRequestBuilder(passwordSettingsRequestDto: PasswordSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<PasswordSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/security/password"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: passwordSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: passwordSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

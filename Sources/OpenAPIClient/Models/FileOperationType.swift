@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Move, 1 - Copy, 2 - Delete, 3 - Download, 4 - MarkAsRead, 5 - Import, 6 - Convert, 7 - Duplicate] */
+/** [0 - Move, 1 - Copy, 2 - Delete, 3 - Download, 4 - MarkAsRead, 5 - Import, 6 - Convert, 7 - Duplicate, 8 - Build] */
 public enum FileOperationType: Int, Sendable, Codable, CaseIterable {
     case Move = 0
     case Copy = 1
@@ -24,4 +24,5 @@ public enum FileOperationType: Int, Sendable, Codable, CaseIterable {
     case Import = 5
     case Convert = 6
     case Duplicate = 7
+    case Build = 8
 }

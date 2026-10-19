@@ -17,10 +17,10 @@ import Foundation
 public struct AiPreferencesSetReasoningLevelRequest: Sendable, Codable, Hashable {
 
     /** New extended-thinking depth; `off` turns deep mode off. */
-    public var value: AiAiReasoningLevel
+    public var value: AiReasoningLevel
     public var entityId: String?
 
-    public init(value: AiAiReasoningLevel, entityId: String? = nil) {
+    public init(value: AiReasoningLevel, entityId: String? = nil) {
         self.value = value
         self.entityId = entityId
     }

@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the TenantWalletServiceSettings object. */
+/** The successful API response containing the TenantWalletServiceSettingsDto object. */
 public struct TenantWalletServiceSettingsWrapper: Sendable, Codable, Hashable {
 
-    /** The TenantWalletServiceSettings object returned by the operation. */
-    public var response: TenantWalletServiceSettings?
+    /** The TenantWalletServiceSettingsDto object returned by the operation. */
+    public var response: TenantWalletServiceSettingsDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct TenantWalletServiceSettingsWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: TenantWalletServiceSettings? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: TenantWalletServiceSettingsDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

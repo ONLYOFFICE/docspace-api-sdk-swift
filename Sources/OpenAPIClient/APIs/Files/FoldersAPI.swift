@@ -15,8 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
-var fields: String?
+open class FilesFoldersAPIApi {
 
     /**
      Check for upload conflicts
@@ -26,10 +25,10 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/
      - parameter folderId: (path) The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`.      - parameter checkUploadRequest: (body) The names to test against the files the folder already holds. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: STRINGArrayWrapper
+     - returns: StringArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkUpload(folderId: Int, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> STRINGArrayWrapper {
+    open class func checkUpload(folderId: Int, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringArrayWrapper {
         return try await checkUploadWithRequestBuilder(folderId: folderId, checkUploadRequest: checkUploadRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -64,9 +63,9 @@ var fields: String?
      - parameter folderId: (path) The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`. 
      - parameter checkUploadRequest: (body) The names to test against the files the folder already holds. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<STRINGArrayWrapper> 
+     - returns: RequestBuilder<StringArrayWrapper> 
      */
-    open class func checkUploadWithRequestBuilder(folderId: Int, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<STRINGArrayWrapper> {
+    open class func checkUploadWithRequestBuilder(folderId: Int, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringArrayWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/upload/check"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -80,10 +79,9 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<STRINGArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<StringArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -96,10 +94,10 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-upload/
      - parameter folderId: (path) The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`.      - parameter checkUploadRequest: (body) The names to test against the files the folder already holds. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: STRINGArrayWrapper
+     - returns: StringArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkUpload(folderId: String, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> STRINGArrayWrapper {
+    open class func checkUpload(folderId: String, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringArrayWrapper {
         return try await checkUploadWithRequestBuilder(folderId: folderId, checkUploadRequest: checkUploadRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -134,9 +132,9 @@ var fields: String?
      - parameter folderId: (path) The folder whose contents the names are tested against; take the id from a listing such as  `GET api/2.0/files/@root`. 
      - parameter checkUploadRequest: (body) The names to test against the files the folder already holds. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<STRINGArrayWrapper> 
+     - returns: RequestBuilder<StringArrayWrapper> 
      */
-    open class func checkUploadWithRequestBuilder(folderId: String, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<STRINGArrayWrapper> {
+    open class func checkUploadWithRequestBuilder(folderId: String, checkUploadRequest: CheckUploadRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringArrayWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/upload/check"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -150,10 +148,9 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<STRINGArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<StringArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -164,13 +161,13 @@ var fields: String?
      See also:
      REST API Reference for createFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/
-     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolder: (body) The title carried by the request body. 
+     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createFolder(folderId: Int, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderWrapper {
-        return try await createFolderWithRequestBuilder(folderId: folderId, createFolder: createFolder, apiConfiguration: apiConfiguration).execute().body
+    open class func createFolder(folderId: Int, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderWrapper {
+        return try await createFolderWithRequestBuilder(folderId: folderId, createFolderRequest: createFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -202,24 +199,23 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. 
-     - parameter createFolder: (body) The title carried by the request body. 
+     - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderWrapper> 
      */
-    open class func createFolderWithRequestBuilder(folderId: Int, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderWrapper> {
+    open class func createFolderWithRequestBuilder(folderId: Int, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderWrapper> {
         var localVariablePath = "/api/2.0/files/folder/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolder, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -234,13 +230,13 @@ var fields: String?
      See also:
      REST API Reference for createFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-folder/
-     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolder: (body) The title carried by the request body. 
+     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFolderWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createFolder(folderId: String, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFolderWrapper {
-        return try await createFolderWithRequestBuilder(folderId: folderId, createFolder: createFolder, apiConfiguration: apiConfiguration).execute().body
+    open class func createFolder(folderId: String, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFolderWrapper {
+        return try await createFolderWithRequestBuilder(folderId: folderId, createFolderRequest: createFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -272,24 +268,23 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. 
-     - parameter createFolder: (body) The title carried by the request body. 
+     - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFolderWrapper> 
      */
-    open class func createFolderWithRequestBuilder(folderId: String, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFolderWrapper> {
+    open class func createFolderWithRequestBuilder(folderId: String, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFolderWrapper> {
         var localVariablePath = "/api/2.0/files/folder/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolder, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -360,7 +355,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -430,7 +424,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -444,7 +437,7 @@ var fields: String?
      See also:
      REST API Reference for createReportFolderHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/
-     - parameter folderId: (path) The folder whose history is exported; the report covers the folder itself and the entries inside it.      - parameter format: (query) The shape the report is written in: `Xlsx` produces a spreadsheet that is saved as a file of the portal, while  `Csv` produces a comma-separated text file that is uploaded to My documents without being reported back with  a file identifier. (optional)     - parameter from: (query) The earliest moment an exported entry may have, read in the time zone of the portal; left out, the report  starts at the oldest entry the portal still keeps. (optional)     - parameter to: (query) The latest moment an exported entry may have, read in the time zone of the portal; left out, the report ends  at the newest entry. (optional)
+     - parameter folderId: (path) The folder whose history is exported; the report covers the folder itself and the entries inside it.      - parameter format: (query) The shape the report is written in: `Xlsx` produces a spreadsheet and `Csv` a comma-separated text file, and  either is saved as a file in My documents. (optional)     - parameter from: (query) The earliest moment an exported entry may have, read in the time zone of the portal; left out, the report  starts at the oldest entry the portal still keeps. (optional)     - parameter to: (query) The latest moment an exported entry may have, read in the time zone of the portal; left out, the report ends  at the newest entry. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: DocumentBuilderTaskWrapper
      */
@@ -461,7 +454,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-report-folder-history/
      
      - POST /api/2.0/files/folder/{folderId}/log/report
-     - Queues a background job that renders the history of a folder into a spreadsheet, or into a CSV file when  `format` asks for one, and saves the result in the caller's My documents. The answer is the queued task, not  the report: poll `GET api/2.0/files/folder/{folderId}/log/report` until `isCompleted` is true, then take the  file from `resultFileId`, `resultFileName` and `resultFileUrl`, of which a CSV report fills only the last two.  `from` and `to` limit the exported period; leaving both out exports the whole history. While a report for the  same folder and caller is still running, this call joins it and answers with the running task instead of  starting a second one, so retrying is safe. The caller needs read access to the folder and may not be a guest,  and the portal plan has to include the audit feature - otherwise the call is refused, with 403 for the access  rule and 404 for a folder that does not exist. Only a portal administrator gets the address, browser and  platform columns. Give up a running report with `DELETE api/2.0/files/folder/{folderId}/log/report`.
+     - Queues a background job that renders the history of a folder into a spreadsheet, or into a CSV file when  `format` asks for one, and saves the result in the caller's My documents. The answer is the queued task, not  the report: poll `GET api/2.0/files/folder/{folderId}/log/report` until `isCompleted` is true, then take the  file from `resultFileId`, `resultFileName` and `resultFileUrl`; the URL of a CSV file too large for the editor  downloads it instead of opening it. An XLSX report keeps only the most recent events, at most 200,000 by default  and fewer when the events are long, and its header says how many were left out; `format=Csv` exports every event  of the period. `from` and `to` limit the exported period; leaving both out exports the whole history. While a  report for the same folder and caller is still running, this call joins it and answers with the running task  instead of starting a second one, so retrying is safe. The caller needs read access to the folder and may not be  a guest - otherwise the call is refused with 403, and a folder that does not exist with 404; the report is  available on every pricing plan, and 402 comes only when the login history and audit trail section is turned  off for the portal. Only a portal administrator gets the address, browser and  platform columns. Give up a running report with `DELETE api/2.0/files/folder/{folderId}/log/report`.
      - BASIC:
        - type: http
        - name: Basic
@@ -482,7 +475,7 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder whose history is exported; the report covers the folder itself and the entries inside it. 
-     - parameter format: (query) The shape the report is written in: `Xlsx` produces a spreadsheet that is saved as a file of the portal, while  `Csv` produces a comma-separated text file that is uploaded to My documents without being reported back with  a file identifier. (optional)
+     - parameter format: (query) The shape the report is written in: `Xlsx` produces a spreadsheet and `Csv` a comma-separated text file, and  either is saved as a file in My documents. (optional)
      - parameter from: (query) The earliest moment an exported entry may have, read in the time zone of the portal; left out, the report  starts at the oldest entry the portal still keeps. (optional)
      - parameter to: (query) The latest moment an exported entry may have, read in the time zone of the portal; left out, the report ends  at the newest entry. (optional)
      - parameter apiConfiguration: The configuration for the http request.
@@ -496,17 +489,17 @@ var fields: String?
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "format": (wrappedValue: format?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "from": (wrappedValue: from?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "to": (wrappedValue: to?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -521,13 +514,13 @@ var fields: String?
      See also:
      REST API Reference for deleteFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/
-     - parameter folderId: (path) The folder to delete, together with everything it holds.      - parameter deleteFolder: (body) How the deletion is to be carried out. 
+     - parameter folderId: (path) The folder to delete, together with everything it holds.      - parameter deleteFolderRequest: (body) How the deletion is to be carried out. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileOperationArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteFolder(folderId: Int, deleteFolder: DeleteFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
-        return try await deleteFolderWithRequestBuilder(folderId: folderId, deleteFolder: deleteFolder, apiConfiguration: apiConfiguration).execute().body
+    open class func deleteFolder(folderId: Int, deleteFolderRequest: DeleteFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
+        return try await deleteFolderWithRequestBuilder(folderId: folderId, deleteFolderRequest: deleteFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -559,24 +552,23 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder to delete, together with everything it holds. 
-     - parameter deleteFolder: (body) How the deletion is to be carried out. 
+     - parameter deleteFolderRequest: (body) How the deletion is to be carried out. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
      */
-    open class func deleteFolderWithRequestBuilder(folderId: Int, deleteFolder: DeleteFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
+    open class func deleteFolderWithRequestBuilder(folderId: Int, deleteFolderRequest: DeleteFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
         var localVariablePath = "/api/2.0/files/folder/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deleteFolder, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deleteFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -591,13 +583,13 @@ var fields: String?
      See also:
      REST API Reference for deleteFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-folder/
-     - parameter folderId: (path) The folder to delete, together with everything it holds.      - parameter deleteFolder: (body) How the deletion is to be carried out. 
+     - parameter folderId: (path) The folder to delete, together with everything it holds.      - parameter deleteFolderRequest: (body) How the deletion is to be carried out. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileOperationArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteFolder(folderId: String, deleteFolder: DeleteFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
-        return try await deleteFolderWithRequestBuilder(folderId: folderId, deleteFolder: deleteFolder, apiConfiguration: apiConfiguration).execute().body
+    open class func deleteFolder(folderId: String, deleteFolderRequest: DeleteFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
+        return try await deleteFolderWithRequestBuilder(folderId: folderId, deleteFolderRequest: deleteFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -629,24 +621,23 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder to delete, together with everything it holds. 
-     - parameter deleteFolder: (body) How the deletion is to be carried out. 
+     - parameter deleteFolderRequest: (body) How the deletion is to be carried out. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
      */
-    open class func deleteFolderWithRequestBuilder(folderId: String, deleteFolder: DeleteFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
+    open class func deleteFolderWithRequestBuilder(folderId: String, deleteFolderRequest: DeleteFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
         var localVariablePath = "/api/2.0/files/folder/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deleteFolder, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deleteFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -716,7 +707,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<XlsxReportResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -730,13 +720,14 @@ var fields: String?
      See also:
      REST API Reference for getFavoritesFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-favorites-folder/
-     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. (optional)
+     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. (optional)     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getFavoritesFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
-        return try await getFavoritesFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getFavoritesFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
+        return try await getFavoritesFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, metadataTemplateId: metadataTemplateId, metadataFilters: metadataFilters, includeHiddenMetadata: includeHiddenMetadata, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -774,16 +765,19 @@ var fields: String?
      - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)
      - parameter filterValue: (query) The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. (optional)
+     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)
+     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)
+     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentWrapper> 
      */
-    open class func getFavoritesFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
+    open class func getFavoritesFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
         let localVariablePath = "/api/2.0/files/@favorites"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -791,16 +785,16 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "metadataTemplateId": (wrappedValue: metadataTemplateId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataFilters": (wrappedValue: metadataFilters?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "includeHiddenMetadata": (wrappedValue: includeHiddenMetadata?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -865,7 +859,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -935,7 +928,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FormsItemArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -946,7 +938,7 @@ var fields: String?
     /**
      * enum for parameter folderType
      */
-    public enum FolderType_getFolderByFolderId: String, Sendable, CaseIterable {
+    public enum FolderType_getFolderByFolderId: Int, Sendable, CaseIterable {
         case DEFAULT = 0
         case COMMON = 1
         case BUNCH = 2
@@ -977,6 +969,7 @@ var fields: String?
         case AiAgents = 34
         case DefaultTemplates = 35
         case Forms = 36
+        case Ai = 37
     }
 
     /**
@@ -985,13 +978,13 @@ var fields: String?
      See also:
      REST API Reference for getFolderByFolderId Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/
-     - parameter folderId: (path) The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it.      - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter sharedBy: (query) Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. (optional)     - parameter roomId: (query) Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. (optional)     - parameter folderType: (query) Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. (optional)     - parameter excludeSubject: (query) Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter withSubFolders: (query) Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. (optional)     - parameter _extension: (query) Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional. (optional)     - parameter searchArea: (query) Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter. (optional)     - parameter formsItemKey: (query) Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room. (optional)     - parameter formsItemType: (query) The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together. (optional)     - parameter count: (query) The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. (optional)     - parameter location: (query) Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. (optional)
+     - parameter folderId: (path) The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it.      - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter sharedBy: (query) Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. (optional)     - parameter roomId: (query) Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. (optional)     - parameter folderType: (query) Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. (optional)     - parameter excludeSubject: (query) Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter withSubFolders: (query) Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. (optional)     - parameter _extension: (query) Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional. (optional)     - parameter searchArea: (query) Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter. (optional)     - parameter formsItemKey: (query) Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room. (optional)     - parameter formsItemType: (query) The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together. (optional)     - parameter count: (query) The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. (optional)     - parameter location: (query) Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. (optional)     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400. (optional)     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search. (optional)     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getFolderByFolderId(folderId: Int, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
-        return try await getFolderByFolderIdWithRequestBuilder(folderId: folderId, userIdOrGroupId: userIdOrGroupId, sharedBy: sharedBy, filterType: filterType, roomId: roomId, folderType: folderType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, withSubFolders: withSubFolders, _extension: _extension, searchArea: searchArea, formsItemKey: formsItemKey, formsItemType: formsItemType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, location: location, apiConfiguration: apiConfiguration).execute().body
+    open class func getFolderByFolderId(folderId: Int, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: RequestLocation? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
+        return try await getFolderByFolderIdWithRequestBuilder(folderId: folderId, userIdOrGroupId: userIdOrGroupId, sharedBy: sharedBy, filterType: filterType, roomId: roomId, folderType: folderType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, withSubFolders: withSubFolders, _extension: _extension, searchArea: searchArea, formsItemKey: formsItemKey, formsItemType: formsItemType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, location: location, metadataTemplateId: metadataTemplateId, metadataFilters: metadataFilters, includeHiddenMetadata: includeHiddenMetadata, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1041,10 +1034,13 @@ var fields: String?
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)
      - parameter filterValue: (query) The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. (optional)
      - parameter location: (query) Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. (optional)
+     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400. (optional)
+     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search. (optional)
+     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentWrapper> 
      */
-    open class func getFolderByFolderIdWithRequestBuilder(folderId: Int, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
+    open class func getFolderByFolderIdWithRequestBuilder(folderId: Int, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: Int? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: RequestLocation? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1052,8 +1048,7 @@ var fields: String?
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sharedBy": (wrappedValue: sharedBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -1071,13 +1066,17 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "Location": (wrappedValue: location?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "location": (wrappedValue: location?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataTemplateId": (wrappedValue: metadataTemplateId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataFilters": (wrappedValue: metadataFilters?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "includeHiddenMetadata": (wrappedValue: includeHiddenMetadata?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1092,13 +1091,13 @@ var fields: String?
      See also:
      REST API Reference for getFolderByFolderId Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-folder-by-folder-id/
-     - parameter folderId: (path) The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it.      - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter sharedBy: (query) Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. (optional)     - parameter roomId: (query) Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. (optional)     - parameter folderType: (query) Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. (optional)     - parameter excludeSubject: (query) Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter withSubFolders: (query) Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. (optional)     - parameter _extension: (query) Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional. (optional)     - parameter searchArea: (query) Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter. (optional)     - parameter formsItemKey: (query) Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room. (optional)     - parameter formsItemType: (query) The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together. (optional)     - parameter count: (query) The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. (optional)     - parameter location: (query) Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. (optional)
+     - parameter folderId: (path) The folder whose contents are listed. Each section root has an operation of its own, such as  `GET api/2.0/files/@my`, and every other folder is opened by the identifier a listing gave for it.      - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter sharedBy: (query) Restricts the listing to the entries this member shared, which narrows a shared listing down to what one  person handed out. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, spreadsheets, images or one type of room.  Omit it to list every kind the folder holds. (optional)     - parameter roomId: (query) Keeps only the entries that lie in this room, which matters when the listing being read gathers entries from  more than one of them. (optional)     - parameter folderType: (query) Keeps only the folders of these kinds, each given as the number of a folder type; it is how a listing is  narrowed down to, say, the form-filling folders of a room. (optional)     - parameter excludeSubject: (query) Turns `userIdOrGroupId` around: with true the entries of that member or group are the ones left out, with  false they are the only ones kept. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter withSubFolders: (query) Whether a narrowed request reaches into the subfolders: with true, which is what an omitted parameter means,  matching entries are gathered from the whole subtree, with false only the top level is read. It makes a  difference only once `filterType`, `userIdOrGroupId` or `filterValue` narrows the request, because an  unfiltered listing always shows the top level alone. (optional)     - parameter _extension: (query) Keeps only the files carrying one of these extensions, several of them separated by commas; the leading dot is  optional. (optional)     - parameter searchArea: (query) Which area a listing that spans several of them is taken from - the active rooms, the archive, the room  templates or the form-filling rooms. A folder that belongs to one area only settles the area itself and  ignores the parameter. (optional)     - parameter formsItemKey: (query) Keeps only the completed forms whose form field of this name holds a value. Take the name from  `GET api/2.0/files/{folderId}/formfilter`, and use it in the folder that gathers the completed copies of a  form-filling room. (optional)     - parameter formsItemType: (query) The kind of the form field named by `formsItemKey`, taken from the same list; the two are sent together. (optional)     - parameter count: (query) The size of one page of the listing. Pair it with `startIndex` to walk through the result, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. (optional)     - parameter location: (query) Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. (optional)     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400. (optional)     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search. (optional)     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getFolderByFolderId(folderId: String, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: String? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFolderContentWrapper {
-        return try await getFolderByFolderIdWithRequestBuilder(folderId: folderId, userIdOrGroupId: userIdOrGroupId, sharedBy: sharedBy, filterType: filterType, roomId: roomId, folderType: folderType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, withSubFolders: withSubFolders, _extension: _extension, searchArea: searchArea, formsItemKey: formsItemKey, formsItemType: formsItemType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, location: location, apiConfiguration: apiConfiguration).execute().body
+    open class func getFolderByFolderId(folderId: String, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: String? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: RequestLocation? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFolderContentWrapper {
+        return try await getFolderByFolderIdWithRequestBuilder(folderId: folderId, userIdOrGroupId: userIdOrGroupId, sharedBy: sharedBy, filterType: filterType, roomId: roomId, folderType: folderType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, withSubFolders: withSubFolders, _extension: _extension, searchArea: searchArea, formsItemKey: formsItemKey, formsItemType: formsItemType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, location: location, metadataTemplateId: metadataTemplateId, metadataFilters: metadataFilters, includeHiddenMetadata: includeHiddenMetadata, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1148,10 +1147,13 @@ var fields: String?
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)
      - parameter filterValue: (query) The search string the listing is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the folder unfiltered. (optional)
      - parameter location: (query) Where the entries of a tag-based listing have to live to be kept: `Room` keeps what lies in a room,  `Documents` what lies in a personal section, and `Link` what was reached through an external link that is  still valid. It shapes the Favorites and Recent listings and does nothing in an ordinary folder. (optional)
+     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  Supported for the rooms, the trash, the regular folders and the Shared with me, Recent and Favorites sections  (the third-party entries never carry metadata and are left out); the Templates and Private sections reject it with 400. (optional)
+     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq (the whole value) or contains (a part of it); a number or a date field takes range with inclusive bounds,  or gt, gte, lt, lte with the single bound in value; a choice field takes in. A date-only bound covers the whole day,  so to:2026-06-30 includes the values stored on 30 June and gt:2026-06-30 starts after it.  A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}.  The same filter is taken as a typed request body by POST api/2.0/files/{folderId}/search. (optional)
+     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFolderContentWrapper> 
      */
-    open class func getFolderByFolderIdWithRequestBuilder(folderId: String, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: String? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: Location? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFolderContentWrapper> {
+    open class func getFolderByFolderIdWithRequestBuilder(folderId: String, userIdOrGroupId: UUID? = nil, sharedBy: UUID? = nil, filterType: FilterType? = nil, roomId: String? = nil, folderType: [FolderType_getFolderByFolderId]? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, withSubFolders: Bool? = nil, _extension: String? = nil, searchArea: SearchArea? = nil, formsItemKey: String? = nil, formsItemType: String? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, location: RequestLocation? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFolderContentWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -1159,8 +1161,7 @@ var fields: String?
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sharedBy": (wrappedValue: sharedBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -1178,13 +1179,17 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-            "Location": (wrappedValue: location?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "location": (wrappedValue: location?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataTemplateId": (wrappedValue: metadataTemplateId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataFilters": (wrappedValue: metadataFilters?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "includeHiddenMetadata": (wrappedValue: includeHiddenMetadata?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1252,18 +1257,18 @@ var fields: String?
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "fromDate": (wrappedValue: fromDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "toDate": (wrappedValue: toDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1333,7 +1338,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FolderWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1401,7 +1405,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1471,7 +1474,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1539,7 +1541,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1609,7 +1610,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1678,7 +1678,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1743,16 +1742,16 @@ var fields: String?
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1818,16 +1817,16 @@ var fields: String?
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1897,7 +1896,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1966,7 +1964,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1980,13 +1977,14 @@ var fields: String?
      See also:
      REST API Reference for getFormsFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-forms-folder/
-     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. (optional)
+     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. (optional)     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getFormsFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
-        return try await getFormsFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getFormsFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
+        return try await getFormsFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, metadataTemplateId: metadataTemplateId, metadataFilters: metadataFilters, includeHiddenMetadata: includeHiddenMetadata, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1997,7 +1995,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-forms-folder/
      
      - GET /api/2.0/files/@forms
-     - Returns the Forms section: the flat list of form-filling rooms the caller may read. Such rooms are stored  under the Rooms tree but are surfaced only here, so `GET api/2.0/files/rooms` leaves them out of the active  area and lists them when `searchArea` names the forms area instead. The section is not expanded into room  content, so `folders` carries the rooms while `files` comes back empty; to read what is inside one of them,  call `GET api/2.0/files/{folderId}` with the room identifier. Nothing is modified, though passing `sortBy`  saves the requested order as the default order for this account. `filterType`, `filterValue`,  `userIdOrGroupId` and the sorting parameters narrow and order the room list, `count` and `startIndex` page  through it, `total` reports how many rooms match the request in full, and `current` describes the section  folder itself.
+     - Returns the Forms section: the flat list of form-filling rooms the caller may read. Such rooms are stored  under the Rooms tree but are surfaced only here, so `GET api/2.0/files/rooms` leaves them out of the active  area and lists them when `searchArea` names the forms area instead. The section is not expanded into room  content, so `folders` carries the rooms while `files` comes back empty; to read what is inside one of them,  call `GET api/2.0/files/{folderId}` with the room identifier. Nothing is modified, though passing `sortBy`  saves the requested order as the default order for this account. `filterType`, `filterValue`,  `userIdOrGroupId` and the sorting parameters narrow and order the room list, `metadataTemplateId` and  `metadataFilters` keep only the rooms carrying the template and matching the conditions (an unknown template  or field, or a malformed condition, is refused with 400), `count` and `startIndex` page through it, `total`  reports how many rooms match the request in full, and `current` describes the section folder itself.
      - BASIC:
        - type: http
        - name: Basic
@@ -2024,16 +2022,19 @@ var fields: String?
      - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)
      - parameter filterValue: (query) The search string the section is filtered by: it is matched as a substring of entry titles and, for files,  against the indexed document content as well. Omit it to list the section unfiltered. (optional)
+     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)
+     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)
+     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentWrapper> 
      */
-    open class func getFormsFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
+    open class func getFormsFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
         let localVariablePath = "/api/2.0/files/@forms"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -2041,16 +2042,16 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "metadataTemplateId": (wrappedValue: metadataTemplateId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataFilters": (wrappedValue: metadataFilters?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "includeHiddenMetadata": (wrappedValue: includeHiddenMetadata?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2065,13 +2066,14 @@ var fields: String?
      See also:
      REST API Reference for getMyFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/
-     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. (optional)
+     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. (optional)     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMyFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
-        return try await getMyFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, applyFilterOption: applyFilterOption, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getMyFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
+        return try await getMyFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, applyFilterOption: applyFilterOption, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, metadataTemplateId: metadataTemplateId, metadataFilters: metadataFilters, includeHiddenMetadata: includeHiddenMetadata, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2082,7 +2084,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-my-folder/
      
      - GET /api/2.0/files/@my
-     - Returns the contents of the caller's My documents section, the personal storage that belongs to this account  alone and stays invisible to other members until something in it is shared explicitly. Any authenticated  member that has a personal section can read it; guest accounts are not given one, and the call then answers  404. Nothing in the section is modified, though passing `sortBy` saves the requested order as the default  order for this account. Without a filter only the top level of the section is listed; as soon as `filterType`,  `userIdOrGroupId` or `filterValue` narrows the request, the search descends through the whole subtree.  `filterValue` is matched against titles and against indexed document content, and the index is written  asynchronously, so a file uploaded a moment ago can be missing from a search for a short while. `folders` and  `files` hold one page of the result, `total` counts everything that matches before `count` and `startIndex`  are applied, and `current` describes the section folder. To open a folder inside the section, call  `GET api/2.0/files/{folderId}` with its identifier.
+     - Returns the contents of the caller's My documents section, the personal storage that belongs to this account  alone and stays invisible to other members until something in it is shared explicitly. Any authenticated  member that has a personal section can read it; guest accounts are not given one, and the call then answers  404. Nothing in the section is modified, though passing `sortBy` saves the requested order as the default  order for this account. Without a filter only the top level of the section is listed; as soon as `filterType`,  `userIdOrGroupId`, `filterValue` or a metadata filter narrows the request, the search descends through the whole  subtree. `filterValue` is matched against titles and against indexed document content, and the index is written  asynchronously, so a file uploaded a moment ago can be missing from a search for a short while.  `metadataTemplateId` and `metadataFilters` keep only the entries carrying the template and matching the  conditions, the same way `GET api/2.0/files/{folderId}` does; an unknown template or field, or a malformed  condition, is refused with 400. `folders` and `files` hold one page of the result, `total` counts everything  that matches before `count` and `startIndex` are applied, and `current` describes the section folder. To open  a folder inside the section, call `GET api/2.0/files/{folderId}` with its identifier.
      - BASIC:
        - type: http
        - name: Basic
@@ -2110,16 +2112,19 @@ var fields: String?
      - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)
      - parameter filterValue: (query) The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. (optional)
+     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)
+     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)
+     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentWrapper> 
      */
-    open class func getMyFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
+    open class func getMyFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
         let localVariablePath = "/api/2.0/files/@my"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "applyFilterOption": (wrappedValue: applyFilterOption?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -2128,16 +2133,16 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "metadataTemplateId": (wrappedValue: metadataTemplateId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataFilters": (wrappedValue: metadataFilters?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "includeHiddenMetadata": (wrappedValue: includeHiddenMetadata?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2207,7 +2212,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2276,7 +2280,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryBaseArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2290,13 +2293,14 @@ var fields: String?
      See also:
      REST API Reference for getRecentFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-recent-folder/
-     - parameter userIdOrGroupId: (query) Restricts the listing to the files authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list the whole history. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of file, such as documents, spreadsheets or images. Omit it to list every  kind the history holds. (optional)     - parameter excludeSubject: (query) Inverts `userIdOrGroupId`: with `true` the files of that member or group are the ones left out of the listing  instead of the only ones kept. (optional)     - parameter applyFilterOption: (query) Chooses which half of a listing `filterType` and `filterValue` are applied to. The Recent section holds  files only, so the value does not change what comes back. (optional)     - parameter searchArea: (query) The area a listing is taken from. The Recent section is assembled from the caller's own open history rather  than from an area, so the value does not change which files are returned. (optional)     - parameter _extension: (query) The file extensions the listing is limited to, matched against the end of the file name. The leading dot is  optional, and the parameter is repeated once per extension. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. The Recent section keeps its own newest-first order, so the value does not  reorder this listing. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. The Recent section keeps its own newest-first order, so the value does not reorder this  listing. (optional)     - parameter filterValue: (query) The search string the history is filtered by: it is matched as a substring of file titles and against the  indexed document content as well. Omit it to list the whole history. (optional)
+     - parameter userIdOrGroupId: (query) Restricts the listing to the files authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list the whole history. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of file, such as documents, spreadsheets or images. Omit it to list every  kind the history holds. (optional)     - parameter excludeSubject: (query) Inverts `userIdOrGroupId`: with `true` the files of that member or group are the ones left out of the listing  instead of the only ones kept. (optional)     - parameter applyFilterOption: (query) Chooses which half of a listing `filterType` and `filterValue` are applied to. The Recent section holds  files only, so the value does not change what comes back. (optional)     - parameter searchArea: (query) The area a listing is taken from. The Recent section is assembled from the caller's own open history rather  than from an area, so the value does not change which files are returned. (optional)     - parameter _extension: (query) The file extensions the listing is limited to, matched against the end of the file name. The leading dot is  optional, and the parameter is repeated once per extension. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. The Recent section keeps its own newest-first order, so the value does not  reorder this listing. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. The Recent section keeps its own newest-first order, so the value does not reorder this  listing. (optional)     - parameter filterValue: (query) The search string the history is filtered by: it is matched as a substring of file titles and against the  indexed document content as well. Omit it to list the whole history. (optional)     - parameter metadataTemplateId: (query) The ID of the metadata template the recent files must be assigned to. On its own it narrows the listing to the files  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party files never carry metadata and are left out when the filter is set. (optional)     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getRecentFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
-        return try await getRecentFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, searchArea: searchArea, _extension: _extension, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getRecentFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
+        return try await getRecentFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, excludeSubject: excludeSubject, applyFilterOption: applyFilterOption, searchArea: searchArea, _extension: _extension, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, metadataTemplateId: metadataTemplateId, metadataFilters: metadataFilters, includeHiddenMetadata: includeHiddenMetadata, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2338,16 +2342,19 @@ var fields: String?
      - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. The Recent section keeps its own newest-first order, so the value does not  reorder this listing. (optional)
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. The Recent section keeps its own newest-first order, so the value does not reorder this  listing. (optional)
      - parameter filterValue: (query) The search string the history is filtered by: it is matched as a substring of file titles and against the  indexed document content as well. Omit it to list the whole history. (optional)
+     - parameter metadataTemplateId: (query) The ID of the metadata template the recent files must be assigned to. On its own it narrows the listing to the files  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party files never carry metadata and are left out when the filter is set. (optional)
+     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)
+     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentWrapper> 
      */
-    open class func getRecentFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
+    open class func getRecentFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, excludeSubject: Bool? = nil, applyFilterOption: ApplyFilterOption? = nil, searchArea: SearchArea? = nil, _extension: [String]? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
         let localVariablePath = "/api/2.0/files/recent"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "excludeSubject": (wrappedValue: excludeSubject?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -2359,16 +2366,16 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "metadataTemplateId": (wrappedValue: metadataTemplateId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataFilters": (wrappedValue: metadataFilters?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "includeHiddenMetadata": (wrappedValue: includeHiddenMetadata?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2400,7 +2407,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-report-folder-history/
      
      - GET /api/2.0/files/folder/{folderId}/log/report
-     - Reports how far the history report of a folder has got, and is the operation to poll after  `POST api/2.0/files/folder/{folderId}/log/report` has queued one. `percentage` climbs to 100, `isCompleted`  turns true when the job is over however it ended, `error` carries the reason when it failed, and  `resultFileId`, `resultFileName` and `resultFileUrl` name the file that was saved in the caller's My  documents - a CSV report leaving the identifier empty. An empty answer means there is no report for this  folder and caller, either because none was started or because a finished one has already been picked up by an  earlier poll. The caller needs read access to the folder and may not be a guest, and the portal plan has to  include the audit feature; a caller who fails the access rule is answered with 403 and a folder that does not  exist with 404. The call is read-only, and each caller sees only their own report.
+     - Reports how far the history report of a folder has got, and is the operation to poll after  `POST api/2.0/files/folder/{folderId}/log/report` has queued one. `percentage` climbs to 100, `isCompleted`  turns true when the job is over however it ended, `error` carries the reason when it failed, and `resultFileId`,  `resultFileName` and `resultFileUrl` name the file that was saved in the caller's My documents. An empty  answer means there is no report for this folder and caller, either because none was started or because a  finished one has already been picked up by an earlier poll. The caller needs read access to the folder and may  not be a guest; a caller who fails the access rule is answered with 403, a folder that does not exist with 404,  and a portal with the login history and audit trail section turned off with 402. The call is read-only, and each caller sees only  their own report.
      - BASIC:
        - type: http
        - name: Basic
@@ -2438,7 +2445,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<DocumentBuilderTaskWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2453,12 +2459,13 @@ var fields: String?
      REST API Reference for getRootFolders Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-root-folders/
      - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the content listed inside every returned section to a single kind of entry, such as documents, images  or one type of room. Omit it to list every kind the sections hold. (optional)     - parameter withoutTrash: (query) Set it to `true` to leave the Trash section out of the returned set of sections; with `false`, or when the  parameter is omitted, the section is returned whenever the account has one of its own. (optional)     - parameter count: (query) The size of the content page returned for each section separately, so a value of 1 yields one entry per  section rather than one entry in total. (optional)     - parameter startIndex: (query) The number of matching entries skipped in each section before its page begins; add `count` to it to ask for  the next page of every section. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the content of every section is filtered by: it is matched as a substring of entry titles  and, for files, against the indexed document content as well. Omit it to list the sections unfiltered. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getRootFolders(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, withoutTrash: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentArrayWrapper {
-        return try await getRootFoldersWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, withoutTrash: withoutTrash, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getRootFolders(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, withoutTrash: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentArrayWrapper {
+        return try await getRootFoldersWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, withoutTrash: withoutTrash, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2497,16 +2504,16 @@ var fields: String?
      - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)
      - parameter filterValue: (query) The search string the content of every section is filtered by: it is matched as a substring of entry titles  and, for files, against the indexed document content as well. Omit it to list the sections unfiltered. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentArrayWrapper> 
      */
-    open class func getRootFoldersWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, withoutTrash: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentArrayWrapper> {
+    open class func getRootFoldersWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, withoutTrash: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentArrayWrapper> {
         let localVariablePath = "/api/2.0/files/@root"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "withoutTrash": (wrappedValue: withoutTrash?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -2515,16 +2522,13 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2539,13 +2543,14 @@ var fields: String?
      See also:
      REST API Reference for getTrashFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/
-     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. (optional)
+     - parameter userIdOrGroupId: (query) Restricts the listing to the entries authored by this portal member, or by the members of this group; the same  parameter accepts either kind of identifier. Omit it to list everything the caller can read. (optional)     - parameter filterType: (query) Narrows the listing to a single kind of entry, such as documents, images or one type of room. Omit it to list  every kind the section holds. (optional)     - parameter applyFilterOption: (query) Chooses which half of the listing `filterType` and `filterValue` are applied to: with `Files` the folders come  back unfiltered, with `Folders` the files do, and with `All` both halves are filtered. (optional)     - parameter count: (query) The size of one page of section content. Pair it with `startIndex` to walk the listing, and compare the two  with `total` in the response to see when the last page has been read. (optional)     - parameter startIndex: (query) The number of matching entries to skip before the returned page begins; add `count` to it to ask for the next  page. (optional)     - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)     - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)     - parameter filterValue: (query) The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. (optional)     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getTrashFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
-        return try await getTrashFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, applyFilterOption: applyFilterOption, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getTrashFolder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
+        return try await getTrashFolderWithRequestBuilder(userIdOrGroupId: userIdOrGroupId, filterType: filterType, applyFilterOption: applyFilterOption, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, metadataTemplateId: metadataTemplateId, metadataFilters: metadataFilters, includeHiddenMetadata: includeHiddenMetadata, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2556,7 +2561,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-trash-folder/
      
      - GET /api/2.0/files/@trash
-     - Returns the caller's Trash section: the files and folders this account has deleted, kept there until they  are restored or discarded. Each member has a Trash of their own and sees only what they deleted themselves.  Restore an entry by moving it back with `PUT api/2.0/files/fileops/move`, or discard the whole section with  `PUT api/2.0/files/fileops/emptytrash`; both start a background operation that is polled through  `GET api/2.0/files/fileops`. This call itself modifies nothing, though passing `sortBy` saves the requested  order as the default order for this account. Only the top level of the section is listed, so the contents of a  deleted folder are not expanded into it, and `filterValue` is matched against titles alone here rather than  against document content. `folders` and `files` hold one page of the result, `total` counts everything that  matches before `count` and `startIndex` are applied, and `current` describes the section folder. An account  that is given no Trash of its own, an outsider for instance, receives 404.
+     - Returns the caller's Trash section: the files and folders this account has deleted, kept there until they  are restored or discarded. Each member has a Trash of their own and sees only what they deleted themselves.  Restore an entry by moving it back with `PUT api/2.0/files/fileops/move`, or discard the whole section with  `PUT api/2.0/files/fileops/emptytrash`; both start a background operation that is polled through  `GET api/2.0/files/fileops`. This call itself modifies nothing, though passing `sortBy` saves the requested  order as the default order for this account. Only the top level of the section is listed, so the contents of a  deleted folder are not expanded into it, and `filterValue` is matched against titles alone here rather than  against document content. `metadataTemplateId` and `metadataFilters` keep only the deleted entries carrying the  template and matching the conditions, the same way `GET api/2.0/files/{folderId}` does; an unknown template or  field, or a malformed condition, is refused with 400. `folders` and `files` hold one page of the result,  `total` counts everything that matches before `count` and `startIndex` are applied, and `current` describes  the section folder. An account that is given no Trash of its own, an outsider for instance, receives 404.
      - BASIC:
        - type: http
        - name: Basic
@@ -2584,16 +2589,19 @@ var fields: String?
      - parameter sortBy: (query) The name of the field the entries are ordered by, matched case-insensitively against the file sort fields:  `DateAndTime`, `AZ`, `Size`, `Author`, `Type`, `New`, `DateAndTimeCreation`, `RoomType`, `Tags`, `Room`,  `CustomOrder`, `LastOpened` and `UsedSpace`. A recognized value is also saved as the default order of the  account and reused by later listings that omit the parameter, while a value matching none of the fields leaves  that saved order in place. (optional)
      - parameter sortOrder: (query) The direction in which the `sortBy` field is ordered. It is saved together with `sortBy` as the default order  of the account. (optional)
      - parameter filterValue: (query) The search string the section is filtered by, matched as a substring of entry titles. Omit it to list the  section unfiltered. (optional)
+     - parameter metadataTemplateId: (query) The ID of the metadata template the entries must be assigned to. On its own it narrows the listing to the entries  carrying the template; together with the metadata filters it also pins the template the filtered fields belong to.  The third-party entries never carry metadata and are left out when the filter is set. (optional)
+     - parameter metadataFilters: (query) The URL-encoded JSON array of the metadata filter conditions,  e.g. [{fieldId:1,op:contains,value:ACME},{fieldId:2,op:range,from:2026-01-01,to:2026-06-30},{fieldId:3,op:in,optionIds:[...]}].  A string field takes eq or contains; a number or a date field takes range with inclusive bounds, or gt, gte, lt, lte with the bound in value;  a date-only bound covers the whole day. A custom field is addressed by its name instead of the fieldId: {name:Client,op:eq,value:ACME}. (optional)
+     - parameter includeHiddenMetadata: (query) Whether the text search, and the metadataMatches it reports, also look at the values of the hidden metadata  templates (created with visible false for the metadata a service keeps for itself, which the web client never  shows). False, the default, leaves them out, so an entry is not found by such a value; true takes them in.  metadataTemplateId and metadataFilters are not concerned: a hidden template or field named there is searched  either way. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderContentWrapper> 
      */
-    open class func getTrashFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
+    open class func getTrashFolderWithRequestBuilder(userIdOrGroupId: UUID? = nil, filterType: FilterType? = nil, applyFilterOption: ApplyFilterOption? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, metadataTemplateId: Int? = nil, metadataFilters: String? = nil, includeHiddenMetadata: Bool? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
         let localVariablePath = "/api/2.0/files/@trash"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userIdOrGroupId": (wrappedValue: userIdOrGroupId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterType": (wrappedValue: filterType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "applyFilterOption": (wrappedValue: applyFilterOption?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -2602,16 +2610,16 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+            "metadataTemplateId": (wrappedValue: metadataTemplateId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "metadataFilters": (wrappedValue: metadataFilters?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+            "includeHiddenMetadata": (wrappedValue: includeHiddenMetadata?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2686,18 +2694,18 @@ var fields: String?
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "InsertFile.File": insertFileFile?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Title": insertFileTitle?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.CreateNewIfExist": insertFileCreateNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.KeepConvertStatus": insertFileKeepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanRead": insertFileStreamCanRead?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanWrite": insertFileStreamCanWrite?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanSeek": insertFileStreamCanSeek?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanTimeout": insertFileStreamCanTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.Length": insertFileStreamLength?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.Position": insertFileStreamPosition?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.ReadTimeout": insertFileStreamReadTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.WriteTimeout": insertFileStreamWriteTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.file": insertFileFile?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.title": insertFileTitle?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.createNewIfExist": insertFileCreateNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.keepConvertStatus": insertFileKeepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canRead": insertFileStreamCanRead?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canWrite": insertFileStreamCanWrite?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canSeek": insertFileStreamCanSeek?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canTimeout": insertFileStreamCanTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.length": insertFileStreamLength?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.position": insertFileStreamPosition?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.readTimeout": insertFileStreamReadTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.writeTimeout": insertFileStreamWriteTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
@@ -2708,7 +2716,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2783,18 +2790,18 @@ var fields: String?
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "InsertFile.File": insertFileFile?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Title": insertFileTitle?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.CreateNewIfExist": insertFileCreateNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.KeepConvertStatus": insertFileKeepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanRead": insertFileStreamCanRead?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanWrite": insertFileStreamCanWrite?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanSeek": insertFileStreamCanSeek?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.CanTimeout": insertFileStreamCanTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.Length": insertFileStreamLength?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.Position": insertFileStreamPosition?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.ReadTimeout": insertFileStreamReadTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "InsertFile.Stream.WriteTimeout": insertFileStreamWriteTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.file": insertFileFile?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.title": insertFileTitle?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.createNewIfExist": insertFileCreateNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.keepConvertStatus": insertFileKeepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canRead": insertFileStreamCanRead?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canWrite": insertFileStreamCanWrite?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canSeek": insertFileStreamCanSeek?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.canTimeout": insertFileStreamCanTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.length": insertFileStreamLength?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.position": insertFileStreamPosition?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.readTimeout": insertFileStreamReadTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "insertFile.stream.writeTimeout": insertFileStreamWriteTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
@@ -2805,7 +2812,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2876,18 +2882,18 @@ var fields: String?
         let localVariablePath = "/api/2.0/files/@my/insert"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Title": title?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "CreateNewIfExist": createNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "KeepConvertStatus": keepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.CanRead": streamCanRead?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.CanWrite": streamCanWrite?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.CanSeek": streamCanSeek?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.CanTimeout": streamCanTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.Length": streamLength?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.Position": streamPosition?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.ReadTimeout": streamReadTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Stream.WriteTimeout": streamWriteTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "title": title?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "createNewIfExist": createNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "keepConvertStatus": keepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.canRead": streamCanRead?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.canWrite": streamCanWrite?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.canSeek": streamCanSeek?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.canTimeout": streamCanTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.length": streamLength?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.position": streamPosition?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.readTimeout": streamReadTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "stream.writeTimeout": streamWriteTimeout?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
@@ -2898,7 +2904,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2913,13 +2918,13 @@ var fields: String?
      See also:
      REST API Reference for renameFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/
-     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolder: (body) The title carried by the request body. 
+     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FolderWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func renameFolder(folderId: Int, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderWrapper {
-        return try await renameFolderWithRequestBuilder(folderId: folderId, createFolder: createFolder, apiConfiguration: apiConfiguration).execute().body
+    open class func renameFolder(folderId: Int, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderWrapper {
+        return try await renameFolderWithRequestBuilder(folderId: folderId, createFolderRequest: createFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -2951,24 +2956,23 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. 
-     - parameter createFolder: (body) The title carried by the request body. 
+     - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FolderWrapper> 
      */
-    open class func renameFolderWithRequestBuilder(folderId: Int, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderWrapper> {
+    open class func renameFolderWithRequestBuilder(folderId: Int, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderWrapper> {
         var localVariablePath = "/api/2.0/files/folder/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolder, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2983,13 +2987,13 @@ var fields: String?
      See also:
      REST API Reference for renameFolder Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/rename-folder/
-     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolder: (body) The title carried by the request body. 
+     - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title.      - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFolderWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func renameFolder(folderId: String, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFolderWrapper {
-        return try await renameFolderWithRequestBuilder(folderId: folderId, createFolder: createFolder, apiConfiguration: apiConfiguration).execute().body
+    open class func renameFolder(folderId: String, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFolderWrapper {
+        return try await renameFolderWithRequestBuilder(folderId: folderId, createFolderRequest: createFolderRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -3021,17 +3025,17 @@ var fields: String?
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the request is addressed to: when a folder is created it is the parent that receives the new  folder, and when a folder is renamed it is the folder that gets the new title. 
-     - parameter createFolder: (body) The title carried by the request body. 
+     - parameter createFolderRequest: (body) The title carried by the request body. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFolderWrapper> 
      */
-    open class func renameFolderWithRequestBuilder(folderId: String, createFolder: CreateFolder, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFolderWrapper> {
+    open class func renameFolderWithRequestBuilder(folderId: String, createFolderRequest: CreateFolderRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFolderWrapper> {
         var localVariablePath = "/api/2.0/files/folder/{folderId}"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolder, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFolderRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -3039,12 +3043,149 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ThirdPartyFolderWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Search a folder by metadata
+     
+     See also:
+     REST API Reference for searchFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/search-folder/
+     - parameter folderId: (path) The folder ID.      - parameter folderMetadataSearch: (body) The search parameters. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: FolderContentWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func searchFolder(folderId: Int, folderMetadataSearch: FolderMetadataSearch, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FolderContentWrapper {
+        return try await searchFolderWithRequestBuilder(folderId: folderId, folderMetadataSearch: folderMetadataSearch, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Search a folder by metadata
+     
+     See also:
+     REST API Reference for searchFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/search-folder/
+     
+     - POST /api/2.0/files/{folderId}/search
+     - Searches the folder by metadata. The same filter the folder listing takes in the metadataTemplateId and metadataFilters  query parameters, here as a typed request body for the clients that build the conditions as objects rather than as a JSON string.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
+     - parameter folderId: (path) The folder ID. 
+     - parameter folderMetadataSearch: (body) The search parameters. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<FolderContentWrapper> 
+     */
+    open class func searchFolderWithRequestBuilder(folderId: Int, folderMetadataSearch: FolderMetadataSearch, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FolderContentWrapper> {
+        var localVariablePath = "/api/2.0/files/{folderId}/search"
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: folderMetadataSearch, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<FolderContentWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Search a folder by metadata (third-party storage)
+     
+     See also:
+     REST API Reference for searchFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/search-folder/
+     - parameter folderId: (path) The folder ID.      - parameter folderMetadataSearch: (body) The search parameters. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: ThirdPartyFolderContentWrapper
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func searchFolder(folderId: String, folderMetadataSearch: FolderMetadataSearch, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFolderContentWrapper {
+        return try await searchFolderWithRequestBuilder(folderId: folderId, folderMetadataSearch: folderMetadataSearch, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Search a folder by metadata (third-party storage)
+     
+     See also:
+     REST API Reference for searchFolder Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/search-folder/
+     
+     - POST /api/2.0/files/{folderId}/search
+     - Searches the folder by metadata. The same filter the folder listing takes in the metadataTemplateId and metadataFilters  query parameters, here as a typed request body for the clients that build the conditions as objects rather than as a JSON string.
+     - BASIC:
+       - type: http
+       - name: Basic
+     - OAuth:
+       - type: oauth2
+       - name: OAuth2
+     - API Key:
+       - type: apiKey ApiKeyBearer (HEADER)
+       - name: ApiKeyBearer
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: asc_auth_key
+     - Bearer Token:
+       - type: http
+       - name: Bearer
+     - :
+       - type: openIdConnect
+       - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
+     - parameter folderId: (path) The folder ID. 
+     - parameter folderMetadataSearch: (body) The search parameters. 
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<ThirdPartyFolderContentWrapper> 
+     */
+    open class func searchFolderWithRequestBuilder(folderId: String, folderMetadataSearch: FolderMetadataSearch, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFolderContentWrapper> {
+        var localVariablePath = "/api/2.0/files/{folderId}/search"
+        let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
+        let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: folderMetadataSearch, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<ThirdPartyFolderContentWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
@@ -3108,7 +3249,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3179,7 +3319,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ThirdPartyFolderWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3248,7 +3387,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3319,7 +3457,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3350,7 +3487,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/terminate-report-folder-history/
      
      - DELETE /api/2.0/files/folder/{folderId}/log/report
-     - Gives up the history report the caller has started for a folder with  `POST api/2.0/files/folder/{folderId}/log/report`. The request only asks the background worker to stop, and  the answer carries no body, so a following `GET api/2.0/files/folder/{folderId}/log/report` is what shows the  task ending as cancelled. Asking to terminate when nothing is running is accepted and changes nothing, which  makes the call safe to repeat. A report that has already finished is not undone by this call and its file  stays in My documents. The caller needs read access to the folder and may not be a guest, and the portal  plan has to include the audit feature; a caller who fails the access rule is answered with 403 and a folder  that does not exist with 404. Each caller can only terminate their own report.
+     - Gives up the history report the caller has started for a folder with  `POST api/2.0/files/folder/{folderId}/log/report`. The request only asks the background worker to stop, and  the answer carries no body, so a following `GET api/2.0/files/folder/{folderId}/log/report` is what shows the  task ending as cancelled. Asking to terminate when nothing is running is accepted and changes nothing, which  makes the call safe to repeat. A report that has already finished is not undone by this call and its file  stays in My documents. The caller needs read access to the folder and may not be a guest; a caller who fails  the access rule is answered with 403, a folder that does not exist with 404, and a portal with the login history  and audit trail section turned off with 402. Each caller can only terminate their own report.
      - BASIC:
        - type: http
        - name: Basic
@@ -3387,7 +3524,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3454,23 +3590,23 @@ var fields: String?
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
         let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "createNewIfExist": (wrappedValue: createNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "storeOriginalFile": (wrappedValue: storeOriginalFile?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "keepConvertStatus": (wrappedValue: keepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3537,23 +3673,23 @@ var fields: String?
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
         let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "createNewIfExist": (wrappedValue: createNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "storeOriginalFile": (wrappedValue: storeOriginalFile?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "keepConvertStatus": (wrappedValue: keepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3616,35 +3752,28 @@ var fields: String?
         let localVariablePath = "/api/2.0/files/@my/upload"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
         let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "createNewIfExist": (wrappedValue: createNewIfExist?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "storeOriginalFile": (wrappedValue: storeOriginalFile?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "keepConvertStatus": (wrappedValue: keepConvertStatus?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
-    }
-}
-extension FilesFoldersAPIApi {
-    @discardableResult
-    public func withFields(_ fields: String) -> FilesFoldersAPIApi {
-        self.fields = fields
-        return self
     }
 }

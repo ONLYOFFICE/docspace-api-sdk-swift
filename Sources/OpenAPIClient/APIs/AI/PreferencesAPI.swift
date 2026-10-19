@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AIPreferencesAPIApi {
 
     /**
      Clear deep mode
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiPreferencesClearDeepMode Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-clear-deep-mode/
-     - parameter body: (body) The ID of the room whose preference is cleared, as a bare JSON string. Send an empty body to clear the portal-wide preference. 
+     - parameter aiPreferencesClearDeepModeRequest: (body) The ID of the room whose preference is cleared, as a bare JSON string. Send an empty body to clear the portal-wide preference. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiPreferencesClearDeepMode(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiPreferencesClearDeepModeWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiPreferencesClearDeepMode(aiPreferencesClearDeepModeRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiPreferencesClearDeepModeWithRequestBuilder(aiPreferencesClearDeepModeRequest: aiPreferencesClearDeepModeRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -47,21 +47,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body) The ID of the room whose preference is cleared, as a bare JSON string. Send an empty body to clear the portal-wide preference. 
+     - parameter aiPreferencesClearDeepModeRequest: (body) The ID of the room whose preference is cleared, as a bare JSON string. Send an empty body to clear the portal-wide preference. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiPreferencesClearDeepModeWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiPreferencesClearDeepModeWithRequestBuilder(aiPreferencesClearDeepModeRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/preferences/clear-deep-mode"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiPreferencesClearDeepModeRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -93,7 +92,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-deep-mode/
      
      - GET /api/2.0/ai/preferences/get-deep-mode
-     - Returns the deep-mode toggle of a scope, as a bare boolean: whether the stored extended-thinking depth is above `off`. `entityId` picks a room and omitting it reads the portal-wide preference. A scope that has never had a value stored falls back to the configured default, so the answer never distinguishes off from unset - ask `GET api/2.0/ai/preferences/is-deep-mode-set` for that. This is a read-only operation.
+     - Returns the deep-mode toggle of a scope, as a bare boolean: whether the stored extended-thinking depth is above `off`. `entityId` picks a room and omitting it reads the portal-wide preference; a value that is not a room ID is refused with 400, as it is on the write. A scope that has never had a value stored falls back to the configured default, so the answer never distinguishes off from unset - ask `GET api/2.0/ai/preferences/is-deep-mode-set` for that. This is a read-only operation.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -109,15 +108,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -134,10 +133,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-reasoning-level/
      - parameter entityId: (query) The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: AiAiReasoningLevel
+     - returns: AiReasoningLevel
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiPreferencesGetReasoningLevel(entityId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiAiReasoningLevel {
+    open class func aiPreferencesGetReasoningLevel(entityId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiReasoningLevel {
         return try await aiPreferencesGetReasoningLevelWithRequestBuilder(entityId: entityId, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -149,7 +148,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-reasoning-level/
      
      - GET /api/2.0/ai/preferences/get-reasoning-level
-     - Returns the effective extended-thinking depth of the scope: `off` while deep mode is off, otherwise the persisted depth (`low`, `medium`, `high`, `max`), falling back to the default depth (`medium`) when none has been stored. `entityId` picks a room and omitting it reads the portal-wide preference. Providers clamp the depth to what the model accepts.
+     - Returns the effective extended-thinking depth of the scope: `off` while deep mode is off, otherwise the persisted depth (`low`, `medium`, `high`, `max`), falling back to the default depth (`medium`) when none has been stored. `entityId` picks a room and omitting it reads the portal-wide preference; a value that is not a room ID is refused with 400. Providers clamp the depth to what the model accepts.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -158,26 +157,82 @@ open class {{{{x-classname}}}} {
        - name: bearerAuth
      - parameter entityId: (query) The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<AiAiReasoningLevel> 
+     - returns: RequestBuilder<AiReasoningLevel> 
      */
-    open class func aiPreferencesGetReasoningLevelWithRequestBuilder(entityId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiAiReasoningLevel> {
+    open class func aiPreferencesGetReasoningLevelWithRequestBuilder(entityId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiReasoningLevel> {
         let localVariablePath = "/api/2.0/ai/preferences/get-reasoning-level"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AiReasoningLevel>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Get tool permission mode
+     
+     See also:
+     REST API Reference for aiPreferencesGetToolPermissionMode Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-tool-permission-mode/
+     - parameter entityId: (query) The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: AiChatToolPermissionMode
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func aiPreferencesGetToolPermissionMode(entityId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiChatToolPermissionMode {
+        return try await aiPreferencesGetToolPermissionModeWithRequestBuilder(entityId: entityId, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Get tool permission mode
+     
+     See also:
+     REST API Reference for aiPreferencesGetToolPermissionMode Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-get-tool-permission-mode/
+     
+     - GET /api/2.0/ai/preferences/get-tool-permission-mode
+     - Returns how a tool call the model makes is approved for the calling user, in the chat library's spelling: `ask` prompts for every call bar the tools pinned as always allowed, `auto` also runs a tool that opted out of approval itself or is annotated read-only / non-destructive, `allow` runs everything without asking. The mode is one value per user, stored in the user's AI settings (the same value `GET api/2.0/ai/config/tool-mode` reports as the AI service's enum); `entityId` is accepted for symmetry with the depth routes and ignored, though a value that is not a room ID is still refused with 400. The AI service's default is `auto`.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter entityId: (query) The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<AiChatToolPermissionMode> 
+     */
+    open class func aiPreferencesGetToolPermissionModeWithRequestBuilder(entityId: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiChatToolPermissionMode> {
+        let localVariablePath = "/api/2.0/ai/preferences/get-tool-permission-mode"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters: [String: any Sendable]? = nil
+
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            :
+        ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AiAiReasoningLevel>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AiChatToolPermissionMode>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -205,7 +260,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-is-deep-mode-set/
      
      - GET /api/2.0/ai/preferences/is-deep-mode-set
-     - Tells whether a scope has an explicitly persisted extended-thinking setting of its own, as opposed to inheriting the configured default. `entityId` picks a room and omitting it asks about the portal-wide preference. A true answer means a value was stored, whether that value is on or off - read the value itself with `GET api/2.0/ai/preferences/get-deep-mode`. This is the check a settings screen uses to show an explicit override rather than an inherited state.
+     - Tells whether a scope has an explicitly persisted extended-thinking setting of its own, as opposed to inheriting the configured default. `entityId` picks a room and omitting it asks about the portal-wide preference; a value that is not a room ID is refused with 400. A true answer means a value was stored, whether that value is on or off - read the value itself with `GET api/2.0/ai/preferences/get-deep-mode`. This is the check a settings screen uses to show an explicit override rather than an inherited state.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -221,15 +276,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -283,7 +338,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -336,6 +390,57 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
+    }
+
+    /**
+     Set tool permission mode
+     
+     See also:
+     REST API Reference for aiPreferencesSetToolPermissionMode Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-set-tool-permission-mode/
+     - parameter aiPreferencesSetToolPermissionModeRequest: (body)  
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: AiSuccessResponse
+     */
+    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+    open class func aiPreferencesSetToolPermissionMode(aiPreferencesSetToolPermissionModeRequest: AiPreferencesSetToolPermissionModeRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiPreferencesSetToolPermissionModeWithRequestBuilder(aiPreferencesSetToolPermissionModeRequest: aiPreferencesSetToolPermissionModeRequest, apiConfiguration: apiConfiguration).execute().body
+    }
+
+    /**
+     Set tool permission mode
+     
+     See also:
+     REST API Reference for aiPreferencesSetToolPermissionMode Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-preferences-set-tool-permission-mode/
+     
+     - PUT /api/2.0/ai/preferences/set-tool-permission-mode
+     - Persists the tool permission mode of the calling user. `value` has to be one of `ask`, `auto`, `allow`: anything else is rejected rather than coerced, so an absent or mistyped value can never overwrite the stored mode. `entityId` is validated like on the other writes and otherwise ignored - the mode applies to every chat of the user. Idempotent.
+     - API Key:
+       - type: apiKey asc_auth_key 
+       - name: cookieAuth
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter aiPreferencesSetToolPermissionModeRequest: (body)  
+     - parameter apiConfiguration: The configuration for the http request.
+     - returns: RequestBuilder<AiSuccessResponse> 
+     */
+    open class func aiPreferencesSetToolPermissionModeWithRequestBuilder(aiPreferencesSetToolPermissionModeRequest: AiPreferencesSetToolPermissionModeRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+        let localVariablePath = "/api/2.0/ai/preferences/set-tool-permission-mode"
+        let localVariableURLString = apiConfiguration.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiPreferencesSetToolPermissionModeRequest, codableHelper: apiConfiguration.codableHelper)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: (any Sendable)?] = [
+            "Content-Type": "application/json",
+        ]
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

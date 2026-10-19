@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the DocsCloudQuota object. */
+/** The successful API response containing the DocsCloudQuotaDto object. */
 public struct DocsCloudQuotaWrapper: Sendable, Codable, Hashable {
 
-    /** The DocsCloudQuota object returned by the operation. */
-    public var response: DocsCloudQuota?
+    /** The DocsCloudQuotaDto object returned by the operation. */
+    public var response: DocsCloudQuotaDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct DocsCloudQuotaWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: DocsCloudQuota? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: DocsCloudQuotaDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

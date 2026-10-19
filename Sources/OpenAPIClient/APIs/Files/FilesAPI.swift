@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class FilesFilesAPIApi {
 
     /**
      Add a file to Recent
@@ -77,7 +77,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -147,7 +146,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ThirdPartyFileWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -213,7 +211,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -227,13 +224,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for changeVersionHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-version-history/
-     - parameter fileId: (path) The file whose version history is changed.      - parameter changeHistory: (body) The change to make to the revision group. 
+     - parameter fileId: (path) The file whose version history is changed.      - parameter changeHistoryRequest: (body) The change to make to the revision group. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func changeVersionHistory(fileId: Int, changeHistory: ChangeHistory, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileArrayWrapper {
-        return try await changeVersionHistoryWithRequestBuilder(fileId: fileId, changeHistory: changeHistory, apiConfiguration: apiConfiguration).execute().body
+    open class func changeVersionHistory(fileId: Int, changeHistoryRequest: ChangeHistoryRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileArrayWrapper {
+        return try await changeVersionHistoryWithRequestBuilder(fileId: fileId, changeHistoryRequest: changeHistoryRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -265,24 +262,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file whose version history is changed. 
-     - parameter changeHistory: (body) The change to make to the revision group. 
+     - parameter changeHistoryRequest: (body) The change to make to the revision group. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileArrayWrapper> 
      */
-    open class func changeVersionHistoryWithRequestBuilder(fileId: Int, changeHistory: ChangeHistory, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileArrayWrapper> {
+    open class func changeVersionHistoryWithRequestBuilder(fileId: Int, changeHistoryRequest: ChangeHistoryRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileArrayWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/history"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: changeHistory, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: changeHistoryRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -297,13 +293,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for changeVersionHistory Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-version-history/
-     - parameter fileId: (path) The file whose version history is changed.      - parameter changeHistory: (body) The change to make to the revision group. 
+     - parameter fileId: (path) The file whose version history is changed.      - parameter changeHistoryRequest: (body) The change to make to the revision group. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func changeVersionHistory(fileId: String, changeHistory: ChangeHistory, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileArrayWrapper {
-        return try await changeVersionHistoryWithRequestBuilder(fileId: fileId, changeHistory: changeHistory, apiConfiguration: apiConfiguration).execute().body
+    open class func changeVersionHistory(fileId: String, changeHistoryRequest: ChangeHistoryRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileArrayWrapper {
+        return try await changeVersionHistoryWithRequestBuilder(fileId: fileId, changeHistoryRequest: changeHistoryRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -335,24 +331,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file whose version history is changed. 
-     - parameter changeHistory: (body) The change to make to the revision group. 
+     - parameter changeHistoryRequest: (body) The change to make to the revision group. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileArrayWrapper> 
      */
-    open class func changeVersionHistoryWithRequestBuilder(fileId: String, changeHistory: ChangeHistory, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileArrayWrapper> {
+    open class func changeVersionHistoryWithRequestBuilder(fileId: String, changeHistoryRequest: ChangeHistoryRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileArrayWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/history"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: changeHistory, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: changeHistoryRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -367,13 +362,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for checkFillFormDraft Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-fill-form-draft/
-     - parameter fileId: (path) The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well.      - parameter checkFillFormDraft: (body) The revision of the form to open and what the caller intends to do with it. 
+     - parameter fileId: (path) The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well.      - parameter checkFillFormDraftRequest: (body) The revision of the form to open and what the caller intends to do with it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkFillFormDraft(fileId: Int, checkFillFormDraft: CheckFillFormDraft, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await checkFillFormDraftWithRequestBuilder(fileId: fileId, checkFillFormDraft: checkFillFormDraft, apiConfiguration: apiConfiguration).execute().body
+    open class func checkFillFormDraft(fileId: Int, checkFillFormDraftRequest: CheckFillFormDraftRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await checkFillFormDraftWithRequestBuilder(fileId: fileId, checkFillFormDraftRequest: checkFillFormDraftRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -405,24 +400,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well. 
-     - parameter checkFillFormDraft: (body) The revision of the form to open and what the caller intends to do with it. 
+     - parameter checkFillFormDraftRequest: (body) The revision of the form to open and what the caller intends to do with it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func checkFillFormDraftWithRequestBuilder(fileId: Int, checkFillFormDraft: CheckFillFormDraft, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func checkFillFormDraftWithRequestBuilder(fileId: Int, checkFillFormDraftRequest: CheckFillFormDraftRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         var localVariablePath = "/api/2.0/files/masterform/{fileId}/checkfillformdraft"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: checkFillFormDraft, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: checkFillFormDraftRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -437,13 +431,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for checkFillFormDraft Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-fill-form-draft/
-     - parameter fileId: (path) The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well.      - parameter checkFillFormDraft: (body) The revision of the form to open and what the caller intends to do with it. 
+     - parameter fileId: (path) The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well.      - parameter checkFillFormDraftRequest: (body) The revision of the form to open and what the caller intends to do with it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkFillFormDraft(fileId: String, checkFillFormDraft: CheckFillFormDraft, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await checkFillFormDraftWithRequestBuilder(fileId: fileId, checkFillFormDraft: checkFillFormDraft, apiConfiguration: apiConfiguration).execute().body
+    open class func checkFillFormDraft(fileId: String, checkFillFormDraftRequest: CheckFillFormDraftRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await checkFillFormDraftWithRequestBuilder(fileId: fileId, checkFillFormDraftRequest: checkFillFormDraftRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -475,24 +469,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The identifier of the PDF form to open, as it is returned by a room listing such as  `GET api/2.0/files/{folderId}`. The identifier of an already created draft is accepted here as well. 
-     - parameter checkFillFormDraft: (body) The revision of the form to open and what the caller intends to do with it. 
+     - parameter checkFillFormDraftRequest: (body) The revision of the form to open and what the caller intends to do with it. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func checkFillFormDraftWithRequestBuilder(fileId: String, checkFillFormDraft: CheckFillFormDraft, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func checkFillFormDraftWithRequestBuilder(fileId: String, checkFillFormDraftRequest: CheckFillFormDraftRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         var localVariablePath = "/api/2.0/files/masterform/{fileId}/checkfillformdraft"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: checkFillFormDraft, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: checkFillFormDraftRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -507,13 +500,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for copyFileAs Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-file-as/
-     - parameter fileId: (path) The file to copy.      - parameter copyAsJsonElement: (body) The title, the destination and the conversion options of the copy. 
+     - parameter fileId: (path) The file to copy.      - parameter copyAsRequest: (body) The title, the destination and the conversion options of the copy. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileEntryBaseWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func copyFileAs(fileId: Int, copyAsJsonElement: CopyAsJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseWrapper {
-        return try await copyFileAsWithRequestBuilder(fileId: fileId, copyAsJsonElement: copyAsJsonElement, apiConfiguration: apiConfiguration).execute().body
+    open class func copyFileAs(fileId: Int, copyAsRequest: CopyAsRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseWrapper {
+        return try await copyFileAsWithRequestBuilder(fileId: fileId, copyAsRequest: copyAsRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -545,24 +538,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to copy. 
-     - parameter copyAsJsonElement: (body) The title, the destination and the conversion options of the copy. 
+     - parameter copyAsRequest: (body) The title, the destination and the conversion options of the copy. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseWrapper> 
      */
-    open class func copyFileAsWithRequestBuilder(fileId: Int, copyAsJsonElement: CopyAsJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseWrapper> {
+    open class func copyFileAsWithRequestBuilder(fileId: Int, copyAsRequest: CopyAsRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/copyas"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: copyAsJsonElement, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: copyAsRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -577,13 +569,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for copyFileAs Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/copy-file-as/
-     - parameter fileId: (path) The file to copy.      - parameter copyAsJsonElement: (body) The title, the destination and the conversion options of the copy. 
+     - parameter fileId: (path) The file to copy.      - parameter copyAsRequest: (body) The title, the destination and the conversion options of the copy. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileEntryBaseWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func copyFileAs(fileId: String, copyAsJsonElement: CopyAsJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseWrapper {
-        return try await copyFileAsWithRequestBuilder(fileId: fileId, copyAsJsonElement: copyAsJsonElement, apiConfiguration: apiConfiguration).execute().body
+    open class func copyFileAs(fileId: String, copyAsRequest: CopyAsRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseWrapper {
+        return try await copyFileAsWithRequestBuilder(fileId: fileId, copyAsRequest: copyAsRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -615,24 +607,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to copy. 
-     - parameter copyAsJsonElement: (body) The title, the destination and the conversion options of the copy. 
+     - parameter copyAsRequest: (body) The title, the destination and the conversion options of the copy. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseWrapper> 
      */
-    open class func copyFileAsWithRequestBuilder(fileId: String, copyAsJsonElement: CopyAsJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseWrapper> {
+    open class func copyFileAsWithRequestBuilder(fileId: String, copyAsRequest: CopyAsRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/copyas"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: copyAsJsonElement, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: copyAsRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -649,10 +640,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/
      - parameter fileId: (path) The file whose content the session will replace; take the id from a folder listing or from the file itself.      - parameter fileSize: (query) The number of bytes the new content will take. It is checked against the portal limit for chunked uploads  before the session opens, and a session left at 0 takes the whole content in a single part. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ChunkedUploadSessionResponseWrapperWrapper
+     - returns: ChunkedUploadSessionResultWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createEditSession(fileId: Int, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResponseWrapperWrapper {
+    open class func createEditSession(fileId: Int, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ChunkedUploadSessionResultWrapper {
         return try await createEditSessionWithRequestBuilder(fileId: fileId, fileSize: fileSize, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -687,9 +678,9 @@ open class {{{{x-classname}}}} {
      - parameter fileId: (path) The file whose content the session will replace; take the id from a folder listing or from the file itself. 
      - parameter fileSize: (query) The number of bytes the new content will take. It is checked against the portal limit for chunked uploads  before the session opens, and a session left at 0 takes the whole content in a single part. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ChunkedUploadSessionResponseWrapperWrapper> 
+     - returns: RequestBuilder<ChunkedUploadSessionResultWrapper> 
      */
-    open class func createEditSessionWithRequestBuilder(fileId: Int, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResponseWrapperWrapper> {
+    open class func createEditSessionWithRequestBuilder(fileId: Int, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ChunkedUploadSessionResultWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/edit_session"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -697,19 +688,19 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "fileSize": (wrappedValue: fileSize?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResponseWrapperWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ChunkedUploadSessionResultWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -722,10 +713,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-edit-session/
      - parameter fileId: (path) The file whose content the session will replace; take the id from a folder listing or from the file itself.      - parameter fileSize: (query) The number of bytes the new content will take. It is checked against the portal limit for chunked uploads  before the session opens, and a session left at 0 takes the whole content in a single part. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ThirdPartyChunkedUploadSessionResponseWrapperWrapper
+     - returns: ThirdPartyChunkedUploadSessionResultWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createEditSession(fileId: String, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionResponseWrapperWrapper {
+    open class func createEditSession(fileId: String, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyChunkedUploadSessionResultWrapper {
         return try await createEditSessionWithRequestBuilder(fileId: fileId, fileSize: fileSize, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -760,9 +751,9 @@ open class {{{{x-classname}}}} {
      - parameter fileId: (path) The file whose content the session will replace; take the id from a folder listing or from the file itself. 
      - parameter fileSize: (query) The number of bytes the new content will take. It is checked against the portal limit for chunked uploads  before the session opens, and a session left at 0 takes the whole content in a single part. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionResponseWrapperWrapper> 
+     - returns: RequestBuilder<ThirdPartyChunkedUploadSessionResultWrapper> 
      */
-    open class func createEditSessionWithRequestBuilder(fileId: String, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionResponseWrapperWrapper> {
+    open class func createEditSessionWithRequestBuilder(fileId: String, fileSize: Int64? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyChunkedUploadSessionResultWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/edit_session"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -770,19 +761,19 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "fileSize": (wrappedValue: fileSize?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionResponseWrapperWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<ThirdPartyChunkedUploadSessionResultWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -793,13 +784,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/
-     - parameter folderId: (path) The folder the file is created in.      - parameter createFileJsonElement: (body) The title of the new file and the source of its content. 
+     - parameter folderId: (path) The folder the file is created in.      - parameter createFileRequest: (body) The title of the new file and the source of its content. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createFile(folderId: Int, createFileJsonElement: CreateFileJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await createFileWithRequestBuilder(folderId: folderId, createFileJsonElement: createFileJsonElement, apiConfiguration: apiConfiguration).execute().body
+    open class func createFile(folderId: Int, createFileRequest: CreateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await createFileWithRequestBuilder(folderId: folderId, createFileRequest: createFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -831,24 +822,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the file is created in. 
-     - parameter createFileJsonElement: (body) The title of the new file and the source of its content. 
+     - parameter createFileRequest: (body) The title of the new file and the source of its content. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func createFileWithRequestBuilder(folderId: Int, createFileJsonElement: CreateFileJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func createFileWithRequestBuilder(folderId: Int, createFileRequest: CreateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/file"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFileJsonElement, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -863,13 +853,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file/
-     - parameter folderId: (path) The folder the file is created in.      - parameter createFileJsonElement: (body) The title of the new file and the source of its content. 
+     - parameter folderId: (path) The folder the file is created in.      - parameter createFileRequest: (body) The title of the new file and the source of its content. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createFile(folderId: String, createFileJsonElement: CreateFileJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
-        return try await createFileWithRequestBuilder(folderId: folderId, createFileJsonElement: createFileJsonElement, apiConfiguration: apiConfiguration).execute().body
+    open class func createFile(folderId: String, createFileRequest: CreateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
+        return try await createFileWithRequestBuilder(folderId: folderId, createFileRequest: createFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -901,24 +891,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the file is created in. 
-     - parameter createFileJsonElement: (body) The title of the new file and the source of its content. 
+     - parameter createFileRequest: (body) The title of the new file and the source of its content. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileWrapper> 
      */
-    open class func createFileWithRequestBuilder(folderId: String, createFileJsonElement: CreateFileJsonElement, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
+    open class func createFileWithRequestBuilder(folderId: String, createFileRequest: CreateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/file"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFileJsonElement, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -933,13 +922,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createFileInMyDocuments Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-file-in-my-documents/
-     - parameter createFileJsonElement: (body)  (optional)
+     - parameter createFileRequest: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createFileInMyDocuments(createFileJsonElement: CreateFileJsonElement? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await createFileInMyDocumentsWithRequestBuilder(createFileJsonElement: createFileJsonElement, apiConfiguration: apiConfiguration).execute().body
+    open class func createFileInMyDocuments(createFileRequest: CreateFileRequest? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await createFileInMyDocumentsWithRequestBuilder(createFileRequest: createFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -970,21 +959,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter createFileJsonElement: (body)  (optional)
+     - parameter createFileRequest: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func createFileInMyDocumentsWithRequestBuilder(createFileJsonElement: CreateFileJsonElement? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func createFileInMyDocumentsWithRequestBuilder(createFileRequest: CreateFileRequest? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         let localVariablePath = "/api/2.0/files/@my/file"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFileJsonElement, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1055,7 +1043,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1125,7 +1112,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1139,13 +1125,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createHtmlFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file/
-     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createHtmlFile(folderId: Int, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await createHtmlFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile, apiConfiguration: apiConfiguration).execute().body
+    open class func createHtmlFile(folderId: Int, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await createHtmlFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFileRequest: createTextOrHtmlFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1177,24 +1163,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the file is created in. 
-     - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func createHtmlFileWithRequestBuilder(folderId: Int, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func createHtmlFileWithRequestBuilder(folderId: Int, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/html"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1209,13 +1194,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createHtmlFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file/
-     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createHtmlFile(folderId: String, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
-        return try await createHtmlFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile, apiConfiguration: apiConfiguration).execute().body
+    open class func createHtmlFile(folderId: String, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
+        return try await createHtmlFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFileRequest: createTextOrHtmlFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1247,24 +1232,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the file is created in. 
-     - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileWrapper> 
      */
-    open class func createHtmlFileWithRequestBuilder(folderId: String, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
+    open class func createHtmlFileWithRequestBuilder(folderId: String, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/html"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1279,13 +1263,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createHtmlFileInMyDocuments Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-html-file-in-my-documents/
-     - parameter createTextOrHtmlFile: (body)  (optional)
+     - parameter createTextOrHtmlFileRequest: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createHtmlFileInMyDocuments(createTextOrHtmlFile: CreateTextOrHtmlFile? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await createHtmlFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFile: createTextOrHtmlFile, apiConfiguration: apiConfiguration).execute().body
+    open class func createHtmlFileInMyDocuments(createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await createHtmlFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFileRequest: createTextOrHtmlFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1316,21 +1300,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter createTextOrHtmlFile: (body)  (optional)
+     - parameter createTextOrHtmlFileRequest: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func createHtmlFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFile: CreateTextOrHtmlFile? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func createHtmlFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         let localVariablePath = "/api/2.0/files/@my/html"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1345,13 +1328,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createTextFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file/
-     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createTextFile(folderId: Int, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await createTextFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile, apiConfiguration: apiConfiguration).execute().body
+    open class func createTextFile(folderId: Int, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await createTextFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFileRequest: createTextOrHtmlFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1383,24 +1366,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the file is created in. 
-     - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func createTextFileWithRequestBuilder(folderId: Int, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func createTextFileWithRequestBuilder(folderId: Int, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/text"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1415,13 +1397,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createTextFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file/
-     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter folderId: (path) The folder the file is created in.      - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createTextFile(folderId: String, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
-        return try await createTextFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFile: createTextOrHtmlFile, apiConfiguration: apiConfiguration).execute().body
+    open class func createTextFile(folderId: String, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
+        return try await createTextFileWithRequestBuilder(folderId: folderId, createTextOrHtmlFileRequest: createTextOrHtmlFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1453,24 +1435,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter folderId: (path) The folder the file is created in. 
-     - parameter createTextOrHtmlFile: (body) The title, the content and the collision behaviour of the new file. 
+     - parameter createTextOrHtmlFileRequest: (body) The title, the content and the collision behaviour of the new file. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileWrapper> 
      */
-    open class func createTextFileWithRequestBuilder(folderId: String, createTextOrHtmlFile: CreateTextOrHtmlFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
+    open class func createTextFileWithRequestBuilder(folderId: String, createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
         var localVariablePath = "/api/2.0/files/{folderId}/text"
         let folderIdPreEscape = "\(APIHelper.mapValueToPathItem(folderId))"
         let folderIdPostEscape = folderIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{folderId}", with: folderIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1485,13 +1466,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for createTextFileInMyDocuments Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-text-file-in-my-documents/
-     - parameter createTextOrHtmlFile: (body)  (optional)
+     - parameter createTextOrHtmlFileRequest: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createTextFileInMyDocuments(createTextOrHtmlFile: CreateTextOrHtmlFile? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await createTextFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFile: createTextOrHtmlFile, apiConfiguration: apiConfiguration).execute().body
+    open class func createTextFileInMyDocuments(createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await createTextFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFileRequest: createTextOrHtmlFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1522,21 +1503,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter createTextOrHtmlFile: (body)  (optional)
+     - parameter createTextOrHtmlFileRequest: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func createTextFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFile: CreateTextOrHtmlFile? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func createTextFileInMyDocumentsWithRequestBuilder(createTextOrHtmlFileRequest: CreateTextOrHtmlFileRequest? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         let localVariablePath = "/api/2.0/files/@my/text"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createTextOrHtmlFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1603,7 +1583,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ObjectArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1617,13 +1596,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for deleteFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file/
-     - parameter fileId: (path) The file to delete.      - parameter delete: (body) When and how the file is deleted.      - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
+     - parameter fileId: (path) The file to delete.      - parameter deleteFileRequest: (body) When and how the file is deleted.      - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileOperationArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteFile(fileId: Int, delete: Delete, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
-        return try await deleteFileWithRequestBuilder(fileId: fileId, delete: delete, returnSingleOperation: returnSingleOperation, apiConfiguration: apiConfiguration).execute().body
+    open class func deleteFile(fileId: Int, deleteFileRequest: DeleteFileRequest, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
+        return try await deleteFileWithRequestBuilder(fileId: fileId, deleteFileRequest: deleteFileRequest, returnSingleOperation: returnSingleOperation, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1655,28 +1634,28 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to delete. 
-     - parameter delete: (body) When and how the file is deleted. 
+     - parameter deleteFileRequest: (body) When and how the file is deleted. 
      - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
      */
-    open class func deleteFileWithRequestBuilder(fileId: Int, delete: Delete, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
+    open class func deleteFileWithRequestBuilder(fileId: Int, deleteFileRequest: DeleteFileRequest, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: delete, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deleteFileRequest, codableHelper: apiConfiguration.codableHelper)
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "returnSingleOperation": (wrappedValue: returnSingleOperation?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "ReturnSingleOperation": (wrappedValue: returnSingleOperation?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1691,13 +1670,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for deleteFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-file/
-     - parameter fileId: (path) The file to delete.      - parameter delete: (body) When and how the file is deleted.      - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
+     - parameter fileId: (path) The file to delete.      - parameter deleteFileRequest: (body) When and how the file is deleted.      - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileOperationArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteFile(fileId: String, delete: Delete, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
-        return try await deleteFileWithRequestBuilder(fileId: fileId, delete: delete, returnSingleOperation: returnSingleOperation, apiConfiguration: apiConfiguration).execute().body
+    open class func deleteFile(fileId: String, deleteFileRequest: DeleteFileRequest, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileOperationArrayWrapper {
+        return try await deleteFileWithRequestBuilder(fileId: fileId, deleteFileRequest: deleteFileRequest, returnSingleOperation: returnSingleOperation, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1729,28 +1708,28 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to delete. 
-     - parameter delete: (body) When and how the file is deleted. 
+     - parameter deleteFileRequest: (body) When and how the file is deleted. 
      - parameter returnSingleOperation: (query) Which operations the answer carries: `true` returns the operation this call started and nothing else, `false`  returns every operation of the same kind that the caller has running or unread. When nothing was queued, which  happens for an empty selection, `true` falls back to the full list. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileOperationArrayWrapper> 
      */
-    open class func deleteFileWithRequestBuilder(fileId: String, delete: Delete, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
+    open class func deleteFileWithRequestBuilder(fileId: String, deleteFileRequest: DeleteFileRequest, returnSingleOperation: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileOperationArrayWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: delete, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deleteFileRequest, codableHelper: apiConfiguration.codableHelper)
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "returnSingleOperation": (wrappedValue: returnSingleOperation?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "ReturnSingleOperation": (wrappedValue: returnSingleOperation?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1782,7 +1761,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-recent/
      
      - DELETE /api/2.0/files/recent
-     - Removes the listed entries from the Recent section of the calling account, the history of opened files that  `GET api/2.0/files/recent` returns. Nothing is deleted from storage and no other member's history is touched;  access to the entries is not checked at all, so a file the caller can no longer read can still be cleared from  their own history. Only numeric file ids are honoured, so a file on a connected third-party account cannot be  cleared this way, and folder ids are accepted but change nothing because the section lists files only. The  answer carries no body and reports nothing about how many entries were found: an empty request and an id that  was never in the section are accepted alike. Repeating the call is safe, but an entry returns the next time  the file is opened or `POST api/2.0/files/file/{fileId}/recent` is called for it. To hide the whole section  instead, call `PUT api/2.0/files/displayrecent`.
+     - Removes the listed entries from the Recent section of the calling account, the history of opened files that  `GET api/2.0/files/recent` returns. Nothing is deleted from storage and no other member's history is touched;  access to the entries is not checked at all, so a file the caller can no longer read can still be cleared from  their own history. A file on a connected third-party account is cleared by its string id too, but only while  the storage can still find it: the entry of a file removed from the storage stays in the history. Folder ids  are accepted but change nothing because the section lists files only. The answer carries no body and reports  nothing about how many entries were found: an empty request and an id that was never in the section are  accepted alike. Repeating the call is safe, but an entry returns the next time the file is opened or  `POST api/2.0/files/file/{fileId}/recent` is called for it. To hide the whole section instead, call  `PUT api/2.0/files/displayrecent`.
      - BASIC:
        - type: http
        - name: Basic
@@ -1817,7 +1796,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -1831,13 +1809,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for deleteTemplates Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-templates/
-     - parameter requestBody: (body) The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric. (optional)
+     - parameter deleteTemplateFilesRequestDto: (body) The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: BooleanWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteTemplates(requestBody: [Int]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
-        return try await deleteTemplatesWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func deleteTemplates(deleteTemplateFilesRequestDto: [Int]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper {
+        return try await deleteTemplatesWithRequestBuilder(deleteTemplateFilesRequestDto: deleteTemplateFilesRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1868,21 +1846,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter requestBody: (body) The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric. (optional)
+     - parameter deleteTemplateFilesRequestDto: (body) The files to take off the template list, by id; this array is the whole request body. Only a file stored in  the portal itself can be a template, which is why an id here is always numeric. (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<BooleanWrapper> 
      */
-    open class func deleteTemplatesWithRequestBuilder(requestBody: [Int]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
+    open class func deleteTemplatesWithRequestBuilder(deleteTemplateFilesRequestDto: [Int]? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<BooleanWrapper> {
         let localVariablePath = "/api/2.0/files/templates"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deleteTemplateFilesRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1952,7 +1929,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<XlsxReportResponseWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2020,7 +1996,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2090,7 +2065,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FormRoleArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2154,15 +2128,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2227,15 +2201,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2305,7 +2279,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<EditHistoryArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2373,7 +2346,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2443,7 +2415,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEncryptionInfoWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2512,7 +2483,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEncryptionInfoWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -2579,18 +2549,18 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "fromDate": (wrappedValue: fromDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "toDate": (wrappedValue: toDate?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2655,15 +2625,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2728,15 +2698,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2802,16 +2772,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2877,16 +2847,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -2952,16 +2922,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3027,16 +2997,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3106,7 +3076,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3175,7 +3144,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ThirdPartyFileArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3235,15 +3203,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "fillingSessionId": (wrappedValue: fillingSessionId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3313,7 +3281,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FormSubmissionsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3381,7 +3348,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3451,7 +3417,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileLinkWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3519,7 +3484,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3589,7 +3553,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3605,10 +3568,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-protected-file-users/
      - parameter fileId: (path) The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: MentionWrapperArrayWrapper
+     - returns: MentionArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getProtectedFileUsers(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MentionWrapperArrayWrapper {
+    open class func getProtectedFileUsers(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MentionArrayWrapper {
         return try await getProtectedFileUsersWithRequestBuilder(fileId: fileId, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -3642,9 +3605,9 @@ open class {{{{x-classname}}}} {
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<MentionWrapperArrayWrapper> 
+     - returns: RequestBuilder<MentionArrayWrapper> 
      */
-    open class func getProtectedFileUsersWithRequestBuilder(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MentionWrapperArrayWrapper> {
+    open class func getProtectedFileUsersWithRequestBuilder(fileId: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MentionArrayWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/protectusers"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -3658,10 +3621,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<MentionWrapperArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<MentionArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -3674,10 +3636,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-protected-file-users/
      - parameter fileId: (path) The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: MentionWrapperArrayWrapper
+     - returns: MentionArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getProtectedFileUsers(fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MentionWrapperArrayWrapper {
+    open class func getProtectedFileUsers(fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> MentionArrayWrapper {
         return try await getProtectedFileUsersWithRequestBuilder(fileId: fileId, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -3711,9 +3673,9 @@ open class {{{{x-classname}}}} {
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file the operation addresses. Take the identifier from a listing such as `GET api/2.0/files/{folderId}`: a  file stored on the portal is numbered, while a file in a connected third-party account is named by an opaque  string. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<MentionWrapperArrayWrapper> 
+     - returns: RequestBuilder<MentionArrayWrapper> 
      */
-    open class func getProtectedFileUsersWithRequestBuilder(fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MentionWrapperArrayWrapper> {
+    open class func getProtectedFileUsersWithRequestBuilder(fileId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<MentionArrayWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/protectusers"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -3727,10 +3689,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<MentionWrapperArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<MentionArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -3792,7 +3753,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -3862,7 +3822,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<DocumentBuilderTaskWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -3930,7 +3889,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4000,7 +3958,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -4014,13 +3971,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for lockFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/lock-file/
-     - parameter fileId: (path) The file to lock or unlock.      - parameter lockFileParameters: (body) The lock state to reach. 
+     - parameter fileId: (path) The file to lock or unlock.      - parameter lockFileRequest: (body) The lock state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func lockFile(fileId: Int, lockFileParameters: LockFileParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await lockFileWithRequestBuilder(fileId: fileId, lockFileParameters: lockFileParameters, apiConfiguration: apiConfiguration).execute().body
+    open class func lockFile(fileId: Int, lockFileRequest: LockFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await lockFileWithRequestBuilder(fileId: fileId, lockFileRequest: lockFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -4052,24 +4009,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to lock or unlock. 
-     - parameter lockFileParameters: (body) The lock state to reach. 
+     - parameter lockFileRequest: (body) The lock state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func lockFileWithRequestBuilder(fileId: Int, lockFileParameters: LockFileParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func lockFileWithRequestBuilder(fileId: Int, lockFileRequest: LockFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/lock"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: lockFileParameters, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: lockFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4084,13 +4040,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for lockFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/lock-file/
-     - parameter fileId: (path) The file to lock or unlock.      - parameter lockFileParameters: (body) The lock state to reach. 
+     - parameter fileId: (path) The file to lock or unlock.      - parameter lockFileRequest: (body) The lock state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func lockFile(fileId: String, lockFileParameters: LockFileParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
-        return try await lockFileWithRequestBuilder(fileId: fileId, lockFileParameters: lockFileParameters, apiConfiguration: apiConfiguration).execute().body
+    open class func lockFile(fileId: String, lockFileRequest: LockFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
+        return try await lockFileWithRequestBuilder(fileId: fileId, lockFileRequest: lockFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -4122,24 +4078,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to lock or unlock. 
-     - parameter lockFileParameters: (body) The lock state to reach. 
+     - parameter lockFileRequest: (body) The lock state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileWrapper> 
      */
-    open class func lockFileWithRequestBuilder(fileId: String, lockFileParameters: LockFileParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
+    open class func lockFileWithRequestBuilder(fileId: String, lockFileRequest: LockFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/lock"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: lockFileParameters, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: lockFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4210,7 +4165,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -4278,19 +4232,19 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "view": (wrappedValue: view?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "editorType": (wrappedValue: editorType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "edit": (wrappedValue: edit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "fill": (wrappedValue: fill?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4359,19 +4313,19 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "view": (wrappedValue: view?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "editorType": (wrappedValue: editorType?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "edit": (wrappedValue: edit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "fill": (wrappedValue: fill?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4437,16 +4391,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "url": (wrappedValue: url?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4512,16 +4466,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "version": (wrappedValue: version?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "url": (wrappedValue: url?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4588,23 +4542,23 @@ open class {{{{x-classname}}}} {
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "FileExtension": fileExtension?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Forcesave": forcesave?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "fileExtension": fileExtension?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "forcesave": forcesave?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
         let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "downloadUri": (wrappedValue: downloadUri?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "DownloadUri": (wrappedValue: downloadUri?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4671,23 +4625,23 @@ open class {{{{x-classname}}}} {
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableFormParams: [String: (any Sendable)?] = [
-            "FileExtension": fileExtension?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "File": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
-            "Forcesave": forcesave?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "fileExtension": fileExtension?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "file": file?.asParameter(codableHelper: apiConfiguration.codableHelper),
+            "forcesave": forcesave?.asParameter(codableHelper: apiConfiguration.codableHelper),
         ]
 
         let localVariableNonNullParameters = APIHelper.rejectNil(localVariableFormParams)
         let localVariableParameters = APIHelper.convertBoolToString(localVariableNonNullParameters)
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "downloadUri": (wrappedValue: downloadUri?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "DownloadUri": (wrappedValue: downloadUri?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "multipart/form-data",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4702,13 +4656,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for saveFileAsPdf Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-file-as-pdf/
-     - parameter id: (path) The file to convert; it is left untouched.      - parameter saveAsPdf: (body) The destination folder and the name of the PDF. 
+     - parameter id: (path) The file to convert; it is left untouched.      - parameter saveAsPdfRequest: (body) The destination folder and the name of the PDF. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func saveFileAsPdf(id: Int, saveAsPdf: SaveAsPdf, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await saveFileAsPdfWithRequestBuilder(id: id, saveAsPdf: saveAsPdf, apiConfiguration: apiConfiguration).execute().body
+    open class func saveFileAsPdf(id: Int, saveAsPdfRequest: SaveAsPdfRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await saveFileAsPdfWithRequestBuilder(id: id, saveAsPdfRequest: saveAsPdfRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -4740,24 +4694,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter id: (path) The file to convert; it is left untouched. 
-     - parameter saveAsPdf: (body) The destination folder and the name of the PDF. 
+     - parameter saveAsPdfRequest: (body) The destination folder and the name of the PDF. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func saveFileAsPdfWithRequestBuilder(id: Int, saveAsPdf: SaveAsPdf, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func saveFileAsPdfWithRequestBuilder(id: Int, saveAsPdfRequest: SaveAsPdfRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{id}/saveaspdf"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: saveAsPdf, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: saveAsPdfRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4772,13 +4725,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for saveFileAsPdf Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-file-as-pdf/
-     - parameter id: (path) The file to convert; it is left untouched.      - parameter thirdPartySaveAsPdf: (body) The destination folder and the name of the PDF. 
+     - parameter id: (path) The file to convert; it is left untouched.      - parameter thirdPartySaveAsPdfRequest: (body) The destination folder and the name of the PDF. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func saveFileAsPdf(id: String, thirdPartySaveAsPdf: ThirdPartySaveAsPdf, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
-        return try await saveFileAsPdfWithRequestBuilder(id: id, thirdPartySaveAsPdf: thirdPartySaveAsPdf, apiConfiguration: apiConfiguration).execute().body
+    open class func saveFileAsPdf(id: String, thirdPartySaveAsPdfRequest: ThirdPartySaveAsPdfRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
+        return try await saveFileAsPdfWithRequestBuilder(id: id, thirdPartySaveAsPdfRequest: thirdPartySaveAsPdfRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -4810,24 +4763,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter id: (path) The file to convert; it is left untouched. 
-     - parameter thirdPartySaveAsPdf: (body) The destination folder and the name of the PDF. 
+     - parameter thirdPartySaveAsPdfRequest: (body) The destination folder and the name of the PDF. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileWrapper> 
      */
-    open class func saveFileAsPdfWithRequestBuilder(id: String, thirdPartySaveAsPdf: ThirdPartySaveAsPdf, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
+    open class func saveFileAsPdfWithRequestBuilder(id: String, thirdPartySaveAsPdfRequest: ThirdPartySaveAsPdfRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{id}/saveaspdf"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: thirdPartySaveAsPdf, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: thirdPartySaveAsPdfRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4898,7 +4850,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -4912,13 +4863,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setCustomFilterTag Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-custom-filter-tag/
-     - parameter fileId: (path) The spreadsheet whose Custom Filter mode is switched.      - parameter customFilterParameters: (body) The Custom Filter state to reach. 
+     - parameter fileId: (path) The spreadsheet whose Custom Filter mode is switched.      - parameter customFilterRequest: (body) The Custom Filter state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setCustomFilterTag(fileId: Int, customFilterParameters: CustomFilterParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await setCustomFilterTagWithRequestBuilder(fileId: fileId, customFilterParameters: customFilterParameters, apiConfiguration: apiConfiguration).execute().body
+    open class func setCustomFilterTag(fileId: Int, customFilterRequest: CustomFilterRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await setCustomFilterTagWithRequestBuilder(fileId: fileId, customFilterRequest: customFilterRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -4950,24 +4901,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The spreadsheet whose Custom Filter mode is switched. 
-     - parameter customFilterParameters: (body) The Custom Filter state to reach. 
+     - parameter customFilterRequest: (body) The Custom Filter state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func setCustomFilterTagWithRequestBuilder(fileId: Int, customFilterParameters: CustomFilterParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func setCustomFilterTagWithRequestBuilder(fileId: Int, customFilterRequest: CustomFilterRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/customfilter"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: customFilterParameters, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: customFilterRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -4982,13 +4932,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setCustomFilterTag Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-custom-filter-tag/
-     - parameter fileId: (path) The spreadsheet whose Custom Filter mode is switched.      - parameter customFilterParameters: (body) The Custom Filter state to reach. 
+     - parameter fileId: (path) The spreadsheet whose Custom Filter mode is switched.      - parameter customFilterRequest: (body) The Custom Filter state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setCustomFilterTag(fileId: String, customFilterParameters: CustomFilterParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
-        return try await setCustomFilterTagWithRequestBuilder(fileId: fileId, customFilterParameters: customFilterParameters, apiConfiguration: apiConfiguration).execute().body
+    open class func setCustomFilterTag(fileId: String, customFilterRequest: CustomFilterRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
+        return try await setCustomFilterTagWithRequestBuilder(fileId: fileId, customFilterRequest: customFilterRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -5020,24 +4970,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The spreadsheet whose Custom Filter mode is switched. 
-     - parameter customFilterParameters: (body) The Custom Filter state to reach. 
+     - parameter customFilterRequest: (body) The Custom Filter state to reach. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileWrapper> 
      */
-    open class func setCustomFilterTagWithRequestBuilder(fileId: String, customFilterParameters: CustomFilterParameters, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
+    open class func setCustomFilterTagWithRequestBuilder(fileId: String, customFilterRequest: CustomFilterRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/customfilter"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: customFilterParameters, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: customFilterRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -5108,7 +5057,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -5177,7 +5125,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -5248,7 +5195,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileShareWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -5317,7 +5263,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -5388,7 +5333,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -5458,7 +5402,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ThirdPartyFileWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -5524,7 +5467,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileEntryArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -5538,13 +5480,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for startEditFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/start-edit-file/
-     - parameter fileId: (path) The file to open the editing session on. The caller needs edit access to it.      - parameter startEdit: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
+     - parameter fileId: (path) The file to open the editing session on. The caller needs edit access to it.      - parameter startEditRequest: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func startEditFile(fileId: Int, startEdit: StartEdit, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await startEditFileWithRequestBuilder(fileId: fileId, startEdit: startEdit, apiConfiguration: apiConfiguration).execute().body
+    open class func startEditFile(fileId: Int, startEditRequest: StartEditRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await startEditFileWithRequestBuilder(fileId: fileId, startEditRequest: startEditRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -5576,24 +5518,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to open the editing session on. The caller needs edit access to it. 
-     - parameter startEdit: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
+     - parameter startEditRequest: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func startEditFileWithRequestBuilder(fileId: Int, startEdit: StartEdit, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func startEditFileWithRequestBuilder(fileId: Int, startEditRequest: StartEditRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/startedit"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: startEdit, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: startEditRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -5608,13 +5549,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for startEditFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/start-edit-file/
-     - parameter fileId: (path) The file to open the editing session on. The caller needs edit access to it.      - parameter startEdit: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
+     - parameter fileId: (path) The file to open the editing session on. The caller needs edit access to it.      - parameter startEditRequest: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func startEditFile(fileId: String, startEdit: StartEdit, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await startEditFileWithRequestBuilder(fileId: fileId, startEdit: startEdit, apiConfiguration: apiConfiguration).execute().body
+    open class func startEditFile(fileId: String, startEditRequest: StartEditRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await startEditFileWithRequestBuilder(fileId: fileId, startEditRequest: startEditRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -5646,24 +5587,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to open the editing session on. The caller needs edit access to it. 
-     - parameter startEdit: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
+     - parameter startEditRequest: (body) The session options. The body is required even when it only carries the default, so send an empty object to  open an ordinary co-editing session. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func startEditFileWithRequestBuilder(fileId: String, startEdit: StartEdit, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func startEditFileWithRequestBuilder(fileId: String, startEditRequest: StartEditRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}/startedit"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: startEdit, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: startEditRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -5733,7 +5673,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<FileWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -5802,7 +5741,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<ThirdPartyFileWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -5866,15 +5804,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "favorite": (wrappedValue: favorite?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -5939,15 +5877,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "favorite": (wrappedValue: favorite?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -6014,17 +5952,17 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "tabId": (wrappedValue: tabId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "docKeyForTrack": (wrappedValue: docKeyForTrack?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "isFinish": (wrappedValue: isFinish?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -6091,17 +6029,17 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "tabId": (wrappedValue: tabId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "docKeyForTrack": (wrappedValue: docKeyForTrack?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "isFinish": (wrappedValue: isFinish?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -6116,13 +6054,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file/
-     - parameter fileId: (path) The file to update.      - parameter updateFile: (body) The new title and the version to restore. 
+     - parameter fileId: (path) The file to update.      - parameter updateFileRequest: (body) The new title and the version to restore. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: FileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateFile(fileId: Int, updateFile: UpdateFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
-        return try await updateFileWithRequestBuilder(fileId: fileId, updateFile: updateFile, apiConfiguration: apiConfiguration).execute().body
+    open class func updateFile(fileId: Int, updateFileRequest: UpdateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileWrapper {
+        return try await updateFileWithRequestBuilder(fileId: fileId, updateFileRequest: updateFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -6154,24 +6092,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to update. 
-     - parameter updateFile: (body) The new title and the version to restore. 
+     - parameter updateFileRequest: (body) The new title and the version to restore. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileWrapper> 
      */
-    open class func updateFileWithRequestBuilder(fileId: Int, updateFile: UpdateFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
+    open class func updateFileWithRequestBuilder(fileId: Int, updateFileRequest: UpdateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -6186,13 +6123,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateFile Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-file/
-     - parameter fileId: (path) The file to update.      - parameter updateFile: (body) The new title and the version to restore. 
+     - parameter fileId: (path) The file to update.      - parameter updateFileRequest: (body) The new title and the version to restore. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ThirdPartyFileWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateFile(fileId: String, updateFile: UpdateFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
-        return try await updateFileWithRequestBuilder(fileId: fileId, updateFile: updateFile, apiConfiguration: apiConfiguration).execute().body
+    open class func updateFile(fileId: String, updateFileRequest: UpdateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ThirdPartyFileWrapper {
+        return try await updateFileWithRequestBuilder(fileId: fileId, updateFileRequest: updateFileRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -6224,24 +6161,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter fileId: (path) The file to update. 
-     - parameter updateFile: (body) The new title and the version to restore. 
+     - parameter updateFileRequest: (body) The new title and the version to restore. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ThirdPartyFileWrapper> 
      */
-    open class func updateFileWithRequestBuilder(fileId: String, updateFile: UpdateFile, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
+    open class func updateFileWithRequestBuilder(fileId: String, updateFileRequest: UpdateFileRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ThirdPartyFileWrapper> {
         var localVariablePath = "/api/2.0/files/file/{fileId}"
         let fileIdPreEscape = "\(APIHelper.mapValueToPathItem(fileId))"
         let fileIdPostEscape = fileIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{fileId}", with: fileIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateFile, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateFileRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

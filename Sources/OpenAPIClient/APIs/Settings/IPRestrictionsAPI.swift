@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsIPRestrictionsAPIApi {
 
     /**
      Get IP restrictions
@@ -25,10 +25,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-ip-restrictions/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: IPRestrictionArrayWrapper
+     - returns: IpRestrictionArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getIpRestrictions(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> IPRestrictionArrayWrapper {
+    open class func getIpRestrictions(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> IpRestrictionArrayWrapper {
         return try await getIpRestrictionsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -61,9 +61,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<IPRestrictionArrayWrapper> 
+     - returns: RequestBuilder<IpRestrictionArrayWrapper> 
      */
-    open class func getIpRestrictionsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<IPRestrictionArrayWrapper> {
+    open class func getIpRestrictionsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<IpRestrictionArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/iprestrictions"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -74,10 +74,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<IPRestrictionArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<IpRestrictionArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -90,10 +89,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/read-ip-restrictions-settings/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: IPRestrictionsSettingsWrapper
+     - returns: IpRestrictionsSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func readIpRestrictionsSettings(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> IPRestrictionsSettingsWrapper {
+    open class func readIpRestrictionsSettings(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> IpRestrictionsSettingsWrapper {
         return try await readIpRestrictionsSettingsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -126,9 +125,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<IPRestrictionsSettingsWrapper> 
+     - returns: RequestBuilder<IpRestrictionsSettingsWrapper> 
      */
-    open class func readIpRestrictionsSettingsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<IPRestrictionsSettingsWrapper> {
+    open class func readIpRestrictionsSettingsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<IpRestrictionsSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/iprestrictions/settings"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -139,10 +138,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<IPRestrictionsSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<IpRestrictionsSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -204,7 +202,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -270,7 +267,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

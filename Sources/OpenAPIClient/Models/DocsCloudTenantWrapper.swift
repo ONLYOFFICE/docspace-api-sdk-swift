@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the DocsCloudTenant object. */
+/** The successful API response containing the DocsCloudTenantDto object. */
 public struct DocsCloudTenantWrapper: Sendable, Codable, Hashable {
 
-    /** The DocsCloudTenant object returned by the operation. */
-    public var response: DocsCloudTenant?
+    /** The DocsCloudTenantDto object returned by the operation. */
+    public var response: DocsCloudTenantDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct DocsCloudTenantWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: DocsCloudTenant? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: DocsCloudTenantDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

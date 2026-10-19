@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **aiExportTextToDocx**
 ```swift
-    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, completion: @escaping (_ data: AiExportTextToDocx202Response?, _ error: Error?) -> Void)
+    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiExportTextToDocx202Response
 ```
 
 Queues a markdown export and answers 202 as soon as the job is accepted, without waiting for it. `title`, `content` and `folderId` are all required, and a `content` of only whitespace counts as missing even though it is not empty. `format` is optional and selects the output - `Docx` (the default), `Pdf`, or `Md`, which stores the markdown verbatim instead of converting it. The conversion runs in the AI worker, which saves the .docx into the target folder - an agent room resolves to its own result-storage subfolder - so there is nothing to poll here: completion arrives as the ordinary folder-modified socket event. This route accepts a body of up to 15 MB rather than the 100 KB the rest of the API allows, because a whole thread transcript is sent in one request.
@@ -35,18 +35,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiExportTextToDocxRequest = aiExportTextToDocx_request(title: "title_example", content: "content_example", folderId: aiExportTextToDocx_request_folderId()) // AiExportTextToDocxRequest | 
+let aiExportTextToDocxRequest = AiExportTextToDocxRequest(title: "title_example", content: "content_example", folderId: AiExportTextToDocxRequest_folderId()) // AiExportTextToDocxRequest | 
 
 // Start markdown export
-AIExportAPIApi.aiExportTextToDocx(aiExportTextToDocxRequest: aiExportTextToDocxRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIExportAPIApi.aiExportTextToDocx(aiExportTextToDocxRequest: aiExportTextToDocxRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

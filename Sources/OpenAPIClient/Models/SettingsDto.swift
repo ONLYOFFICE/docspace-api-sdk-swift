@@ -52,7 +52,7 @@ public struct SettingsDto: Sendable, Codable, Hashable {
     /** The token that authorizes the first-run setup wizard. It is handed out to anonymous callers only, and only  while the wizard has not been completed; once it has, the field stays empty for good. */
     public var wizardToken: String?
     /** The parameters for hashing a password in the client before it is sent - the salt, the iteration count and  the hash size. It is filled in for an anonymous caller and, for a signed-in one, only when  `withPassword=true` is asked for. Hash with exactly these parameters and send the result as  `passwordHash`, since the portal cannot reproduce the hash from a different set. */
-    public var passwordHash: PasswordHasher?
+    public var passwordHash: PasswordHashSettingsDto?
     /** The Firebase project a mobile or web client sends push registrations to. Filled in for a signed-in caller  only, and its own fields are empty strings on an installation that configures no Firebase project. */
     public var firebase: FirebaseDto?
     /** The product version of the portal, empty when the installation does not publish one. It is the version of  the server, not of this API, whose own version is fixed at 2.0. */
@@ -65,14 +65,14 @@ public struct SettingsDto: Sendable, Codable, Hashable {
     public var debugInfo: Bool?
     /** The address of the socket service that pushes live updates to a client. It is filled in for a signed-in  caller and for an anonymous one who arrives with an external sharing link, and is empty when the  installation runs no socket service - a client then has to poll. */
     public var socketUrl: String?
-    /** The lifecycle state of the portal. Anything other than active means most operations are refused for the  moment, because the portal is being transferred, restored, encrypted or removed. */
+    /** The lifecycle state of the portal. Anything other than active means most operations are refused: the  portal is being transferred, restored, encrypted or removed, its owner has deactivated it, or the  retention policy has blocked it after a long period without use. */
     public var tenantStatus: TenantStatus?
     /** The portal's own name within the installation, which together with `baseDomain` forms the address it is  reached at. `PUT api/2.0/portal/portalrename` changes it. */
     public var tenantAlias: String?
     /** Whether the interface may show the About page. A cloud portal always may; a server installation may unless  its plan includes branding and the vendor details hide the page. */
     public var displayAbout: Bool?
     /** The rules a portal name is checked against - its length limits and the pattern it has to match - so a  client can validate a rename before sending it. Filled in for a signed-in caller only. */
-    public var domainValidator: TenantDomainValidator?
+    public var domainValidator: DomainNameRulesDto?
     /** The key that lets the client open the vendor's support chat, empty when the installation configures none.  Filled in for a signed-in caller only. */
     public var zendeskKey: String?
     /** The Google Tag Manager container the client should load, empty when the installation configures none.  Filled in for a signed-in caller only. */
@@ -104,13 +104,13 @@ public struct SettingsDto: Sendable, Codable, Hashable {
     /** The wordmark to print next to the portal logo. It falls back to the built-in one while the portal has  stored no text of its own, so it is never empty. */
     public var logoText: String?
     /** The addresses of the vendor's help, support, forum and video resources, already picked for the portal  language. An entry is missing when the installation configures no address for it or the resource is  switched off, which `GET api/2.0/settings/rebranding/additional` reports flag by flag. */
-    public var externalResources: CultureSpecificExternalResources?
+    public var externalResources: ExternalResourcesDto?
     /** The section the client should open after sign-in, which is the caller's own preference rather than a  portal-wide one. Filled in for a signed-in caller only. */
     public var defaultFolderType: FolderType?
     /** Whether the installation has an external database wired up for form results, without which the operations  that write form results there are refused. Filled in for a signed-in caller only. */
     public var externalDbEnabled: Bool?
 
-    public init(timezone: String? = nil, trustedDomains: [String]? = nil, trustedDomainsType: TenantTrustedDomainsType? = nil, culture: String?, utcOffset: String? = nil, utcHoursOffset: Double? = nil, greetingSettings: String? = nil, ownerId: UUID? = nil, nameSchemaId: String? = nil, enabledJoin: Bool? = nil, enableAdmMess: Bool? = nil, thirdpartyEnable: Bool? = nil, docSpace: Bool? = nil, standalone: Bool? = nil, isAmi: Bool? = nil, baseDomain: String?, wizardToken: String? = nil, passwordHash: PasswordHasher? = nil, firebase: FirebaseDto? = nil, version: String? = nil, recaptchaType: RecaptchaType? = nil, recaptchaPublicKey: String? = nil, debugInfo: Bool? = nil, socketUrl: String? = nil, tenantStatus: TenantStatus? = nil, tenantAlias: String? = nil, displayAbout: Bool? = nil, domainValidator: TenantDomainValidator? = nil, zendeskKey: String? = nil, tagManagerId: String? = nil, cookieSettingsEnabled: Bool, limitedAccessSpace: Bool? = nil, limitedAccessDevToolsForUsers: Bool? = nil, displayBanners: Bool? = nil, aiEnabled: Bool? = nil, walletLowBalance: Bool? = nil, userNameRegex: String? = nil, invitationLimit: Int? = nil, plugins: PluginsDto? = nil, deepLink: DeepLinkDto, formGallery: FormGalleryDto? = nil, maxImageUploadSize: Int64? = nil, logoText: String? = nil, externalResources: CultureSpecificExternalResources? = nil, defaultFolderType: FolderType? = nil, externalDbEnabled: Bool? = nil) {
+    public init(timezone: String? = nil, trustedDomains: [String]? = nil, trustedDomainsType: TenantTrustedDomainsType? = nil, culture: String?, utcOffset: String? = nil, utcHoursOffset: Double? = nil, greetingSettings: String? = nil, ownerId: UUID? = nil, nameSchemaId: String? = nil, enabledJoin: Bool? = nil, enableAdmMess: Bool? = nil, thirdpartyEnable: Bool? = nil, docSpace: Bool? = nil, standalone: Bool? = nil, isAmi: Bool? = nil, baseDomain: String?, wizardToken: String? = nil, passwordHash: PasswordHashSettingsDto? = nil, firebase: FirebaseDto? = nil, version: String? = nil, recaptchaType: RecaptchaType? = nil, recaptchaPublicKey: String? = nil, debugInfo: Bool? = nil, socketUrl: String? = nil, tenantStatus: TenantStatus? = nil, tenantAlias: String? = nil, displayAbout: Bool? = nil, domainValidator: DomainNameRulesDto? = nil, zendeskKey: String? = nil, tagManagerId: String? = nil, cookieSettingsEnabled: Bool, limitedAccessSpace: Bool? = nil, limitedAccessDevToolsForUsers: Bool? = nil, displayBanners: Bool? = nil, aiEnabled: Bool? = nil, walletLowBalance: Bool? = nil, userNameRegex: String? = nil, invitationLimit: Int? = nil, plugins: PluginsDto? = nil, deepLink: DeepLinkDto, formGallery: FormGalleryDto? = nil, maxImageUploadSize: Int64? = nil, logoText: String? = nil, externalResources: ExternalResourcesDto? = nil, defaultFolderType: FolderType? = nil, externalDbEnabled: Bool? = nil) {
         self.timezone = timezone
         self.trustedDomains = trustedDomains
         self.trustedDomainsType = trustedDomainsType

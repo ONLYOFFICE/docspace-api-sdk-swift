@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AppsAPIApi {
 
     /**
      Get an app
@@ -77,7 +77,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -142,7 +141,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -212,7 +210,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<JsonValueWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -226,13 +223,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setEnabled Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-enabled/
-     - parameter id: (path) The application to switch, by the identifier `GET api/2.0/apps` reports. It has to be an application declared  in the installation configuration; an unknown identifier answers 404 rather than creating anything.      - parameter setAppEnabledBody: (body) The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`. 
+     - parameter id: (path) The application to switch, by the identifier `GET api/2.0/apps` reports. It has to be an application declared  in the installation configuration; an unknown identifier answers 404 rather than creating anything.      - parameter setAppEnabledRequest: (body) The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setEnabled(id: String, setAppEnabledBody: SetAppEnabledBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AppWrapper {
-        return try await setEnabledWithRequestBuilder(id: id, setAppEnabledBody: setAppEnabledBody, apiConfiguration: apiConfiguration).execute().body
+    open class func setEnabled(id: String, setAppEnabledRequest: SetAppEnabledRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AppWrapper {
+        return try await setEnabledWithRequestBuilder(id: id, setAppEnabledRequest: setAppEnabledRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -243,7 +240,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-enabled/
      
      - PUT /api/2.0/apps/{id}/enabled
-     - Turns one portal application on or off for the current portal, and notifies the clients connected to the portal  so that they can show or hide it without being reloaded. The identifier must be an application declared in the  installation configuration, as listed by `GET api/2.0/apps`. The caller must be a portal administrator allowed  to edit the portal settings. The call is mutating and idempotent: it stores the flag for this portal, overriding  the default that the configuration gives the application, and repeating it with the same value changes nothing.  Disabling an application does not delete its settings document, which stays saved and applies again as soon as  the application is enabled. The response is the application in its new state, including that settings document.  Only the enabled flag is affected here: to change the settings document use `PUT api/2.0/apps/{id}/settings`.
+     - Turns one portal application on or off for the current portal, and notifies the clients connected to the portal  so that they can show or hide it without being reloaded. The identifier must be an application declared in the  installation configuration, as listed by `GET api/2.0/apps`. The caller must be a portal administrator allowed  to edit the portal settings. The call is mutating and idempotent: it stores the flag for this portal, overriding  the default that the configuration gives the application, and repeating it with the same value changes nothing.  Disabling an application does not delete its settings document, which stays saved and applies again as soon as  the application is enabled. The response is the application in its new state, including that settings document.  Only the enabled flag is affected here: to change the settings document use `PUT api/2.0/apps/{id}/settings`.  The enabled field is mandatory, and a body without it is rejected with 400 rather than read as false.
      - BASIC:
        - type: http
        - name: Basic
@@ -264,24 +261,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter id: (path) The application to switch, by the identifier `GET api/2.0/apps` reports. It has to be an application declared  in the installation configuration; an unknown identifier answers 404 rather than creating anything. 
-     - parameter setAppEnabledBody: (body) The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`. 
+     - parameter setAppEnabledRequest: (body) The new state of the application. Only the enabled flag travels here; the settings document is changed  through `PUT api/2.0/apps/{id}/settings`. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWrapper> 
      */
-    open class func setEnabledWithRequestBuilder(id: String, setAppEnabledBody: SetAppEnabledBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AppWrapper> {
+    open class func setEnabledWithRequestBuilder(id: String, setAppEnabledRequest: SetAppEnabledRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AppWrapper> {
         var localVariablePath = "/api/2.0/apps/{id}/enabled"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setAppEnabledBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setAppEnabledRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -296,13 +292,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-settings/
-     - parameter id: (path) The application whose configuration is stored, by the identifier `GET api/2.0/apps` reports. An identifier  not declared in the installation configuration answers 404.      - parameter setAppSettingsBody: (body) The configuration to store for this portal, replacing whatever was stored before. 
+     - parameter id: (path) The application whose configuration is stored, by the identifier `GET api/2.0/apps` reports. An identifier  not declared in the installation configuration answers 404.      - parameter setAppSettingsRequest: (body) The configuration to store for this portal, replacing whatever was stored before. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AppWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setSettings(id: String, setAppSettingsBody: SetAppSettingsBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AppWrapper {
-        return try await setSettingsWithRequestBuilder(id: id, setAppSettingsBody: setAppSettingsBody, apiConfiguration: apiConfiguration).execute().body
+    open class func setSettings(id: String, setAppSettingsRequest: SetAppSettingsRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AppWrapper {
+        return try await setSettingsWithRequestBuilder(id: id, setAppSettingsRequest: setAppSettingsRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -334,24 +330,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter id: (path) The application whose configuration is stored, by the identifier `GET api/2.0/apps` reports. An identifier  not declared in the installation configuration answers 404. 
-     - parameter setAppSettingsBody: (body) The configuration to store for this portal, replacing whatever was stored before. 
+     - parameter setAppSettingsRequest: (body) The configuration to store for this portal, replacing whatever was stored before. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AppWrapper> 
      */
-    open class func setSettingsWithRequestBuilder(id: String, setAppSettingsBody: SetAppSettingsBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AppWrapper> {
+    open class func setSettingsWithRequestBuilder(id: String, setAppSettingsRequest: SetAppSettingsRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AppWrapper> {
         var localVariablePath = "/api/2.0/apps/{id}/settings"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setAppSettingsBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: setAppSettingsRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

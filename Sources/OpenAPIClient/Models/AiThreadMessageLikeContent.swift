@@ -15,16 +15,38 @@
 import Foundation
 
 /** Message content: either plain text or a list of typed content parts (text, image, tool-call, …). Parts are open-ended by content type. */
-public struct AiThreadMessageLikeContent: Sendable, Codable, Hashable {
-
-
-    public enum CodingKeys: CodingKey, CaseIterable {
-    }
-
-    // Encodable protocol methods
+public enum AiThreadMessageLikeContent: Sendable, Codable, Hashable, ParameterConvertible {
+    case typeString(String)
+    case typeArrayOfAiThreadMessageLikeContentAnyOfInner([AiThreadMessageLikeContentAnyOfInner])
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .typeString(let value):
+            try container.encode(value)
+        case .typeArrayOfAiThreadMessageLikeContentAnyOfInner(let value):
+            try container.encode(value)
+        }
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(String.self) {
+            self = .typeString(value)
+        } else if let value = try? container.decode([AiThreadMessageLikeContentAnyOfInner].self) {
+            self = .typeArrayOfAiThreadMessageLikeContentAnyOfInner(value)
+        } else {
+            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of AiThreadMessageLikeContent"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeArrayOfAiThreadMessageLikeContentAnyOfInner(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        }
     }
 }
 

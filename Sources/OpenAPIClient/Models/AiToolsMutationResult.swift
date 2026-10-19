@@ -20,9 +20,9 @@ public struct AiToolsMutationResult: Sendable, Codable, Hashable {
     /** True when the MCP server was persisted. */
     public var success: Bool
     /** Why the MCP server was rejected. Present on failure. */
-    public var error: AiTErrorData?
+    public var error: AiErrorData?
 
-    public init(success: Bool, error: AiTErrorData? = nil) {
+    public init(success: Bool, error: AiErrorData? = nil) {
         self.success = success
         self.error = error
     }

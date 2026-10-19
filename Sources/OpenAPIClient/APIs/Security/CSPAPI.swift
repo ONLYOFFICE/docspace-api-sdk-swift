@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SecurityCSPAPIApi {
 
     /**
      Configure CSP settings
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for configureCsp Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/configure-csp/
-     - parameter cspRequestsDto: (body)  (optional)
+     - parameter cspRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: CspWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func configureCsp(cspRequestsDto: CspRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CspWrapper {
-        return try await configureCspWithRequestBuilder(cspRequestsDto: cspRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func configureCsp(cspRequestDto: CspRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CspWrapper {
+        return try await configureCspWithRequestBuilder(cspRequestDto: cspRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -60,21 +60,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter cspRequestsDto: (body)  (optional)
+     - parameter cspRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CspWrapper> 
      */
-    open class func configureCspWithRequestBuilder(cspRequestsDto: CspRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CspWrapper> {
+    open class func configureCspWithRequestBuilder(cspRequestDto: CspRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CspWrapper> {
         let localVariablePath = "/api/2.0/security/csp"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: cspRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: cspRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -139,7 +138,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

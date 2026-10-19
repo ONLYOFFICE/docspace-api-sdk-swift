@@ -86,11 +86,15 @@ public struct FolderDto: Sendable, Codable, Hashable {
     public var expirationDate: ApiDateTime?
     /** Set when the link being used has already passed its expiration date, which is why the entry cannot be opened  even though it is described here. It is null when no link is involved. */
     public var isLinkExpired: Bool?
+    /** The IDs of the metadata templates assigned to the file entry. */
+    public var assignedMetadataTemplates: [Int]?
+    /** Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here. */
+    public var metadataMatches: [MetadataMatchDto]?
     /** The folder this one is listed in. For a room it is the root of the section the room lives in, and for an entry  opened through a sharing link whose real parent the caller may not read it is the root of the section with the  entries shared with them. */
     public var parentId: Int?
-    /** How many files lie directly in the folder, without counting the subfolders. The roots of the `Rooms`, room  templates and default templates sections always report 0, because the number is not collected for them. */
+    /** How many files lie directly in the folder, without counting the subfolders. The roots of the `Rooms`, room  templates, default templates and AI agents sections always report 0, because the number is not collected for  them. */
     public var filesCount: Int?
-    /** How many subfolders lie directly in the folder. For an AI room the two service subfolders it always holds are  subtracted, so the number matches what a listing of it shows, and the roots of the `Rooms` and templates  sections report 0. */
+    /** How many subfolders lie directly in the folder. For an AI room the two service subfolders it always holds are  subtracted, so the number matches what a listing of it shows, and the roots of the `Rooms`, templates and AI  agents sections report 0. */
     public var foldersCount: Int?
     /** Whether the caller may hand out access to the folder. It is filled in only for the folder a folder-contents  answer is about, and is null in every other answer, so null says nothing about the sharing rights. */
     public var isShareable: Bool?
@@ -101,7 +105,7 @@ public struct FolderDto: Sendable, Codable, Hashable {
     /** The names of the tags attached to the room. Empty for a folder that is not a room, since only rooms carry  tags, and the names are the ones from the portal tag catalogue. */
     public var tags: [String]?
     /** The addresses of the room logo in four sizes, together with the colour and the built-in cover that are drawn  when no logo was uploaded. A room without a logo answers with four empty addresses rather than with null, and  the field is null for a folder that is not a room. */
-    public var logo: Logo?
+    public var logo: LogoDto?
     /** Whether the caller pinned the room to the top of their own room list. Pinning is personal and is lost when the  room is archived. */
     public var pinned: Bool?
     /** The kind of the room, which decides the default access rules of its members. Null for a folder that is not a  room. */
@@ -120,7 +124,7 @@ public struct FolderDto: Sendable, Codable, Hashable {
     public var type: FolderType?
     /** Whether the caller holds the room through an invitation of their own: true for the account that created it and  for a member invited personally, false when the access comes from a group they belong to, and null for a  folder that is not a room. */
     public var inRoom: Bool?
-    /** How much space the files of the room may take, in bytes. It is the limit set on this room, or the portal  default for rooms when none was set. Null when the tariff of the portal does not count room statistics, when  room quotas are switched off, when the room lies in the archive or the trash, or when the caller may only read  it. */
+    /** How much space the files of the room may take, in bytes. It is the limit set on this room, or the portal  default for rooms when none was set. Null when the tariff of the portal does not count room statistics, when  room quotas are switched off, when the room lies in the archive or the trash, or when the role of the caller  in the room carries no editing rights - a viewer, a commenter, a reviewer and a form filler do not see the  figure, a room manager, a content creator and an editor do. */
     public var quotaLimit: Int64?
     /** Whether `quotaLimit` is a limit set on this room (true) or the portal default for rooms (false). Null exactly  when `quotaLimit` is null. */
     public var isCustomQuota: Bool?
@@ -142,7 +146,7 @@ public struct FolderDto: Sendable, Codable, Hashable {
     /** The form the completed copies in this folder were filled from, taken from the copy submitted last. Null while  the folder holds no completed copy, and for every folder that does not collect them. */
     public var originalFormId: Int?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, parentId: Int? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: Logo? = nil, pinned: Bool? = nil, roomType: RoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkDto? = nil, type: FolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, chatSettings: ChatSettingsDto? = nil, rootRoomType: RoomType? = nil, saveFormAsXLSX: Bool? = nil, sendFormToExternalDB: Bool? = nil, originalFormId: Int? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil, parentId: Int? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: LogoDto? = nil, pinned: Bool? = nil, roomType: RoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: RoomDataLifetimeDto? = nil, watermark: WatermarkDto? = nil, type: FolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, chatSettings: ChatSettingsDto? = nil, rootRoomType: RoomType? = nil, saveFormAsXLSX: Bool? = nil, sendFormToExternalDB: Bool? = nil, originalFormId: Int? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -179,6 +183,8 @@ public struct FolderDto: Sendable, Codable, Hashable {
         self.external = external
         self.expirationDate = expirationDate
         self.isLinkExpired = isLinkExpired
+        self.assignedMetadataTemplates = assignedMetadataTemplates
+        self.metadataMatches = metadataMatches
         self.parentId = parentId
         self.filesCount = filesCount
         self.foldersCount = foldersCount
@@ -245,6 +251,8 @@ public struct FolderDto: Sendable, Codable, Hashable {
         case external
         case expirationDate
         case isLinkExpired
+        case assignedMetadataTemplates
+        case metadataMatches
         case parentId
         case filesCount
         case foldersCount
@@ -314,6 +322,8 @@ public struct FolderDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(external, forKey: .external)
         try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
         try container.encodeIfPresent(isLinkExpired, forKey: .isLinkExpired)
+        try container.encodeIfPresent(assignedMetadataTemplates, forKey: .assignedMetadataTemplates)
+        try container.encodeIfPresent(metadataMatches, forKey: .metadataMatches)
         try container.encodeIfPresent(parentId, forKey: .parentId)
         try container.encodeIfPresent(filesCount, forKey: .filesCount)
         try container.encodeIfPresent(foldersCount, forKey: .foldersCount)

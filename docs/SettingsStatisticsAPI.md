@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getSpaceUsageStatistics**
 ```swift
-    open class func getSpaceUsageStatistics(id: UUID, completion: @escaping (_ data: UsageSpaceStatItemArrayWrapper?, _ error: Error?) -> Void)
+    open class func getSpaceUsageStatistics(id: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> UsageSpaceStatItemArrayWrapper
 ```
 
 Returns the storage space used by one portal module, broken down per data category the module tracks (for  example per room type), together with a human-readable size and whether the category is disabled. Requires  Owner or DocSpaceAdmin (the EditPortalSettings permission). `id` identifies the module by the same GUID the  portal's module catalog uses; a module that does not exist, or one that does not report space usage at all,  returns an empty list rather than an error. This is a read-only, idempotent call, and the list is not  paginated. Sizes are already formatted as display strings (for example `1.5 GB`), not raw byte counts.
@@ -38,15 +38,11 @@ import OpenAPIClient
 let id = 987 // UUID | The identifier of the object the operation acts on, as the listing operation of that kind of object reports  it. It has to match the shape the route declares - a GUID where the route is typed as one - since a value of  another shape does not match the route at all and is answered as not found.
 
 // Get the space usage statistics
-SettingsStatisticsAPIApi.getSpaceUsageStatistics(id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SettingsStatisticsAPIApi.getSpaceUsageStatistics(id: id)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

@@ -15,8 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
-var fields: String?
+open class SettingsWebhooksAPIApi {
 
     /**
      Create a webhook
@@ -24,13 +23,13 @@ var fields: String?
      See also:
      REST API Reference for createWebhook Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/create-webhook/
-     - parameter createWebhooksConfigRequestsDto: (body)  (optional)
+     - parameter createWebhooksConfigRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: WebhooksConfigWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createWebhook(createWebhooksConfigRequestsDto: CreateWebhooksConfigRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksConfigWrapper {
-        return try await createWebhookWithRequestBuilder(createWebhooksConfigRequestsDto: createWebhooksConfigRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func createWebhook(createWebhooksConfigRequestDto: CreateWebhooksConfigRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksConfigWrapper {
+        return try await createWebhookWithRequestBuilder(createWebhooksConfigRequestDto: createWebhooksConfigRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -61,21 +60,20 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter createWebhooksConfigRequestsDto: (body)  (optional)
+     - parameter createWebhooksConfigRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWrapper> 
      */
-    open class func createWebhookWithRequestBuilder(createWebhooksConfigRequestsDto: CreateWebhooksConfigRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksConfigWrapper> {
+    open class func createWebhookWithRequestBuilder(createWebhooksConfigRequestDto: CreateWebhooksConfigRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksConfigWrapper> {
         let localVariablePath = "/api/2.0/settings/webhook"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createWebhooksConfigRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createWebhooksConfigRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -90,13 +88,13 @@ var fields: String?
      See also:
      REST API Reference for enableWebhook Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/enable-webhook/
-     - parameter updateWebhooksConfigRequestsDto: (body)  (optional)
+     - parameter updateWebhooksConfigRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: WebhooksConfigWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func enableWebhook(updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksConfigWrapper {
-        return try await enableWebhookWithRequestBuilder(updateWebhooksConfigRequestsDto: updateWebhooksConfigRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func enableWebhook(updateWebhooksConfigRequestDto: UpdateWebhooksConfigRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksConfigWrapper {
+        return try await enableWebhookWithRequestBuilder(updateWebhooksConfigRequestDto: updateWebhooksConfigRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -127,21 +125,20 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter updateWebhooksConfigRequestsDto: (body)  (optional)
+     - parameter updateWebhooksConfigRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWrapper> 
      */
-    open class func enableWebhookWithRequestBuilder(updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksConfigWrapper> {
+    open class func enableWebhookWithRequestBuilder(updateWebhooksConfigRequestDto: UpdateWebhooksConfigRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksConfigWrapper> {
         let localVariablePath = "/api/2.0/settings/webhook/enable"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateWebhooksConfigRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateWebhooksConfigRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -207,7 +204,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<WebhooksConfigWithStatusArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -272,7 +268,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<WebhookTriggerArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -287,12 +282,13 @@ var fields: String?
      REST API Reference for getWebhooksLogs Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-webhooks-logs/
      - parameter deliveryFrom: (query) The earliest delivery moment a record may carry. Records of attempts still on their way have no delivery  moment yet and fall outside any bound set here. (optional)     - parameter deliveryTo: (query) The latest delivery moment a record may carry. All the filters combine with AND, so it narrows whatever the  other ones already kept. (optional)     - parameter hookUri: (query) The subscription target address, matched in full rather than as a prefix. Filtering by `configId` is the  reliable way to pick one subscription, since several may share an address. (optional)     - parameter configId: (query) The subscription whose deliveries are kept, by the `id` that `GET api/2.0/settings/webhook` reports. (optional)     - parameter eventId: (query) A single delivery record, by its own identifier. It narrows the answer to that one record, which is how a  client follows up a retry it queued earlier. (optional)     - parameter groupStatus: (query) The classes of answered status to keep, as a bitmask; 0 keeps every record whatever the target answered. (optional)     - parameter userId: (query) The member whose subscriptions the records belong to, by portal user ID - who created the subscription, not  who caused the event. For a caller who is not a DocSpace administrator it is overwritten with the caller own  ID, so such a caller never sees another member deliveries whatever is sent here. (optional)     - parameter trigger: (query) The single event kind to keep; 0 keeps every kind. It names one trigger rather than a mask of several, unlike  the `triggers` a subscription is created with. (optional)     - parameter count: (query) How many records one page may hold. The maximum is also the default, so a client that wants shorter pages has  to ask for them; the number of records matching the filter comes back as `total` beside the page. (optional)     - parameter startIndex: (query) How many matching records to skip before the page begins, counting from the newest. Advance it by `count` to  walk back through the log. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: WebhooksLogArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getWebhooksLogs(deliveryFrom: Date? = nil, deliveryTo: Date? = nil, hookUri: String? = nil, configId: Int? = nil, eventId: Int? = nil, groupStatus: WebhookGroupStatus? = nil, userId: UUID? = nil, trigger: WebhookTrigger? = nil, count: Int? = nil, startIndex: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksLogArrayWrapper {
-        return try await getWebhooksLogsWithRequestBuilder(deliveryFrom: deliveryFrom, deliveryTo: deliveryTo, hookUri: hookUri, configId: configId, eventId: eventId, groupStatus: groupStatus, userId: userId, trigger: trigger, count: count, startIndex: startIndex, apiConfiguration: apiConfiguration).execute().body
+    open class func getWebhooksLogs(deliveryFrom: Date? = nil, deliveryTo: Date? = nil, hookUri: String? = nil, configId: Int? = nil, eventId: Int? = nil, groupStatus: WebhookGroupStatus? = nil, userId: UUID? = nil, trigger: WebhookTrigger? = nil, count: Int? = nil, startIndex: Int? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksLogArrayWrapper {
+        return try await getWebhooksLogsWithRequestBuilder(deliveryFrom: deliveryFrom, deliveryTo: deliveryTo, hookUri: hookUri, configId: configId, eventId: eventId, groupStatus: groupStatus, userId: userId, trigger: trigger, count: count, startIndex: startIndex, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -333,16 +329,16 @@ var fields: String?
      - parameter trigger: (query) The single event kind to keep; 0 keeps every kind. It names one trigger rather than a mask of several, unlike  the `triggers` a subscription is created with. (optional)
      - parameter count: (query) How many records one page may hold. The maximum is also the default, so a client that wants shorter pages has  to ask for them; the number of records matching the filter comes back as `total` beside the page. (optional)
      - parameter startIndex: (query) How many matching records to skip before the page begins, counting from the newest. Advance it by `count` to  walk back through the log. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksLogArrayWrapper> 
      */
-    open class func getWebhooksLogsWithRequestBuilder(deliveryFrom: Date? = nil, deliveryTo: Date? = nil, hookUri: String? = nil, configId: Int? = nil, eventId: Int? = nil, groupStatus: WebhookGroupStatus? = nil, userId: UUID? = nil, trigger: WebhookTrigger? = nil, count: Int? = nil, startIndex: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksLogArrayWrapper> {
+    open class func getWebhooksLogsWithRequestBuilder(deliveryFrom: Date? = nil, deliveryTo: Date? = nil, hookUri: String? = nil, configId: Int? = nil, eventId: Int? = nil, groupStatus: WebhookGroupStatus? = nil, userId: UUID? = nil, trigger: WebhookTrigger? = nil, count: Int? = nil, startIndex: Int? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksLogArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/webhooks/log"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "deliveryFrom": (wrappedValue: deliveryFrom?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "deliveryTo": (wrappedValue: deliveryTo?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "hookUri": (wrappedValue: hookUri?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -353,16 +349,13 @@ var fields: String?
             "trigger": (wrappedValue: trigger?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -432,7 +425,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<WebhooksConfigWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -501,7 +493,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<WebhooksLogWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -515,13 +506,13 @@ var fields: String?
      See also:
      REST API Reference for retryWebhooks Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/retry-webhooks/
-     - parameter webhookRetryRequestsDto: (body)  (optional)
+     - parameter webhookRetryRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: WebhooksLogArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func retryWebhooks(webhookRetryRequestsDto: WebhookRetryRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksLogArrayWrapper {
-        return try await retryWebhooksWithRequestBuilder(webhookRetryRequestsDto: webhookRetryRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func retryWebhooks(webhookRetryRequestDto: WebhookRetryRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksLogArrayWrapper {
+        return try await retryWebhooksWithRequestBuilder(webhookRetryRequestDto: webhookRetryRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -552,21 +543,20 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter webhookRetryRequestsDto: (body)  (optional)
+     - parameter webhookRetryRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksLogArrayWrapper> 
      */
-    open class func retryWebhooksWithRequestBuilder(webhookRetryRequestsDto: WebhookRetryRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksLogArrayWrapper> {
+    open class func retryWebhooksWithRequestBuilder(webhookRetryRequestDto: WebhookRetryRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksLogArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/webhook/retry"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webhookRetryRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webhookRetryRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -581,13 +571,13 @@ var fields: String?
      See also:
      REST API Reference for updateWebhook Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-webhook/
-     - parameter updateWebhooksConfigRequestsDto: (body)  (optional)
+     - parameter updateWebhooksConfigRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: WebhooksConfigWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateWebhook(updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksConfigWrapper {
-        return try await updateWebhookWithRequestBuilder(updateWebhooksConfigRequestsDto: updateWebhooksConfigRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func updateWebhook(updateWebhooksConfigRequestDto: UpdateWebhooksConfigRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WebhooksConfigWrapper {
+        return try await updateWebhookWithRequestBuilder(updateWebhooksConfigRequestDto: updateWebhooksConfigRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -618,14 +608,14 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter updateWebhooksConfigRequestsDto: (body)  (optional)
+     - parameter updateWebhooksConfigRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WebhooksConfigWrapper> 
      */
-    open class func updateWebhookWithRequestBuilder(updateWebhooksConfigRequestsDto: UpdateWebhooksConfigRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksConfigWrapper> {
+    open class func updateWebhookWithRequestBuilder(updateWebhooksConfigRequestDto: UpdateWebhooksConfigRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WebhooksConfigWrapper> {
         let localVariablePath = "/api/2.0/settings/webhook"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateWebhooksConfigRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateWebhooksConfigRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -633,18 +623,10 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<WebhooksConfigWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
-    }
-}
-extension SettingsWebhooksAPIApi {
-    @discardableResult
-    public func withFields(_ fields: String) -> SettingsWebhooksAPIApi {
-        self.fields = fields
-        return self
     }
 }

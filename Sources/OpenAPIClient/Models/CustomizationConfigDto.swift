@@ -24,25 +24,25 @@ public struct CustomizationConfigDto: Sendable, Codable, Hashable {
     /** How an anonymous participant is treated in this session. */
     public var anonymous: AnonymousConfigDto?
     /** The support link the editor offers behind its feedback button. */
-    public var feedback: FeedbackConfig?
+    public var feedback: FeedbackConfigDto?
     /** Whether the editors write intermediate revisions while the document stays open. It is empty when the portal  leaves the decision to the editors themselves. */
     public var forcesave: Bool?
     /** Where the editor returns the user to when they leave the document. It is empty when there is nowhere to go  back to, as in an embedded opening. */
-    public var goback: GobackConfig?
+    public var goback: GobackConfigDto?
     /** How tracked changes are displayed when the document opens; it depends on whether this session may write. */
-    public var review: ReviewConfig?
+    public var review: ReviewConfigDto?
     /** The logo the editor shows, in the variants the current layout and file type need. */
     public var logo: LogoConfigDto?
     /** Whether mentioning a user who cannot yet open the document offers to share it with them, instead of silently  notifying nobody. */
     public var mentionShare: Bool?
     /** The submit button of a form: whether it is shown and what it says. */
-    public var submitForm: SubmitForm?
+    public var submitForm: SubmitFormDto?
     /** The button that starts filling out the form. It is empty when this opening offers no such button. */
     public var startFillingForm: StartFillingForm?
     /** The AI configuration settings. */
-    public var ai: AIConfig?
+    public var ai: AiConfigDto?
 
-    public init(about: Bool? = nil, customer: CustomerConfigDto? = nil, anonymous: AnonymousConfigDto? = nil, feedback: FeedbackConfig? = nil, forcesave: Bool? = nil, goback: GobackConfig? = nil, review: ReviewConfig? = nil, logo: LogoConfigDto? = nil, mentionShare: Bool? = nil, submitForm: SubmitForm? = nil, startFillingForm: StartFillingForm? = nil, ai: AIConfig? = nil) {
+    public init(about: Bool? = nil, customer: CustomerConfigDto? = nil, anonymous: AnonymousConfigDto? = nil, feedback: FeedbackConfigDto? = nil, forcesave: Bool? = nil, goback: GobackConfigDto? = nil, review: ReviewConfigDto? = nil, logo: LogoConfigDto? = nil, mentionShare: Bool? = nil, submitForm: SubmitFormDto? = nil, startFillingForm: StartFillingForm? = nil, ai: AiConfigDto? = nil) {
         self.about = about
         self.customer = customer
         self.anonymous = anonymous

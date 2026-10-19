@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response** | [**EmailActivationSettings**](EmailActivationSettings.md) | The EmailActivationSettings object returned by the operation. | [optional] 
+**response** | [**EmailActivationSettingsDto**](EmailActivationSettingsDto.md) | The EmailActivationSettingsDto object returned by the operation. | [optional] 
 **count** | **Int** | The total number of items in the response | [optional] 
 **links** | [GetPortalPrices200ResponseLinksInner] | List of links related to the response | [optional] 
 **status** | **Int** | HTTP status code of the response | [optional] 

@@ -26,9 +26,9 @@ public struct AiImportError: Sendable, Codable, Hashable {
     /** The offending entry - its name or its id. */
     public var ref: String
     /** Why the entry was rejected. */
-    public var error: AiTErrorData
+    public var error: AiErrorData
 
-    public init(kind: Kind, ref: String, error: AiTErrorData) {
+    public init(kind: Kind, ref: String, error: AiErrorData) {
         self.kind = kind
         self.ref = ref
         self.error = error

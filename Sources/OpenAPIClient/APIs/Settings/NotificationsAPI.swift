@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsNotificationsAPIApi {
 
     /**
      Get notification channels
@@ -73,7 +73,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -143,7 +142,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<NotificationSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -208,7 +206,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<RoomsNotificationSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -222,13 +219,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setNotificationSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-notification-settings/
-     - parameter notificationSettingsRequestsDto: (body)  (optional)
+     - parameter notificationSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: NotificationSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setNotificationSettings(notificationSettingsRequestsDto: NotificationSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> NotificationSettingsWrapper {
-        return try await setNotificationSettingsWithRequestBuilder(notificationSettingsRequestsDto: notificationSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func setNotificationSettings(notificationSettingsRequestDto: NotificationSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> NotificationSettingsWrapper {
+        return try await setNotificationSettingsWithRequestBuilder(notificationSettingsRequestDto: notificationSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -259,21 +256,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter notificationSettingsRequestsDto: (body)  (optional)
+     - parameter notificationSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<NotificationSettingsWrapper> 
      */
-    open class func setNotificationSettingsWithRequestBuilder(notificationSettingsRequestsDto: NotificationSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<NotificationSettingsWrapper> {
+    open class func setNotificationSettingsWithRequestBuilder(notificationSettingsRequestDto: NotificationSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<NotificationSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/notification"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: notificationSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: notificationSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -339,7 +335,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

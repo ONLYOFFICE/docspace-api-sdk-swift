@@ -32,17 +32,17 @@ public struct QuotaDto: Sendable, Codable, Hashable {
     /** The features the quota switches on, each with the limit it grants and, on the quota the portal is  actually on, how much of that limit is already used. A feature that is absent is off, so the list is the  whole truth about what the quota includes. */
     public var features: [TenantQuotaFeatureDto]?
     /** The per-member storage allowance an administrator has set on top of the quota, and whether it is applied  at all. It describes the live portal rather than this quota, so every entry of a catalogue listing repeats  the same values, and it is empty unless the portal is a server installation or its plan includes  statistics. */
-    public var usersQuota: TenantEntityQuotaSettings?
+    public var usersQuota: EntityQuotaDto?
     /** The same kind of per-room storage override, filled in and read the same way as `usersQuota`. */
-    public var roomsQuota: TenantEntityQuotaSettings?
+    public var roomsQuota: EntityQuotaDto?
     /** The same kind of per-agent storage override for AI agents, filled in and read the same way as  `usersQuota`. */
-    public var aiAgentsQuota: TenantEntityQuotaSettings?
+    public var aiAgentsQuota: EntityQuotaDto?
     /** The storage allowance an administrator has set for the portal as a whole, which caps it below what the  quota grants. Filled in under the same conditions as `usersQuota`. */
-    public var tenantCustomQuota: TenantQuotaSettings?
+    public var tenantCustomQuota: TenantQuotaSettingsDto?
     /** When the quota runs out, in UTC. It is empty on a quota from the catalogue, which has no date until it is  bought, and on a quota that never expires. */
     public var dueDate: Date?
 
-    public init(id: Int, title: String? = nil, price: PriceDto, nonProfit: Bool, free: Bool, trial: Bool, features: [TenantQuotaFeatureDto]?, usersQuota: TenantEntityQuotaSettings? = nil, roomsQuota: TenantEntityQuotaSettings? = nil, aiAgentsQuota: TenantEntityQuotaSettings? = nil, tenantCustomQuota: TenantQuotaSettings? = nil, dueDate: Date? = nil) {
+    public init(id: Int, title: String? = nil, price: PriceDto, nonProfit: Bool, free: Bool, trial: Bool, features: [TenantQuotaFeatureDto]?, usersQuota: EntityQuotaDto? = nil, roomsQuota: EntityQuotaDto? = nil, aiAgentsQuota: EntityQuotaDto? = nil, tenantCustomQuota: TenantQuotaSettingsDto? = nil, dueDate: Date? = nil) {
         self.id = id
         self.title = title
         self.price = price

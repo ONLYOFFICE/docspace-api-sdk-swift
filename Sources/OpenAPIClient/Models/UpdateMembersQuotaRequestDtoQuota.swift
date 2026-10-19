@@ -15,7 +15,7 @@
 import Foundation
 
 /** The personal storage limit in bytes, as a whole number. A value of 0 or more becomes the limit, and any  negative value switches the personal limit off so that the portal default applies again. It is read only by  `PUT api/2.0/people/userquota`. */
-public enum UpdateMembersQuotaRequestDtoQuota: Sendable, Codable, Hashable {
+public enum UpdateMembersQuotaRequestDtoQuota: Sendable, Codable, Hashable, ParameterConvertible {
     case typeInt(Int)
     case typeString(String)
 
@@ -37,6 +37,15 @@ public enum UpdateMembersQuotaRequestDtoQuota: Sendable, Codable, Hashable {
             self = .typeString(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of UpdateMembersQuotaRequestDtoQuota"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeInt(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
         }
     }
 }

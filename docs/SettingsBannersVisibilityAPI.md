@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getTenantBannerSettings**
 ```swift
-    open class func getTenantBannerSettings(completion: @escaping (_ data: TenantBannerSettingsWrapper?, _ error: Error?) -> Void)
+    open class func getTenantBannerSettings(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantBannerSettingsWrapper
 ```
 
 Returns whether the portal's promotional banners are currently hidden from every user's interface. Requires an  authenticated session; every role can read it, since the flag affects what they see regardless of their own  permissions. This is a read-only, idempotent call. The flag only takes effect on a Standalone (self-hosted)  installation; on SaaS, banners are always shown no matter what is saved here. Change the setting with  `POST api/2.0/settings/banner`, which additionally requires an Enterprise license.
@@ -34,15 +34,11 @@ import OpenAPIClient
 
 
 // Get the banners visibility
-SettingsBannersVisibilityAPIApi.getTenantBannerSettings() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SettingsBannersVisibilityAPIApi.getTenantBannerSettings()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

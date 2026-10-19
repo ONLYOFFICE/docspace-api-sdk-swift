@@ -24,13 +24,13 @@ public struct AiThread: Sendable, Codable, Hashable {
     /** Timestamp (ms since epoch) of the last message in this thread. Used for sorting. */
     public var lastEditDate: Double?
     /** Provider configuration at the time of last message. Used for thread-level provider display. */
-    public var provider: AiTProvider?
+    public var provider: AiProvider?
     /** Model info at the time of last message. */
     public var model: AiModel?
     /** ID of the profile used for this thread. Links to `Profile.id`. */
     public var profileId: String?
 
-    public init(threadId: String, title: String? = nil, lastEditDate: Double? = nil, provider: AiTProvider? = nil, model: AiModel? = nil, profileId: String? = nil) {
+    public init(threadId: String, title: String? = nil, lastEditDate: Double? = nil, provider: AiProvider? = nil, model: AiModel? = nil, profileId: String? = nil) {
         self.threadId = threadId
         self.title = title
         self.lastEditDate = lastEditDate

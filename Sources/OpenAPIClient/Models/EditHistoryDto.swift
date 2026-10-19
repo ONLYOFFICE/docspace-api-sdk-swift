@@ -26,17 +26,17 @@ public struct EditHistoryDto: Sendable, Codable, Hashable {
     /** Groups the revisions written by one editing session: entries sharing this number were saved while the same  session was open, which is how a client collapses a long list of revisions into the versions a person would  recognise. */
     public var versionGroup: Int?
     /** The account that saved the revision. A revision saved by an account that no longer exists, or through an  anonymous link, is reported as a guest. */
-    public var user: EditHistoryAuthor?
+    public var user: EditHistoryAuthorDto?
     /** When the revision was saved, written with the offset of the portal's time zone rather than as plain UTC. The  times of one history are consistent with each other, so order and display the revisions by them. */
     public var created: ApiDateTime?
     /** The change record the editing service stored for this revision, as the raw JSON it was written in, and empty  for a revision the portal has no record for - one uploaded as a whole file, for instance. `changes` is the  same record already parsed. */
     public var changesHistory: String?
     /** The single changes this revision introduced - who made each of them and when - taken from the stored change  record. It comes back empty both for a revision whose changes were never recorded and for one whose record is  in a format the portal no longer reads, so an empty list is not proof that nothing changed. */
-    public var changes: [EditHistoryChangesWrapper]?
+    public var changes: [EditHistoryChangesDto]?
     /** The build of the editing service that wrote the change record of this revision, taken from the record itself;  empty when the portal holds no record for the revision. */
     public var serverVersion: String?
 
-    public init(id: Int? = nil, key: String? = nil, version: Int? = nil, versionGroup: Int? = nil, user: EditHistoryAuthor? = nil, created: ApiDateTime? = nil, changesHistory: String? = nil, changes: [EditHistoryChangesWrapper]? = nil, serverVersion: String? = nil) {
+    public init(id: Int? = nil, key: String? = nil, version: Int? = nil, versionGroup: Int? = nil, user: EditHistoryAuthorDto? = nil, created: ApiDateTime? = nil, changesHistory: String? = nil, changes: [EditHistoryChangesDto]? = nil, serverVersion: String? = nil) {
         self.id = id
         self.key = key
         self.version = version

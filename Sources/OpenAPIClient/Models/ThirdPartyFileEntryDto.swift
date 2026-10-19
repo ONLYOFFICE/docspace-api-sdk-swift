@@ -86,8 +86,12 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
     public var expirationDate: ApiDateTime?
     /** Set when the link being used has already passed its expiration date, which is why the entry cannot be opened  even though it is described here. It is null when no link is involved. */
     public var isLinkExpired: Bool?
+    /** The IDs of the metadata templates assigned to the file entry. */
+    public var assignedMetadataTemplates: [Int]?
+    /** Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here. */
+    public var metadataMatches: [MetadataMatchDto]?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -124,6 +128,8 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
         self.external = external
         self.expirationDate = expirationDate
         self.isLinkExpired = isLinkExpired
+        self.assignedMetadataTemplates = assignedMetadataTemplates
+        self.metadataMatches = metadataMatches
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -163,6 +169,8 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
         case external
         case expirationDate
         case isLinkExpired
+        case assignedMetadataTemplates
+        case metadataMatches
     }
 
     // Encodable protocol methods
@@ -205,6 +213,8 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(external, forKey: .external)
         try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
         try container.encodeIfPresent(isLinkExpired, forKey: .isLinkExpired)
+        try container.encodeIfPresent(assignedMetadataTemplates, forKey: .assignedMetadataTemplates)
+        try container.encodeIfPresent(metadataMatches, forKey: .metadataMatches)
     }
 }
 

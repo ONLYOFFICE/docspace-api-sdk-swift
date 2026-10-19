@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the IPRestrictionsSettings object. */
-public struct IPRestrictionsSettingsWrapper: Sendable, Codable, Hashable {
+/** The successful API response containing the IpRestrictionsSettingsDto object. */
+public struct IpRestrictionsSettingsWrapper: Sendable, Codable, Hashable {
 
-    /** The IPRestrictionsSettings object returned by the operation. */
-    public var response: IPRestrictionsSettings?
+    /** The IpRestrictionsSettingsDto object returned by the operation. */
+    public var response: IpRestrictionsSettingsDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct IPRestrictionsSettingsWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: IPRestrictionsSettings? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: IpRestrictionsSettingsDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

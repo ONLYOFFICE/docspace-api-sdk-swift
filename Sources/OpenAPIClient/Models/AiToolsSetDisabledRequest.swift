@@ -20,17 +20,21 @@ public struct AiToolsSetDisabledRequest: Sendable, Codable, Hashable {
     /** Tool names to disable. */
     public var toolNames: [String]
     public var entityId: String?
+    /** The list the write lands in; omitted means the caller's own. */
+    public var scope: AiChatToolPrefsScope?
 
-    public init(serverType: String, toolNames: [String], entityId: String? = nil) {
+    public init(serverType: String, toolNames: [String], entityId: String? = nil, scope: AiChatToolPrefsScope? = nil) {
         self.serverType = serverType
         self.toolNames = toolNames
         self.entityId = entityId
+        self.scope = scope
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case serverType
         case toolNames
         case entityId
+        case scope
     }
 
     // Encodable protocol methods
@@ -40,6 +44,7 @@ public struct AiToolsSetDisabledRequest: Sendable, Codable, Hashable {
         try container.encode(serverType, forKey: .serverType)
         try container.encode(toolNames, forKey: .toolNames)
         try container.encodeIfPresent(entityId, forKey: .entityId)
+        try container.encodeIfPresent(scope, forKey: .scope)
     }
 }
 

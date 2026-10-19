@@ -15,16 +15,38 @@
 import Foundation
 
 /** Provider type identifier. Accepts all 17 built-in types with autocomplete, plus any custom `string` for dynamically registered providers. */
-public struct AiProviderType: Sendable, Codable, Hashable {
-
-
-    public enum CodingKeys: CodingKey, CaseIterable {
-    }
-
-    // Encodable protocol methods
+public enum AiProviderType: Sendable, Codable, Hashable, ParameterConvertible {
+    case typeAiBuiltinProviderType(AiBuiltinProviderType)
+    case typeString(String)
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .typeAiBuiltinProviderType(let value):
+            try container.encode(value)
+        case .typeString(let value):
+            try container.encode(value)
+        }
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(AiBuiltinProviderType.self) {
+            self = .typeAiBuiltinProviderType(value)
+        } else if let value = try? container.decode(String.self) {
+            self = .typeString(value)
+        } else {
+            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of AiProviderType"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeAiBuiltinProviderType(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        }
     }
 }
 

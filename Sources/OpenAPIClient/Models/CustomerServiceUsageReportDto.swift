@@ -24,13 +24,13 @@ public struct CustomerServiceUsageReportDto: Sendable, Codable, Hashable {
     /** How many entries one page may hold, echoed from the request; it is 25 unless another value was asked for. */
     public var limit: Int?
     /** How many services match the filters in total, across every page - services, not charges. */
-    public var totalQuantity: Int64?
+    public var totalQuantity: Int?
     /** How many pages those entries come to at the current `limit`. */
     public var totalPage: Int?
     /** Which of those pages this one is, as the billing service numbers them. Page through by advancing `offset`  rather than this value, which nothing accepts as an argument. */
     public var currentPage: Int?
 
-    public init(collection: [CustomerServiceUsageDto]? = nil, offset: Int? = nil, limit: Int? = nil, totalQuantity: Int64? = nil, totalPage: Int? = nil, currentPage: Int? = nil) {
+    public init(collection: [CustomerServiceUsageDto]? = nil, offset: Int? = nil, limit: Int? = nil, totalQuantity: Int? = nil, totalPage: Int? = nil, currentPage: Int? = nil) {
         self.collection = collection
         self.offset = offset
         self.limit = limit

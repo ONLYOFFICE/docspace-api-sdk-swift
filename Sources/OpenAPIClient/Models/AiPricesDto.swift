@@ -26,9 +26,9 @@ public struct AiPricesDto: Sendable, Codable, Hashable {
     /** The web search providers on offer. Their `price` is a bare number - the cost of one search - rather than  an object, because there are no tokens to distinguish. */
     public var webSearch: [AiEntryPricingDtoDecimal]?
     /** The currency every price above is expressed in, with its ISO code and symbol. One answer never mixes  currencies, so this is the only place to read it. */
-    public var currency: CurrencyInfo
+    public var currency: AiPriceCurrencyDto
 
-    public init(chat: [AiEntryPricingDtoAiChatPriceDto]?, embedding: [AiEntryPricingDtoAiEmbeddingPriceDto]?, image: [AiEntryPricingDtoAiImagePriceDto]?, webSearch: [AiEntryPricingDtoDecimal]?, currency: CurrencyInfo) {
+    public init(chat: [AiEntryPricingDtoAiChatPriceDto]?, embedding: [AiEntryPricingDtoAiEmbeddingPriceDto]?, image: [AiEntryPricingDtoAiImagePriceDto]?, webSearch: [AiEntryPricingDtoDecimal]?, currency: AiPriceCurrencyDto) {
         self.chat = chat
         self.embedding = embedding
         self.image = image

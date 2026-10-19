@@ -14,18 +14,22 @@
 //  limitations under the License.
 import Foundation
 
-/** Whether the `User` role is barred from the portal developer tools. */
+/** Whether the developer tools are closed to the portal's users with the `User` role. */
 public struct TenantDevToolsAccessSettingsDto: Sendable, Codable, Hashable {
 
-    /** Whether members holding the `User` role are barred from the developer tools - API keys, OAuth applications  and webhooks. Room administrators and DocSpace administrators keep their access either way. */
+    /** Specifies if the Developer Tools access are limited for users or not. */
     public var limitedAccessForUsers: Bool?
+    /** The timestamp indicating when the settings were last modified. */
+    public var lastModified: Date?
 
-    public init(limitedAccessForUsers: Bool? = nil) {
+    public init(limitedAccessForUsers: Bool? = nil, lastModified: Date? = nil) {
         self.limitedAccessForUsers = limitedAccessForUsers
+        self.lastModified = lastModified
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case limitedAccessForUsers
+        case lastModified
     }
 
     // Encodable protocol methods
@@ -33,6 +37,7 @@ public struct TenantDevToolsAccessSettingsDto: Sendable, Codable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(limitedAccessForUsers, forKey: .limitedAccessForUsers)
+        try container.encodeIfPresent(lastModified, forKey: .lastModified)
     }
 }
 

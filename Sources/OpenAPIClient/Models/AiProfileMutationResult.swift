@@ -22,9 +22,9 @@ public struct AiProfileMutationResult: Sendable, Codable, Hashable {
     /** The persisted profile. Present on success. */
     public var profile: AiProfile?
     /** Why the profile was rejected - the name check or the provider credential check. Present on failure. */
-    public var error: AiTErrorData?
+    public var error: AiErrorData?
 
-    public init(success: Bool, profile: AiProfile? = nil, error: AiTErrorData? = nil) {
+    public init(success: Bool, profile: AiProfile? = nil, error: AiErrorData? = nil) {
         self.success = success
         self.profile = profile
         self.error = error

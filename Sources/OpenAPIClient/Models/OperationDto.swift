@@ -35,6 +35,8 @@ public struct OperationDto: Sendable, Codable, Hashable {
     public var credit: Double?
     /** The amount that was taken out of the wallet, `0` on a movement that put money in. */
     public var debit: Double?
+    /** What the AI provider charged for the whole `quantity` of an AI tools or AI search charge, as the billing  service recorded it - the provider's side of the same operation `debit` bills the portal for. It is `null`  on any other movement, and on an AI charge recorded without a provider cost. */
+    public var cost: Double?
     /** Who caused the movement, as the billing service records them - an internal name, which is what the  `participantName` filter matches on. Show `participantDisplayName` instead. */
     public var participantName: String?
     /** The same person as their portal display name. It falls back to `participantName` when the name belongs to  no portal account, so it is never empty while `participantName` is filled. */
@@ -46,11 +48,11 @@ public struct OperationDto: Sendable, Codable, Hashable {
     /** The identifier of that thing, to look it up in the module it belongs to. Empty under the same conditions  as `sourceType`. */
     public var sourceId: String?
     /** The tokens an AI operation consumed, broken down by kind - prompt, completion, cache reads and writes,  reasoning, images. It is `null` on any movement that is not an AI charge, and on an AI charge the billing  service recorded without token counts. */
-    public var tokenUsage: OperationTokenUsage?
+    public var tokenUsage: OperationTokenUsageDto?
     /** What kind of movement this is - a payment, a charge, a refund, a correction. It is what the `type` filter  matches on, and `Unknown` covers a movement the billing service reported under a kind this build does not  recognise. */
     public var type: OperationType?
 
-    public init(date: ApiDateTime? = nil, service: String? = nil, description: String? = nil, details: String? = nil, serviceUnit: String? = nil, quantity: Int? = nil, currency: String? = nil, credit: Double? = nil, debit: Double? = nil, participantName: String? = nil, participantDisplayName: String? = nil, sourceType: String? = nil, sourceTitle: String? = nil, sourceId: String? = nil, tokenUsage: OperationTokenUsage? = nil, type: OperationType? = nil) {
+    public init(date: ApiDateTime? = nil, service: String? = nil, description: String? = nil, details: String? = nil, serviceUnit: String? = nil, quantity: Int? = nil, currency: String? = nil, credit: Double? = nil, debit: Double? = nil, cost: Double? = nil, participantName: String? = nil, participantDisplayName: String? = nil, sourceType: String? = nil, sourceTitle: String? = nil, sourceId: String? = nil, tokenUsage: OperationTokenUsageDto? = nil, type: OperationType? = nil) {
         self.date = date
         self.service = service
         self.description = description
@@ -60,6 +62,7 @@ public struct OperationDto: Sendable, Codable, Hashable {
         self.currency = currency
         self.credit = credit
         self.debit = debit
+        self.cost = cost
         self.participantName = participantName
         self.participantDisplayName = participantDisplayName
         self.sourceType = sourceType
@@ -79,6 +82,7 @@ public struct OperationDto: Sendable, Codable, Hashable {
         case currency
         case credit
         case debit
+        case cost
         case participantName
         case participantDisplayName
         case sourceType
@@ -101,6 +105,7 @@ public struct OperationDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(credit, forKey: .credit)
         try container.encodeIfPresent(debit, forKey: .debit)
+        try container.encodeIfPresent(cost, forKey: .cost)
         try container.encodeIfPresent(participantName, forKey: .participantName)
         try container.encodeIfPresent(participantDisplayName, forKey: .participantDisplayName)
         try container.encodeIfPresent(sourceType, forKey: .sourceType)

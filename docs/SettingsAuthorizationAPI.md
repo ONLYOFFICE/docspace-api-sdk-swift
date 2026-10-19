@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **getAuthServices**
 ```swift
-    open class func getAuthServices(completion: @escaping (_ data: AuthServiceRequestsArrayWrapper?, _ error: Error?) -> Void)
+    open class func getAuthServices(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthServiceArrayWrapper
 ```
 
 Returns the catalogue of third-party storage and authorization providers DocSpace can integrate with (for  example Amazon S3, Dropbox, Google, or Telegram), including whichever keys were last saved for each one that  currently has any configured. Requires Owner or DocSpaceAdmin (the EditPortalSettings permission). This is a  read-only, idempotent call, and the list is not paginated; entries are ordered by the provider's configured  display order. Only providers that expose at least one manageable key are included, so a provider with nothing  to configure is omitted entirely. Save or change a provider's keys with `POST api/2.0/settings/authservice`.
@@ -23,7 +23,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AuthServiceRequestsArrayWrapper**](AuthServiceRequestsArrayWrapper.md)
+[**AuthServiceArrayWrapper**](AuthServiceArrayWrapper.md)
 
 ### Authorization
 
@@ -36,15 +36,11 @@ import OpenAPIClient
 
 
 // Get the authorization services
-SettingsAuthorizationAPIApi.getAuthServices() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SettingsAuthorizationAPIApi.getAuthServices()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -57,7 +53,7 @@ SettingsAuthorizationAPIApi.getAuthServices() { (response, error) in
 
 # **saveAuthKeys**
 ```swift
-    open class func saveAuthKeys(authServiceRequestsDto: AuthServiceRequestsDto? = nil, completion: @escaping (_ data: BooleanWrapper?, _ error: Error?) -> Void)
+    open class func saveAuthKeys(saveAuthKeysRequestDto: SaveAuthKeysRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper
 ```
 
 Saves the authorization keys for one third-party storage or authorization provider, identified by name, or  clears them when every submitted key is left empty. Requires Owner or DocSpaceAdmin (the EditPortalSettings  permission); a provider that does not allow its keys to be changed from the API rejects the call outright. A  provider that is only available on a paid plan additionally requires the portal's tariff to include  third-party storage, or Standalone licensing, before the call is accepted. Keys that fail the provider's own  validation are cleared and the call is rejected rather than left partially applied. This is a mutating,  idempotent call: resaving identical keys succeeds and reports no change. It returns whether the keys actually  changed, not the keys themselves; connecting Telegram or an external database through this call also triggers  the matching real-time connection update.
@@ -68,7 +64,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authServiceRequestsDto** | [**AuthServiceRequestsDto**](AuthServiceRequestsDto.md) |  | [optional] 
+ **saveAuthKeysRequestDto** | [**SaveAuthKeysRequestDto**](SaveAuthKeysRequestDto.md) |  | [optional] 
 
 ### Return type
 
@@ -83,18 +79,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let authServiceRequestsDto = AuthServiceRequestsDto(name: "name_example", title: "title_example", description: "description_example", instruction: "instruction_example", canSet: true, paid: false, props: [AuthKey(name: "name_example", value: "value_example", title: "title_example", type: "type_example", options: ["options_example"], dependsOn: "dependsOn_example", dependsOnValue: "dependsOnValue_example")]) // AuthServiceRequestsDto |  (optional)
+let saveAuthKeysRequestDto = SaveAuthKeysRequestDto(name: "name_example", title: "title_example", description: "description_example", instruction: "instruction_example", canSet: true, paid: false, props: [AuthKeyRequest(name: "name_example", value: "value_example", title: "title_example", type: "type_example", options: ["options_example"], dependsOn: "dependsOn_example", dependsOnValue: "dependsOnValue_example")]) // SaveAuthKeysRequestDto |  (optional)
 
 // Save the authorization keys
-SettingsAuthorizationAPIApi.saveAuthKeys(authServiceRequestsDto: authServiceRequestsDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SettingsAuthorizationAPIApi.saveAuthKeys(saveAuthKeysRequestDto: saveAuthKeysRequestDto)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -107,7 +99,7 @@ SettingsAuthorizationAPIApi.saveAuthKeys(authServiceRequestsDto: authServiceRequ
 
 # **testExternalDatabaseConnection**
 ```swift
-    open class func testExternalDatabaseConnection(externalDatabaseSettings: ExternalDatabaseSettings? = nil, completion: @escaping (_ data: ConnectionTestResultWrapper?, _ error: Error?) -> Void)
+    open class func testExternalDatabaseConnection(externalDatabaseConnectionRequestDto: ExternalDatabaseConnectionRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ConnectionTestResultWrapper
 ```
 
 Probes connectivity to an external database using the settings supplied in the request, without saving them or  affecting the portal's own configuration. Requires Owner or DocSpaceAdmin (the EditPortalSettings permission).  SQLite is only accepted as a target on a Standalone (self-hosted) installation; requesting it on SaaS is  reported as a failed connection rather than an error. This is a read-only call, safe to retry. A failed  connection is not an HTTP error: the response always comes back as a normal success with `success=false` and  an `error` message describing what went wrong.
@@ -118,7 +110,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **externalDatabaseSettings** | [**ExternalDatabaseSettings**](ExternalDatabaseSettings.md) |  | [optional] 
+ **externalDatabaseConnectionRequestDto** | [**ExternalDatabaseConnectionRequestDto**](ExternalDatabaseConnectionRequestDto.md) |  | [optional] 
 
 ### Return type
 
@@ -133,18 +125,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let externalDatabaseSettings = ExternalDatabaseSettings(databaseType: "databaseType_example", databaseTypeEnum: ExternalDatabaseType(), dbHost: "dbHost_example", dbPort: 123, dbName: "dbName_example", dbUser: "dbUser_example", dbPassword: "dbPassword_example", dbSsl: false, sqliteFilePath: "sqliteFilePath_example") // ExternalDatabaseSettings |  (optional)
+let externalDatabaseConnectionRequestDto = ExternalDatabaseConnectionRequestDto(databaseType: "databaseType_example", databaseTypeEnum: ExternalDatabaseType(), dbHost: "dbHost_example", dbPort: 123, dbName: "dbName_example", dbUser: "dbUser_example", dbPassword: "dbPassword_example", dbSsl: false, sqliteFilePath: "sqliteFilePath_example") // ExternalDatabaseConnectionRequestDto |  (optional)
 
 // Test external database connection
-SettingsAuthorizationAPIApi.testExternalDatabaseConnection(externalDatabaseSettings: externalDatabaseSettings) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SettingsAuthorizationAPIApi.testExternalDatabaseConnection(externalDatabaseConnectionRequestDto: externalDatabaseConnectionRequestDto)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

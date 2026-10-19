@@ -15,8 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
-var fields: String?
+open class AIAgentsAPIApi {
 
     /**
      Create an agent
@@ -62,7 +61,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -120,7 +118,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiFileOperationWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -176,7 +173,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiAgentsGet200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -191,12 +187,13 @@ var fields: String?
      REST API Reference for aiAgentsList Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-list/
      - parameter subjectId: (query) Show only the agent rooms this user takes part in. (optional)     - parameter subjectOwnerId: (query) Show only the agent rooms owned by this user. (optional)     - parameter excludeSubject: (query) Invert the user filter: leave out what `subjectId` selects instead of keeping it. (optional)     - parameter tags: (query) Show only the agent rooms carrying these tags, comma-separated. (optional)     - parameter withoutTags: (query) Show only the agent rooms that carry no tags at all. (optional)     - parameter quotaFilter: (query) Filter by quota kind: 0 for all, 1 for the default quota, 2 for a custom one. (optional)     - parameter filterValue: (query) Show only the agent rooms whose title matches this text. (optional)     - parameter sortBy: (query) Field to sort by, for example `DateAndTime`. (optional)     - parameter sortOrder: (query) Sort direction, `ascending` or `descending`. (optional)     - parameter startIndex: (query) Index of the first entry to return; 0 starts at the beginning. (optional)     - parameter count: (query) How many entries to return. The internal service applies its own default. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiFolderContentWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAgentsList(subjectId: String? = nil, subjectOwnerId: String? = nil, excludeSubject: Bool? = nil, tags: String? = nil, withoutTags: Bool? = nil, quotaFilter: Int? = nil, filterValue: String? = nil, sortBy: String? = nil, sortOrder: String? = nil, startIndex: Int? = nil, count: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderContentWrapper {
-        return try await aiAgentsListWithRequestBuilder(subjectId: subjectId, subjectOwnerId: subjectOwnerId, excludeSubject: excludeSubject, tags: tags, withoutTags: withoutTags, quotaFilter: quotaFilter, filterValue: filterValue, sortBy: sortBy, sortOrder: sortOrder, startIndex: startIndex, count: count, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAgentsList(subjectId: String? = nil, subjectOwnerId: String? = nil, excludeSubject: Bool? = nil, tags: String? = nil, withoutTags: Bool? = nil, quotaFilter: Int? = nil, filterValue: String? = nil, sortBy: String? = nil, sortOrder: String? = nil, startIndex: Int? = nil, count: Int? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderContentWrapper {
+        return try await aiAgentsListWithRequestBuilder(subjectId: subjectId, subjectOwnerId: subjectOwnerId, excludeSubject: excludeSubject, tags: tags, withoutTags: withoutTags, quotaFilter: quotaFilter, filterValue: filterValue, sortBy: sortBy, sortOrder: sortOrder, startIndex: startIndex, count: count, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -225,16 +222,16 @@ var fields: String?
      - parameter sortOrder: (query) Sort direction, `ascending` or `descending`. (optional)
      - parameter startIndex: (query) Index of the first entry to return; 0 starts at the beginning. (optional)
      - parameter count: (query) How many entries to return. The internal service applies its own default. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiFolderContentWrapper> 
      */
-    open class func aiAgentsListWithRequestBuilder(subjectId: String? = nil, subjectOwnerId: String? = nil, excludeSubject: Bool? = nil, tags: String? = nil, withoutTags: Bool? = nil, quotaFilter: Int? = nil, filterValue: String? = nil, sortBy: String? = nil, sortOrder: String? = nil, startIndex: Int? = nil, count: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiFolderContentWrapper> {
+    open class func aiAgentsListWithRequestBuilder(subjectId: String? = nil, subjectOwnerId: String? = nil, excludeSubject: Bool? = nil, tags: String? = nil, withoutTags: Bool? = nil, quotaFilter: Int? = nil, filterValue: String? = nil, sortBy: String? = nil, sortOrder: String? = nil, startIndex: Int? = nil, count: Int? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiFolderContentWrapper> {
         let localVariablePath = "/api/2.0/ai/agents"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "subjectId": (wrappedValue: subjectId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "subjectOwnerId": (wrappedValue: subjectOwnerId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "excludeSubject": (wrappedValue: excludeSubject?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -246,16 +243,13 @@ var fields: String?
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "startIndex": (wrappedValue: startIndex?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -308,7 +302,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiNewItemsAgentNewItemsArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -360,7 +353,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -418,7 +410,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiFolderWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -471,18 +462,10 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiFolderArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
-    }
-}
-extension AIAgentsAPIApi {
-    @discardableResult
-    public func withFields(_ fields: String) -> AIAgentsAPIApi {
-        self.fields = fields
-        return self
     }
 }

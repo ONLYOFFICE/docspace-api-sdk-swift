@@ -20,11 +20,11 @@ public struct UpdateMemberRequestDto: Sendable, Codable, Hashable {
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let firstNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
     public static let lastNameRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    /** The account the change applies to. It is read from this body by `POST api/2.0/people/email`, while  `PUT api/2.0/people/{userid}` takes the account from the route and ignores this field. */
+    /** The account the change applies to. It is read from this body by `POST api/2.0/people/email`, while  `PUT api/2.0/people/{userId}` takes the account from the route and ignores this field. */
     public var userId: String?
     /** Set it to true to give the account the `Terminated` status and end every session it has, and to false to  bring it back. It is applied only when the caller edits somebody else, and omitting it keeps the current  status. */
     public var disable: Bool?
-    /** The new email address, up to 255 characters. It is read only by `POST api/2.0/people/email`, which either  mails a confirmation letter or, for an administrator acting on somebody else, applies the address at once;  `PUT api/2.0/people/{userid}` ignores it. */
+    /** The new email address, up to 255 characters. It is read only by `POST api/2.0/people/email`, which either  mails a confirmation letter or, for an administrator acting on somebody else, applies the address at once;  `PUT api/2.0/people/{userId}` ignores it. */
     public var email: String?
     /** Set it to true to turn the account into a guest and to false to turn it back into a member. Either direction  takes a seat and can answer 402, it is applied only when the caller edits somebody else, and a request to  make the portal owner, a DocSpace administrator or a module administrator a guest is ignored. */
     public var isUser: Bool?

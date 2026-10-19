@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **setTenantBannerSettings**
 ```swift
-    open class func setTenantBannerSettings(tenantBannerSettingsDto: TenantBannerSettingsDto? = nil, completion: @escaping (_ data: TenantBannerSettingsWrapper?, _ error: Error?) -> Void)
+    open class func setTenantBannerSettings(tenantBannerSettingsRequestDto: TenantBannerSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantBannerSettingsWrapper
 ```
 
 Sets whether the portal's promotional banners are hidden for every user. Available only on an Enterprise  license; every other plan is refused regardless of the caller's role. Requires Owner or DocSpaceAdmin (the  EditPortalSettings permission). The flag only takes effect on a Standalone (self-hosted) installation; on  SaaS, banners are always shown no matter what is saved here. This is a mutating, idempotent, portal-wide call:  it applies to every user on the tenant immediately. It returns the saved setting; read the current value at  any time from `GET api/2.0/settings/banner`.
@@ -20,7 +20,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenantBannerSettingsDto** | [**TenantBannerSettingsDto**](TenantBannerSettingsDto.md) |  | [optional] 
+ **tenantBannerSettingsRequestDto** | [**TenantBannerSettingsRequestDto**](TenantBannerSettingsRequestDto.md) |  | [optional] 
 
 ### Return type
 
@@ -35,18 +35,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let tenantBannerSettingsDto = TenantBannerSettingsDto(hidden: true) // TenantBannerSettingsDto |  (optional)
+let tenantBannerSettingsRequestDto = TenantBannerSettingsRequestDto(hidden: true) // TenantBannerSettingsRequestDto |  (optional)
 
 // Set the banners visibility
-SecurityBannersVisibilityAPIApi.setTenantBannerSettings(tenantBannerSettingsDto: tenantBannerSettingsDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SecurityBannersVisibilityAPIApi.setTenantBannerSettings(tenantBannerSettingsRequestDto: tenantBannerSettingsRequestDto)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

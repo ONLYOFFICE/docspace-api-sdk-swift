@@ -4,29 +4,29 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**aiAiApproveToolCall**](AIAIAPI.md#aiaiapprovetoolcall) | **POST** /api/2.0/ai/ai/approve-tool-call | Approve tool call
-[**aiAiDenyToolCall**](AIAIAPI.md#aiaidenytoolcall) | **POST** /api/2.0/ai/ai/deny-tool-call | Deny tool call
-[**aiAiRegenerateStream**](AIAIAPI.md#aiairegeneratestream) | **POST** /api/2.0/ai/ai/regenerate-stream | Regenerate stream
-[**aiAiSend**](AIAIAPI.md#aiaisend) | **POST** /api/2.0/ai/ai/send | Run an AI action
-[**aiAiSendCustom**](AIAIAPI.md#aiaisendcustom) | **POST** /api/2.0/ai/ai/send-custom | Send custom
-[**aiAiSendWithStream**](AIAIAPI.md#aiaisendwithstream) | **POST** /api/2.0/ai/ai/send-with-stream | Send with stream
-[**aiAiSendWithStreamOpenAI**](AIAIAPI.md#aiaisendwithstreamopenai) | **POST** /api/2.0/ai/ai/send-with-stream-openai | Stream a chat in OpenAI format
+[**aiApproveToolCall**](AIAIAPI.md#aiapprovetoolcall) | **POST** /api/2.0/ai/ai/approve-tool-call | Approve tool call
+[**aiDenyToolCall**](AIAIAPI.md#aidenytoolcall) | **POST** /api/2.0/ai/ai/deny-tool-call | Deny tool call
+[**aiRegenerateStream**](AIAIAPI.md#airegeneratestream) | **POST** /api/2.0/ai/ai/regenerate-stream | Regenerate stream
+[**aiSend**](AIAIAPI.md#aisend) | **POST** /api/2.0/ai/ai/send | Run an AI action
+[**aiSendCustom**](AIAIAPI.md#aisendcustom) | **POST** /api/2.0/ai/ai/send-custom | Send custom
+[**aiSendWithStream**](AIAIAPI.md#aisendwithstream) | **POST** /api/2.0/ai/ai/send-with-stream | Send with stream
+[**aiSendWithStreamOpenAI**](AIAIAPI.md#aisendwithstreamopenai) | **POST** /api/2.0/ai/ai/send-with-stream-openai | Stream a chat in OpenAI format
 
 
-# **aiAiApproveToolCall**
+# **aiApproveToolCall**
 ```swift
-    open class func aiAiApproveToolCall(aiAiApproveToolCallRequest: AiAiApproveToolCallRequest, completion: @escaping (_ data: AiChatEvent?, _ error: Error?) -> Void)
+    open class func aiApproveToolCall(aiApproveToolCallRequest: AiApproveToolCallRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiChatEvent
 ```
 
 Resumes a chat round that a tool call has paused, and streams the continuation as newline-delimited `ChatEvent` objects. The result supplied in the request is persisted onto the assistant message that issued the call, so the tool is not executed here - the caller runs it and reports the outcome. The round continues against the augmented history and may pause again on a further tool call. Call `POST api/2.0/ai/ai/deny-tool-call` instead to refuse the call and let the model answer without it.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-approve-tool-call/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-approve-tool-call/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aiAiApproveToolCallRequest** | [**AiAiApproveToolCallRequest**](AiAiApproveToolCallRequest.md) |  | 
+ **aiApproveToolCallRequest** | [**AiApproveToolCallRequest**](AiApproveToolCallRequest.md) |  | 
 
 ### Return type
 
@@ -41,18 +41,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiAiApproveToolCallRequest = aiAiApproveToolCall_request(result: 123, allowAlways: false, threadId: "threadId_example", messageId: "messageId_example", idx: 123, message: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiAiActionArgs(tools: [AiTMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false)], isReasoning: false, reasoningLevel: AiAiReasoningLevel(), prompt: AiAiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiAiApproveToolCallRequest | 
+let aiApproveToolCallRequest = AiApproveToolCallRequest(result: 123, allowAlways: false, threadId: "threadId_example", messageId: "messageId_example", idx: 123, message: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiActionArgs(tools: [AiMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false, annotations: AiToolAnnotations(title: "title_example", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false))], isReasoning: false, reasoningLevel: AiReasoningLevel(), prompt: AiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiApproveToolCallRequest | 
 
 // Approve tool call
-AIAIAPIApi.aiAiApproveToolCall(aiAiApproveToolCallRequest: aiAiApproveToolCallRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIAIAPIApi.aiApproveToolCall(aiApproveToolCallRequest: aiApproveToolCallRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -63,20 +59,20 @@ AIAIAPIApi.aiAiApproveToolCall(aiAiApproveToolCallRequest: aiAiApproveToolCallRe
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **aiAiDenyToolCall**
+# **aiDenyToolCall**
 ```swift
-    open class func aiAiDenyToolCall(aiAiToolCallData: AiAiToolCallData, completion: @escaping (_ data: AiChatEvent?, _ error: Error?) -> Void)
+    open class func aiDenyToolCall(aiToolCallData: AiToolCallData, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiChatEvent
 ```
 
 Refuses the tool call a chat round is paused on and resumes it immediately, streaming the continuation as newline-delimited `ChatEvent` objects. The literal `User deny tool call` is persisted in place of the tool result, so the model sees an explicit refusal rather than a missing answer and may reply without the tool or ask for something else. Nothing is executed and no result is accepted from the caller. Use `POST api/2.0/ai/ai/approve-tool-call` to supply a result instead.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-deny-tool-call/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-deny-tool-call/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aiAiToolCallData** | [**AiAiToolCallData**](AiAiToolCallData.md) |  | 
+ **aiToolCallData** | [**AiToolCallData**](AiToolCallData.md) |  | 
 
 ### Return type
 
@@ -91,18 +87,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiAiToolCallData = AiAiToolCallData(threadId: "threadId_example", messageId: "messageId_example", idx: 123, message: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiAiActionArgs(tools: [AiTMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false)], isReasoning: false, reasoningLevel: AiAiReasoningLevel(), prompt: AiAiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiAiToolCallData | 
+let aiToolCallData = AiToolCallData(threadId: "threadId_example", messageId: "messageId_example", idx: 123, message: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiActionArgs(tools: [AiMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false, annotations: AiToolAnnotations(title: "title_example", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false))], isReasoning: false, reasoningLevel: AiReasoningLevel(), prompt: AiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiToolCallData | 
 
 // Deny tool call
-AIAIAPIApi.aiAiDenyToolCall(aiAiToolCallData: aiAiToolCallData) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIAIAPIApi.aiDenyToolCall(aiToolCallData: aiToolCallData)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -113,20 +105,20 @@ AIAIAPIApi.aiAiDenyToolCall(aiAiToolCallData: aiAiToolCallData) { (response, err
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **aiAiRegenerateStream**
+# **aiRegenerateStream**
 ```swift
-    open class func aiAiRegenerateStream(aiAiRegenerateStreamRequest: AiAiRegenerateStreamRequest, completion: @escaping (_ data: AiChatEvent?, _ error: Error?) -> Void)
+    open class func aiRegenerateStream(aiRegenerateStreamRequest: AiRegenerateStreamRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiChatEvent
 ```
 
 Re-rolls the last assistant reply of an existing thread: every message after the last user message - the previous reply and any tool-call hops - is dropped, and a fresh reply is streamed as newline-delimited `ChatEvent` objects against the unchanged prompt. The thread has to exist already, `threadId` is required, and no title is generated. The dropped messages are gone for good, so this is a destructive operation on the thread's tail rather than a retry that keeps both answers. Unlike `send-with-stream` the profile is not verified before the stream opens, so an unusable model surfaces as an error frame inside the 200 rather than as a 4xx.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-regenerate-stream/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-regenerate-stream/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aiAiRegenerateStreamRequest** | [**AiAiRegenerateStreamRequest**](AiAiRegenerateStreamRequest.md) |  | 
+ **aiRegenerateStreamRequest** | [**AiRegenerateStreamRequest**](AiRegenerateStreamRequest.md) |  | 
 
 ### Return type
 
@@ -141,18 +133,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiAiRegenerateStreamRequest = aiAiRegenerateStream_request(threadId: "threadId_example", actionArgs: AiAiActionArgs(tools: [AiTMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false)], isReasoning: false, reasoningLevel: AiAiReasoningLevel(), prompt: AiAiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiAiRegenerateStreamRequest | 
+let aiRegenerateStreamRequest = AiRegenerateStreamRequest(threadId: "threadId_example", actionArgs: AiActionArgs(tools: [AiMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false, annotations: AiToolAnnotations(title: "title_example", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false))], isReasoning: false, reasoningLevel: AiReasoningLevel(), prompt: AiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiRegenerateStreamRequest | 
 
 // Regenerate stream
-AIAIAPIApi.aiAiRegenerateStream(aiAiRegenerateStreamRequest: aiAiRegenerateStreamRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIAIAPIApi.aiRegenerateStream(aiRegenerateStreamRequest: aiRegenerateStreamRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -163,20 +151,20 @@ AIAIAPIApi.aiAiRegenerateStream(aiAiRegenerateStreamRequest: aiAiRegenerateStrea
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **aiAiSend**
+# **aiSend**
 ```swift
-    open class func aiAiSend(aiAiSendRequest: AiAiSendRequest, completion: @escaping (_ data: AiThreadMessageLike?, _ error: Error?) -> Void)
+    open class func aiSend(aiSendRequest: AiSendRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiThreadMessageLike
 ```
 
-Runs one AI action and returns the whole answer as a single JSON document. The model is the profile bound to `actionType`, falling back to the `Default` assignment slot, so this operation accepts no `profileId` of its own. Nothing is persisted - no thread is opened, no message is stored and no title is generated - which makes it the one to use for a stand-alone completion rather than for a conversation. `entityId` and `contextEntityId` set the scope of the round, which decides the workspace context and the custom MCP servers it may reach. For a conversation that keeps its history, use `POST api/2.0/ai/ai/send-with-stream` instead.
+Runs one AI action and returns the whole answer as a single JSON document. The model is the profile bound to `actionType`, falling back to the `Default` assignment slot, so this operation accepts no `profileId` of its own. `actionType` has to be a known action and `userMessage` has to carry text or an attachment, or the call answers 400 before anything runs. Nothing is persisted - no thread is opened, no message is stored and no title is generated - which makes it the one to use for a stand-alone completion rather than for a conversation. `entityId` and `contextEntityId` set the scope of the round, which decides the workspace context and the custom MCP servers it may reach. For a conversation that keeps its history, use `POST api/2.0/ai/ai/send-with-stream` instead.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aiAiSendRequest** | [**AiAiSendRequest**](AiAiSendRequest.md) |  | 
+ **aiSendRequest** | [**AiSendRequest**](AiSendRequest.md) |  | 
 
 ### Return type
 
@@ -191,18 +179,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiAiSendRequest = aiAiSend_request(actionType: AiActionType(), userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiAiActionArgs(tools: [AiTMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false)], isReasoning: false, reasoningLevel: AiAiReasoningLevel(), prompt: AiAiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example") // AiAiSendRequest | 
+let aiSendRequest = AiSendRequest(actionType: AiActionType(), userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiActionArgs(tools: [AiMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false, annotations: AiToolAnnotations(title: "title_example", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false))], isReasoning: false, reasoningLevel: AiReasoningLevel(), prompt: AiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example") // AiSendRequest | 
 
 // Run an AI action
-AIAIAPIApi.aiAiSend(aiAiSendRequest: aiAiSendRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIAIAPIApi.aiSend(aiSendRequest: aiSendRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -213,20 +197,20 @@ AIAIAPIApi.aiAiSend(aiAiSendRequest: aiAiSendRequest) { (response, error) in
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **aiAiSendCustom**
+# **aiSendCustom**
 ```swift
-    open class func aiAiSendCustom(aiAiSendCustomRequest: AiAiSendCustomRequest, completion: @escaping (_ data: AiThreadMessageLike?, _ error: Error?) -> Void)
+    open class func aiSendCustom(aiSendCustomRequest: AiSendCustomRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiThreadMessageLike
 ```
 
-Runs a free-form one-turn call against a system prompt supplied in the request, with no thread, no history and nothing persisted. The model is the explicit `profileId` when it resolves, otherwise the `Default` assignment slot. The shape of the answer depends on the body rather than on the route: with `isStream` set it arrives as a newline-delimited stream of chat events, and without it as a single JSON document, so a client has to handle both. Use `POST api/2.0/ai/ai/send` when the prompt should come from the portal's own action configuration instead of from the caller.
+Runs a free-form one-turn call against a system prompt supplied in the request, with no thread, no history and nothing persisted. The model is the explicit `profileId` when it resolves, otherwise the `Default` assignment slot. `systemPrompt` is required and `userMessage` has to carry text or an attachment, or the call answers 400 before anything runs. The shape of the answer depends on the body rather than on the route: with `isStream: true` it arrives as a newline-delimited stream of chat events, and without it as a single JSON document, so a client has to handle both; `isStream` has to be a real boolean when sent, a string is refused. Use `POST api/2.0/ai/ai/send` when the prompt should come from the portal's own action configuration instead of from the caller.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send-custom/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send-custom/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aiAiSendCustomRequest** | [**AiAiSendCustomRequest**](AiAiSendCustomRequest.md) |  | 
+ **aiSendCustomRequest** | [**AiSendCustomRequest**](AiSendCustomRequest.md) |  | 
 
 ### Return type
 
@@ -241,18 +225,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiAiSendCustomRequest = aiAiSendCustom_request(isStream: false, systemPrompt: "systemPrompt_example", userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiAiActionArgs(tools: [AiTMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false)], isReasoning: false, reasoningLevel: AiAiReasoningLevel(), prompt: AiAiActionArgs_prompt(mode: "mode_example", text: "text_example"))) // AiAiSendCustomRequest | 
+let aiSendCustomRequest = AiSendCustomRequest(isStream: false, systemPrompt: "systemPrompt_example", userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiActionArgs(tools: [AiMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false, annotations: AiToolAnnotations(title: "title_example", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false))], isReasoning: false, reasoningLevel: AiReasoningLevel(), prompt: AiActionArgs_prompt(mode: "mode_example", text: "text_example"))) // AiSendCustomRequest | 
 
 // Send custom
-AIAIAPIApi.aiAiSendCustom(aiAiSendCustomRequest: aiAiSendCustomRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIAIAPIApi.aiSendCustom(aiSendCustomRequest: aiSendCustomRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -263,20 +243,20 @@ AIAIAPIApi.aiAiSendCustom(aiAiSendCustomRequest: aiAiSendCustomRequest) { (respo
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **aiAiSendWithStream**
+# **aiSendWithStream**
 ```swift
-    open class func aiAiSendWithStream(aiAiSendStreamBody: AiAiSendStreamBody, completion: @escaping (_ data: AiChatEvent?, _ error: Error?) -> Void)
+    open class func aiSendWithStream(aiSendStreamBody: AiSendStreamBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiChatEvent
 ```
 
 Runs one chat round and streams it back as newline-delimited `ChatEvent` objects. Omitting `threadId` opens a new thread, which requires that `entityId` names a room the caller can open and that a profile resolves for it; the user message and the reply are persisted either way, and a new thread also gets a generated title. The model is settled in a fixed order - an agent's assignment in scope overrides everything, then the explicit `profileId`, then the one stored on the thread, then the `Chat` assignment - and the effective profile is checked before the stream opens, so an unknown one fails with 400 rather than as an error buried in a 200. A tool call pauses the round and ends the stream; resume it with `POST api/2.0/ai/ai/approve-tool-call` or `POST api/2.0/ai/ai/deny-tool-call`.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send-with-stream/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send-with-stream/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aiAiSendStreamBody** | [**AiAiSendStreamBody**](AiAiSendStreamBody.md) |  | 
+ **aiSendStreamBody** | [**AiSendStreamBody**](AiSendStreamBody.md) |  | 
 
 ### Return type
 
@@ -291,18 +271,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiAiSendStreamBody = AiAiSendStreamBody(threadId: "threadId_example", userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiAiActionArgs(tools: [AiTMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false)], isReasoning: false, reasoningLevel: AiAiReasoningLevel(), prompt: AiAiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiAiSendStreamBody | 
+let aiSendStreamBody = AiSendStreamBody(threadId: "threadId_example", userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiActionArgs(tools: [AiMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false, annotations: AiToolAnnotations(title: "title_example", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false))], isReasoning: false, reasoningLevel: AiReasoningLevel(), prompt: AiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiSendStreamBody | 
 
 // Send with stream
-AIAIAPIApi.aiAiSendWithStream(aiAiSendStreamBody: aiAiSendStreamBody) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIAIAPIApi.aiSendWithStream(aiSendStreamBody: aiSendStreamBody)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -313,20 +289,20 @@ AIAIAPIApi.aiAiSendWithStream(aiAiSendStreamBody: aiAiSendStreamBody) { (respons
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **aiAiSendWithStreamOpenAI**
+# **aiSendWithStreamOpenAI**
 ```swift
-    open class func aiAiSendWithStreamOpenAI(aiAiSendStreamBody: AiAiSendStreamBody, completion: @escaping (_ data: AiOpenAIStreamChunk?, _ error: Error?) -> Void)
+    open class func aiSendWithStreamOpenAI(aiSendStreamBody: AiSendStreamBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiOpenAIStreamChunk
 ```
 
 The same chat round as `send-with-stream`, re-encoded as a server-sent-events stream of OpenAI `chat.completion.chunk` objects terminated by a `[DONE]` sentinel. Thread handling, persistence, title generation and the profile pre-flight are identical, and a tool call ends the stream with `finish_reason: tool_calls` instead of a pause event - resume it through the same approve and deny operations. Unlike `send-with-stream` it does not reject an empty user message and does not enforce the per-kind attachment cap, so validate both before calling. Choose this route only for a client that already speaks the OpenAI wire format; `POST api/2.0/ai/ai/send-with-stream` is the native one.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-ai-send-with-stream-open-ai/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-send-with-stream-open-ai/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **aiAiSendStreamBody** | [**AiAiSendStreamBody**](AiAiSendStreamBody.md) |  | 
+ **aiSendStreamBody** | [**AiSendStreamBody**](AiSendStreamBody.md) |  | 
 
 ### Return type
 
@@ -341,18 +317,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiAiSendStreamBody = AiAiSendStreamBody(threadId: "threadId_example", userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiAiActionArgs(tools: [AiTMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false)], isReasoning: false, reasoningLevel: AiAiReasoningLevel(), prompt: AiAiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiAiSendStreamBody | 
+let aiSendStreamBody = AiSendStreamBody(threadId: "threadId_example", userMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), actionArgs: AiActionArgs(tools: [AiMCPItem(name: "name_example", description: "description_example", inputSchema: 123, enabled: true, serverType: "serverType_example", requireApproval: false, annotations: AiToolAnnotations(title: "title_example", readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: false))], isReasoning: false, reasoningLevel: AiReasoningLevel(), prompt: AiActionArgs_prompt(mode: "mode_example", text: "text_example")), entityId: "entityId_example", profileId: "profileId_example") // AiSendStreamBody | 
 
 // Stream a chat in OpenAI format
-AIAIAPIApi.aiAiSendWithStreamOpenAI(aiAiSendStreamBody: aiAiSendStreamBody) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIAIAPIApi.aiSendWithStreamOpenAI(aiSendStreamBody: aiSendStreamBody)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

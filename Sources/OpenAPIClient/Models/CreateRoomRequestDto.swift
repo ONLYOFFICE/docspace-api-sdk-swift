@@ -18,7 +18,7 @@ import Foundation
 public struct CreateRoomRequestDto: Sendable, Codable, Hashable {
 
     public static let titleRule = StringRule(minLength: 0, maxLength: 170, pattern: nil)
-    public static let colorRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^[0-9a-fA-F]{6}$/")
+    public static let colorRule = StringRule(minLength: nil, maxLength: nil, pattern: "^[0-9a-fA-F]{6}$")
     public static let coverRule = StringRule(minLength: 0, maxLength: 50, pattern: nil)
     /** The name of the room. It is trimmed, characters that a folder name cannot hold are replaced with underscores  and the rest is truncated, so the stored title can differ from the one sent; a blank title is rejected. Titles  are not unique, and rooms are told apart by their id. */
     public var title: String?

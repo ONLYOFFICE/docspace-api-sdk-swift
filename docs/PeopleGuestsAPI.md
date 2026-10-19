@@ -10,10 +10,10 @@ Method | HTTP request | Description
 
 # **approveGuestShareLink**
 ```swift
-    open class func approveGuestShareLink(emailMemberRequestDto: EmailMemberRequestDto? = nil, completion: @escaping (_ data: EmployeeFullWrapper?, _ error: Error?) -> Void)
+    open class func approveGuestShareLink(emailMemberRequestDto: EmailMemberRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper
 ```
 
-Accepts a guest that another member shared, which links that guest to the calling account and makes it  visible in the caller's list of guests.  Everything the operation needs comes from the confirmation token of the link produced by  `GET api/2.0/people/guests/{userid}/share`: the request body is not read at all, so there is nothing to fill  in, and an expired or already used token is answered with 401.  The caller has to be a room admin or a DocSpace admin; a member or a guest gets 403.  The account the token names has to exist and still be a guest, otherwise the operation answers 404 or 400.  The call is idempotent: a guest that is already linked to the caller is simply returned again.  The answer is the full profile of the guest.
+Accepts a guest that another member shared, which links that guest to the calling account and makes it  visible in the caller's list of guests.  Everything the operation needs comes from the confirmation token of the link produced by  `GET api/2.0/people/guests/{userId}/share`: the request body is not read at all, so there is nothing to fill  in, and an expired or already used token is answered with 401.  The caller has to be a room admin or a DocSpace admin; a member or a guest gets 403.  The account the token names has to exist and still be a guest, otherwise the operation answers 404 or 400.  The call is idempotent: a guest that is already linked to the caller is simply returned again.  The answer is the full profile of the guest.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/approve-guest-share-link/).
 
@@ -39,15 +39,11 @@ import OpenAPIClient
 let emailMemberRequestDto = EmailMemberRequestDto(email: "email_example", recaptchaType: RecaptchaType(), recaptchaResponse: "recaptchaResponse_example") // EmailMemberRequestDto |  (optional)
 
 // Approve a guest sharing link
-PeopleGuestsAPIApi.approveGuestShareLink(emailMemberRequestDto: emailMemberRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleGuestsAPIApi.approveGuestShareLink(emailMemberRequestDto: emailMemberRequestDto)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -60,10 +56,10 @@ PeopleGuestsAPIApi.approveGuestShareLink(emailMemberRequestDto: emailMemberReque
 
 # **deleteGuests**
 ```swift
-    open class func deleteGuests(updateMembersRequestDto: UpdateMembersRequestDto? = nil, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteGuests(updateMembersRequestDto: UpdateMembersRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
-Removes the listed guests from the caller's own list of guests and withdraws the access the caller had  granted them.  It does not delete the accounts: each guest keeps its profile and any access other members gave it, and only  the link to the caller and the caller's own shares disappear.  The caller has to be a room admin or a DocSpace admin, and every listed account has to exist, be an active  guest and be one of the caller's own guests - a single entry that is not rejects the whole call with 403 and  changes nothing.  The call returns no body; read `GET api/2.0/people/filter` with `area` set to `Guests` to see what is left.  To delete a guest account for good, disable it and then use `DELETE api/2.0/people/{userid}`.
+Removes the listed guests from the caller's own list of guests and withdraws the access the caller had  granted them.  It does not delete the accounts: each guest keeps its profile and any access other members gave it, and only  the link to the caller and the caller's own shares disappear.  The caller has to be a room admin or a DocSpace admin, and every listed account has to exist, be an active  guest and be one of the caller's own guests - a single entry that is not rejects the whole call with 403 and  changes nothing.  The call returns no body; read `GET api/2.0/people/filter` with `area` set to `Guests` to see what is left.  To delete a guest account for good, disable it and then use `DELETE api/2.0/people/{userId}`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-guests/).
 
@@ -89,15 +85,10 @@ import OpenAPIClient
 let updateMembersRequestDto = UpdateMembersRequestDto(userIds: [123], resendAll: false) // UpdateMembersRequestDto |  (optional)
 
 // Remove guest relations
-PeopleGuestsAPIApi.deleteGuests(updateMembersRequestDto: updateMembersRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await PeopleGuestsAPIApi.deleteGuests(updateMembersRequestDto: updateMembersRequestDto)
+} catch {
+    print(error)
 }
 ```
 

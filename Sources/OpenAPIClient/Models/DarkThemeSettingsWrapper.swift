@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the DarkThemeSettings object. */
+/** The successful API response containing the DarkThemeSettingsDto object. */
 public struct DarkThemeSettingsWrapper: Sendable, Codable, Hashable {
 
-    /** The DarkThemeSettings object returned by the operation. */
-    public var response: DarkThemeSettings?
+    /** The DarkThemeSettingsDto object returned by the operation. */
+    public var response: DarkThemeSettingsDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct DarkThemeSettingsWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: DarkThemeSettings? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: DarkThemeSettingsDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

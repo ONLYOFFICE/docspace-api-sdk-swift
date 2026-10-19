@@ -15,16 +15,38 @@
 import Foundation
 
 /** A DocSpace room id: an integer for native rooms, a string for third-party-backed ones. */
-public struct AiAgentsUpdateQuotaRequestRoomIdsInner: Sendable, Codable, Hashable {
-
-
-    public enum CodingKeys: CodingKey, CaseIterable {
-    }
-
-    // Encodable protocol methods
+public enum AiAgentsUpdateQuotaRequestRoomIdsInner: Sendable, Codable, Hashable, ParameterConvertible {
+    case typeDouble(Double)
+    case typeString(String)
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .typeDouble(let value):
+            try container.encode(value)
+        case .typeString(let value):
+            try container.encode(value)
+        }
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Double.self) {
+            self = .typeDouble(value)
+        } else if let value = try? container.decode(String.self) {
+            self = .typeString(value)
+        } else {
+            throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of AiAgentsUpdateQuotaRequestRoomIdsInner"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeDouble(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        }
     }
 }
 

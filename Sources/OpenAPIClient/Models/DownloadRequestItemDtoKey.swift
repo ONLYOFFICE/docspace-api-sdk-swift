@@ -15,7 +15,7 @@
 import Foundation
 
 /** The file to convert and pack, by id — a number for a file stored in the portal itself, a string for a file on  a connected third-party account. */
-public enum DownloadRequestItemDtoKey: Sendable, Codable, Hashable {
+public enum DownloadRequestItemDtoKey: Sendable, Codable, Hashable, ParameterConvertible {
     case typeInt(Int)
     case typeString(String)
 
@@ -37,6 +37,15 @@ public enum DownloadRequestItemDtoKey: Sendable, Codable, Hashable {
             self = .typeString(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of DownloadRequestItemDtoKey"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeInt(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
         }
     }
 }

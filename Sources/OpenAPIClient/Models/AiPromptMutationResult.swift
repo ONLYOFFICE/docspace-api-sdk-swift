@@ -22,9 +22,9 @@ public struct AiPromptMutationResult: Sendable, Codable, Hashable {
     /** The persisted prompt. Present on success. */
     public var prompt: AiPrompt?
     /** Why the prompt was rejected. Present on failure. */
-    public var error: AiTErrorData?
+    public var error: AiErrorData?
 
-    public init(success: Bool, prompt: AiPrompt? = nil, error: AiTErrorData? = nil) {
+    public init(success: Bool, prompt: AiPrompt? = nil, error: AiErrorData? = nil) {
         self.success = success
         self.prompt = prompt
         self.error = error

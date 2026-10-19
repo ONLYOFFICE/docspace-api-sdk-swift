@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsCommonSettingsAPIApi {
 
     /**
      Close the admin helper
@@ -74,7 +74,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -88,13 +87,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for completeWizard Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/complete-wizard/
-     - parameter wizardRequestsDto: (body)  (optional)
+     - parameter wizardRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: WizardSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func completeWizard(wizardRequestsDto: WizardRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WizardSettingsWrapper {
-        return try await completeWizardWithRequestBuilder(wizardRequestsDto: wizardRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func completeWizard(wizardRequestDto: WizardRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> WizardSettingsWrapper {
+        return try await completeWizardWithRequestBuilder(wizardRequestDto: wizardRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -125,21 +124,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter wizardRequestsDto: (body)  (optional)
+     - parameter wizardRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<WizardSettingsWrapper> 
      */
-    open class func completeWizardWithRequestBuilder(wizardRequestsDto: WizardRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WizardSettingsWrapper> {
+    open class func completeWizardWithRequestBuilder(wizardRequestDto: WizardRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<WizardSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/wizard/complete"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: wizardRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: wizardRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -154,13 +152,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for configureDeepLink Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/configure-deep-link/
-     - parameter deepLinkConfigurationRequestsDto: (body)  (optional)
+     - parameter deepLinkConfigurationRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: TenantDeepLinkSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func configureDeepLink(deepLinkConfigurationRequestsDto: DeepLinkConfigurationRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantDeepLinkSettingsWrapper {
-        return try await configureDeepLinkWithRequestBuilder(deepLinkConfigurationRequestsDto: deepLinkConfigurationRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func configureDeepLink(deepLinkConfigurationRequestDto: DeepLinkConfigurationRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantDeepLinkSettingsWrapper {
+        return try await configureDeepLinkWithRequestBuilder(deepLinkConfigurationRequestDto: deepLinkConfigurationRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -191,21 +189,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter deepLinkConfigurationRequestsDto: (body)  (optional)
+     - parameter deepLinkConfigurationRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantDeepLinkSettingsWrapper> 
      */
-    open class func configureDeepLinkWithRequestBuilder(deepLinkConfigurationRequestsDto: DeepLinkConfigurationRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantDeepLinkSettingsWrapper> {
+    open class func configureDeepLinkWithRequestBuilder(deepLinkConfigurationRequestDto: DeepLinkConfigurationRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantDeepLinkSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/deeplink"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deepLinkConfigurationRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: deepLinkConfigurationRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -266,15 +263,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "id": (wrappedValue: id.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -340,7 +337,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<TenantDeepLinkSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -404,7 +400,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -470,7 +465,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<CustomColorThemesSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -534,7 +528,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -600,7 +593,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -660,15 +652,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "withpassword": (wrappedValue: withpassword?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -734,7 +726,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<SocketSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -750,10 +741,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-supported-cultures/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: STRINGArrayWrapper
+     - returns: StringArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getSupportedCultures(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> STRINGArrayWrapper {
+    open class func getSupportedCultures(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringArrayWrapper {
         return try await getSupportedCulturesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -786,9 +777,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<STRINGArrayWrapper> 
+     - returns: RequestBuilder<StringArrayWrapper> 
      */
-    open class func getSupportedCulturesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<STRINGArrayWrapper> {
+    open class func getSupportedCulturesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/cultures"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -799,10 +790,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<STRINGArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<StringArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -863,7 +853,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -929,7 +918,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<TenantUserInvitationSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -945,10 +933,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-time-zones/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: TimezonesRequestsArrayWrapper
+     - returns: TimezoneArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getTimeZones(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TimezonesRequestsArrayWrapper {
+    open class func getTimeZones(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TimezoneArrayWrapper {
         return try await getTimeZonesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -981,9 +969,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<TimezonesRequestsArrayWrapper> 
+     - returns: RequestBuilder<TimezoneArrayWrapper> 
      */
-    open class func getTimeZonesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TimezonesRequestsArrayWrapper> {
+    open class func getTimeZonesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TimezoneArrayWrapper> {
         let localVariablePath = "/api/2.0/settings/timezones"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -994,10 +982,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<TimezonesRequestsArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<TimezoneArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -1060,7 +1047,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<StudioDefaultPageSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -1074,13 +1060,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for saveDnsSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-dns-settings/
-     - parameter dnsSettingsRequestsDto: (body)  (optional)
+     - parameter dnsSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func saveDnsSettings(dnsSettingsRequestsDto: DnsSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await saveDnsSettingsWithRequestBuilder(dnsSettingsRequestsDto: dnsSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func saveDnsSettings(dnsSettingsRequestDto: DnsSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await saveDnsSettingsWithRequestBuilder(dnsSettingsRequestDto: dnsSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1111,21 +1097,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter dnsSettingsRequestsDto: (body)  (optional)
+     - parameter dnsSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func saveDnsSettingsWithRequestBuilder(dnsSettingsRequestsDto: DnsSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func saveDnsSettingsWithRequestBuilder(dnsSettingsRequestDto: DnsSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         let localVariablePath = "/api/2.0/settings/dns"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dnsSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: dnsSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1140,13 +1125,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for saveMailDomainSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-mail-domain-settings/
-     - parameter mailDomainSettingsRequestsDto: (body)  (optional)
+     - parameter mailDomainSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func saveMailDomainSettings(mailDomainSettingsRequestsDto: MailDomainSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await saveMailDomainSettingsWithRequestBuilder(mailDomainSettingsRequestsDto: mailDomainSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func saveMailDomainSettings(mailDomainSettingsRequestDto: MailDomainSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await saveMailDomainSettingsWithRequestBuilder(mailDomainSettingsRequestDto: mailDomainSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1177,21 +1162,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter mailDomainSettingsRequestsDto: (body)  (optional)
+     - parameter mailDomainSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func saveMailDomainSettingsWithRequestBuilder(mailDomainSettingsRequestsDto: MailDomainSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func saveMailDomainSettingsWithRequestBuilder(mailDomainSettingsRequestDto: MailDomainSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         let localVariablePath = "/api/2.0/settings/maildomainsettings"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: mailDomainSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: mailDomainSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1206,13 +1190,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for savePortalColorTheme Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-portal-color-theme/
-     - parameter customColorThemesSettingsRequestsDto: (body)  (optional)
+     - parameter customColorThemesSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: CustomColorThemesSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func savePortalColorTheme(customColorThemesSettingsRequestsDto: CustomColorThemesSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CustomColorThemesSettingsWrapper {
-        return try await savePortalColorThemeWithRequestBuilder(customColorThemesSettingsRequestsDto: customColorThemesSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func savePortalColorTheme(customColorThemesSettingsRequestDto: CustomColorThemesSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CustomColorThemesSettingsWrapper {
+        return try await savePortalColorThemeWithRequestBuilder(customColorThemesSettingsRequestDto: customColorThemesSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1243,21 +1227,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter customColorThemesSettingsRequestsDto: (body)  (optional)
+     - parameter customColorThemesSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CustomColorThemesSettingsWrapper> 
      */
-    open class func savePortalColorThemeWithRequestBuilder(customColorThemesSettingsRequestsDto: CustomColorThemesSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CustomColorThemesSettingsWrapper> {
+    open class func savePortalColorThemeWithRequestBuilder(customColorThemesSettingsRequestDto: CustomColorThemesSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CustomColorThemesSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/colortheme"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: customColorThemesSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: customColorThemesSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1272,13 +1255,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for setTenantAiAccessSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-ai-access-settings/
-     - parameter tenantAiAccessSettingsDto: (body)  (optional)
+     - parameter tenantAiAccessSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: TenantAiAccessSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func setTenantAiAccessSettings(tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAiAccessSettingsWrapper {
-        return try await setTenantAiAccessSettingsWithRequestBuilder(tenantAiAccessSettingsDto: tenantAiAccessSettingsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func setTenantAiAccessSettings(tenantAiAccessSettingsRequestDto: TenantAiAccessSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantAiAccessSettingsWrapper {
+        return try await setTenantAiAccessSettingsWithRequestBuilder(tenantAiAccessSettingsRequestDto: tenantAiAccessSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1309,21 +1292,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter tenantAiAccessSettingsDto: (body)  (optional)
+     - parameter tenantAiAccessSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<TenantAiAccessSettingsWrapper> 
      */
-    open class func setTenantAiAccessSettingsWithRequestBuilder(tenantAiAccessSettingsDto: TenantAiAccessSettingsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAiAccessSettingsWrapper> {
+    open class func setTenantAiAccessSettingsWithRequestBuilder(tenantAiAccessSettingsRequestDto: TenantAiAccessSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<TenantAiAccessSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/ai-access"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: tenantAiAccessSettingsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: tenantAiAccessSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1338,13 +1320,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateEmailActivationSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-email-activation-settings/
-     - parameter emailActivationSettings: (body)  (optional)
+     - parameter emailActivationSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: EmailActivationSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateEmailActivationSettings(emailActivationSettings: EmailActivationSettings? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmailActivationSettingsWrapper {
-        return try await updateEmailActivationSettingsWithRequestBuilder(emailActivationSettings: emailActivationSettings, apiConfiguration: apiConfiguration).execute().body
+    open class func updateEmailActivationSettings(emailActivationSettingsRequestDto: EmailActivationSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmailActivationSettingsWrapper {
+        return try await updateEmailActivationSettingsWithRequestBuilder(emailActivationSettingsRequestDto: emailActivationSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -1375,21 +1357,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter emailActivationSettings: (body)  (optional)
+     - parameter emailActivationSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmailActivationSettingsWrapper> 
      */
-    open class func updateEmailActivationSettingsWithRequestBuilder(emailActivationSettings: EmailActivationSettings? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmailActivationSettingsWrapper> {
+    open class func updateEmailActivationSettingsWithRequestBuilder(emailActivationSettingsRequestDto: EmailActivationSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmailActivationSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/emailactivation"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailActivationSettings, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailActivationSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -1455,7 +1436,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

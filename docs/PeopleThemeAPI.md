@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 # **changePortalTheme**
 ```swift
-    open class func changePortalTheme(darkThemeSettingsRequestDto: DarkThemeSettingsRequestDto? = nil, completion: @escaping (_ data: DarkThemeSettingsWrapper?, _ error: Error?) -> Void)
+    open class func changePortalTheme(darkThemeSettingsRequestDto: DarkThemeSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DarkThemeSettingsWrapper
 ```
 
 Sets the interface theme of the calling account to `Base` for the light theme, `Dark` for the dark one, or  `System` to follow whatever the operating system asks for.  The setting belongs to the account and not to the portal, despite the name of the route, so it changes  nothing for anybody else and cannot be set on another account.  It needs no permission, takes effect at once and is idempotent - sending the theme that is already in use  changes nothing.  The answer echoes the theme that was stored, which is the value the request asked for.  The same value is reported as `theme` by `GET api/2.0/people/@self`.
@@ -39,15 +39,11 @@ import OpenAPIClient
 let darkThemeSettingsRequestDto = DarkThemeSettingsRequestDto(theme: DarkThemeSettingsType()) // DarkThemeSettingsRequestDto |  (optional)
 
 // Change the portal theme
-PeopleThemeAPIApi.changePortalTheme(darkThemeSettingsRequestDto: darkThemeSettingsRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleThemeAPIApi.changePortalTheme(darkThemeSettingsRequestDto: darkThemeSettingsRequestDto)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -60,7 +56,7 @@ PeopleThemeAPIApi.changePortalTheme(darkThemeSettingsRequestDto: darkThemeSettin
 
 # **getPortalTheme**
 ```swift
-    open class func getPortalTheme(completion: @escaping (_ data: DarkThemeSettingsWrapper?, _ error: Error?) -> Void)
+    open class func getPortalTheme(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DarkThemeSettingsWrapper
 ```
 
 Returns the interface theme the calling account has chosen: `Base` for the light theme, `Dark` for the dark  one, or `System` to follow whatever the operating system asks for.  The setting belongs to the account and not to the portal, despite the name of the route, so it describes the  caller alone and cannot be read for anybody else.  It needs no permission and is read-only.  A caller that has never chosen a theme gets the portal default rather than an empty answer.  The same value is also reported as `theme` by `GET api/2.0/people/@self`, so a client that reads the profile  on start-up does not need this operation as well.
@@ -85,15 +81,11 @@ import OpenAPIClient
 
 
 // Get the portal theme
-PeopleThemeAPIApi.getPortalTheme() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await PeopleThemeAPIApi.getPortalTheme()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsStorageAPIApi {
 
     /**
      Get the backup storages
@@ -69,15 +69,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "dump": (wrappedValue: dump?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        ]
         var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "Dump": (wrappedValue: dump?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -143,7 +143,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<StorageArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -207,7 +206,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -273,7 +271,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AmazonS3RegionArrayWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -337,7 +334,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -403,7 +399,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -468,7 +463,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -482,13 +476,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateCdnStorage Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cdn-storage/
-     - parameter storageRequestsDto: (body)  (optional)
+     - parameter storageRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: CdnStorageSettingsWrapper
+     - returns: StorageSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateCdnStorage(storageRequestsDto: StorageRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CdnStorageSettingsWrapper {
-        return try await updateCdnStorageWithRequestBuilder(storageRequestsDto: storageRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func updateCdnStorage(storageRequestDto: StorageRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StorageSettingsWrapper {
+        return try await updateCdnStorageWithRequestBuilder(storageRequestDto: storageRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -519,14 +513,14 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter storageRequestsDto: (body)  (optional)
+     - parameter storageRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<CdnStorageSettingsWrapper> 
+     - returns: RequestBuilder<StorageSettingsWrapper> 
      */
-    open class func updateCdnStorageWithRequestBuilder(storageRequestsDto: StorageRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CdnStorageSettingsWrapper> {
+    open class func updateCdnStorageWithRequestBuilder(storageRequestDto: StorageRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StorageSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/storage/cdn"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: storageRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: storageRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -534,10 +528,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<CdnStorageSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<StorageSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -548,13 +541,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateStorage Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-storage/
-     - parameter storageRequestsDto: (body)  (optional)
+     - parameter storageRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StorageSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateStorage(storageRequestsDto: StorageRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StorageSettingsWrapper {
-        return try await updateStorageWithRequestBuilder(storageRequestsDto: storageRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func updateStorage(storageRequestDto: StorageRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StorageSettingsWrapper {
+        return try await updateStorageWithRequestBuilder(storageRequestDto: storageRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -585,21 +578,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter storageRequestsDto: (body)  (optional)
+     - parameter storageRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StorageSettingsWrapper> 
      */
-    open class func updateStorageWithRequestBuilder(storageRequestsDto: StorageRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StorageSettingsWrapper> {
+    open class func updateStorageWithRequestBuilder(storageRequestDto: StorageRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StorageSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/storage"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: storageRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: storageRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

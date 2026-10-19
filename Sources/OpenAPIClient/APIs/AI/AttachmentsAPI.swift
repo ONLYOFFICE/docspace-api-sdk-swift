@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AIAttachmentsAPIApi {
 
     /**
      Delete one attachment
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiAttachmentsDelete Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete/
-     - parameter body: (body) The ID of the attachment to delete, as a bare JSON string. 
+     - parameter aiAttachmentsDeleteRequest: (body) The ID of the attachment to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAttachmentsDelete(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiAttachmentsDeleteWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAttachmentsDelete(aiAttachmentsDeleteRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiAttachmentsDeleteWithRequestBuilder(aiAttachmentsDeleteRequest: aiAttachmentsDeleteRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -47,21 +47,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body) The ID of the attachment to delete, as a bare JSON string. 
+     - parameter aiAttachmentsDeleteRequest: (body) The ID of the attachment to delete, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiAttachmentsDeleteWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiAttachmentsDeleteWithRequestBuilder(aiAttachmentsDeleteRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/attachments/delete"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiAttachmentsDeleteRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -76,13 +75,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiAttachmentsDeleteMany Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-delete-many/
-     - parameter requestBody: (body) The IDs of the attachments to delete, as a bare JSON array of strings. 
+     - parameter aiAttachmentsDeleteManyRequest: (body) The IDs of the attachments to delete, as a bare JSON array of strings. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAttachmentsDeleteMany(requestBody: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiAttachmentsDeleteManyWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAttachmentsDeleteMany(aiAttachmentsDeleteManyRequest: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiAttachmentsDeleteManyWithRequestBuilder(aiAttachmentsDeleteManyRequest: aiAttachmentsDeleteManyRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -100,21 +99,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter requestBody: (body) The IDs of the attachments to delete, as a bare JSON array of strings. 
+     - parameter aiAttachmentsDeleteManyRequest: (body) The IDs of the attachments to delete, as a bare JSON array of strings. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiAttachmentsDeleteManyWithRequestBuilder(requestBody: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiAttachmentsDeleteManyWithRequestBuilder(aiAttachmentsDeleteManyRequest: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/attachments/delete-many"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiAttachmentsDeleteManyRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -129,13 +127,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiAttachmentsGet Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get/
-     - parameter body: (body) The ID of the attachment to read, as a bare JSON string. 
+     - parameter aiAttachmentsGetRequest: (body) The ID of the attachment to read, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiAttachment
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAttachmentsGet(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiAttachment {
-        return try await aiAttachmentsGetWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAttachmentsGet(aiAttachmentsGetRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiAttachment {
+        return try await aiAttachmentsGetWithRequestBuilder(aiAttachmentsGetRequest: aiAttachmentsGetRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -153,21 +151,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body) The ID of the attachment to read, as a bare JSON string. 
+     - parameter aiAttachmentsGetRequest: (body) The ID of the attachment to read, as a bare JSON string. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiAttachment> 
      */
-    open class func aiAttachmentsGetWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiAttachment> {
+    open class func aiAttachmentsGetWithRequestBuilder(aiAttachmentsGetRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiAttachment> {
         let localVariablePath = "/api/2.0/ai/attachments/get"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiAttachmentsGetRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -182,13 +179,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiAttachmentsGetMany Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get-many/
-     - parameter requestBody: (body) The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position. 
+     - parameter aiAttachmentsGetManyRequest: (body) The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: [AiAttachment]
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAttachmentsGetMany(requestBody: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [AiAttachment] {
-        return try await aiAttachmentsGetManyWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAttachmentsGetMany(aiAttachmentsGetManyRequest: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [AiAttachment] {
+        return try await aiAttachmentsGetManyWithRequestBuilder(aiAttachmentsGetManyRequest: aiAttachmentsGetManyRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -206,21 +203,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter requestBody: (body) The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position. 
+     - parameter aiAttachmentsGetManyRequest: (body) The IDs of the attachments to read, as a bare JSON array of strings. The answer is aligned with this array by position. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<[AiAttachment]> 
      */
-    open class func aiAttachmentsGetManyWithRequestBuilder(requestBody: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[AiAttachment]> {
+    open class func aiAttachmentsGetManyWithRequestBuilder(aiAttachmentsGetManyRequest: [String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[AiAttachment]> {
         let localVariablePath = "/api/2.0/ai/attachments/get-many"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiAttachmentsGetManyRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -235,13 +231,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiAttachmentsGetSuggestedQuestions Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-attachments-get-suggested-questions/
-     - parameter requestBody: (body)  
+     - parameter aiAttachmentsGetSuggestedQuestionsRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAttachmentsGetSuggestedQuestions(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiAttachmentsGetSuggestedQuestionsWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAttachmentsGetSuggestedQuestions(aiAttachmentsGetSuggestedQuestionsRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiAttachmentsGetSuggestedQuestionsWithRequestBuilder(aiAttachmentsGetSuggestedQuestionsRequest: aiAttachmentsGetSuggestedQuestionsRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -258,21 +254,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter requestBody: (body)  
+     - parameter aiAttachmentsGetSuggestedQuestionsRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiAttachmentsGetSuggestedQuestionsWithRequestBuilder(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiAttachmentsGetSuggestedQuestionsWithRequestBuilder(aiAttachmentsGetSuggestedQuestionsRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/attachments/suggested-questions"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiAttachmentsGetSuggestedQuestionsRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -326,7 +321,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -379,7 +373,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiAttachment>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -431,7 +424,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

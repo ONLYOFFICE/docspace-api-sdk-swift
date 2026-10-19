@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class PeoplePasswordAPIApi {
 
     /**
      Change a user password
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for changeUserPassword Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-password/
-     - parameter userid: (path) The ID of the account whose password is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active.      - parameter changePasswordRequest: (body) The new password, sent either in plain text or already hashed. Exactly one of the two fields is needed. 
+     - parameter userId: (path) The ID of the account whose password is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active.      - parameter changePasswordRequest: (body) The new password, sent either in plain text or already hashed. Exactly one of the two fields is needed. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: EmployeeFullWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func changeUserPassword(userid: UUID, changePasswordRequest: ChangePasswordRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
-        return try await changeUserPasswordWithRequestBuilder(userid: userid, changePasswordRequest: changePasswordRequest, apiConfiguration: apiConfiguration).execute().body
+    open class func changeUserPassword(userId: UUID, changePasswordRequest: ChangePasswordRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
+        return try await changeUserPasswordWithRequestBuilder(userId: userId, changePasswordRequest: changePasswordRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -39,7 +39,7 @@ open class {{{{x-classname}}}} {
      REST API Reference for changeUserPassword Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-password/
      
-     - PUT /api/2.0/people/{userid}/password
+     - PUT /api/2.0/people/{userId}/password
      - Sets a new password on an account, which is the step that completes a password change or a password  recovery.  The request has to carry the confirmation token from the emailed link rather than an ordinary session, and an  expired or already used token is answered with 401.  The account has to exist and be `Active`, so the password of a disabled account or of an open invitation  cannot be set, and only the portal owner may set the owner's own password.  Send either `passwordHash`, which is taken as it is, or a plain `password`, which is checked against the  portal password policy; sending neither, or a password the policy rejects, answers 400.  The change ends every other session of that account and emails it a notice that the password was changed.  The answer is the profile, which does not carry the password in any form.  To have the recovery link sent in the first place, use `POST api/2.0/people/password`.
      - BASIC:
        - type: http
@@ -60,16 +60,16 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter userid: (path) The ID of the account whose password is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active. 
+     - parameter userId: (path) The ID of the account whose password is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active. 
      - parameter changePasswordRequest: (body) The new password, sent either in plain text or already hashed. Exactly one of the two fields is needed. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
      */
-    open class func changeUserPasswordWithRequestBuilder(userid: UUID, changePasswordRequest: ChangePasswordRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
-        var localVariablePath = "/api/2.0/people/{userid}/password"
-        let useridPreEscape = "\(APIHelper.mapValueToPathItem(userid))"
-        let useridPostEscape = useridPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{userid}", with: useridPostEscape, options: .literal, range: nil)
+    open class func changeUserPasswordWithRequestBuilder(userId: UUID, changePasswordRequest: ChangePasswordRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
+        var localVariablePath = "/api/2.0/people/{userId}/password"
+        let userIdPreEscape = "\(APIHelper.mapValueToPathItem(userId))"
+        let userIdPostEscape = userIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{userId}", with: userIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: changePasswordRequest, codableHelper: apiConfiguration.codableHelper)
 
@@ -78,7 +78,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -110,7 +109,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/send-user-password/
      
      - POST /api/2.0/people/password
-     - Emails a password recovery link to an address, and is the entry point of the recovery flow rather than the  operation that changes anything.  It needs no authentication, which is how a person who cannot sign in uses it; when the portal has a CAPTCHA  configured, an unauthenticated request has to pass it and answers 403 if it does not.  An unauthenticated caller always gets the same success message, whether or not the address belongs to an  account, so the answer cannot be used to find out which addresses are registered.  An authenticated caller does get told: a failure is answered with 403, and asking for somebody else requires  DocSpace administrator rights, while the owner's password can be asked for by the owner alone and another  administrator's only by the owner.  The link that is sent leads to `PUT api/2.0/people/{userid}/password`, which is where the new password is  set; no password is ever sent by email despite the wording of the message.  Repeated calls are throttled.
+     - Emails a password recovery link to an address, and is the entry point of the recovery flow rather than the  operation that changes anything.  It needs no authentication, which is how a person who cannot sign in uses it; when the portal has a CAPTCHA  configured, an unauthenticated request has to pass it and answers 403 if it does not.  An unauthenticated caller always gets the same success message, whether or not the address belongs to an  account, so the answer cannot be used to find out which addresses are registered.  An authenticated caller does get told: a failure is answered with 403, and asking for somebody else requires  DocSpace administrator rights, while the owner's password can be asked for by the owner alone and another  administrator's only by the owner.  The link that is sent leads to `PUT api/2.0/people/{userId}/password`, which is where the new password is  set; no password is ever sent by email despite the wording of the message.  Repeated calls are throttled.
      - BASIC:
        - type: http
        - name: Basic
@@ -144,7 +143,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

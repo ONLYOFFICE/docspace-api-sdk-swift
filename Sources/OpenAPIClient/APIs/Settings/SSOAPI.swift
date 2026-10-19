@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsSSOAPIApi {
 
     /**
      Get the default SSO settings
@@ -25,10 +25,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-default-sso-settings-v2/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: SsoSettingsV2Wrapper
+     - returns: SsoSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getDefaultSsoSettingsV2(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsV2Wrapper {
+    open class func getDefaultSsoSettingsV2(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsWrapper {
         return try await getDefaultSsoSettingsV2WithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -61,9 +61,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<SsoSettingsV2Wrapper> 
+     - returns: RequestBuilder<SsoSettingsWrapper> 
      */
-    open class func getDefaultSsoSettingsV2WithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsV2Wrapper> {
+    open class func getDefaultSsoSettingsV2WithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/ssov2/default"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -74,10 +74,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SsoSettingsV2Wrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SsoSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -90,10 +89,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-sso-settings-v2/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: SsoSettingsV2Wrapper
+     - returns: SsoSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getSsoSettingsV2(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsV2Wrapper {
+    open class func getSsoSettingsV2(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsWrapper {
         return try await getSsoSettingsV2WithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -126,9 +125,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<SsoSettingsV2Wrapper> 
+     - returns: RequestBuilder<SsoSettingsWrapper> 
      */
-    open class func getSsoSettingsV2WithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsV2Wrapper> {
+    open class func getSsoSettingsV2WithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/ssov2"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -139,10 +138,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SsoSettingsV2Wrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SsoSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -155,10 +153,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-sso-settings-v2-constants/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: SsoSettingsV2ConstantsWrapper
+     - returns: SsoSettingsConstantsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getSsoSettingsV2Constants(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsV2ConstantsWrapper {
+    open class func getSsoSettingsV2Constants(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsConstantsWrapper {
         return try await getSsoSettingsV2ConstantsWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -191,9 +189,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<SsoSettingsV2ConstantsWrapper> 
+     - returns: RequestBuilder<SsoSettingsConstantsWrapper> 
      */
-    open class func getSsoSettingsV2ConstantsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsV2ConstantsWrapper> {
+    open class func getSsoSettingsV2ConstantsWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsConstantsWrapper> {
         let localVariablePath = "/api/2.0/settings/ssov2/constants"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -204,10 +202,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SsoSettingsV2ConstantsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SsoSettingsConstantsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -220,10 +217,10 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-sso-settings-v2/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: SsoSettingsV2Wrapper
+     - returns: SsoSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func resetSsoSettingsV2(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsV2Wrapper {
+    open class func resetSsoSettingsV2(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsWrapper {
         return try await resetSsoSettingsV2WithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -256,9 +253,9 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<SsoSettingsV2Wrapper> 
+     - returns: RequestBuilder<SsoSettingsWrapper> 
      */
-    open class func resetSsoSettingsV2WithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsV2Wrapper> {
+    open class func resetSsoSettingsV2WithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/ssov2"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -269,10 +266,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SsoSettingsV2Wrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SsoSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -283,13 +279,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for saveSsoSettingsV2 Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-sso-settings-v2/
-     - parameter ssoSettingsRequestsDto: (body)  (optional)
+     - parameter ssoSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: SsoSettingsV2Wrapper
+     - returns: SsoSettingsWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func saveSsoSettingsV2(ssoSettingsRequestsDto: SsoSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsV2Wrapper {
-        return try await saveSsoSettingsV2WithRequestBuilder(ssoSettingsRequestsDto: ssoSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func saveSsoSettingsV2(ssoSettingsRequestDto: SsoSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> SsoSettingsWrapper {
+        return try await saveSsoSettingsV2WithRequestBuilder(ssoSettingsRequestDto: ssoSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -320,14 +316,14 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter ssoSettingsRequestsDto: (body)  (optional)
+     - parameter ssoSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<SsoSettingsV2Wrapper> 
+     - returns: RequestBuilder<SsoSettingsWrapper> 
      */
-    open class func saveSsoSettingsV2WithRequestBuilder(ssoSettingsRequestsDto: SsoSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsV2Wrapper> {
+    open class func saveSsoSettingsV2WithRequestBuilder(ssoSettingsRequestDto: SsoSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<SsoSettingsWrapper> {
         let localVariablePath = "/api/2.0/settings/ssov2"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ssoSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: ssoSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -335,10 +331,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<SsoSettingsV2Wrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<SsoSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AIAssignmentsAPIApi {
 
     /**
      Bind a profile to an action
@@ -62,7 +62,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiAssignmentMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -76,13 +75,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiAssignmentsBulkAssign Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-bulk-assign/
-     - parameter requestBody: (body) A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map. 
+     - parameter aiAssignmentsBulkAssignRequest: (body) A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiBulkAssignmentResult
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAssignmentsBulkAssign(requestBody: [String: String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiBulkAssignmentResult {
-        return try await aiAssignmentsBulkAssignWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAssignmentsBulkAssign(aiAssignmentsBulkAssignRequest: [String: String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiBulkAssignmentResult {
+        return try await aiAssignmentsBulkAssignWithRequestBuilder(aiAssignmentsBulkAssignRequest: aiAssignmentsBulkAssignRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -100,21 +99,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter requestBody: (body) A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map. 
+     - parameter aiAssignmentsBulkAssignRequest: (body) A map of action type to profile ID. Every key has to be a known action type and every value a profile ID; one bad entry rejects the whole map. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiBulkAssignmentResult> 
      */
-    open class func aiAssignmentsBulkAssignWithRequestBuilder(requestBody: [String: String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiBulkAssignmentResult> {
+    open class func aiAssignmentsBulkAssignWithRequestBuilder(aiAssignmentsBulkAssignRequest: [String: String], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiBulkAssignmentResult> {
         let localVariablePath = "/api/2.0/ai/assignments/bulk-assign"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiAssignmentsBulkAssignRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -168,7 +166,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -215,15 +212,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -271,15 +268,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "actionType": (wrappedValue: actionType.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -311,7 +308,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-resolve-for-action/
      
      - GET /api/2.0/ai/assignments/resolve-for-action
-     - Returns the profile that will serve one AI action, falling back to the `Default` slot when the action has no profile of its own. `actionType` is required and has to be one of the known actions - an unknown or misspelled value is rejected rather than resolved to the default. `entityId` narrows the lookup to a room, and a room with no assignment of its own degrades to the portal-wide one. This fails when neither slot is set or the bound profile is gone, so use `GET api/2.0/ai/assignments/try-resolve-for-action` when an unconfigured portal should answer empty instead.
+     - Returns the profile that will serve one AI action, falling back to the `Default` slot when the action has no profile of its own. `actionType` is required and has to be one of the known actions - an unknown or misspelled value is rejected rather than resolved to the default. `entityId` narrows the lookup to a room and has to name one the caller can open - an unknown room answers 404 rather than quietly resolving portal-wide - while an accessible room with no assignment of its own degrades to the portal-wide one. When neither slot is set, the slot names a profile that no longer exists, or the `Default` profile cannot serve the action, the call answers 404, so use `GET api/2.0/ai/assignments/try-resolve-for-action` when an unconfigured portal should answer empty instead.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -328,16 +325,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "actionType": (wrappedValue: actionType.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -369,7 +366,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-try-resolve-for-action/
      
      - GET /api/2.0/ai/assignments/try-resolve-for-action
-     - Returns the profile that will serve one AI action, exactly as `GET api/2.0/ai/assignments/resolve-for-action` does, but answers with an empty result rather than failing when nothing is configured. `actionType` is required and is validated the same way, and `entityId` narrows the lookup to a room. This is the operation to call when the absence of a profile is a normal state to render - a settings screen, or a feature that hides itself. Both operations are read-only.
+     - Returns the profile that will serve one AI action, exactly as `GET api/2.0/ai/assignments/resolve-for-action` does, but answers with an empty result rather than failing when nothing is configured. `actionType` is required and is validated the same way, and `entityId` narrows the lookup to a room the caller can open - an unknown one answers 404 here as well. This is the operation to call when the absence of a profile is a normal state to render - a settings screen, or a feature that hides itself. Both operations are read-only.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -386,16 +383,16 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "actionType": (wrappedValue: actionType.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -410,13 +407,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiAssignmentsUnassign Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-unassign/
-     - parameter body: (body)  
+     - parameter aiActionType: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAssignmentsUnassign(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiAssignmentsUnassignWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiAssignmentsUnassign(aiActionType: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiAssignmentsUnassignWithRequestBuilder(aiActionType: aiActionType, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -434,21 +431,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body)  
+     - parameter aiActionType: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiAssignmentsUnassignWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiAssignmentsUnassignWithRequestBuilder(aiActionType: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/assignments/unassign"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiActionType, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

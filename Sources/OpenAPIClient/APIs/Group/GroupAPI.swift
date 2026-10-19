@@ -15,8 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
-var fields: String?
+open class GroupAPIApi {
 
     /**
      Add a new group
@@ -75,7 +74,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -146,7 +144,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<GroupWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -214,7 +211,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
@@ -278,15 +274,15 @@ var fields: String?
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "includeMembers": (wrappedValue: includeMembers?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -301,13 +297,13 @@ var fields: String?
      See also:
      REST API Reference for getGroupByUserId Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group-by-user-id/
-     - parameter userid: (path) The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404. 
+     - parameter userId: (path) The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GroupSummaryArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getGroupByUserId(userid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupSummaryArrayWrapper {
-        return try await getGroupByUserIdWithRequestBuilder(userid: userid, apiConfiguration: apiConfiguration).execute().body
+    open class func getGroupByUserId(userId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupSummaryArrayWrapper {
+        return try await getGroupByUserIdWithRequestBuilder(userId: userId, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -317,7 +313,7 @@ var fields: String?
      REST API Reference for getGroupByUserId Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-group-by-user-id/
      
-     - GET /api/2.0/group/user/{userid}
+     - GET /api/2.0/group/user/{userId}
      - Returns every group the account with the ID in the route belongs to, as a flat list of ID and name pairs.  The caller needs the permission to read groups.  The call is read-only, is not paged, and answers an empty list both for an account that belongs to no group  and for an ID that matches no account, so an empty answer does not prove the account exists.  The entries are summaries and carry neither the manager nor the members - read `GET api/2.0/group/{id}` for  the full picture of one of them.
      - BASIC:
        - type: http
@@ -338,15 +334,15 @@ var fields: String?
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter userid: (path) The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404. 
+     - parameter userId: (path) The ID of the account whose groups are listed, taken from the route. An ID that matches no account yields an  empty list rather than 404. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GroupSummaryArrayWrapper> 
      */
-    open class func getGroupByUserIdWithRequestBuilder(userid: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<GroupSummaryArrayWrapper> {
-        var localVariablePath = "/api/2.0/group/user/{userid}"
-        let useridPreEscape = "\(APIHelper.mapValueToPathItem(userid))"
-        let useridPostEscape = useridPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{userid}", with: useridPostEscape, options: .literal, range: nil)
+    open class func getGroupByUserIdWithRequestBuilder(userId: UUID, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<GroupSummaryArrayWrapper> {
+        var localVariablePath = "/api/2.0/group/user/{userId}"
+        let userIdPreEscape = "\(APIHelper.mapValueToPathItem(userId))"
+        let userIdPostEscape = userIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{userId}", with: userIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
@@ -355,7 +351,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -371,12 +366,13 @@ var fields: String?
      REST API Reference for getGroups Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/
      - parameter userId: (query) Keeps only the groups the account with this ID takes part in. Omit it to search every group of the portal. (optional)     - parameter manager: (query) Narrows `userId` down to the groups that account manages, instead of every group it belongs to. It has no  effect on its own and defaults to false. (optional)     - parameter count: (query) The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)     - parameter startIndex: (query) The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. (optional)     - parameter sortBy: (query) What to order the groups by: `Title`, `Manager` or `MembersCount`, compared without regard to case. Any other  value, and omitting the field, orders by title. (optional)     - parameter sortOrder: (query) The direction of the ordering: `Ascending`, which is the default, or `Descending`. (optional)     - parameter filterValue: (query) The text to match against the group name. Omit it to get every group. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: GroupArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getGroups(userId: UUID? = nil, manager: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper {
-        return try await getGroupsWithRequestBuilder(userId: userId, manager: manager, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, apiConfiguration: apiConfiguration).execute().body
+    open class func getGroups(userId: UUID? = nil, manager: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper {
+        return try await getGroupsWithRequestBuilder(userId: userId, manager: manager, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue, fields: fields, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -387,7 +383,7 @@ var fields: String?
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups/
      
      - GET /api/2.0/group
-     - Returns the groups of the portal, one page at a time, with the summary information about each of them - the  ID, the name and the manager - but without the member list.  The caller needs the permission to read groups.  The call is read-only, and the number of groups that match the filters is reported in the total count of the  response, so a client can page through them with `count` and `startIndex`.  Narrow the result with `filterValue` on the group name, with `userId` to keep only the groups that account  belongs to, and with `manager` set to true to keep only the groups it manages; order it with `sortBy` and  `sortOrder`, and an unknown `sortBy` falls back to sorting by title.  The entries carry no members - read `GET api/2.0/group/{id}` with `includeMembers` for one group, or  `GET api/2.0/group/user/{userid}` to find the groups of a single account.
+     - Returns the groups of the portal, one page at a time, with the summary information about each of them - the  ID, the name and the manager - but without the member list.  The caller needs the permission to read groups.  The call is read-only, and the number of groups that match the filters is reported in the total count of the  response, so a client can page through them with `count` and `startIndex`.  Narrow the result with `filterValue` on the group name, with `userId` to keep only the groups that account  belongs to, and with `manager` set to true to keep only the groups it manages; order it with `sortBy` and  `sortOrder`, and an unknown `sortBy` falls back to sorting by title.  The entries carry no members - read `GET api/2.0/group/{id}` with `includeMembers` for one group, or  `GET api/2.0/group/user/{userId}` to find the groups of a single account.
      - BASIC:
        - type: http
        - name: Basic
@@ -414,16 +410,16 @@ var fields: String?
      - parameter sortBy: (query) What to order the groups by: `Title`, `Manager` or `MembersCount`, compared without regard to case. Any other  value, and omitting the field, orders by title. (optional)
      - parameter sortOrder: (query) The direction of the ordering: `Ascending`, which is the default, or `Descending`. (optional)
      - parameter filterValue: (query) The text to match against the group name. Omit it to get every group. (optional)
+     - parameter fields: (header) A comma-separated list of the response fields to return (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<GroupArrayWrapper> 
      */
-    open class func getGroupsWithRequestBuilder(userId: UUID? = nil, manager: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<GroupArrayWrapper> {
+    open class func getGroupsWithRequestBuilder(userId: UUID? = nil, manager: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<GroupArrayWrapper> {
         let localVariablePath = "/api/2.0/group"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "userId": (wrappedValue: userId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "manager": (wrappedValue: manager?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "count": (wrappedValue: count?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
@@ -431,16 +427,13 @@ var fields: String?
             "sortBy": (wrappedValue: sortBy?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "sortOrder": (wrappedValue: sortOrder?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "filterValue": (wrappedValue: filterValue?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
-            :
+            "fields": fields,
         ]
-
-        if let fields = self.fields {
-            localVariableNillableHeaders["fields"] = fields
-            self.fields = nil
-        }
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -514,7 +507,6 @@ var fields: String?
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<GroupWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -583,7 +575,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -654,7 +645,6 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<GroupWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -723,7 +713,6 @@ var fields: String?
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -794,18 +783,10 @@ var fields: String?
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<GroupWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
-    }
-}
-extension GroupAPIApi {
-    @discardableResult
-    public func withFields(_ fields: String) -> GroupAPIApi {
-        self.fields = fields
-        return self
     }
 }

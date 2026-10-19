@@ -15,7 +15,7 @@
 import Foundation
 
 /** The successful API response. */
-public struct STRINGArrayWrapper: Sendable, Codable, Hashable {
+public struct StringArrayWrapper: Sendable, Codable, Hashable {
 
     /** The response payload. */
     public var response: [String]?

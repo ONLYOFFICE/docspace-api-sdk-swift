@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **aiVectorizationStartTask**
 ```swift
-    open class func aiVectorizationStartTask(aiVectorizationStartTaskRequest: AiVectorizationStartTaskRequest, completion: @escaping (_ data: AiVectorizationStartTask200Response?, _ error: Error?) -> Void)
+    open class func aiVectorizationStartTask(aiVectorizationStartTaskRequest: AiVectorizationStartTaskRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiVectorizationStartTask200Response
 ```
 
 Queues the indexing of the portal files named in the body so their contents can be retrieved during a chat round. The body is proxied unchanged to the DocSpace AI service, which validates it and owns the job. Indexing is asynchronous and fire-and-forget: the answer acknowledges the request without carrying a job handle, so there is nothing to poll and progress is not reported here. The embedding provider used is the one in `GET api/2.0/ai/config/vectorization`, and changing that setting does not re-index anything already indexed - queue it again for that.
@@ -35,18 +35,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiVectorizationStartTaskRequest = aiVectorizationStartTask_request(files: [123]) // AiVectorizationStartTaskRequest | The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape.
+let aiVectorizationStartTaskRequest = AiVectorizationStartTaskRequest(files: [123]) // AiVectorizationStartTaskRequest | The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape.
 
 // Start a vectorization task
-AIVectorizationAPIApi.aiVectorizationStartTask(aiVectorizationStartTaskRequest: aiVectorizationStartTaskRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIVectorizationAPIApi.aiVectorizationStartTask(aiVectorizationStartTaskRequest: aiVectorizationStartTaskRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

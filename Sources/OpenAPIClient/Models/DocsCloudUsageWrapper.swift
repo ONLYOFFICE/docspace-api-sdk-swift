@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the DocsCloudUsage object. */
+/** The successful API response containing the DocsCloudUsageDto object. */
 public struct DocsCloudUsageWrapper: Sendable, Codable, Hashable {
 
-    /** The DocsCloudUsage object returned by the operation. */
-    public var response: DocsCloudUsage?
+    /** The DocsCloudUsageDto object returned by the operation. */
+    public var response: DocsCloudUsageDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct DocsCloudUsageWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: DocsCloudUsage? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: DocsCloudUsageDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

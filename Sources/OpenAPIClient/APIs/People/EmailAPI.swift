@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class PeopleEmailAPIApi {
 
     /**
      Change a user email
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for changeUserEmail Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-email/
-     - parameter userid: (path) The ID of the account whose address is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active.      - parameter changeEmailRequest: (body) The new address, in plain text or in the encrypted form the confirmation link carries. 
+     - parameter userId: (path) The ID of the account whose address is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active.      - parameter changeEmailRequest: (body) The new address, in plain text or in the encrypted form the confirmation link carries. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: EmployeeFullWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func changeUserEmail(userid: UUID, changeEmailRequest: ChangeEmailRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
-        return try await changeUserEmailWithRequestBuilder(userid: userid, changeEmailRequest: changeEmailRequest, apiConfiguration: apiConfiguration).execute().body
+    open class func changeUserEmail(userId: UUID, changeEmailRequest: ChangeEmailRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> EmployeeFullWrapper {
+        return try await changeUserEmailWithRequestBuilder(userId: userId, changeEmailRequest: changeEmailRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -39,7 +39,7 @@ open class {{{{x-classname}}}} {
      REST API Reference for changeUserEmail Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/change-user-email/
      
-     - PUT /api/2.0/people/{userid}/email
+     - PUT /api/2.0/people/{userId}/email
      - Sets a new email address on an account, which is the step that completes an email change.  The request has to carry the confirmation token from the emailed link rather than an ordinary session, and an  expired or already used token is answered with 401.  The account has to exist and be `Active`, and only the portal owner may change the owner's own address.  Pass the address either in plain text as `email` or, as it arrives inside the confirmation link, encrypted as  `encEmail`; an empty or malformed address answers 400.  An address equal to the current one is accepted and changes nothing, while a new one is stored in lowercase  and marks the account `Activated`, because following the link proves the address works.  The answer is the profile with its new address.  The change is requested through `POST api/2.0/people/email`, which is what sends the link.
      - BASIC:
        - type: http
@@ -60,16 +60,16 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter userid: (path) The ID of the account whose address is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active. 
+     - parameter userId: (path) The ID of the account whose address is set, taken from the route. It has to match the account the  confirmation token was issued for, and the account has to be active. 
      - parameter changeEmailRequest: (body) The new address, in plain text or in the encrypted form the confirmation link carries. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<EmployeeFullWrapper> 
      */
-    open class func changeUserEmailWithRequestBuilder(userid: UUID, changeEmailRequest: ChangeEmailRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
-        var localVariablePath = "/api/2.0/people/{userid}/email"
-        let useridPreEscape = "\(APIHelper.mapValueToPathItem(userid))"
-        let useridPostEscape = useridPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        localVariablePath = localVariablePath.replacingOccurrences(of: "{userid}", with: useridPostEscape, options: .literal, range: nil)
+    open class func changeUserEmailWithRequestBuilder(userId: UUID, changeEmailRequest: ChangeEmailRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<EmployeeFullWrapper> {
+        var localVariablePath = "/api/2.0/people/{userId}/email"
+        let userIdPreEscape = "\(APIHelper.mapValueToPathItem(userId))"
+        let userIdPostEscape = userIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{userId}", with: userIdPostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: changeEmailRequest, codableHelper: apiConfiguration.codableHelper)
 
@@ -78,7 +78,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -110,7 +109,7 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/send-email-change-instructions/
      
      - POST /api/2.0/people/email
-     - Starts changing the email address of an account, and what it actually does depends on who calls it.  A caller acting on their own account only gets a confirmation letter sent to the new address, and the address  stays unchanged until that link is followed, which lands on `PUT api/2.0/people/{userid}/email`.  A DocSpace administrator acting on somebody else changes the address immediately instead: the account is  marked as not activated, every session of it is ended, and activation instructions are sent to the new  address - and passing the address the account already has is then rejected with 400.  A caller who is not an administrator may only address their own account, nobody but the owner may change the  owner's address, and only the owner may change the address of another DocSpace administrator.  The target has to be an account that is neither disabled nor a pending invitation, otherwise the operation  answers 404, and an address that already belongs to somebody answers 400.  The answer is a ready-to-display message naming the address the letter was sent to.
+     - Starts changing the email address of an account, and what it actually does depends on who calls it.  A caller acting on their own account only gets a confirmation letter sent to the new address, and the address  stays unchanged until that link is followed, which lands on `PUT api/2.0/people/{userId}/email`.  A DocSpace administrator acting on somebody else changes the address immediately instead: the account is  marked as not activated, every session of it is ended, and activation instructions are sent to the new  address - and passing the address the account already has is then rejected with 400.  A caller who is not an administrator may only address their own account, nobody but the owner may change the  owner's address, and only the owner may change the address of another DocSpace administrator.  The target has to be an account that is neither disabled nor a pending invitation, otherwise the operation  answers 404, and an address that already belongs to somebody answers 400.  The answer is a ready-to-display message naming the address the letter was sent to.
      - BASIC:
        - type: http
        - name: Basic
@@ -144,7 +143,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

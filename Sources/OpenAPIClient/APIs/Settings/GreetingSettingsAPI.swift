@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsGreetingSettingsAPIApi {
 
     /**
      Get greeting settings
@@ -73,7 +73,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -139,7 +138,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -204,7 +202,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -218,13 +215,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for saveGreetingSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-greeting-settings/
-     - parameter greetingSettingsRequestsDto: (body)  (optional)
+     - parameter greetingSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func saveGreetingSettings(greetingSettingsRequestsDto: GreetingSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await saveGreetingSettingsWithRequestBuilder(greetingSettingsRequestsDto: greetingSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func saveGreetingSettings(greetingSettingsRequestDto: GreetingSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await saveGreetingSettingsWithRequestBuilder(greetingSettingsRequestDto: greetingSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -255,21 +252,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter greetingSettingsRequestsDto: (body)  (optional)
+     - parameter greetingSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func saveGreetingSettingsWithRequestBuilder(greetingSettingsRequestsDto: GreetingSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func saveGreetingSettingsWithRequestBuilder(greetingSettingsRequestDto: GreetingSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         let localVariablePath = "/api/2.0/settings/greetingsettings"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: greetingSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: greetingSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

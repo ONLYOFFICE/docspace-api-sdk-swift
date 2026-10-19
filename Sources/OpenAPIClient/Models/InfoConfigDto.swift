@@ -24,13 +24,13 @@ public struct InfoConfigDto: Sendable, Codable, Hashable {
     /** The display name of the owner of the document. It is empty for an anonymous session. */
     public var owner: String?
     /** Who the document is shared with, as the information panel lists it. An empty list means it is shared with  nobody beyond its owner. */
-    public var sharingSettings: [AceShortWrapper]?
+    public var sharingSettings: [AceShortDto]?
     /** The layout the information panel is rendered for. */
     public var type: EditorType?
     /** When the document was created on the portal, already formatted for reading in the culture of the caller rather  than as a machine timestamp. */
     public var uploaded: String?
 
-    public init(favorite: Bool? = nil, folder: String? = nil, owner: String? = nil, sharingSettings: [AceShortWrapper]? = nil, type: EditorType? = nil, uploaded: String? = nil) {
+    public init(favorite: Bool? = nil, folder: String? = nil, owner: String? = nil, sharingSettings: [AceShortDto]? = nil, type: EditorType? = nil, uploaded: String? = nil) {
         self.favorite = favorite
         self.folder = folder
         self.owner = owner

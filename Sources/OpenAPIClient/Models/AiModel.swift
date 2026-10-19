@@ -29,14 +29,17 @@ public struct AiModel: Sendable, Codable, Hashable {
     public var reasoningSupport: AiReasoningSupport?
     /** Bitmask of model capabilities (Chat, Image, Vision, Tools, etc.). Used to filter models per `ActionType`. */
     public var capabilities: Double?
+    /** Release date as a Unix timestamp in **seconds**, when the provider's catalogue reports one (OpenAI-shaped `/models` responses and OpenRouter carry `created`; Anthropic carries an ISO `created_at`). The model picker sorts on it so the newest releases come first; entries without it fall back to alphabetical order. */
+    public var created: Double?
 
-    public init(id: String, name: String, provider: AiProviderType, reasoning: Bool? = nil, reasoningSupport: AiReasoningSupport? = nil, capabilities: Double? = nil) {
+    public init(id: String, name: String, provider: AiProviderType, reasoning: Bool? = nil, reasoningSupport: AiReasoningSupport? = nil, capabilities: Double? = nil, created: Double? = nil) {
         self.id = id
         self.name = name
         self.provider = provider
         self.reasoning = reasoning
         self.reasoningSupport = reasoningSupport
         self.capabilities = capabilities
+        self.created = created
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -46,6 +49,7 @@ public struct AiModel: Sendable, Codable, Hashable {
         case reasoning
         case reasoningSupport
         case capabilities
+        case created
     }
 
     // Encodable protocol methods
@@ -58,6 +62,7 @@ public struct AiModel: Sendable, Codable, Hashable {
         try container.encodeIfPresent(reasoning, forKey: .reasoning)
         try container.encodeIfPresent(reasoningSupport, forKey: .reasoningSupport)
         try container.encodeIfPresent(capabilities, forKey: .capabilities)
+        try container.encodeIfPresent(created, forKey: .created)
     }
 }
 

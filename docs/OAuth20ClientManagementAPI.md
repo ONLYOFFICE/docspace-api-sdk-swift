@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 # **changeActivation**
 ```swift
-    open class func changeActivation(clientId: String, changeClientActivationRequest: ChangeClientActivationRequest, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func changeActivation(clientId: String, changeClientActivationRequest: ChangeClientActivationRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Enables or disables an existing client and answers 200 with an empty body. A disabled client can no longer obtain new tokens, but the tokens and consents it already holds stay valid until they expire on their own: disable a client to stop new authorizations, delete it to end the existing ones. An administrator may change any client of the tenant, a plain user only the clients they created. The body carries the single activation flag, and a client the caller may not see is reported as not found rather than as forbidden.
@@ -47,15 +47,10 @@ let clientId = "clientId_example" // String | ID of the client to change activat
 let changeClientActivationRequest = ChangeClientActivationRequest(status: true) // ChangeClientActivationRequest | 
 
 // Change client activation status
-OAuth20ClientManagementAPIApi.changeActivation(clientId: clientId, changeClientActivationRequest: changeClientActivationRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20ClientManagementAPIApi.changeActivation(clientId: clientId, changeClientActivationRequest: changeClientActivationRequest)
+} catch {
+    print(error)
 }
 ```
 
@@ -68,7 +63,7 @@ OAuth20ClientManagementAPIApi.changeActivation(clientId: clientId, changeClientA
 
 # **createClient**
 ```swift
-    open class func createClient(createClientRequest: CreateClientRequest, completion: @escaping (_ data: ClientResponse?, _ error: Error?) -> Void)
+    open class func createClient(createClientRequest: CreateClientRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ClientResponse
 ```
 
 Registers a new OAuth2 client in the caller's tenant and returns it. The body must carry a name, a description, a logo and at least one redirect URI, allowed origin and scope, and every scope named must already exist in the tenant's scope catalogue. Administrators and users may both register clients; the caller is recorded as the creator, which is what later restricts a plain user to the clients they created. The response is the stored client with its generated client ID and secret, and it is the first place either value can be read. Some deployments cap how many clients one tenant may hold, and reaching that cap is reported as 400 together with the validation failures.
@@ -97,15 +92,11 @@ import OpenAPIClient
 let createClientRequest = CreateClientRequest(name: "name_example", description: "description_example", logo: "logo_example", scopes: ["scopes_example"], allowPkce: true, websiteUrl: "websiteUrl_example", termsUrl: "termsUrl_example", policyUrl: "policyUrl_example", redirectUris: ["redirectUris_example"], allowedOrigins: ["allowedOrigins_example"], logoutRedirectUri: "logoutRedirectUri_example", isPublic: false) // CreateClientRequest | 
 
 // Create a new OAuth2 client
-OAuth20ClientManagementAPIApi.createClient(createClientRequest: createClientRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await OAuth20ClientManagementAPIApi.createClient(createClientRequest: createClientRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -118,7 +109,7 @@ OAuth20ClientManagementAPIApi.createClient(createClientRequest: createClientRequ
 
 # **deleteClient**
 ```swift
-    open class func deleteClient(clientId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteClient(clientId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Deletes one client from the tenant permanently and answers 200 with an empty body. An administrator may delete any client of the tenant, a plain user only the clients they created, and a client the caller may not see is reported as not found rather than as forbidden. The authorizations and consents issued for the client are removed too, but that cleanup is driven by a message and completes on the authorization service after this call has already returned. A delete that removes no row answers 400. The operation cannot be undone.
@@ -147,15 +138,10 @@ import OpenAPIClient
 let clientId = "clientId_example" // String | ID of the client to delete
 
 // Delete an OAuth2 client
-OAuth20ClientManagementAPIApi.deleteClient(clientId: clientId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20ClientManagementAPIApi.deleteClient(clientId: clientId)
+} catch {
+    print(error)
 }
 ```
 
@@ -168,7 +154,7 @@ OAuth20ClientManagementAPIApi.deleteClient(clientId: clientId) { (response, erro
 
 # **deleteTenantClients**
 ```swift
-    open class func deleteTenantClients(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteTenantClients(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Deletes every client registered in the current tenant and answers 200 with an empty body. Only an administrator may call it - for a plain user or a guest it is refused with 403 - and it removes the clients of all users of the tenant, not only those of the caller. The authorizations and consents of the deleted clients are cleaned up asynchronously on the authorization service, and the tenant's client cache is dropped as part of the call. Concurrent modification that survives the retries is reported as 400. The operation cannot be undone, and the response does not say how many clients were removed.
@@ -193,15 +179,10 @@ import OpenAPIClient
 
 
 // Delete all tenant OAuth2 clients
-OAuth20ClientManagementAPIApi.deleteTenantClients() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20ClientManagementAPIApi.deleteTenantClients()
+} catch {
+    print(error)
 }
 ```
 
@@ -214,7 +195,7 @@ OAuth20ClientManagementAPIApi.deleteTenantClients() { (response, error) in
 
 # **deleteUserClients**
 ```swift
-    open class func deleteUserClients(completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func deleteUserClients(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Deletes every client the calling user created in the current tenant and answers 200 with an empty body. The caller's own identity always selects the set, so this never reaches clients created by somebody else, not even for an administrator. The authorizations and consents of the deleted clients are cleaned up asynchronously on the authorization service, and the tenant's client cache is dropped as part of the call. Concurrent modification that survives the retries is reported as 400. The operation cannot be undone, and the response does not say how many clients were removed.
@@ -239,15 +220,10 @@ import OpenAPIClient
 
 
 // Delete all user OAuth2 clients
-OAuth20ClientManagementAPIApi.deleteUserClients() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20ClientManagementAPIApi.deleteUserClients()
+} catch {
+    print(error)
 }
 ```
 
@@ -260,7 +236,7 @@ OAuth20ClientManagementAPIApi.deleteUserClients() { (response, error) in
 
 # **regenerateSecret**
 ```swift
-    open class func regenerateSecret(clientId: String, completion: @escaping (_ data: ClientSecretResponse?, _ error: Error?) -> Void)
+    open class func regenerateSecret(clientId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ClientSecretResponse
 ```
 
 Issues a new secret for the client and returns it. The previous secret stops working as soon as this call succeeds, there is no grace period and no way to recover it, so every deployed copy of the client has to be updated with the value returned here. An administrator may do this for any client of the tenant, a plain user only for the clients they created. Tokens already issued to the client keep working; only future client authentication is affected. The response carries the new secret and nothing else.
@@ -289,15 +265,11 @@ import OpenAPIClient
 let clientId = "clientId_example" // String | ID of the client to regenerate secret for
 
 // Regenerate client secret
-OAuth20ClientManagementAPIApi.regenerateSecret(clientId: clientId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await OAuth20ClientManagementAPIApi.regenerateSecret(clientId: clientId)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -310,7 +282,7 @@ OAuth20ClientManagementAPIApi.regenerateSecret(clientId: clientId) { (response, 
 
 # **revokeUserClient**
 ```swift
-    open class func revokeUserClient(clientId: String, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func revokeUserClient(clientId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Revokes the calling user's own consent for one client and answers 200 with an empty body. It touches only the caller's grant: other users keep their consents and the client itself stays registered. Guests may call it as well as users and administrators, because it can never reach anyone else's data. The revocation is carried out by the authorization service over gRPC, so a service that reports nothing was revoked produces 400 and a service that cannot be reached produces 503. Once it succeeds the user has to authorize the client again before it can act on their behalf.
@@ -339,15 +311,10 @@ import OpenAPIClient
 let clientId = "clientId_example" // String | ID of the client to revoke consent for
 
 // Revoke client consent
-OAuth20ClientManagementAPIApi.revokeUserClient(clientId: clientId) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20ClientManagementAPIApi.revokeUserClient(clientId: clientId)
+} catch {
+    print(error)
 }
 ```
 
@@ -360,7 +327,7 @@ OAuth20ClientManagementAPIApi.revokeUserClient(clientId: clientId) { (response, 
 
 # **updateClient**
 ```swift
-    open class func updateClient(clientId: String, updateClientRequest: UpdateClientRequest, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func updateClient(clientId: String, updateClientRequest: UpdateClientRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
 ```
 
 Updates the mutable settings of an existing client and answers 200 with an empty body. Only the fields carried in the request body change; the client ID, the secret, the tenant and the creator cannot be changed this way. An administrator may update any client of the tenant, a plain user only the clients they created, and a client the caller may not see is reported as not found rather than as forbidden. The write runs under optimistic locking and is retried a few times, so a request that still loses the race is rejected with 400 instead of silently overwriting a concurrent change. Nothing is returned in the body - read the client back to see the stored result.
@@ -391,15 +358,10 @@ let clientId = "clientId_example" // String | ID of the client to update
 let updateClientRequest = UpdateClientRequest(name: "name_example", description: "description_example", logo: "logo_example", scopes: ["scopes_example"], allowPkce: true, allowedOrigins: ["allowedOrigins_example"], redirectUris: ["redirectUris_example"], isPublic: false) // UpdateClientRequest | 
 
 // Update an existing OAuth2 client
-OAuth20ClientManagementAPIApi.updateClient(clientId: clientId, updateClientRequest: updateClientRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    try await OAuth20ClientManagementAPIApi.updateClient(clientId: clientId, updateClientRequest: updateClientRequest)
+} catch {
+    print(error)
 }
 ```
 

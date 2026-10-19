@@ -22,9 +22,9 @@ public struct AiWebSearchMutationResult: Sendable, Codable, Hashable {
     /** The persisted web-search configuration. Present on success. */
     public var config: AiWebSearchConfig?
     /** Why the configuration was rejected. Present on failure. */
-    public var error: AiTErrorData?
+    public var error: AiErrorData?
 
-    public init(success: Bool, config: AiWebSearchConfig? = nil, error: AiTErrorData? = nil) {
+    public init(success: Bool, config: AiWebSearchConfig? = nil, error: AiErrorData? = nil) {
         self.success = success
         self.config = config
         self.error = error

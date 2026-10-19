@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AuthenticationAPIApi {
 
     /**
      Authenticate a user
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for authenticateMe Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me/
-     - parameter authRequestsDto: (body)  (optional)
+     - parameter authRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AuthenticationTokenWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func authenticateMe(authRequestsDto: AuthRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
-        return try await authenticateMeWithRequestBuilder(authRequestsDto: authRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func authenticateMe(authRequestDto: AuthRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
+        return try await authenticateMeWithRequestBuilder(authRequestDto: authRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -60,21 +60,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter authRequestsDto: (body)  (optional)
+     - parameter authRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 
      */
-    open class func authenticateMeWithRequestBuilder(authRequestsDto: AuthRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
+    open class func authenticateMeWithRequestBuilder(authRequestDto: AuthRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
         let localVariablePath = "/api/2.0/authentication"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -89,13 +88,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for authenticateMeFromBodyWithCode Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/authenticate-me-from-body-with-code/
-     - parameter code: (path) The two-factor authentication code. Send the same value as the `code` of the request body, which is the one the handler reads.      - parameter authWithCodeRequestsDto: (body)  (optional)
+     - parameter code: (path) The two-factor authentication code. Send the same value as the `code` of the request body, which is the one the handler reads.      - parameter authWithCodeRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AuthenticationTokenWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func authenticateMeFromBodyWithCode(code: String, authWithCodeRequestsDto: AuthWithCodeRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
-        return try await authenticateMeFromBodyWithCodeWithRequestBuilder(code: code, authWithCodeRequestsDto: authWithCodeRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func authenticateMeFromBodyWithCode(code: String, authWithCodeRequestDto: AuthWithCodeRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
+        return try await authenticateMeFromBodyWithCodeWithRequestBuilder(code: code, authWithCodeRequestDto: authWithCodeRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -127,24 +126,23 @@ open class {{{{x-classname}}}} {
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter code: (path) The two-factor authentication code. Send the same value as the `code` of the request body, which is the one the handler reads. 
-     - parameter authWithCodeRequestsDto: (body)  (optional)
+     - parameter authWithCodeRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 
      */
-    open class func authenticateMeFromBodyWithCodeWithRequestBuilder(code: String, authWithCodeRequestsDto: AuthWithCodeRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
+    open class func authenticateMeFromBodyWithCodeWithRequestBuilder(code: String, authWithCodeRequestDto: AuthWithCodeRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
         var localVariablePath = "/api/2.0/authentication/{code}"
         let codePreEscape = "\(APIHelper.mapValueToPathItem(code))"
         let codePostEscape = codePreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{code}", with: codePostEscape, options: .literal, range: nil)
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authWithCodeRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authWithCodeRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -159,13 +157,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for checkConfirm Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/check-confirm/
-     - parameter emailValidationKeyModel: (body)  (optional)
+     - parameter checkConfirmRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ConfirmWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkConfirm(emailValidationKeyModel: EmailValidationKeyModel? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ConfirmWrapper {
-        return try await checkConfirmWithRequestBuilder(emailValidationKeyModel: emailValidationKeyModel, apiConfiguration: apiConfiguration).execute().body
+    open class func checkConfirm(checkConfirmRequestDto: CheckConfirmRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ConfirmWrapper {
+        return try await checkConfirmWithRequestBuilder(checkConfirmRequestDto: checkConfirmRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -196,21 +194,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter emailValidationKeyModel: (body)  (optional)
+     - parameter checkConfirmRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ConfirmWrapper> 
      */
-    open class func checkConfirmWithRequestBuilder(emailValidationKeyModel: EmailValidationKeyModel? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ConfirmWrapper> {
+    open class func checkConfirmWithRequestBuilder(checkConfirmRequestDto: CheckConfirmRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ConfirmWrapper> {
         let localVariablePath = "/api/2.0/authentication/confirm"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailValidationKeyModel, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: checkConfirmRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -276,7 +273,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<BooleanWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -341,7 +337,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<StringWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -355,13 +350,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for saveMobilePhone Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/save-mobile-phone/
-     - parameter mobileRequestsDto: (body)  (optional)
+     - parameter mobileRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AuthenticationTokenWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func saveMobilePhone(mobileRequestsDto: MobileRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
-        return try await saveMobilePhoneWithRequestBuilder(mobileRequestsDto: mobileRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func saveMobilePhone(mobileRequestDto: MobileRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
+        return try await saveMobilePhoneWithRequestBuilder(mobileRequestDto: mobileRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -392,21 +387,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter mobileRequestsDto: (body)  (optional)
+     - parameter mobileRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 
      */
-    open class func saveMobilePhoneWithRequestBuilder(mobileRequestsDto: MobileRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
+    open class func saveMobilePhoneWithRequestBuilder(mobileRequestDto: MobileRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
         let localVariablePath = "/api/2.0/authentication/setphone"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: mobileRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: mobileRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -421,13 +415,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for sendSmsCode Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/send-sms-code/
-     - parameter authRequestsDto: (body)  (optional)
+     - parameter authRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AuthenticationTokenWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func sendSmsCode(authRequestsDto: AuthRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
-        return try await sendSmsCodeWithRequestBuilder(authRequestsDto: authRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func sendSmsCode(authRequestDto: AuthRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthenticationTokenWrapper {
+        return try await sendSmsCodeWithRequestBuilder(authRequestDto: authRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -458,21 +452,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter authRequestsDto: (body)  (optional)
+     - parameter authRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AuthenticationTokenWrapper> 
      */
-    open class func sendSmsCodeWithRequestBuilder(authRequestsDto: AuthRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
+    open class func sendSmsCodeWithRequestBuilder(authRequestDto: AuthRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AuthenticationTokenWrapper> {
         let localVariablePath = "/api/2.0/authentication/sendsms"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: authRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

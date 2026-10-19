@@ -18,7 +18,7 @@ import Foundation
 public struct UpdateRoomRequest: Sendable, Codable, Hashable {
 
     public static let titleRule = StringRule(minLength: 0, maxLength: 170, pattern: nil)
-    public static let colorRule = StringRule(minLength: nil, maxLength: nil, pattern: "/^[0-9a-fA-F]{6}$/")
+    public static let colorRule = StringRule(minLength: nil, maxLength: nil, pattern: "^[0-9a-fA-F]{6}$")
     public static let coverRule = StringRule(minLength: 0, maxLength: 50, pattern: nil)
     /** The new name of the room. It is trimmed and sanitised the way a room title is at creation, and a blank or  missing value leaves the current name alone rather than clearing it. */
     public var title: String?

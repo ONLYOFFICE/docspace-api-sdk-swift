@@ -22,9 +22,9 @@ public struct AiFolderMutationResult: Sendable, Codable, Hashable {
     /** The persisted folder. Present on success. */
     public var folder: AiPromptFolder?
     /** Why the folder was rejected. Present on failure. */
-    public var error: AiTErrorData?
+    public var error: AiErrorData?
 
-    public init(success: Bool, folder: AiPromptFolder? = nil, error: AiTErrorData? = nil) {
+    public init(success: Bool, folder: AiPromptFolder? = nil, error: AiErrorData? = nil) {
         self.success = success
         self.folder = folder
         self.error = error

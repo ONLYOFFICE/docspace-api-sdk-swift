@@ -22,7 +22,7 @@ public struct EditHistoryDataDto: Sendable, Codable, Hashable {
     /** The document key of the revision being shown, which the editing service uses to identify it and to reuse the  copy it has cached. */
     public var key: String?
     /** The revision this one is compared against. It arrives together with `changesUrl`, and when the revision shown  is the first one the file ever had, it points at the blank template the file was created from instead of at an  earlier revision. */
-    public var previous: EditHistoryUrl?
+    public var previous: EditHistoryUrlDto?
     /** The signature over the whole answer, as a JSON Web Token that the editing service verifies before it accepts  the addresses in it. Empty when the portal runs without a document-service secret. */
     public var token: String?
     /** The address the content of this revision is served from. It is meant for the editing service and carries its  own key, which is valid for a limited time. */
@@ -32,7 +32,7 @@ public struct EditHistoryDataDto: Sendable, Codable, Hashable {
     /** The format of the revision being shown, as an extension without the leading dot. */
     public var fileType: String?
 
-    public init(changesUrl: String? = nil, key: String?, previous: EditHistoryUrl? = nil, token: String? = nil, url: String?, version: Int, fileType: String?) {
+    public init(changesUrl: String? = nil, key: String?, previous: EditHistoryUrlDto? = nil, token: String? = nil, url: String?, version: Int, fileType: String?) {
         self.changesUrl = changesUrl
         self.key = key
         self.previous = previous

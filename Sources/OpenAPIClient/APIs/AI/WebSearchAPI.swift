@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AIWebSearchAPIApi {
 
     /**
      Clear the web-search configuration
@@ -23,13 +23,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiWebSearchClear Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-clear/
-     - parameter body: (body) Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. 
+     - parameter aiWebSearchClearRequest: (body) Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiWebSearchClear(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiWebSearchClearWithRequestBuilder(body: body, apiConfiguration: apiConfiguration).execute().body
+    open class func aiWebSearchClear(aiWebSearchClearRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiWebSearchClearWithRequestBuilder(aiWebSearchClearRequest: aiWebSearchClearRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -47,21 +47,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter body: (body) Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. 
+     - parameter aiWebSearchClearRequest: (body) Ignored. The operation always clears the portal-wide configuration, so send an empty body; a value here does not scope it to a room. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiWebSearchClearWithRequestBuilder(body: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiWebSearchClearWithRequestBuilder(aiWebSearchClearRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/web-search/clear"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiWebSearchClearRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -115,7 +114,6 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<AiWebSearchMutationResult>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -162,15 +160,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -218,15 +216,15 @@ open class {{{{x-classname}}}} {
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "entityId": (wrappedValue: entityId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -241,13 +239,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiWebSearchPassthroughContents Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-contents/
-     - parameter requestBody: (body) A page-contents request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration. 
+     - parameter aiWebSearchPassthroughContentsRequest: (body) A page-contents request in the shape the portal's active web-search provider expects, forwarded to it once `urls` passes a type check. The endpoint and the key come from the stored configuration. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: [String: JSONValue]
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiWebSearchPassthroughContents(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: JSONValue] {
-        return try await aiWebSearchPassthroughContentsWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func aiWebSearchPassthroughContents(aiWebSearchPassthroughContentsRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: JSONValue] {
+        return try await aiWebSearchPassthroughContentsWithRequestBuilder(aiWebSearchPassthroughContentsRequest: aiWebSearchPassthroughContentsRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -258,28 +256,27 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-contents/
      
      - POST /api/2.0/ai/websearch/v1/contents
-     - Fetches the contents of web pages on behalf of the document editor's AI plugin, against the portal's active web-search provider, exactly as the search passthrough does — including the `entityId` / `entityKind` billing attribution. The portal-wide configuration is used and a portal without one answers 404. The provider's status, body and content type are relayed verbatim, so its 429 and its failures surface unchanged. This is the follow-up to `POST api/2.0/ai/websearch/v1/search`, which returns the results whose contents this operation retrieves.
+     - Fetches the contents of web pages on behalf of the document editor's AI plugin, against the portal's active web-search provider, exactly as the search passthrough does — including the `entityId` / `entityKind` billing attribution. The portal-wide configuration is used and a portal without one answers 404. `urls` has to be a non-empty array of strings, or the call answers 400 naming the field. The provider's 4xx status, body and content type are relayed, so its 429 surfaces unchanged, while a 5xx is replaced by a fixed 502 with the detail kept in the server log. This is the follow-up to `POST api/2.0/ai/websearch/v1/search`, which returns the results whose contents this operation retrieves.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter requestBody: (body) A page-contents request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration. 
+     - parameter aiWebSearchPassthroughContentsRequest: (body) A page-contents request in the shape the portal's active web-search provider expects, forwarded to it once `urls` passes a type check. The endpoint and the key come from the stored configuration. 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<[String: JSONValue]> 
      */
-    open class func aiWebSearchPassthroughContentsWithRequestBuilder(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[String: JSONValue]> {
+    open class func aiWebSearchPassthroughContentsWithRequestBuilder(aiWebSearchPassthroughContentsRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[String: JSONValue]> {
         let localVariablePath = "/api/2.0/ai/websearch/v1/contents"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiWebSearchPassthroughContentsRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -294,13 +291,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiWebSearchPassthroughSearch Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-search/
-     - parameter requestBody: (body) A search request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration and must not be sent here. 
+     - parameter aiWebSearchPassthroughSearchRequest: (body) A search request in the shape the portal's active web-search provider expects, forwarded to it once `query` and `numResults` pass a type check. The endpoint and the key come from the stored configuration and must not be sent here. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: [String: JSONValue]
+     - returns: [String: JSONValue?]
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiWebSearchPassthroughSearch(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: JSONValue] {
-        return try await aiWebSearchPassthroughSearchWithRequestBuilder(requestBody: requestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func aiWebSearchPassthroughSearch(aiWebSearchPassthroughSearchRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: JSONValue?] {
+        return try await aiWebSearchPassthroughSearchWithRequestBuilder(aiWebSearchPassthroughSearchRequest: aiWebSearchPassthroughSearchRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -311,21 +308,21 @@ open class {{{{x-classname}}}} {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-passthrough-search/
      
      - POST /api/2.0/ai/websearch/v1/search
-     - Runs a web search on behalf of the document editor's AI plugin, which holds only a placeholder configuration - the portal's active provider and its key are resolved here, so neither ever reaches the browser. The portal-wide configuration is used, and a portal without one answers 404. The `entityId` and `entityKind` query parameters name the document the search is billed to; with the ONLYOFFICE provider the entry is resolved under the caller's credentials and sent to the gateway as the request `metadata` (`source_id` / `source_type` / `source_title`), and an entry the caller cannot open sends none. The provider's own status, body and content type are relayed as they stand, so a provider that rate-limits answers 429 and one that is unreachable answers 502. Closing the connection aborts the upstream request.
+     - Runs a web search on behalf of the document editor's AI plugin, which holds only a placeholder configuration - the portal's active provider and its key are resolved here, so neither ever reaches the browser. The portal-wide configuration is used, and a portal without one answers 404. The `entityId` and `entityKind` query parameters name the document the search is billed to; with the ONLYOFFICE provider the entry is resolved under the caller's credentials and sent to the gateway as the request `metadata` (`source_id` / `source_type` / `source_title`), and an entry the caller cannot open sends none. `query` has to be a non-empty string and `numResults`, when sent, a positive integer; a body failing that answers 400 naming the field, before anything is sent on. The provider's own 4xx status, body and content type are relayed as they stand, so a provider that rate-limits answers 429; a 5xx from the provider or from the hop in front of it is not relayed, its detail stays in the server log and the call answers a fixed 502, which is also what an unreachable provider answers. Closing the connection aborts the upstream request.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter requestBody: (body) A search request in the shape the portal's active web-search provider expects, forwarded to it unchanged. The endpoint and the key come from the stored configuration and must not be sent here. 
+     - parameter aiWebSearchPassthroughSearchRequest: (body) A search request in the shape the portal's active web-search provider expects, forwarded to it once `query` and `numResults` pass a type check. The endpoint and the key come from the stored configuration and must not be sent here. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<[String: JSONValue]> 
+     - returns: RequestBuilder<[String: JSONValue?]> 
      */
-    open class func aiWebSearchPassthroughSearchWithRequestBuilder(requestBody: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[String: JSONValue]> {
+    open class func aiWebSearchPassthroughSearchWithRequestBuilder(aiWebSearchPassthroughSearchRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[String: JSONValue?]> {
         let localVariablePath = "/api/2.0/ai/websearch/v1/search"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiWebSearchPassthroughSearchRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -333,10 +330,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[String: JSONValue]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<[String: JSONValue?]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -347,13 +343,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for aiWebSearchSetActiveConfig Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-web-search-set-active-config/
-     - parameter aiWebSearchConfigureRequest: (body)  
+     - parameter aiWebSearchSetActiveConfigRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: AiSuccessResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiWebSearchSetActiveConfig(aiWebSearchConfigureRequest: AiWebSearchConfigureRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
-        return try await aiWebSearchSetActiveConfigWithRequestBuilder(aiWebSearchConfigureRequest: aiWebSearchConfigureRequest, apiConfiguration: apiConfiguration).execute().body
+    open class func aiWebSearchSetActiveConfig(aiWebSearchSetActiveConfigRequest: AiWebSearchSetActiveConfigRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+        return try await aiWebSearchSetActiveConfigWithRequestBuilder(aiWebSearchSetActiveConfigRequest: aiWebSearchSetActiveConfigRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -371,21 +367,20 @@ open class {{{{x-classname}}}} {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter aiWebSearchConfigureRequest: (body)  
+     - parameter aiWebSearchSetActiveConfigRequest: (body)  
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<AiSuccessResponse> 
      */
-    open class func aiWebSearchSetActiveConfigWithRequestBuilder(aiWebSearchConfigureRequest: AiWebSearchConfigureRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiWebSearchSetActiveConfigWithRequestBuilder(aiWebSearchSetActiveConfigRequest: AiWebSearchSetActiveConfigRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
         let localVariablePath = "/api/2.0/ai/web-search/set-active-config"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiWebSearchConfigureRequest, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiWebSearchSetActiveConfigRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -438,7 +433,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

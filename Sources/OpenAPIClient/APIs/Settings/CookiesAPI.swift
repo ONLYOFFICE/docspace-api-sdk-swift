@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsCookiesAPIApi {
 
     /**
      Get the cookie lifetime settings
@@ -74,7 +74,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<CookieSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -88,13 +87,13 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for updateCookieSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cookie-settings/
-     - parameter cookieSettingsRequestsDto: (body)  (optional)
+     - parameter cookieSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateCookieSettings(cookieSettingsRequestsDto: CookieSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await updateCookieSettingsWithRequestBuilder(cookieSettingsRequestsDto: cookieSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func updateCookieSettings(cookieSettingsRequestDto: CookieSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await updateCookieSettingsWithRequestBuilder(cookieSettingsRequestDto: cookieSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
@@ -125,21 +124,20 @@ open class {{{{x-classname}}}} {
        - type: openIdConnect
        - name: OpenId
      - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
-     - parameter cookieSettingsRequestsDto: (body)  (optional)
+     - parameter cookieSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func updateCookieSettingsWithRequestBuilder(cookieSettingsRequestsDto: CookieSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func updateCookieSettingsWithRequestBuilder(cookieSettingsRequestDto: CookieSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         let localVariablePath = "/api/2.0/settings/cookiesettings"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: cookieSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: cookieSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

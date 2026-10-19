@@ -14,11 +14,11 @@
 //  limitations under the License.
 import Foundation
 
-/** The successful API response containing the DocsCloudConfig object. */
+/** The successful API response containing the DocsCloudConfigDto object. */
 public struct DocsCloudConfigWrapper: Sendable, Codable, Hashable {
 
-    /** The DocsCloudConfig object returned by the operation. */
-    public var response: DocsCloudConfig?
+    /** The DocsCloudConfigDto object returned by the operation. */
+    public var response: DocsCloudConfigDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -28,7 +28,7 @@ public struct DocsCloudConfigWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: DocsCloudConfig? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: DocsCloudConfigDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

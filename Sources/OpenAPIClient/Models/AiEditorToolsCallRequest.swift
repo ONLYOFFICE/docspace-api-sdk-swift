@@ -19,11 +19,11 @@ public struct AiEditorToolsCallRequest: Sendable, Codable, Hashable {
     /** Name of the tool to run, as listed by the tools endpoint. A name that is unknown or excluded from the editor is rejected with 400. */
     public var name: String
     /** Arguments for the tool, shaped by that tool's own input schema. Treated as empty when it is not an object. */
-    public var arguments: [String: JSONValue?]?
+    public var arguments: [String: JSONValue]?
     /** Room the call is scoped to. Left out for a portal-wide call. */
     public var entityId: String?
 
-    public init(name: String, arguments: [String: JSONValue?]? = nil, entityId: String? = nil) {
+    public init(name: String, arguments: [String: JSONValue]? = nil, entityId: String? = nil) {
         self.name = name
         self.arguments = arguments
         self.entityId = entityId
