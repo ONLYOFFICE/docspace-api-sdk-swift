@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the EditHistoryDataDto object. */
 public struct EditHistoryDataWrapper: Sendable, Codable, Hashable {
 
+    /** The EditHistoryDataDto object returned by the operation. */
     public var response: EditHistoryDataDto?
     /** The total number of items in the response */
     public var count: Int?

@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the ExternalShareDto object. */
 public struct ExternalShareWrapper: Sendable, Codable, Hashable {
 
+    /** The ExternalShareDto object returned by the operation. */
     public var response: ExternalShareDto?
     /** The total number of items in the response */
     public var count: Int?

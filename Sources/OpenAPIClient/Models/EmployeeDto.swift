@@ -21,8 +21,6 @@ public struct EmployeeDto: Sendable, Codable, Hashable {
     public var id: UUID?
     /** The HTML-encoded user's display name formatted according to the default format for the current culture. */
     public var displayName: String?
-    /** The user title. */
-    public var title: String?
     /** The user avatar. */
     public var avatar: String?
     /** The user original size avatar. */
@@ -40,10 +38,9 @@ public struct EmployeeDto: Sendable, Codable, Hashable {
     /** Specifies if the user is anonymous or not. */
     public var isAnonim: Bool?
 
-    public init(id: UUID? = nil, displayName: String? = nil, title: String? = nil, avatar: String? = nil, avatarOriginal: String? = nil, avatarMax: String? = nil, avatarMedium: String? = nil, avatarSmall: String? = nil, profileUrl: String? = nil, hasAvatar: Bool? = nil, isAnonim: Bool? = nil) {
+    public init(id: UUID? = nil, displayName: String? = nil, avatar: String? = nil, avatarOriginal: String? = nil, avatarMax: String? = nil, avatarMedium: String? = nil, avatarSmall: String? = nil, profileUrl: String? = nil, hasAvatar: Bool? = nil, isAnonim: Bool? = nil) {
         self.id = id
         self.displayName = displayName
-        self.title = title
         self.avatar = avatar
         self.avatarOriginal = avatarOriginal
         self.avatarMax = avatarMax
@@ -57,7 +54,6 @@ public struct EmployeeDto: Sendable, Codable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
         case displayName
-        case title
         case avatar
         case avatarOriginal
         case avatarMax
@@ -74,7 +70,6 @@ public struct EmployeeDto: Sendable, Codable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(displayName, forKey: .displayName)
-        try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(avatar, forKey: .avatar)
         try container.encodeIfPresent(avatarOriginal, forKey: .avatarOriginal)
         try container.encodeIfPresent(avatarMax, forKey: .avatarMax)

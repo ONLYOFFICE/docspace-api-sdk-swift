@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of AccountInfoDto objects. */
 public struct AccountInfoArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of AccountInfoDto objects returned by the operation. */
     public var response: [AccountInfoDto]?
     /** The total number of items in the response */
     public var count: Int?

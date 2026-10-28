@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of CurrenciesDto objects. */
 public struct CurrenciesArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of CurrenciesDto objects returned by the operation. */
     public var response: [CurrenciesDto]?
     /** The total number of items in the response */
     public var count: Int?

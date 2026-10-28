@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the DocumentBuilderTaskDto object. */
 public struct DocumentBuilderTaskWrapper: Sendable, Codable, Hashable {
 
+    /** The DocumentBuilderTaskDto object returned by the operation. */
     public var response: DocumentBuilderTaskDto?
     /** The total number of items in the response */
     public var count: Int?

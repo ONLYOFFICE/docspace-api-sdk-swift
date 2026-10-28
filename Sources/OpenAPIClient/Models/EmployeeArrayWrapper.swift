@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of EmployeeDto objects. */
 public struct EmployeeArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of EmployeeDto objects returned by the operation. */
     public var response: [EmployeeDto]?
     /** The total number of items in the response */
     public var count: Int?

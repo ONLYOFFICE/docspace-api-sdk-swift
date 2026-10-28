@@ -15,7 +15,7 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class OAuth20ClientQueryingAPIApi {
 
     /**
      Get client details
@@ -23,7 +23,7 @@ open class {{{{x-classname}}}} {
      See also:
      REST API Reference for getClient Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ClientResponse
      */
@@ -39,17 +39,17 @@ open class {{{{x-classname}}}} {
      REST API Reference for getClient Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client/
      
-     - GET /api/2.0/clients/{clientId}
-     - Retrieves detailed information about a specific OAuth2 client including its name, description, redirect URIs, and scopes.
+     - GET /api/2.0/oauth2/clients/{clientId}
+     - Returns the whole stored record of one client: its name and description, its secret, scopes, redirect URIs, allowed origins, logout redirect URIs and audit fields. An administrator sees any client of the tenant, a plain user only the clients they created, and a guest none of them. Whatever the caller may not see is reported as 404 rather than 403, so absence and lack of access are deliberately indistinguishable, and an identifier that is not a valid client ID is reported the same way. The response is a single object, not a collection.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientResponse> 
      */
     open class func getClientWithRequestBuilder(clientId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ClientResponse> {
-        var localVariablePath = "/api/2.0/clients/{clientId}"
+        var localVariablePath = "/api/2.0/oauth2/clients/{clientId}"
         let clientIdPreEscape = "\(APIHelper.mapValueToPathItem(clientId))"
         let clientIdPostEscape = clientIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{clientId}", with: clientIdPostEscape, options: .literal, range: nil)
@@ -61,7 +61,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -71,12 +70,12 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get detailed client information
+     Get client info
      
      See also:
      REST API Reference for getClientInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client-info/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ClientInfoResponse
      */
@@ -86,23 +85,23 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get detailed client information
+     Get client info
      
      See also:
      REST API Reference for getClientInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-client-info/
      
-     - GET /api/2.0/clients/{clientId}/info
-     - Retrieves the detailed information for a client with the ID specified in the request.
+     - GET /api/2.0/oauth2/clients/{clientId}/info
+     - Retrieves the detailed information for a client with the ID specified in the request. It returns the consent-facing subset of the client - name, description, logo, the website, terms and policy URLs, authentication methods and scopes - and deliberately omits the secret, the redirect URIs and the allowed origins, which is what makes it safe to render on a consent screen. An administrator sees any client of the tenant, a plain user only the clients they created, and a guest none of them. A client the caller may not see is reported as 404, exactly like an unknown one.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter clientId: (path) The client identifier. 
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientInfoResponse> 
      */
     open class func getClientInfoWithRequestBuilder(clientId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ClientInfoResponse> {
-        var localVariablePath = "/api/2.0/clients/{clientId}/info"
+        var localVariablePath = "/api/2.0/oauth2/clients/{clientId}/info"
         let clientIdPreEscape = "\(APIHelper.mapValueToPathItem(clientId))"
         let clientIdPostEscape = clientIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{clientId}", with: clientIdPostEscape, options: .literal, range: nil)
@@ -114,7 +113,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -124,126 +122,126 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get clients
+     List clients
      
      See also:
      REST API Reference for getClients Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/
-     - parameter limit: (query) The maximum number of results returned per page.      - parameter lastClientId: (query) The ID of the last retrieved client. (optional)     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+     - parameter limit: (query) How many entries to return, between 1 and 50. Defaults to 30 when omitted. (optional, default to 30)     - parameter lastClientId: (query) ID of the last retrieved client (optional)     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: PageableResponse
+     - returns: PageableClientResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getClients(limit: Int, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PageableResponse {
+    open class func getClients(limit: Int? = nil, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PageableClientResponse {
         return try await getClientsWithRequestBuilder(limit: limit, lastClientId: lastClientId, lastCreatedOn: lastCreatedOn, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
-     Get clients
+     List clients
      
      See also:
      REST API Reference for getClients Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients/
      
-     - GET /api/2.0/clients
-     - Retrieves a paginated list of OAuth2 clients. The results can be paginated using the 'limit' parameter and the last seen client ID or creation date.
+     - GET /api/2.0/oauth2/clients
+     - Returns one page of the tenant's clients, newest first, each in the same full form as the single-client read. An administrator sees every client of the tenant, a plain user only the clients they created. Paging is keyset-based rather than offset-based: limit sets the page size, and last_client_id and last_created_on are carried over from the previous page to ask for the next one. The limit defaults to 30 and has to lie between 1 and 50; a value outside that range, or a last_created_on that cannot be parsed as a date, is rejected with 400.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter limit: (query) The maximum number of results returned per page. 
-     - parameter lastClientId: (query) The ID of the last retrieved client. (optional)
-     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter limit: (query) How many entries to return, between 1 and 50. Defaults to 30 when omitted. (optional, default to 30)
+     - parameter lastClientId: (query) ID of the last retrieved client (optional)
+     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<PageableResponse> 
+     - returns: RequestBuilder<PageableClientResponse> 
      */
-    open class func getClientsWithRequestBuilder(limit: Int, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<PageableResponse> {
-        let localVariablePath = "/api/2.0/clients"
+    open class func getClientsWithRequestBuilder(limit: Int? = nil, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<PageableClientResponse> {
+        let localVariablePath = "/api/2.0/oauth2/clients"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "limit": (wrappedValue: limit.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
+            "limit": (wrappedValue: limit?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "last_client_id": (wrappedValue: lastClientId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "last_created_on": (wrappedValue: lastCreatedOn?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageableResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageableClientResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Get detailed information of clients
+     List client info
      
      See also:
      REST API Reference for getClientsInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients-info/
-     - parameter limit: (query) The maximum number of results returned per page.      - parameter lastClientId: (query) The identifier of the last retrieved client. (optional)     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+     - parameter limit: (query) How many entries to return, between 1 and 50. It has no default and has to be sent on every call.      - parameter lastClientId: (query) ID of the last retrieved client (optional)     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: PageableResponseClientInfoResponse
+     - returns: PageableClientInfoResponse
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getClientsInfo(limit: Int, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PageableResponseClientInfoResponse {
+    open class func getClientsInfo(limit: Int, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> PageableClientInfoResponse {
         return try await getClientsInfoWithRequestBuilder(limit: limit, lastClientId: lastClientId, lastCreatedOn: lastCreatedOn, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
-     Get detailed information of clients
+     List client info
      
      See also:
      REST API Reference for getClientsInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-clients-info/
      
-     - GET /api/2.0/clients/info
-     - Retrieves a paginated list of information for all clients.
+     - GET /api/2.0/oauth2/clients/info
+     - Retrieves a paginated list of information for all clients, each in the same consent-facing form as the single-client info read. An administrator sees every client of the tenant, a plain user only the clients they created. Paging is keyset-based: limit sets the page size, and last_client_id and last_created_on are carried over from the previous page. Unlike the full client listing, limit has no default here - it has to be supplied on every call and has to lie between 1 and 50, and a missing or out-of-range value is rejected with 400.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter limit: (query) The maximum number of results returned per page. 
-     - parameter lastClientId: (query) The identifier of the last retrieved client. (optional)
-     - parameter lastCreatedOn: (query) The creation date of the last retrieved client. (optional)
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter limit: (query) How many entries to return, between 1 and 50. It has no default and has to be sent on every call. 
+     - parameter lastClientId: (query) ID of the last retrieved client (optional)
+     - parameter lastCreatedOn: (query) Date of the last retrieved client (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<PageableResponseClientInfoResponse> 
+     - returns: RequestBuilder<PageableClientInfoResponse> 
      */
-    open class func getClientsInfoWithRequestBuilder(limit: Int, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<PageableResponseClientInfoResponse> {
-        let localVariablePath = "/api/2.0/clients/info"
+    open class func getClientsInfoWithRequestBuilder(limit: Int, lastClientId: String? = nil, lastCreatedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<PageableClientInfoResponse> {
+        let localVariablePath = "/api/2.0/oauth2/clients/info"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "limit": (wrappedValue: limit.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "last_client_id": (wrappedValue: lastClientId?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "last_created_on": (wrappedValue: lastCreatedOn?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<PageableResponseClientInfoResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<PageableClientInfoResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
 
     /**
-     Get user consents
+     List user consents
      
      See also:
      REST API Reference for getConsents Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-consents/
-     - parameter limit: (query) The maximum number of results returned per page.      - parameter lastModifiedOn: (query) The date when the user consent was last modified. (optional)
+     - parameter limit: (query) How many entries to return, between 1 and 50. It has no default and has to be sent on every call.      - parameter lastModifiedOn: (query) Date of the last retrieved consent (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: PageableModificationResponse
      */
@@ -253,37 +251,37 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get user consents
+     List user consents
      
      See also:
      REST API Reference for getConsents Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-consents/
      
-     - GET /api/2.0/clients/consents
-     - Retrieves a paginated list of user consents.
+     - GET /api/2.0/oauth2/clients/consents
+     - Retrieves a paginated list of user consents: the clients the calling user has authorized, each with the scopes granted, the moment the consent was last changed and the client's consent-facing details. It always reports the caller's own consents and nothing else - there is no role check on this endpoint, so guests may call it too, and no parameter widens it to another user. The consents are read from the authorization service over gRPC, so an authorization service that cannot be reached surfaces as 503. Paging is keyset-based on last_modified_on, and limit has no default: it has to be supplied on every call and has to lie between 1 and 50.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
-     - parameter limit: (query) The maximum number of results returned per page. 
-     - parameter lastModifiedOn: (query) The date when the user consent was last modified. (optional)
+       - type: apiKey x-signature 
+       - name: x-signature
+     - parameter limit: (query) How many entries to return, between 1 and 50. It has no default and has to be sent on every call. 
+     - parameter lastModifiedOn: (query) Date of the last retrieved consent (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<PageableModificationResponse> 
      */
     open class func getConsentsWithRequestBuilder(limit: Int, lastModifiedOn: Date? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<PageableModificationResponse> {
-        let localVariablePath = "/api/2.0/clients/consents"
+        let localVariablePath = "/api/2.0/oauth2/clients/consents"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+        let localVariableQueryItems: [String: (wrappedValue: (any Sendable)?, isExplode: Bool)] = [
             "limit": (wrappedValue: limit.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
             "last_modified_on": (wrappedValue: lastModifiedOn?.asParameter(codableHelper: apiConfiguration.codableHelper), isExplode: true),
-        ])
+        ]
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems(localVariableQueryItems)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
@@ -293,12 +291,12 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get public client information
+     Get public client info
      
      See also:
      REST API Reference for getPublicClientInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-client-info/
-     - parameter clientId: (path) The client identifier. 
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: ClientInfoResponse
      */
@@ -308,20 +306,20 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get public client information
+     Get public client info
      
      See also:
      REST API Reference for getPublicClientInfo Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-public-client-info/
      
-     - GET /api/2.0/clients/{clientId}/public/info
-     - Returns the public information for a client with the ID secified din the request.
-     - parameter clientId: (path) The client identifier. 
+     - GET /api/2.0/oauth2/clients/{clientId}/public/info
+     - Returns the same consent-facing client information as the signed read, but without requiring a portal signature. It is meant for a login or consent page that has to render the client before the user is known, so it resolves the client by ID alone: there is no authentication, no tenant scoping and no creator check, and any caller who knows a client ID can read that client's public details. It still exposes no secret, no redirect URIs and no allowed origins. Being unauthenticated it is rate-limited on a separate, tighter budget than the signed endpoints. An unknown client ID, and an identifier that is not a client ID at all, are both reported as 404.
+     - parameter clientId: (path) ID of the client to retrieve 
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<ClientInfoResponse> 
      */
     open class func getPublicClientInfoWithRequestBuilder(clientId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ClientInfoResponse> {
-        var localVariablePath = "/api/2.0/clients/{clientId}/public/info"
+        var localVariablePath = "/api/2.0/oauth2/clients/{clientId}/public/info"
         let clientIdPreEscape = "\(APIHelper.mapValueToPathItem(clientId))"
         let clientIdPostEscape = clientIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         localVariablePath = localVariablePath.replacingOccurrences(of: "{clientId}", with: clientIdPostEscape, options: .literal, range: nil)
@@ -333,7 +331,6 @@ open class {{{{x-classname}}}} {
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             :
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

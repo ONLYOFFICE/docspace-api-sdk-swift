@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the TelegramStatusDto object. */
 public struct TelegramStatusWrapper: Sendable, Codable, Hashable {
 
+    /** The TelegramStatusDto object returned by the operation. */
     public var response: TelegramStatusDto?
     /** The total number of items in the response */
     public var count: Int?

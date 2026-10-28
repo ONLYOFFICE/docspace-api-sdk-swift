@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of NewItemsDtoFileEntryBaseDto objects. */
 public struct NewItemsFileEntryBaseArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of NewItemsDtoFileEntryBaseDto objects returned by the operation. */
     public var response: [NewItemsDtoFileEntryBaseDto]?
     /** The total number of items in the response */
     public var count: Int?

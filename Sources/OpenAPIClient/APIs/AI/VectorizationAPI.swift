@@ -15,58 +15,46 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class AIVectorizationAPIApi {
 
     /**
      Start a vectorization task
      
      See also:
-     REST API Reference for startTask Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/start-task/
-     - parameter vectorizationStartRequestBody: (body) The vectorization parameters including file identifiers. 
+     REST API Reference for aiVectorizationStartTask Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-vectorization-start-task/
+     - parameter aiVectorizationStartTaskRequest: (body) The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: Void
+     - returns: AiVectorizationStartTask200Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func startTask(vectorizationStartRequestBody: VectorizationStartRequestBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) {
-        return try await startTaskWithRequestBuilder(vectorizationStartRequestBody: vectorizationStartRequestBody, apiConfiguration: apiConfiguration).execute().body
+    open class func aiVectorizationStartTask(aiVectorizationStartTaskRequest: AiVectorizationStartTaskRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiVectorizationStartTask200Response {
+        return try await aiVectorizationStartTaskWithRequestBuilder(aiVectorizationStartTaskRequest: aiVectorizationStartTaskRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
      Start a vectorization task
      
      See also:
-     REST API Reference for startTask Operation
-     https://api.onlyoffice.com/docspace/api-backend/usage-api/start-task/
+     REST API Reference for aiVectorizationStartTask Operation
+     https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-vectorization-start-task/
      
      - POST /api/2.0/ai/vectorization/tasks
-     - Submits the specified files for vectorization. Each file is processed asynchronously by the configured embedding provider  and indexed for semantic search in AI chat sessions. Only files accessible to the current user can be vectorized.
-     - BASIC:
-       - type: http
-       - name: Basic
-     - OAuth:
-       - type: oauth2
-       - name: OAuth2
-     - API Key:
-       - type: apiKey ApiKeyBearer (HEADER)
-       - name: ApiKeyBearer
+     - Queues the indexing of the portal files named in the body so their contents can be retrieved during a chat round. The body is proxied unchanged to the DocSpace AI service, which validates it and owns the job. Indexing is asynchronous and fire-and-forget: the answer acknowledges the request without carrying a job handle, so there is nothing to poll and progress is not reported here. The embedding provider used is the one in `GET api/2.0/ai/config/vectorization`, and changing that setting does not re-index anything already indexed - queue it again for that.
      - API Key:
        - type: apiKey asc_auth_key 
-       - name: asc_auth_key
+       - name: cookieAuth
      - Bearer Token:
        - type: http
-       - name: Bearer
-     - :
-       - type: openIdConnect
-       - name: OpenId
-     - parameter vectorizationStartRequestBody: (body) The vectorization parameters including file identifiers. 
+       - name: bearerAuth
+     - parameter aiVectorizationStartTaskRequest: (body) The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<AiVectorizationStartTask200Response> 
      */
-    open class func startTaskWithRequestBuilder(vectorizationStartRequestBody: VectorizationStartRequestBody, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<Void> {
+    open class func aiVectorizationStartTaskWithRequestBuilder(aiVectorizationStartTaskRequest: AiVectorizationStartTaskRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiVectorizationStartTask200Response> {
         let localVariablePath = "/api/2.0/ai/vectorization/tasks"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: vectorizationStartRequestBody, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiVectorizationStartTaskRequest, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
@@ -74,10 +62,9 @@ open class {{{{x-classname}}}} {
             "Content-Type": "application/json",
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Void>.Type = apiConfiguration.requestBuilderFactory.getNonDecodableBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AiVectorizationStartTask200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

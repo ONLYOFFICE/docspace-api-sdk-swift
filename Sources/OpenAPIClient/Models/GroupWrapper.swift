@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the GroupDto object. */
 public struct GroupWrapper: Sendable, Codable, Hashable {
 
+    /** The GroupDto object returned by the operation. */
     public var response: GroupDto?
     /** The total number of items in the response */
     public var count: Int?

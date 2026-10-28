@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the OwnerChangeInstructionsDto object. */
 public struct OwnerChangeInstructionsWrapper: Sendable, Codable, Hashable {
 
+    /** The OwnerChangeInstructionsDto object returned by the operation. */
     public var response: OwnerChangeInstructionsDto?
     /** The total number of items in the response */
     public var count: Int?

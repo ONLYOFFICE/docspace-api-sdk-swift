@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the ReportDto object. */
 public struct ReportWrapper: Sendable, Codable, Hashable {
 
+    /** The ReportDto object returned by the operation. */
     public var response: ReportDto?
     /** The total number of items in the response */
     public var count: Int?

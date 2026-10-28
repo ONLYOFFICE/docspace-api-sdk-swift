@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The response containing the scope information. */
+/** One scope from the tenant scope catalogue, as it may be requested by a client. */
 public struct ScopeResponse: Sendable, Codable, Hashable {
 
-    /** The scope name. */
+    /** The scope exactly as it is written in an authorization request, for example files:read or openid. */
     public var name: String?
-    /** The group the scope belongs to. */
+    /** The area of the portal the scope belongs to, which is what groups the scopes on the consent screen: files, rooms, contacts, profiles or openid. */
     public var group: String?
-    /** The scope type. */
+    /** What the scope allows inside its group: read for read-only access, write for changes, and openid for the identity scope itself. */
     public var type: String?
 
     public init(name: String? = nil, group: String? = nil, type: String? = nil) {

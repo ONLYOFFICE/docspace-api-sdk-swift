@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Facebook, 1 - Google, 2 - Dropbox, 3 - Docusign, 4 - Box, 5 - OneDrive, 6 - GosUslugi, 7 - LinkedIn, 8 - MailRu, 9 - VK, 10 - Wordpress, 11 - Yahoo, 12 - Yandex, 13 - Github] */
+/** [0 - Facebook, 1 - Google, 2 - Dropbox, 3 - Docusign, 4 - Box, 5 - OneDrive, 6 - GosUslugi, 7 - LinkedIn, 8 - MailRu, 9 - VK, 10 - Wordpress, 11 - Yahoo, 12 - Yandex, 13 - Github, 14 - Nextcloud] */
 public enum LoginProvider: Int, Sendable, Codable, CaseIterable {
     case Facebook = 0
     case Google = 1
@@ -30,4 +30,5 @@ public enum LoginProvider: Int, Sendable, Codable, CaseIterable {
     case Yahoo = 11
     case Yandex = 12
     case Github = 13
+    case Nextcloud = 14
 }

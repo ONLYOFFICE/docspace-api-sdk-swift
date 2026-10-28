@@ -14,11 +14,16 @@
 //  limitations under the License.
 import Foundation
 
+/** The migrating group parameters. */
 public struct MigratingApiGroup: Sendable, Codable, Hashable {
 
+    /** Specifies whether the API entity should be imported. */
     public var shouldImport: Bool?
+    /** The group name. */
     public var groupName: String?
+    /** The group module name. */
     public var moduleName: String?
+    /** The list of group user UIDs. */
     public var userUidList: [String]?
 
     public init(shouldImport: Bool? = nil, groupName: String? = nil, moduleName: String? = nil, userUidList: [String]? = nil) {

@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of CoversResultDto objects. */
 public struct CoversResultArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of CoversResultDto objects returned by the operation. */
     public var response: [CoversResultDto]?
     /** The total number of items in the response */
     public var count: Int?

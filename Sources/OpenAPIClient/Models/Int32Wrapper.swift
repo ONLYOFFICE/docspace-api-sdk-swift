@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the int32 value. */
 public struct Int32Wrapper: Sendable, Codable, Hashable {
 
+    /** The int32 value returned by the operation. */
     public var response: Int?
     /** The total number of items in the response */
     public var count: Int?

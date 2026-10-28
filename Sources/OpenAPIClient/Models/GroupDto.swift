@@ -29,6 +29,7 @@ public struct GroupDto: Sendable, Codable, Hashable {
     public var isLDAP: Bool
     /** Indicates whether the group is a system group. */
     public var isSystem: Bool?
+    /** The group manager full information. */
     public var manager: EmployeeFullDto?
     /** The list of group members. */
     public var members: [EmployeeFullDto]?

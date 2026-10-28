@@ -14,25 +14,26 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Any, 1 - Unknown, 2 - ServicePayment, 4 - PackagePayment, 8 - ServiceUsage, 16 - Deposit, 32 - ReceiveProviderInvoice, 64 - ProcessProviderInvoice, 128 - WriteOffServiceProfit, 256 - Profit, 512 - PartnerAccrual, 1024 - ProviderPayment, 2048 - PartnerPayment, 4096 - Refund, 8192 - BankDeposit, 16384 - BankWithdrawal, 32768 - GoodwillCredit, 65536 - WriteOffProfit, 131072 - WriteOffDifferenceCurrency] */
+/** [0 - Unknown, 1 - ServicePayment, 2 - PackagePayment, 3 - AiServicePayment, 4 - Deposit, 5 - ReceiveProviderInvoice, 6 - ProcessProviderInvoice, 7 - WriteOffServiceProfit, 8 - Profit, 9 - PartnerAccrual, 10 - ProviderPayment, 11 - PartnerPayment, 12 - Refund, 13 - BankDeposit, 14 - BankWithdrawal, 15 - GoodwillCredit, 16 - WriteOffProfit, 17 - WriteOffDifferenceCurrency, 18 - AiDebit, 19 - AiCredit] */
 public enum OperationType: Int, Sendable, Codable, CaseIterable {
-    case Any = 0
-    case Unknown = 1
-    case ServicePayment = 2
-    case PackagePayment = 4
-    case ServiceUsage = 8
-    case Deposit = 16
-    case ReceiveProviderInvoice = 32
-    case ProcessProviderInvoice = 64
-    case WriteOffServiceProfit = 128
-    case Profit = 256
-    case PartnerAccrual = 512
-    case ProviderPayment = 1024
-    case PartnerPayment = 2048
-    case Refund = 4096
-    case BankDeposit = 8192
-    case BankWithdrawal = 16384
-    case GoodwillCredit = 32768
-    case WriteOffProfit = 65536
-    case WriteOffDifferenceCurrency = 131072
+    case Unknown = 0
+    case ServicePayment = 1
+    case PackagePayment = 2
+    case AiServicePayment = 3
+    case Deposit = 4
+    case ReceiveProviderInvoice = 5
+    case ProcessProviderInvoice = 6
+    case WriteOffServiceProfit = 7
+    case Profit = 8
+    case PartnerAccrual = 9
+    case ProviderPayment = 10
+    case PartnerPayment = 11
+    case Refund = 12
+    case BankDeposit = 13
+    case BankWithdrawal = 14
+    case GoodwillCredit = 15
+    case WriteOffProfit = 16
+    case WriteOffDifferenceCurrency = 17
+    case AiDebit = 18
+    case AiCredit = 19
 }

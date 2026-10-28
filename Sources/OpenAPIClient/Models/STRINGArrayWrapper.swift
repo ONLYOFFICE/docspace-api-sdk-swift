@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-public struct STRINGArrayWrapper: Sendable, Codable, Hashable {
+/** The successful API response. */
+public struct StringArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The response payload. */
     public var response: [String]?
     /** The total number of items in the response */
     public var count: Int?

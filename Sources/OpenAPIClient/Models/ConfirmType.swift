@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** [EmpInvite - Emp invite, LinkInvite - Link invite, PortalSuspend - Portal suspend, PortalContinue - Portal continue, PortalRemove - Portal remove, DnsChange - Dns change, PortalOwnerChange - Portal owner change, Activation - Activation, EmailChange - Email change, EmailActivation - Email activation, PasswordChange - Password change, ProfileRemove - Profile remove, PhoneActivation - Phone activation, PhoneAuth - Phone auth, Auth - Auth, TfaActivation - Tfa activation, TfaAuth - Tfa auth, Wizard - Wizard, GuestShareLink - Guest share link] */
+/** [EmpInvite - Emp invite, LinkInvite - Link invite, PortalSuspend - Portal suspend, PortalContinue - Portal continue, PortalRemove - Portal remove, DnsChange - Dns change, PortalOwnerChange - Portal owner change, Activation - Activation, EmailChange - Email change, EmailActivation - Email activation, PasswordChange - Password change, ProfileRemove - Profile remove, PhoneActivation - Phone activation, PhoneAuth - Phone auth, Auth - Auth, TfaActivation - Tfa activation, TfaAuth - Tfa auth, Wizard - Wizard, GuestShareLink - Guest share link, PortalUnblock - Portal unblock] */
 public enum ConfirmType: String, Sendable, Codable, CaseIterable {
     case empInvite = "EmpInvite"
     case linkInvite = "LinkInvite"
@@ -35,4 +35,5 @@ public enum ConfirmType: String, Sendable, Codable, CaseIterable {
     case tfaAuth = "TfaAuth"
     case wizard = "Wizard"
     case guestShareLink = "GuestShareLink"
+    case portalUnblock = "PortalUnblock"
 }

@@ -14,16 +14,15 @@
 //  limitations under the License.
 import Foundation
 
-/** The response containing paginated data. */
+/** One page of results together with the cursor that asks for the next page. */
 public struct PageableResponse: Sendable, Codable, Hashable {
 
-    /** The paginated data. */
     public var data: JSONValue?
-    /** The maximum number of results returned per page. */
+    /** The page size that was applied to this request, between 1 and 50. */
     public var limit: Int?
-    /** The identifier of the last retrieved client. */
+    /** The cursor to send back as last_client_id to ask for the next page, together with last_created_on. It is null when the page is empty. */
     public var lastClientId: String?
-    /** The creation date of the last retrieved client. */
+    /** The cursor to send back as last_created_on to ask for the next page, together with last_client_id. It is null when the page is empty. */
     public var lastCreatedOn: Date?
 
     public init(data: JSONValue? = nil, limit: Int? = nil, lastClientId: String? = nil, lastCreatedOn: Date? = nil) {

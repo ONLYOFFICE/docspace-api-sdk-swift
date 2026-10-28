@@ -14,9 +14,11 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the FileReferenceDto object. */
 public struct FileReferenceWrapper: Sendable, Codable, Hashable {
 
-    public var response: FileReference?
+    /** The FileReferenceDto object returned by the operation. */
+    public var response: FileReferenceDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -26,7 +28,7 @@ public struct FileReferenceWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: FileReference? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: FileReferenceDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

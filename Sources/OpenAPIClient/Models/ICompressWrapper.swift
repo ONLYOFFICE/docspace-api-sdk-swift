@@ -14,9 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the ICompress object. */
 public struct ICompressWrapper: Sendable, Codable, Hashable {
 
-    /** The archiving class unification interface. */
+    /** The ICompress object returned by the operation. */
     public var response: JSONValue?
     /** The total number of items in the response */
     public var count: Int?

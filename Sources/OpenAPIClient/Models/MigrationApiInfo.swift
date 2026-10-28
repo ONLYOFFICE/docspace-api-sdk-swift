@@ -14,24 +14,42 @@
 //  limitations under the License.
 import Foundation
 
+/** The migration API information. */
 public struct MigrationApiInfo: Sendable, Codable, Hashable {
 
+    /** The migrator name. */
     public var migratorName: String?
+    /** The migration operation. */
     public var operation: String?
+    /** The list of failed archives. */
     public var failedArchives: [String]?
+    /** The list of migrating users. */
     public var users: [MigratingApiUser]?
+    /** The list of migrating users without email. */
     public var withoutEmailUsers: [MigratingApiUser]?
+    /** The list of existing migrating users. */
     public var existUsers: [MigratingApiUser]?
+    /** The list of migrating groups. */
     public var groups: [MigratingApiGroup]?
+    /** Specifies whether to import personal files or not. */
     public var importPersonalFiles: Bool?
+    /** Specifies whether to import shared files or not. */
     public var importSharedFiles: Bool?
+    /** Specifies whether to import shared folders or not. */
     public var importSharedFolders: Bool?
+    /** Specifies whether to import common files or not. */
     public var importCommonFiles: Bool?
+    /** Specifies whether to import project files or not. */
     public var importProjectFiles: Bool?
+    /** Specifies whether to import groups or not. */
     public var importGroups: Bool?
+    /** The number of successfully migrated users. */
     public var successedUsers: Int?
+    /** The number of unsuccessfully migrated users. */
     public var failedUsers: Int?
+    /** The list of migrated files. */
     public var files: [String]?
+    /** The list of migration errors. */
     public var errors: [String]?
 
     public init(migratorName: String? = nil, operation: String? = nil, failedArchives: [String]? = nil, users: [MigratingApiUser]? = nil, withoutEmailUsers: [MigratingApiUser]? = nil, existUsers: [MigratingApiUser]? = nil, groups: [MigratingApiGroup]? = nil, importPersonalFiles: Bool? = nil, importSharedFiles: Bool? = nil, importSharedFolders: Bool? = nil, importCommonFiles: Bool? = nil, importProjectFiles: Bool? = nil, importGroups: Bool? = nil, successedUsers: Int? = nil, failedUsers: Int? = nil, files: [String]? = nil, errors: [String]? = nil) {

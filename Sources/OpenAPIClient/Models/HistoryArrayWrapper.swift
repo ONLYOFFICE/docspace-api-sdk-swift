@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of HistoryDto objects. */
 public struct HistoryArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of HistoryDto objects returned by the operation. */
     public var response: [HistoryDto]?
     /** The total number of items in the response */
     public var count: Int?

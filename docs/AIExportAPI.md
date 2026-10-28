@@ -1,0 +1,55 @@
+# AIExportAPIApi
+
+All URIs are relative to *https://your-docspace.onlyoffice.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**aiExportTextToDocx**](AIExportAPI.md#aiexporttexttodocx) | **POST** /api/2.0/ai/text-to-docx | Start markdown export
+
+
+# **aiExportTextToDocx**
+```swift
+    open class func aiExportTextToDocx(aiExportTextToDocxRequest: AiExportTextToDocxRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiExportTextToDocx202Response
+```
+
+Queues a markdown export and answers 202 as soon as the job is accepted, without waiting for it. `title`, `content` and `folderId` are all required, and a `content` of only whitespace counts as missing even though it is not empty. `format` is optional and selects the output - `Docx` (the default), `Pdf`, or `Md`, which stores the markdown verbatim instead of converting it. The conversion runs in the AI worker, which saves the .docx into the target folder - an agent room resolves to its own result-storage subfolder - so there is nothing to poll here: completion arrives as the ordinary folder-modified socket event. This route accepts a body of up to 15 MB rather than the 100 KB the rest of the API allows, because a whole thread transcript is sent in one request.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-export-text-to-docx/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiExportTextToDocxRequest** | [**AiExportTextToDocxRequest**](AiExportTextToDocxRequest.md) |  | 
+
+### Return type
+
+[**AiExportTextToDocx202Response**](AiExportTextToDocx202Response.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiExportTextToDocxRequest = AiExportTextToDocxRequest(title: "title_example", content: "content_example", folderId: AiExportTextToDocxRequest_folderId()) // AiExportTextToDocxRequest | 
+
+// Start markdown export
+do {
+    let response = try await AIExportAPIApi.aiExportTextToDocx(aiExportTextToDocxRequest: aiExportTextToDocxRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

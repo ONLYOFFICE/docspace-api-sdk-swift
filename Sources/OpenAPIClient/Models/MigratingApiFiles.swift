@@ -14,10 +14,14 @@
 //  limitations under the License.
 import Foundation
 
+/** The parameters of the migrating files. */
 public struct MigratingApiFiles: Sendable, Codable, Hashable {
 
+    /** The number of folders. */
     public var foldersCount: Int?
+    /** The number of files. */
     public var filesCount: Int?
+    /** The total number of bytes. */
     public var bytesTotal: Int64?
 
     public init(foldersCount: Int? = nil, filesCount: Int? = nil, bytesTotal: Int64? = nil) {

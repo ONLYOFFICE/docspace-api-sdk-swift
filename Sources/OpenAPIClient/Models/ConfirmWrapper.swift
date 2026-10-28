@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the ConfirmDto object. */
 public struct ConfirmWrapper: Sendable, Codable, Hashable {
 
+    /** The ConfirmDto object returned by the operation. */
     public var response: ConfirmDto?
     /** The total number of items in the response */
     public var count: Int?

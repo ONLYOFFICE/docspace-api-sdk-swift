@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of RoomGroupDto objects. */
 public struct RoomGroupArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of RoomGroupDto objects returned by the operation. */
     public var response: [RoomGroupDto]?
     /** The total number of items in the response */
     public var count: Int?

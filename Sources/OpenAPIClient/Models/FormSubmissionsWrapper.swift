@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the FormSubmissionsDto object. */
 public struct FormSubmissionsWrapper: Sendable, Codable, Hashable {
 
+    /** The FormSubmissionsDto object returned by the operation. */
     public var response: FormSubmissionsDto?
     /** The total number of items in the response */
     public var count: Int?

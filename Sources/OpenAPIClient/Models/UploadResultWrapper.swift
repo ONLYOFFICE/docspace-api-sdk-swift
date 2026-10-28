@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the UploadResultDto object. */
 public struct UploadResultWrapper: Sendable, Codable, Hashable {
 
+    /** The UploadResultDto object returned by the operation. */
     public var response: UploadResultDto?
     /** The total number of items in the response */
     public var count: Int?

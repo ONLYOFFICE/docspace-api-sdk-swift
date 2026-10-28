@@ -14,15 +14,24 @@
 //  limitations under the License.
 import Foundation
 
+/** The migrating user parameters. */
 public struct MigratingApiUser: Sendable, Codable, Hashable {
 
+    /** Specifies whether the API entity should be imported. */
     public var shouldImport: Bool?
+    /** The user key. */
     public var key: String?
+    /** The user email. */
     public var email: String?
+    /** The user display name. */
     public var displayName: String?
+    /** The user first name. */
     public var firstName: String?
+    /** The user last name. */
     public var lastName: String?
+    /** The user type. */
     public var userType: EmployeeType?
+    /** The user's migrating files. */
     public var migratingFiles: MigratingApiFiles?
 
     public init(shouldImport: Bool? = nil, key: String? = nil, email: String? = nil, displayName: String? = nil, firstName: String? = nil, lastName: String? = nil, userType: EmployeeType? = nil, migratingFiles: MigratingApiFiles? = nil) {

@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The parameters of an importable API entity. */
 public struct ImportableApiEntity: Sendable, Codable, Hashable {
 
+    /** Specifies whether the API entity should be imported. */
     public var shouldImport: Bool?
 
     public init(shouldImport: Bool? = nil) {

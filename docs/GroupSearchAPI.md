@@ -4,17 +4,20 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getGroupsWithFilesShared**](GroupSearchAPI.md#getgroupswithfilesshared) | **GET** /api/2.0/group/file/{id} | Get groups with file sharing settings
-[**getGroupsWithFoldersShared**](GroupSearchAPI.md#getgroupswithfoldersshared) | **GET** /api/2.0/group/folder/{id} | Get groups with folder sharing settings
-[**getGroupsWithRoomsShared**](GroupSearchAPI.md#getgroupswithroomsshared) | **GET** /api/2.0/group/room/{id} | Get groups with room sharing settings
+[**getGroupsWithFilesShared**](GroupSearchAPI.md#getgroupswithfilesshared) | **GET** /api/2.0/group/file/{id} | Search groups for a file
+[**getGroupsWithFilesShared**](GroupSearchAPI.md#getgroupswithfilesshared-third-party-storage) | **GET** /api/2.0/group/file/{id} | Search groups for a file (third-party storage)
+[**getGroupsWithFoldersShared**](GroupSearchAPI.md#getgroupswithfoldersshared) | **GET** /api/2.0/group/folder/{id} | Search groups for a folder
+[**getGroupsWithFoldersShared**](GroupSearchAPI.md#getgroupswithfoldersshared-third-party-storage) | **GET** /api/2.0/group/folder/{id} | Search groups for a folder (third-party storage)
+[**getGroupsWithRoomsShared**](GroupSearchAPI.md#getgroupswithroomsshared) | **GET** /api/2.0/group/room/{id} | Search groups for a room
+[**getGroupsWithRoomsShared**](GroupSearchAPI.md#getgroupswithroomsshared-third-party-storage) | **GET** /api/2.0/group/room/{id} | Search groups for a room (third-party storage)
 
 
 # **getGroupsWithFilesShared**
 ```swift
-    open class func getGroupsWithFilesShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithFilesShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
-Returns groups with their sharing settings for a file with the ID specified in request.
+Returns the groups that can be given access to the file with the ID given in the route, and reports for each  of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the file yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/file/{id}/search`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-files-shared/).
 
@@ -22,11 +25,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | The group ID. | 
- **excludeShared** | **Bool** | Specifies whether to exclude the group sharing settings from the response. | [optional] 
- **count** | **Int** | The number of groups to retrieve in the request. | [optional] 
- **startIndex** | **Int** | The starting index from which to begin retrieving groups with their sharing settings. | [optional] 
- **filterValue** | **String** | The text used as a filter for retrieving groups with their sharing settings. | [optional] 
+ **id** | **Int** | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage. | 
+ **excludeShared** | **Bool** | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. | [optional] 
+ **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
+ **startIndex** | **Int** | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. | [optional] 
+ **filterValue** | **String** | The text to match against the group name. Omit it to get every group the caller may grant access to. | [optional] 
 
 ### Return type
 
@@ -41,22 +44,72 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int | The group ID.
-let excludeShared = false // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
-let count = 987 // Int | The number of groups to retrieve in the request. (optional)
-let startIndex = 987 // Int | The starting index from which to begin retrieving groups with their sharing settings. (optional)
-let filterValue = "filterValue_example" // String | The text used as a filter for retrieving groups with their sharing settings. (optional)
+let id = 987 // Int | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage.
+let excludeShared = false // Bool | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. (optional)
+let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
+let startIndex = 987 // Int | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. (optional)
+let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
-// Get groups with file sharing settings
-GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
+// Search groups for a file
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
+}
+```
 
-    if (response) {
-        dump(response)
-    }
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getGroupsWithFilesShared** (third-party storage)
+```swift
+    open class func getGroupsWithFilesShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
+```
+
+Returns the groups that can be given access to the file with the ID given in the route, and reports for each  of them whether it already has access to that file.  The caller has to be allowed to manage the access of that file, and the ID has to belong to an existing file,  so the operation answers 403 for a file the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the file yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/file/{id}/search`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-files-shared/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String** | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage. | 
+ **excludeShared** | **Bool** | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. | [optional] 
+ **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
+ **startIndex** | **Int** | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. | [optional] 
+ **filterValue** | **String** | The text to match against the group name. Omit it to get every group the caller may grant access to. | [optional] 
+
+### Return type
+
+[**GroupArrayWrapper**](GroupArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = "id_example" // String | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage.
+let excludeShared = false // Bool | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. (optional)
+let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
+let startIndex = 987 // Int | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. (optional)
+let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
+
+// Search groups for a file (third-party storage)
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -69,10 +122,10 @@ GroupSearchAPIApi.getGroupsWithFilesShared(id: id, excludeShared: excludeShared,
 
 # **getGroupsWithFoldersShared**
 ```swift
-    open class func getGroupsWithFoldersShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithFoldersShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
-Returns groups with their sharing settings in a folder with the ID specified in request.
+Returns the groups that can be given access to the folder with the ID given in the route, and reports for  each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the folder yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/folder/{id}/search`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-folders-shared/).
 
@@ -80,11 +133,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | The group ID. | 
- **excludeShared** | **Bool** | Specifies whether to exclude the group sharing settings from the response. | [optional] 
- **count** | **Int** | The number of groups to retrieve in the request. | [optional] 
- **startIndex** | **Int** | The starting index from which to begin retrieving groups with their sharing settings. | [optional] 
- **filterValue** | **String** | The text used as a filter for retrieving groups with their sharing settings. | [optional] 
+ **id** | **Int** | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage. | 
+ **excludeShared** | **Bool** | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. | [optional] 
+ **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
+ **startIndex** | **Int** | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. | [optional] 
+ **filterValue** | **String** | The text to match against the group name. Omit it to get every group the caller may grant access to. | [optional] 
 
 ### Return type
 
@@ -99,22 +152,72 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int | The group ID.
-let excludeShared = false // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
-let count = 987 // Int | The number of groups to retrieve in the request. (optional)
-let startIndex = 987 // Int | The starting index from which to begin retrieving groups with their sharing settings. (optional)
-let filterValue = "filterValue_example" // String | The text used as a filter for retrieving groups with their sharing settings. (optional)
+let id = 987 // Int | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage.
+let excludeShared = false // Bool | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. (optional)
+let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
+let startIndex = 987 // Int | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. (optional)
+let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
-// Get groups with folder sharing settings
-GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
+// Search groups for a folder
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
+}
+```
 
-    if (response) {
-        dump(response)
-    }
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getGroupsWithFoldersShared** (third-party storage)
+```swift
+    open class func getGroupsWithFoldersShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
+```
+
+Returns the groups that can be given access to the folder with the ID given in the route, and reports for  each of them whether it already has access to that folder.  The caller has to be allowed to manage the access of that folder, and the ID has to belong to an existing  folder, so the operation answers 403 for a folder the caller cannot share and 404 for an ID that matches  nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the folder yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/folder/{id}/search`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-folders-shared/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String** | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage. | 
+ **excludeShared** | **Bool** | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. | [optional] 
+ **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
+ **startIndex** | **Int** | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. | [optional] 
+ **filterValue** | **String** | The text to match against the group name. Omit it to get every group the caller may grant access to. | [optional] 
+
+### Return type
+
+[**GroupArrayWrapper**](GroupArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = "id_example" // String | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage.
+let excludeShared = false // Bool | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. (optional)
+let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
+let startIndex = 987 // Int | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. (optional)
+let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
+
+// Search groups for a folder (third-party storage)
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -127,10 +230,10 @@ GroupSearchAPIApi.getGroupsWithFoldersShared(id: id, excludeShared: excludeShare
 
 # **getGroupsWithRoomsShared**
 ```swift
-    open class func getGroupsWithRoomsShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, completion: @escaping (_ data: GroupArrayWrapper?, _ error: Error?) -> Void)
+    open class func getGroupsWithRoomsShared(id: Int, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
 ```
 
-Returns groups with their sharing settings in a room with the ID specified in request.
+Returns the groups that can be given access to the room with the ID given in the route, and reports for each  of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the room yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/room/{id}/search`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-rooms-shared/).
 
@@ -138,11 +241,11 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | The group ID. | 
- **excludeShared** | **Bool** | Specifies whether to exclude the group sharing settings from the response. | [optional] 
- **count** | **Int** | The number of groups to retrieve in the request. | [optional] 
- **startIndex** | **Int** | The starting index from which to begin retrieving groups with their sharing settings. | [optional] 
- **filterValue** | **String** | The text used as a filter for retrieving groups with their sharing settings. | [optional] 
+ **id** | **Int** | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage. | 
+ **excludeShared** | **Bool** | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. | [optional] 
+ **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
+ **startIndex** | **Int** | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. | [optional] 
+ **filterValue** | **String** | The text to match against the group name. Omit it to get every group the caller may grant access to. | [optional] 
 
 ### Return type
 
@@ -157,22 +260,72 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int | The group ID.
-let excludeShared = false // Bool | Specifies whether to exclude the group sharing settings from the response. (optional)
-let count = 987 // Int | The number of groups to retrieve in the request. (optional)
-let startIndex = 987 // Int | The starting index from which to begin retrieving groups with their sharing settings. (optional)
-let filterValue = "filterValue_example" // String | The text used as a filter for retrieving groups with their sharing settings. (optional)
+let id = 987 // Int | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage.
+let excludeShared = false // Bool | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. (optional)
+let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
+let startIndex = 987 // Int | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. (optional)
+let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
 
-// Get groups with room sharing settings
-GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
+// Search groups for a room
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
+}
+```
 
-    if (response) {
-        dump(response)
-    }
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getGroupsWithRoomsShared** (third-party storage)
+```swift
+    open class func getGroupsWithRoomsShared(id: String, excludeShared: Bool? = nil, count: Int? = nil, startIndex: Int? = nil, filterValue: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> GroupArrayWrapper
+```
+
+Returns the groups that can be given access to the room with the ID given in the route, and reports for each  of them whether it already has access to that room.  The caller has to be allowed to manage the access of that room, and the ID has to belong to an existing room,  so the operation answers 403 for a room the caller cannot share and 404 for an ID that matches nothing.  The call is read-only and, unlike the account search, works without a filter: leaving `filterValue` empty  returns every group instead of nothing, and a value narrows the result by group name.  The result is paged by `count` and `startIndex`, with the number of matching groups in the total count of the  response.  Pass `excludeShared` to keep only the groups that have no access to the room yet, which is the set to offer  when adding new ones; without it every matching group comes back and `shared` tells them apart.  To search users and groups together, use `GET api/2.0/accounts/room/{id}/search`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-groups-with-rooms-shared/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String** | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage. | 
+ **excludeShared** | **Bool** | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. | [optional] 
+ **count** | **Int** | The size of the page. It defaults to 100, which is also the largest value the operation accepts. | [optional] 
+ **startIndex** | **Int** | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. | [optional] 
+ **filterValue** | **String** | The text to match against the group name. Omit it to get every group the caller may grant access to. | [optional] 
+
+### Return type
+
+[**GroupArrayWrapper**](GroupArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = "id_example" // String | The ID of the room, folder or file whose access the search is run against, taken from the route. It is an  integer for an entry stored in DocSpace and a provider-specific string for an entry in a connected  third-party storage.
+let excludeShared = false // Bool | Keeps only the groups that do not have access to the entry yet, which is the set to offer when granting  access. Every returned entry then has `shared` set to false; without the flag every matching group comes back  and `shared` tells them apart. (optional)
+let count = 987 // Int | The size of the page. It defaults to 100, which is also the largest value the operation accepts. (optional)
+let startIndex = 987 // Int | The number of matching groups to skip before the page starts. It defaults to 0, and the total number of  matches is reported in the total count of the response. (optional)
+let filterValue = "filterValue_example" // String | The text to match against the group name. Omit it to get every group the caller may grant access to. (optional)
+
+// Search groups for a room (third-party storage)
+do {
+    let response = try await GroupSearchAPIApi.getGroupsWithRoomsShared(id: id, excludeShared: excludeShared, count: count, startIndex: startIndex, filterValue: filterValue)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

@@ -17,6 +17,7 @@ import Foundation
 /** The theme settings request parameters. */
 public struct DarkThemeSettingsRequestDto: Sendable, Codable, Hashable {
 
+    /** The portal theme settings type. */
     public var theme: DarkThemeSettingsType
 
     public init(theme: DarkThemeSettingsType) {

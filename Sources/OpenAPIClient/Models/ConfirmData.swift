@@ -14,14 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** The additional confirmation data required for authentication. */
+/** The confirmation link a sign-in is authorised with, in place of a password. */
 public struct ConfirmData: Sendable, Codable, Hashable {
 
-    /** The email address to confirm the user's identity. */
+    /** The address the confirmation link was issued for. It has to be the same address the key was signed with, and  a value that is not an email address fails the request with 400. */
     public var email: String?
-    /** Specifies whether this is the first access to the user's account. */
+    /** Whether the link is being followed for the first time, taken from the `first` parameter of the confirmation  URL. It is part of what the key was signed over, so passing a different value invalidates the key rather than  changing behaviour. */
     public var first: Bool?
-    /** The unique confirmation key for validating user identity. */
+    /** The `key` parameter of the confirmation URL, copied verbatim. It is bound to the address and to the moment it  was issued, so it stops being accepted once the portal email key lifetime has passed. */
     public var key: String?
 
     public init(email: String? = nil, first: Bool? = nil, key: String? = nil) {

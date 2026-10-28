@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of TfaSettingsDto objects. */
 public struct TfaSettingsArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of TfaSettingsDto objects returned by the operation. */
     public var response: [TfaSettingsDto]?
     /** The total number of items in the response */
     public var count: Int?

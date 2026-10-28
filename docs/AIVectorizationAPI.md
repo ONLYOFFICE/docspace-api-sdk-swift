@@ -4,56 +4,52 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**startTask**](AIVectorizationAPI.md#starttask) | **POST** /api/2.0/ai/vectorization/tasks | Start a vectorization task
+[**aiVectorizationStartTask**](AIVectorizationAPI.md#aivectorizationstarttask) | **POST** /api/2.0/ai/vectorization/tasks | Start a vectorization task
 
 
-# **startTask**
+# **aiVectorizationStartTask**
 ```swift
-    open class func startTask(vectorizationStartRequestBody: VectorizationStartRequestBody, completion: @escaping (_ data: Void?, _ error: Error?) -> Void)
+    open class func aiVectorizationStartTask(aiVectorizationStartTaskRequest: AiVectorizationStartTaskRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiVectorizationStartTask200Response
 ```
 
-Submits the specified files for vectorization. Each file is processed asynchronously by the configured embedding provider  and indexed for semantic search in AI chat sessions. Only files accessible to the current user can be vectorized.
+Queues the indexing of the portal files named in the body so their contents can be retrieved during a chat round. The body is proxied unchanged to the DocSpace AI service, which validates it and owns the job. Indexing is asynchronous and fire-and-forget: the answer acknowledges the request without carrying a job handle, so there is nothing to poll and progress is not reported here. The embedding provider used is the one in `GET api/2.0/ai/config/vectorization`, and changing that setting does not re-index anything already indexed - queue it again for that.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/start-task/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-vectorization-start-task/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **vectorizationStartRequestBody** | [**VectorizationStartRequestBody**](VectorizationStartRequestBody.md) | The vectorization parameters including file identifiers. | 
+ **aiVectorizationStartTaskRequest** | [**AiVectorizationStartTaskRequest**](AiVectorizationStartTaskRequest.md) | The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape. | 
 
 ### Return type
 
-Void (empty response body)
+[**AiVectorizationStartTask200Response**](AiVectorizationStartTask200Response.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let vectorizationStartRequestBody = VectorizationStartRequestBody(files: [123]) // VectorizationStartRequestBody | The vectorization parameters including file identifiers.
+let aiVectorizationStartTaskRequest = AiVectorizationStartTaskRequest(files: [123]) // AiVectorizationStartTaskRequest | The files to index, proxied unchanged to the DocSpace AI service, which owns and validates the shape.
 
 // Start a vectorization task
-AIVectorizationAPIApi.startTask(vectorizationStartRequestBody: vectorizationStartRequestBody) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await AIVectorizationAPIApi.aiVectorizationStartTask(aiVectorizationStartTaskRequest: aiVectorizationStartTaskRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

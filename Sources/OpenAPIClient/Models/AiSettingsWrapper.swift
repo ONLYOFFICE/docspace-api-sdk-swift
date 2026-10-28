@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the AiSettingsDto object. */
 public struct AiSettingsWrapper: Sendable, Codable, Hashable {
 
+    /** The AiSettingsDto object returned by the operation. */
     public var response: AiSettingsDto?
     /** The total number of items in the response */
     public var count: Int?

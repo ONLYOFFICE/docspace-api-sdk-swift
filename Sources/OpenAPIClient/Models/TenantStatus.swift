@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Active, 1 - Suspended, 2 - Remove pending, 3 - Transfering, 4 - Restoring, 5 - Migrating, 6 - Encryption] */
+/** [0 - Active, 1 - Suspended, 2 - Remove pending, 3 - Transfering, 4 - Restoring, 5 - Migrating, 6 - Encryption, 7 - Blocked] */
 public enum TenantStatus: Int, Sendable, Codable, CaseIterable {
     case Active = 0
     case Suspended = 1
@@ -23,4 +23,5 @@ public enum TenantStatus: Int, Sendable, Codable, CaseIterable {
     case Restoring = 4
     case Migrating = 5
     case Encryption = 6
+    case Blocked = 7
 }

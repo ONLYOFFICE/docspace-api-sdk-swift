@@ -17,21 +17,25 @@ import Foundation
 /** The response data for the API key operations. */
 public struct ApiKeyResponseDto: Sendable, Codable, Hashable {
 
-    /** The API key unique identifier. */
+    /** The ID of the key. This is the value to pass to `PUT api/2.0/keys/{keyId}` and  `DELETE api/2.0/keys/{keyId}`. */
     public var id: UUID
-    /** The API key name. */
+    /** The label given to the key when it was created or last updated. */
     public var name: String?
-    /** The full API key value (only returned when creating a new key). */
+    /** The secret to send in the `Authorization` header as `Bearer sk-...`. It is filled in only by the answer of  `POST api/2.0/keys` and cannot be read again afterwards, so it has to be stored at that moment. */
     public var key: String?
-    /** The API key postfix (used for identification). */
+    /** The last four characters of the secret. It is the only part of the secret that later reads expose, and it is  meant for telling keys apart in a list. */
     public var keyPostfix: String?
-    /** The list of permissions granted to the API key. */
+    /** The scopes the key may use, as accepted by `GET api/2.0/keys/permissions`. An empty list means the key has no  scope restrictions. */
     public var permissions: [String]?
+    /** The UTC moment the key was last used to authenticate a request. It is empty for a key that has never been  used. */
     public var lastUsed: ApiDateTime?
+    /** The UTC moment the key was created. */
     public var createOn: ApiDateTime?
+    /** The portal member who created the key, and whose access the key acts with. */
     public var createBy: EmployeeDto?
+    /** The UTC moment the key stops working. It is empty for a key created without `expiresInDays`, which never  expires. */
     public var expiresAt: ApiDateTime?
-    /** Indicates whether the API key is active or not. */
+    /** Whether the key may authenticate requests. A key deactivated through `PUT api/2.0/keys/{keyId}` stays in the  list with this field set to false. */
     public var isActive: Bool
 
     public init(id: UUID, name: String?, key: String?, keyPostfix: String? = nil, permissions: [String]?, lastUsed: ApiDateTime? = nil, createOn: ApiDateTime? = nil, createBy: EmployeeDto? = nil, expiresAt: ApiDateTime? = nil, isActive: Bool) {

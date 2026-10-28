@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of LoginEventDto objects. */
 public struct LoginEventArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of LoginEventDto objects returned by the operation. */
     public var response: [LoginEventDto]?
     /** The total number of items in the response */
     public var count: Int?

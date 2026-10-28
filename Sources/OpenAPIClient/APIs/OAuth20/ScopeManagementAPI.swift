@@ -15,40 +15,40 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class OAuth20ScopeManagementAPIApi {
 
     /**
-     Get available OAuth2 scopes
+     List available OAuth2 scopes
      
      See also:
      REST API Reference for getScopes Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-scopes/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: ScopeResponse
+     - returns: [ScopeResponse]
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getScopes(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ScopeResponse {
+    open class func getScopes(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [ScopeResponse] {
         return try await getScopesWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
-     Get available OAuth2 scopes
+     List available OAuth2 scopes
      
      See also:
      REST API Reference for getScopes Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-scopes/
      
-     - GET /api/2.0/scopes
-     - Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the 'openid' scope always appearing first.
+     - GET /api/2.0/oauth2/scopes
+     - Retrieves a list of all available OAuth2 scopes for the specified tenant. The scopes define the permissions that can be requested by OAuth2 clients. The list is ordered alphabetically, with the 'openid' scope always appearing first. It is a read-only catalogue that does not depend on which clients exist: a valid portal signature is the only requirement, with no role restriction, and every caller of the portal sees the same list.
      - API Key:
-       - type: apiKey asc_auth_key 
-       - name: asc_auth_key
+       - type: apiKey x-signature 
+       - name: x-signature
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<ScopeResponse> 
+     - returns: RequestBuilder<[ScopeResponse]> 
      */
-    open class func getScopesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<ScopeResponse> {
-        let localVariablePath = "/api/2.0/scopes"
+    open class func getScopesWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[ScopeResponse]> {
+        let localVariablePath = "/api/2.0/oauth2/scopes"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
 
@@ -58,10 +58,9 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<ScopeResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<[ScopeResponse]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the WebhooksConfigDto object. */
 public struct WebhooksConfigWrapper: Sendable, Codable, Hashable {
 
+    /** The WebhooksConfigDto object returned by the operation. */
     public var response: WebhooksConfigDto?
     /** The total number of items in the response */
     public var count: Int?

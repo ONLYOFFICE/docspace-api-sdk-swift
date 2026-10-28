@@ -9,10 +9,10 @@ Method | HTTP request | Description
 
 # **setTenantDevToolsAccessSettings**
 ```swift
-    open class func setTenantDevToolsAccessSettings(tenantDevToolsAccessSettingsDto: TenantDevToolsAccessSettingsDto? = nil, completion: @escaping (_ data: TenantDevToolsAccessSettingsWrapper?, _ error: Error?) -> Void)
+    open class func setTenantDevToolsAccessSettings(tenantDevToolsAccessSettingsRequestDto: TenantDevToolsAccessSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantDevToolsAccessSettingsWrapper
 ```
 
-Sets the Developer Tools access settings for the portal.
+Sets whether the portal restricts the `User` role from using the developer tools (API keys, OAuth apps,  webhooks); `RoomAdmin` and `DocSpaceAdmin` are never affected by this setting. Requires Owner or DocSpaceAdmin  (the EditPortalSettings permission). This is a mutating, idempotent, portal-wide call: it applies to every  `User` on the tenant immediately. It returns the saved setting; read the current value at any time from  `GET api/2.0/settings/devtoolsaccess`.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-tenant-dev-tools-access-settings/).
 
@@ -20,7 +20,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenantDevToolsAccessSettingsDto** | [**TenantDevToolsAccessSettingsDto**](TenantDevToolsAccessSettingsDto.md) |  | [optional] 
+ **tenantDevToolsAccessSettingsRequestDto** | [**TenantDevToolsAccessSettingsRequestDto**](TenantDevToolsAccessSettingsRequestDto.md) |  | [optional] 
 
 ### Return type
 
@@ -35,18 +35,14 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let tenantDevToolsAccessSettingsDto = TenantDevToolsAccessSettingsDto(limitedAccessForUsers: false) // TenantDevToolsAccessSettingsDto |  (optional)
+let tenantDevToolsAccessSettingsRequestDto = TenantDevToolsAccessSettingsRequestDto(limitedAccessForUsers: false) // TenantDevToolsAccessSettingsRequestDto |  (optional)
 
 // Set the Developer Tools access settings
-SecurityAccessToDevToolsAPIApi.setTenantDevToolsAccessSettings(tenantDevToolsAccessSettingsDto: tenantDevToolsAccessSettingsDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+do {
+    let response = try await SecurityAccessToDevToolsAPIApi.setTenantDevToolsAccessSettings(tenantDevToolsAccessSettingsRequestDto: tenantDevToolsAccessSettingsRequestDto)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

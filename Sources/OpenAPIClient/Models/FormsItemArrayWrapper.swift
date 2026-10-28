@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of FormsItemDto objects. */
 public struct FormsItemArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of FormsItemDto objects returned by the operation. */
     public var response: [FormsItemDto]?
     /** The total number of items in the response */
     public var count: Int?

@@ -14,18 +14,22 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for managing the tenant-level AI access settings. */
+/** Whether AI functionality is switched on for the portal. */
 public struct TenantAiAccessSettingsDto: Sendable, Codable, Hashable {
 
-    /** Specifies whether AI functionality is enabled for the tenant.  Set to `true` to enable all AI features or `false` to disable them tenant-wide. */
+    /** Specifies whether AI functionality is enabled for the tenant.  When set to `false`, all AI features (chat, agents, vectorization) are disabled tenant-wide. */
     public var enabled: Bool?
+    /** The timestamp indicating when the settings were last modified. */
+    public var lastModified: Date?
 
-    public init(enabled: Bool? = nil) {
+    public init(enabled: Bool? = nil, lastModified: Date? = nil) {
         self.enabled = enabled
+        self.lastModified = lastModified
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case enabled
+        case lastModified
     }
 
     // Encodable protocol methods
@@ -33,6 +37,7 @@ public struct TenantAiAccessSettingsDto: Sendable, Codable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(enabled, forKey: .enabled)
+        try container.encodeIfPresent(lastModified, forKey: .lastModified)
     }
 }
 

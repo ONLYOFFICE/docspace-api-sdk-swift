@@ -14,8 +14,8 @@
 //  limitations under the License.
 import Foundation
 
-/** File id to replace template with */
-public enum DefaultTemplateSettingsRequestDtoSelectedFile: Sendable, Codable, Hashable {
+/** The document to copy as the blank: a number for a file stored in the portal, a string for one in a connected  third-party storage. Take the identifier from a folder listing such as `GET api/2.0/files/{folderId}`; the  caller must be allowed to copy that file, and its extension must be the one named below. */
+public enum DefaultTemplateSettingsRequestDtoSelectedFile: Sendable, Codable, Hashable, ParameterConvertible {
     case typeInt(Int)
     case typeString(String)
 
@@ -37,6 +37,15 @@ public enum DefaultTemplateSettingsRequestDtoSelectedFile: Sendable, Codable, Ha
             self = .typeString(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of DefaultTemplateSettingsRequestDtoSelectedFile"))
+        }
+    }
+
+    func asParameter(codableHelper: CodableHelper) -> any Sendable {
+        switch self {
+        case .typeInt(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
+        case .typeString(let value):
+            return encodeIfPossible(value, codableHelper: codableHelper)
         }
     }
 }

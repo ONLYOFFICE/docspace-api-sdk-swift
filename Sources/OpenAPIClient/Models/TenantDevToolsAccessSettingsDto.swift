@@ -14,18 +14,22 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for managing the Developer Tools access settings for the current tenant. */
+/** Whether the developer tools are closed to the portal's users with the `User` role. */
 public struct TenantDevToolsAccessSettingsDto: Sendable, Codable, Hashable {
 
-    /** Determines if users have restricted access to the Developer Tools. */
+    /** Specifies if the Developer Tools access are limited for users or not. */
     public var limitedAccessForUsers: Bool?
+    /** The timestamp indicating when the settings were last modified. */
+    public var lastModified: Date?
 
-    public init(limitedAccessForUsers: Bool? = nil) {
+    public init(limitedAccessForUsers: Bool? = nil, lastModified: Date? = nil) {
         self.limitedAccessForUsers = limitedAccessForUsers
+        self.lastModified = lastModified
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case limitedAccessForUsers
+        case lastModified
     }
 
     // Encodable protocol methods
@@ -33,6 +37,7 @@ public struct TenantDevToolsAccessSettingsDto: Sendable, Codable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(limitedAccessForUsers, forKey: .limitedAccessForUsers)
+        try container.encodeIfPresent(lastModified, forKey: .lastModified)
     }
 }
 

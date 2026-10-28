@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of GroupDto objects. */
 public struct GroupArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of GroupDto objects returned by the operation. */
     public var response: [GroupDto]?
     /** The total number of items in the response */
     public var count: Int?

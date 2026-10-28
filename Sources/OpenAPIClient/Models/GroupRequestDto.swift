@@ -17,15 +17,15 @@ import Foundation
 /** The group request parameters. */
 public struct GroupRequestDto: Sendable, Codable, Hashable {
 
-    public static let groupNameRule = StringRule(minLength: 0, maxLength: 128, pattern: nil)
-    /** The list of group member IDs. */
+    public static let groupNameRule = StringRule(minLength: 1, maxLength: 128, pattern: nil)
+    /** The accounts to put into the new group. Every one of them has to be an active member that is not a guest,  otherwise the whole call is rejected. Omit it to create an empty group. */
     public var members: [UUID]?
-    /** The group manager ID. */
-    public var groupManager: UUID
-    /** The group name. */
+    /** The account to make the manager of the new group. It is added to the group as well, so it does not have to be  repeated in `members`. Omit it to create a group without a manager. */
+    public var groupManager: UUID?
+    /** The name of the group, from 1 to 128 characters. It is required, it may not be blank, and it does not have to  be unique. */
     public var groupName: String?
 
-    public init(members: [UUID]? = nil, groupManager: UUID, groupName: String? = nil) {
+    public init(members: [UUID]? = nil, groupManager: UUID? = nil, groupName: String?) {
         self.members = members
         self.groupManager = groupManager
         self.groupName = groupName
@@ -42,8 +42,8 @@ public struct GroupRequestDto: Sendable, Codable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(members, forKey: .members)
-        try container.encode(groupManager, forKey: .groupManager)
-        try container.encodeIfPresent(groupName, forKey: .groupName)
+        try container.encodeIfPresent(groupManager, forKey: .groupManager)
+        try container.encode(groupName, forKey: .groupName)
     }
 }
 

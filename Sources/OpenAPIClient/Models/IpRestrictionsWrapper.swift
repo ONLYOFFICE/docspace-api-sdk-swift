@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the IpRestrictionsDto object. */
 public struct IpRestrictionsWrapper: Sendable, Codable, Hashable {
 
+    /** The IpRestrictionsDto object returned by the operation. */
     public var response: IpRestrictionsDto?
     /** The total number of items in the response */
     public var count: Int?

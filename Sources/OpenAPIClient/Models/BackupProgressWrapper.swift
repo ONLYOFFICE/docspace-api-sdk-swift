@@ -14,9 +14,11 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the BackupProgressDto object. */
 public struct BackupProgressWrapper: Sendable, Codable, Hashable {
 
-    public var response: BackupProgress?
+    /** The BackupProgressDto object returned by the operation. */
+    public var response: BackupProgressDto?
     /** The total number of items in the response */
     public var count: Int?
     /** List of links related to the response */
@@ -26,7 +28,7 @@ public struct BackupProgressWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: BackupProgress? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: BackupProgressDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
         self.links = links

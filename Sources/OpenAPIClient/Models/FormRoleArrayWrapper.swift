@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of FormRoleDto objects. */
 public struct FormRoleArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of FormRoleDto objects returned by the operation. */
     public var response: [FormRoleDto]?
     /** The total number of items in the response */
     public var count: Int?

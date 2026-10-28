@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the CookieSettingsDto object. */
 public struct CookieSettingsWrapper: Sendable, Codable, Hashable {
 
+    /** The CookieSettingsDto object returned by the operation. */
     public var response: CookieSettingsDto?
     /** The total number of items in the response */
     public var count: Int?

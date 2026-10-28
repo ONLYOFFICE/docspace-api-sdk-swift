@@ -17,7 +17,7 @@ import Foundation
 /** The request parameters for updating a user quota. */
 public struct UpdateMembersQuotaRequestDto: Sendable, Codable, Hashable {
 
-    /** The list of user IDs. */
+    /** The accounts the operation applies to. System accounts are dropped from the list without an error. */
     public var userIds: [UUID]?
     public var quota: UpdateMembersQuotaRequestDtoQuota?
 

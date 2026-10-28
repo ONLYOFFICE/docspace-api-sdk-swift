@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the CapabilitiesDto object. */
 public struct CapabilitiesWrapper: Sendable, Codable, Hashable {
 
+    /** The CapabilitiesDto object returned by the operation. */
     public var response: CapabilitiesDto?
     /** The total number of items in the response */
     public var count: Int?

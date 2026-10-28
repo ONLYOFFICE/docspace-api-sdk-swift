@@ -15,10 +15,10 @@
 
 import Foundation
 
-open class {{{{x-classname}}}} {
+open class SettingsCookiesAPIApi {
 
     /**
-     Get cookies lifetime
+     Get the cookie lifetime settings
      
      See also:
      REST API Reference for getCookieSettings Operation
@@ -33,14 +33,14 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Get cookies lifetime
+     Get the cookie lifetime settings
      
      See also:
      REST API Reference for getCookieSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/get-cookie-settings/
      
      - GET /api/2.0/settings/cookiesettings
-     - Returns the cookies lifetime value in minutes.
+     - Returns how long an authentication session of this portal stays valid: `lifeTime` in minutes together with the  `enabled` flag that says whether that limit is applied at all. The caller needs the portal-settings right of a  DocSpace administrator - the portal owner and a DocSpace administrator qualify, any other member is refused -  and the call is read-only. The pair describes the whole portal rather than the calling user, and it is never  empty: a portal nobody has configured answers `lifeTime` 1440, one day, with `enabled` false. Read the two  fields together, because the number alone does not say how long a session lasts - while `enabled` is false the  stored number is ignored and an issued session is honoured for a year, and `lifeTime` 0 with `enabled` true  means a session that never expires on its own. On an installation whose configuration hides the cookie section  the built-in default pair comes back instead of the stored one. `GET api/2.0/settings` carries the same flag  as `cookieSettingsEnabled` without the number; change the pair with `PUT api/2.0/settings/cookiesettings`.
      - BASIC:
        - type: http
        - name: Basic
@@ -59,6 +59,7 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CookieSettingsWrapper> 
      */
@@ -73,7 +74,6 @@ open class {{{{x-classname}}}} {
             :
         ]
 
-
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         let localVariableRequestBuilder: RequestBuilder<CookieSettingsWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
@@ -82,29 +82,29 @@ open class {{{{x-classname}}}} {
     }
 
     /**
-     Update cookies lifetime
+     Update the cookie lifetime settings
      
      See also:
      REST API Reference for updateCookieSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cookie-settings/
-     - parameter cookieSettingsRequestsDto: (body)  (optional)
+     - parameter cookieSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: StringWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateCookieSettings(cookieSettingsRequestsDto: CookieSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
-        return try await updateCookieSettingsWithRequestBuilder(cookieSettingsRequestsDto: cookieSettingsRequestsDto, apiConfiguration: apiConfiguration).execute().body
+    open class func updateCookieSettings(cookieSettingsRequestDto: CookieSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper {
+        return try await updateCookieSettingsWithRequestBuilder(cookieSettingsRequestDto: cookieSettingsRequestDto, apiConfiguration: apiConfiguration).execute().body
     }
 
     /**
-     Update cookies lifetime
+     Update the cookie lifetime settings
      
      See also:
      REST API Reference for updateCookieSettings Operation
      https://api.onlyoffice.com/docspace/api-backend/usage-api/update-cookie-settings/
      
      - PUT /api/2.0/settings/cookiesettings
-     - Updates the cookies lifetime value in minutes.
+     - Stores how long an authentication session of this portal stays valid: `lifeTime` in minutes together with the  `enabled` flag that switches the limit on. The caller needs the portal-settings right of a DocSpace  administrator - the portal owner and a DocSpace administrator qualify, any other member is refused - and on an  installation whose configuration hides the cookie section nothing is stored and the call is answered with 402.  A `lifeTime` above 9999 minutes is not rejected but clamped to 9999, while 0 or less clears the number  instead, which with `enabled` true leaves sessions that never expire on their own. Any positive `lifeTime`  raises the session version of the portal: every session issued before the call stops being accepted, and with  `enabled` true the connections behind them are dropped as well. The caller is signed in again inside the same  call and gets a fresh session cookie in the response, so a client that keeps sending the token it held before  this call is the one locked out. The change is recorded in the audit trail. What comes back is a localized  confirmation message; read the stored pair with `GET api/2.0/settings/cookiesettings`.
      - BASIC:
        - type: http
        - name: Basic
@@ -123,21 +123,21 @@ open class {{{{x-classname}}}} {
      - :
        - type: openIdConnect
        - name: OpenId
-     - parameter cookieSettingsRequestsDto: (body)  (optional)
+     - responseHeaders: [X-RateLimit-Limit(Int), X-RateLimit-Remaining(Int), X-RateLimit-Reset(Int64)]
+     - parameter cookieSettingsRequestDto: (body)  (optional)
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<StringWrapper> 
      */
-    open class func updateCookieSettingsWithRequestBuilder(cookieSettingsRequestsDto: CookieSettingsRequestsDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
+    open class func updateCookieSettingsWithRequestBuilder(cookieSettingsRequestDto: CookieSettingsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<StringWrapper> {
         let localVariablePath = "/api/2.0/settings/cookiesettings"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
-        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: cookieSettingsRequestsDto, codableHelper: apiConfiguration.codableHelper)
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: cookieSettingsRequestDto, codableHelper: apiConfiguration.codableHelper)
 
         let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: (any Sendable)?] = [
             "Content-Type": "application/json",
         ]
-
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 

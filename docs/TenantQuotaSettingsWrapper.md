@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response** | [**TenantQuotaSettings**](TenantQuotaSettings.md) |  | [optional] 
+**response** | [**TenantQuotaSettingsDto**](TenantQuotaSettingsDto.md) | The TenantQuotaSettingsDto object returned by the operation. | [optional] 
 **count** | **Int** | The total number of items in the response | [optional] 
 **links** | [GetPortalPrices200ResponseLinksInner] | List of links related to the response | [optional] 
 **status** | **Int** | HTTP status code of the response | [optional] 

@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the MigrationStatusDto object. */
 public struct MigrationStatusWrapper: Sendable, Codable, Hashable {
 
+    /** The MigrationStatusDto object returned by the operation. */
     public var response: MigrationStatusDto?
     /** The total number of items in the response */
     public var count: Int?

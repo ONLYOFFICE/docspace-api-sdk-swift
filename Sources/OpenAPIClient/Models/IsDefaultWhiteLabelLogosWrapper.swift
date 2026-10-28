@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the IsDefaultWhiteLabelLogosDto object. */
 public struct IsDefaultWhiteLabelLogosWrapper: Sendable, Codable, Hashable {
 
+    /** The IsDefaultWhiteLabelLogosDto object returned by the operation. */
     public var response: IsDefaultWhiteLabelLogosDto?
     /** The total number of items in the response */
     public var count: Int?

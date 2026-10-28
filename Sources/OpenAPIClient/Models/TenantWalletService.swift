@@ -14,8 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** [-13 - AITools, -12 - Backup, -11 - Storage] */
+/** [-18 - AISearch, -16 - DocsCloudDevPack, -15 - DocsCloud, -14 - Admin, -13 - AITools, -12 - Backup, -11 - Storage] */
 public enum TenantWalletService: Int, Sendable, Codable, CaseIterable {
+    case AISearch = -18
+    case DocsCloudDevPack = -16
+    case DocsCloud = -15
+    case Admin = -14
     case AITools = -13
     case Backup = -12
     case Storage = -11

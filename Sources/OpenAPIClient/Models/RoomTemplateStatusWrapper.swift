@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the RoomTemplateStatusDto object. */
 public struct RoomTemplateStatusWrapper: Sendable, Codable, Hashable {
 
+    /** The RoomTemplateStatusDto object returned by the operation. */
     public var response: RoomTemplateStatusDto?
     /** The total number of items in the response */
     public var count: Int?

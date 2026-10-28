@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the int64 value. */
 public struct Int64Wrapper: Sendable, Codable, Hashable {
 
+    /** The int64 value returned by the operation. */
     public var response: Int?
     /** The total number of items in the response */
     public var count: Int?

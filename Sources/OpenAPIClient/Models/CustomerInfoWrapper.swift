@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the CustomerInfoDto object. */
 public struct CustomerInfoWrapper: Sendable, Codable, Hashable {
 
+    /** The CustomerInfoDto object returned by the operation. */
     public var response: CustomerInfoDto?
     /** The total number of items in the response */
     public var count: Int?

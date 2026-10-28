@@ -14,18 +14,22 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for managing the visibility settings of the promotional banners for the current tenant. */
+/** Whether the portal hides its promotional banners. */
 public struct TenantBannerSettingsDto: Sendable, Codable, Hashable {
 
     /** The banners visibility flag. */
     public var hidden: Bool?
+    /** The timestamp indicating when the settings were last modified. */
+    public var lastModified: Date?
 
-    public init(hidden: Bool? = nil) {
+    public init(hidden: Bool? = nil, lastModified: Date? = nil) {
         self.hidden = hidden
+        self.lastModified = lastModified
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case hidden
+        case lastModified
     }
 
     // Encodable protocol methods
@@ -33,6 +37,7 @@ public struct TenantBannerSettingsDto: Sendable, Codable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(hidden, forKey: .hidden)
+        try container.encodeIfPresent(lastModified, forKey: .lastModified)
     }
 }
 

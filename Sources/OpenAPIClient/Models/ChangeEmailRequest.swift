@@ -18,9 +18,9 @@ import Foundation
 public struct ChangeEmailRequest: Sendable, Codable, Hashable {
 
     public static let emailRule = StringRule(minLength: 0, maxLength: 255, pattern: nil)
-    /** The user email address. */
+    /** The new address in plain text, up to 255 characters. It is stored in lowercase, and one of this field and  `encEmail` is required. */
     public var email: String?
-    /** The user encrypted email address. */
+    /** The new address in the encrypted form the confirmation link carries. Pass the value from the link unchanged;  it is used only when `email` is empty. */
     public var encEmail: String?
 
     public init(email: String? = nil, encEmail: String? = nil) {

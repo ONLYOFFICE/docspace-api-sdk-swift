@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the PasswordSettingsDto object. */
 public struct PasswordSettingsWrapper: Sendable, Codable, Hashable {
 
+    /** The PasswordSettingsDto object returned by the operation. */
     public var response: PasswordSettingsDto?
     /** The total number of items in the response */
     public var count: Int?

@@ -14,11 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - Any, 1 - Pending, 2 - Completed, 4 - Rejected, 8 - Canceled] */
+/** [0 - Pending, 1 - Completed, 2 - Rejected, 3 - Canceled] */
 public enum OperationStatus: Int, Sendable, Codable, CaseIterable {
-    case Any = 0
-    case Pending = 1
-    case Completed = 2
-    case Rejected = 4
-    case Canceled = 8
+    case Pending = 0
+    case Completed = 1
+    case Rejected = 2
+    case Canceled = 3
 }

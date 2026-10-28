@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the CspDto object. */
 public struct CspWrapper: Sendable, Codable, Hashable {
 
+    /** The CspDto object returned by the operation. */
     public var response: CspDto?
     /** The total number of items in the response */
     public var count: Int?

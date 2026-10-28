@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the QuotaDto object. */
 public struct QuotaWrapper: Sendable, Codable, Hashable {
 
+    /** The QuotaDto object returned by the operation. */
     public var response: QuotaDto?
     /** The total number of items in the response */
     public var count: Int?

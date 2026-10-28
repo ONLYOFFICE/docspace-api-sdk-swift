@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the InvitationLinkDto object. */
 public struct InvitationLinkWrapper: Sendable, Codable, Hashable {
 
+    /** The InvitationLinkDto object returned by the operation. */
     public var response: InvitationLinkDto?
     /** The total number of items in the response */
     public var count: Int?

@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the RoomsNotificationSettingsDto object. */
 public struct RoomsNotificationSettingsWrapper: Sendable, Codable, Hashable {
 
+    /** The RoomsNotificationSettingsDto object returned by the operation. */
     public var response: RoomsNotificationSettingsDto?
     /** The total number of items in the response */
     public var count: Int?

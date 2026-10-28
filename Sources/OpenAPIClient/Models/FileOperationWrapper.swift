@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the FileOperationDto object. */
 public struct FileOperationWrapper: Sendable, Codable, Hashable {
 
+    /** The FileOperationDto object returned by the operation. */
     public var response: FileOperationDto?
     /** The total number of items in the response */
     public var count: Int?

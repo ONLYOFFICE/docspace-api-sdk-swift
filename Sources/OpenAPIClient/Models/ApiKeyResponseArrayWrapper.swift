@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of ApiKeyResponseDto objects. */
 public struct ApiKeyResponseArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of ApiKeyResponseDto objects returned by the operation. */
     public var response: [ApiKeyResponseDto]?
     /** The total number of items in the response */
     public var count: Int?

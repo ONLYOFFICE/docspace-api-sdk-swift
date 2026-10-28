@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the WalletServiceDto object. */
 public struct WalletServiceWrapper: Sendable, Codable, Hashable {
 
+    /** The WalletServiceDto object returned by the operation. */
     public var response: WalletServiceDto?
     /** The total number of items in the response */
     public var count: Int?

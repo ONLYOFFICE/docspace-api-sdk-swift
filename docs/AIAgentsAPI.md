@@ -4,56 +4,52 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createAgent**](AIAgentsAPI.md#createagent) | **POST** /api/2.0/ai/agents | Create an ai agent
-[**deleteAgent**](AIAgentsAPI.md#deleteagent) | **DELETE** /api/2.0/ai/agents/{id} | Remove an ai agent
-[**getAgentInfo**](AIAgentsAPI.md#getagentinfo) | **GET** /api/2.0/ai/agents/{id} | Return an ai agent
-[**getAgents**](AIAgentsAPI.md#getagents) | **GET** /api/2.0/ai/agents | Get ai agents
-[**getAgentsNewItems**](AIAgentsAPI.md#getagentsnewitems) | **GET** /api/2.0/ai/agents/news | Get the room new items
-[**resetAgentsQuota**](AIAgentsAPI.md#resetagentsquota) | **PUT** /api/2.0/ai/agents/resetquota | Reset the AI agents quota limit
-[**updateAgent**](AIAgentsAPI.md#updateagent) | **PUT** /api/2.0/ai/agents/{id} | Update an ai agent
-[**updateAgentsQuota**](AIAgentsAPI.md#updateagentsquota) | **PUT** /api/2.0/ai/agents/agentquota | Change the AI agent quota limit
+[**aiAgentsCreate**](AIAgentsAPI.md#aiagentscreate) | **POST** /api/2.0/ai/agents | Create an agent
+[**aiAgentsDelete**](AIAgentsAPI.md#aiagentsdelete) | **DELETE** /api/2.0/ai/agents/{id} | Delete an agent
+[**aiAgentsGet**](AIAgentsAPI.md#aiagentsget) | **GET** /api/2.0/ai/agents/{id} | Get an agent
+[**aiAgentsList**](AIAgentsAPI.md#aiagentslist) | **GET** /api/2.0/ai/agents | List agents
+[**aiAgentsNews**](AIAgentsAPI.md#aiagentsnews) | **GET** /api/2.0/ai/agents/news | List agent news items
+[**aiAgentsResetQuota**](AIAgentsAPI.md#aiagentsresetquota) | **PUT** /api/2.0/ai/agents/resetquota | Reset agents' quota
+[**aiAgentsUpdate**](AIAgentsAPI.md#aiagentsupdate) | **PUT** /api/2.0/ai/agents/{id} | Update an agent
+[**aiAgentsUpdateQuota**](AIAgentsAPI.md#aiagentsupdatequota) | **PUT** /api/2.0/ai/agents/agentquota | Update agents' quota
 
 
-# **createAgent**
+# **aiAgentsCreate**
 ```swift
-    open class func createAgent(createAgentRequestDto: CreateAgentRequestDto? = nil, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsCreate(aiAgentsCreateRequest: AiAgentsCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderWrapper
 ```
 
-Creates an ai agent.
+Creates an AI agent room and binds a model to it, in that order. `profileId` is required, has to be a UUID, has to name an existing profile, and that profile has to support chat - an image-only model is refused here rather than failing on every later request. `prompt` is required and is stored on the room as its standing instruction with any markup stripped, so it cannot round-trip HTML into another user's reply. The two steps are not atomic: when the room is created but the model binding fails, the call reports an error and the room is left behind, so re-bind it with `PUT api/2.0/ai/agents/{id}` rather than creating a second one.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-agent/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-create/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createAgentRequestDto** | [**CreateAgentRequestDto**](CreateAgentRequestDto.md) |  | [optional] 
+ **aiAgentsCreateRequest** | [**AiAgentsCreateRequest**](AiAgentsCreateRequest.md) |  | 
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**AiFolderWrapper**](AiFolderWrapper.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let createAgentRequestDto = CreateAgentRequestDto(title: "title_example", quota: 123, indexing: true, denyDownload: false, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", _private: false, share: [FileShareParams(email: "email_example", shareTo: 123, access: FileShare())], chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example", _internal: false), attachDefaultTools: true) // CreateAgentRequestDto |  (optional)
+let aiAgentsCreateRequest = AiAgentsCreateRequest(profileId: "profileId_example", prompt: "prompt_example", _private: false, share: [123], attachDefaultTools: false, title: "title_example", quota: 123, indexing: false, denyDownload: false, lifetime: 123, watermark: 123, logo: 123, tags: ["tags_example"], color: "color_example", cover: "cover_example") // AiAgentsCreateRequest | 
 
-// Create an ai agent
-AIAgentsAPIApi.createAgent(createAgentRequestDto: createAgentRequestDto) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// Create an agent
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsCreate(aiAgentsCreateRequest: aiAgentsCreateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -64,48 +60,44 @@ AIAgentsAPIApi.createAgent(createAgentRequestDto: createAgentRequestDto) { (resp
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteAgent**
+# **aiAgentsDelete**
 ```swift
-    open class func deleteAgent(id: Int, deleteRoomRequest: DeleteRoomRequest, completion: @escaping (_ data: FileOperationWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsDelete(id: String, aiAgentsDeleteRequest: AiAgentsDeleteRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFileOperationWrapper
 ```
 
-Removes an ai agent.
+Deletes an AI agent room. The ID has to be the room's integer identifier, and the body is forwarded to the DocSpace AI service unchanged, so it accepts the same options as deleting an ordinary room - `deleteAfter` among them. Deletion is asynchronous there: the answer is a file-operation payload to poll, not a completed result. The agent's model binding is deliberately left behind, because the upstream assignment API has no per-entry delete, so an orphaned assignment row survives the room.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-agent/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-delete/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | The room ID. | 
- **deleteRoomRequest** | [**DeleteRoomRequest**](DeleteRoomRequest.md) | The parameters for deleting a room. | 
+ **id** | **String** | The agent identifier. | 
+ **aiAgentsDeleteRequest** | [**AiAgentsDeleteRequest**](AiAgentsDeleteRequest.md) |  | 
 
 ### Return type
 
-[**FileOperationWrapper**](FileOperationWrapper.md)
+[**AiFileOperationWrapper**](AiFileOperationWrapper.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int | The room ID.
-let deleteRoomRequest = DeleteRoomRequest(deleteAfter: false) // DeleteRoomRequest | The parameters for deleting a room.
+let id = "id_example" // String | The agent identifier.
+let aiAgentsDeleteRequest = AiAgentsDeleteRequest(deleteAfter: false) // AiAgentsDeleteRequest | 
 
-// Remove an ai agent
-AIAgentsAPIApi.deleteAgent(id: id, deleteRoomRequest: deleteRoomRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// Delete an agent
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsDelete(id: id, aiAgentsDeleteRequest: aiAgentsDeleteRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -116,46 +108,42 @@ AIAgentsAPIApi.deleteAgent(id: id, deleteRoomRequest: deleteRoomRequest) { (resp
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAgentInfo**
+# **aiAgentsGet**
 ```swift
-    open class func getAgentInfo(id: Int, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsGet(id: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiAgentsGet200Response
 ```
 
-Returns an ai agent.
+Returns one AI agent room, enriched with the `profileId` currently bound to it so an edit form can prefill its model selector. The ID is the room's integer identifier, and a non-integer value is refused rather than passed on to fail opaquely upstream. The binding lives in an assignment rather than on the room, so it is looked up separately: a missing or unreadable assignment simply leaves `profileId` out of the answer instead of failing the call. The standing instruction comes back on the room as `chatSettings.prompt`.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agent-info/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-get/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | The room ID. | 
+ **id** | **String** | The agent identifier. | 
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**AiAgentsGet200Response**](AiAgentsGet200Response.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int | The room ID.
+let id = "id_example" // String | The agent identifier.
 
-// Return an ai agent
-AIAgentsAPIApi.getAgentInfo(id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// Get an agent
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsGet(id: id)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -166,66 +154,63 @@ AIAgentsAPIApi.getAgentInfo(id: id) { (response, error) in
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAgents**
+# **aiAgentsList**
 ```swift
-    open class func getAgents(subjectId: String? = nil, withoutTags: Bool? = nil, tags: String? = nil, excludeSubject: Bool? = nil, subjectFilter: SubjectFilter? = nil, quotaFilter: QuotaFilter? = nil, count: Int? = nil, startIndex: Int? = nil, sortBy: String? = nil, sortOrder: SortOrder? = nil, filterValue: String? = nil, completion: @escaping (_ data: FolderContentIntegerWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsList(subjectId: String? = nil, subjectOwnerId: String? = nil, excludeSubject: Bool? = nil, tags: String? = nil, withoutTags: Bool? = nil, quotaFilter: Int? = nil, filterValue: String? = nil, sortBy: String? = nil, sortOrder: String? = nil, startIndex: Int? = nil, count: Int? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderContentWrapper
 ```
 
-Get ai agents
+Lists the portal's AI agent rooms. The query is forwarded unchanged to the DocSpace AI service, so it takes the same paging, sorting and filtering parameters as an ordinary room listing, and the answer is that service's folder-content payload rather than a shape of this API's own. Array and object query values are dropped rather than guessed at, so send flat strings. The profile bound to each agent is not included here - read one agent with `GET api/2.0/ai/agents/{id}` for that.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-list/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subjectId** | **String** | The filter by user ID. | [optional] 
- **withoutTags** | **Bool** | Specifies whether to search by tags or not. | [optional] 
- **tags** | **String** | The tags in the serialized format. | [optional] 
- **excludeSubject** | **Bool** | Specifies whether to exclude search by user or group ID. | [optional] 
- **subjectFilter** | [**SubjectFilter**](.md) | The filter by user (Owner - 0, Member - 1). | [optional] 
- **quotaFilter** | [**QuotaFilter**](.md) | The filter by quota (All - 0, Default - 1, Custom - 2). | [optional] 
- **count** | **Int** | Specifies the maximum number of items to retrieve. | [optional] 
- **startIndex** | **Int** | The index from which to start retrieving the room content. | [optional] 
- **sortBy** | **String** | Specifies the field by which the room content should be sorted. | [optional] 
- **sortOrder** | [**SortOrder**](.md) | The order in which the results are sorted. | [optional] 
- **filterValue** | **String** | The text filter value used to refine search or query operations. | [optional] 
+ **subjectId** | **String** | Show only the agent rooms this user takes part in. | [optional] 
+ **subjectOwnerId** | **String** | Show only the agent rooms owned by this user. | [optional] 
+ **excludeSubject** | **Bool** | Invert the user filter: leave out what `subjectId` selects instead of keeping it. | [optional] 
+ **tags** | **String** | Show only the agent rooms carrying these tags, comma-separated. | [optional] 
+ **withoutTags** | **Bool** | Show only the agent rooms that carry no tags at all. | [optional] 
+ **quotaFilter** | **Int** | Filter by quota kind: 0 for all, 1 for the default quota, 2 for a custom one. | [optional] 
+ **filterValue** | **String** | Show only the agent rooms whose title matches this text. | [optional] 
+ **sortBy** | **String** | Field to sort by, for example `DateAndTime`. | [optional] 
+ **sortOrder** | **String** | Sort direction, `ascending` or `descending`. | [optional] 
+ **startIndex** | **Int** | Index of the first entry to return; 0 starts at the beginning. | [optional] 
+ **count** | **Int** | How many entries to return. The internal service applies its own default. | [optional] 
+ **fields** | **String** | A comma-separated list of the response fields to return. | [optional]
 
 ### Return type
 
-[**FolderContentIntegerWrapper**](FolderContentIntegerWrapper.md)
+[**AiFolderContentWrapper**](AiFolderContentWrapper.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let subjectId = "subjectId_example" // String | The filter by user ID. (optional)
-let withoutTags = false // Bool | Specifies whether to search by tags or not. (optional)
-let tags = "tags_example" // String | The tags in the serialized format. (optional)
-let excludeSubject = false // Bool | Specifies whether to exclude search by user or group ID. (optional)
-let subjectFilter = SubjectFilter() // SubjectFilter | The filter by user (Owner - 0, Member - 1). (optional)
-let quotaFilter = QuotaFilter() // QuotaFilter | The filter by quota (All - 0, Default - 1, Custom - 2). (optional)
-let count = 987 // Int | Specifies the maximum number of items to retrieve. (optional)
-let startIndex = 987 // Int | The index from which to start retrieving the room content. (optional)
-let sortBy = "sortBy_example" // String | Specifies the field by which the room content should be sorted. (optional)
-let sortOrder = SortOrder() // SortOrder | The order in which the results are sorted. (optional)
-let filterValue = "filterValue_example" // String | The text filter value used to refine search or query operations. (optional)
+let subjectId = "subjectId_example" // String | Show only the agent rooms this user takes part in. (optional)
+let subjectOwnerId = "subjectOwnerId_example" // String | Show only the agent rooms owned by this user. (optional)
+let excludeSubject = false // Bool | Invert the user filter: leave out what `subjectId` selects instead of keeping it. (optional)
+let tags = "tags_example" // String | Show only the agent rooms carrying these tags, comma-separated. (optional)
+let withoutTags = false // Bool | Show only the agent rooms that carry no tags at all. (optional)
+let quotaFilter = 987 // Int | Filter by quota kind: 0 for all, 1 for the default quota, 2 for a custom one. (optional)
+let filterValue = "filterValue_example" // String | Show only the agent rooms whose title matches this text. (optional)
+let sortBy = "sortBy_example" // String | Field to sort by, for example `DateAndTime`. (optional)
+let sortOrder = "sortOrder_example" // String | Sort direction, `ascending` or `descending`. (optional)
+let startIndex = 987 // Int | Index of the first entry to return; 0 starts at the beginning. (optional)
+let count = 987 // Int | How many entries to return. The internal service applies its own default. (optional)
 
-// Get ai agents
-AIAgentsAPIApi.getAgents(subjectId: subjectId, withoutTags: withoutTags, tags: tags, excludeSubject: excludeSubject, subjectFilter: subjectFilter, quotaFilter: quotaFilter, count: count, startIndex: startIndex, sortBy: sortBy, sortOrder: sortOrder, filterValue: filterValue) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// List agents
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsList(subjectId: subjectId, subjectOwnerId: subjectOwnerId, excludeSubject: excludeSubject, tags: tags, withoutTags: withoutTags, quotaFilter: quotaFilter, filterValue: filterValue, sortBy: sortBy, sortOrder: sortOrder, startIndex: startIndex, count: count)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -236,25 +221,25 @@ AIAgentsAPIApi.getAgents(subjectId: subjectId, withoutTags: withoutTags, tags: t
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAgentsNewItems**
+# **aiAgentsNews**
 ```swift
-    open class func getAgentsNewItems(completion: @escaping (_ data: NewItemsAgentNewItemsArrayWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsNews(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiNewItemsAgentNewItemsArrayWrapper
 ```
 
-Returns the room new items.
+Lists the unread items across the caller's AI agent rooms, so a badge can be rendered without walking each room. It takes no parameters and is scoped to the caller by the DocSpace AI service. The answer is that service's new-items payload. This is a read-only operation and does not mark anything as seen.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-agents-new-items/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-news/).
 
 ### Parameters
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**NewItemsAgentNewItemsArrayWrapper**](NewItemsAgentNewItemsArrayWrapper.md)
+[**AiNewItemsAgentNewItemsArrayWrapper**](AiNewItemsAgentNewItemsArrayWrapper.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
@@ -262,16 +247,12 @@ This endpoint does not need any parameter.
 import OpenAPIClient
 
 
-// Get the room new items
-AIAgentsAPIApi.getAgentsNewItems() { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// List agent news items
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsNews()
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -282,46 +263,42 @@ AIAgentsAPIApi.getAgentsNewItems() { (response, error) in
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **resetAgentsQuota**
+# **aiAgentsResetQuota**
 ```swift
-    open class func resetAgentsQuota(updateRoomsRoomIdsRequestDtoInteger: UpdateRoomsRoomIdsRequestDtoInteger? = nil, completion: @escaping (_ data: FolderIntegerArrayWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsResetQuota(aiAgentsResetQuotaRequest: AiAgentsResetQuotaRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderArrayWrapper
 ```
 
-Resets the quota limit for the AI agents with the IDs specified in the request.
+Returns the listed AI agent rooms to the portal's default storage quota, forwarding `roomIds` to the DocSpace AI service unchanged. The answer is that service's payload, one updated room per entry. This is the counterpart of `PUT api/2.0/ai/agents/agentquota` and takes no quota value of its own. Rooms already on the default are unaffected.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/reset-agents-quota/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-reset-quota/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateRoomsRoomIdsRequestDtoInteger** | [**UpdateRoomsRoomIdsRequestDtoInteger**](UpdateRoomsRoomIdsRequestDtoInteger.md) |  | [optional] 
+ **aiAgentsResetQuotaRequest** | [**AiAgentsResetQuotaRequest**](AiAgentsResetQuotaRequest.md) |  | 
 
 ### Return type
 
-[**FolderIntegerArrayWrapper**](FolderIntegerArrayWrapper.md)
+[**AiFolderArrayWrapper**](AiFolderArrayWrapper.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateRoomsRoomIdsRequestDtoInteger = UpdateRoomsRoomIdsRequestDtoInteger(roomIds: [ContinueChatBody_files_inner()]) // UpdateRoomsRoomIdsRequestDtoInteger |  (optional)
+let aiAgentsResetQuotaRequest = AiAgentsResetQuotaRequest(roomIds: [AiAgentsUpdateQuotaRequest_roomIds_inner()]) // AiAgentsResetQuotaRequest | 
 
-// Reset the AI agents quota limit
-AIAgentsAPIApi.resetAgentsQuota(updateRoomsRoomIdsRequestDtoInteger: updateRoomsRoomIdsRequestDtoInteger) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// Reset agents' quota
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsResetQuota(aiAgentsResetQuotaRequest: aiAgentsResetQuotaRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -332,48 +309,44 @@ AIAgentsAPIApi.resetAgentsQuota(updateRoomsRoomIdsRequestDtoInteger: updateRooms
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **updateAgent**
+# **aiAgentsUpdate**
 ```swift
-    open class func updateAgent(id: Int, updateRoomRequest: UpdateRoomRequest, completion: @escaping (_ data: FolderIntegerWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsUpdate(id: String, aiAgentsUpdateRequest: AiAgentsUpdateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderWrapper
 ```
 
-Updates an ai agent.
+Changes an AI agent room - its title, tags or standing instruction - and optionally rebinds its model. The ID has to be the room's integer identifier. `profileId` is not part of the room contract: it is taken out of the forwarded body and applied afterwards as the agent's assignment, and it has to be a UUID naming an existing chat-capable profile. An instruction sent as `chatSettings.prompt` has its markup stripped, as on create; note that when `chatSettings` is present the upstream service still requires the rest of that object to be valid, so send it whole.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agent/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | The room ID. | 
- **updateRoomRequest** | [**UpdateRoomRequest**](UpdateRoomRequest.md) | The request parameters for updating a room. | 
+ **id** | **String** | The agent identifier. | 
+ **aiAgentsUpdateRequest** | [**AiAgentsUpdateRequest**](AiAgentsUpdateRequest.md) |  | 
 
 ### Return type
 
-[**FolderIntegerWrapper**](FolderIntegerWrapper.md)
+[**AiFolderWrapper**](AiFolderWrapper.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let id = 987 // Int | The room ID.
-let updateRoomRequest = UpdateRoomRequest(title: "title_example", quota: 123, indexing: true, denyDownload: true, lifetime: RoomDataLifetimeDto(deletePermanently: true, period: RoomDataLifetimePeriod(), value: 123, enabled: true), watermark: WatermarkRequestDto(enabled: true, additions: WatermarkAdditions(), text: "text_example", rotate: 123, imageScale: 123, imageUrl: "imageUrl_example", imageHeight: 123, imageWidth: 123), logo: LogoRequest(tmpFile: "tmpFile_example", x: 123, y: 123, width: 123, height: 123), tags: ["tags_example"], color: "color_example", cover: "cover_example", chatSettings: ChatSettings(providerId: 123, modelId: "modelId_example", prompt: "prompt_example", _internal: false), sendFormToExternalDB: false, saveFormAsXLSX: false) // UpdateRoomRequest | The request parameters for updating a room.
+let id = "id_example" // String | The agent identifier.
+let aiAgentsUpdateRequest = AiAgentsUpdateRequest(profileId: "profileId_example", chatSettings: 123, sendFormToExternalDB: false, saveFormAsXLSX: false, title: "title_example", quota: 123, indexing: false, denyDownload: false, lifetime: 123, watermark: 123, logo: 123, tags: ["tags_example"], color: "color_example", cover: "cover_example") // AiAgentsUpdateRequest | 
 
-// Update an ai agent
-AIAgentsAPIApi.updateAgent(id: id, updateRoomRequest: updateRoomRequest) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// Update an agent
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsUpdate(id: id, aiAgentsUpdateRequest: aiAgentsUpdateRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 
@@ -384,46 +357,42 @@ AIAgentsAPIApi.updateAgent(id: id, updateRoomRequest: updateRoomRequest) { (resp
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **updateAgentsQuota**
+# **aiAgentsUpdateQuota**
 ```swift
-    open class func updateAgentsQuota(updateRoomsQuotaRequestDtoInteger: UpdateRoomsQuotaRequestDtoInteger? = nil, completion: @escaping (_ data: FolderIntegerArrayWrapper?, _ error: Error?) -> Void)
+    open class func aiAgentsUpdateQuota(aiAgentsUpdateQuotaRequest: AiAgentsUpdateQuotaRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiFolderArrayWrapper
 ```
 
-Changes the quota limit for the AI agents with the IDs specified in the request.
+Sets the storage quota of the listed AI agent rooms in one call, forwarding `roomIds` and `quota` to the DocSpace AI service unchanged. The answer is that service's payload, one updated room per entry. A quota applies to the room's stored files, not to the model usage of its chats. Use `PUT api/2.0/ai/agents/resetquota` to return rooms to the portal default instead of naming a number.
 
-For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-agents-quota/).
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-agents-update-quota/).
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateRoomsQuotaRequestDtoInteger** | [**UpdateRoomsQuotaRequestDtoInteger**](UpdateRoomsQuotaRequestDtoInteger.md) |  | [optional] 
+ **aiAgentsUpdateQuotaRequest** | [**AiAgentsUpdateQuotaRequest**](AiAgentsUpdateQuotaRequest.md) |  | 
 
 ### Return type
 
-[**FolderIntegerArrayWrapper**](FolderIntegerArrayWrapper.md)
+[**AiFolderArrayWrapper**](AiFolderArrayWrapper.md)
 
 ### Authorization
 
-[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let updateRoomsQuotaRequestDtoInteger = UpdateRoomsQuotaRequestDtoInteger(roomIds: [ContinueChatBody_files_inner()], quota: 123) // UpdateRoomsQuotaRequestDtoInteger |  (optional)
+let aiAgentsUpdateQuotaRequest = AiAgentsUpdateQuotaRequest(roomIds: [AiAgentsUpdateQuotaRequest_roomIds_inner()], quota: 123) // AiAgentsUpdateQuotaRequest | 
 
-// Change the AI agent quota limit
-AIAgentsAPIApi.updateAgentsQuota(updateRoomsQuotaRequestDtoInteger: updateRoomsQuotaRequestDtoInteger) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
+// Update agents' quota
+do {
+    let response = try await AIAgentsAPIApi.aiAgentsUpdateQuota(aiAgentsUpdateQuotaRequest: aiAgentsUpdateQuotaRequest)
+    dump(response)
+} catch {
+    print(error)
 }
 ```
 

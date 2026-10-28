@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of NewItemsDtoRoomNewItemsDto objects. */
 public struct NewItemsRoomNewItemsArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of NewItemsDtoRoomNewItemsDto objects returned by the operation. */
     public var response: [NewItemsDtoRoomNewItemsDto]?
     /** The total number of items in the response */
     public var count: Int?

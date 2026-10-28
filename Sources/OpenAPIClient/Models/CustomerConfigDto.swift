@@ -14,20 +14,20 @@
 //  limitations under the License.
 import Foundation
 
-/** The customer config parameters. */
+/** The branding of the organization running the portal, as the editor About panel shows it. It is reported on a  server installation only. */
 public struct CustomerConfigDto: Sendable, Codable, Hashable {
 
-    /** The address of the customer configuration. */
+    /** The postal address from the portal branding settings; empty when none was entered. */
     public var address: String?
-    /** The logo of the customer configuration. */
+    /** The About-panel logo of the organization. */
     public var logo: String?
-    /** The dark logo of the customer configuration. */
+    /** The About-panel logo for a dark interface theme. */
     public var logoDark: String?
-    /** The mail address of the customer configuration. */
+    /** The contact address from the portal branding settings. */
     public var mail: String?
-    /** The name of the customer configuration. */
+    /** The organization name shown in the editor. */
     public var name: String?
-    /** The site web address of the customer configuration. */
+    /** The website of the organization. */
     public var www: String?
 
     public init(address: String? = nil, logo: String? = nil, logoDark: String? = nil, mail: String? = nil, name: String? = nil, www: String? = nil) {

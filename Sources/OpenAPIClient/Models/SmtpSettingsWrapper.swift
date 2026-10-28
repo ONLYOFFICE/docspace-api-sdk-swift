@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the SmtpSettingsDto object. */
 public struct SmtpSettingsWrapper: Sendable, Codable, Hashable {
 
+    /** The SmtpSettingsDto object returned by the operation. */
     public var response: SmtpSettingsDto?
     /** The total number of items in the response */
     public var count: Int?

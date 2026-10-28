@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the TaskProgressResponseDto object. */
 public struct TaskProgressResponseWrapper: Sendable, Codable, Hashable {
 
+    /** The TaskProgressResponseDto object returned by the operation. */
     public var response: TaskProgressResponseDto?
     /** The total number of items in the response */
     public var count: Int?

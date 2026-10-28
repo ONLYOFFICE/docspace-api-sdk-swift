@@ -14,13 +14,13 @@
 //  limitations under the License.
 import Foundation
 
-/** The request parameters for specifying payment quantity. */
+/** The new size of the portal subscription. */
 public struct QuantityRequestDto: Sendable, Codable, Hashable {
 
-    /** The mapping of item identifiers to their respective quantities in the payment. */
-    public var quantity: [String: Int]?
+    /** The plan and the number of units it is to cover, as a single pair. While the portal is on a priced plan the  key has to be the `name` of that same plan, which `GET api/2.0/portal/payment/quota` reports, because the  subscription is resized rather than swapped; the value is the total the subscription is to have afterwards,  not the difference. Exactly one pair is accepted, and a value that is already in effect is refused with 400. */
+    public var quantity: [String: Int]
 
-    public init(quantity: [String: Int]? = nil) {
+    public init(quantity: [String: Int]) {
         self.quantity = quantity
     }
 
@@ -32,7 +32,7 @@ public struct QuantityRequestDto: Sendable, Codable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(quantity, forKey: .quantity)
+        try container.encode(quantity, forKey: .quantity)
     }
 }
 

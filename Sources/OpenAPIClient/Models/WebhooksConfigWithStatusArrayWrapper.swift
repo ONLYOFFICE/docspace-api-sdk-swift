@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of WebhooksConfigWithStatusDto objects. */
 public struct WebhooksConfigWithStatusArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of WebhooksConfigWithStatusDto objects returned by the operation. */
     public var response: [WebhooksConfigWithStatusDto]?
     /** The total number of items in the response */
     public var count: Int?

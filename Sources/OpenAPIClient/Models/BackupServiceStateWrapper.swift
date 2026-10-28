@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the BackupServiceStateDto object. */
 public struct BackupServiceStateWrapper: Sendable, Codable, Hashable {
 
+    /** The BackupServiceStateDto object returned by the operation. */
     public var response: BackupServiceStateDto?
     /** The total number of items in the response */
     public var count: Int?

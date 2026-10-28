@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the CustomColorThemesSettingsDto object. */
 public struct CustomColorThemesSettingsWrapper: Sendable, Codable, Hashable {
 
+    /** The CustomColorThemesSettingsDto object returned by the operation. */
     public var response: CustomColorThemesSettingsDto?
     /** The total number of items in the response */
     public var count: Int?

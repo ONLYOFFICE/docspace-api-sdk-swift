@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**response** | **JSONValue** | The archiving class unification interface. | [optional] 
+**response** | **JSONValue** | The ICompress object returned by the operation. | [optional] 
 **count** | **Int** | The total number of items in the response | [optional] 
 **links** | [GetPortalPrices200ResponseLinksInner] | List of links related to the response | [optional] 
 **status** | **Int** | HTTP status code of the response | [optional] 

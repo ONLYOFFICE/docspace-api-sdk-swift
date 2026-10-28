@@ -14,21 +14,26 @@
 //  limitations under the License.
 import Foundation
 
-/** The logo request parameters. */
+/** The part of an uploaded picture to use as the logo. */
 public struct LogoRequest: Sendable, Codable, Hashable {
 
-    /** The path to the temporary image file. */
-    public var tmpFile: String?
-    /** The X coordinate of the rectangle starting point. */
+    public static let tmpFileRule = StringRule(minLength: 1, maxLength: nil, pattern: nil)
+    public static let xRule = NumericRule<Int>(minimum: 0, exclusiveMinimum: false, maximum: 1280, exclusiveMaximum: false, multipleOf: nil)
+    public static let yRule = NumericRule<Int>(minimum: 0, exclusiveMinimum: false, maximum: 1280, exclusiveMaximum: false, multipleOf: nil)
+    public static let widthRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 1280, exclusiveMaximum: false, multipleOf: nil)
+    public static let heightRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 1280, exclusiveMaximum: false, multipleOf: nil)
+    /** The picture to cut the logo out of, named by the path that `POST api/2.0/files/logos` returned for it. The  path may be used once and only by the account that uploaded it. */
+    public var tmpFile: String
+    /** The left edge of the rectangle cut out of the uploaded picture, counted in pixels from its left side. The  picture itself was already scaled down to fit 1280 by 1280 pixels when it was uploaded. */
     public var x: Int?
-    /** The Y coordinate of the rectangle starting point. */
+    /** The top edge of the rectangle cut out of the uploaded picture, counted in pixels from its top. */
     public var y: Int?
-    /** The rectangle width. */
+    /** How wide a piece of the uploaded picture to cut out, in pixels. It has to be sent together with the height,  and the portal builds the four logo sizes out of the piece. */
     public var width: Int?
-    /** The rectangle height. */
+    /** How tall a piece of the uploaded picture to cut out, in pixels. It has to be sent together with the width. */
     public var height: Int?
 
-    public init(tmpFile: String? = nil, x: Int? = nil, y: Int? = nil, width: Int? = nil, height: Int? = nil) {
+    public init(tmpFile: String, x: Int? = nil, y: Int? = nil, width: Int? = nil, height: Int? = nil) {
         self.tmpFile = tmpFile
         self.x = x
         self.y = y
@@ -48,7 +53,7 @@ public struct LogoRequest: Sendable, Codable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(tmpFile, forKey: .tmpFile)
+        try container.encode(tmpFile, forKey: .tmpFile)
         try container.encodeIfPresent(x, forKey: .x)
         try container.encodeIfPresent(y, forKey: .y)
         try container.encodeIfPresent(width, forKey: .width)

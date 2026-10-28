@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the CheckDestFolderDto object. */
 public struct CheckDestFolderWrapper: Sendable, Codable, Hashable {
 
+    /** The CheckDestFolderDto object returned by the operation. */
     public var response: CheckDestFolderDto?
     /** The total number of items in the response */
     public var count: Int?

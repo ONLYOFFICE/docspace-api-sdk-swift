@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of AuditEventDto objects. */
 public struct AuditEventArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of AuditEventDto objects returned by the operation. */
     public var response: [AuditEventDto]?
     /** The total number of items in the response */
     public var count: Int?

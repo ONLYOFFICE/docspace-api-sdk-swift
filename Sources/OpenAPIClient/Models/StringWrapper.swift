@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the string value. */
 public struct StringWrapper: Sendable, Codable, Hashable {
 
+    /** The string value returned by the operation. */
     public var response: String?
     /** The total number of items in the response */
     public var count: Int?

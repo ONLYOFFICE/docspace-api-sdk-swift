@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of ProviderDto objects. */
 public struct ProviderArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of ProviderDto objects returned by the operation. */
     public var response: [ProviderDto]?
     /** The total number of items in the response */
     public var count: Int?

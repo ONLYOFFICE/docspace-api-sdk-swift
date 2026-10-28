@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of StorageDto objects. */
 public struct StorageArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of StorageDto objects returned by the operation. */
     public var response: [StorageDto]?
     /** The total number of items in the response */
     public var count: Int?

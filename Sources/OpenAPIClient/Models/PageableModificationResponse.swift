@@ -14,14 +14,13 @@
 //  limitations under the License.
 import Foundation
 
-/** The response containing paginated modification information. */
+/** One page of results ordered by modification time, together with the cursor that asks for the next page. */
 public struct PageableModificationResponse: Sendable, Codable, Hashable {
 
-    /** The paginated modification data. */
     public var data: JSONValue?
-    /** The maximum number of results returned per page. */
+    /** The page size that was applied to this request, between 1 and 50. */
     public var limit: Int?
-    /** The date when the user consent was last modified. */
+    /** The cursor to send back as last_modified_on to ask for the next page. It is null when the page is empty. */
     public var lastModifiedOn: Date?
 
     public init(data: JSONValue? = nil, limit: Int? = nil, lastModifiedOn: Date? = nil) {

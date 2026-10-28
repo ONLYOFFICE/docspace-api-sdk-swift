@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of UsageSpaceStatItemDto objects. */
 public struct UsageSpaceStatItemArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of UsageSpaceStatItemDto objects returned by the operation. */
     public var response: [UsageSpaceStatItemDto]?
     /** The total number of items in the response */
     public var count: Int?

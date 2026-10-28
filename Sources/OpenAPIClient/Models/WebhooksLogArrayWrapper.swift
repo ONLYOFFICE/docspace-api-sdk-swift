@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of WebhooksLogDto objects. */
 public struct WebhooksLogArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of WebhooksLogDto objects returned by the operation. */
     public var response: [WebhooksLogDto]?
     /** The total number of items in the response */
     public var count: Int?

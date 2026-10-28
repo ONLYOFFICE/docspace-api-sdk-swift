@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the Module object. */
 public struct ModuleWrapper: Sendable, Codable, Hashable {
 
+    /** The Module object returned by the operation. */
     public var response: Module?
     /** The total number of items in the response */
     public var count: Int?

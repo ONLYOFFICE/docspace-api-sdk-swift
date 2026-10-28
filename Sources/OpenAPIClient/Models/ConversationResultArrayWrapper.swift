@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the list of ConversationResultDto objects. */
 public struct ConversationResultArrayWrapper: Sendable, Codable, Hashable {
 
+    /** The list of ConversationResultDto objects returned by the operation. */
     public var response: [ConversationResultDto]?
     /** The total number of items in the response */
     public var count: Int?

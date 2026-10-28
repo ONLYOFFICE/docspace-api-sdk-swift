@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the boolean value. */
 public struct BooleanWrapper: Sendable, Codable, Hashable {
 
+    /** The boolean value returned by the operation. */
     public var response: Bool?
     /** The total number of items in the response */
     public var count: Int?

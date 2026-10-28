@@ -14,26 +14,26 @@
 //  limitations under the License.
 import Foundation
 
-/** The module information. */
+/** The descriptor of a portal module: what it is called, where it starts and how it is pictured. */
 public struct Module: Sendable, Codable, Hashable {
 
-    /** The module ID. */
+    /** The identifier of the module. It is the same in every portal and in every language, so use it rather than the  title to tell modules apart. */
     public var id: UUID?
-    /** The module product class name. */
+    /** The short system name of the module, the one that appears in its addresses and in the portal configuration.  Unlike the title it is not translated. */
     public var appName: String?
-    /** The module product class name. */
+    /** The display name of the module, already translated for the calling account, so it changes with the language  and must not be compared against a fixed string. */
     public var title: String?
-    /** The URL to the module start page. */
+    /** The address of the start page of the module, to be opened in a browser rather than called as an API. */
     public var link: String?
-    /** The module icon URL. */
+    /** The address of the small icon of the module, meant for a menu entry. */
     public var iconUrl: String?
-    /** The module large image URL. */
+    /** The address of the large image of the module, meant for a tile or a start screen. */
     public var imageUrl: String?
-    /** The module help URL. */
+    /** The address of the help section of the module. It is empty when the portal publishes no help for it. */
     public var helpUrl: String?
-    /** The module description. */
+    /** The one-line description of the module shown next to its title, translated for the calling account. */
     public var description: String?
-    /** Specifies if the module is primary or not. */
+    /** Whether the portal opens this module first when no other destination is given. */
     public var isPrimary: Bool?
 
     public init(id: UUID? = nil, appName: String? = nil, title: String? = nil, link: String? = nil, iconUrl: String? = nil, imageUrl: String? = nil, helpUrl: String? = nil, description: String? = nil, isPrimary: Bool? = nil) {

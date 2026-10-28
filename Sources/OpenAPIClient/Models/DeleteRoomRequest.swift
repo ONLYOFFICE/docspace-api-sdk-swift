@@ -14,10 +14,10 @@
 //  limitations under the License.
 import Foundation
 
-/** The parameters for deleting a room. */
+/** The body of a room deletion request. */
 public struct DeleteRoomRequest: Sendable, Codable, Hashable {
 
-    /** Specifies whether to delete a room after the editing session is finished or not. */
+    /** Carried by the contract but not acted upon: the deletion behaves the same either way, and the record of the  finished job is kept until it is read once. */
     public var deleteAfter: Bool?
 
     public init(deleteAfter: Bool? = nil) {

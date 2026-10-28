@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the FileEntryBaseDto object. */
 public struct FileEntryBaseWrapper: Sendable, Codable, Hashable {
 
+    /** The FileEntryBaseDto object returned by the operation. */
     public var response: FileEntryBaseDto?
     /** The total number of items in the response */
     public var count: Int?

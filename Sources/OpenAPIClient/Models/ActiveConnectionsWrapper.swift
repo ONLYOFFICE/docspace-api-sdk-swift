@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the ActiveConnectionsDto object. */
 public struct ActiveConnectionsWrapper: Sendable, Codable, Hashable {
 
+    /** The ActiveConnectionsDto object returned by the operation. */
     public var response: ActiveConnectionsDto?
     /** The total number of items in the response */
     public var count: Int?

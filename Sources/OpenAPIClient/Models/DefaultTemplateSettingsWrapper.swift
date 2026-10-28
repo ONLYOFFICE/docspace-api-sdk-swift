@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the DefaultTemplateSettingsDto object. */
 public struct DefaultTemplateSettingsWrapper: Sendable, Codable, Hashable {
 
+    /** The DefaultTemplateSettingsDto object returned by the operation. */
     public var response: DefaultTemplateSettingsDto?
     /** The total number of items in the response */
     public var count: Int?

@@ -20,7 +20,7 @@ public enum SortedByType: Int, Sendable, Codable, CaseIterable {
     case AZ = 1
     case Size = 2
     case Author = 3
-    case Type = 4
+    case _Type = 4
     case New = 5
     case DateAndTimeCreation = 6
     case RoomType = 7

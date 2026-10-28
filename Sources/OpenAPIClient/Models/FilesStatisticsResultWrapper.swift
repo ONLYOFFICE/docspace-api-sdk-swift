@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the FilesStatisticsResultDto object. */
 public struct FilesStatisticsResultWrapper: Sendable, Codable, Hashable {
 
+    /** The FilesStatisticsResultDto object returned by the operation. */
     public var response: FilesStatisticsResultDto?
     /** The total number of items in the response */
     public var count: Int?

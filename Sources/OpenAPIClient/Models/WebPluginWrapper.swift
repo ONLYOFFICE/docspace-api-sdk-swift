@@ -14,8 +14,10 @@
 //  limitations under the License.
 import Foundation
 
+/** The successful API response containing the WebPluginDto object. */
 public struct WebPluginWrapper: Sendable, Codable, Hashable {
 
+    /** The WebPluginDto object returned by the operation. */
     public var response: WebPluginDto?
     /** The total number of items in the response */
     public var count: Int?
