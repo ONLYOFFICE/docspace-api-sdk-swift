@@ -1,0 +1,680 @@
+# AIThreadsAPIApi
+
+All URIs are relative to *https://your-docspace.onlyoffice.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**aiThreadsAppendUserMessage**](AIThreadsAPI.md#aithreadsappendusermessage) | **POST** /api/2.0/ai/threads/append-user-message | Append user message
+[**aiThreadsClearMessages**](AIThreadsAPI.md#aithreadsclearmessages) | **DELETE** /api/2.0/ai/threads/clear-messages | Clear messages
+[**aiThreadsCreate**](AIThreadsAPI.md#aithreadscreate) | **POST** /api/2.0/ai/threads/create | Create a chat thread
+[**aiThreadsDelete**](AIThreadsAPI.md#aithreadsdelete) | **DELETE** /api/2.0/ai/threads/delete | Delete a chat thread
+[**aiThreadsDeleteMessage**](AIThreadsAPI.md#aithreadsdeletemessage) | **DELETE** /api/2.0/ai/threads/delete-message | Delete message
+[**aiThreadsGetById**](AIThreadsAPI.md#aithreadsgetbyid) | **GET** /api/2.0/ai/threads/get-by-id | Get a chat thread
+[**aiThreadsGetMessageById**](AIThreadsAPI.md#aithreadsgetmessagebyid) | **GET** /api/2.0/ai/threads/get-message-by-id | Get one chat message
+[**aiThreadsList**](AIThreadsAPI.md#aithreadslist) | **GET** /api/2.0/ai/threads/list | List chat threads
+[**aiThreadsOpenOrCreate**](AIThreadsAPI.md#aithreadsopenorcreate) | **POST** /api/2.0/ai/threads/open-or-create | Open or create
+[**aiThreadsReadMessages**](AIThreadsAPI.md#aithreadsreadmessages) | **GET** /api/2.0/ai/threads/read-messages | Read messages
+[**aiThreadsRegenerateTitle**](AIThreadsAPI.md#aithreadsregeneratetitle) | **POST** /api/2.0/ai/threads/regenerate-title | Regenerate title
+[**aiThreadsRename**](AIThreadsAPI.md#aithreadsrename) | **PUT** /api/2.0/ai/threads/rename | Rename a chat thread
+[**aiThreadsTouch**](AIThreadsAPI.md#aithreadstouch) | **POST** /api/2.0/ai/threads/touch | Bump a thread's activity
+[**aiThreadsUpdateMessage**](AIThreadsAPI.md#aithreadsupdatemessage) | **PUT** /api/2.0/ai/threads/update-message | Update message
+
+
+# **aiThreadsAppendUserMessage**
+```swift
+    open class func aiThreadsAppendUserMessage(aiThreadsAppendUserMessageRequest: AiThreadsAppendUserMessageRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiThreadsAppendUserMessage200Response
+```
+
+Stores a user message in a thread and bumps its last-edit date so the thread resurfaces at the top of the list. `threadId` is required, the message has to carry `role: user` and a content that is a non-blank string or a part list with at least one real part - text, a file or image attachment - so an empty or role-less body is rejected rather than stored. The per-kind attachment cap of the composer is enforced here as well, so a direct API call cannot exceed what the UI allows. Passing `profileId` rebinds the thread to another model, which is how a mid-conversation model switch is recorded. The answer carries the new message's ID; the message is stored as sent and no reply is generated - run a round with `POST api/2.0/ai/ai/send-with-stream` for that.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-append-user-message/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsAppendUserMessageRequest** | [**AiThreadsAppendUserMessageRequest**](AiThreadsAppendUserMessageRequest.md) |  | 
+
+### Return type
+
+[**AiThreadsAppendUserMessage200Response**](AiThreadsAppendUserMessage200Response.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsAppendUserMessageRequest = AiThreadsAppendUserMessageRequest(threadId: "threadId_example", message: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), profileId: "profileId_example") // AiThreadsAppendUserMessageRequest | 
+
+// Append user message
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsAppendUserMessage(aiThreadsAppendUserMessageRequest: aiThreadsAppendUserMessageRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsClearMessages**
+```swift
+    open class func aiThreadsClearMessages(aiThreadsClearMessagesRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse
+```
+
+Removes every message of a thread while keeping the thread, its title and its model binding, and bumps its last-edit date. The messages are gone for good. Unlike `delete` this does not verify that the thread exists, so clearing an unknown `threadId` reports success rather than 404. The answer only confirms the write.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-clear-messages/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsClearMessagesRequest** | **String** | The ID of the thread to empty, as a bare JSON string. | 
+
+### Return type
+
+[**AiSuccessResponse**](AiSuccessResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsClearMessagesRequest = "aiThreadsClearMessagesRequest_example" // String | The ID of the thread to empty, as a bare JSON string.
+
+// Clear messages
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsClearMessages(aiThreadsClearMessagesRequest: aiThreadsClearMessagesRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsCreate**
+```swift
+    open class func aiThreadsCreate(aiThreadsCreateRequest: AiThreadsCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiThread
+```
+
+Creates a chat thread with a title supplied by the caller and returns it. A scoped thread requires that `entityId` names a room the caller can open, and a model has to resolve for the scope - an explicit `profileId`, or the room's `Chat` assignment - otherwise there is nothing to run the thread against and the call answers 404. In an agent room the agent's own assignment overrides any `profileId` sent with the request, so a thread there always starts on the agent's model. Use `POST api/2.0/ai/threads/open-or-create` instead when the title should be generated from the first user message.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-create/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsCreateRequest** | [**AiThreadsCreateRequest**](AiThreadsCreateRequest.md) |  | 
+
+### Return type
+
+[**AiThread**](AiThread.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsCreateRequest = AiThreadsCreateRequest(title: "title_example", profileId: "profileId_example", entityId: "entityId_example") // AiThreadsCreateRequest | 
+
+// Create a chat thread
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsCreate(aiThreadsCreateRequest: aiThreadsCreateRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsDelete**
+```swift
+    open class func aiThreadsDelete(aiThreadsDeleteRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse
+```
+
+Deletes a thread together with every message in it. The thread has to exist: unlike the other operations that take a `threadId`, this one checks first and answers 404 for an unknown or already-deleted thread rather than reporting success. The deletion is permanent and the messages cannot be recovered. To empty a thread but keep it, use `DELETE api/2.0/ai/threads/clear-messages`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-delete/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsDeleteRequest** | **String** | The ID of the thread to delete, as a bare JSON string. | 
+
+### Return type
+
+[**AiSuccessResponse**](AiSuccessResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsDeleteRequest = "aiThreadsDeleteRequest_example" // String | The ID of the thread to delete, as a bare JSON string.
+
+// Delete a chat thread
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsDelete(aiThreadsDeleteRequest: aiThreadsDeleteRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsDeleteMessage**
+```swift
+    open class func aiThreadsDeleteMessage(aiThreadsDeleteMessageRequest: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse
+```
+
+Deletes one message and leaves the rest of the thread untouched. `messageId` is required and may be sent either in the body or as a query parameter. An unknown ID is not reported: the call answers success without having deleted anything, so verify with `GET api/2.0/ai/threads/read-messages` when it matters. The deletion is permanent.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-delete-message/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsDeleteMessageRequest** | **String** | The ID of the message to delete, as a bare JSON string. | 
+
+### Return type
+
+[**AiSuccessResponse**](AiSuccessResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsDeleteMessageRequest = "aiThreadsDeleteMessageRequest_example" // String | The ID of the message to delete, as a bare JSON string.
+
+// Delete message
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsDeleteMessage(aiThreadsDeleteMessageRequest: aiThreadsDeleteMessageRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsGetById**
+```swift
+    open class func aiThreadsGetById(threadId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiThread
+```
+
+Returns one thread by its ID, without its messages - read those with `GET api/2.0/ai/threads/read-messages`. `threadId` is required and an unknown one answers 404, so the result is never an empty body. The answer carries the thread's title, its model binding and its last-edit date. This is a read-only operation and does not bump that date.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-get-by-id/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **threadId** | **String** | The chat thread identifier. | 
+
+### Return type
+
+[**AiThread**](AiThread.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let threadId = "threadId_example" // String | The chat thread identifier.
+
+// Get a chat thread
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsGetById(threadId: threadId)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsGetMessageById**
+```swift
+    open class func aiThreadsGetMessageById(messageId: String, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiThreadMessageLike
+```
+
+Returns one message by its ID, wherever it sits, without needing the thread it belongs to. `messageId` is required and, as with `GET api/2.0/ai/threads/get-by-id`, an unknown or deleted ID answers 404, so the result is never an empty body. Message IDs come from the thread history or from the answer of `POST api/2.0/ai/threads/append-user-message`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-get-message-by-id/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **messageId** | **String** | The globally unique chat message identifier. | 
+
+### Return type
+
+[**AiThreadMessageLike**](AiThreadMessageLike.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let messageId = "messageId_example" // String | The globally unique chat message identifier.
+
+// Get one chat message
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsGetMessageById(messageId: messageId)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsList**
+```swift
+    open class func aiThreadsList(entityId: String? = nil, count: Int? = nil, cursor: String? = nil, query: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [AiThread]
+```
+
+Lists the threads of a scope, most recently edited first, and searches their titles case-insensitively when `query` is given. Every parameter is optional: omitting `entityId` lists the global scope, and omitting `count` lets the engine apply its own page size. Pagination is by cursor, and the cursor is a JSON object passed as a string in the query - `{id: <last thread id>, lastEditDate: <its date>}` - taken from the last entry of the previous page. A cursor that is not valid JSON, or that lacks an `id`, is ignored rather than rejected, and the read silently starts from the first page again.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-list/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entityId** | **String** | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. | [optional] 
+ **count** | **Int** | The maximum number of items to return in one page. | [optional] 
+ **cursor** | **String** | The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. | [optional] 
+ **query** | **String** | The full-text query the thread list is filtered by. | [optional] 
+ **fields** | **String** | A comma-separated list of the response fields to return. | [optional]
+
+### Return type
+
+[**[AiThread]**](AiThread.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let entityId = "entityId_example" // String | The DocSpace entity the request is scoped to - the room, folder or agent workspace the chat is invoked from. Omit for the portal-wide scope. (optional)
+let count = 987 // Int | The maximum number of items to return in one page. (optional)
+let cursor = "cursor_example" // String | The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. (optional)
+let query = "query_example" // String | The full-text query the thread list is filtered by. (optional)
+
+// List chat threads
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsList(entityId: entityId, count: count, cursor: cursor, query: query)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsOpenOrCreate**
+```swift
+    open class func aiThreadsOpenOrCreate(aiThreadsOpenOrCreateRequest: AiThreadsOpenOrCreateRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiOpenOrCreateResult
+```
+
+Opens a chat thread and returns it with its history, or creates one whose title is generated from the first message supplied in the request. That first message is not persisted: follow up with `POST api/2.0/ai/threads/append-user-message` to store it, or start the round directly with `POST api/2.0/ai/ai/send-with-stream`. Unlike `create` this takes a whole resolved `profile` object rather than an ID, and a request without one answers 404 because no model could be bound. A supplied `entityId` has to be a room the caller can open; anything that is not an agent room folds to the global scope instead of being rejected.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-open-or-create/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsOpenOrCreateRequest** | [**AiThreadsOpenOrCreateRequest**](AiThreadsOpenOrCreateRequest.md) |  | 
+
+### Return type
+
+[**AiOpenOrCreateResult**](AiOpenOrCreateResult.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsOpenOrCreateRequest = AiThreadsOpenOrCreateRequest(threadId: "threadId_example", profile: AiProfile(id: "id_example", name: "name_example", providerType: AiProviderType(), basedOn: AiBuiltinProviderType(), baseUrl: "baseUrl_example", key: "key_example", headers: "TODO", modelId: "modelId_example", reasoning: false, reasoningSupport: AiReasoningSupport(thinks: false, canDisable: false, depths: [AiReasoningDepth()], defaultDepth: nil), capabilities: 123, canUseTool: true, useResponsesApi: false, isCloudProvider: true, useProxy: false, createdAt: 123), profileId: "profileId_example", firstMessage: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123]), entityId: "entityId_example", entityMeta: AiThreadsOpenOrCreateRequest_entityMeta(entityId: "entityId_example", entityTitle: "entityTitle_example")) // AiThreadsOpenOrCreateRequest | 
+
+// Open or create
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsOpenOrCreate(aiThreadsOpenOrCreateRequest: aiThreadsOpenOrCreateRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsReadMessages**
+```swift
+    open class func aiThreadsReadMessages(threadId: String, count: Int? = nil, cursor: String? = nil, direction: String? = nil, fields: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [AiThreadMessageLike]
+```
+
+Reads the messages of one thread, oldest first, with the same string-encoded JSON cursor as the thread list. `direction` turns the read around, and only the exact value `desc` does so - anything else, including a misspelling, reads forward. `threadId` is required and a missing one answers 400, so an empty list always means a thread with no messages. A malformed cursor is ignored and the read starts from the beginning.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-read-messages/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **threadId** | **String** | The chat thread identifier. | 
+ **count** | **Int** | The maximum number of items to return in one page. | [optional] 
+ **cursor** | **String** | The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. | [optional] 
+ **direction** | **String** | The order the message page is read in. Only desc turns the read around and pages back from the newest message; omit for the forward read. | [optional] 
+ **fields** | **String** | A comma-separated list of the response fields to return. | [optional]
+
+### Return type
+
+[**[AiThreadMessageLike]**](AiThreadMessageLike.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let threadId = "threadId_example" // String | The chat thread identifier.
+let count = 987 // Int | The maximum number of items to return in one page. (optional)
+let cursor = "cursor_example" // String | The keyset pagination cursor: the JSON-encoded sort key of the last item already received. Omit for the first page. (optional)
+let direction = "direction_example" // String | The order the message page is read in. Only desc turns the read around and pages back from the newest message; omit for the forward read. (optional)
+
+// Read messages
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsReadMessages(threadId: threadId, count: count, cursor: cursor, direction: direction)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsRegenerateTitle**
+```swift
+    open class func aiThreadsRegenerateTitle(aiThreadsRegenerateTitleRequest: AiThreadsRegenerateTitleRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiThreadsRegenerateTitle200Response
+```
+
+Asks the model to produce a title from the thread's first user message, stores it, and returns the new title. Both `threadId` and a resolved `profile` object are required; a thread with no user message yet has nothing to title and fails. This costs a model call, unlike `POST api/2.0/ai/threads/rename`, which just stores the string it is given. An `entityMeta` sent with the request is only read for its `entityId` hint - the source itself is resolved server-side under the caller's credentials, so a client cannot attribute the call to somebody else's room.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-regenerate-title/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsRegenerateTitleRequest** | [**AiThreadsRegenerateTitleRequest**](AiThreadsRegenerateTitleRequest.md) |  | 
+
+### Return type
+
+[**AiThreadsRegenerateTitle200Response**](AiThreadsRegenerateTitle200Response.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsRegenerateTitleRequest = AiThreadsRegenerateTitleRequest(threadId: "threadId_example", profile: AiProfile(id: "id_example", name: "name_example", providerType: AiProviderType(), basedOn: AiBuiltinProviderType(), baseUrl: "baseUrl_example", key: "key_example", headers: "TODO", modelId: "modelId_example", reasoning: false, reasoningSupport: AiReasoningSupport(thinks: false, canDisable: false, depths: [AiReasoningDepth()], defaultDepth: nil), capabilities: 123, canUseTool: true, useResponsesApi: false, isCloudProvider: true, useProxy: false, createdAt: 123), entityMeta: AiThreadsOpenOrCreateRequest_entityMeta(entityId: "entityId_example", entityTitle: "entityTitle_example")) // AiThreadsRegenerateTitleRequest | 
+
+// Regenerate title
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsRegenerateTitle(aiThreadsRegenerateTitleRequest: aiThreadsRegenerateTitleRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsRename**
+```swift
+    open class func aiThreadsRename(aiThreadsRenameRequest: AiThreadsRenameRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse
+```
+
+Replaces a thread's title with the one supplied and bumps its last-edit date. Both `threadId` and a title with at least one non-whitespace character are required - a blank title is rejected rather than silently stored, so a thread cannot end up nameless. The answer only confirms the write. To have the model produce a title instead of supplying one, use `POST api/2.0/ai/threads/regenerate-title`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-rename/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsRenameRequest** | [**AiThreadsRenameRequest**](AiThreadsRenameRequest.md) |  | 
+
+### Return type
+
+[**AiSuccessResponse**](AiSuccessResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsRenameRequest = AiThreadsRenameRequest(threadId: "threadId_example", title: "title_example") // AiThreadsRenameRequest | 
+
+// Rename a chat thread
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsRename(aiThreadsRenameRequest: aiThreadsRenameRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsTouch**
+```swift
+    open class func aiThreadsTouch(aiThreadsTouchRequest: AiThreadsTouchRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse
+```
+
+Bumps a thread's last-edit date without adding a message, which resurfaces it in the list. Passing `profileId` also rebinds the thread to another model, so this is the operation to call when a model switch alone should count as activity. Nothing else about the thread changes and the answer only confirms the write. It is idempotent: repeating it simply moves the date forward again.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-touch/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsTouchRequest** | [**AiThreadsTouchRequest**](AiThreadsTouchRequest.md) |  | 
+
+### Return type
+
+[**AiSuccessResponse**](AiSuccessResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsTouchRequest = AiThreadsTouchRequest(threadId: "threadId_example", profileId: "profileId_example") // AiThreadsTouchRequest | 
+
+// Bump a thread's activity
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsTouch(aiThreadsTouchRequest: aiThreadsTouchRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **aiThreadsUpdateMessage**
+```swift
+    open class func aiThreadsUpdateMessage(aiThreadsUpdateMessageRequest: AiThreadsUpdateMessageRequest, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse
+```
+
+Replaces the content of one stored message, which is how the edit and regenerate flows change a message outside the streaming lifecycle. The whole message is overwritten by the one supplied rather than merged, so send a complete object with a known `role` and a content that is a non-blank string or a part list with at least one real part - a tool-call-only assistant message counts, an empty list does not. The role has to match the stored message's: a user message cannot be turned into an assistant one. An unknown `messageId` answers 404. The answer only confirms the write.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-threads-update-message/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **aiThreadsUpdateMessageRequest** | [**AiThreadsUpdateMessageRequest**](AiThreadsUpdateMessageRequest.md) |  | 
+
+### Return type
+
+[**AiSuccessResponse**](AiSuccessResponse.md)
+
+### Authorization
+
+[cookieAuth](../README.md#cookieAuth), [bearerAuth](../README.md#bearerAuth)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let aiThreadsUpdateMessageRequest = AiThreadsUpdateMessageRequest(messageId: "messageId_example", message: AiThreadMessageLike(id: "id_example", role: "role_example", content: AiThreadMessageLike_content(), createdAt: "createdAt_example", status: AiThreadMessageLike_status(type: "type_example"), metadata: 123, attachments: [123])) // AiThreadsUpdateMessageRequest | 
+
+// Update message
+do {
+    let response = try await AIThreadsAPIApi.aiThreadsUpdateMessage(aiThreadsUpdateMessageRequest: aiThreadsUpdateMessageRequest)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

@@ -1,0 +1,145 @@
+# SettingsAuthorizationAPIApi
+
+All URIs are relative to *https://your-docspace.onlyoffice.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getAuthServices**](SettingsAuthorizationAPI.md#getauthservices) | **GET** /api/2.0/settings/authservice | Get the authorization services
+[**saveAuthKeys**](SettingsAuthorizationAPI.md#saveauthkeys) | **POST** /api/2.0/settings/authservice | Save the authorization keys
+[**testExternalDatabaseConnection**](SettingsAuthorizationAPI.md#testexternaldatabaseconnection) | **POST** /api/2.0/settings/authservice/externaldb/test | Test external database connection
+
+
+# **getAuthServices**
+```swift
+    open class func getAuthServices(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AuthServiceArrayWrapper
+```
+
+Returns the catalogue of third-party storage and authorization providers DocSpace can integrate with (for  example Amazon S3, Dropbox, Google, or Telegram), including whichever keys were last saved for each one that  currently has any configured. Requires Owner or DocSpaceAdmin (the EditPortalSettings permission). This is a  read-only, idempotent call, and the list is not paginated; entries are ordered by the provider's configured  display order. Only providers that expose at least one manageable key are included, so a provider with nothing  to configure is omitted entirely. Save or change a provider's keys with `POST api/2.0/settings/authservice`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-auth-services/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AuthServiceArrayWrapper**](AuthServiceArrayWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Get the authorization services
+do {
+    let response = try await SettingsAuthorizationAPIApi.getAuthServices()
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **saveAuthKeys**
+```swift
+    open class func saveAuthKeys(saveAuthKeysRequestDto: SaveAuthKeysRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> BooleanWrapper
+```
+
+Saves the authorization keys for one third-party storage or authorization provider, identified by name, or  clears them when every submitted key is left empty. Requires Owner or DocSpaceAdmin (the EditPortalSettings  permission); a provider that does not allow its keys to be changed from the API rejects the call outright. A  provider that is only available on a paid plan additionally requires the portal's tariff to include  third-party storage, or Standalone licensing, before the call is accepted. Keys that fail the provider's own  validation are cleared and the call is rejected rather than left partially applied. This is a mutating,  idempotent call: resaving identical keys succeeds and reports no change. It returns whether the keys actually  changed, not the keys themselves; connecting Telegram or an external database through this call also triggers  the matching real-time connection update.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/save-auth-keys/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **saveAuthKeysRequestDto** | [**SaveAuthKeysRequestDto**](SaveAuthKeysRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**BooleanWrapper**](BooleanWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let saveAuthKeysRequestDto = SaveAuthKeysRequestDto(name: "name_example", title: "title_example", description: "description_example", instruction: "instruction_example", canSet: true, paid: false, props: [AuthKeyRequest(name: "name_example", value: "value_example", title: "title_example", type: "type_example", options: ["options_example"], dependsOn: "dependsOn_example", dependsOnValue: "dependsOnValue_example")]) // SaveAuthKeysRequestDto |  (optional)
+
+// Save the authorization keys
+do {
+    let response = try await SettingsAuthorizationAPIApi.saveAuthKeys(saveAuthKeysRequestDto: saveAuthKeysRequestDto)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **testExternalDatabaseConnection**
+```swift
+    open class func testExternalDatabaseConnection(externalDatabaseConnectionRequestDto: ExternalDatabaseConnectionRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ConnectionTestResultWrapper
+```
+
+Probes connectivity to an external database using the settings supplied in the request, without saving them or  affecting the portal's own configuration. Requires Owner or DocSpaceAdmin (the EditPortalSettings permission).  SQLite is only accepted as a target on a Standalone (self-hosted) installation; requesting it on SaaS is  reported as a failed connection rather than an error. This is a read-only call, safe to retry. A failed  connection is not an HTTP error: the response always comes back as a normal success with `success=false` and  an `error` message describing what went wrong.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/test-external-database-connection/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **externalDatabaseConnectionRequestDto** | [**ExternalDatabaseConnectionRequestDto**](ExternalDatabaseConnectionRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**ConnectionTestResultWrapper**](ConnectionTestResultWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let externalDatabaseConnectionRequestDto = ExternalDatabaseConnectionRequestDto(databaseType: "databaseType_example", databaseTypeEnum: ExternalDatabaseType(), dbHost: "dbHost_example", dbPort: 123, dbName: "dbName_example", dbUser: "dbUser_example", dbPassword: "dbPassword_example", dbSsl: false, sqliteFilePath: "sqliteFilePath_example") // ExternalDatabaseConnectionRequestDto |  (optional)
+
+// Test external database connection
+do {
+    let response = try await SettingsAuthorizationAPIApi.testExternalDatabaseConnection(externalDatabaseConnectionRequestDto: externalDatabaseConnectionRequestDto)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

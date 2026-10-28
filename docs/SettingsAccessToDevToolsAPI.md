@@ -1,0 +1,51 @@
+# SettingsAccessToDevToolsAPIApi
+
+All URIs are relative to *https://your-docspace.onlyoffice.com*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getTenantAccessDevToolsSettings**](SettingsAccessToDevToolsAPI.md#gettenantaccessdevtoolssettings) | **GET** /api/2.0/settings/devtoolsaccess | Get the Developer Tools access settings
+
+
+# **getTenantAccessDevToolsSettings**
+```swift
+    open class func getTenantAccessDevToolsSettings(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> TenantDevToolsAccessSettingsWrapper
+```
+
+Returns whether the portal currently restricts the `User` role from using the developer tools (API keys, OAuth  apps, webhooks). Requires an authenticated session; every role can read the restriction, even though it only  limits what a `User` may do, not what a `RoomAdmin` or `DocSpaceAdmin` may do. This is a read-only, idempotent  call. Change the restriction with `POST api/2.0/security/devtoolsaccess`, which requires the  EditPortalSettings permission.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-tenant-access-dev-tools-settings/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TenantDevToolsAccessSettingsWrapper**](TenantDevToolsAccessSettingsWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Get the Developer Tools access settings
+do {
+    let response = try await SettingsAccessToDevToolsAPIApi.getTenantAccessDevToolsSettings()
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
