@@ -17,7 +17,7 @@ import Foundation
 /** The credentials and the title of the third-party storage account the portal writes its backups to. */
 public struct ThirdPartyBackupRequestDto: Sendable, Codable, Hashable {
 
-    /** The address of the storage server to connect to. It is needed by the WebDAV presets whose server is not known  in advance (`WebDav`, `Nextcloud`, `ownCloud`), where it points at the WebDAV endpoint of that server, and by  `SharePoint`; the presets with a fixed address and the OAuth services ignore it. */
+    /** The address of the storage server to connect to. It is needed by the WebDAV presets whose server is not known  in advance (`WebDav`, `Nextcloud`, `ownCloud`), where it points at the WebDAV endpoint of that server, and by  `SharePoint`. For `kDrive` it is the WebDAV address of the drive, `https://{kDrive ID}.connect.kdrive.infomaniak.com`,  optionally followed by a folder path; the kDrive ID is the number after `/drive/` in the URL of the kDrive web app.  The OAuth services ignore it. */
     public var url: String?
     /** The account name at the storage service, used by the services that authenticate by login and password. A login  sent without a password is rejected as an invalid request. */
     public var login: String?

@@ -9,11 +9,15 @@ Method | HTTP request | Description
 [**createCustomerMonthlyUsageReport**](PortalPaymentAPI.md#createcustomermonthlyusagereport) | **POST** /api/2.0/portal/payment/customer/usage/monthly/report | Start the monthly usage report
 [**createCustomerOperationsReport**](PortalPaymentAPI.md#createcustomeroperationsreport) | **POST** /api/2.0/portal/payment/customer/operationsreport | Start the operations report
 [**createCustomerServiceUsageReport**](PortalPaymentAPI.md#createcustomerserviceusagereport) | **POST** /api/2.0/portal/payment/customer/usage/report | Start the service usage report
+[**createServiceLimit**](PortalPaymentAPI.md#createservicelimit) | **POST** /api/2.0/portal/payment/servicelimit | Create a service limit
+[**deleteServiceLimit**](PortalPaymentAPI.md#deleteservicelimit) | **DELETE** /api/2.0/portal/payment/servicelimit/{id} | Delete a service limit
+[**disableParticipantServiceLimits**](PortalPaymentAPI.md#disableparticipantservicelimits) | **PUT** /api/2.0/portal/payment/servicelimit/participants/disable | Disable the user service limits
 [**getAccountingServicePrices**](PortalPaymentAPI.md#getaccountingserviceprices) | **GET** /api/2.0/portal/payment/accounting/prices/{serviceName} | Get the service prices from the accounting service
 [**getActiveServices**](PortalPaymentAPI.md#getactiveservices) | **GET** /api/2.0/portal/payment/activeservices | Get the active wallet services
 [**getAiPrices**](PortalPaymentAPI.md#getaiprices) | **GET** /api/2.0/portal/payment/ai-prices | Get AI model prices
 [**getCheckoutSetupUrl**](PortalPaymentAPI.md#getcheckoutsetupurl) | **GET** /api/2.0/portal/payment/checkoutsetupurl | Get the checkout setup page URL
 [**getCustomerBalance**](PortalPaymentAPI.md#getcustomerbalance) | **GET** /api/2.0/portal/payment/customer/balance | Get the customer balance
+[**getCustomerDeposits**](PortalPaymentAPI.md#getcustomerdeposits) | **GET** /api/2.0/portal/payment/customer/deposits | Get the wallet top-ups
 [**getCustomerInfo**](PortalPaymentAPI.md#getcustomerinfo) | **GET** /api/2.0/portal/payment/customerinfo | Get the customer information
 [**getCustomerMonthlyUsage**](PortalPaymentAPI.md#getcustomermonthlyusage) | **GET** /api/2.0/portal/payment/customer/usage/monthly | Get the customer monthly usage
 [**getCustomerMonthlyUsageReport**](PortalPaymentAPI.md#getcustomermonthlyusagereport) | **GET** /api/2.0/portal/payment/customer/usage/monthly/report | Get the monthly usage report status
@@ -21,6 +25,9 @@ Method | HTTP request | Description
 [**getCustomerOperationsReport**](PortalPaymentAPI.md#getcustomeroperationsreport) | **GET** /api/2.0/portal/payment/customer/operationsreport | Get the operations report status
 [**getCustomerServiceUsage**](PortalPaymentAPI.md#getcustomerserviceusage) | **GET** /api/2.0/portal/payment/customer/usage | Get the customer service usage
 [**getCustomerServiceUsageReport**](PortalPaymentAPI.md#getcustomerserviceusagereport) | **GET** /api/2.0/portal/payment/customer/usage/report | Get the service usage report status
+[**getDepositInvoice**](PortalPaymentAPI.md#getdepositinvoice) | **GET** /api/2.0/portal/payment/customer/deposits/{id}/invoice | Get the top-up invoice
+[**getGlobalServiceLimit**](PortalPaymentAPI.md#getglobalservicelimit) | **GET** /api/2.0/portal/payment/servicelimit/global | Get the global service limit
+[**getParticipantServiceLimits**](PortalPaymentAPI.md#getparticipantservicelimits) | **GET** /api/2.0/portal/payment/servicelimit/participants | Get the user service limits
 [**getPaymentAccount**](PortalPaymentAPI.md#getpaymentaccount) | **GET** /api/2.0/portal/payment/account | Get the billing account page
 [**getPaymentCurrencies**](PortalPaymentAPI.md#getpaymentcurrencies) | **GET** /api/2.0/portal/payment/currencies | Get the billing currencies
 [**getPaymentQuotas**](PortalPaymentAPI.md#getpaymentquotas) | **GET** /api/2.0/portal/payment/quotas | Get the purchasable quotas
@@ -28,13 +35,16 @@ Method | HTTP request | Description
 [**getPortalPrices**](PortalPaymentAPI.md#getportalprices) | **GET** /api/2.0/portal/payment/prices | Get the product prices
 [**getQuotaPaymentInformation**](PortalPaymentAPI.md#getquotapaymentinformation) | **GET** /api/2.0/portal/payment/quota | Get the current plan and limits
 [**getRestrictedAiModels**](PortalPaymentAPI.md#getrestrictedaimodels) | **GET** /api/2.0/portal/payment/ai-model/restrictions | Get restricted AI models
+[**getServiceLimit**](PortalPaymentAPI.md#getservicelimit) | **GET** /api/2.0/portal/payment/servicelimit/{id} | Get a service limit
 [**getSubscriptionBalanceInfo**](PortalPaymentAPI.md#getsubscriptionbalanceinfo) | **GET** /api/2.0/portal/payment/subscription/balance | Get the subscription balance information
 [**getTenantWalletServiceSettings**](PortalPaymentAPI.md#gettenantwalletservicesettings) | **GET** /api/2.0/portal/payment/servicessettings | Get the wallet service settings
 [**getTenantWalletSettings**](PortalPaymentAPI.md#gettenantwalletsettings) | **GET** /api/2.0/portal/payment/topupsettings | Get the auto top-up settings
+[**getTotalServiceLimit**](PortalPaymentAPI.md#gettotalservicelimit) | **GET** /api/2.0/portal/payment/servicelimit/total | Get the portal service limit
 [**getWalletService**](PortalPaymentAPI.md#getwalletservice) | **GET** /api/2.0/portal/payment/walletservice | Get a wallet service
 [**getWalletServices**](PortalPaymentAPI.md#getwalletservices) | **GET** /api/2.0/portal/payment/walletservices | Get wallet services
 [**moveSubscriptionToWallet**](PortalPaymentAPI.md#movesubscriptiontowallet) | **POST** /api/2.0/portal/payment/subscription/movetowallet | Move the subscription to the wallet
 [**sendPaymentRequest**](PortalPaymentAPI.md#sendpaymentrequest) | **POST** /api/2.0/portal/payment/request | Contact the sales team
+[**setParticipantServiceLimits**](PortalPaymentAPI.md#setparticipantservicelimits) | **PUT** /api/2.0/portal/payment/servicelimit/participants | Set the user service limits
 [**setRestrictedAiModels**](PortalPaymentAPI.md#setrestrictedaimodels) | **PUT** /api/2.0/portal/payment/ai-model/restrictions | Set restricted AI models
 [**setTenantWalletSettings**](PortalPaymentAPI.md#settenantwalletsettings) | **POST** /api/2.0/portal/payment/topupsettings | Set the auto top-up settings
 [**terminateCustomerMonthlyUsageReport**](PortalPaymentAPI.md#terminatecustomermonthlyusagereport) | **DELETE** /api/2.0/portal/payment/customer/usage/monthly/report | Terminate the monthly usage report
@@ -42,6 +52,7 @@ Method | HTTP request | Description
 [**terminateCustomerServiceUsageReport**](PortalPaymentAPI.md#terminatecustomerserviceusagereport) | **DELETE** /api/2.0/portal/payment/customer/usage/report | Terminate the service usage report
 [**topUpDeposit**](PortalPaymentAPI.md#topupdeposit) | **POST** /api/2.0/portal/payment/deposit | Top up the wallet
 [**updatePayment**](PortalPaymentAPI.md#updatepayment) | **PUT** /api/2.0/portal/payment/update | Change the subscription quantity
+[**updateServiceLimit**](PortalPaymentAPI.md#updateservicelimit) | **PUT** /api/2.0/portal/payment/servicelimit | Update a service limit
 [**updateWalletPayment**](PortalPaymentAPI.md#updatewalletpayment) | **PUT** /api/2.0/portal/payment/updatewallet | Change a wallet service quantity
 
 
@@ -275,12 +286,145 @@ do {
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **createServiceLimit**
+```swift
+    open class func createServiceLimit(createServiceLimitRequestDto: CreateServiceLimitRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServiceLimitWrapper
+```
+
+Creates a spending limit on the AI services - AI tools and AI search together - with `scope` saying whom it  applies to: `Total` for the portal as a whole, `Global` for every user separately, `Custom` for the user in  `userId`, which only this scope takes. A personal limit applies to its user instead of the one for every user,  and the limit of the portal is checked on top of both. The portal needs a billing customer, and the caller needs  the permission to edit the portal settings as well as DocSpace administrator rights. At least one of  `amountValue` and `quantityValue` must be given; with both, the services stop as soon as either is reached. The  call is mutating and written to the portal audit trail. It is not idempotent: a second limit of the same scope,  or for the same user, is refused with 409 - change the existing one with  `PUT api/2.0/portal/payment/servicelimit` instead. The scope, the user and the period cannot be changed later.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/create-service-limit/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createServiceLimitRequestDto** | [**CreateServiceLimitRequestDto**](CreateServiceLimitRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let createServiceLimitRequestDto = CreateServiceLimitRequestDto(scope: ServiceLimitScope(), userId: 123, amountValue: 123, quantityValue: 123, period: ServiceLimitPeriod()) // CreateServiceLimitRequestDto |  (optional)
+
+// Create a service limit
+do {
+    let response = try await PortalPaymentAPIApi.createServiceLimit(createServiceLimitRequestDto: createServiceLimitRequestDto)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteServiceLimit**
+```swift
+    open class func deleteServiceLimit(id: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse)
+```
+
+Removes one spending limit on the AI services completely - the limit of the portal as a whole, the one for  every user, or a personal one - so it no longer restricts anyone. The portal needs a billing customer, and the  caller needs the permission to edit the portal settings as well as DocSpace administrator rights. The call is  destructive and cannot be undone: unlike switching a limit off with `PUT api/2.0/portal/payment/servicelimit`,  which keeps its settings, a deleted limit is gone, and a new one has to be created with  `POST api/2.0/portal/payment/servicelimit`. Deleting a personal limit lets the limit for every user apply to  that user. It is written to the portal audit trail. An ID that does not exist, belongs to another portal or is  not a limit on the AI services answers 404, which is also what a repeated deletion of the same limit gets.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/delete-service-limit/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Int** | The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits. | 
+
+### Return type
+
+Void (empty response body)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = 987 // Int | The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits.
+
+// Delete a service limit
+do {
+    try await PortalPaymentAPIApi.deleteServiceLimit(id: id)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **disableParticipantServiceLimits**
+```swift
+    open class func disableParticipantServiceLimits(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Int32Wrapper
+```
+
+Switches off every personal spending limit on the AI services in one call, so each user falls back to the limit  for every user, if one is set. The limit of the portal as a whole and the one for every user stay as they are.  The portal needs a billing customer, and the caller needs the permission to edit the portal settings as well as  DocSpace administrator rights. The switched-off limits stop restricting their users at once and are kept, so  each can be switched back on with `PUT api/2.0/portal/payment/servicelimit`. The call is mutating and  idempotent - repeating it switches off nothing more - and it is written to the portal audit trail. The answer is  the number of personal limits that were switched off, zero when none was in force. To switch off the limit of a  single user, use `PUT api/2.0/portal/payment/servicelimit` with `enabled` set to false.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/disable-participant-service-limits/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Int32Wrapper**](Int32Wrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Disable the user service limits
+do {
+    let response = try await PortalPaymentAPIApi.disableParticipantServiceLimits()
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getAccountingServicePrices**
 ```swift
     open class func getAccountingServicePrices(serviceName: String, active: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServicePriceArrayWrapper
 ```
 
-Returns the portal's automatic wallet top-up settings: whether it is switched on, the balance that triggers  it, the balance it tops the wallet up to and the currency it charges in. Only a DocSpace administrator may  read it, no billing customer is needed, and the call is read-only. A portal that has never configured it gets  the defaults rather than an empty result, so `enabled` is the field that says whether anything happens at all.  Two of the values are kept by the portal itself and cannot be set through this API: `lowBalanceThreshold` is  the balance below which the portal warns its administrators by mail, and `lowBalanceNotified` says whether  that warning has already gone out for the current dip. Change the rest with  `POST api/2.0/portal/payment/topupsettings`.
+Returns the price list of one wallet service as the accounting service keeps it: every price record with its  time unit, cost and resulting price, volume threshold, validity period, status and discount category. Take  the service name from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`. The caller must  be a DocSpace administrator, and the server must have the billing and accounting services configured;  otherwise the call fails with 403. The call is read-only and can be repeated safely. By default the list  also holds retired and not yet started records; `active=true` keeps only the prices in force now. A service  with no prices comes back as an empty list. Amounts are in the currency of the service, which the records do  not name. The list is cached for all portals for up to an hour, so a change in the accounting service can  take that long to appear. For the current price of every plan and wallet service as the customer sees it, use  `GET api/2.0/portal/payment/quotas`. An unknown service name fails with 500, as does an unreachable  accounting service.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-accounting-service-prices/).
 
@@ -288,7 +432,7 @@ For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspa
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **serviceName** | **String** | The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`; a name  the accounting service does not price yields an empty list rather than an error. | 
+ **serviceName** | **String** | The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`. | 
  **active** | **Bool** | Whether the answer is narrowed to the prices in force at the moment of the call. Leaving it false also  returns the retired and the not yet started ones, which is what pricing a movement recorded in the past  needs. | [optional] 
 
 ### Return type
@@ -304,7 +448,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let serviceName = "serviceName_example" // String | The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`; a name  the accounting service does not price yields an empty list rather than an error.
+let serviceName = "serviceName_example" // String | The service whose price list is read, named the way the billing catalogue names it, such as `ai-tools` or  `backup`. Take the value from the `serviceName` field of `GET api/2.0/portal/payment/walletservices`.
 let active = false // Bool | Whether the answer is narrowed to the prices in force at the moment of the call. Leaving it false also  returns the retired and the not yet started ones, which is what pricing a movement recorded in the past  needs. (optional)
 
 // Get the service prices from the accounting service
@@ -488,6 +632,60 @@ let refresh = true // Bool | Whether the answer is fetched from the billing serv
 // Get the customer balance
 do {
     let response = try await PortalPaymentAPIApi.getCustomerBalance(refresh: refresh)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getCustomerDeposits**
+```swift
+    open class func getCustomerDeposits(startDate: Date? = nil, endDate: Date? = nil, status: OperationStatus? = nil, offset: Int? = nil, limit: Int? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> DepositReportWrapper
+```
+
+Lists the top-ups of the portal's wallet - the payments into it - one page at a time, which is what a list of  payments with their invoices is built from. A portal that is not a billing customer yet has no top-ups and  gets an empty result rather than an error. Only the payer or the portal owner may read it, as with the  invoices, and the call is read-only. Every filter is optional: `startDate` and `endDate` default to the  portal creation date and the present moment, a value without `Z` or an offset is read in the portal time  zone, and `status` narrows to how a top-up ended. `offset` and `limit` default to 0 and 25 and are echoed next  to `totalQuantity`, `totalPage` and `currentPage`; a negative `offset` or a `limit` outside 1 to 100 fails  with 400. An empty result means the portal is not a billing customer, has no wallet at the accounting service  yet, or that service could not be read; a period without top-ups gives an empty `collection`. A top-up with  `hasInvoice` true has an invoice, opened with `GET api/2.0/portal/payment/customer/deposits/{id}/invoice`.  For the full wallet history, charges and refunds included, use  `GET api/2.0/portal/payment/customer/operations`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-customer-deposits/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **startDate** | **Date** | The beginning of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is  read in the portal time zone, not in the caller's; defaults to the portal creation date. | [optional] 
+ **endDate** | **Date** | The end of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is read in  the portal time zone, not in the caller's; defaults to the moment the call is made. | [optional] 
+ **status** | [**OperationStatus**](.md) | The outcome to keep. A top-up that is still being settled is reported as pending and may change later, while  the other outcomes are final; every outcome is reported when this is omitted. | [optional] 
+ **offset** | **Int** | The number of top-ups to skip before the first one returned, for walking through a long history page by page.  Counted after the filters are applied, and starts at 0 when omitted. | [optional] 
+ **limit** | **Int** | The maximum number of top-ups returned in one page. Defaults to 25 when omitted; the answer echoes the window  back next to `totalQuantity`, `totalPage` and `currentPage`, so the next `offset` can be computed without  counting the items. | [optional] 
+
+### Return type
+
+[**DepositReportWrapper**](DepositReportWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let startDate = Date() // Date | The beginning of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is  read in the portal time zone, not in the caller's; defaults to the portal creation date. (optional)
+let endDate = Date() // Date | The end of the period, inclusive, as an ISO 8601 timestamp. A value with neither `Z` nor an offset is read in  the portal time zone, not in the caller's; defaults to the moment the call is made. (optional)
+let status = OperationStatus() // OperationStatus | The outcome to keep. A top-up that is still being settled is reported as pending and may change later, while  the other outcomes are final; every outcome is reported when this is omitted. (optional)
+let offset = 987 // Int | The number of top-ups to skip before the first one returned, for walking through a long history page by page.  Counted after the filters are applied, and starts at 0 when omitted. (optional)
+let limit = 987 // Int | The maximum number of top-ups returned in one page. Defaults to 25 when omitted; the answer echoes the window  back next to `totalQuantity`, `totalPage` and `currentPage`, so the next `offset` can be computed without  counting the items. (optional)
+
+// Get the wallet top-ups
+do {
+    let response = try await PortalPaymentAPIApi.getCustomerDeposits(startDate: startDate, endDate: endDate, status: status, offset: offset, limit: limit)
     dump(response)
 } catch {
     print(error)
@@ -853,6 +1051,146 @@ do {
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getDepositInvoice**
+```swift
+    open class func getDepositInvoice(id: Int64, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper
+```
+
+Hands back the address of the page on which the billing provider shows the invoice for one top-up of the  portal's wallet, so a client can open or download it. The top-up is named by the `id` that  `GET api/2.0/portal/payment/customer/deposits` returns, and only one listed there with `hasInvoice` true has an  invoice to show. Only the payer or the portal owner may read it, as with the billing account page, and the  call changes nothing. The address is absolute and points to the billing provider rather than to the portal;  it is asked for anew on every call, so request it when the user is about to open the invoice instead of  storing it. A top-up this portal does not have, one without an invoice, or a portal that is not a billing  customer answers 404, and an `id` that is not a number fails with 400. An installation without a billing  service answers 403, and 402 means the billing or the accounting service rejected the request or did not  answer, which a later retry may get past.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-deposit-invoice/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Int64** | The ID of the top-up, taken from the `id` field of `GET api/2.0/portal/payment/customer/deposits`. | 
+
+### Return type
+
+[**StringWrapper**](StringWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = 987 // Int64 | The ID of the top-up, taken from the `id` field of `GET api/2.0/portal/payment/customer/deposits`.
+
+// Get the top-up invoice
+do {
+    let response = try await PortalPaymentAPIApi.getDepositInvoice(id: id)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getGlobalServiceLimit**
+```swift
+    open class func getGlobalServiceLimit(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServiceLimitWrapper
+```
+
+Returns the spending limit on the AI services for every user - the same ceiling applied to each user separately,  for any user without a personal limit in force. Only a DocSpace administrator may read it, an installation  without a billing service answers 403, and the call is read-only. It comes without spending, since that is  counted per user: read it for each user from `GET api/2.0/portal/payment/servicelimit/participants`; `periodEnd`  still says when the current period ends for everyone. When no  such limit has been set, or it was deleted, the answer is 200 with a null `response`; create the limit with  `POST api/2.0/portal/payment/servicelimit` and the scope `Global`. A switched-off limit is still returned, with  `enabled` false. A portal with no billing customer answers 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-global-service-limit/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Get the global service limit
+do {
+    let response = try await PortalPaymentAPIApi.getGlobalServiceLimit()
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getParticipantServiceLimits**
+```swift
+    open class func getParticipantServiceLimits(offset: Int? = nil, limit: Int? = nil, orderBy: ServiceLimitOrderBy? = nil, orderType: OperationOrderType? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServiceLimitReportWrapper
+```
+
+Lists, one page at a time, the spending limit on the AI services in force for each portal user, with what the  user spent against it in the current period and what is left. Only a DocSpace administrator may read it, an  installation without a billing service answers 403, a portal with no billing customer answers 404, and the call  is read-only; a portal with no limits gets an empty page. A user's own limit wins over the one for every user: an item with the scope `Custom` is a  personal limit, one with `Global` the limit for every user, its ID repeated for each user it applies to.  Switched-off limits are not listed, and a user who has not used the AI services yet may be missing. `offset`  and `limit` page through the result and default to 0 and 25, and the answer repeats them next to  `totalQuantity`, `totalPage` and `currentPage`; `orderBy` and `orderType` sort it, the newest limits first by  default.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-participant-service-limits/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **offset** | **Int** | The number of limits to skip before the first one returned, counted in the sort order of the list. | [optional] 
+ **limit** | **Int** | The largest number of limits one page holds. | [optional] 
+ **orderBy** | [**ServiceLimitOrderBy**](.md) | The field the list is sorted by: the user a limit applies to, or the moment it was created. | [optional] 
+ **orderType** | [**OperationOrderType**](.md) | The direction the field named in `orderBy` is sorted in. | [optional] 
+
+### Return type
+
+[**ServiceLimitReportWrapper**](ServiceLimitReportWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let offset = 987 // Int | The number of limits to skip before the first one returned, counted in the sort order of the list. (optional)
+let limit = 987 // Int | The largest number of limits one page holds. (optional)
+let orderBy = ServiceLimitOrderBy() // ServiceLimitOrderBy | The field the list is sorted by: the user a limit applies to, or the moment it was created. (optional)
+let orderType = OperationOrderType() // OperationOrderType | The direction the field named in `orderBy` is sorted in. (optional)
+
+// Get the user service limits
+do {
+    let response = try await PortalPaymentAPIApi.getParticipantServiceLimits(offset: offset, limit: limit, orderBy: orderBy, orderType: orderType)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getPaymentAccount**
 ```swift
     open class func getPaymentAccount(backUrl: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> StringWrapper
@@ -1082,7 +1420,7 @@ do {
     open class func getQuotaPaymentInformation(refresh: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> QuotaWrapper
 ```
 
-Returns the quota the portal is on right now - its paid plan or the free one - with everything a client needs  to render itself: the price, the features that are switched on, the limits they grant (rooms, storage in  bytes, users, administrators, AI) and how much of each is already used. Every signed-in member of the portal  reads it, so it is not restricted to administrators; only guests are refused with 403. The call is read-only.  The plan is served from the cache by default, which is what a start-up needs; `refresh=true` fetches it from  the billing service instead, so use that right after a purchase and not routinely, because it is a remote  call. The catalogue of the quotas that could be bought instead is `GET api/2.0/portal/payment/quotas`, and the  money side of the same portal - customer, wallet and balance - starts at  `GET api/2.0/portal/payment/customerinfo`.
+Returns the quota the portal is on - its paid plan or the free one - with the limits its features grant and how  much of each is already used. Any signed-in member except a guest may call it. The call is read-only; the plan  comes from the cache, and `refresh=true` re-reads it from the billing service, a remote call meant for right  after a purchase. The answer is trimmed to the caller's user type: a DocSpace administrator or the owner gets  the price, the due date and all features, a room administrator only the `manager`, `room`, `total_size` and  `statistic` features, and a user only `total_size`. For both of the latter `price` is an empty object and  `dueDate` is omitted, while the storage quota settings (`usersQuota`, `roomsQuota`, `aiAgentsQuota`,  `tenantCustomQuota`) come back as for an administrator. The quotas that could be bought instead are  `GET api/2.0/portal/payment/quotas`. A guest is refused with 403.
 
 For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-quota-payment-information/).
 
@@ -1152,6 +1490,52 @@ import OpenAPIClient
 // Get restricted AI models
 do {
     let response = try await PortalPaymentAPIApi.getRestrictedAiModels()
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getServiceLimit**
+```swift
+    open class func getServiceLimit(id: Int, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServiceLimitWrapper
+```
+
+Returns one spending limit on the AI services of the portal by its ID - the limit of the portal as a whole, the  one for every user, or a personal one. Only a DocSpace administrator may read it, an installation without a  billing service answers 403, and the call is read-only. The limit comes back with its scope, thresholds, their  currency and unit, the period and whether it is in force, but without its spending: that comes with  `GET api/2.0/portal/payment/servicelimit/total` for the portal and with  `GET api/2.0/portal/payment/servicelimit/participants` for each user. A portal with no billing customer, and an  ID that does not exist, belongs to another portal or is not a limit on the AI services, answer 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-service-limit/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Int** | The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits. | 
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let id = 987 // Int | The ID of the service limit, as returned in `id` by the operation that created it or by the reads of limits.
+
+// Get a service limit
+do {
+    let response = try await PortalPaymentAPIApi.getServiceLimit(id: id)
     dump(response)
 } catch {
     print(error)
@@ -1278,6 +1662,48 @@ import OpenAPIClient
 // Get the auto top-up settings
 do {
     let response = try await PortalPaymentAPIApi.getTenantWalletSettings()
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getTotalServiceLimit**
+```swift
+    open class func getTotalServiceLimit(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServiceLimitWrapper
+```
+
+Returns the spending limit on the AI services for the portal as a whole - the ceiling the spending of every user  counts towards - together with what was spent against it in the current period and what is left. Only a  DocSpace administrator may read it, an installation without a billing service answers 403, and the call is  read-only. The limit is checked in addition to the limits  of the users, so a user can be stopped by it before reaching their own. The spending includes the expected cost  of AI operations still in progress. When no such limit has been set, or it was deleted, the answer is 200 with a  null `response`; create the limit with `POST api/2.0/portal/payment/servicelimit` and the scope `Total`. A  switched-off limit is still returned, with `enabled` false. A portal with no billing customer answers 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/get-total-service-limit/).
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+
+// Get the portal service limit
+do {
+    let response = try await PortalPaymentAPIApi.getTotalServiceLimit()
     dump(response)
 } catch {
     print(error)
@@ -1458,6 +1884,52 @@ let salesRequestDto = SalesRequestDto(userName: "userName_example", email: "emai
 // Contact the sales team
 do {
     try await PortalPaymentAPIApi.sendPaymentRequest(salesRequestDto: salesRequestDto)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **setParticipantServiceLimits**
+```swift
+    open class func setParticipantServiceLimits(setParticipantServiceLimitsRequestDto: SetParticipantServiceLimitsRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> Int32Wrapper
+```
+
+Sets the same personal spending limit on the AI services for each of the listed portal users in one call,  replacing the personal limit any of them already has and switching it on, so it is how a ceiling is rolled out  to a group of users. The portal needs a billing customer, and the caller needs the permission to edit the portal  settings as well as DocSpace administrator rights. At least one of `amountValue` and `quantityValue` must be  given, every user in `userIds` must exist on the portal, and a user listed twice is limited once. One call takes  at most 1000 users; split a larger group into several calls. Unlike  `PUT api/2.0/portal/payment/servicelimit`, this sets the whole limit: a threshold left out is removed, and the  period may change, though a lifetime limit set to lifetime again keeps counting from where it was. Each personal  limit applies instead of the one for every user, and the limit of the portal is checked on top. The call is mutating and idempotent, and it is written to the portal audit trail. The answer is  the number of personal limits that were set; the result is listed by  `GET api/2.0/portal/payment/servicelimit/participants`.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/set-participant-service-limits/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **setParticipantServiceLimitsRequestDto** | [**SetParticipantServiceLimitsRequestDto**](SetParticipantServiceLimitsRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**Int32Wrapper**](Int32Wrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let setParticipantServiceLimitsRequestDto = SetParticipantServiceLimitsRequestDto(userIds: [123], amountValue: 123, quantityValue: 123, period: ServiceLimitPeriod()) // SetParticipantServiceLimitsRequestDto |  (optional)
+
+// Set the user service limits
+do {
+    let response = try await PortalPaymentAPIApi.setParticipantServiceLimits(setParticipantServiceLimitsRequestDto: setParticipantServiceLimitsRequestDto)
+    dump(response)
 } catch {
     print(error)
 }
@@ -1764,6 +2236,52 @@ let quantityRequestDto = QuantityRequestDto(quantity: "TODO") // QuantityRequest
 // Change the subscription quantity
 do {
     let response = try await PortalPaymentAPIApi.updatePayment(quantityRequestDto: quantityRequestDto)
+    dump(response)
+} catch {
+    print(error)
+}
+```
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateServiceLimit**
+```swift
+    open class func updateServiceLimit(updateServiceLimitRequestDto: UpdateServiceLimitRequestDto? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> ServiceLimitWrapper
+```
+
+Changes the thresholds of an existing spending limit on the AI services, or switches it off and back on with  `enabled`. The portal needs a billing customer, and the caller needs the permission to edit the portal settings  as well as DocSpace administrator rights. Only the given fields change: an omitted threshold keeps its value, so  a threshold once set cannot be removed here - delete the limit with  `DELETE api/2.0/portal/payment/servicelimit/{id}` and create it anew with  `POST api/2.0/portal/payment/servicelimit`, which is also the way to change its scope, user or period. A  switched-off limit stops restricting the AI services at once. The call is mutating and idempotent, it is written  to the portal audit trail, and a new threshold applies from the very next operation; lowering it below what was  already spent blocks the AI services until the period ends. An ID that does not exist, belongs to another portal  or is not a limit on the AI services answers 404.
+
+For more information, see [api.onlyoffice.com](https://api.onlyoffice.com/docspace/api-backend/usage-api/update-service-limit/).
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateServiceLimitRequestDto** | [**UpdateServiceLimitRequestDto**](UpdateServiceLimitRequestDto.md) |  | [optional] 
+
+### Return type
+
+[**ServiceLimitWrapper**](ServiceLimitWrapper.md)
+
+### Authorization
+
+[Basic](../README.md#Basic), [OAuth2](../README.md#OAuth2), [ApiKeyBearer](../README.md#ApiKeyBearer), [asc_auth_key](../README.md#asc_auth_key), [Bearer](../README.md#Bearer), [OpenId](../README.md#OpenId)
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import OpenAPIClient
+
+let updateServiceLimitRequestDto = UpdateServiceLimitRequestDto(id: 123, amountValue: 123, quantityValue: 123, enabled: true) // UpdateServiceLimitRequestDto |  (optional)
+
+// Update a service limit
+do {
+    let response = try await PortalPaymentAPIApi.updateServiceLimit(updateServiceLimitRequestDto: updateServiceLimitRequestDto)
     dump(response)
 } catch {
     print(error)

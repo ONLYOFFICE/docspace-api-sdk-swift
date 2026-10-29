@@ -26,4 +26,5 @@ public enum AiActionType: String, Sendable, Codable, CaseIterable {
     case ocr = "OCR"
     case vision = "Vision"
     case formAnalysis = "FormAnalysis"
+    case generateMeta = "GenerateMeta"
 }

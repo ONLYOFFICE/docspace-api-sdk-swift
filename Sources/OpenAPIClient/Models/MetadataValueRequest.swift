@@ -21,7 +21,7 @@ public struct MetadataValueRequest: Sendable, Codable, Hashable {
     public var fieldId: Int
     /** The string value. */
     public var stringValue: String?
-    /** The number value. */
+    /** The number value: a whole number of at most 2^53-1 (9007199254740991) in magnitude, the largest integer a JSON  client reads exactly. A larger one is refused rather than stored and returned rounded. */
     public var numberValue: Int64?
     /** The date value. A value without a time zone offset is treated as UTC, the same way the metadata filters treat their date bounds. */
     public var dateValue: Date?

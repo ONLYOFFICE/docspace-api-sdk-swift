@@ -14,13 +14,14 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - None, 1 - Hour, 2 - Day, 3 - Week, 4 - Month, 5 - Year, 6 - ThreeYears] */
+/** [1 - None, 2 - Hour, 3 - Day, 4 - Week, 5 - Month, 6 - Year, 7 - ThreeYears, 8 - Minute] */
 public enum PriceTimeUnit: Int, Sendable, Codable, CaseIterable {
-    case None = 0
-    case Hour = 1
-    case Day = 2
-    case Week = 3
-    case Month = 4
-    case Year = 5
-    case ThreeYears = 6
+    case None = 1
+    case Hour = 2
+    case Day = 3
+    case Week = 4
+    case Month = 5
+    case Year = 6
+    case ThreeYears = 7
+    case Minute = 8
 }

@@ -93,6 +93,8 @@ public struct EmployeeFullDto: Sendable, Codable, Hashable {
     public var shared: Bool?
     /** Specifies if the user has a custom quota or not. */
     public var isCustomQuota: Bool?
+    /** The spending limit on the AI services in force for this user - the personal one, or else the limit for every  user - with what the user spent against it. Null when no such limit applies to the user, when the portal has no  billing service, or when the caller is neither a DocSpace administrator nor the user; the limit of the portal as  a whole is not reflected here. The value, and the spending in particular, can lag by a few minutes. */
+    public var aiServicesLimit: UserServiceLimitDto?
     /** The current login event ID. */
     public var loginEventId: Int?
     /** The auth cookie lifetime in seconds. */
@@ -106,7 +108,7 @@ public struct EmployeeFullDto: Sendable, Codable, Hashable {
     /** Indicates whether the user has enabled two-factor authentication (TFA) using an authentication app. */
     public var tfaAppEnabled: Bool?
 
-    public init(id: UUID? = nil, displayName: String? = nil, avatar: String? = nil, avatarOriginal: String? = nil, avatarMax: String? = nil, avatarMedium: String? = nil, avatarSmall: String? = nil, profileUrl: String? = nil, hasAvatar: Bool? = nil, isAnonim: Bool? = nil, firstName: String? = nil, lastName: String? = nil, userName: String? = nil, email: String? = nil, contacts: [Contact]? = nil, status: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, terminated: ApiDateTime? = nil, department: String? = nil, groups: [GroupSummaryDto]? = nil, location: String? = nil, notes: String? = nil, isAdmin: Bool? = nil, isRoomAdmin: Bool? = nil, isLDAP: Bool? = nil, listAdminModules: [String]? = nil, isOwner: Bool? = nil, isVisitor: Bool? = nil, isCollaborator: Bool? = nil, cultureName: String? = nil, mobilePhone: String? = nil, mobilePhoneActivationStatus: MobilePhoneActivationStatus? = nil, isSSO: Bool? = nil, theme: DarkThemeSettingsType? = nil, quotaLimit: Int64? = nil, usedSpace: Double? = nil, shared: Bool? = nil, isCustomQuota: Bool? = nil, loginEventId: Int? = nil, authCookieLifetime: Double? = nil, createdBy: EmployeeDto? = nil, registrationDate: ApiDateTime? = nil, hasPersonalFolder: Bool? = nil, tfaAppEnabled: Bool? = nil) {
+    public init(id: UUID? = nil, displayName: String? = nil, avatar: String? = nil, avatarOriginal: String? = nil, avatarMax: String? = nil, avatarMedium: String? = nil, avatarSmall: String? = nil, profileUrl: String? = nil, hasAvatar: Bool? = nil, isAnonim: Bool? = nil, firstName: String? = nil, lastName: String? = nil, userName: String? = nil, email: String? = nil, contacts: [Contact]? = nil, status: EmployeeStatus? = nil, activationStatus: EmployeeActivationStatus? = nil, terminated: ApiDateTime? = nil, department: String? = nil, groups: [GroupSummaryDto]? = nil, location: String? = nil, notes: String? = nil, isAdmin: Bool? = nil, isRoomAdmin: Bool? = nil, isLDAP: Bool? = nil, listAdminModules: [String]? = nil, isOwner: Bool? = nil, isVisitor: Bool? = nil, isCollaborator: Bool? = nil, cultureName: String? = nil, mobilePhone: String? = nil, mobilePhoneActivationStatus: MobilePhoneActivationStatus? = nil, isSSO: Bool? = nil, theme: DarkThemeSettingsType? = nil, quotaLimit: Int64? = nil, usedSpace: Double? = nil, shared: Bool? = nil, isCustomQuota: Bool? = nil, aiServicesLimit: UserServiceLimitDto? = nil, loginEventId: Int? = nil, authCookieLifetime: Double? = nil, createdBy: EmployeeDto? = nil, registrationDate: ApiDateTime? = nil, hasPersonalFolder: Bool? = nil, tfaAppEnabled: Bool? = nil) {
         self.id = id
         self.displayName = displayName
         self.avatar = avatar
@@ -145,6 +147,7 @@ public struct EmployeeFullDto: Sendable, Codable, Hashable {
         self.usedSpace = usedSpace
         self.shared = shared
         self.isCustomQuota = isCustomQuota
+        self.aiServicesLimit = aiServicesLimit
         self.loginEventId = loginEventId
         self.authCookieLifetime = authCookieLifetime
         self.createdBy = createdBy
@@ -192,6 +195,7 @@ public struct EmployeeFullDto: Sendable, Codable, Hashable {
         case usedSpace
         case shared
         case isCustomQuota
+        case aiServicesLimit
         case loginEventId
         case authCookieLifetime
         case createdBy
@@ -242,6 +246,7 @@ public struct EmployeeFullDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(usedSpace, forKey: .usedSpace)
         try container.encodeIfPresent(shared, forKey: .shared)
         try container.encodeIfPresent(isCustomQuota, forKey: .isCustomQuota)
+        try container.encodeIfPresent(aiServicesLimit, forKey: .aiServicesLimit)
         try container.encodeIfPresent(loginEventId, forKey: .loginEventId)
         try container.encodeIfPresent(authCookieLifetime, forKey: .authCookieLifetime)
         try container.encodeIfPresent(createdBy, forKey: .createdBy)

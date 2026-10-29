@@ -17,7 +17,7 @@ import Foundation
 /** The credentials and the title of a third-party storage account to connect or to re-authenticate. */
 public struct ThirdPartyRequestDto: Sendable, Codable, Hashable {
 
-    /** The address of the storage server to connect to. It is needed by the WebDAV presets whose server is not known  in advance (`WebDav`, `Nextcloud`, `ownCloud`), where it points at the WebDAV endpoint of that server, and by  `SharePoint`; the presets with a fixed address and the OAuth services ignore it. */
+    /** The address of the storage server to connect to. It is needed by the WebDAV presets whose server is not known  in advance (`WebDav`, `Nextcloud`, `ownCloud`), where it points at the WebDAV endpoint of that server, and by  `SharePoint`. For `kDrive` it is the WebDAV address of the drive, `https://{kDrive ID}.connect.kdrive.infomaniak.com`,  optionally followed by a folder path; the kDrive ID is the number after `/drive/` in the URL of the kDrive web app.  The OAuth services ignore it. */
     public var url: String?
     /** The account name at the storage service, used by the services that authenticate by login and password. A login  sent without a password is rejected as an invalid request. */
     public var login: String?
@@ -29,7 +29,7 @@ public struct ThirdPartyRequestDto: Sendable, Codable, Hashable {
     public var customerTitle: String?
     /** The storage service to connect, as the `key` of `GET api/2.0/files/thirdparty/providers`; the value is matched  case-insensitively. `Nextcloud` and `ownCloud` are presets over WebDAV and are stored and reported back as  `WebDav`. */
     public var providerKey: String?
-    /** The account to re-authenticate instead of connecting a new one, as `providerId` of  `GET api/2.0/files/thirdparty`; both a number and its decimal string form are accepted. For an account  attached to the Rooms section only the credentials are applied, and its title and server address are kept. */
+    /** The account to re-authenticate instead of connecting a new one, as `providerId` of  `GET api/2.0/files/thirdparty`; both a number and its decimal string form are accepted. */
     public var providerId: Int?
 
     public init(url: String? = nil, login: String? = nil, password: String? = nil, token: String? = nil, customerTitle: String?, providerKey: String?, providerId: Int? = nil) {

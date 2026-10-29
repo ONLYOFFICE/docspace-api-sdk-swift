@@ -25,8 +25,8 @@ public struct AiApproveToolCallRequest: Sendable, Codable, Hashable {
     public var messageId: String
     /** Index of the tool-call content part inside `message.content`. */
     public var idx: Double
-    /** Snapshot of the assistant message at the time the tool call surfaced. */
-    public var message: AiThreadMessageLike
+    /** Snapshot of the assistant message at the time the tool call surfaced. Optional and ignored: the engine resumes from the stored message, and the copy inflated the body past the parser limit (Bug 84608). */
+    public var message: AiThreadMessageLike?
     /** Per-request engine options: extra tools, reasoning, prompt override. */
     public var actionArgs: AiActionArgs?
     /** Optional entity (room) scope for profile resolution. */
@@ -34,7 +34,7 @@ public struct AiApproveToolCallRequest: Sendable, Codable, Hashable {
     /** Session-level profile override for this request only. */
     public var profileId: String?
 
-    public init(result: JSONValue?, allowAlways: Bool? = nil, threadId: String, messageId: String, idx: Double, message: AiThreadMessageLike, actionArgs: AiActionArgs? = nil, entityId: String? = nil, profileId: String? = nil) {
+    public init(result: JSONValue?, allowAlways: Bool? = nil, threadId: String, messageId: String, idx: Double, message: AiThreadMessageLike? = nil, actionArgs: AiActionArgs? = nil, entityId: String? = nil, profileId: String? = nil) {
         self.result = result
         self.allowAlways = allowAlways
         self.threadId = threadId
@@ -67,7 +67,7 @@ public struct AiApproveToolCallRequest: Sendable, Codable, Hashable {
         try container.encode(threadId, forKey: .threadId)
         try container.encode(messageId, forKey: .messageId)
         try container.encode(idx, forKey: .idx)
-        try container.encode(message, forKey: .message)
+        try container.encodeIfPresent(message, forKey: .message)
         try container.encodeIfPresent(actionArgs, forKey: .actionArgs)
         try container.encodeIfPresent(entityId, forKey: .entityId)
         try container.encodeIfPresent(profileId, forKey: .profileId)
