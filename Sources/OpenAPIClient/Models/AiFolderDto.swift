@@ -61,6 +61,8 @@ public struct AiFolderDto: Sendable, Codable, Hashable {
     public var isFavorite: Bool?
     /** Tells a folder from a file, and so which of the two shapes the rest of the object has. A room is reported as a  folder here. */
     public var fileEntryType: AiFileEntryType?
+    /** Which concrete type the object is: `file`, `thirdPartyFile`, `folder`, `thirdPartyFolder`. It is what tells the types apart in a list that mixes several of them; a response limited by `fields` may leave it out. */
+    public var entryKind: String?
     /** The identifier to pass back to the other operations of this entry. It is a number for storage on the portal  and a string for a connected third-party account, and it is unique only within its own kind, so files and  folders may carry the same value. */
     public var id: Int?
     /** The section the entry ultimately lies in, as an identifier that can be listed like any other folder. For an  entry inside a room this is the rooms section, not the room. */
@@ -146,7 +148,7 @@ public struct AiFolderDto: Sendable, Codable, Hashable {
     /** The form the completed copies in this folder were filled from, taken from the copy submitted last. Null while  the folder holds no completed copy, and for every folder that does not collect them. */
     public var originalFormId: Int?
 
-    public init(title: String? = nil, access: AiFileShare? = nil, sharedBy: AiEmployeeDto? = nil, ownedBy: AiEmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: AiApiDateTime? = nil, createdBy: AiEmployeeDto? = nil, updated: AiApiDateTime? = nil, autoDelete: AiApiDateTime? = nil, rootFolderType: AiFolderType? = nil, parentRoomType: AiFolderType? = nil, updatedBy: AiEmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: AiFileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: AiApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [AiMetadataMatchDto]? = nil, parentId: Int? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: AiLogoDto? = nil, pinned: Bool? = nil, roomType: AiRoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: AiRoomDataLifetimeDto? = nil, watermark: AiWatermarkDto? = nil, type: AiFolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, chatSettings: AiChatSettingsDto? = nil, rootRoomType: AiRoomType? = nil, saveFormAsXLSX: Bool? = nil, sendFormToExternalDB: Bool? = nil, originalFormId: Int? = nil) {
+    public init(title: String? = nil, access: AiFileShare? = nil, sharedBy: AiEmployeeDto? = nil, ownedBy: AiEmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: AiApiDateTime? = nil, createdBy: AiEmployeeDto? = nil, updated: AiApiDateTime? = nil, autoDelete: AiApiDateTime? = nil, rootFolderType: AiFolderType? = nil, parentRoomType: AiFolderType? = nil, updatedBy: AiEmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: AiFileEntryType? = nil, entryKind: String? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: AiApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [AiMetadataMatchDto]? = nil, parentId: Int? = nil, filesCount: Int? = nil, foldersCount: Int? = nil, isShareable: Bool? = nil, new: Int? = nil, mute: Bool? = nil, tags: [String]? = nil, logo: AiLogoDto? = nil, pinned: Bool? = nil, roomType: AiRoomType? = nil, _private: Bool? = nil, indexing: Bool? = nil, denyDownload: Bool? = nil, lifetime: AiRoomDataLifetimeDto? = nil, watermark: AiWatermarkDto? = nil, type: AiFolderType? = nil, inRoom: Bool? = nil, quotaLimit: Int64? = nil, isCustomQuota: Bool? = nil, usedSpace: Int64? = nil, passwordProtected: Bool? = nil, expired: Bool? = nil, chatSettings: AiChatSettingsDto? = nil, rootRoomType: AiRoomType? = nil, saveFormAsXLSX: Bool? = nil, sendFormToExternalDB: Bool? = nil, originalFormId: Int? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -169,6 +171,7 @@ public struct AiFolderDto: Sendable, Codable, Hashable {
         self.order = order
         self.isFavorite = isFavorite
         self.fileEntryType = fileEntryType
+        self.entryKind = entryKind
         self.id = id
         self.rootFolderId = rootFolderId
         self.originId = originId
@@ -237,6 +240,7 @@ public struct AiFolderDto: Sendable, Codable, Hashable {
         case order
         case isFavorite
         case fileEntryType
+        case entryKind
         case id
         case rootFolderId
         case originId
@@ -308,6 +312,7 @@ public struct AiFolderDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(isFavorite, forKey: .isFavorite)
         try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
+        try container.encodeIfPresent(entryKind, forKey: .entryKind)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(rootFolderId, forKey: .rootFolderId)
         try container.encodeIfPresent(originId, forKey: .originId)

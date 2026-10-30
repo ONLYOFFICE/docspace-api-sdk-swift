@@ -61,8 +61,10 @@ public struct AiFileEntryBaseDto: Sendable, Codable, Hashable {
     public var isFavorite: Bool?
     /** Tells a folder from a file, and so which of the two shapes the rest of the object has. A room is reported as a  folder here. */
     public var fileEntryType: AiFileEntryType?
+    /** Which concrete type the object is: `file`, `thirdPartyFile`, `folder`, `thirdPartyFolder`. It is what tells the types apart in a list that mixes several of them; a response limited by `fields` may leave it out. */
+    public var entryKind: String?
 
-    public init(title: String? = nil, access: AiFileShare? = nil, sharedBy: AiEmployeeDto? = nil, ownedBy: AiEmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: AiApiDateTime? = nil, createdBy: AiEmployeeDto? = nil, updated: AiApiDateTime? = nil, autoDelete: AiApiDateTime? = nil, rootFolderType: AiFolderType? = nil, parentRoomType: AiFolderType? = nil, updatedBy: AiEmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: AiFileEntryType? = nil) {
+    public init(title: String? = nil, access: AiFileShare? = nil, sharedBy: AiEmployeeDto? = nil, ownedBy: AiEmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: AiApiDateTime? = nil, createdBy: AiEmployeeDto? = nil, updated: AiApiDateTime? = nil, autoDelete: AiApiDateTime? = nil, rootFolderType: AiFolderType? = nil, parentRoomType: AiFolderType? = nil, updatedBy: AiEmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: AiFileEntryType? = nil, entryKind: String? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -85,6 +87,7 @@ public struct AiFileEntryBaseDto: Sendable, Codable, Hashable {
         self.order = order
         self.isFavorite = isFavorite
         self.fileEntryType = fileEntryType
+        self.entryKind = entryKind
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -110,6 +113,7 @@ public struct AiFileEntryBaseDto: Sendable, Codable, Hashable {
         case order
         case isFavorite
         case fileEntryType
+        case entryKind
     }
 
     // Encodable protocol methods
@@ -138,6 +142,7 @@ public struct AiFileEntryBaseDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(isFavorite, forKey: .isFavorite)
         try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
+        try container.encodeIfPresent(entryKind, forKey: .entryKind)
     }
 }
 

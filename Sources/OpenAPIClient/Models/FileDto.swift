@@ -61,6 +61,8 @@ public struct FileDto: Sendable, Codable, Hashable {
     public var isFavorite: Bool?
     /** Tells a folder from a file, and so which of the two shapes the rest of the object has. A room is reported as a  folder here. */
     public var fileEntryType: FileEntryType?
+    /** Which concrete type the object is: `file`, `thirdPartyFile`, `folder`, `thirdPartyFolder`. It is what tells the types apart in a list that mixes several of them; a response limited by `fields` may leave it out. */
+    public var entryKind: String?
     /** The identifier to pass back to the other operations of this entry. It is a number for storage on the portal  and a string for a connected third-party account, and it is unique only within its own kind, so files and  folders may carry the same value. */
     public var id: Int?
     /** The section the entry ultimately lies in, as an identifier that can be listed like any other folder. For an  entry inside a room this is the rooms section, not the room. */
@@ -160,7 +162,7 @@ public struct FileDto: Sendable, Codable, Hashable {
     /** The pixel size of the picture, measured by reading the stored file rather than taken from any stored metadata.  Null for anything that is not a picture the portal can show, and also when the file could not be read. */
     public var dimensions: ImageSizeDto?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, editingBy: [String: String?]? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, isFillingPreparing: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, resultsFolderId: Int? = nil, draftLocation: DraftLocation? = nil, viewAccessibility: FileDtoAllOfViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, vectorizationStatus: VectorizationStatus? = nil, externalDbTableName: String? = nil, dimensions: ImageSizeDto? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, entryKind: String? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil, folderId: Int? = nil, version: Int? = nil, versionGroup: Int? = nil, contentLength: String? = nil, pureContentLength: Int64? = nil, fileStatus: FileStatus? = nil, editingBy: [String: String?]? = nil, mute: Bool? = nil, viewUrl: String? = nil, webUrl: String? = nil, fileType: FileType? = nil, fileExst: String? = nil, comment: String? = nil, encrypted: Bool? = nil, thumbnailUrl: String? = nil, thumbnailStatus: Thumbnail? = nil, locked: Bool? = nil, lockedBy: String? = nil, hasDraft: Bool? = nil, formFillingStatus: FormFillingStatus? = nil, isForm: Bool? = nil, customFilterEnabled: Bool? = nil, customFilterEnabledBy: String? = nil, startFilling: Bool? = nil, isFillingPreparing: Bool? = nil, inProcessFolderId: Int? = nil, inProcessFolderTitle: String? = nil, resultsFolderId: Int? = nil, draftLocation: DraftLocation? = nil, viewAccessibility: FileDtoAllOfViewAccessibility? = nil, lastOpened: ApiDateTime? = nil, expired: ApiDateTime? = nil, vectorizationStatus: VectorizationStatus? = nil, externalDbTableName: String? = nil, dimensions: ImageSizeDto? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -183,6 +185,7 @@ public struct FileDto: Sendable, Codable, Hashable {
         self.order = order
         self.isFavorite = isFavorite
         self.fileEntryType = fileEntryType
+        self.entryKind = entryKind
         self.id = id
         self.rootFolderId = rootFolderId
         self.originId = originId
@@ -259,6 +262,7 @@ public struct FileDto: Sendable, Codable, Hashable {
         case order
         case isFavorite
         case fileEntryType
+        case entryKind
         case id
         case rootFolderId
         case originId
@@ -338,6 +342,7 @@ public struct FileDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(isFavorite, forKey: .isFavorite)
         try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
+        try container.encodeIfPresent(entryKind, forKey: .entryKind)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(rootFolderId, forKey: .rootFolderId)
         try container.encodeIfPresent(originId, forKey: .originId)

@@ -61,6 +61,8 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
     public var isFavorite: Bool?
     /** Tells a folder from a file, and so which of the two shapes the rest of the object has. A room is reported as a  folder here. */
     public var fileEntryType: FileEntryType?
+    /** Which concrete type the object is: `file`, `thirdPartyFile`, `folder`, `thirdPartyFolder`. It is what tells the types apart in a list that mixes several of them; a response limited by `fields` may leave it out. */
+    public var entryKind: String?
     /** The identifier to pass back to the other operations of this entry. It is a number for storage on the portal  and a string for a connected third-party account, and it is unique only within its own kind, so files and  folders may carry the same value. */
     public var id: String?
     /** The section the entry ultimately lies in, as an identifier that can be listed like any other folder. For an  entry inside a room this is the rooms section, not the room. */
@@ -91,7 +93,7 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
     /** Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here. */
     public var metadataMatches: [MetadataMatchDto]?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, entryKind: String? = nil, id: String? = nil, rootFolderId: String? = nil, originId: String? = nil, originRoomId: String? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -114,6 +116,7 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
         self.order = order
         self.isFavorite = isFavorite
         self.fileEntryType = fileEntryType
+        self.entryKind = entryKind
         self.id = id
         self.rootFolderId = rootFolderId
         self.originId = originId
@@ -155,6 +158,7 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
         case order
         case isFavorite
         case fileEntryType
+        case entryKind
         case id
         case rootFolderId
         case originId
@@ -199,6 +203,7 @@ public struct ThirdPartyFileEntryDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(order, forKey: .order)
         try container.encodeIfPresent(isFavorite, forKey: .isFavorite)
         try container.encodeIfPresent(fileEntryType, forKey: .fileEntryType)
+        try container.encodeIfPresent(entryKind, forKey: .entryKind)
         try container.encodeIfPresent(id, forKey: .id)
         try container.encodeIfPresent(rootFolderId, forKey: .rootFolderId)
         try container.encodeIfPresent(originId, forKey: .originId)
