@@ -5672,8 +5672,6 @@ All URIs are relative to *https://your-docspace.onlyoffice.com*
  - [\Models.CheckDestFolderWrapper](docs/CheckDestFolderWrapper.md)
  - [\Models.CheckDocServiceUrlRequestDto](docs/CheckDocServiceUrlRequestDto.md)
  - [\Models.CheckFillFormDraftRequest](docs/CheckFillFormDraftRequest.md)
- - [\Models.CheckMoveOrCopyBatchItemsDestFolderIdParameter](docs/CheckMoveOrCopyBatchItemsDestFolderIdParameter.md)
- - [\Models.CheckMoveOrCopyBatchItemsFolderIdsParameterInner](docs/CheckMoveOrCopyBatchItemsFolderIdsParameterInner.md)
  - [\Models.CheckUploadRequest](docs/CheckUploadRequest.md)
  - [\Models.ChunkedUploadSessionDto](docs/ChunkedUploadSessionDto.md)
  - [\Models.ChunkedUploadSessionResultDto](docs/ChunkedUploadSessionResultDto.md)

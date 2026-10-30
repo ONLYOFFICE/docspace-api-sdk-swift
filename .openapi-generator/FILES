@@ -408,8 +408,6 @@ Sources/OpenAPIClient/Models/CheckDestFolderResult.swift
 Sources/OpenAPIClient/Models/CheckDestFolderWrapper.swift
 Sources/OpenAPIClient/Models/CheckDocServiceUrlRequestDto.swift
 Sources/OpenAPIClient/Models/CheckFillFormDraftRequest.swift
-Sources/OpenAPIClient/Models/CheckMoveOrCopyBatchItemsDestFolderIdParameter.swift
-Sources/OpenAPIClient/Models/CheckMoveOrCopyBatchItemsFolderIdsParameterInner.swift
 Sources/OpenAPIClient/Models/CheckUploadRequest.swift
 Sources/OpenAPIClient/Models/ChunkedUploadSessionDto.swift
 Sources/OpenAPIClient/Models/ChunkedUploadSessionResultDto.swift
@@ -1483,8 +1481,6 @@ docs/CheckDestFolderResult.md
 docs/CheckDestFolderWrapper.md
 docs/CheckDocServiceUrlRequestDto.md
 docs/CheckFillFormDraftRequest.md
-docs/CheckMoveOrCopyBatchItemsDestFolderIdParameter.md
-docs/CheckMoveOrCopyBatchItemsFolderIdsParameterInner.md
 docs/CheckUploadRequest.md
 docs/ChunkedUploadSessionDto.md
 docs/ChunkedUploadSessionResultDto.md

@@ -448,7 +448,7 @@ open class FilesOperationsAPIApi {
      - returns: FileEntryBaseArrayWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkMoveOrCopyBatchItems(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseArrayWrapper {
+    open class func checkMoveOrCopyBatchItems(returnSingleOperation: Bool? = nil, folderIds: [String]? = nil, fileIds: [String]? = nil, destFolderId: String? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> FileEntryBaseArrayWrapper {
         return try await checkMoveOrCopyBatchItemsWithRequestBuilder(returnSingleOperation: returnSingleOperation, folderIds: folderIds, fileIds: fileIds, destFolderId: destFolderId, conflictResolveType: conflictResolveType, deleteAfter: deleteAfter, content: content, toFillOut: toFillOut, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -491,7 +491,7 @@ open class FilesOperationsAPIApi {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<FileEntryBaseArrayWrapper> 
      */
-    open class func checkMoveOrCopyBatchItemsWithRequestBuilder(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseArrayWrapper> {
+    open class func checkMoveOrCopyBatchItemsWithRequestBuilder(returnSingleOperation: Bool? = nil, folderIds: [String]? = nil, fileIds: [String]? = nil, destFolderId: String? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<FileEntryBaseArrayWrapper> {
         let localVariablePath = "/api/2.0/files/fileops/move"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -531,7 +531,7 @@ open class FilesOperationsAPIApi {
      - returns: CheckDestFolderWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func checkMoveOrCopyDestFolder(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CheckDestFolderWrapper {
+    open class func checkMoveOrCopyDestFolder(returnSingleOperation: Bool? = nil, folderIds: [String]? = nil, fileIds: [String]? = nil, destFolderId: String? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> CheckDestFolderWrapper {
         return try await checkMoveOrCopyDestFolderWithRequestBuilder(returnSingleOperation: returnSingleOperation, folderIds: folderIds, fileIds: fileIds, destFolderId: destFolderId, conflictResolveType: conflictResolveType, deleteAfter: deleteAfter, content: content, toFillOut: toFillOut, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -574,7 +574,7 @@ open class FilesOperationsAPIApi {
      - parameter apiConfiguration: The configuration for the http request.
      - returns: RequestBuilder<CheckDestFolderWrapper> 
      */
-    open class func checkMoveOrCopyDestFolderWithRequestBuilder(returnSingleOperation: Bool? = nil, folderIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, fileIds: [CheckMoveOrCopyBatchItemsFolderIdsParameterInner]? = nil, destFolderId: CheckMoveOrCopyBatchItemsDestFolderIdParameter? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CheckDestFolderWrapper> {
+    open class func checkMoveOrCopyDestFolderWithRequestBuilder(returnSingleOperation: Bool? = nil, folderIds: [String]? = nil, fileIds: [String]? = nil, destFolderId: String? = nil, conflictResolveType: FileConflictResolveType? = nil, deleteAfter: Bool? = nil, content: Bool? = nil, toFillOut: Bool? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<CheckDestFolderWrapper> {
         let localVariablePath = "/api/2.0/files/fileops/checkdestfolder"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
