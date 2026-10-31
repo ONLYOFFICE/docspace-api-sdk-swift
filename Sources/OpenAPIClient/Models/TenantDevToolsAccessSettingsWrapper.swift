@@ -19,8 +19,10 @@ public struct TenantDevToolsAccessSettingsWrapper: Sendable, Codable, Hashable {
 
     /** The TenantDevToolsAccessSettingsDto object returned by the operation. */
     public var response: TenantDevToolsAccessSettingsDto?
-    /** The total number of items in the response */
+    /** How many items this response carries: the length of the page for a list, 1 for a single object */
     public var count: Int?
+    /** How many items the whole list holds across all pages, for working out how many pages to request. Sent only by the operations that page their results, and left out of every other response */
+    public var total: Int64?
     /** List of links related to the response */
     public var links: [GetPortalPrices200ResponseLinksInner]?
     /** HTTP status code of the response */
@@ -28,9 +30,10 @@ public struct TenantDevToolsAccessSettingsWrapper: Sendable, Codable, Hashable {
     /** HTTP status code of the response (duplicate of status) */
     public var statusCode: Int?
 
-    public init(response: TenantDevToolsAccessSettingsDto? = nil, count: Int? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
+    public init(response: TenantDevToolsAccessSettingsDto? = nil, count: Int? = nil, total: Int64? = nil, links: [GetPortalPrices200ResponseLinksInner]? = nil, status: Int? = nil, statusCode: Int? = nil) {
         self.response = response
         self.count = count
+        self.total = total
         self.links = links
         self.status = status
         self.statusCode = statusCode
@@ -39,6 +42,7 @@ public struct TenantDevToolsAccessSettingsWrapper: Sendable, Codable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case response
         case count
+        case total
         case links
         case status
         case statusCode
@@ -50,6 +54,7 @@ public struct TenantDevToolsAccessSettingsWrapper: Sendable, Codable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(response, forKey: .response)
         try container.encodeIfPresent(count, forKey: .count)
+        try container.encodeIfPresent(total, forKey: .total)
         try container.encodeIfPresent(links, forKey: .links)
         try container.encodeIfPresent(status, forKey: .status)
         try container.encodeIfPresent(statusCode, forKey: .statusCode)
