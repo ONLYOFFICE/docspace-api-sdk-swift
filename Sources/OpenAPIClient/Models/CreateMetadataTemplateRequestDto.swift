@@ -21,7 +21,7 @@ public struct CreateMetadataTemplateRequestDto: Sendable, Codable, Hashable {
     public var name: String?
     /** Specifies if the template is visible in the UI pickers. */
     public var visible: Bool?
-    /** The template metadata fields. */
+    /** The template metadata fields. At least one field is required: a template without fields is not created. */
     public var fields: [MetadataFieldRequest]?
 
     public init(name: String?, visible: Bool? = nil, fields: [MetadataFieldRequest]? = nil) {

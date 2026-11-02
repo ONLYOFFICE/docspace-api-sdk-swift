@@ -21,15 +21,19 @@ public struct EntryMetadataDto: Sendable, Codable, Hashable {
     public var templates: [EntryTemplateDto]?
     /** The custom fields with their values. */
     public var customFields: [CustomFieldValueDto]?
+    /** Whether the entry has a metadata field a user can see and fill, by hand or with the AI filling: a field of a  template in `templates` whose `visible` is true, or a custom field in `customFields`. False when both lists are  empty, when every template is hidden, or when none of the visible ones has a field. It says nothing about the  values: it stays true once every field is filled. The same flag is carried by the entry in a folder listing and  in the file and folder info responses as `hasMetadataFields`, so a client that has the listing needs no call here  to decide whether to offer the filling. */
+    public var hasMetadataFields: Bool?
 
-    public init(templates: [EntryTemplateDto]? = nil, customFields: [CustomFieldValueDto]? = nil) {
+    public init(templates: [EntryTemplateDto]? = nil, customFields: [CustomFieldValueDto]? = nil, hasMetadataFields: Bool? = nil) {
         self.templates = templates
         self.customFields = customFields
+        self.hasMetadataFields = hasMetadataFields
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case templates
         case customFields
+        case hasMetadataFields
     }
 
     // Encodable protocol methods
@@ -38,6 +42,7 @@ public struct EntryMetadataDto: Sendable, Codable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(templates, forKey: .templates)
         try container.encodeIfPresent(customFields, forKey: .customFields)
+        try container.encodeIfPresent(hasMetadataFields, forKey: .hasMetadataFields)
     }
 }
 

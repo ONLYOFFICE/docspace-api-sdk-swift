@@ -14,11 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** [0 - User, 1 - External link, 2 - Group, 3 - Invitation link, 4 - Primary external link] */
+/** [0 - User, 1 - External link, 2 - Group, 3 - Invitation link, 4 - Primary external link, 5 - Read access to a room linked to an AI project the user is a member of] */
 public enum SubjectType: Int, Sendable, Codable, CaseIterable {
     case User = 0
     case ExternalLink = 1
     case Group = 2
     case InvitationLink = 3
     case PrimaryExternalLink = 4
+    case AiProject = 5
 }

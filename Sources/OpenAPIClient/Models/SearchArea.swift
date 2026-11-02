@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** [Active - Active, Archive - Archive, Any - Any, RecentByLinks - Recent by links, Templates - Template, Knowledge - Knowledge, ResultStorage - Result storage, AiAgents - AiAgents, Forms - Forms, FormTemplates - Form templates] */
+/** [Active - Active, Archive - Archive, Any - Any, RecentByLinks - Recent by links, Templates - Template, Knowledge - Knowledge, ResultStorage - Result storage, AiAgents - AiAgents, Forms - Forms, FormTemplates - Form templates, AiHub - AiHub] */
 public enum SearchArea: String, Sendable, Codable, CaseIterable {
     case active = "Active"
     case archive = "Archive"
@@ -26,4 +26,5 @@ public enum SearchArea: String, Sendable, Codable, CaseIterable {
     case aiAgents = "AiAgents"
     case forms = "Forms"
     case formTemplates = "FormTemplates"
+    case aiHub = "AiHub"
 }

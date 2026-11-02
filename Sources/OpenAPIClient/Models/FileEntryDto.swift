@@ -77,9 +77,9 @@ public struct FileEntryDto: Sendable, Codable, Hashable {
     public var originRoomTitle: String?
     /** Whether the calling account may change who has access to the entry, and so whether offering a sharing dialog  for it makes sense. It is false in rooms whose access is fixed by the room itself, such as a private one, even  for its manager. */
     public var canShare: Bool?
-    public var shareSettings: AiFileEntryDtoAllOfShareSettings?
-    public var security: AiFileEntryDtoAllOfSecurity?
-    public var availableShareRights: AiFileEntryDtoAllOfAvailableShareRights?
+    public var shareSettings: FileEntryDtoAllOfShareSettings?
+    public var security: FileEntryDtoAllOfSecurity?
+    public var availableShareRights: FileEntryDtoAllOfAvailableShareRights?
     /** The token of the link the entry is being read through, which is the value the external-share operations expect  and which also has to be carried by the download and preview addresses. It is null whenever the entry is not  being read through a link. */
     public var requestToken: String?
     /** Set when the link being used was made for this very entry, and false when the entry is reached through a link  to the room around it. It is null when no link is involved. */
@@ -90,10 +90,12 @@ public struct FileEntryDto: Sendable, Codable, Hashable {
     public var isLinkExpired: Bool?
     /** The IDs of the metadata templates assigned to the file entry. */
     public var assignedMetadataTemplates: [Int]?
+    /** Whether the entry has a metadata field a user can see and fill, by hand or with the AI filling: a field of a  visible assigned template, or a custom field. False when the entry has no metadata, when its assigned templates  are all hidden, or when they have no fields. It says nothing about the values: it stays true once every field is  filled, and nothing about the caller's rights: writing the values still needs the right to edit the entry  (`security.Edit`). It cannot be derived from `assignedMetadataTemplates`, which lists hidden templates too and  never lists the custom fields. Present, with a value, in the folder listing and in the file and folder info  responses; absent in the other responses that carry an entry (the answer to a creation, an upload or a rename),  which do not compute it, and for an entry of a third-party storage, which has no metadata. The same flag is  answered by `GET api/2.0/files/metadata/file/{fileId}` and `GET api/2.0/files/metadata/folder/{folderId}`. */
+    public var hasMetadataFields: Bool?
     /** Where the search text of the listing was met in the metadata of the entry: one item per string value holding  the text, in the order of the fields. Present only in a listing filtered by text, and only for the entries whose  metadata contain it; an entry found by its title alone carries nothing here. */
     public var metadataMatches: [MetadataMatchDto]?
 
-    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, entryKind: String? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: AiFileEntryDtoAllOfShareSettings? = nil, security: AiFileEntryDtoAllOfSecurity? = nil, availableShareRights: AiFileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, metadataMatches: [MetadataMatchDto]? = nil) {
+    public init(title: String? = nil, access: FileShare? = nil, sharedBy: EmployeeDto? = nil, ownedBy: EmployeeDto? = nil, shared: Bool? = nil, sharedForUser: Bool? = nil, sharedExternal: Bool? = nil, parentShared: Bool? = nil, shortWebUrl: String? = nil, created: ApiDateTime? = nil, createdBy: EmployeeDto? = nil, updated: ApiDateTime? = nil, autoDelete: ApiDateTime? = nil, rootFolderType: FolderType? = nil, parentRoomType: FolderType? = nil, updatedBy: EmployeeDto? = nil, providerItem: Bool? = nil, providerKey: String? = nil, providerId: Int? = nil, order: String? = nil, isFavorite: Bool? = nil, fileEntryType: FileEntryType? = nil, entryKind: String? = nil, id: Int? = nil, rootFolderId: Int? = nil, originId: Int? = nil, originRoomId: Int? = nil, originTitle: String? = nil, originRoomTitle: String? = nil, canShare: Bool? = nil, shareSettings: FileEntryDtoAllOfShareSettings? = nil, security: FileEntryDtoAllOfSecurity? = nil, availableShareRights: FileEntryDtoAllOfAvailableShareRights? = nil, requestToken: String? = nil, external: Bool? = nil, expirationDate: ApiDateTime? = nil, isLinkExpired: Bool? = nil, assignedMetadataTemplates: [Int]? = nil, hasMetadataFields: Bool? = nil, metadataMatches: [MetadataMatchDto]? = nil) {
         self.title = title
         self.access = access
         self.sharedBy = sharedBy
@@ -132,6 +134,7 @@ public struct FileEntryDto: Sendable, Codable, Hashable {
         self.expirationDate = expirationDate
         self.isLinkExpired = isLinkExpired
         self.assignedMetadataTemplates = assignedMetadataTemplates
+        self.hasMetadataFields = hasMetadataFields
         self.metadataMatches = metadataMatches
     }
 
@@ -174,6 +177,7 @@ public struct FileEntryDto: Sendable, Codable, Hashable {
         case expirationDate
         case isLinkExpired
         case assignedMetadataTemplates
+        case hasMetadataFields
         case metadataMatches
     }
 
@@ -219,6 +223,7 @@ public struct FileEntryDto: Sendable, Codable, Hashable {
         try container.encodeIfPresent(expirationDate, forKey: .expirationDate)
         try container.encodeIfPresent(isLinkExpired, forKey: .isLinkExpired)
         try container.encodeIfPresent(assignedMetadataTemplates, forKey: .assignedMetadataTemplates)
+        try container.encodeIfPresent(hasMetadataFields, forKey: .hasMetadataFields)
         try container.encodeIfPresent(metadataMatches, forKey: .metadataMatches)
     }
 }
