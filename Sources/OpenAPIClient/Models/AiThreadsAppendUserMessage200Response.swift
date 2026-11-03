@@ -16,10 +16,10 @@ import Foundation
 
 public struct AiThreadsAppendUserMessage200Response: Sendable, Codable, Hashable {
 
-    /** Identifier of the message that was appended to the thread. */
-    public var messageId: String
+    /** The stored message itself - with its storage-assigned `id` and `createdAt` - despite the field name, which is kept for the clients that already read it. The message ID is `messageId.id`. */
+    public var messageId: AiThreadMessageLike
 
-    public init(messageId: String) {
+    public init(messageId: AiThreadMessageLike) {
         self.messageId = messageId
     }
 

@@ -20,7 +20,7 @@ public struct AiProfilesGetById200Response: Sendable, Codable, Hashable {
     public var id: String
     /** User-defined profile display name. */
     public var name: String
-    /** Provider type for this profile. Use `external` to delegate all HTTP transport to `PlatformAdapter.externalFetch` while reusing an existing provider's response parser — see `Profile.basedOn` for the format selector. */
+    /** The provider type of the profile. `external` sends every request through a transport the embedding application supplies while parsing the answers with the provider named in `basedOn`. */
     public var providerType: AiProviderType
     /** Selects the response-format parser used by the `external` provider. Ignored for any other `providerType`.  Supported values are `openai`, `anthropic`, `mistral` and `openrouter`. Remaining values (`genai`, `stabilityai`, …) are accepted by the type but not yet implemented; passing one raises an error at request time. */
     public var basedOn: AiBuiltinProviderType?
@@ -30,7 +30,7 @@ public struct AiProfilesGetById200Response: Sendable, Codable, Hashable {
     public var modelId: String
     /** Whether extended thinking is enabled for this profile's model. */
     public var reasoning: Bool?
-    /** Extended-thinking capabilities of the selected model as reported by the provider's catalogue at save time (see `Model.reasoningSupport`). When present the composer's Effort row follows it exactly; when absent the provider's id-based table answers. Hosts persist it with the rest of the profile. */
+    /** What the model can do with extended thinking, as the provider's catalogue reported it when the profile was saved; the effort choices in the chat follow it. When absent, the abilities are taken from the model ID. */
     public var reasoningSupport: AiReasoningSupport?
     /** Bitmask of capabilities supported by the selected model. */
     public var capabilities: Double?
@@ -40,7 +40,7 @@ public struct AiProfilesGetById200Response: Sendable, Codable, Hashable {
     public var useResponsesApi: Bool?
     /** Whether this profile uses a cloud-hosted provider (e.g. ONLYOFFICE DocSpace). */
     public var isCloudProvider: Bool?
-    /** Route every provider request through the host's `fetchProxy` instead of the global `fetch`. Useful when the host runs the widget in a sandbox without direct network access (CORS, custom auth, etc.). Has no effect when the `PlatformAdapter.fetchProxy` is not configured. */
+    /** Whether the chat client sends this profile's provider requests through the portal's proxy instead of directly. Has no effect when no proxy is configured. */
     public var useProxy: Bool?
     /** Creation timestamp (ms since epoch). Used to sort the AI models list newest-first. */
     public var createdAt: Double?

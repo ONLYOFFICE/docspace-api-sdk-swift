@@ -17,17 +17,15 @@ import Foundation
 /** Versioned, self-contained bundle of every saved prompt and folder. Stable wire format — `version` lets the import path migrate older shapes if the schema ever changes. */
 public struct AiPromptBundle: Sendable, Codable, Hashable {
 
-    public enum Version: Double, Sendable, Codable, CaseIterable {
-        case _1 = 1
-    }
+    public static let versionRule = NumericRule<Int>(minimum: 1, exclusiveMinimum: false, maximum: 1, exclusiveMaximum: false, multipleOf: nil)
     /** The bundle format version, so an import can migrate an older export. */
-    public var version: Version
+    public var version: Int
     /** Every exported prompt folder. */
     public var folders: [AiPromptFolder]
     /** Every exported prompt. */
     public var prompts: [AiPrompt]
 
-    public init(version: Version, folders: [AiPromptFolder], prompts: [AiPrompt]) {
+    public init(version: Int, folders: [AiPromptFolder], prompts: [AiPrompt]) {
         self.version = version
         self.folders = folders
         self.prompts = prompts

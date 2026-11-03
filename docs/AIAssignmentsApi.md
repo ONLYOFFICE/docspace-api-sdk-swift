@@ -154,7 +154,7 @@ do {
 
 # **aiAssignmentsGetAllAssignments**
 ```swift
-    open class func aiAssignmentsGetAllAssignments(entityId: String? = nil, expand: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: String]
+    open class func aiAssignmentsGetAllAssignments(entityId: String? = nil, expand: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiAssignmentsGetAllAssignments200Response
 ```
 
 Returns every action-to-profile binding of a scope as one map, which is what a settings screen loads. `entityId`, when sent, has to name a room the caller can open; the bindings are portal-wide, so the answer is the same set with or without it. Actions with no binding are simply absent from the map. The `Default` slot is reported as an entry of its own rather than being folded into the others. With `expand=profile` the answer is `{ assignments, profilesTotal, chatProfilesTotal }`: the assigned profiles themselves (as `GET api/2.0/ai/profiles/list` describes them) keyed by action, a binding whose profile no longer exists left out, plus how many profiles the portal has and how many of them can chat; this is the one read a chat needs to start.
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**[String: String]**
+[**AiAssignmentsGetAllAssignments200Response**](AiAssignmentsGetAllAssignments200Response.md)
 
 ### Authorization
 

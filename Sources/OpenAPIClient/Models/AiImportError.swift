@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Per-entry error reported by `PromptsEngine.importBundle`. */
+/** One refused entry of a prompt bundle import. */
 public struct AiImportError: Sendable, Codable, Hashable {
 
     public enum Kind: String, Sendable, Codable, CaseIterable {

@@ -20,16 +20,19 @@ public struct AiSendRequest: Sendable, Codable, Hashable {
     public var actionType: AiActionType
     /** The user turn to send. */
     public var userMessage: AiThreadMessageLike
-    /** Per-request engine options: extra tools, reasoning, prompt override. */
+    /** Per-request options of the round: extra tools, reasoning, a prompt override and the connected context. */
     public var actionArgs: AiActionArgs?
     /** Optional entity (room) scope for profile resolution. */
     public var entityId: String?
+    /** The folder or room the user is in. Tools run against it and the model is told it is the user's location; falls back to `entityId` when omitted. */
+    public var contextEntityId: String?
 
-    public init(actionType: AiActionType, userMessage: AiThreadMessageLike, actionArgs: AiActionArgs? = nil, entityId: String? = nil) {
+    public init(actionType: AiActionType, userMessage: AiThreadMessageLike, actionArgs: AiActionArgs? = nil, entityId: String? = nil, contextEntityId: String? = nil) {
         self.actionType = actionType
         self.userMessage = userMessage
         self.actionArgs = actionArgs
         self.entityId = entityId
+        self.contextEntityId = contextEntityId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -37,6 +40,7 @@ public struct AiSendRequest: Sendable, Codable, Hashable {
         case userMessage
         case actionArgs
         case entityId
+        case contextEntityId
     }
 
     // Encodable protocol methods
@@ -47,6 +51,7 @@ public struct AiSendRequest: Sendable, Codable, Hashable {
         try container.encode(userMessage, forKey: .userMessage)
         try container.encodeIfPresent(actionArgs, forKey: .actionArgs)
         try container.encodeIfPresent(entityId, forKey: .entityId)
+        try container.encodeIfPresent(contextEntityId, forKey: .contextEntityId)
     }
 }
 

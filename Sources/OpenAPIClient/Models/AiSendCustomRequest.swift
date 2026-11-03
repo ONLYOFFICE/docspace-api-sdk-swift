@@ -21,14 +21,17 @@ public struct AiSendCustomRequest: Sendable, Codable, Hashable {
     /** Caller-supplied system prompt for this one-turn call. */
     public var systemPrompt: String
     public var userMessage: AiThreadMessageLike
-    /** Per-request engine options: extra tools, reasoning, prompt override. */
+    /** Per-request options of the round: extra tools, reasoning, a prompt override and the connected context. */
     public var actionArgs: AiActionArgs?
+    /** Profile to run this call on. When omitted, or when no profile has this id, the `Default` assignment is used. */
+    public var profileId: String?
 
-    public init(isStream: Bool, systemPrompt: String, userMessage: AiThreadMessageLike, actionArgs: AiActionArgs? = nil) {
+    public init(isStream: Bool, systemPrompt: String, userMessage: AiThreadMessageLike, actionArgs: AiActionArgs? = nil, profileId: String? = nil) {
         self.isStream = isStream
         self.systemPrompt = systemPrompt
         self.userMessage = userMessage
         self.actionArgs = actionArgs
+        self.profileId = profileId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -36,6 +39,7 @@ public struct AiSendCustomRequest: Sendable, Codable, Hashable {
         case systemPrompt
         case userMessage
         case actionArgs
+        case profileId
     }
 
     // Encodable protocol methods
@@ -46,6 +50,7 @@ public struct AiSendCustomRequest: Sendable, Codable, Hashable {
         try container.encode(systemPrompt, forKey: .systemPrompt)
         try container.encode(userMessage, forKey: .userMessage)
         try container.encodeIfPresent(actionArgs, forKey: .actionArgs)
+        try container.encodeIfPresent(profileId, forKey: .profileId)
     }
 }
 

@@ -14,12 +14,12 @@
 //  limitations under the License.
 import Foundation
 
-/** Resolved thread state returned by `ThreadsEngine.openOrCreate`. */
+/** The thread that was opened or created, with its stored messages. */
 public struct AiOpenOrCreateResult: Sendable, Codable, Hashable {
 
     /** The thread that was opened, or the one just created. */
     public var threadId: String
-    /** Empty string for existing threads — the engine doesn't re-fetch. */
+    /** The title generated for a thread this call created; an empty string when it opened an existing thread. */
     public var title: String
     /** The messages already in the thread - empty for a thread that was just created. */
     public var priorMessages: [AiThreadMessageLike]

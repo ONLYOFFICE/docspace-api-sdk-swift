@@ -29,7 +29,7 @@ public struct AiAttachment: Sendable, Codable, Hashable {
     public var id: String
     /** file | image. */
     public var kind: Kind
-    /** Origin of the attachment. `user` — uploaded by the user in the composer (the default when unset, for backward compatibility). `tool` — produced by a tool call (e.g. `generate_image`). Lets the integrator's adapter route or apply policies (separate bucket, quotas, TTL, CDN) per source. */
+    /** Where the attachment came from: `user` - attached by the user (also when unset); `tool` - produced by a tool call (for example `generate_image`). */
     public var source: Source?
     /** Display label (filename or user-visible title). */
     public var title: String
@@ -45,7 +45,7 @@ public struct AiAttachment: Sendable, Codable, Hashable {
     public var messageId: String?
     /** Owning thread id once linked. Unset while the attachment is a draft. */
     public var threadId: String?
-    /** Opaque scope token (entity / room) the attachment was created in. Drafts carry it so an entity switch keeps in-flight composer state isolated; once linked to a message the field is redundant with the thread's own entity binding. */
+    /** The room or folder the attachment was created in, as an opaque token; once the attachment is bound to a message it repeats the thread's own scope. */
     public var entityId: String?
     /** Storage-assigned creation timestamp. */
     public var createdAt: Double

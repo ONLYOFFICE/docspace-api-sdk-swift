@@ -25,16 +25,18 @@ public struct AiApproveToolCallRequest: Sendable, Codable, Hashable {
     public var messageId: String
     /** Index of the tool-call content part inside `message.content`. */
     public var idx: Double
-    /** Snapshot of the assistant message at the time the tool call surfaced. Optional and ignored: the engine resumes from the stored message, and the copy inflated the body past the parser limit (Bug 84608). */
+    /** A copy of the assistant message as it was when the tool call surfaced. Optional and ignored: the round resumes from the stored message. Leave it out - a long conversation's copy can push the body past the size limit. */
     public var message: AiThreadMessageLike?
-    /** Per-request engine options: extra tools, reasoning, prompt override. */
+    /** Per-request options of the round: extra tools, reasoning, a prompt override and the connected context. */
     public var actionArgs: AiActionArgs?
     /** Optional entity (room) scope for profile resolution. */
     public var entityId: String?
+    /** The folder or room the user is in. Tools run against it and the model is told it is the user's location; falls back to `entityId` when omitted. */
+    public var contextEntityId: String?
     /** Session-level profile override for this request only. */
     public var profileId: String?
 
-    public init(result: JSONValue?, allowAlways: Bool? = nil, threadId: String, messageId: String, idx: Double, message: AiThreadMessageLike? = nil, actionArgs: AiActionArgs? = nil, entityId: String? = nil, profileId: String? = nil) {
+    public init(result: JSONValue?, allowAlways: Bool? = nil, threadId: String, messageId: String, idx: Double, message: AiThreadMessageLike? = nil, actionArgs: AiActionArgs? = nil, entityId: String? = nil, contextEntityId: String? = nil, profileId: String? = nil) {
         self.result = result
         self.allowAlways = allowAlways
         self.threadId = threadId
@@ -43,6 +45,7 @@ public struct AiApproveToolCallRequest: Sendable, Codable, Hashable {
         self.message = message
         self.actionArgs = actionArgs
         self.entityId = entityId
+        self.contextEntityId = contextEntityId
         self.profileId = profileId
     }
 
@@ -55,6 +58,7 @@ public struct AiApproveToolCallRequest: Sendable, Codable, Hashable {
         case message
         case actionArgs
         case entityId
+        case contextEntityId
         case profileId
     }
 
@@ -70,6 +74,7 @@ public struct AiApproveToolCallRequest: Sendable, Codable, Hashable {
         try container.encodeIfPresent(message, forKey: .message)
         try container.encodeIfPresent(actionArgs, forKey: .actionArgs)
         try container.encodeIfPresent(entityId, forKey: .entityId)
+        try container.encodeIfPresent(contextEntityId, forKey: .contextEntityId)
         try container.encodeIfPresent(profileId, forKey: .profileId)
     }
 }

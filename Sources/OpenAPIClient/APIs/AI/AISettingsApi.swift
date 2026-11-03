@@ -76,10 +76,10 @@ open class AISettingsApi {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-tool-mode/
 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: AiSuccessResponse
+     - returns: AiToolPermissionModeWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiSettingsGetToolMode(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+    open class func aiSettingsGetToolMode(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiToolPermissionModeWrapper {
         return try await aiSettingsGetToolModeWithRequestBuilder(apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -91,7 +91,7 @@ open class AISettingsApi {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-get-tool-mode/
      
      - GET /api/2.0/ai/config/tool-mode
-     - Returns the calling user's tool permission mode as the DocSpace AI service spells it - `{ mode }` with the service's `ToolPermissionMode` enum (`Ask`, `Auto`, `Allow`), proxied unchanged. The chat reads the same value in its own spelling through `GET api/2.0/ai/preferences/get-tool-permission-mode`. This is a read-only operation.
+     - Returns the calling user's tool permission mode as the DocSpace AI service spells it - `{ mode }` with the service's `ToolPermissionMode` enum (`Ask`, `Auto`, `Allow`), inside the service's `response` envelope, proxied unchanged. The chat reads the same value in its own spelling through `GET api/2.0/ai/preferences/get-tool-permission-mode`. This is a read-only operation.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -99,9 +99,9 @@ open class AISettingsApi {
        - type: http
        - name: bearerAuth
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<AiSuccessResponse> 
+     - returns: RequestBuilder<AiToolPermissionModeWrapper> 
      */
-    open class func aiSettingsGetToolModeWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiSettingsGetToolModeWithRequestBuilder(apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiToolPermissionModeWrapper> {
         let localVariablePath = "/api/2.0/ai/config/tool-mode"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -114,7 +114,7 @@ open class AISettingsApi {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AiToolPermissionModeWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }
@@ -229,10 +229,10 @@ open class AISettingsApi {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-tool-mode/
      - parameter aiSettingsSetToolModeRequest: (body) `{ mode }` with the AI service's `ToolPermissionMode` enum, proxied unchanged; the service rejects anything outside the enum. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: AiSuccessResponse
+     - returns: AiToolPermissionModeWrapper
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiSettingsSetToolMode(aiSettingsSetToolModeRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiSuccessResponse {
+    open class func aiSettingsSetToolMode(aiSettingsSetToolModeRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiToolPermissionModeWrapper {
         return try await aiSettingsSetToolModeWithRequestBuilder(aiSettingsSetToolModeRequest: aiSettingsSetToolModeRequest, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -244,7 +244,7 @@ open class AISettingsApi {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-settings-set-tool-mode/
      
      - PUT /api/2.0/ai/config/tool-mode
-     - Stores the calling user's tool permission mode and returns the stored result. The body (`{ mode }`) is proxied unchanged to the DocSpace AI service, which rejects a value outside its `ToolPermissionMode` enum. The mode applies to every chat of the user in the portal.
+     - Stores the calling user's tool permission mode and returns the stored result. The body (`{ mode }`) is proxied unchanged to the DocSpace AI service, which rejects a value outside its `ToolPermissionMode` enum with 400; the answer is the stored mode inside the service's `response` envelope. The mode applies to every chat of the user in the portal.
      - API Key:
        - type: apiKey asc_auth_key 
        - name: cookieAuth
@@ -253,9 +253,9 @@ open class AISettingsApi {
        - name: bearerAuth
      - parameter aiSettingsSetToolModeRequest: (body) `{ mode }` with the AI service's `ToolPermissionMode` enum, proxied unchanged; the service rejects anything outside the enum. 
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<AiSuccessResponse> 
+     - returns: RequestBuilder<AiToolPermissionModeWrapper> 
      */
-    open class func aiSettingsSetToolModeWithRequestBuilder(aiSettingsSetToolModeRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiSuccessResponse> {
+    open class func aiSettingsSetToolModeWithRequestBuilder(aiSettingsSetToolModeRequest: [String: JSONValue?], apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiToolPermissionModeWrapper> {
         let localVariablePath = "/api/2.0/ai/config/tool-mode"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: aiSettingsSetToolModeRequest, codableHelper: apiConfiguration.codableHelper)
@@ -268,7 +268,7 @@ open class AISettingsApi {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AiSuccessResponse>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AiToolPermissionModeWrapper>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "PUT", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**version** | **Double** | The bundle format version, so an import can migrate an older export. | 
+**version** | **Int** | The bundle format version, so an import can migrate an older export. | 
 **folders** | [AiPromptFolder] | Every exported prompt folder. | 
 **prompts** | [AiPrompt] | Every exported prompt. | 
 

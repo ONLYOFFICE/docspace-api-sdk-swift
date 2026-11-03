@@ -181,10 +181,10 @@ open class AIAssignmentsApi {
      https://api.onlyoffice.com/docspace/api-backend/usage-api/ai-assignments-get-all-assignments/
      - parameter entityId: (query) The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)     - parameter expand: (query) Set to profile to answer the assigned profiles themselves instead of their IDs: `{ assignments, profilesTotal, chatProfilesTotal }`. Omit for the plain ID map. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: [String: String]
+     - returns: AiAssignmentsGetAllAssignments200Response
      */
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func aiAssignmentsGetAllAssignments(entityId: String? = nil, expand: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> [String: String] {
+    open class func aiAssignmentsGetAllAssignments(entityId: String? = nil, expand: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) async throws(ErrorResponse) -> AiAssignmentsGetAllAssignments200Response {
         return try await aiAssignmentsGetAllAssignmentsWithRequestBuilder(entityId: entityId, expand: expand, apiConfiguration: apiConfiguration).execute().body
     }
 
@@ -206,9 +206,9 @@ open class AIAssignmentsApi {
      - parameter entityId: (query) The DocSpace folder the request names. For a chat it is the AI project the chat runs in, and is omitted outside a project; the settings operations accept it for the room the client is in, which has to be one the caller can open, but their data is kept per user and portal, not per room. (optional)
      - parameter expand: (query) Set to profile to answer the assigned profiles themselves instead of their IDs: `{ assignments, profilesTotal, chatProfilesTotal }`. Omit for the plain ID map. (optional)
      - parameter apiConfiguration: The configuration for the http request.
-     - returns: RequestBuilder<[String: String]> 
+     - returns: RequestBuilder<AiAssignmentsGetAllAssignments200Response> 
      */
-    open class func aiAssignmentsGetAllAssignmentsWithRequestBuilder(entityId: String? = nil, expand: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<[String: String]> {
+    open class func aiAssignmentsGetAllAssignmentsWithRequestBuilder(entityId: String? = nil, expand: String? = nil, apiConfiguration: OpenAPIClientAPIConfiguration = OpenAPIClientAPIConfiguration.shared) -> RequestBuilder<AiAssignmentsGetAllAssignments200Response> {
         let localVariablePath = "/api/2.0/ai/assignments/get-all-assignments"
         let localVariableURLString = apiConfiguration.basePath + localVariablePath
         let localVariableParameters: [String: any Sendable]? = nil
@@ -226,7 +226,7 @@ open class AIAssignmentsApi {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<[String: String]>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AiAssignmentsGetAllAssignments200Response>.Type = apiConfiguration.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true, apiConfiguration: apiConfiguration)
     }

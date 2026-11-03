@@ -14,7 +14,7 @@
 //  limitations under the License.
 import Foundation
 
-/** Mode passed to `PromptsEngine.importBundle`. */
+/** How an imported prompt bundle meets the library: `merge` adds to it, `replace` replaces it. */
 public enum AiImportMode: String, Sendable, Codable, CaseIterable {
     case replace = "replace"
     case merge = "merge"

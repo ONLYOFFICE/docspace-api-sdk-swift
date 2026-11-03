@@ -21,18 +21,21 @@ public struct AiSendStreamBody: Sendable, Codable, Hashable {
     public var threadId: String?
     /** The user turn to send. */
     public var userMessage: AiThreadMessageLike
-    /** Per-request engine options: extra tools, reasoning, prompt override. */
+    /** Per-request options of the round: extra tools, reasoning, a prompt override and the connected context. */
     public var actionArgs: AiActionArgs?
     /** Optional entity (room) scope for profile resolution. */
     public var entityId: String?
+    /** The folder or room the user is in. Tools run against it and the model is told it is the user's location; falls back to `entityId` when omitted. */
+    public var contextEntityId: String?
     /** Session-level profile override for this request only. */
     public var profileId: String?
 
-    public init(threadId: String? = nil, userMessage: AiThreadMessageLike, actionArgs: AiActionArgs? = nil, entityId: String? = nil, profileId: String? = nil) {
+    public init(threadId: String? = nil, userMessage: AiThreadMessageLike, actionArgs: AiActionArgs? = nil, entityId: String? = nil, contextEntityId: String? = nil, profileId: String? = nil) {
         self.threadId = threadId
         self.userMessage = userMessage
         self.actionArgs = actionArgs
         self.entityId = entityId
+        self.contextEntityId = contextEntityId
         self.profileId = profileId
     }
 
@@ -41,6 +44,7 @@ public struct AiSendStreamBody: Sendable, Codable, Hashable {
         case userMessage
         case actionArgs
         case entityId
+        case contextEntityId
         case profileId
     }
 
@@ -52,6 +56,7 @@ public struct AiSendStreamBody: Sendable, Codable, Hashable {
         try container.encode(userMessage, forKey: .userMessage)
         try container.encodeIfPresent(actionArgs, forKey: .actionArgs)
         try container.encodeIfPresent(entityId, forKey: .entityId)
+        try container.encodeIfPresent(contextEntityId, forKey: .contextEntityId)
         try container.encodeIfPresent(profileId, forKey: .profileId)
     }
 }

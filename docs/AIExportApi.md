@@ -35,7 +35,7 @@ Name | Type | Description  | Notes
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import OpenAPIClient
 
-let aiExportTextToDocxRequest = AiExportTextToDocxRequest(title: "title_example", content: "content_example", folderId: AiExportTextToDocxRequest_folderId()) // AiExportTextToDocxRequest | 
+let aiExportTextToDocxRequest = AiExportTextToDocxRequest(title: "title_example", content: "content_example", folderId: AiExportTextToDocxRequest_folderId(), format: "format_example") // AiExportTextToDocxRequest | 
 
 // Start markdown export
 do {
